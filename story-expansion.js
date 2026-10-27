@@ -507,7 +507,14 @@ window.StillwaterExpansion = {
             "The five beginnings do not align. Read the FIRST LETTER of each printed dinner course.",
           );
       } else if (id === "identity") {
-        if (normalize(form.elements.answer.value) === "WALTERVALE")
+        if (
+          normalize(form.elements.answer.value) === "WALTERVALE" ||
+          ["沃尔特维尔", "沃爾特維爾"].includes(
+            form.elements.answer.value
+              .normalize("NFKC")
+              .replace(/[\s·・。，,.]/g, ""),
+          )
+        )
           complete(
             id,
             "Entry 311 restored",
@@ -518,7 +525,21 @@ window.StillwaterExpansion = {
             "That name belongs to another entry. Compare the uncropped identification cards: PROPRIETOR / 311.",
           );
       } else if (id === "mirror") {
-        if (normalize(form.elements.answer.value) === "DONOTTURNTHEKEY")
+        if (
+          normalize(form.elements.answer.value) === "DONOTTURNTHEKEY" ||
+          [
+            "不要转动钥匙",
+            "别转动钥匙",
+            "不要转钥匙",
+            "勿转动钥匙",
+            "不要转动这把钥匙",
+            "不要轉動鑰匙",
+          ].includes(
+            form.elements.answer.value
+              .normalize("NFKC")
+              .replace(/[\s。，、,.!！?？]/g, ""),
+          )
+        )
           complete(
             id,
             "The key stays still",

@@ -3,6 +3,8 @@ await rm("dist", { recursive: true, force: true });
 await mkdir("dist", { recursive: true });
 for (const path of [
   "index.html",
+  "index-zh.html",
+  "locale-zh.js",
   "style.css",
   "app.js",
   "story-expansion.js",

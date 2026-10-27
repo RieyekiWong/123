@@ -28,6 +28,8 @@ export function createServer(
       );
       const allowed =
         file === resolve(base, "index.html") ||
+        file === resolve(base, "index-zh.html") ||
+        file === resolve(base, "locale-zh.js") ||
         file === resolve(base, "style.css") ||
         file === resolve(base, "app.js") ||
         file === resolve(base, "story-expansion.js") ||

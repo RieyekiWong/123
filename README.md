@@ -1,14 +1,20 @@
 # The Stillwater Hotel — The Lower Register
 
-An English-language, Backrooms-inspired interactive horror mystery hidden inside an unassuming hotel website. The public site retains its ivory paper, bronze rules, traditional typography, and deep-teal masthead. An apparently successful checkout exposes a second, corrupted website and a longer investigation below the hotel.
+A Backrooms-inspired interactive horror mystery in English and Simplified Chinese, hidden inside an unassuming hotel website. The public site retains its ivory paper, bronze rules, traditional typography, and deep-teal masthead. An apparently successful checkout exposes a second, corrupted website and a longer investigation below the hotel.
 
 This edition nearly doubles the narrative material, expands the notebook from six to twelve records, replaces simulated handwritten annotations with printed record sheets, and adds seven puzzle steps beyond the original two code locks.
+
+## 简体中文版
+
+完整解压后，打开 **`index-zh.html`** 即可试玩中文版本；也可点击英文首页右上角的 **中文**。中文说明见 [README.zh-CN.md](README.zh-CN.md)。
 
 ## Download and play
 
 On the [GitHub repository](https://github.com/RieyekiWong/123), choose **Code → Download ZIP**. Extract the entire archive and open the root `index.html` with Chrome or Edge. Do not open the HTML from inside the compressed archive. Extract this edition into a new folder rather than mixing its scripts with an old download.
 
-All images, scripts, and styles are included. There are no runtime packages, remote fonts, external image services, sign-ups, API keys, or backend services. If your browser or organization blocks local HTML, use the local development server below.
+All images, scripts, and styles are included. The English entry is `index.html`; the Simplified Chinese entry is `index-zh.html`. Header links switch editions and retain the current page. Both use the same progress schema and share saved progress when served from the same origin. Local-file storage isolation is browser-dependent.
+
+There are no runtime packages, remote fonts, external image services, sign-ups, API keys, or backend services. If your browser or organization blocks local HTML, use the local development server below.
 
 ## Two chapters
 
@@ -37,7 +43,7 @@ Ambient audio defaults to off. When explicitly enabled, Web Audio generates a qu
 
 Nicknames, fictional registrations, twelve collected records, solved stations, preferences, five local guestbook notes, and remembered departures stay in this browser's `localStorage`. No note or reservation is sent to a server. Clearing site data erases progress. If storage is unavailable, play continues in the current tab.
 
-Earlier progress from the first two editions is retained when possible. Players who already completed the public story can revisit Room 404 and choose the service stair to enter the new chapter without resetting. A reset in Site Information clears both chapters, closes audio, and retains the visual-effects preference.
+Earlier progress from the first two editions is retained when possible. Players who already completed the public story can revisit Room 404 and choose the service stair to enter the new chapter without resetting. A reset in Site Information clears both chapters, closes audio, and retains the visual-effects preference. Chinese names and decoded mirror instructions are accepted alongside their English answers; the menu acrostic and reversed original remain bilingual so the puzzle logic is unchanged.
 
 The hotel, people, correspondence, keypad, bookings, apparent site compromise, and error messages are fictional. The employee code is a story puzzle, not an authentication system. Images are generated hotel assets; the visitor is an original SVG illustration.
 
@@ -91,7 +97,8 @@ The configuration uses `/usr/bin/chromium` when present, or `CHROMIUM_PATH` if s
 
 ## Files
 
-- `index.html`: public homepage, shared navigation, chapter banner, and document container.
+- `index.html` / `index-zh.html`: English and Simplified Chinese entries, shared navigation, chapter banner, and document container.
+- `locale-zh.js`: complete offline Chinese catalogue and an idempotent DOM localizer. It translates text and accessibility attributes while preserving user content, field values, internal IDs, and the English originals required by puzzles. New English copy needs a corresponding catalogue entry.
 - `app.js`: public story, registration, base clues, state migration, and audio.
 - `story-expansion.js`: hotel guide, expanded documents, lower chapter, puzzle validation, and true ending.
 - `style.css`: responsive public site, printed records, corrupted theme, and optional visual effects.

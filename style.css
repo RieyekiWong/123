@@ -3150,3 +3150,158 @@ button.underlined {
   background: #100506e0;
   backdrop-filter: blur(3px);
 }
+.language-link {
+  margin-left: 16px;
+  padding-left: 15px;
+  border-left: 1px solid #7a8783;
+  font-size: 10px;
+  text-decoration: none;
+  color: #f4e7cb;
+  letter-spacing: 0.5px;
+}
+.locale-zh {
+  --serif: "Noto Serif CJK SC", "Songti SC", SimSun, serif;
+  --sans: Arial, "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  line-height: 1.9;
+}
+.locale-zh .hotel-name {
+  font-size: 34px;
+  letter-spacing: 4px;
+}
+.locale-zh .brand-tagline {
+  letter-spacing: 2px;
+}
+.locale-zh .eyebrow {
+  letter-spacing: 1.5px;
+}
+.locale-zh .hero h1 {
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 1px;
+}
+.locale-zh .navigation a {
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.locale-zh .hero-copy > p:not(.eyebrow) {
+  line-height: 1.9;
+}
+.locale-zh .section-description,
+.locale-zh .file-note {
+  line-height: 1.9;
+}
+.locale-zh .breach-heading h1 {
+  font-size: 70px;
+  line-height: 1.15;
+  letter-spacing: 3px;
+}
+.locale-zh .intrusion-frame strong {
+  font-size: 46px;
+  line-height: 1.2;
+  letter-spacing: 3px;
+}
+.locale-zh .epilogue h1 {
+  line-height: 1.35;
+}
+.locale-zh .mirror-record p {
+  font-family: "Courier New", monospace;
+}
+.locale-zh .copyright {
+  line-height: 1.9;
+}
+.locale-zh .button {
+  letter-spacing: 1px;
+}
+.locale-zh .footer-columns > div > a:not(.footer-brand),
+.locale-zh .footer-columns button {
+  line-height: 1.9;
+}
+@media (max-width: 760px) {
+  .language-link {
+    font-size: 8px;
+    margin-left: 9px;
+    padding-left: 9px;
+  }
+  .topbar > div > span:last-child:has(.language-link) {
+    display: flex;
+    align-items: center;
+    font-size: 0;
+    letter-spacing: 0;
+  }
+  .topbar .language-link {
+    font-size: 9px;
+    border-left: 0;
+    margin-left: 0;
+    padding-left: 0;
+    white-space: nowrap;
+  }
+  .locale-zh .navigation a {
+    font-size: 10px;
+    padding-inline: 12px;
+  }
+  .locale-zh .breach-heading h1 {
+    font-size: 47px;
+    letter-spacing: 2px;
+  }
+}
+@media (max-width: 540px) {
+  .locale-zh .hotel-name {
+    font-size: 30px;
+    letter-spacing: 3px;
+  }
+  .locale-zh .hero h1 {
+    font-size: 40px;
+  }
+  .locale-zh .navigation a {
+    font-size: 10px;
+    padding-inline: 5px;
+  }
+  .locale-zh .breach-heading h1 {
+    font-size: 31px;
+    letter-spacing: 1px;
+  }
+  .locale-zh .intrusion-frame strong {
+    font-size: 31px;
+    letter-spacing: 2px;
+  }
+  .locale-zh .brand-tagline {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .locale-zh .topbar > div {
+    font-size: 7px;
+    letter-spacing: 0.5px;
+  }
+  .locale-zh .epilogue h1 {
+    font-size: 37px;
+  }
+}
+@media (max-width: 350px) {
+  .locale-zh .hero h1 {
+    font-size: 34px;
+  }
+  .locale-zh .breach-heading h1 {
+    font-size: 27px;
+  }
+  .locale-zh .hotel-name {
+    font-size: 27px;
+  }
+  .locale-zh .intrusion-frame strong {
+    font-size: 28px;
+  }
+}
+@media (max-width: 1000px) {
+  .topbar > div > span:last-child:has(.language-link) {
+    display: flex;
+    align-items: center;
+    font-size: 0;
+    letter-spacing: 0;
+  }
+  .topbar .language-link {
+    font-size: 9px;
+    border-left: 0;
+    margin-left: 0;
+    padding-left: 0;
+    white-space: nowrap;
+  }
+}
