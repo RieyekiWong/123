@@ -31,9 +31,11 @@ async function unlock(page) {
   ).toBeVisible();
 }
 
-test("full six-record investigation, all three endings, persistence and reset", async ({
+test("full two-chapter investigation, five departure records, persistence and reset", async ({
   page,
 }) => {
+  test.setTimeout(60_000);
+  page.setDefaultTimeout(10_000);
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
@@ -95,10 +97,13 @@ test("full six-record investigation, all three endings, persistence and reset", 
   await page.getByRole("button", { name: "Turn the lock" }).click();
   await action(page, "ending-release");
   await expect(
-    page.getByRole("heading", { name: "The last checkout" }),
+    page.getByRole("heading", { name: "CHECKOUT REJECTED" }),
   ).toBeVisible();
-  await expect(page.locator(".ending")).toContainText("Eleanor is last");
-  await close(page);
+  await expect(page.locator("body")).toHaveClass(/breached/);
+  await expect(page.locator("#clue-count")).toHaveText("6 / 12");
+  await action(page, "continue-below");
+  await expect(page.locator(".lower-register")).toBeVisible();
+  await expect(page.locator('[data-action="puzzle-radio"]')).toBeDisabled();
   await unlock(page);
   await action(page, "ending-departure");
   await expect(
@@ -110,13 +115,26 @@ test("full six-record investigation, all three endings, persistence and reset", 
   await expect(
     page.getByRole("heading", { name: "A familiar place", exact: true }),
   ).toBeVisible();
-  await expect(page.locator(".ending")).toContainText("3 of 3 endings");
+  await expect(page.locator(".ending")).toContainText(
+    "3 of 5 departure records",
+  );
   await close(page);
   await page.reload();
   await page.locator("#journal-button").click();
   await expect(page.locator("dialog")).toContainText("The last checkout");
   await close(page);
-  await page.locator('[data-action="about"]').click();
+  await page.locator("#chapter-return button").click();
+  await solveLowerChapter(page);
+  await expect(
+    page.getByRole("heading", { name: "For the first time, morning." }),
+  ).toBeVisible();
+  await expect(page.locator("body")).not.toHaveClass(/breached/);
+  await expect(page.locator("#clue-count")).toHaveText("12 / 12");
+  await page.reload();
+  await expect(
+    page.getByRole("heading", { name: "For the first time, morning." }),
+  ).toBeVisible();
+  await page.locator('footer [data-action="about"]').click();
   await action(page, "reset-prompt");
   await action(page, "reset-confirm");
   await expect(page.locator("#clue-count")).toHaveText("0 / 6");
@@ -230,7 +248,7 @@ test("keyboard document dismissal, optional sound, navigation history and staff 
   page,
 }) => {
   await page.goto("/");
-  await page.locator('[data-action="about"]').click();
+  await page.locator('footer [data-action="about"]').click();
   await expect(page.locator("#sound-button")).toHaveAttribute(
     "aria-pressed",
     "false",
@@ -270,7 +288,9 @@ for (const width of [320, 390, 768, 1320, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/");
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
-    const navWidths = await page.locator("nav > div").evaluate(el => ({ content: el.scrollWidth, visible: el.clientWidth }));
+    const navWidths = await page
+      .locator("nav > div")
+      .evaluate((el) => ({ content: el.scrollWidth, visible: el.clientWidth }));
     expect(navWidths.content).toBeLessThanOrEqual(navWidths.visible + 1);
     for (const route of [
       "home",
@@ -278,6 +298,7 @@ for (const width of [320, 390, 768, 1320, 1440]) {
       "history",
       "guestbook",
       "reservations",
+      "guide",
     ]) {
       await navigate(page, route);
       expect(
@@ -370,3 +391,108 @@ test("previous edition progress migrates without losing recovered clues", async 
   await expect(page.locator("dialog")).toContainText("The road home");
   await expect(page.locator("dialog")).toContainText("A sixth door");
 });
+
+async function solveLowerChapter(page) {
+  await page.locator('main [data-action="puzzle-power"]').click();
+  for (const id of [1, 2, 3, 4])
+    await page.locator(`[data-circuit="${id}"]`).click();
+  await page
+    .getByRole("button", { name: "Energize selected sequence" })
+    .click();
+  await expect(page.locator("#puzzle-error")).toContainText(
+    "rejects the sequence",
+  );
+  await action(page, "clear-circuits");
+  for (const id of [3, 1, 4, 2])
+    await page.locator(`[data-circuit="${id}"]`).click();
+  await page
+    .getByRole("button", { name: "Energize selected sequence" })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "The second supply answers" }),
+  ).toBeVisible();
+  await action(page, "puzzle-radio");
+  await page
+    .getByRole("button", { name: "Lock carrier & decode transcript" })
+    .click();
+  await expect(page.locator("#puzzle-error")).toContainText("Only static");
+  await page.locator("#radio-frequency").evaluate((input) => {
+    input.value = "887";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+  });
+  await expect(page.locator("#frequency-output")).toHaveText("88.7 MHz");
+  await page
+    .getByRole("button", { name: "Lock carrier & decode transcript" })
+    .click();
+  await expect(page.locator("dialog")).toContainText("FIRST LETTER");
+  await action(page, "puzzle-archive");
+  await page.getByLabel("Five-letter cabinet word").fill("WRONG");
+  await page.getByRole("button", { name: "Open the census box" }).click();
+  await expect(page.locator("#puzzle-error")).toContainText("FIRST LETTER");
+  await page.getByLabel("Five-letter cabinet word").fill("still");
+  await page.getByRole("button", { name: "Open the census box" }).click();
+  await action(page, "puzzle-identity");
+  await page
+    .getByLabel("Full name of the original occupant of Room 311")
+    .fill("The relief porter");
+  await page.getByRole("button", { name: "Restore the missing name" }).click();
+  await expect(page.locator("#puzzle-error")).toContainText("another entry");
+  await page
+    .getByLabel("Full name of the original occupant of Room 311")
+    .fill("walter vale");
+  await page.getByRole("button", { name: "Restore the missing name" }).click();
+  await action(page, "puzzle-mirror");
+  await expect(page.locator(".mirror-record")).toContainText(
+    "YEK EHT NRUT TON OD",
+  );
+  await page.getByLabel("Decoded instruction").fill("Do not turn the key.");
+  await page.getByRole("button", { name: "Record the instruction" }).click();
+  await action(page, "puzzle-chronology");
+  for (const id of ["return", "stop", "open"])
+    await page.locator(`[data-date="${id}"]`).click();
+  await page
+    .getByRole("button", { name: "Commit the corrected sequence" })
+    .click();
+  await expect(page.locator("#puzzle-error")).toContainText(
+    "arrival must precede",
+  );
+  await action(page, "clear-dates");
+  for (const id of ["open", "stop", "return"])
+    await page.locator(`[data-date="${id}"]`).click();
+  await page
+    .getByRole("button", { name: "Commit the corrected sequence" })
+    .click();
+  await expect(page.locator("#clue-count")).toHaveText("12 / 12");
+  await close(page);
+  await page.reload();
+  await expect(page.locator(".lower-card.verified")).toHaveCount(6);
+  await page.locator('main [data-action="final-discharge"]').click();
+  await page
+    .getByLabel("Which register will you present?")
+    .selectOption("copy");
+  await page
+    .getByLabel("What will you do with the brass key?")
+    .selectOption("turn");
+  await page
+    .getByLabel("Which departure will you record?")
+    .selectOption("white");
+  await page.locator('#lower-discharge-form button[type="submit"]').click();
+  await expect(page.locator("#puzzle-error")).toContainText(
+    "keep the circuit closed",
+  );
+  await action(page, "accept-uniform");
+  await expect(
+    page.getByRole("heading", { name: "The new night porter" }),
+  ).toBeVisible();
+  await action(page, "final-discharge");
+  await page
+    .getByLabel("Which register will you present?")
+    .selectOption("original");
+  await page
+    .getByLabel("What will you do with the brass key?")
+    .selectOption("leave");
+  await page
+    .getByLabel("Which departure will you record?")
+    .selectOption("stair");
+  await page.locator('#lower-discharge-form button[type="submit"]').click();
+}

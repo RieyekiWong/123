@@ -15,6 +15,8 @@ for (const target of [".", "dist"]) {
     for (const path of [
       "/style.css",
       "/app.js",
+      "/story-expansion.js",
+      "/assets/visitor.svg",
       "/assets/hallway.png",
       "/assets/lobby.png",
       "/assets/guestroom.png",

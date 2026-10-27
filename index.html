@@ -11,6 +11,7 @@
     <title>The Stillwater Hotel — A familiar place, every time</title>
     <link rel="icon" href="assets/emblem.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="style.css" />
+    <script src="story-expansion.js" defer></script>
     <script src="app.js" defer></script>
   </head>
   <body>
@@ -43,9 +44,15 @@
         ><a href="#rooms" data-nav="rooms">Rooms &amp; Suites</a
         ><a href="#history" data-nav="history">Our History</a
         ><a href="#guestbook" data-nav="guestbook">Guestbook</a
-        ><a href="#reservations" data-nav="reservations">Reservations</a>
+        ><a href="#reservations" data-nav="reservations">Reservations</a
+        ><a href="#guide" data-nav="guide">Hotel Guide</a>
       </div>
     </nav>
+    <div id="chapter-return" class="chapter-banner" hidden>
+      <button data-page="below">
+        <span id="chapter-return-label">RETURN TO LOWER REGISTER</span> →
+      </button>
+    </div>
     <main id="page-content" class="content-width" tabindex="-1">
       <section class="hero">
         <div class="hero-copy">
@@ -127,8 +134,8 @@
           <div>
             <h2>Explore</h2>
             <a href="#rooms">Rooms &amp; Suites</a
-            ><a href="#guestbook">Guestbook</a
-            ><a href="#history">Our History</a>
+            ><a href="#guestbook">Guestbook</a><a href="#history">Our History</a
+            ><a href="#guide">Hotel Guide</a>
           </div>
           <div>
             <h2>Hotel resources</h2>
@@ -138,9 +145,9 @@
           </div>
         </div>
         <div class="copyright">
-          © 1987–2026 THE STILLWATER HOTEL · A FICTIONAL INTERACTIVE MYSTERY.
-          No real hotel, booking, or account exists. All imagery and characters
-          are fictional.
+          © 1987–2026 THE STILLWATER HOTEL · A FICTIONAL INTERACTIVE HORROR
+          MYSTERY. No real hotel, booking, or account exists. All imagery and
+          characters are fictional.
         </div>
       </div>
     </footer>

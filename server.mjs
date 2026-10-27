@@ -30,6 +30,7 @@ export function createServer(
         file === resolve(base, "index.html") ||
         file === resolve(base, "style.css") ||
         file === resolve(base, "app.js") ||
+        file === resolve(base, "story-expansion.js") ||
         file.startsWith(resolve(base, "assets") + sep);
       if (!allowed || !(await stat(file)).isFile()) {
         res.writeHead(404);
