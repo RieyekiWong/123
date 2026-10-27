@@ -213,14 +213,61 @@
       `Added to notebook: ${clues[id].title} (${state.clues.length}/${recordTarget()})`,
     );
   }
+  const dialogHistory = [];
+  let pendingDocument = null;
+  let replaceDocument = false;
+  function snapshotDocument() {
+    return {
+      html: dialogBody.innerHTML,
+      label: $("#dialog-label").textContent,
+      scroll: dialog.scrollTop,
+      controls: [...dialogBody.querySelectorAll("input,textarea,select")].map(
+        (field) => ({ value: field.value, checked: field.checked }),
+      ),
+      context: expansion?.captureDocumentState(),
+      focus: document.activeElement?.id || null,
+    };
+  }
+  function updateDocumentNavigation() {
+    $("#dialog-back").hidden = dialogHistory.length === 0;
+  }
+  function resetDocuments() {
+    dialogHistory.length = 0;
+    pendingDocument = null;
+    replaceDocument = true;
+    updateDocumentNavigation();
+  }
+  function prepareDocumentNavigation(event) {
+    if (!dialog.open) return;
+    const trigger = event.target.closest(
+      "[data-action],[data-page],[data-room],[data-camera],[data-roomtype],[data-book]",
+    );
+    if (event.type === "click" && !trigger) return;
+    const snapshot = snapshotDocument();
+    snapshot.replace = !!trigger?.hasAttribute("data-camera");
+    pendingDocument = snapshot;
+    setTimeout(() => {
+      if (pendingDocument === snapshot) pendingDocument = null;
+    }, 0);
+  }
+  document.addEventListener("click", prepareDocumentNavigation, true);
+  document.addEventListener("submit", prepareDocumentNavigation, true);
   function show(
     title,
     content,
     label = "THE STILLWATER HOTEL / GUEST SERVICES",
   ) {
-    if (!dialog.open) returnFocus = document.activeElement;
+    if (!dialog.open) {
+      returnFocus = document.activeElement;
+      dialogHistory.length = 0;
+    } else if (!replaceDocument && !pendingDocument?.replace) {
+      dialogHistory.push(pendingDocument || snapshotDocument());
+    }
+    pendingDocument = null;
+    replaceDocument = false;
     $("#dialog-label").textContent = label;
     dialogBody.innerHTML = `<p class="eyebrow">The Stillwater Hotel · Est. 1987</p><h2 id="dialog-title">${escape(title)}</h2>${content}`;
+    updateDocumentNavigation();
     if (!dialog.open) dialog.showModal();
     dialog.scrollTop = 0;
     $("#dialog-close").focus({ preventScroll: true });
@@ -229,7 +276,39 @@
     dialog.close();
   }
   $("#dialog-close").addEventListener("click", close);
+  $("#dialog-back").addEventListener("click", () => {
+    const previous = dialogHistory.pop();
+    if (!previous) return;
+    pendingDocument = null;
+    dialogBody.innerHTML = previous.html;
+    $("#dialog-label").textContent = previous.label;
+    const fields = [...dialogBody.querySelectorAll("input,textarea,select")];
+    previous.controls.forEach((saved, index) => {
+      if (!fields[index]) return;
+      fields[index].value = saved.value;
+      if (typeof saved.checked === "boolean")
+        fields[index].checked = saved.checked;
+    });
+    expansion?.restoreDocumentState(previous.context);
+    dialogBody.querySelectorAll("[data-clue]").forEach((button) => {
+      if (state.clues.includes(button.dataset.clue)) {
+        button.disabled = true;
+        button.textContent = "Recorded in your notebook ✓";
+      }
+    });
+    updateDocumentNavigation();
+    if (previous.focus)
+      dialogBody
+        .querySelector(`[id="${CSS.escape(previous.focus)}"]`)
+        ?.focus({ preventScroll: true });
+    else $("#dialog-close").focus({ preventScroll: true });
+    dialog.scrollTop = previous.scroll;
+  });
   dialog.addEventListener("close", () => {
+    if (dialog.open) return;
+    dialogHistory.length = 0;
+    pendingDocument = null;
+    updateDocumentNavigation();
     if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
   });
   dialog.addEventListener("click", (event) => {
@@ -250,30 +329,30 @@
       "classic",
       "A classic welcome",
       "Classic Double",
-      "A well-made bed, a reading lamp, and the quiet reassurance of a room that feels like your own. Our original rooms overlook the sheltered courtyard.",
+      "A double bed, bedside lamps, and a small desk. These rooms are in the original building, a short walk from reception.",
       "One double bed · Private bath · Writing desk",
-      "assets/guestroom.png",
-      "A warmly lit vintage bedroom with a walnut bed and a writing desk",
+      "assets/guestroom.jpg",
+      "A real hotel double room with dark wooden furniture",
       "",
     ],
     [
       "twin",
       "A little more room",
       "Heritage Twin",
-      "Traditional furnishings and space to settle in together. Soft lighting, crisp linens, and a sitting corner for conversations that last a little longer.",
+      "Two separate beds with a shared bedside table, a sitting area, and tea-making facilities. Suitable for friends or family traveling together.",
       "Two single beds · Sitting area · Tea service",
-      "assets/guestroom.png",
-      "The warm furnishings of a heritage guest room",
+      "assets/twin.jpg",
+      "A real hotel twin room with two single beds",
       "room-twin",
     ],
     [
       "residence",
       "For a longer stay",
       "The Residence",
-      "For guests who prefer not to hurry. Located at the quieter end of the third floor, with a private vestibule and all the time you need.",
+      "A larger room at the quiet end of the third floor, with a separate entrance area and space for luggage. Ask reception about longer stays.",
       "Third floor · Extended stays · Turn-down service",
-      "assets/hallway.png",
-      "A quiet corridor leading to the Residence rooms",
+      "assets/suite.jpg",
+      "A real hotel room with a double bed and a sitting area",
       "room-long",
     ],
   ];
@@ -281,8 +360,8 @@
     return (
       heading(
         "Rooms & suites",
-        "A place already prepared for you.",
-        "Considered comforts, familiar furnishings, and no reason to rush. Every room has its own character. We will find the one that remembers you.",
+        "Find a room that suits your stay.",
+        "Choose a double, a twin, or a room for a longer stay. The rooms have been updated over the years, but we have kept their original furniture where we can.",
       ) +
       `<div class="page-main"><div class="room-grid">${roomCards.map(([id, label, title, text, features, photo, alt, css]) => `<article class="room-card"><div class="room-image ${css}"><img src="${photo}" alt="${alt}"><span class="room-photo-label">${label}</span></div><div class="room-card-copy"><p class="eyebrow">${id === "residence" ? "Third floor / Limited availability" : "Guest accommodation"}</p><h2>${title}</h2><p>${text}</p><div class="room-features">${features}</div><button class="underlined" data-roomtype="${id}">View room details →</button></div></article>`).join("")}</div><div class="two-column"><section class="prose"><p class="eyebrow">Included in every stay</p><h2>Nothing overlooked.</h2><ul class="amenities"><li>Daily housekeeping</li><li>Fresh linens & towels</li><li>In-room tea service</li><li>24-hour front desk</li><li>Private bathroom</li><li>Complimentary wake-up calls</li></ul><p>Breakfast is served in the ground-floor dining room from 7:00 to 9:00. Please leave your key at reception before taking a walk. We are always pleased to see you return.</p><a class="button" href="#reservations">Request a room →</a></section><aside class="notice"><p class="eyebrow">For your comfort</p><h3>A few house traditions</h3><p>Quiet hours begin at 10:00 p.m. Our third-floor restoration is ongoing. Before settling in, please take a moment to read the card left on your bedside table.</p><button class="underlined" data-action="rules">Read the guest guidelines →</button></aside></div><div class="archive-teaser"><div><p class="eyebrow">A note about our floor plan</p><h3>Three floors. A familiar way home.</h3><p>If your key does not match a room on our plan, please consult reception before proceeding.</p></div><button class="unlisted-link" data-action="explore">Consult the floor directory →</button></div></div>`
     );
@@ -294,7 +373,7 @@
         "Some places stay with you.",
         "Built on a simple promise: a warm welcome, a comfortable room, and a place to return to. The Stillwater has been keeping that promise since 1987.",
       ) +
-      `<div class="page-main two-column"><section><div class="timeline"><article><p class="eyebrow">03 October 1987</p><h2>Our doors open.</h2><p>Walter and Eleanor Vale welcome their first guests to a small family hotel on the old Stillwater road. Eleanor writes each name in a leather-bound register. The original book remains in our care.</p></article><article><p class="eyebrow">1996</p><h2>More room to belong.</h2><p>The east wing brings additional guest rooms and a covered courtyard. The family insists that every corridor should feel just like the first. Some guests still find it difficult to tell them apart.</p></article><article><p class="eyebrow">2003</p><h2>A gift of time.</h2><p>A returning guest donates the brass clock above the reception desk. It is the only original fixture that has never needed winding. Its maintenance records are held by the night porter.</p></article><article><p class="eyebrow">2016</p><h2>Preserving what matters.</h2><p>A careful restoration begins on the third floor. Work continues today. We thank our long-stay residents for their extraordinary patience.</p></article><article><p class="eyebrow">Today</p><h2>The same welcome, every time.</h2><p>Our family may have changed, but our promise has not. Many of our earliest guests are still with us in spirit. A few have simply never found the right time to leave.</p></article></div><p class="quote">“A hotel is not its rooms. It is the people it remembers.”<br><span class="fine-print">— Eleanor Vale, opening-night address</span></p></section><aside><img class="history-photo" src="assets/lobby.png" alt="The historic lobby, shown with an aged photographic finish"><div class="archive-box"><p class="eyebrow">From the hotel collection</p><h3>The opening-night register</h3><p>Seven entries. Seven brass keys. A page written on the first evening that our doors opened. Reproduced here by permission of the family.</p><button class="underlined" data-action="ledger">Examine the original page →</button></div><div class="archive-box" style="margin-top:22px"><p class="eyebrow">Restoration bulletin / 10.03</p><h3>A temporary inconvenience</h3><p>Third-floor access is restricted after quiet hours. Please disregard floor numbers not listed on your guest map.</p><button class="underlined" data-action="notice">Read the full bulletin →</button></div></aside></div>`
+      `<div class="page-main two-column"><section><div class="timeline"><article><p class="eyebrow">03 October 1987</p><h2>Our doors open.</h2><p>Walter and Eleanor Vale welcome their first guests to a small family hotel on the old Stillwater road. Eleanor writes each name in a leather-bound register. The original book remains in our care.</p></article><article><p class="eyebrow">1996</p><h2>More room to belong.</h2><p>The east wing adds guest rooms and a covered courtyard. The same carpet and door fittings are used throughout. Please check the number on your key; the two corridors look very similar.</p></article><article><p class="eyebrow">2003</p><h2>Restoring the reception clock.</h2><p>The brass clock has hung above reception since opening. In 2003 its case and dial were restored. The night porter keeps the repair invoices and the older maintenance book.</p></article><article><p class="eyebrow">2016</p><h2>Preserving what matters.</h2><p>A careful restoration begins on the third floor. Work continues today. We thank our long-stay residents for their extraordinary patience.</p></article><article><p class="eyebrow">Today</p><h2>The same welcome, every time.</h2><p>Some families have stayed with us for years. Their names appear in several volumes of the guestbook. We keep the older books at reception for anyone who would like to look through them.</p></article></div><p class="quote">“A hotel is not its rooms. It is the people it remembers.”<br><span class="fine-print">— Eleanor Vale, opening-night address</span></p></section><aside><img class="history-photo" src="assets/lobby.jpg" alt="The historic lobby, shown with an aged photographic finish"><div class="archive-box"><p class="eyebrow">From the hotel collection</p><h3>The opening-night register</h3><p>Seven entries. Seven brass keys. A page written on the first evening that our doors opened. Reproduced here by permission of the family.</p><button class="underlined" data-action="ledger">Examine the original page →</button></div><div class="archive-box" style="margin-top:22px"><p class="eyebrow">Restoration bulletin / 10.03</p><h3>A temporary inconvenience</h3><p>Third-floor access is restricted after quiet hours. Please disregard floor numbers not listed on your guest map.</p><button class="underlined" data-action="notice">Read the full bulletin →</button></div></aside></div>`
     );
   }
   function guestbookPage() {
@@ -304,14 +383,14 @@
         "A few words from familiar faces.",
         "For almost four decades, guests have left a little of themselves between these pages. We keep every message. Some seem to find their way back.",
       ) +
-      `<div class="page-main book-layout"><section aria-label="Guest messages"><article class="guest-entry"><div class="entry-meta"><span>Margaret H. · Room 108</span><time>14 June 2026</time></div><blockquote>“I came for a quiet weekend and ended up staying a little longer. The staff remembered exactly how I take my tea. I do not recall telling them.”</blockquote><p class="signature">A very thoughtful place.</p></article><article class="guest-entry"><div class="entry-meta"><span>David & Ruth · Room 214</span><time>22 August 2026</time></div><blockquote>“The same wallpaper, the same armchair, the same gentleman at reception. Our first visit was in 1987. It is wonderful how little things change here.”</blockquote><p class="signature">We will be back. Apparently, we always are.</p></article><article class="guest-entry"><div class="entry-meta"><span>Anonymous · Long-stay guest</span><time>Date not recorded</time></div><blockquote>“The view outside my window has not changed in six days. The bird on the railing has not moved. Housekeeping says the weather is holding.”</blockquote></article><article class="guest-entry suspect"><div class="entry-meta"><span>E. Rowan · Room 307</span><span>A loose page, folded twice</span></div><blockquote>“If you are reading this, do not let them turn another page. The red EXIT is the way out. The white door only brings you back to the desk. I have signed that book so many times I no longer recognize my own handwriting.”</blockquote><p class="signature">There is a small red ribbon pressed into the paper.</p><div class="inline-actions">${clueButton("ribbon", "Keep Rowan’s warning")}</div></article>${state.messages.map((m) => `<article class="guest-entry local-guest-entry"><div class="entry-meta"><span><span data-user-text>${escape(m.name)}</span> · A note from this visit</span><span>Saved on this device</span></div><blockquote data-user-text>${escape(m.text)}</blockquote></article>`).join("")}</section><aside class="sidebar-sticky"><form id="guestbook-form" class="form-panel"><p class="eyebrow">Leave a little of yourself</p><h2>Your page in our story.</h2><p>A memory, a thought, a message for the next person who finds this book.</p><label class="field-label" for="message-name">Your name or initials</label><input class="text-input" id="message-name" name="guestName" maxlength="40" value="${escape(state.name)}" required autocomplete="nickname"><label class="field-label" for="guest-message">Your message</label><textarea class="text-input text-area" id="guest-message" name="message" maxlength="400" placeholder="Something worth remembering…" required></textarea><div class="character-count"><span id="message-count">0</span> / 400</div><div id="guestbook-error" class="form-error" role="status"></div><button class="button full-width" type="submit">Leave a note →</button><p class="local-note">This is a fictional guestbook. Notes are kept only in your browser, never published or sent. The five most recent notes are retained.</p></form><div class="notice" style="margin-top:23px"><p class="eyebrow">Looking for someone?</p><h3>We keep our records.</h3><p>If a name seems familiar, our opening-night register may help you remember why.</p><a class="underlined" href="#history">Visit the hotel collection →</a></div></aside></div>`
+      `<div class="page-main book-layout"><section aria-label="Guest messages"><article class="guest-entry"><div class="entry-meta"><span>Margaret H. · Room 108</span><time>14 June 2026</time></div><blockquote>“I booked for two nights. At breakfast the waiter brought my tea without milk, just how I like it. Nice touch, though I am fairly sure nobody asked.”</blockquote><p class="signature">A very thoughtful place.</p></article><article class="guest-entry"><div class="entry-meta"><span>David & Ruth · Room 214</span><time>22 August 2026</time></div><blockquote>“We stayed here on our honeymoon in 1987. The wallpaper is still the same. So is the man at reception, which Ruth noticed before I did.”</blockquote><p class="signature">We will be back. Apparently, we always are.</p></article><article class="guest-entry"><div class="entry-meta"><span>Anonymous · Long-stay guest</span><time>Date not recorded</time></div><blockquote>“I keep seeing the same bird on the railing. Same place, same way round. Six mornings now. I asked the cleaner and she stopped making the bed.”</blockquote></article><article class="guest-entry suspect"><div class="entry-meta"><span>E. Rowan · Room 307</span><span>A loose page, folded twice</span></div><blockquote>“If you are reading this, do not let them turn another page. The red EXIT is the way out. The white door only brings you back to the desk. I have signed that book so many times I no longer recognize my own handwriting.”</blockquote><p class="signature">There is a small red ribbon pressed into the paper.</p><div class="inline-actions">${clueButton("ribbon", "Keep Rowan’s warning")}</div></article>${state.messages.map((m) => `<article class="guest-entry local-guest-entry"><div class="entry-meta"><span><span data-user-text>${escape(m.name)}</span> · A note from this visit</span><span>Saved on this device</span></div><blockquote data-user-text>${escape(m.text)}</blockquote></article>`).join("")}</section><aside class="sidebar-sticky"><form id="guestbook-form" class="form-panel"><p class="eyebrow">Leave a little of yourself</p><h2>Your page in our story.</h2><p>A memory, a thought, a message for the next person who finds this book.</p><label class="field-label" for="message-name">Your name or initials</label><input class="text-input" id="message-name" name="guestName" maxlength="40" value="${escape(state.name)}" required autocomplete="nickname"><label class="field-label" for="guest-message">Your message</label><textarea class="text-input text-area" id="guest-message" name="message" maxlength="400" placeholder="Something worth remembering…" required></textarea><div class="character-count"><span id="message-count">0</span> / 400</div><div id="guestbook-error" class="form-error" role="status"></div><button class="button full-width" type="submit">Leave a note →</button><p class="local-note">This is a fictional guestbook. Notes are kept only in your browser, never published or sent. The five most recent notes are retained.</p></form><div class="notice" style="margin-top:23px"><p class="eyebrow">Looking for someone?</p><h3>We keep our records.</h3><p>If a name seems familiar, our opening-night register may help you remember why.</p><a class="underlined" href="#history">Visit the hotel collection →</a></div></aside></div>`
     );
   }
   function reservationForm() {
     return `<form id="reservation-form" class="form-panel"><p class="eyebrow">Guest registration</p><h2>Let us keep a room for you.</h2><p>Please use a nickname. This is part of the story, not a real reservation.</p><label class="field-label" for="guest-name">Guest name</label><input class="text-input" id="guest-name" name="guestName" maxlength="40" value="${escape(state.name)}" placeholder="The name on your invitation" autocomplete="nickname" required><div class="form-row"><div><label class="field-label" for="arrival-date">Arrival date</label><input class="text-input" id="arrival-date" type="date" name="arrival" value="${state.arrival}" min="1987-10-03" max="2099-12-31" required></div><div><label class="field-label" for="stay-length">Length of stay</label><select class="text-input" name="nights" id="stay-length">${[1, 2, 3, 4, 5, 6, 7].map((n) => `<option value="${n}" ${state.nights === n ? "selected" : ""}>${n} night${n > 1 ? "s" : ""}</option>`).join("")}</select></div></div><label class="field-label" for="room-preference">Room preference</label><select class="text-input" name="roomType" id="room-preference">${roomCards.map(([id, , title]) => `<option value="${id}" ${state.roomType === id ? "selected" : ""}>${title}</option>`).join("")}</select><div class="check-row"><input type="checkbox" name="guidelines" id="agree-guidelines" required><label for="agree-guidelines">I have read the <button type="button" class="underlined" data-action="rules">guest guidelines</button> and agree to remain on the floors listed on my map.</label></div><div class="form-error" id="reservation-error" role="status"></div><button class="button full-width" type="submit">Collect my room key <span>→</span></button><p class="local-note">No payment, email, or personal identification is needed. Your registration stays on this device.</p></form>`;
   }
   function confirmation() {
-    return `<section class="form-panel"><p class="eyebrow">Your registration is complete</p><h2>Welcome back, ${escape(state.name)}.</h2><p>We have taken care of your room preference. As always, the key waiting at reception is yours.</p><div class="welcome-key"><p class="eyebrow">Your room is ready</p><div class="key-number">307</div><p>Third floor · The end of the west corridor</p></div><ul class="details-list"><li><span>Guest</span><span data-user-text>${escape(state.name)}</span></li><li><span>Arrival</span><span>${state.arrival}</span></li><li><span>Requested stay</span><span>${state.nights} night${state.nights > 1 ? "s" : ""}</span></li><li><span>Departure</span><span>To be confirmed</span></li></ul><div class="inline-actions"><button class="button" data-action="explore">Go to my room →</button><button class="underlined" data-action="edit-reservation">Amend registration</button></div><p class="local-note">A fictional registration, saved only on this device.</p></section>`;
+    return `<section class="form-panel"><p class="eyebrow">Your registration is complete</p><h2>Welcome back, ${escape(state.name)}.</h2><p>We have noted your room preference. Only Room 307 is available in the west wing tonight; its key is ready at reception.</p><div class="welcome-key"><p class="eyebrow">Your room is ready</p><div class="key-number">307</div><p>Third floor · The end of the west corridor</p></div><ul class="details-list"><li><span>Guest</span><span data-user-text>${escape(state.name)}</span></li><li><span>Arrival</span><span>${state.arrival}</span></li><li><span>Requested stay</span><span>${state.nights} night${state.nights > 1 ? "s" : ""}</span></li><li><span>Departure</span><span>To be confirmed</span></li></ul><div class="inline-actions"><button class="button" data-action="explore">Go to my room →</button><button class="underlined" data-action="edit-reservation">Amend registration</button></div><p class="local-note">A fictional registration, saved only on this device.</p></section>`;
   }
   function reservationsPage(edit = false) {
     return (
@@ -379,14 +458,22 @@
   }
   function go(route) {
     if (dialog.open) close();
-    if (location.hash === "#" + route) render(true);
-    else location.hash = route;
+    // Returning from a card must not rebuild a partly completed registration form.
+    const current = location.hash.slice(1) || "home";
+    if (current !== route) location.hash = route;
   }
   window.addEventListener("hashchange", () => {
     if (dialog.open) close();
     render(true);
   });
   const actions = {
+    credits() {
+      show(
+        "Hotel photographs and artwork",
+        '<p>Real hotel photographs are used as fictional scenery. The hotels and photographers are not connected with this story. The horror portraits are generated creature illustrations.</p><article class="credit-item"><h3>lobby.jpg</h3><p>Lobby Stanley Lodge Estes Park Colorado 2024.jpg<br>Larry D. Moore</p><a href="https://commons.wikimedia.org/wiki/File:Lobby_Stanley_Lodge_Estes_Park_Colorado_2024.jpg" target="_blank" rel="noopener noreferrer">Source ↗</a> · <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0 ↗</a></article><article class="credit-item"><h3>hallway.jpg</h3><p>Corridor Stanley Hotel Estes Park Colorado 2024.jpg<br>Larry D. Moore</p><a href="https://commons.wikimedia.org/wiki/File:Corridor_Stanley_Hotel_Estes_Park_Colorado_2024.jpg" target="_blank" rel="noopener noreferrer">Source ↗</a> · <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0 ↗</a></article><article class="credit-item"><h3>guestroom.jpg</h3><p>Room Stanley Hotel Estes Park Colorado 2024.jpg<br>Larry D. Moore</p><a href="https://commons.wikimedia.org/wiki/File:Room_Stanley_Hotel_Estes_Park_Colorado_2024.jpg" target="_blank" rel="noopener noreferrer">Source ↗</a> · <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0 ↗</a></article><article class="credit-item"><h3>twin.jpg</h3><p>Deluxe Room - Twin beds.jpg<br>Holidayinnklg</p><a href="https://commons.wikimedia.org/wiki/File:Deluxe_Room_-_Twin_beds.jpg" target="_blank" rel="noopener noreferrer">Source ↗</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0 ↗</a></article><article class="credit-item"><h3>suite.jpg</h3><p>Hotel Room Chicago Hilton2.jpg<br>Michael Gray</p><a href="https://commons.wikimedia.org/wiki/File:Hotel_Room_Chicago_Hilton2.jpg" target="_blank" rel="noopener noreferrer">Source ↗</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0 ↗</a></article>',
+        "PHOTO CREDITS / SOURCES & LICENSES",
+      );
+    },
     rules() {
       show(
         "A few house traditions",
@@ -404,7 +491,7 @@
     explore() {
       show(
         "The third-floor directory",
-        `<p class="document-intro">The lift opens onto a long, quiet corridor. According to the framed plan beside the door, there are five rooms on this floor.</p><div class="floor-map"><button data-room="301">301<small>Do not disturb</small></button><button data-room="303">303<small>A light under the door</small></button><button data-room="307">307<small>${state.checkedIn ? "Your room" : "A key is waiting"}</small></button><button data-room="309">309<small>Awaiting service</small></button><button data-room="311">311<small>Housekeeping</small></button><button class="locked" data-room="404">404<small>Not on the plan</small></button></div><p class="file-note">You count the doors twice. There are six.<br>The last one was not there when you stepped out of the lift.</p><div class="dialog-actions"><button class="paper-button" data-action="monitor">Consult the corridor recording →</button>${!state.checkedIn ? '<button class="paper-button" data-page="reservations">Collect your room key</button>' : ""}</div>`,
+        `<p class="document-intro">The lift opens onto a long, quiet corridor. According to the framed plan beside the door, there are five rooms on this floor.</p><div class="floor-map"><button data-room="301">301<small>Do not disturb</small></button><button data-room="303">303<small>A light under the door</small></button><button data-room="307">307<small>${state.checkedIn ? "Your room" : "A key is waiting"}</small></button><button data-room="309">309<small>Awaiting service</small></button><button data-room="311">311<small>Housekeeping</small></button><button class="locked" data-room="404">404<small>Not on the plan</small></button></div><p class="file-note">You count the doors twice. There are six.<br>You look back at the plan. It still shows five.</p><div class="dialog-actions"><button class="paper-button" data-action="monitor">Consult the corridor recording →</button>${!state.checkedIn ? '<button class="paper-button" data-page="reservations">Collect your room key</button>' : ""}</div>`,
         "FLOOR DIRECTORY / LEVEL THREE",
       );
     },
@@ -417,7 +504,7 @@
     ledger() {
       show(
         "The opening-night register",
-        `<p class="eyebrow">Original guest ledger / 03 October 1987</p><p class="document-intro">The page is stained with tea. The ink on the names is faded, but the departure column looks freshly written.</p><table class="ledger-table"><thead><tr><th>ROOM</th><th>GUEST</th><th>DEPARTURE</th></tr></thead><tbody><tr><td>108</td><td>Margaret H.</td><td>Pending</td></tr><tr><td>214</td><td>David & Ruth</td><td>Pending</td></tr><tr><td>301</td><td>Arthur Bell</td><td>Pending</td></tr><tr><td>303</td><td>E. Rowan</td><td>Pending</td></tr><tr class="marked"><td>307</td><td>Eleanor Vale</td><td>Waiting</td></tr><tr><td>309</td><td>The relief porter</td><td>Pending</td></tr><tr><td>311</td><td><i>Name removed</i></td><td>Pending</td></tr></tbody></table><p class="file-note">In the margin: “Night desk keypad: opening day, month first. Nothing here should be difficult to remember.”</p><p>Below the final line, in smaller handwriting: “Every name on this page is still checked in. Do not leave them behind.”</p>${clueButton("register", "Copy the opening-night record")}<div class="dialog-actions"><button class="paper-button" data-page="employees">Find the night desk archive →</button></div>`,
+        `<p class="eyebrow">Original guest ledger / 03 October 1987</p><p class="document-intro">Tea has soaked through one corner of the page. Most of the names have faded. The word “Waiting” beside Room 307 is still wet.</p><table class="ledger-table"><thead><tr><th>ROOM</th><th>GUEST</th><th>DEPARTURE</th></tr></thead><tbody><tr><td>108</td><td>Margaret H.</td><td>Pending</td></tr><tr><td>214</td><td>David & Ruth</td><td>Pending</td></tr><tr><td>301</td><td>Arthur Bell</td><td>Pending</td></tr><tr><td>303</td><td>E. Rowan</td><td>Pending</td></tr><tr class="marked"><td>307</td><td>Eleanor Vale</td><td>Waiting</td></tr><tr><td>309</td><td>The relief porter</td><td>Pending</td></tr><tr><td>311</td><td><i>Name removed</i></td><td>Pending</td></tr></tbody></table><p class="file-note">In the margin: “Night desk keypad: opening day, month first. Nothing here should be difficult to remember.”</p><p>Below the final line, in smaller handwriting: “Every name on this page is still checked in. Do not leave them behind.”</p>${clueButton("register", "Copy the opening-night record")}<div class="dialog-actions"><button class="paper-button" data-page="employees">Find the night desk archive →</button></div>`,
         "HOTEL COLLECTION / REGISTER NO. 001",
       );
     },
@@ -428,7 +515,7 @@
       if (!state.staff) return go("employees");
       show(
         "Maintenance log",
-        `<p class="eyebrow">Facilities / Retained by the night porter</p><article class="entry"><p><b>03 October 1987, 04:04.</b> All guest-room clocks stopped simultaneously. The west corridor now measures six doors longer than the building. Main supply remains energized despite isolation at the street.</p><p><b>04 October, same time.</b> Found a second supply behind the reception clock. Brass lever, marked STILLWATER. It feeds the hotel, not the lights. Pulling it briefly revealed a stairwell where the wall should be.</p><p><b>Date no longer advancing.</b> The hotel will offer two exits. Both belong to it. The service stair does not.</p></article><p class="file-note">Take the original register. Cut the supply at the brass disconnect. Only then use the service stair. Do not let the book close before the last guest has crossed.</p>${clueButton("switch", "Record the service-stair procedure")}`,
+        `<p class="eyebrow">Facilities / Retained by the night porter</p><article class="entry"><p><b>04 October 1987, 04:04.</b> All room clocks stopped at 04:04. The west corridor appears longer than the exterior wall. We isolated the street supply, but the corridor lights stayed on.</p><p><b>05 October, same time.</b> Found another cable behind the reception clock. A brass lever is marked STILLWATER. When I pulled it, a doorway appeared beside the desk. It disappeared as soon as I let go.</p><p><b>Date no longer advancing.</b> The red door and the white door both lead back inside. The service stair was the only route that did not appear on the original plan.</p></article><p class="file-note">Take the original register. Cut the supply at the brass disconnect. Only then use the service stair. Do not let the book close before the last guest has crossed.</p>${clueButton("switch", "Record the service-stair procedure")}`,
         "STAFF ARCHIVE / MAINTENANCE FILE 01",
       );
     },
@@ -436,7 +523,7 @@
       if (!state.staff) return go("employees");
       show(
         "A letter to the next guest",
-        `<p class="eyebrow">Returned correspondence / Room 307</p><p class="document-intro">The envelope has your room number on it. Beneath the stamps, someone has written “PLEASE TRY AGAIN.”</p><p><i>Dear whoever finally finds this,</i></p><p>My name is Eleanor Vale. We built a place where nobody would have to feel alone. I asked it to keep our guests safe. I did not understand what it meant to keep them.</p><p>The register is the promise. The clock is the lock. The doors are only distractions.</p><p>I have signed a group checkout slip and left it inside the original book. A living guest must complete the record: the stopped time, the extra door, Rowan’s warning, the opening page, the disconnect, and this letter. Six things the hotel would rather you forget.</p><p>Carry the book to the service stair after cutting the supply. Do not sign a new page. Let the last guest leave before you do.</p><p><i>With all the apologies a lifetime can hold,<br>Eleanor</i></p>${clueButton("letter", "Keep Eleanor’s letter")}`,
+        `<p class="eyebrow">Returned correspondence / Room 307</p><p class="document-intro">The envelope has your room number on it. Beneath the stamps, someone has written “PLEASE TRY AGAIN.”</p><p><i>Dear whoever finally finds this,</i></p><p>My name is Eleanor Vale. Walter and I opened this hotel together. When the first guests went missing, I kept their rooms ready. I thought they might come back. They did, but none of them could leave again.</p><p>Do not sign the clean book they offer you. The door lock uses the time on the stopped clock. Neither exit at the desk is as simple as it looks.</p><p>I have signed a group checkout slip and left it inside the original book. A living guest must complete the record: the stopped time, the extra door, Rowan’s warning, the opening page, the disconnect, and this letter. Six things the hotel would rather you forget.</p><p>Carry the book to the service stair after cutting the supply. Do not sign a new page. Let the last guest leave before you do.</p><p><i>With all the apologies a lifetime can hold,<br>Eleanor</i></p>${clueButton("letter", "Keep Eleanor’s letter")}`,
         "STAFF ARCHIVE / UNDELIVERED ITEM 0307",
       );
     },
@@ -451,7 +538,7 @@
     diary() {
       show(
         "The notebook under the pillow",
-        `<p class="document-intro">The cover has softened with age. On the first page, someone has written your room number over and over.</p><article class="entry"><p><i>First night.</i> It was raining. I came inside to ask for directions. The porter said my room had been ready for years.</p><p><i>Third night.</i> At <b>04:04</b>, a door appears at the end of the corridor. Its lock accepts four digits. I wrote the time on my palm. When I woke, it was in someone else’s handwriting.</p><p><i>A later night.</i> I found a loose page in the guestbook. Rowan knows about the exits. Eleanor knows about the hotel. I think leaving and ending this are two different things.</p></article><p class="file-note">“If you can, do not leave alone.”</p>${clueButton("clock", "Record the time in the notebook")}<div class="dialog-actions"><button class="paper-button" data-page="guestbook">Find Rowan’s page →</button><button class="paper-button" data-page="history">Find Eleanor’s history →</button></div>`,
+        `<p class="document-intro">The notebook is tucked inside the pillowcase. Almost every page has been torn out. The ones left all begin with “Room 307.”</p><article class="entry"><p><i>First night.</i> It was raining. I came inside to ask for directions. The porter said my room had been ready for years.</p><p><i>Third night.</i> At <b>04:04</b>, a door appears at the end of the corridor. Its lock accepts four digits. I wrote the time on my palm. When I woke, it was in someone else’s handwriting.</p><p><i>I stopped counting the nights.</i> I found a loose page in the guestbook. Rowan knows about the exits. Eleanor knows about the hotel. I think leaving and ending this are two different things.</p></article><p class="file-note">“If you can, do not leave alone.”</p>${clueButton("clock", "Record the time in the notebook")}<div class="dialog-actions"><button class="paper-button" data-page="guestbook">Find Rowan’s page →</button><button class="paper-button" data-page="history">Find Eleanor’s history →</button></div>`,
         "PERSONAL EFFECTS / ROOM 307",
       );
     },
@@ -493,7 +580,7 @@
     about() {
       show(
         "About your stay",
-        `<p><i>The Stillwater Hotel</i> is an original, fictional, Backrooms-inspired interactive mystery. Its comfortable public website conceals an ongoing story told through guest records, security footage, and staff correspondence.</p><h3>How to explore</h3><p>Register under a nickname, collect your key, and read carefully. Save discoveries to your notebook. Two doors offer two endings; a complete public record reveals what lies below. The apparent third ending is the beginning of a second, more demanding chapter. Use the Hotel Guide to cross-check menus, service orders, and incident reports. All clues are inside this site. You never need to contact anyone or visit a real place.</p><h3>Comfort & accessibility</h3><p>Contains unsettling figures, sudden visual interruptions, and a second horror chapter after the apparent ending. Sudden effects can be disabled below without losing any puzzles. There is no rapid flashing. Audio remains off until you choose; reduced-motion preferences are respected. Press Escape to close a document.</p><button class="sound-button" id="sound-button" data-action="sound" aria-pressed="${!!soundContext}">Ambient sound: ${soundContext ? "on" : "off"}</button><div class="inline-actions"><button class="sound-button" data-action="toggle-scares" aria-pressed="${state.scares}">Sudden visual effects: ${state.scares ? "on" : "off"}</button></div><h3>Your information</h3><p>Your nickname, registration, notes, and progress stay in this browser. They are not sent to a server. Clearing site data erases them. The employee keypad is a fictional puzzle, not real security. Images are generated; characters, hotel, and bookings are fictional.</p><p class="local-note">Source files can be opened locally after extracting the ZIP, or served using the included Node.js development server.</p><div class="dialog-actions"><button class="danger-link" data-action="reset-prompt">Start over / clear this device’s story progress</button></div>`,
+        `<p><i>The Stillwater Hotel</i> is an original, fictional, Backrooms-inspired interactive mystery. Its comfortable public website conceals an ongoing story told through guest records, security footage, and staff correspondence.</p><h3>How to explore</h3><p>Register under a nickname, collect your key, and read carefully. Save discoveries to your notebook. Two doors offer two endings; a complete public record reveals what lies below. The apparent third ending is the beginning of a second, more demanding chapter. Use the Hotel Guide to cross-check menus, service orders, and incident reports. All clues are inside this site. You never need to contact anyone or visit a real place.</p><h3>Comfort & accessibility</h3><p>Contains unsettling figures, sudden visual interruptions, and a second horror chapter after the apparent ending. Sudden effects can be disabled below without losing any puzzles. There is no rapid flashing. Audio remains off until you choose; reduced-motion preferences are respected. Press Escape to close a document.</p><button class="sound-button" id="sound-button" data-action="sound" aria-pressed="${!!soundContext}">Ambient sound: ${soundContext ? "on" : "off"}</button><div class="inline-actions"><button class="sound-button" data-action="toggle-scares" aria-pressed="${state.scares}">Sudden visual effects: ${state.scares ? "on" : "off"}</button></div><p><button class="underlined" data-action="credits">View photograph sources and licenses →</button></p><h3>Your information</h3><p>Your nickname, registration, notes, and progress stay in this browser. They are not sent to a server. Clearing site data erases them. The employee keypad is a fictional puzzle, not real security. Hotel photographs are real; the characters, story, and bookings are fictional.</p><p class="local-note">Source files can be opened locally after extracting the ZIP, or served using the included Node.js development server.</p><div class="dialog-actions"><button class="danger-link" data-action="reset-prompt">Start over / clear this device’s story progress</button></div>`,
         "HOTEL RESOURCES / SITE INFORMATION",
       );
     },
@@ -507,6 +594,9 @@
       const retainedScares = state.scares;
       state = fresh();
       state.scares = retainedScares;
+      document.body.classList.remove("intrusion-hit");
+      document.body.style.removeProperty("--scare-image");
+      delete document.body.dataset.encounter;
       try {
         localStorage.removeItem("no-return-hotel:v1");
       } catch {
@@ -584,11 +674,12 @@
     }
   }
   function camera(id) {
+    void expansion.preloadScares();
     const feeds = {
       1: [
         "MAIN LOBBY",
         "03:17:02",
-        "The desk is unattended. The register is open to a clean page. A lamp has been left on for the next guest.",
+        "The lobby recording is from earlier in the day. The corridor feed is still running, but its time stamp has not changed.",
       ],
       2: [
         "WEST CORRIDOR / LEVEL 03",
@@ -598,13 +689,13 @@
       3: [
         "SERVICE LIFT",
         "04:04:00",
-        "The lift opens onto another copy of the same corridor. Someone has taped a note over the fourth-floor button: “DO NOT COMPLETE THE CIRCUIT.”",
+        "The lift doors open onto the west corridor again. Tape covers the fourth-floor button. Someone has written “DO NOT COMPLETE THE CIRCUIT.” on it.",
       ],
     };
     const [name, time, note] = feeds[id];
     show(
       "Public-area security",
-      `<p class="document-intro">Archived footage is available for guest safety. The date and time shown by older cameras may not reflect current conditions.</p><div class="camera-screen" style="background-image:linear-gradient(#50604844,#1a23135c),url('assets/${id === 1 ? "lobby" : "hallway"}.png');background-position:${id === 3 ? "20%" : "center"} center"><div class="camera-top"><span>● REC &nbsp; CAM 0${id}</span><span>${time}</span></div>${id === 2 ? '<span class="camera-door">404</span>' : ""}<div class="camera-bottom">${name} / 03.10.1987</div></div><div class="camera-controls">${[1, 2, 3].map((n) => `<button data-camera="${n}" aria-pressed="${id === n}">CAM 0${n}</button>`).join("")}</div><p class="camera-note">${note}</p>${id === 2 ? clueButton("door", "Save the anomalous frame") : '<p class="fine-print">Select another camera to review the other public areas.</p>'}${id === 3 ? '<div class="dialog-actions"><button class="paper-button" data-action="inspect-shadow">Inspect the unoccupied reception frame</button></div>' : ""}`,
+      `<p class="document-intro">Archived footage is available for guest safety. The date and time shown by older cameras may not reflect current conditions.</p><div class="camera-screen" style="background-image:linear-gradient(#50604844,#1a23135c),url('assets/${id === 1 ? "lobby" : "hallway"}.jpg');background-position:${id === 3 ? "20%" : "center"} center"><div class="camera-top"><span>● REC &nbsp; CAM 0${id}</span><span>${time}</span></div>${id === 2 ? '<span class="camera-door">404</span>' : ""}<div class="camera-bottom">${name} / 03.10.1987</div></div><div class="camera-controls">${[1, 2, 3].map((n) => `<button data-camera="${n}" aria-pressed="${id === n}">CAM 0${n}</button>`).join("")}</div><p class="camera-note">${note}</p>${id === 2 ? clueButton("door", "Save the anomalous frame") : '<p class="fine-print">Select another camera to review the other public areas.</p>'}${id === 3 ? '<div class="dialog-actions"><button class="paper-button" data-action="inspect-shadow">Inspect the unoccupied reception frame</button></div>' : ""}`,
       "SECURITY OFFICE / RETAINED RECORDING",
     );
   }
@@ -636,7 +727,7 @@
         );
       return show(
         "Room 307 — your room",
-        `<p class="document-intro">Your key turns twice. The door opens onto a room that smells faintly of cedar and old rain.</p><img class="history-photo" src="assets/guestroom.png" alt="Your quiet, warmly lit hotel room"><p>A single lamp is lit. Your slippers are beside the bed, in your size. The clock reads <b>04:04</b>. Through a gap in the curtains you see another corridor, exactly like the one outside.</p><p>There is a worn notebook under the pillow. Its cover has your room number on it.</p><div class="dialog-actions"><button class="button" data-action="diary">Read the notebook →</button><button class="paper-button" data-action="explore">Return to the corridor</button></div>`,
+        `<p class="document-intro">The key sticks on the first turn. On the second, the door opens. The bedside lamp is already on.</p><img class="history-photo" src="assets/guestroom.jpg" alt="Your quiet, warmly lit hotel room"><p>A single lamp is lit. Your slippers are beside the bed, in your size. The clock reads <b>04:04</b>. Through a gap in the curtains you see another corridor, exactly like the one outside.</p><p>There is a worn notebook under the pillow. Its cover has your room number on it.</p><div class="dialog-actions"><button class="button" data-action="diary">Read the notebook →</button><button class="paper-button" data-action="explore">Return to the corridor</button></div>`,
         "GUEST ACCOMMODATION / ROOM 307",
       );
     }
@@ -669,13 +760,13 @@
         "01 / THE ROAD HOME",
         "The road home",
         "☼",
-        '<p>You push the red door open.<br>Morning air touches your face. You are standing on an ordinary road, beside an ordinary, empty field.</p><p>There is no hotel behind you.</p><p>In your palm, the brass key is still warm. On its reverse, a new line has appeared:</p><p class="file-note">“We look forward to your next visit.”</p>',
+        '<p>You push the red door open.<br>Morning air touches your face. You are standing on an ordinary road, beside an ordinary, empty field.</p><p>You turn around. There is a field where the hotel should be.</p><p>In your palm, the brass key is still warm. On its reverse, a new line has appeared:</p><p class="file-note">“We look forward to your next visit.”</p>',
       ],
       return: [
         "02 / A FAMILIAR PLACE",
         "A familiar place",
         "S",
-        '<p>The light is warm. You close your eyes for just a moment.</p><p>When you open them, you are at reception. The porter smiles as though you have only stepped outside for a little air.</p><p>“Your room is waiting,” he says, turning the register toward you.</p><p class="file-note">This time, your name is already on the page.</p>',
+        '<p>You step into the light. For a moment you can smell the soap from your bathroom at home.</p><p>When you open them, you are at reception. The porter smiles as though you have only stepped outside for a little air.</p><p>“Your room is waiting,” he says, turning the register toward you.</p><p class="file-note">This time, your name is already on the page.</p>',
       ],
     };
     const [code, title, icon, text] = contents[id];
@@ -808,6 +899,7 @@
     heading,
     baseReady,
     playKnock,
+    resetDocuments,
   });
   Object.assign(actions, expansion.actions);
   function updateLanguageLink() {

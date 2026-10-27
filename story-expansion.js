@@ -67,6 +67,71 @@ window.StillwaterExpansion = {
     let circuit = [];
     let dates = [];
     let threatTimer;
+    let lastScare = -1;
+    const scareDeck = [
+      {
+        id: "porter",
+        file: "assets/scare-porter.png",
+        title: "There is someone at the desk",
+        alt: "A gaunt night porter with a distorted face",
+        headline: "THAT IS NOT<br>THE PORTER.",
+        caption: "THE FRAME WAS EMPTY WHEN YOU OPENED IT.",
+        description:
+          "The figure wears the same jacket as the night porter. When it turns, its mouth keeps moving after the rest of its face has stopped.",
+      },
+      {
+        id: "veil",
+        file: "assets/scare-veil.png",
+        title: "The woman on the landing",
+        alt: "A veiled figure with a dark open mouth behind the glass",
+        headline: "DO NOT<br>LET HER IN.",
+        caption: "CAM 03 / THE LIFT HAS NOT MOVED",
+        description:
+          "A woman stands between the lift doors. Her veil catches on something outside the frame. The doors close, but her face stays on the screen.",
+      },
+      {
+        id: "reflection",
+        file: "assets/scare-reflection.png",
+        title: "The wrong reflection",
+        alt: "An unfamiliar face and long fingers pressed against observation glass",
+        headline: "IT MOVES<br>BEFORE YOU DO.",
+        caption: "OBSERVATION FEED / DO NOT TOUCH THE GLASS",
+        description:
+          "You move the pointer. The hand in the glass moves first. You take your hand off the mouse. The other hand keeps going.",
+      },
+    ];
+    let portraitsReady = null;
+    function preloadScares() {
+      if (!state().scares) return Promise.resolve();
+      if (!portraitsReady)
+        portraitsReady = Promise.all(
+          scareDeck.map(
+            (encounter) =>
+              new Promise((resolve) => {
+                const image = new Image();
+                image.onload = image.onerror = () => resolve();
+                image.src = encounter.file;
+              }),
+          ),
+        );
+      return portraitsReady;
+    }
+    function chooseScare(preferred) {
+      let index = preferred
+        ? scareDeck.findIndex((item) => item.id === preferred)
+        : (lastScare + 1) % scareDeck.length;
+      if (index < 0) index = 0;
+      if (index === lastScare) index = (index + 1) % scareDeck.length;
+      lastScare = index;
+      const encounter = scareDeck[index];
+      document.body.dataset.encounter = encounter.id;
+      document.body.style.setProperty(
+        "--scare-image",
+        `url("${encounter.file}")`,
+      );
+      return encounter;
+    }
+
     const normalize = (text) =>
       String(text)
         .toUpperCase()
@@ -104,6 +169,7 @@ window.StillwaterExpansion = {
       state().wrongAnswers += 1;
       save();
       if (state().scares && state().wrongAnswers % 3 === 0) {
+        chooseScare();
         document.body.classList.remove("intrusion-hit");
         void document.body.offsetWidth;
         document.body.classList.add("intrusion-hit");
@@ -121,15 +187,18 @@ window.StillwaterExpansion = {
         return toast(
           "Finish the six hotel records and collect a room key first.",
         );
+      api.resetDocuments();
+      void preloadScares();
       state().chapter = 2;
       if (!state().endings.includes("release")) state().endings.push("release");
       save();
       history.pushState(null, "", "#below");
       render(true);
+      const encounter = chooseScare("porter");
       if (state().scares) api.playKnock();
       show(
         "CHECKOUT REJECTED",
-        `<div class="intrusion-frame ${state().scares ? "" : "quiet-intrusion"}">${state().scares ? '<img class="intrusion-figure" src="assets/visitor.svg" alt="A distorted silhouette watching from the dark reception desk">' : ""}<span class="intrusion-status">DEPARTURE RECORD: FALSE</span><strong>YOU LEFT<br>ONE NAME<br>BEHIND.</strong><span>IT WAS NOT ELEANOR WHO FOLLOWED YOU.</span></div><p>The stair ends where it began. The seven names in your register rearrange themselves. Behind the desk, the porter raises a hand. You count too many fingers.</p><p>The polite website is gone. Something underneath it has noticed you.</p><div class="system-log"><span>PUBLIC SITE .......... OFFLINE</span><span>SECOND SUPPLY ........ ACTIVE</span><span>YOUR CHECKOUT ........ REVOKED</span><span>LOWER REGISTER ....... LISTENING</span></div><div class="dialog-actions"><button class="button" data-action="continue-below">Continue below →</button><button class="paper-button" data-action="toggle-scares">${state().scares ? "Disable" : "Enable"} sudden visual effects</button></div><p class="local-note">This is the second chapter, not a real browser or system error. Sound remains off unless you enabled it.</p>`,
+        `<div class="intrusion-frame ${state().scares ? "" : "quiet-intrusion"}">${state().scares ? `<img class="intrusion-figure" data-encounter="${encounter.id}" src="${encounter.file}" alt="${encounter.alt}">` : ""}<span class="intrusion-status">DEPARTURE RECORD: FALSE</span><strong>YOU LEFT<br>ONE NAME<br>BEHIND.</strong><span>IT WAS NOT ELEANOR WHO FOLLOWED YOU.</span></div><p>The stair ends where it began. The seven names in your register rearrange themselves. Behind the desk, the porter raises a hand. You count too many fingers.</p><p>The screen goes black. When it comes back, the welcome message has been replaced by these lines.</p><div class="system-log"><span>PUBLIC SITE .......... OFFLINE</span><span>SECOND SUPPLY ........ ACTIVE</span><span>YOUR CHECKOUT ........ REVOKED</span><span>LOWER REGISTER ....... LISTENING</span></div><div class="dialog-actions"><button class="button" data-action="continue-below">Continue below →</button><button class="paper-button" data-action="toggle-scares">${state().scares ? "Disable" : "Enable"} sudden visual effects</button></div><p class="local-note">This is the second chapter, not a real browser or system error. Sound remains off unless you enabled it.</p>`,
         "UNAUTHORIZED DEPARTURE / HOTEL RESPONSE",
       );
     }
@@ -158,14 +227,14 @@ window.StillwaterExpansion = {
       residents() {
         show(
           "A circular for long-stay residents",
-          `<p class="document-intro">Residence committee / Seven copies circulated / Eighth copy destroyed</p><p>Margaret asks that the teapot be returned to the dining room after the evening service. Arthur has offered to mend the lining of any coat that still remembers rain. David and Ruth would like their anniversary removed from the public calendar; it has occurred three times this week.</p><p>Rowan reports that the room numbers change when photographed. Refer to the original ledger, not the labels on the doors. The man wearing the porter’s uniform is assigned 309. This does not mean he is the porter.</p><p>Eleanor requests that nobody ask the person in 311 to speak. He has been repeating the last sentence he said before the clocks stopped. The sentence is not an instruction, even when it uses your voice.</p><h3>Meeting notes</h3><p>The founder pictured with the brass key in the opening photograph is <b>Walter Vale</b>. His room was <b>311</b>. The public copy of the photograph crops out his identification card. No vote was taken to erase his ledger entry.</p><p class="file-note">A resident is not the same thing as a guest. The hotel can imitate a guest. It cannot invent an arrival before its doors opened.</p><div class="dialog-actions"><button class="paper-button" data-action="photograph">Examine the staff photograph →</button></div>`,
+          `<p class="document-intro">Residence committee / Seven copies circulated / Eighth copy destroyed</p><p>Margaret would like her teapot returned to the dining room. Arthur can mend coat linings; leave them at 301. David and Ruth have asked us to stop putting their anniversary on the noticeboard. We have announced it three times this week.</p><p>Rowan reports that the room numbers change when photographed. Refer to the original ledger, not the labels on the doors. The man wearing the porter’s uniform is assigned 309. This does not mean he is the porter.</p><p>Eleanor requests that nobody ask the person in 311 to speak. He has been repeating the last sentence he said before the clocks stopped. The sentence is not an instruction, even when it uses your voice.</p><h3>Meeting notes</h3><p>The founder pictured with the brass key in the opening photograph is <b>Walter Vale</b>. His room was <b>311</b>. The public copy of the photograph crops out his identification card. No vote was taken to erase his ledger entry.</p><p class="file-note">Use the opening-night records to check names. The room labels have changed several times, but the first register has not.</p><div class="dialog-actions"><button class="paper-button" data-action="photograph">Examine the staff photograph →</button></div>`,
           "RESIDENCE COMMITTEE / CIRCULAR 07",
         );
       },
       photograph() {
         show(
-          "The uncropped opening photograph",
-          `<p class="document-intro">Hotel collection / Contact sheet 001-B</p><div class="photo-record"><img src="assets/lobby.png" alt="The lobby from the hotel collection"><span>CONTACT SHEET 001-B · ORIGINAL IDENTIFICATION RETAINED</span></div><p>Two founders stand on either side of the reception desk. The faces have faded out of the print. The typewritten captions remain intact.</p><table class="ledger-table"><tbody><tr><th>LEFT</th><td>ELEANOR VALE</td><td>HOST / 307</td></tr><tr><th>RIGHT</th><td>WALTER VALE</td><td>PROPRIETOR / 311</td></tr><tr><th>BACKGROUND</th><td>RELIEF PORTER</td><td>STAFF QUARTERS / 309</td></tr></tbody></table><p>A strip of the original ledger is visible at the bottom of the frame. The final name begins with W. On every public reproduction, that strip has been painted over.</p><p class="file-note">The dark shape reflected in the reception glass does not correspond to any of the three people. The photographer’s report calls it a processing fault. The fault appears in the negative too.</p><div class="dialog-actions"><button class="paper-button" data-action="residents">Read the residents’ circular</button></div>`,
+          "Original photograph captions",
+          `<p class="document-intro">Hotel collection / Contact sheet 001-B</p><div class="caption-record"><span>CONTACT SHEET 001-B</span><p>CAPTION COPY / ORIGINAL NEGATIVE DAMAGED</p></div><p>The original photograph is damaged. These captions were copied from its mount before the right-hand strip was removed.</p><table class="ledger-table"><tbody><tr><th>LEFT</th><td>ELEANOR VALE</td><td>HOST / 307</td></tr><tr><th>RIGHT</th><td>WALTER VALE</td><td>PROPRIETOR / 311</td></tr><tr><th>BACKGROUND</th><td>RELIEF PORTER</td><td>STAFF QUARTERS / 309</td></tr></tbody></table><p>A strip of the original ledger is visible at the bottom of the frame. The final name begins with W. On every public reproduction, that strip has been painted over.</p><p class="file-note">The photographer noted a fourth person in the reception glass. None of the three staff members could identify them. The negative has the same outline.</p><div class="dialog-actions"><button class="paper-button" data-action="residents">Read the residents’ circular</button></div>`,
           "HOTEL COLLECTION / PHOTOGRAPH 001-B",
         );
       },
@@ -186,7 +255,7 @@ window.StillwaterExpansion = {
       inventory() {
         show(
           "Lost property, awaiting collection",
-          `<p class="document-intro">Reception inventory / Items held indefinitely</p><table class="ledger-table"><thead><tr><th>ITEM</th><th>FOUND</th><th>STATUS</th></tr></thead><tbody><tr><td>Red ribbon</td><td>Guestbook</td><td>Returned to Rowan</td></tr><tr><td>Brass key, 307</td><td>Departure stair</td><td>Do not turn</td></tr><tr><td>Black coat</td><td>Courtyard gate</td><td>Still wet</td></tr><tr><td>Photograph 001-B</td><td>Kitchen cabinet</td><td>Original retained</td></tr><tr><td>A guest’s voice</td><td>Room 311</td><td>Claimant unknown</td></tr></tbody></table><p>Keys are held for their owners, not issued as replacements. A key recovered from the departure stair must remain in its found position. There is no lock on the stair itself; an invitation to use a key there is a request to complete the circuit.</p><p>Clothing that remains wet after laundering is stored away from the reception desk. Do not identify its owner by reading the lining aloud. The item may answer.</p><p class="file-note">If you believe an entry refers to something that cannot be lost, ask a long-stay resident. They are better acquainted with the collection than our current staff.</p><div class="dialog-actions"><button class="paper-button" data-action="residents">Read the residents’ circular</button></div>`,
+          `<p class="document-intro">Reception inventory / Items held indefinitely</p><table class="ledger-table"><thead><tr><th>ITEM</th><th>FOUND</th><th>STATUS</th></tr></thead><tbody><tr><td>Red ribbon</td><td>Guestbook</td><td>Returned to Rowan</td></tr><tr><td>Brass key, 307</td><td>Departure stair</td><td>Do not turn</td></tr><tr><td>Black coat</td><td>Courtyard gate</td><td>Still wet</td></tr><tr><td>Photograph 001-B</td><td>Kitchen cabinet</td><td>Original retained</td></tr><tr><td>Unlabelled cassette</td><td>Room 311</td><td>Claimant unknown</td></tr></tbody></table><p>Keys are held for their owners, not issued as replacements. A key recovered from the departure stair must remain in its found position. There is no lock on the stair itself; an invitation to use a key there is a request to complete the circuit.</p><p>The black coat is still wet after three days in the drying room. There is a name sewn into the lining. Please do not read it aloud; the last person who did heard an answer from 311.</p><p class="file-note">The cassette was found outside 311. The voice on it sounds like the person holding the recorder, even when the tape has not been changed.</p><div class="dialog-actions"><button class="paper-button" data-action="residents">Read the residents’ circular</button></div>`,
           "RECEPTION / LOST PROPERTY REGISTER",
         );
       },
@@ -248,9 +317,9 @@ window.StillwaterExpansion = {
         heading(
           "Around the hotel",
           "A little more to discover.",
-          "The most familiar places often reward a second look. Our staff have gathered a few notes to help you settle into the rhythm of the Stillwater.",
+          "Meal times, room facilities, and a few notices from reception. Keep the service sheets nearby if you plan to explore the older part of the building.",
         ) +
-        `<div class="page-main"><div class="guide-introduction"><p>There is no need to leave the property to find something interesting. Read a chapter in the east wing, take a walk before dinner, or join the long-stay residents for a conversation they may remember having before.</p><aside class="notice"><p class="eyebrow">A note from reception</p><h3>Please keep these cards.</h3><p>Facility information is not changed during a supply interruption. The printed instructions remain valid even if the building looks unfamiliar.</p></aside></div><div class="document-grid guide-grid">${cards.map(([id, label, title, text]) => `<button class="document-card" data-action="${id}"><p class="eyebrow">${label}</p><h2>${title}</h2><p>${text}</p><span class="underlined">Read the guest information →</span></button>`).join("")}</div><div class="archive-teaser"><div><p class="eyebrow">The hotel collection</p><h3>The faces behind the welcome.</h3><p>Our original photograph identifies the founders and the first relief porter. Names matter here; we take care not to misplace them.</p></div><button class="underlined" data-action="photograph">View contact sheet 001-B →</button></div></div>`
+        `<div class="page-main"><div class="guide-introduction"><p>The reading room is in the east wing. The courtyard opens from the lobby, beside the fern. We have also kept a few old notices here; some guests ask for them when the lights go out.</p><aside class="notice"><p class="eyebrow">A note from reception</p><h3>Please keep these cards.</h3><p>Facility information is not changed during a supply interruption. The printed instructions remain valid even if the building looks unfamiliar.</p></aside></div><div class="document-grid guide-grid">${cards.map(([id, label, title, text]) => `<button class="document-card" data-action="${id}"><p class="eyebrow">${label}</p><h2>${title}</h2><p>${text}</p><span class="underlined">Read the guest information →</span></button>`).join("")}</div><div class="archive-teaser"><div><p class="eyebrow">The hotel collection</p><h3>The faces behind the welcome.</h3><p>Our original photograph identifies the founders and the first relief porter. Names matter here; we take care not to misplace them.</p></div><button class="underlined" data-action="photograph">View contact sheet 001-B →</button></div></div>`
       );
     }
     function lowerPage() {
@@ -302,7 +371,7 @@ window.StillwaterExpansion = {
           "Separate the hotel’s version of events from the sequence that actually happened.",
         ],
       ];
-      return `<div class="page-main lower-register"><header class="breach-heading"><p class="eyebrow">UNINDEXED FLOOR / YOUR DEPARTURE WAS NOT ACCEPTED</p><div class="breach-heading-row"><h1>IT IS STILL<br>KEEPING YOU.</h1><div class="visitor-window"><img src="assets/visitor.svg" alt="A figure behind the reception glass"><span>CAM 00 / DO NOT ANSWER</span></div></div><p>The checkout you remember was a rehearsal. The hotel wrote the last page before you reached it. There is another register underneath the desk. This one has room for the name it erased.</p><div class="breach-stats"><span>PUBLIC RECORDS <b>6 / 6</b></span><span>LOWER STATIONS <b>${state().puzzles.length} / 6</b></span><span>DEPARTURE <b>DENIED</b></span></div></header><div class="lower-intro"><p>Work through the stations in order. Each restored record unlocks the next. The guest information above is still accessible; it was never only decoration.</p><div class="inline-actions"><button class="paper-button" data-page="guide">Recover the hotel guide ↑</button><button class="paper-button" data-action="journal">Open your notebook</button><button class="paper-button" data-action="about">Visual & audio settings</button></div></div><div class="lower-grid">${cards.map(([id, label, title, text]) => `<button class="lower-card ${solved(id) ? "verified" : ""}" data-action="puzzle-${id}" ${available(id) ? "" : "disabled"}><span class="eyebrow">${label}</span><h2>${title}</h2><p>${text}</p><span class="station-state">${solved(id) ? "RECORD VERIFIED ✓ / REVIEW" : available(id) ? "LINE OPEN →" : "WAITING FOR PREVIOUS STATION"}</span></button>`).join("")}</div><section class="discharge-bar"><div><p class="eyebrow">NO FURTHER DOORS WILL BE OFFERED</p><h2>The final discharge</h2><p>${state().puzzles.length === 6 ? "The lower record is complete. Choose what leaves with you, what stays, and which way you go." : "Six stations must be restored before the final desk will accept a living signature."}</p></div><button class="button" data-action="final-discharge" ${state().puzzles.length === 6 ? "" : "disabled"}>Approach the desk →</button></section></div>`;
+      return `<div class="page-main lower-register"><header class="breach-heading"><p class="eyebrow">UNINDEXED FLOOR / YOUR DEPARTURE WAS NOT ACCEPTED</p><div class="breach-heading-row"><h1>IT IS STILL<br>KEEPING YOU.</h1><div class="visitor-window"><img src="assets/scare-porter.png" alt="A figure behind the reception glass"><span>CAM 00 / DO NOT ANSWER</span></div></div><p>You are back at the desk. The checkout slip is blank again, and somebody has crossed out Room 311 in the book. A second register is wedged under the counter. Its last line has never been filled in.</p><div class="breach-stats"><span>PUBLIC RECORDS <b>6 / 6</b></span><span>LOWER STATIONS <b>${state().puzzles.length} / 6</b></span><span>DEPARTURE <b>DENIED</b></span></div></header><div class="lower-intro"><p>Work through the stations in order. Each restored record unlocks the next. The guest information above is still accessible; it was never only decoration.</p><div class="inline-actions"><button class="paper-button" data-page="guide">Recover the hotel guide ↑</button><button class="paper-button" data-action="journal">Open your notebook</button><button class="paper-button" data-action="about">Visual & audio settings</button></div></div><div class="lower-grid">${cards.map(([id, label, title, text]) => `<button class="lower-card ${solved(id) ? "verified" : ""}" data-action="puzzle-${id}" ${available(id) ? "" : "disabled"}><span class="eyebrow">${label}</span><h2>${title}</h2><p>${text}</p><span class="station-state">${solved(id) ? "RECORD VERIFIED ✓ / REVIEW" : available(id) ? "LINE OPEN →" : "WAITING FOR PREVIOUS STATION"}</span></button>`).join("")}</div><section class="discharge-bar"><div><p class="eyebrow">NO FURTHER DOORS WILL BE OFFERED</p><h2>The final discharge</h2><p>${state().puzzles.length === 6 ? "All six stations are working. Bring the correct book to the desk, follow the warning about the key, and choose your route out." : "Six stations must be restored before the final desk will accept a living signature."}</p></div><button class="button" data-action="final-discharge" ${state().puzzles.length === 6 ? "" : "disabled"}>Approach the desk →</button></section></div>`;
     }
     function form(id, label, placeholder, prompt) {
       return `<form id="lower-${id}-form"><label class="field-label" for="answer-${id}">${label}</label><input class="text-input" id="answer-${id}" name="answer" maxlength="80" placeholder="${placeholder}" autocomplete="off" required><div class="form-error" id="puzzle-error" role="status"></div><button class="button full-width" type="submit">${prompt} →</button></form>`;
@@ -319,6 +388,10 @@ window.StillwaterExpansion = {
       },
       "toggle-scares"() {
         state().scares = !state().scares;
+        if (!state().scares) {
+          clearTimeout(threatTimer);
+          document.body.classList.remove("intrusion-hit");
+        }
         save();
         document.body.classList.toggle("quiet-effects", !state().scares);
         document
@@ -416,7 +489,7 @@ window.StillwaterExpansion = {
           );
         show(
           "The final discharge",
-          `<p class="document-intro">Twelve records recovered. One living signature required. Behind the desk, the empty uniform turns toward you.</p><p>The hotel offers a key and a clean book. It calls both gifts. You know what the first gift did.</p><form id="lower-discharge-form"><label class="field-label" for="discharge-register">Which register will you present?</label><select class="text-input" id="discharge-register" name="register"><option value="" selected disabled>Choose the record</option><option value="copy">The new, clean duplicate</option><option value="original">The original opening-night register</option></select><label class="field-label" for="discharge-key">What will you do with the brass key?</label><select class="text-input" id="discharge-key" name="key"><option value="" selected disabled>Choose what happens to the key</option><option value="turn">Turn it in the offered lock</option><option value="leave">Leave it untouched</option></select><label class="field-label" for="discharge-route">Which departure will you record?</label><select class="text-input" id="discharge-route" name="route"><option value="" selected disabled>Choose the way out</option><option value="white">The welcoming white doorway</option><option value="stair">The service stair</option><option value="red">The red EXIT door</option></select><div class="form-error" id="puzzle-error" role="status"></div><button class="button full-width" type="submit">Sign as ${escape(state().name)} & close the accounts →</button></form><div class="dialog-actions"><button class="underlined" data-action="nightaudit">Review the discharge requirements</button><button class="danger-link" data-action="accept-uniform">Accept the porter’s uniform instead</button></div>`,
+          `<p class="document-intro">Twelve records recovered. One living signature required. Behind the desk, the empty uniform turns toward you.</p><p>A clean register and a brass key have been placed on the desk. Beside them is a checkout form. The name field has already been filled in with your name.</p><form id="lower-discharge-form"><label class="field-label" for="discharge-register">Which register will you present?</label><select class="text-input" id="discharge-register" name="register"><option value="" selected disabled>Choose the record</option><option value="copy">The new, clean duplicate</option><option value="original">The original opening-night register</option></select><label class="field-label" for="discharge-key">What will you do with the brass key?</label><select class="text-input" id="discharge-key" name="key"><option value="" selected disabled>Choose what happens to the key</option><option value="turn">Turn it in the offered lock</option><option value="leave">Leave it untouched</option></select><label class="field-label" for="discharge-route">Which departure will you record?</label><select class="text-input" id="discharge-route" name="route"><option value="" selected disabled>Choose the way out</option><option value="white">The welcoming white doorway</option><option value="stair">The service stair</option><option value="red">The red EXIT door</option></select><div class="form-error" id="puzzle-error" role="status"></div><button class="button full-width" type="submit">Sign as ${escape(state().name)} & close the accounts →</button></form><div class="dialog-actions"><button class="underlined" data-action="nightaudit">Review the discharge requirements</button><button class="danger-link" data-action="accept-uniform">Accept the porter’s uniform instead</button></div>`,
           "FINAL DISCHARGE / NO COPIES ACCEPTED",
         );
       },
@@ -427,19 +500,33 @@ window.StillwaterExpansion = {
         save();
         show(
           "The new night porter",
-          `<p class="ending-code">ENDING 04 / THE POSITION IS NOW FILLED</p><p>The sleeves fit. You do not remember putting your arms into them. The register closes and opens to a fresh page.</p><p>Beyond the glass doors, someone is sheltering from rain. You reach for the key to 307 before they can ask for a room.</p><p class="file-note">You have not been released. You have been employed.</p><div class="dialog-actions"><button class="button" data-action="final-discharge">Refuse the appointment & try again →</button></div>`,
+          `<p class="ending-code">ENDING 04 / THE POSITION IS NOW FILLED</p><p>You reach for the uniform. The next thing you notice is a tight collar against your neck. The register is open in front of you. Someone is ringing the bell.</p><p>Beyond the glass doors, someone is sheltering from rain. You reach for the key to 307 before they can ask for a room.</p><p class="file-note">Your checkout slip has been stamped “NIGHT STAFF.” Your room key is now hanging on the board behind you.</p><div class="dialog-actions"><button class="button" data-action="final-discharge">Refuse the appointment & try again →</button></div>`,
           "NIGHT DESK / APPOINTMENT CONFIRMED",
         );
       },
       "inspect-shadow"() {
+        const encounter = chooseScare();
         show(
-          "There is someone at the desk",
-          `<div class="intrusion-frame ${state().scares ? "" : "quiet-intrusion"}">${state().scares ? '<img class="intrusion-figure" src="assets/visitor.svg" alt="A tall figure with an indistinct face behind the glass">' : ""}<strong>THAT IS NOT<br>THE PORTER.</strong><span>THE FRAME WAS EMPTY WHEN YOU OPENED IT.</span></div><p>Its reflection is looking directly into the lens. The camera is behind it.</p><div class="dialog-actions"><button class="paper-button" data-action="monitor">Return to the ordinary recording</button></div>`,
+          encounter.title,
+          `<div class="intrusion-frame ${state().scares ? "" : "quiet-intrusion"}" data-encounter="${encounter.id}">${state().scares ? `<img class="intrusion-figure" src="${encounter.file}" alt="${encounter.alt}">` : ""}<strong>${encounter.headline}</strong><span>${encounter.caption}</span></div><p>${encounter.description}</p><div class="dialog-actions"><button class="paper-button" data-action="inspect-shadow">Review the next anomalous frame →</button><button class="paper-button" data-action="monitor">Return to the ordinary recording</button></div>`,
           "SECURITY EXCEPTION / FRAME 0000",
         );
         if (state().scares) api.playKnock();
       },
     };
+    for (const id of steps) {
+      const openPuzzle = actions[`puzzle-${id}`];
+      actions[`replay-${id}`] = openPuzzle;
+      actions[`puzzle-${id}`] = () => {
+        if (!solved(id)) return openPuzzle();
+        const clue = window.StillwaterExpansion.clues[evidence[id]];
+        show(
+          clue.title,
+          `<p class="document-intro">This station is complete. Your record is saved.</p><p>${clue.text}</p><div class="dialog-actions"><button class="button" data-action="replay-${id}">Try this puzzle again →</button><button class="paper-button" data-page="below">Return to lower register</button></div>`,
+          "LOWER REGISTER / VERIFIED RECORD",
+        );
+      };
+    }
     function submit(event) {
       const form = event.target;
       if (!form.id.startsWith("lower-")) return;
@@ -553,8 +640,8 @@ window.StillwaterExpansion = {
         if (dates.join(",") === "open,stop,return")
           complete(
             id,
-            "The days are put back in order",
-            "03 October: the doors opened. 04 October: the clocks stopped. 05 October: the first returned guest. The ledger accepts that a departure can follow an arrival. The desk is ready for an original signature.",
+            "The dates are back in order",
+            "03 October: opening. 04 October: clock failure. 05 October: first return. The register stops changing the dates. A checkout form prints behind the desk.",
           );
         else
           reject(
@@ -592,7 +679,7 @@ window.StillwaterExpansion = {
           `${(Number(event.target.value) / 10).toFixed(1)} MHz`;
     });
     function epilogue() {
-      return `<div class="page-main epilogue"><p class="eyebrow">DEPARTURE RECORD / ALL ACCOUNTS CLOSED</p><h1>For the first time,<br>morning.</h1><p class="epilogue-number">05</p><h2>The hotel no longer remembers you.</h2><p>You carry the original book to the stair. The key remains on the desk. Behind you, the offered lock closes around nothing.</p><p>The guests cross quietly. David counts Ruth’s steps. Margaret leaves her empty cup on the last landing. Arthur folds the coat that has finally dried. Rowan unties the ribbon. Eleanor pauses for the name that has been missing from every version of this morning.</p><p>Walter comes down last. Without the uniform’s reflection, he looks old, exhausted, and entirely human. He signs beside his wife. The final departure field accepts its date.</p><p>You step onto a road that continues in both directions. Behind you is an unoccupied building with a printed sign that someone has turned face down. There is no bell. No light remains at reception.</p><p class="file-note">YOUR ACCOUNT: CLOSED<br>ROOMS AWAITING RETURN: 0<br>NEXT GUEST: NONE</p><p class="epilogue-last">A place can keep your memory without keeping you.</p><div class="inline-actions"><button class="button" data-action="journal">Read the completed records</button><button class="paper-button" data-page="home">Return to the public hotel archive</button><button class="paper-button" data-action="about">Settings & start a new stay</button></div><p class="local-note">True ending remembered. Your records remain saved. To replay the lower chapter, start a new stay in Site Information. Earlier “release” endings now lead into this chapter when revisited.</p></div>`;
+      return `<div class="page-main epilogue"><p class="eyebrow">DEPARTURE RECORD / ALL ACCOUNTS CLOSED</p><h1>For the first time,<br>morning.</h1><p class="epilogue-number">05</p><h2>The hotel no longer remembers you.</h2><p>You carry the original book to the stair. The key remains on the desk. Behind you, the offered lock closes around nothing.</p><p>The guests cross quietly. David counts Ruth’s steps. Margaret leaves her empty cup on the last landing. Arthur folds the coat that has finally dried. Rowan unties the ribbon. Eleanor pauses for the name that has been missing from every version of this morning.</p><p>Walter comes down last. Without the uniform’s reflection, he looks old, exhausted, and entirely human. He signs beside his wife. The final departure field accepts its date.</p><p>You step onto a road that continues in both directions. Behind you is an unoccupied building with a printed sign that someone has turned face down. There is no bell. No light remains at reception.</p><p class="file-note">YOUR ACCOUNT: CLOSED<br>ROOMS AWAITING RETURN: 0<br>NEXT GUEST: NONE</p><p class="epilogue-last">This time, you do not look back.</p><div class="inline-actions"><button class="button" data-action="journal">Read the completed records</button><button class="paper-button" data-page="home">Return to the public hotel archive</button><button class="paper-button" data-action="about">Settings & start a new stay</button></div><p class="local-note">True ending remembered. Your records remain saved. To replay the lower chapter, start a new stay in Site Information. Earlier “release” endings now lead into this chapter when revisited.</p></div>`;
     }
     function applyTheme() {
       document.body.classList.toggle("breached", state().chapter === 2);
@@ -613,6 +700,16 @@ window.StillwaterExpansion = {
       breach,
       applyTheme,
       publicClues: ["clock", "door", "ribbon", "register", "switch", "letter"],
+      preloadScares,
+      captureDocumentState: () => ({
+        circuit: [...circuit],
+        dates: [...dates],
+      }),
+      restoreDocumentState: (saved) => {
+        if (!saved) return;
+        circuit = [...saved.circuit];
+        dates = [...saved.dates];
+      },
       extraNotebook: () =>
         state().chapter >= 2
           ? `<p class="system-note">Lower stations verified: ${state().puzzles.length}/6. ${state().chapter === 3 ? "The final discharge is complete." : "The first checkout was not the end. Continue in the lower register."}</p><button class="button" data-page="below">${state().chapter === 3 ? "Read the true ending" : "Return below"} →</button>`

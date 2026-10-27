@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#2c3c3e" />
     <meta
       name="description"
-      content="安静的客房，周到的服务。欢迎来到静水旅馆，一部藏在旧酒店官网里的两阶段互动恐怖谜案。"
+      content="安静的客房，通宵值班的前台。静水旅馆是一部藏在旧酒店官网中的两阶段互动恐怖谜案。"
     />
     <title>静水旅馆 — 每一次，都如此熟悉</title>
     <link rel="icon" href="assets/emblem.svg" type="image/svg+xml" />
@@ -67,36 +67,31 @@
         <div class="hero-copy">
           <p class="eyebrow">自 1987 年延续至今的待客之道</p>
           <h1>您的房间，<br />一直在等您。</h1>
-          <p>在静水旅馆，放慢脚步。每一次停留，都有种令人安心的熟悉感。</p>
+          <p>离镇中心稍远一些，客房安静，前台通宵值班，楼下每天供应早餐。</p>
           <a href="#rooms" class="button"
             >探索客房 <span aria-hidden="true">→</span></a
           >
         </div>
         <figure class="hero-photo">
-          <img
-            src="assets/lobby.png"
-            alt="空荡的历史大堂，深色木质前台与亮着暖灯的回廊"
-          />
+          <img src="assets/lobby.jpg" alt="有木质楼梯与吊灯的老酒店大堂" />
           <figcaption>历史悠久的主大堂</figcaption>
         </figure>
       </section>
       <section class="invitation">
         <div>
           <p class="eyebrow">诚挚邀请</p>
-          <h2>每个角落，都让人安心。</h2>
+          <h2>今晚，就在这里歇歇脚。</h2>
           <p>
-            远离人群喧嚣，静水旅馆接待了一代又一代旅人。熟悉的走廊、精心挑选的陈设与体贴的服务，让每次到访都成为值得记住的时光。
+            静水旅馆在进镇的老路边，由一家人经营。楼梯和大部分家具还是以前的。晚到的客人请按前台铃，会有人下来接待。
           </p>
           <p>
-            无论您只住一晚，还是想找个地方重新开始，总有一处位置，早已为您准备妥当。
+            住一晚或多住几天都可以。需要加一条毯子，或想换间安静的房，请告诉前台。
           </p>
         </div>
         <aside class="notice">
           <p class="eyebrow">住客公告 · 更新于 10 月 3 日</p>
           <h3>三层维护通知</h3>
-          <p>
-            三层部分区域暂不开放。我们正在修缮这座历史建筑，保留它原有的风貌，感谢您的理解。
-          </p>
+          <p>三层西端正在维修。请按房卡上的标记通行，不要自行进入施工区域。</p>
           <a href="#history" class="underlined">了解我们的旅馆 →</a>
         </aside>
       </section>
@@ -138,12 +133,13 @@
             <h2>旅馆服务</h2>
             <button data-action="inquiry">咨询前台</button
             ><a href="#employees">员工入口</a
-            ><button data-action="about">网站说明</button>
+            ><button data-action="about">网站说明</button
+            ><button data-action="credits">图片来源</button>
           </div>
         </div>
         <div class="copyright">
           © 1987–2026 静水旅馆 ·
-          虚构互动恐怖谜案。不存在真实旅馆、预订或账号；所有画面与人物均为虚构。
+          虚构互动恐怖谜案。静水旅馆、人物和事件均为虚构，不接受真实预订。酒店图片为真实摄影，来源见「图片来源」。
         </div>
       </div>
     </footer>
@@ -158,6 +154,14 @@
     </button>
     <dialog id="story-dialog" aria-labelledby="dialog-title">
       <div class="dialog-header">
+        <button
+          id="dialog-back"
+          type="button"
+          aria-label="返回上一份资料"
+          hidden
+        >
+          ← 返回
+        </button>
         <span id="dialog-label">静水旅馆</span
         ><button id="dialog-close" aria-label="关闭窗口">×</button>
       </div>

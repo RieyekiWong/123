@@ -2,7 +2,7 @@
 
 A Backrooms-inspired interactive horror mystery in English and Simplified Chinese, hidden inside an unassuming hotel website. The public site retains its ivory paper, bronze rules, traditional typography, and deep-teal masthead. An apparently successful checkout exposes a second, corrupted website and a longer investigation below the hotel.
 
-This edition nearly doubles the narrative material, expands the notebook from six to twelve records, replaces simulated handwritten annotations with printed record sheets, and adds seven puzzle steps beyond the original two code locks.
+This edition includes both story chapters, twelve records, and linked puzzles. Public copy, guest accounts, and reports use different voices; documents have a Back button that restores inputs and selections. Completed stations open their saved record with an explicit replay option.
 
 ## 简体中文版
 
@@ -12,7 +12,7 @@ This edition nearly doubles the narrative material, expands the notebook from si
 
 On the [GitHub repository](https://github.com/RieyekiWong/123), choose **Code → Download ZIP**. Extract the entire archive and open the root `index.html` with Chrome or Edge. Do not open the HTML from inside the compressed archive. Extract this edition into a new folder rather than mixing its scripts with an old download.
 
-All images, scripts, and styles are included. The English entry is `index.html`; the Simplified Chinese entry is `index-zh.html`. Header links switch editions and retain the current page. Both use the same progress schema and share saved progress when served from the same origin. Local-file storage isolation is browser-dependent.
+All images, scripts, and styles are included. Five real hotel photographs replace the earlier generated hotel scenes. Photographer names, original source pages, and licenses are available through **Photo credits**, `assets/CREDITS.md`, and `assets/photo-credits.json`. These photos illustrate a fictional setting; their real locations and staff are not involved in the story. The English entry is `index.html`; the Simplified Chinese entry is `index-zh.html`. Header links switch editions and retain the current page. Both use the same progress schema and share saved progress when served from the same origin. Local-file storage isolation is browser-dependent.
 
 There are no runtime packages, remote fonts, external image services, sign-ups, API keys, or backend services. If your browser or organization blocks local HTML, use the local development server below.
 
@@ -33,11 +33,11 @@ Six linked stations require different kinds of reasoning:
 
 A final discharge combines the recovered instructions. An alternative staff appointment is a false resolution. In total, five departure records can be remembered, including the true ending. Completed stations stay unlocked and can be reviewed without duplicating evidence.
 
-All required clues are inside this website. No real-world contact or outside investigation is needed. Source links beside the lower puzzles let you revisit relevant documents, and the notebook gives contextual pointers to missing records.
+All required clues are inside this website. No real-world contact or outside investigation is needed. Source links beside the lower puzzles let you revisit relevant documents, and the notebook gives contextual pointers to missing records. Use the document header’s **Back** button to return without losing a typed answer, selected circuit sequence, tuned frequency, or selected incident cards. Camera channel changes replace the current feed, so Back returns directly to the directory. Returning from guidelines to the current registration page retains unfinished form fields.
 
 ## Horror settings and local data
 
-This edition includes distorted figures and sudden, short visual interruptions. **Site Information** in the footer controls sudden visual effects; turning them off hides the figures and interruptions without disabling any puzzle or the second chapter. Reduced-motion preferences suppress animated interruptions. There is no rapid flashing.
+This edition includes three different generated creature portraits (night porter, veiled visitor, and distorted reflection) and short visual interruptions. Consecutive encounters rotate artwork rather than repeat the same face. Portraits are preloaded when the security recordings are opened, not on the ordinary homepage. **Site Information** in the footer controls sudden visual effects; turning them off hides the figures and interruptions without disabling any puzzle or the second chapter. Reduced-motion preferences suppress animated interruptions. There is no rapid flashing.
 
 Ambient audio defaults to off. When explicitly enabled, Web Audio generates a quiet ventilation hum and short, low-volume knocks during some encounters. No audio is required to solve anything: the radio has a written transcript. Press Escape or use the close button to dismiss any document. The story never opens browser windows or requests fullscreen.
 
@@ -45,7 +45,7 @@ Nicknames, fictional registrations, twelve collected records, solved stations, p
 
 Earlier progress from the first two editions is retained when possible. Players who already completed the public story can revisit Room 404 and choose the service stair to enter the new chapter without resetting. A reset in Site Information clears both chapters, closes audio, and retains the visual-effects preference. Chinese names and decoded mirror instructions are accepted alongside their English answers; the menu acrostic and reversed original remain bilingual so the puzzle logic is unchanged.
 
-The hotel, people, correspondence, keypad, bookings, apparent site compromise, and error messages are fictional. The employee code is a story puzzle, not an authentication system. Images are generated hotel assets; the visitor is an original SVG illustration.
+The Stillwater story, characters, correspondence, keypad, bookings, apparent site compromise, and error messages are fictional. The employee code is a story puzzle, not authentication. Hotel photographs are real and retain their individual Creative Commons licenses; horror portraits are generated fictional characters. See the bundled credits for exact provenance.
 
 ## Development
 
@@ -92,6 +92,7 @@ The configuration uses `/usr/bin/chromium` when present, or `CHROMIUM_PATH` if s
 - Wrong answers, station dependencies, adjustable frequency, sequence clearing, and discharge validation.
 - Saved station progress, duplicate evidence prevention, and old-edition continuation.
 - Printed source documents, English text, keyboard dismissal, preference persistence, reduced motion, and disabled visual effects.
+- Document history, restored puzzle controllers and form fields, camera navigation, distinct scare artwork, and visible photograph credits.
 - Registration, guestbook limits, escaped text, optional audio, corrupt or blocked storage, and browser navigation.
 - Public and corrupted layouts at phone, tablet, and desktop widths.
 
@@ -102,7 +103,7 @@ The configuration uses `/usr/bin/chromium` when present, or `CHROMIUM_PATH` if s
 - `app.js`: public story, registration, base clues, state migration, and audio.
 - `story-expansion.js`: hotel guide, expanded documents, lower chapter, puzzle validation, and true ending.
 - `style.css`: responsive public site, printed records, corrupted theme, and optional visual effects.
-- `assets/`: bundled hotel photographs, monogram, and original visitor illustration.
+- `assets/`: five credited real hotel photographs, three generated horror portraits, the monogram, and source/license records.
 - `server.mjs` / `build.mjs`: local server and static build.
 - `tests/`: service and browser tests.
 

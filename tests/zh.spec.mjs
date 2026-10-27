@@ -118,7 +118,7 @@ test("Chinese edition completes both chapters using Chinese puzzle answers and s
   await expect(
     page.getByRole("heading", { name: /第一次，\s*天亮了。/ }),
   ).toBeVisible();
-  await expect(page.locator(".epilogue")).toContainText("旅馆不再记得您");
+  await expect(page.locator(".epilogue")).toContainText("这次，您真的离开了。");
   await page.reload();
   await expect(page.locator("#clue-count")).toHaveText("12 / 12");
   await page.locator("[data-language-link]").click();

@@ -68,6 +68,10 @@ test("lower station dependencies and solved progress survive reloading", async (
     page.locator('main [data-action="final-discharge"]'),
   ).toBeDisabled();
   await page.locator('main [data-action="puzzle-power"]').click();
+  await expect(page.locator("dialog")).toContainText(
+    "This station is complete.",
+  );
+  await page.locator('dialog [data-action="replay-power"]').click();
   for (const id of [3, 1, 4, 2])
     await page.locator(`[data-circuit="${id}"]`).click();
   await page

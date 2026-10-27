@@ -1,4 +1,4 @@
-/* Complete Simplified Chinese edition. User text, values, IDs and puzzle originals are never rewritten. */
+/* Offline Chinese edition. User content and puzzle identifiers are preserved. */
 (() => {
   "use strict";
   const dictionary = {
@@ -25,19 +25,19 @@
     "Your room is": "您的房间，",
     "waiting.": "一直在等您。",
     "Discover a quieter pace at Stillwater Hotel, where every stay feels pleasantly familiar.":
-      "在静水旅馆，放慢脚步。每一次停留，都有种令人安心的熟悉感。",
+      "离镇中心稍远一些，客房安静，前台通宵值班，楼下每天供应早餐。",
     "Explore the rooms": "探索客房",
     "Our historic main lobby": "历史悠久的主大堂",
     "Our invitation": "诚挚邀请",
-    "Comfort in every corner.": "每个角落，都让人安心。",
+    "Comfort in every corner.": "今晚，就在这里歇歇脚。",
     "Nestled far from the crowds, the Stillwater has welcomed travelers for generations. Our familiar corridors, handpicked furnishings, and attentive service make every visit one to remember.":
-      "远离人群喧嚣，静水旅馆接待了一代又一代旅人。熟悉的走廊、精心挑选的陈设与体贴的服务，让每次到访都成为值得记住的时光。",
+      "静水旅馆在进镇的老路边，由一家人经营。楼梯和大部分家具还是以前的。晚到的客人请按前台铃，会有人下来接待。",
     "Whether you are staying for a night or looking for somewhere to begin again, a place has already been prepared for you.":
-      "无论您只住一晚，还是想找个地方重新开始，总有一处位置，早已为您准备妥当。",
+      "住一晚或多住几天都可以。需要加一条毯子，或想换间安静的房，请告诉前台。",
     "Notice to our guests · Updated 10/03": "住客公告 · 更新于 10 月 3 日",
     "Third-floor maintenance": "三层维护通知",
     "Some areas of the third floor remain temporarily unavailable. We appreciate your understanding as we preserve the character of our historic property.":
-      "三层部分区域暂不开放。我们正在修缮这座历史建筑，保留它原有的风貌，感谢您的理解。",
+      "三层西端正在维修。请按房卡上的标记通行，不要自行进入施工区域。",
     "Learn about our hotel →": "了解我们的旅馆 →",
     "01 / Rooms": "01 / 客房",
     "Time to unwind": "安心歇息",
@@ -77,28 +77,28 @@
     "TEST_GUEST · ROOM 307": "TEST_GUEST · 307 号房",
     "The Stillwater Hotel — Rooms & Suites": "静水旅馆 — 客房与套房",
     "Rooms & suites": "客房与套房",
-    "A place already prepared for you.": "总有一间，早已为您准备好。",
+    "A place already prepared for you.": "选一间合适的客房。",
     "Considered comforts, familiar furnishings, and no reason to rush. Every room has its own character. We will find the one that remembers you.":
-      "贴心的设施、熟悉的陈设，以及不必匆忙离开的理由。每间客房都有自己的性格，我们会为您找到记得您的那一间。",
+      "大床房、双床房和长住客房均可申请。房间陆续翻修过，能留下的老家具，我们尽量保留了。",
     "A classic welcome": "熟悉的欢迎",
     "Guest accommodation": "住客客房",
     "Classic Double": "经典大床房",
     "A well-made bed, a reading lamp, and the quiet reassurance of a room that feels like your own. Our original rooms overlook the sheltered courtyard.":
-      "整齐的床铺、一盏阅读灯，以及仿佛回到自己房间的安心感。最早的一批客房面向幽静的内庭。",
+      "一张双人床、床头灯和一张小书桌。客房位于老楼，离前台不远。",
     "One double bed · Private bath · Writing desk":
       "一张双人床 · 独立卫浴 · 书桌",
     "View room details →": "查看客房详情 →",
     "A little more room": "多一点从容",
     "Heritage Twin": "怀旧双床房",
     "Traditional furnishings and space to settle in together. Soft lighting, crisp linens, and a sitting corner for conversations that last a little longer.":
-      "传统陈设与更宽裕的空间，适合结伴入住。柔和灯光、干净床品，以及能让交谈持续更久的休息角。",
+      "两张独立单人床，配有床头柜、休息区和茶饮用品，适合朋友或家人同行。",
     "Two single beds · Sitting area · Tea service":
       "两张单人床 · 休息区 · 茶饮服务",
     "For a longer stay": "不妨多住些时日",
     "Third floor / Limited availability": "三层 / 余房有限",
     "The Residence": "长住套间",
     "For guests who prefer not to hurry. Located at the quieter end of the third floor, with a private vestibule and all the time you need.":
-      "为不愿匆忙离去的住客准备。位于三层较为安静的走廊尽头，设有独立门厅，也留给您足够的时间。",
+      "位于三层走廊尽头，空间较大，有独立门厅和放行李的位置。长住安排可向前台咨询。",
     "Third floor · Extended stays · Turn-down service":
       "位于三层 · 适合长住 · 夜间整理",
     "Included in every stay": "每次入住均包含",
@@ -128,7 +128,7 @@
     "A quiet corridor leading to the Residence rooms": "通往长住套间的安静走廊",
     "The Stillwater Hotel — Our History": "静水旅馆 — 旅馆往事",
     "Our history": "旅馆往事",
-    "Some places stay with you.": "有些地方，会一直留在记忆里。",
+    "Some places stay with you.": "从开业那天说起。",
     "Built on a simple promise: a warm welcome, a comfortable room, and a place to return to. The Stillwater has been keeping that promise since 1987.":
       "我们始终守着一个简单的承诺：温暖的欢迎、舒适的客房，还有一处可以回来的地方。自 1987 年起，从未改变。",
     "03 October 1987": "1987 年 10 月 3 日",
@@ -137,17 +137,17 @@
       "沃尔特与埃莉诺·维尔在静水镇旧路边的一间家族旅馆，迎来了最初的住客。埃莉诺将每个人的姓名写入皮面登记簿。那本原簿，至今仍由我们保管。",
     "More room to belong.": "为归来的人，多留一些房间。",
     "The east wing brings additional guest rooms and a covered courtyard. The family insists that every corridor should feel just like the first. Some guests still find it difficult to tell them apart.":
-      "东翼扩建带来了更多客房与一座有顶的内庭。维尔一家坚持，每条走廊都应当与最初那条一样熟悉。有些住客至今仍难以分辨它们。",
-    "A gift of time.": "一份关于时间的礼物。",
+      "东翼扩建后增加了客房和带顶的内庭，两边用了同样的地毯和门饰。走廊很像，请以钥匙上的房号为准。",
+    "A gift of time.": "前台时钟修复。",
     "A returning guest donates the brass clock above the reception desk. It is the only original fixture that has never needed winding. Its maintenance records are held by the night porter.":
-      "一位再次到访的住客捐赠了前台上方的黄铜时钟。它是唯一一件从未需要上弦的原始陈设，维修记录由夜班门房保管。",
+      "前台的黄铜时钟从开业时就挂在那里。2003 年修复过外壳和表盘，维修收据及旧日志由夜班门房保管。",
     "Preserving what matters.": "留住那些重要的事物。",
     "A careful restoration begins on the third floor. Work continues today. We thank our long-stay residents for their extraordinary patience.":
       "三层开始进行细致的修缮，工程延续至今。感谢所有长住客人异乎寻常的耐心。",
     Today: "如今",
     "The same welcome, every time.": "每一次，都是同样的欢迎。",
     "Our family may have changed, but our promise has not. Many of our earliest guests are still with us in spirit. A few have simply never found the right time to leave.":
-      "家族的面孔或许变了，但承诺始终如一。许多最早的住客仍以某种方式与我们同在。也有几位，只是一直没找到合适的离店时间。",
+      "有些客人来过许多次，几本留言簿里都能找到他们的名字。旧簿子放在前台，想看可以借阅。",
     "“A hotel is not its rooms. It is the people it remembers.”":
       "“旅馆不是它的房间，而是它记得的那些人。”",
     "— Eleanor Vale, opening-night address": "—— 埃莉诺·维尔，开业之夜致辞",
@@ -165,35 +165,35 @@
       "带有老照片质感的历史大堂",
     "The Stillwater Hotel — Guestbook": "静水旅馆 — 住客留言",
     "The guestbook": "住客留言簿",
-    "A few words from familiar faces.": "熟悉的面孔，留下几句话。",
+    "A few words from familiar faces.": "住过这里的人，说了些什么。",
     "For almost four decades, guests have left a little of themselves between these pages. We keep every message. Some seem to find their way back.":
-      "近四十年来，住客们将自己的一部分留在了这些书页之间。我们保留每一条留言，其中有些，似乎总会自己找回来。",
+      "留言簿从开业时就开始用了，旧的几本也没有扔。翻到后面，偶尔会遇见前面出现过的姓名。",
     "Margaret H. · Room 108": "玛格丽特 H. · 108 号房",
     "14 June 2026": "2026 年 6 月 14 日",
     "“I came for a quiet weekend and ended up staying a little longer. The staff remembered exactly how I take my tea. I do not recall telling them.”":
-      "“本来只是想安静地过个周末，后来不知不觉多住了些时日。员工准确记得我喝茶的习惯，可我不记得曾经告诉过他们。”",
+      "“订了两晚。早餐时服务员直接端来一杯不加奶的茶，正合我的口味。挺周到的，不过我记得没人问过我喝什么。”",
     "A very thoughtful place.": "一处十分体贴的地方。",
     "David & Ruth · Room 214": "戴维与露丝 · 214 号房",
     "22 August 2026": "2026 年 8 月 22 日",
     "“The same wallpaper, the same armchair, the same gentleman at reception. Our first visit was in 1987. It is wonderful how little things change here.”":
-      "“同样的壁纸，同样的扶手椅，前台还是同一位先生。我们第一次来是在 1987 年。这里没怎么变，真让人欣慰。”",
+      "“1987 年蜜月时住过这里。壁纸没换，前台那个人也没换。露丝先认出了他，我还以为自己记错了。”",
     "We will be back. Apparently, we always are.":
       "我们还会回来。看来，我们一直都会。",
     "Anonymous · Long-stay guest": "匿名 · 长住客人",
     "Date not recorded": "日期未记录",
     "“The view outside my window has not changed in six days. The bird on the railing has not moved. Housekeeping says the weather is holding.”":
-      "“窗外的景色已经六天没有变化了。栏杆上的鸟也没动过。保洁说，天气一直很稳定。”",
+      "“栏杆上总停着同一只鸟，位置和朝向都没变，连续六个早上了。我问保洁是不是她喂的，她忽然就不铺床了。”",
     "E. Rowan · Room 307": "E. 罗温 · 307 号房",
     "A loose page, folded twice": "一张对折了两次的散页",
     "“If you are reading this, do not let them turn another page. The red EXIT is the way out. The white door only brings you back to the desk. I have signed that book so many times I no longer recognize my own handwriting.”":
       "“如果你正在读这段话，别让他们再翻一页。红色 EXIT 标识才是出口。白门只会把你带回前台。我在那本簿子上签过太多次名，已经认不出自己的笔迹。”",
     "There is a small red ribbon pressed into the paper.":
       "纸页间压着一小段红色缎带。",
-    "Recorded in your notebook ✓": "已记入住客笔记 ✓",
-    "Leave a little of yourself": "留下一点自己的痕迹",
-    "Your page in our story.": "我们的故事里，也有您的一页。",
+    "Recorded in your notebook ✓": "已记在笔记里 ✓",
+    "Leave a little of yourself": "住客留言",
+    "Your page in our story.": "也写几句话吧。",
     "A memory, a thought, a message for the next person who finds this book.":
-      "一段回忆、一个念头，或留给下一个翻到这里的人的一句话。",
+      "住得怎么样？或者，有什么想提醒下一位住客的话？",
     "Your name or initials": "您的姓名或简称",
     "Your message": "您的留言",
     "Leave a note →": "留下留言 →",
@@ -207,13 +207,13 @@
     "Guest messages": "住客留言",
     "Something worth remembering…": "一些值得记住的话……",
     "The Stillwater Hotel — Reservations": "静水旅馆 — 预订入住",
-    "We have been expecting you.": "我们一直在等您。",
+    "We have been expecting you.": "前台一直有人，随时可以入住。",
     "A night away. A fresh beginning. A familiar place to rest. Tell us what to call you, and we will take care of the rest.":
       "住上一晚，重新开始，或只是找个熟悉的地方歇息。告诉我们该如何称呼您，其余的交给我们。",
     "Your registration is complete": "您的入住登记已完成",
     "Welcome back, TEST_GUEST.": "欢迎回来，TEST_GUEST。",
     "We have taken care of your room preference. As always, the key waiting at reception is yours.":
-      "我们已经照顾到您的房型偏好。一如既往，前台那把等候多时的钥匙属于您。",
+      "您的房型偏好已记下。今晚西翼只开放 307 号房，钥匙已放在前台。",
     "Your room is ready": "您的房间已准备好",
     "Third floor · The end of the west corridor": "三层 · 西侧走廊尽头",
     Guest: "住客",
@@ -286,11 +286,11 @@
     "Compare the accounts →": "核对账目 →",
     "The Stillwater Hotel — Hotel Guide": "静水旅馆 — 旅馆指南",
     "Around the hotel": "旅馆之内",
-    "A little more to discover.": "还有一些地方，值得再看一眼。",
+    "A little more to discover.": "住下之后，可以去这些地方看看。",
     "The most familiar places often reward a second look. Our staff have gathered a few notes to help you settle into the rhythm of the Stillwater.":
-      "越是熟悉的地方，有时越值得重新审视。员工整理了一些资料，帮助您慢慢融入静水旅馆的日常。",
+      "这里有用餐时间、设施说明和前台通知。若要去老楼走走，建议先看一眼服务说明。",
     "There is no need to leave the property to find something interesting. Read a chapter in the east wing, take a walk before dinner, or join the long-stay residents for a conversation they may remember having before.":
-      "不必离开旅馆，也能发现有趣的事。在东翼读一章书，晚餐前散散步，或与长住客人聊一段他们也许记得曾经聊过的话。",
+      "阅览室在东翼，内庭入口在大堂那盆蕨类旁边。这里也收了几份旧通知，停电时经常有客人来找。",
     "A note from reception": "前台提示",
     "Please keep these cards.": "请保留这些卡片。",
     "Facility information is not changed during a supply interruption. The printed instructions remain valid even if the building looks unfamiliar.":
@@ -332,7 +332,7 @@
     "KEEPING YOU.": "不肯放您走。",
     "CAM 00 / DO NOT ANSWER": "监控 00 / 不要回应",
     "The checkout you remember was a rehearsal. The hotel wrote the last page before you reached it. There is another register underneath the desk. This one has room for the name it erased.":
-      "您记得的退房只是一场排演。还没等您走到最后一页，旅馆就已经替您写好了结尾。前台下面还有另一本登记簿，这次，它给那个被抹去的姓名留了位置。",
+      "您又站在前台。退房单重新变成空白，簿子上的 311 被人划掉了。柜台下卡着另一本登记簿，最后一行一直没填。",
     "PUBLIC RECORDS": "公开记录",
     "LOWER STATIONS": "地下站点",
     DEPARTURE: "离店",
@@ -367,9 +367,9 @@
     "Separate the hotel’s version of events from the sequence that actually happened.":
       "把旅馆编造的经过，与真正发生的先后顺序分开。",
     "NO FURTHER DOORS WILL BE OFFERED": "不会再有别的门供您选择",
-    "The final discharge": "最终离店结算",
+    "The final discharge": "办理最后一次退房",
     "The lower record is complete. Choose what leaves with you, what stays, and which way you go.":
-      "地下记录已补齐。决定什么跟您走，什么留下，以及您从哪里离开。",
+      "资料齐了。带对登记簿，别碰错钥匙，再选离开的路。",
     "Approach the desk →": "走向前台 →",
     "A figure behind the reception glass": "前台玻璃后的人影",
     "GUEST SERVICES / BEDSIDE CARD 01": "住客服务 / 床头卡片 01",
@@ -423,7 +423,7 @@
     "Not on the plan": "平面图中不存在",
     "You count the doors twice. There are six.": "您数了两遍。这里有六扇门。",
     "The last one was not there when you stepped out of the lift.":
-      "最后那扇门，在您走出电梯时还不在那里。",
+      "您回头看了眼平面图，上面还是只有五间。",
     "Consult the corridor recording →": "查看走廊录像 →",
     "THE STILLWATER HOTEL / GUEST SERVICES": "静水旅馆 / 住客服务",
     "Find your room": "查找您的房间",
@@ -437,7 +437,7 @@
     "Original guest ledger / 03 October 1987":
       "原始住客登记簿 / 1987 年 10 月 3 日",
     "The page is stained with tea. The ink on the names is faded, but the departure column looks freshly written.":
-      "这一页沾着茶渍。姓名的墨迹已经褪色，离店一栏却像是刚刚写上去的。",
+      "纸页一角被茶水浸透了，大多数姓名都已褪色。只有 307 旁边的“等候中”，墨迹还没干。",
     ROOM: "房号",
     GUEST: "住客",
     "Margaret H.": "玛格丽特 H.",
@@ -464,20 +464,20 @@
     "CAM 02": "监控 02",
     "CAM 03": "监控 03",
     "The desk is unattended. The register is open to a clean page. A lamp has been left on for the next guest.":
-      "前台空无一人。登记簿翻开在干净的一页，一盏灯还为下一位住客亮着。",
+      "大堂画面是白天的录像。走廊监控还在运行，右上角的时间却一直没变。",
     "Select another camera to review the other public areas.":
       "切换摄像头，查看其他公共区域。",
     "STAFF ARCHIVE / MAINTENANCE FILE 01": "员工档案 / 维修文件 01",
     "Facilities / Retained by the night porter": "设施记录 / 夜班门房留存",
-    "03 October 1987, 04:04.": "1987 年 10 月 3 日，04:04。",
+    "03 October 1987, 04:04.": "1987 年 10 月 4 日，04:04。",
     "All guest-room clocks stopped simultaneously. The west corridor now measures six doors longer than the building. Main supply remains energized despite isolation at the street.":
-      "所有客房时钟同时停摆。西侧走廊测量起来，比整座建筑多出了六扇门的长度。切断街道供电后，主线路仍保持通电。",
-    "04 October, same time.": "10 月 4 日，同一时刻。",
+      "客房时钟全部停在 04:04。西侧走廊比外墙长。已切断街道进线，走廊灯仍亮着。",
+    "04 October, same time.": "10 月 5 日，同一时刻。",
     "Found a second supply behind the reception clock. Brass lever, marked STILLWATER. It feeds the hotel, not the lights. Pulling it briefly revealed a stairwell where the wall should be.":
-      "在前台时钟后发现第二路电源。黄铜扳杆上标着 STILLWATER（静水）。它供应的是旅馆本身，而不是灯。短暂扳动后，原本应是墙的位置露出了一段楼梯。",
+      "在前台时钟后找到另一根电缆，黄铜扳杆上标着 STILLWATER。拉下后，柜台旁露出一道门；松手，门就不见了。",
     "Date no longer advancing.": "日期不再向前。",
     "The hotel will offer two exits. Both belong to it. The service stair does not.":
-      "旅馆会给出两个出口。它们都属于它，服务楼梯不属于。",
+      "红门和白门都通回旅馆。服务楼梯是唯一没出现在原图纸上的通路。",
     "Take the original register. Cut the supply at the brass disconnect. Only then use the service stair. Do not let the book close before the last guest has crossed.":
       "带上原始登记簿。切断黄铜开关处的电源，然后使用服务楼梯。最后一位住客通过前，不要让簿子合上。",
     "STAFF ARCHIVE / UNDELIVERED ITEM 0307": "员工档案 / 未投递物品 0307",
@@ -487,15 +487,15 @@
       "信封上写着您的房号。邮票下方，有人写了一句“请再试一次”。",
     "Dear whoever finally finds this,": "致终于找到这封信的人：",
     "My name is Eleanor Vale. We built a place where nobody would have to feel alone. I asked it to keep our guests safe. I did not understand what it meant to keep them.":
-      "我叫埃莉诺·维尔。我们建起这个地方，是想让每个人都不必孤单。我请它保护我们的住客，却没有明白它口中的“留下他们”究竟是什么意思。",
+      "我是埃莉诺·维尔，这间旅馆是我和沃尔特一起开的。最早有人失踪时，我一直没动他们的房间，想着人也许会回来。后来他们真的回来了，可谁也出不去了。",
     "The register is the promise. The clock is the lock. The doors are only distractions.":
-      "登记簿是承诺，时钟是锁。那些门，只是为了让你分心。",
+      "别在他们递来的新簿子上签字。门锁用的是停钟的时间，前台那两个出口也不可靠。",
     "I have signed a group checkout slip and left it inside the original book. A living guest must complete the record: the stopped time, the extra door, Rowan’s warning, the opening page, the disconnect, and this letter. Six things the hotel would rather you forget.":
       "我签好了一张集体退房单，夹在原簿里。一位活着的住客必须补齐记录：停下的时间、多出的门、罗温的警告、开业那一页、断路开关，还有这封信。六件旅馆宁愿你忘记的事。",
     "Carry the book to the service stair after cutting the supply. Do not sign a new page. Let the last guest leave before you do.":
       "切断电源后，把簿子带到服务楼梯。不要再签新的一页。等最后一位住客离开，你再走。",
     "With all the apologies a lifetime can hold,":
-      "带着一生都不足以说尽的歉意，",
+      "对不起。若你真的出去了，请不要再回来。",
     Eleanor: "埃莉诺",
     "STAFF ARCHIVE / NIGHT SHIFT HANDOVER": "员工档案 / 夜班交接",
     "Please familiarize yourself with the following before beginning your first shift.":
@@ -517,7 +517,7 @@
     "PERSONAL EFFECTS / ROOM 307": "私人物品 / 307 号房",
     "The notebook under the pillow": "枕头下的笔记本",
     "The cover has softened with age. On the first page, someone has written your room number over and over.":
-      "封皮已被岁月磨软。第一页上，有人一遍遍写着您的房号。",
+      "笔记本塞在枕套里，大部分纸页被撕掉了。剩下的每一页开头都写着“307”。",
     "First night.": "第一个夜晚。",
     "It was raining. I came inside to ask for directions. The porter said my room had been ready for years.":
       "外面下着雨。我进来问路，门房却说，我的房间已经准备好多年了。",
@@ -525,7 +525,7 @@
     At: "到了",
     ", a door appears at the end of the corridor. Its lock accepts four digits. I wrote the time on my palm. When I woke, it was in someone else’s handwriting.":
       "，走廊尽头会出现一扇门。锁上需要四位数字。我把时间写在手心里，醒来时，却变成了别人的字迹。",
-    "A later night.": "之后的某个夜晚。",
+    "A later night.": "后来，我不再数住了几晚。",
     "I found a loose page in the guestbook. Rowan knows about the exits. Eleanor knows about the hotel. I think leaving and ending this are two different things.":
       "我在留言簿里发现了一张散页。罗温知道出口的事，埃莉诺知道旅馆的事。我想，离开这里和结束这一切，是两回事。",
     "“If you can, do not leave alone.”": "“如果可以，不要独自离开。”",
@@ -538,7 +538,7 @@
       "已找回 12 / 12 条记录。公开记录，只是第一层。",
     "The stopped clock": "停下的时钟",
     "Every clock stops at 04:04. The lock on the unlisted door accepts four numbers, without a colon.":
-      "所有时钟都停在 04:04。那扇未列出的门需要四位数字，不要冒号。",
+      "房里的时钟停在 04:04。走廊尽头那扇门用四位数字开锁，输入时间时不要加冒号。",
     "A sixth door": "第六扇门",
     "The third-floor plan has five rooms. The recording shows a sixth door: 404. It appears when the clock stops.":
       "三层平面图只有五间客房，录像却显示了第六扇门：404。时钟停下时，它就会出现。",
@@ -547,28 +547,28 @@
       "跟随红色 EXIT 出口标识。那扇热情迎接您的白门，只会把您带回前台，而不是家。",
     "The hotel opened on 03 October 1987. Eleanor Vale in Room 307 never checked out. The printed instruction says: the staff keypad uses opening day, month first.":
       "旅馆于 1987 年 10 月 3 日开业。307 号房的埃莉诺·维尔从未退房。印刷说明注明：员工键盘使用开业日，先月后日。",
-    "The service disconnect": "服务断路开关",
+    "The service disconnect": "时钟后面的电闸",
     "Behind the lobby clock is a brass disconnect marked STILLWATER. Take the original register, cut the power, then use the service stair instead of either exit door.":
       "大堂时钟后方，有一枚标着 STILLWATER（静水）的黄铜断路开关。带上原始登记簿，切断电源，再走服务楼梯，不要选择那两个出口。",
     "A letter never delivered": "从未寄出的信",
     "Eleanor left a signed group checkout slip inside the original register. With every record accounted for, one living guest can release everyone. Bring all six pieces of evidence.":
       "埃莉诺将签好的集体退房单夹在原簿中。只要补齐全部记录，一位活着的住客就能释放所有人。带齐六份证据。",
-    "The backfeed circuit": "反向供电回路",
+    "The backfeed circuit": "地下供电顺序",
     "Reception, kitchen, linen, night desk: circuits 3–1–4–2. The hotel is powered from below. Cutting the lobby lever only woke its other supply.":
       "前台、厨房、布草、夜班前台：回路 3–1–4–2。旅馆由地下供电，切断大堂扳杆，只是唤醒了另一条电源。",
     "The breakfast transmission": "早餐广播",
     "WSTL broadcasts on 88.7 FM. Rowan says the menu cabinet uses the first letter of every dinner course. The voice behind his voice is reading your arrival date.":
       "WSTL 的频率为 FM 88.7。罗温说，菜单柜密码取自每道晚餐英文菜名的首字母。他声音背后的另一个声音，正在念您的抵达日期。",
-    "The original census": "原始住客名册",
+    "The original census": "盒子里的原始名册",
     "The five courses spell STILL. The uncropped staff photograph identifies the missing resident: Walter Vale, the founder. His key is 311, not the porter’s 309.":
       "五道菜的首字母组成 STILL。未裁切的员工照片标出了那位失踪住客：创办人沃尔特·维尔。他的钥匙是 311，不是门房的 309。",
-    "The guest the hotel removed": "被旅馆删除的住客",
+    "The guest the hotel removed": "311 的住客",
     "Walter Vale is the occupant of 311. The hotel removed his name to make the register impossible to complete. Restoring it opens the observation room.":
       "311 号房住着沃尔特·维尔。旅馆抹去了他的姓名，让登记簿永远无法补齐。恢复姓名后，观察室会打开。",
-    "The instruction behind the glass": "玻璃背后的指令",
+    "The instruction behind the glass": "镜子里那张纸条",
     "DO NOT TURN THE KEY. The first checkout was a rehearsal written by the hotel. Carry the ORIGINAL register, leave the brass key untouched, and take the SERVICE STAIR.":
       "DO NOT TURN THE KEY：不要转动钥匙。第一次退房，是旅馆写好的排演。带上原始登记簿，不碰黄铜钥匙，走服务楼梯。",
-    "Three days, in their proper order": "三天，正确的先后顺序",
+    "Three days, in their proper order": "最初三天的顺序",
     "03 October: doors open. 04 October: clocks stop. 05 October: the first returned guest. The hotel must admit that a departure comes after an arrival. The final discharge can now be signed.":
       "10 月 3 日开业；4 日时钟停摆；5 日第一位离开的住客返回。旅馆必须承认，抵达之后可以有离开。现在可以签署最终结算。",
     "Departures remembered": "被记住的离店记录",
@@ -697,7 +697,7 @@
     "Residence committee / Seven copies circulated / Eighth copy destroyed":
       "长住客委员会 / 已分发七份 / 第八份已销毁",
     "Margaret asks that the teapot be returned to the dining room after the evening service. Arthur has offered to mend the lining of any coat that still remembers rain. David and Ruth would like their anniversary removed from the public calendar; it has occurred three times this week.":
-      "玛格丽特希望，晚间用餐后请将茶壶送回餐厅。阿瑟愿意替任何仍记得雨水的外套修补内衬。戴维与露丝请求从公开日历中移除他们的纪念日——本周它已经出现三次了。",
+      "玛格丽特的茶壶请送回餐厅。阿瑟会补外套内衬，需要的话送到 301。戴维和露丝让我们别再把他们的纪念日写上公告栏——这周已经通知三次了。",
     "Rowan reports that the room numbers change when photographed. Refer to the original ledger, not the labels on the doors. The man wearing the porter’s uniform is assigned 309. This does not mean he is the porter.":
       "罗温说，门上的房号会在拍照时改变。请以原始登记簿为准，不要相信门牌。穿着门房制服的那个人住在 309，但这不意味着他就是门房。",
     "Eleanor requests that nobody ask the person in 311 to speak. He has been repeating the last sentence he said before the clocks stopped. The sentence is not an instruction, even when it uses your voice.":
@@ -710,7 +710,7 @@
     ". The public copy of the photograph crops out his identification card. No vote was taken to erase his ledger entry.":
       "。公开版本裁掉了他的身份卡。没有人投票同意抹去他的登记记录。",
     "A resident is not the same thing as a guest. The hotel can imitate a guest. It cannot invent an arrival before its doors opened.":
-      "居民与住客并不是一回事。旅馆可以模仿住客，却无法凭空编造开门之前的一次抵达。",
+      "核对姓名请用开业之夜的记录。门牌换过几轮，最早那本登记簿没有改过。",
     "Examine the staff photograph →": "查看员工照片 →",
     "HOTEL COLLECTION / PHOTOGRAPH 001-B": "旅馆藏品 / 照片 001-B",
     "The uncropped opening photograph": "未经裁切的开业合影",
@@ -731,7 +731,7 @@
     "A strip of the original ledger is visible at the bottom of the frame. The final name begins with W. On every public reproduction, that strip has been painted over.":
       "画面底部能看到原始登记簿的一小条。最后那个姓名以 W 开头。每份公开复制品，都把那一条涂掉了。",
     "The dark shape reflected in the reception glass does not correspond to any of the three people. The photographer’s report calls it a processing fault. The fault appears in the negative too.":
-      "前台玻璃中的暗影，并不对应三人中的任何一个。摄影师报告称那是冲洗失误，可底片上也存在同样的失误。",
+      "摄影师在记录中提到，前台玻璃里还有第四个人。三名员工都不认识他，底片上也能看见同样的轮廓。",
     "Read the residents’ circular": "阅读长住客人通知",
     "The lobby from the hotel collection": "旅馆藏品中的大堂照片",
     "GUEST FACILITIES / READING ROOM": "住客设施 / 阅览室",
@@ -781,15 +781,15 @@
     "Photograph 001-B": "照片 001-B",
     "Kitchen cabinet": "厨房柜",
     "Original retained": "原件留存",
-    "A guest’s voice": "一位住客的声音",
+    "A guest’s voice": "没有标签的录音带",
     "Room 311": "311 号房",
     "Claimant unknown": "认领人不明",
     "Keys are held for their owners, not issued as replacements. A key recovered from the departure stair must remain in its found position. There is no lock on the stair itself; an invitation to use a key there is a request to complete the circuit.":
       "钥匙为原主保留，不作为替换品发放。从离店楼梯找回的钥匙，必须保持被发现时的姿态。楼梯本身没有锁；有人邀请您在那里用钥匙，是在请求您闭合回路。",
     "Clothing that remains wet after laundering is stored away from the reception desk. Do not identify its owner by reading the lining aloud. The item may answer.":
-      "洗过仍不变干的衣物，需要远离前台存放。不要通过朗读内衬上的名字寻找失主。物品可能会回答。",
+      "黑外套在烘干室放了三天还是湿的。内衬缝着姓名，请不要念出来。上次有人念了，311 里传来了应答。",
     "If you believe an entry refers to something that cannot be lost, ask a long-stay resident. They are better acquainted with the collection than our current staff.":
-      "如果某项记录看起来指向一件根本不可能遗失的东西，请去问长住客人。他们比现在的员工更熟悉这些藏品。",
+      "录音带是在 311 门外找到的。不管谁拿着播放器，放出来的都像那个人自己的声音，换人时并没有换磁带。",
     "STAFF ARCHIVE / INCIDENT REVIEW 03": "员工档案 / 事件复核 03",
     "Incident review / The dates have not been corrected to match the hotel clock":
       "事件复核 / 日期未经旅馆时钟校正",
@@ -900,7 +900,7 @@
     "Twelve records recovered. One living signature required. Behind the desk, the empty uniform turns toward you.":
       "十二条记录已找回。需要一位活人的签名。前台后，那件空制服朝您转过身来。",
     "The hotel offers a key and a clean book. It calls both gifts. You know what the first gift did.":
-      "旅馆递来一把钥匙和一本干净的新簿子，称两者都是礼物。您知道第一份礼物做了什么。",
+      "柜台上又多了一本新簿子和一把钥匙。旁边的退房表，已经填好了您的姓名。",
     "Which register will you present?": "您要出示哪一本登记簿？",
     "Choose the record": "选择记录",
     "The new, clean duplicate": "崭新干净的副本",
@@ -922,19 +922,19 @@
     "The new night porter": "新任夜班门房",
     "ENDING 04 / THE POSITION IS NOW FILLED": "离店记录 04 / 岗位已有人接任",
     "The sleeves fit. You do not remember putting your arms into them. The register closes and opens to a fresh page.":
-      "袖子刚好合身，您却不记得曾把手臂伸进去。登记簿合上，又翻开到崭新的一页。",
+      "再回过神，制服已经穿在身上。面前的登记簿摊着，有人在按前台铃。",
     "Beyond the glass doors, someone is sheltering from rain. You reach for the key to 307 before they can ask for a room.":
       "玻璃门外，有人正在躲雨。对方还没开口问房间，您的手已经伸向 307 的钥匙。",
     "You have not been released. You have been employed.":
-      "您没有被放走，只是被录用了。",
+      "退房单上盖了一个“夜班员工”的章。您的房间钥匙，已经挂在身后的钥匙板上。",
     "Refuse the appointment & try again →": "拒绝任命，再试一次 →",
     "SECURITY EXCEPTION / FRAME 0000": "安全监控异常 / 画面 0000",
-    "There is someone at the desk": "前台那里，有个人",
+    "There is someone at the desk": "前台后面，有个人",
     "THAT IS NOT": "那不是",
     "THE PORTER.": "门房。",
     "THE FRAME WAS EMPTY WHEN YOU OPENED IT.": "您打开它时，这一帧明明是空的。",
     "Its reflection is looking directly into the lens. The camera is behind it.":
-      "它在玻璃中的倒影，正直视镜头。而摄像机，在它身后。",
+      "玻璃里的脸正对着镜头。可摄像机本该在它身后。",
     "Return to the ordinary recording": "返回普通监控录像",
     "A tall figure with an indistinct face behind the glass":
       "玻璃后方一名面孔模糊的高大身影",
@@ -944,9 +944,9 @@
     "You push the red door open.": "您推开红色的门。",
     "Morning air touches your face. You are standing on an ordinary road, beside an ordinary, empty field.":
       "清晨的空气拂过脸颊。您站在一条普通的路上，旁边是一片普通、空旷的田地。",
-    "There is no hotel behind you.": "身后没有旅馆。",
+    "There is no hotel behind you.": "您转过身，旅馆原来的位置只剩下一片空地。",
     "In your palm, the brass key is still warm. On its reverse, a new line has appeared:":
-      "手心里的黄铜钥匙仍是温热的。背面多出了一行字：",
+      "您摊开手，钥匙还在。翻到背面，看见原来没有的一行字：",
     "“We look forward to your next visit.”": "“期待您的下次光临。”",
     "Keep the story in my notebook": "将这段经历记入笔记",
     "Revisit the last door": "重访最后那扇门",
@@ -955,7 +955,7 @@
     "A familiar place": "熟悉的地方",
     "02 / A FAMILIAR PLACE": "02 / 熟悉的地方",
     "The light is warm. You close your eyes for just a moment.":
-      "光很暖。您只是短暂地闭了一下眼。",
+      "您走进光里。有那么一瞬间，闻到了家里浴室香皂的味道。",
     "When you open them, you are at reception. The porter smiles as though you have only stepped outside for a little air.":
       "睁眼时，您站在前台。门房对您微笑，仿佛您刚才只是出去透了口气。",
     "“Your room is waiting,” he says, turning the register toward you.":
@@ -969,7 +969,7 @@
     "● REC CAM 03": "● 录像中 监控 03",
     "SERVICE LIFT / 03.10.1987": "服务电梯 / 1987.10.03",
     "The lift opens onto another copy of the same corridor. Someone has taped a note over the fourth-floor button: “DO NOT COMPLETE THE CIRCUIT.”":
-      "电梯通向又一条一模一样的走廊。有人在四层按钮上贴着纸条：“不要闭合回路。”",
+      "电梯门打开，外面还是西侧走廊。四层按钮被胶带封住，上面写着“不要闭合回路”。",
     "Inspect the unoccupied reception frame": "检查本应空无一人的前台画面",
     "Room 301 — do not disturb": "301 号房 —— 请勿打扰",
     "Slow footsteps stop just behind the door. The handle moves. You decide not to disturb the occupant.":
@@ -981,7 +981,7 @@
     "GUEST ACCOMMODATION / ROOM 307": "住客客房 / 307 号房",
     "Room 307 — your room": "307 号房 —— 您的房间",
     "Your key turns twice. The door opens onto a room that smells faintly of cedar and old rain.":
-      "钥匙转了两圈。门打开了，房间里有淡淡的雪松与陈旧雨水的气味。",
+      "第一次没拧动，第二次门才开了。床头灯已经亮着。",
     "A single lamp is lit. Your slippers are beside the bed, in your size. The clock reads":
       "一盏灯亮着。床边摆着合您尺码的拖鞋，时钟显示",
     ". Through a gap in the curtains you see another corridor, exactly like the one outside.":
@@ -1012,7 +1012,7 @@
     "DEPARTURE RECORD / ALL ACCOUNTS CLOSED": "离店记录 / 所有账户已结清",
     "For the first time,": "第一次，",
     "morning.": "天亮了。",
-    "The hotel no longer remembers you.": "旅馆不再记得您。",
+    "The hotel no longer remembers you.": "这次，您真的离开了。",
     "You carry the original book to the stair. The key remains on the desk. Behind you, the offered lock closes around nothing.":
       "您带着原簿走向楼梯。钥匙留在前台，身后，那只递来的锁扣住了一片空气。",
     "The guests cross quietly. David counts Ruth’s steps. Margaret leaves her empty cup on the last landing. Arthur folds the coat that has finally dried. Rowan unties the ribbon. Eleanor pauses for the name that has been missing from every version of this morning.":
@@ -1024,8 +1024,7 @@
     "YOUR ACCOUNT: CLOSED": "您的账户：已结清",
     "ROOMS AWAITING RETURN: 0": "等待归来的客房：0",
     "NEXT GUEST: NONE": "下一位住客：无",
-    "A place can keep your memory without keeping you.":
-      "一个地方，可以保留您的回忆，而不必留下您。",
+    "A place can keep your memory without keeping you.": "这一次，您没有回头。",
     "Read the completed records": "阅读完整记录",
     "Return to the public hotel archive": "返回旅馆公开档案",
     "Settings & start a new stay": "设置与重新入住",
@@ -1072,10 +1071,10 @@
     "The directory does not show a way down. The story must reach the service stair before the lower register can answer.":
       "导览没有标出向下的路。故事抵达服务楼梯之后，地下登记处才会回应。",
     "Return to your records →": "返回您的记录 →",
-    "An unregistered guest": "一位尚未登记的住客",
+    "An unregistered guest": "尚未登记",
     "0 of 6 records recovered. Take your time. The small details are usually the ones worth keeping.":
       "已找回 0 / 6 条记录。慢慢来，越是不起眼的细节，越值得留心。",
-    "A missing piece": "缺失的一条记录",
+    "A missing piece": "还没找到这份资料",
     "Read the guest guidelines or the diary in Room 307.":
       "阅读住客须知，或 307 号房里的日记。",
     "Look carefully at Camera 02 in the security office.":
@@ -1091,18 +1090,19 @@
       "浏览器无法保存数据。您仍可在此标签页继续探索。",
     "Keep this in my notebook": "记入我的笔记",
     "A familiar place, every time": "每一次，都如此熟悉",
-    "Copy the reverse-side note": "抄录背面的说明",
+    "Copy the reverse-side note": "记下背面的提示",
     "Copy the opening-night record": "抄录开业之夜的记录",
     "Record the service-stair procedure": "记录服务楼梯操作流程",
     "Keep Eleanor’s letter": "保存埃莉诺的信",
     "Record the time in the notebook": "记下笔记中的时间",
     "The last checkout — rejected": "最后的退房——已拒绝",
     "For the first time, morning": "第一次，天亮了",
-    "The public record was only the first layer.": "公开记录，只是第一层。",
+    "The public record was only the first layer.":
+      "上面的资料之外，地下还有另一套记录。",
     "The public record is complete. The service stair is ready.":
       "公开记录已补齐，服务楼梯已准备就绪。",
     "Take your time. The small details are usually the ones worth keeping.":
-      "慢慢来，越是不起眼的细节，越值得留心。",
+      "有些线索藏在日常通知里，没头绪时可以回去翻翻。",
     "A fresh page. Welcome to your first stay.":
       "崭新的一页。欢迎您第一次来到这里。",
     "The archive is locked.": "档案室已锁定。",
@@ -1151,10 +1151,10 @@
     "Reconstruct the incident timeline at the lower checkout desk.":
       "在地下离店前台，还原事件的先后顺序。",
     "The line is not ready. Complete the preceding station first.":
-      "线路尚未就绪，请先完成上一站。",
+      "这里还没通电，先完成上一个站点。",
     "LOWER REGISTER / VERIFIED RECORD": "地下登记处 / 已核验记录",
     "A second set of hands moves beneath yours. Try again.":
-      "另一双手，在您的手下移动。再试一次。",
+      "柜子里响了一声。您停下来，听见背后还有人呼吸。",
     "Finish the six hotel records and collect a room key first.":
       "请先补齐六条旅馆记录，并领取客房钥匙。",
     "A distorted silhouette watching from the dark reception desk":
@@ -1162,7 +1162,7 @@
     "UNAUTHORIZED DEPARTURE / HOTEL RESPONSE": "未经批准的离店 / 旅馆回应",
     "WAITING FOR PREVIOUS STATION": "等待上一站完成",
     "Six stations must be restored before the final desk will accept a living signature.":
-      "六个站点恢复之后，最终前台才会接受活人的签名。",
+      "先恢复这六个站点，最后的退房表才会打开。",
     "Sudden visual effects enabled. Audio is controlled separately.":
       "突发画面已开启。声音仍由单独的开关控制。",
     "Sudden visual effects disabled. All puzzles remain playable.":
@@ -1174,12 +1174,12 @@
     "The desk needs all twelve records and a registered living guest.":
       "前台需要全部十二条记录，以及一位已经登记的活人。",
     "All accounts closed. There are no guests waiting.":
-      "所有账户已结清。再也没有住客等候。",
+      "退房完成。前台铃不再响了。",
     "The duplicate, the key, or the offered doors keep the circuit closed. Re-read the night audit and the reflected instruction.":
       "副本、钥匙，或旅馆提供的门，使回路仍然闭合。请重新阅读夜间审计与镜面指令。",
     "The second supply answers": "第二路电源回应了",
     "The bell rings once. Kitchen heat steadies, linen service answers, and the night desk begins counting. The receiver lights up. Under the switchboard, a hand withdraws into a socket too small to hold it.":
-      "铃响了一次，厨房供热稳定，布草服务应答，夜班前台开始计数。接收机亮起来。配电盘下方，一只手缩进一个根本容不下它的插口。",
+      "前台铃响了一下，四盏指示灯依次亮起，收音机也通了电。您松开开关时，柜子后面有东西缩了回去。",
     "The board rejects the sequence. Reception first, night desk last. The facilities card gives the full order.":
       "配电盘拒绝了这个顺序。前台最先，夜班前台最后；设施卡上保留着完整流程。",
     "A voice beneath the weather": "天气预报下面的声音",
@@ -1188,25 +1188,25 @@
     "Only static. Check the breakfast programme card in the hotel guide; the old receiver uses the same FM station.":
       "只有杂音。查看旅馆指南里的早餐节目卡，老接收机使用同一个 FM 频道。",
     "The five letters align. Inside is the uncropped photograph and a residents’ circular. One founder wears a 311 key. The relief porter is clearly marked 309. Restore the missing name, not the uniformed one.":
-      "五个字母对齐了。盒子里是未裁切的照片，以及长住客通知。一位创办人佩着 311 的钥匙，替班门房则清楚标着 309。恢复缺失的姓名，不要选那个穿制服的人。",
+      "锁开了。盒子里放着照片原始标注和住客通知。创办人拿着 311 的钥匙，门房的房号则是 309。要补的是那位创办人的姓名。",
     "The five beginnings do not align. Read the FIRST LETTER of each printed dinner course.":
       "五个开头没有对齐。请读出菜单上每道英文菜名的首字母。",
     "WALTER VALE appears in the erased field. Something knocks from the inside of the ledger. You do not answer. A door beside the observation glass opens, and the figure beyond it lowers its head.":
-      "沃尔特·维尔的姓名出现在被抹去的位置。登记簿内部响起敲击声，您没有回应。观察室玻璃旁的一扇门打开，里面的人影低下了头。",
+      "被划掉的地方，出现了沃尔特·维尔的姓名。墙里传来两下敲击声，随后观察室的门开了。玻璃后面站着的人，正慢慢低下头。",
     "That name belongs to another entry. Compare the uncropped identification cards: PROPRIETOR / 311.":
       "那个名字属于另一条记录。请对照未裁切的身份标注：业主 / 311。",
     "DO NOT TURN THE KEY. The reflected card is a warning, not an invitation. The brass key has no place in the final discharge. You will need the original register and the service stair.":
       "DO NOT TURN THE KEY——不要转动钥匙。镜中的卡片是警告，不是邀请。黄铜钥匙不属于最终结算，您需要原始登记簿和服务楼梯。",
     "Read all characters from right to left. The instruction has five ordinary English words.":
       "从右向左读出全部字符。英文指令由五个常见单词组成，也可输入对应的中文指令。",
-    "The days are put back in order": "那些日子，恢复了顺序",
+    "The days are put back in order": "日期顺序恢复了",
     "03 October: the doors opened. 04 October: the clocks stopped. 05 October: the first returned guest. The ledger accepts that a departure can follow an arrival. The desk is ready for an original signature.":
-      "10 月 3 日开业，4 日时钟停摆，5 日第一位住客返回。登记簿接受了“抵达之后可以有离开”。前台现在等待一份原始签名。",
+      "10 月 3 日开业，4 日时钟停摆，5 日首位住客返回。登记簿终于不再改动日期，前台打印出了一张退房表。",
     "The arrival must precede the interruption, and the first return comes last. The incident review preserves all three dates.":
       "先抵达，再发生中断，最后才有首次返回。事件复核中保留着三个日期。",
-    "The final discharge is complete.": "最终离店结算已完成。",
+    "The final discharge is complete.": "最后一次退房办好了。",
     "The first checkout was not the end. Continue in the lower register.":
-      "第一次退房不是终点，请继续调查地下登记处。",
+      "刚才没能离开，还得去地下前台查清楚。",
     "One double bed": "一张双人床",
     "Private bath": "独立卫浴",
     "Writing desk": "书桌",
@@ -1239,9 +1239,9 @@
     "BEHIND.": "一个姓名。",
     "IT WAS NOT ELEANOR WHO FOLLOWED YOU.": "跟着您的那个人，不是埃莉诺。",
     "The stair ends where it began. The seven names in your register rearrange themselves. Behind the desk, the porter raises a hand. You count too many fingers.":
-      "楼梯的尽头，仍是它的起点。登记簿上的七个姓名自行重排。前台后，门房抬起一只手。您数出了过多的手指。",
+      "走完最后一级台阶，您又回到了前台。门房抬手示意您过来。那只手搭在柜台上，手指数目不对。",
     "The polite website is gone. Something underneath it has noticed you.":
-      "那张礼貌周到的网站不见了。藏在下面的某个东西，注意到了您。",
+      "屏幕黑了一下。再亮起来时，欢迎词被这几行字替换了。",
     "PUBLIC SITE .......... OFFLINE": "公开网站 .......... 离线",
     "SECOND SUPPLY ........ ACTIVE": "第二路电源 ........ 活动中",
     "YOUR CHECKOUT ........ REVOKED": "您的离店 .......... 已撤销",
@@ -1276,6 +1276,164 @@
     "Saved on this device": "保存在本设备中",
     "The door will not open without your key. A small paper tag on the handle says: “Please collect at reception. Your room has already been prepared.”":
       "没有钥匙，门打不开。把手上挂着一张纸签：“请到前台领取。您的房间已经准备好。”",
+    "Stay a little outside town, with quiet rooms, a late-night desk, and breakfast downstairs.":
+      "离镇中心稍远一些，客房安静，前台通宵值班，楼下每天供应早餐。",
+    "Settle in for the night.": "今晚，就在这里歇歇脚。",
+    "Stillwater is a small, family-run hotel on the old road into town. We have kept the original staircase and most of the furniture. If you arrive late, ring the bell at reception; someone will come down.":
+      "静水旅馆在进镇的老路边，由一家人经营。楼梯和大部分家具还是以前的。晚到的客人请按前台铃，会有人下来接待。",
+    "We welcome overnight visitors and longer stays. Let reception know if you need an extra blanket or a quiet room.":
+      "住一晚或多住几天都可以。需要加一条毯子，或想换间安静的房，请告诉前台。",
+    "Choose a double, a twin, or a room for a longer stay. The rooms have been updated over the years, but we have kept their original furniture where we can.":
+      "大床房、双床房和长住客房均可申请。房间陆续翻修过，能留下的老家具，我们尽量保留了。",
+    "Find a room that suits your stay.": "选一间合适的客房。",
+    "A double bed, bedside lamps, and a small desk. These rooms are in the original building, a short walk from reception.":
+      "一张双人床、床头灯和一张小书桌。客房位于老楼，离前台不远。",
+    "Two separate beds with a shared bedside table, a sitting area, and tea-making facilities. Suitable for friends or family traveling together.":
+      "两张独立单人床，配有床头柜、休息区和茶饮用品，适合朋友或家人同行。",
+    "A larger room at the quiet end of the third floor, with a separate entrance area and space for luggage. Ask reception about longer stays.":
+      "位于三层走廊尽头，空间较大，有独立门厅和放行李的位置。长住安排可向前台咨询。",
+    "We have noted your room preference. Only Room 307 is available in the west wing tonight; its key is ready at reception.":
+      "您的房型偏好已记下。今晚西翼只开放 307 号房，钥匙已放在前台。",
+    "Some families have stayed with us for years. Their names appear in several volumes of the guestbook. We keep the older books at reception for anyone who would like to look through them.":
+      "有些客人来过许多次，几本留言簿里都能找到他们的名字。旧簿子放在前台，想看可以借阅。",
+    "The east wing adds guest rooms and a covered courtyard. The same carpet and door fittings are used throughout. Please check the number on your key; the two corridors look very similar.":
+      "东翼扩建后增加了客房和带顶的内庭，两边用了同样的地毯和门饰。走廊很像，请以钥匙上的房号为准。",
+    "Restoring the reception clock.": "前台时钟修复。",
+    "The brass clock has hung above reception since opening. In 2003 its case and dial were restored. The night porter keeps the repair invoices and the older maintenance book.":
+      "前台的黄铜时钟从开业时就挂在那里。2003 年修复过外壳和表盘，维修收据及旧日志由夜班门房保管。",
+    "“I booked for two nights. At breakfast the waiter brought my tea without milk, just how I like it. Nice touch, though I am fairly sure nobody asked.”":
+      "“订了两晚。早餐时服务员直接端来一杯不加奶的茶，正合我的口味。挺周到的，不过我记得没人问过我喝什么。”",
+    "“We stayed here on our honeymoon in 1987. The wallpaper is still the same. So is the man at reception, which Ruth noticed before I did.”":
+      "“1987 年蜜月时住过这里。壁纸没换，前台那个人也没换。露丝先认出了他，我还以为自己记错了。”",
+    "“I keep seeing the same bird on the railing. Same place, same way round. Six mornings now. I asked the cleaner and she stopped making the bed.”":
+      "“栏杆上总停着同一只鸟，位置和朝向都没变，连续六个早上了。我问保洁是不是她喂的，她忽然就不铺床了。”",
+    "The reading room is in the east wing. The courtyard opens from the lobby, beside the fern. We have also kept a few old notices here; some guests ask for them when the lights go out.":
+      "阅览室在东翼，内庭入口在大堂那盆蕨类旁边。这里也收了几份旧通知，停电时经常有客人来找。",
+    "Meal times, room facilities, and a few notices from reception. Keep the service sheets nearby if you plan to explore the older part of the building.":
+      "这里有用餐时间、设施说明和前台通知。若要去老楼走走，建议先看一眼服务说明。",
+    "The west end of the third floor is closed for repairs. Please use the rooms marked on your key card and ask reception before entering the work area.":
+      "三层西端正在维修。请按房卡上的标记通行，不要自行进入施工区域。",
+    "Do not sign the clean book they offer you. The door lock uses the time on the stopped clock. Neither exit at the desk is as simple as it looks.":
+      "别在他们递来的新簿子上签字。门锁用的是停钟的时间，前台那两个出口也不可靠。",
+    "Tea has soaked through one corner of the page. Most of the names have faded. The word “Waiting” beside Room 307 is still wet.":
+      "纸页一角被茶水浸透了，大多数姓名都已褪色。只有 307 旁边的“等候中”，墨迹还没干。",
+    "04 October 1987, 04:04.": "1987 年 10 月 4 日，04:04。",
+    "05 October, same time.": "10 月 5 日，同一时刻。",
+    "All room clocks stopped at 04:04. The west corridor appears longer than the exterior wall. We isolated the street supply, but the corridor lights stayed on.":
+      "客房时钟全部停在 04:04。西侧走廊比外墙长。已切断街道进线，走廊灯仍亮着。",
+    "Found another cable behind the reception clock. A brass lever is marked STILLWATER. When I pulled it, a doorway appeared beside the desk. It disappeared as soon as I let go.":
+      "在前台时钟后找到另一根电缆，黄铜扳杆上标着 STILLWATER。拉下后，柜台旁露出一道门；松手，门就不见了。",
+    "The red door and the white door both lead back inside. The service stair was the only route that did not appear on the original plan.":
+      "红门和白门都通回旅馆。服务楼梯是唯一没出现在原图纸上的通路。",
+    "My name is Eleanor Vale. Walter and I opened this hotel together. When the first guests went missing, I kept their rooms ready. I thought they might come back. They did, but none of them could leave again.":
+      "我是埃莉诺·维尔，这间旅馆是我和沃尔特一起开的。最早有人失踪时，我一直没动他们的房间，想着人也许会回来。后来他们真的回来了，可谁也出不去了。",
+    "The notebook is tucked inside the pillowcase. Almost every page has been torn out. The ones left all begin with “Room 307.”":
+      "笔记本塞在枕套里，大部分纸页都被撕掉了。剩下的每页开头，都写着“307”。",
+    "I stopped counting the nights.": "后来，我不再数住了几晚。",
+    "The lobby recording is from earlier in the day. The corridor feed is still running, but its time stamp has not changed.":
+      "大堂画面是白天的录像。走廊监控还在运行，右上角的时间却一直没变。",
+    "The lift doors open onto the west corridor again. Tape covers the fourth-floor button. Someone has written “DO NOT COMPLETE THE CIRCUIT.” on it.":
+      "电梯门打开，外面还是西侧走廊。四层按钮被胶带封住，上面写着“不要闭合回路”。",
+    "Margaret would like her teapot returned to the dining room. Arthur can mend coat linings; leave them at 301. David and Ruth have asked us to stop putting their anniversary on the noticeboard. We have announced it three times this week.":
+      "玛格丽特的茶壶请送回餐厅。阿瑟会补外套内衬，需要的话送到 301。戴维和露丝让我们别再把他们的纪念日写上公告栏——这周已经通知三次了。",
+    "Use the opening-night records to check names. The room labels have changed several times, but the first register has not.":
+      "核对姓名请用开业之夜的记录。门牌换过几轮，最早那本登记簿没有改过。",
+    "Unlabelled cassette": "没有标签的录音带",
+    "The black coat is still wet after three days in the drying room. There is a name sewn into the lining. Please do not read it aloud; the last person who did heard an answer from 311.":
+      "黑外套在烘干室放了三天还是湿的。内衬缝着姓名，请不要念出来。上次有人念了，311 里传来了应答。",
+    "The cassette was found outside 311. The voice on it sounds like the person holding the recorder, even when the tape has not been changed.":
+      "录音带是在 311 门外找到的。不管谁拿着播放器，放出来的都像那个人自己的声音，换人时并没有换磁带。",
+    "The photographer noted a fourth person in the reception glass. None of the three staff members could identify them. The negative has the same outline.":
+      "摄影师在记录中提到，前台玻璃里还有第四个人。三名员工都不认识他，底片上也能看见同样的轮廓。",
+    "The screen goes black. When it comes back, the welcome message has been replaced by these lines.":
+      "屏幕黑了一下。再亮起来时，欢迎词被这几行字替换了。",
+    "You are back at the desk. The checkout slip is blank again, and somebody has crossed out Room 311 in the book. A second register is wedged under the counter. Its last line has never been filled in.":
+      "您又站在前台。退房单重新变成空白，簿子上的 311 被人划掉了。柜台下卡着另一本登记簿，最后一行一直没填。",
+    "All six stations are working. Bring the correct book to the desk, follow the warning about the key, and choose your route out.":
+      "六个站点都恢复了。带对登记簿，按警告处理钥匙，再选离开的路。",
+    "A clean register and a brass key have been placed on the desk. Beside them is a checkout form. The name field has already been filled in with your name.":
+      "桌上放着一本干净的登记簿和一把黄铜钥匙，旁边是一张退房表。姓名栏已经替您填好了。",
+    "The dates are back in order": "日期顺序恢复了",
+    "03 October: opening. 04 October: clock failure. 05 October: first return. The register stops changing the dates. A checkout form prints behind the desk.":
+      "10 月 3 日开业，4 日时钟停摆，5 日首位住客返回。登记簿终于不再改动日期，前台打印出了一张退房表。",
+    "This time, you do not look back.": "这一次，您没有回头。",
+    "You reach for the uniform. The next thing you notice is a tight collar against your neck. The register is open in front of you. Someone is ringing the bell.":
+      "您伸手去拿制服。再回过神，领口已经紧贴着脖子。面前的登记簿摊着，有人在按铃。",
+    "Your checkout slip has been stamped “NIGHT STAFF.” Your room key is now hanging on the board behind you.":
+      "退房单上盖了一个“夜班员工”的章。您的房间钥匙，已经挂在身后的钥匙板上。",
+    "You step into the light. For a moment you can smell the soap from your bathroom at home.":
+      "您走进光里。有那么一瞬间，闻到了家里浴室香皂的味道。",
+    "The key sticks on the first turn. On the second, the door opens. The bedside lamp is already on.":
+      "第一次没拧动，第二次门才开了。床头灯已经亮着。",
+    "You look back at the plan. It still shows five.":
+      "您回头看了眼平面图，上面还是只有五间。",
+    "You turn around. There is a field where the hotel should be.":
+      "您转过身，旅馆原来的位置只剩下一片空地。",
+    "The face in the glass is looking straight at the lens. The camera is supposed to be behind it.":
+      "玻璃里的脸正对着镜头。可摄像机本该在它身后。",
+    "Your account: closed": "您的登记：已结清",
+    "The record is complete. You can now find another way out.":
+      "资料已经齐了，去看看走廊尽头那扇门。",
+    "Original photograph captions": "开业照片背面的标注",
+    "This station is complete. Your record is saved.":
+      "这一关已经完成，找到的资料都在笔记里。",
+    "Try this puzzle again →": "重新操作这一关 →",
+    "Previous document": "返回上一份资料",
+    "← Back": "← 返回",
+    "Hotel photographs and artwork": "照片与美术素材",
+    "Photo credits": "图片来源",
+    "View photograph sources and licenses →": "查看照片来源与授权 →",
+    "Real hotel photographs are used as fictional scenery. The hotels and photographers are not connected with this story. The horror portraits are generated creature illustrations.":
+      "酒店场景使用真实照片，拍摄地点及摄影师与本故事无关。惊吓中的怪物为生成插图，不是真实酒店员工或住客。",
+    "The original photograph is damaged. These captions were copied from its mount before the right-hand strip was removed.":
+      "原照片已经损坏。以下文字抄自照片背面的标注，右侧那一条当时还没被剪掉。",
+    "CAPTION COPY / ORIGINAL NEGATIVE DAMAGED": "背面标注抄件 / 原底片已损坏",
+    Photographer: "摄影师",
+    Source: "来源",
+    License: "授权",
+    "An old hotel lobby with a wooden staircase and chandeliers":
+      "有木质楼梯与吊灯的老酒店大堂",
+    "A real hotel double room with dark wooden furniture":
+      "实拍大床房，配有深色木质家具",
+    "A real hotel twin room with two single beds":
+      "实拍双床房，摆有两张独立单人床",
+    "A real hotel room with a double bed and a sitting area":
+      "实拍长住客房，配有双人床与休息区",
+    "Hotel photographs are real; the characters, story, and bookings are fictional.":
+      "酒店照片为实拍，人物、剧情和预订都是虚构的。",
+    "Your nickname, registration, notes, and progress stay in this browser. They are not sent to a server. Clearing site data erases them. The employee keypad is a fictional puzzle, not real security. Hotel photographs are real; the characters, story, and bookings are fictional.":
+      "昵称、登记、留言和进度只保存在这个浏览器里。清除网站数据会删除进度。员工入口只是剧情谜题，不是真实账号。酒店照片为实拍，人物、剧情和预订都是虚构的。",
+    "PHOTO CREDITS / SOURCES & LICENSES": "图片来源 / 摄影与授权",
+    "Source ↗": "原始页面 ↗",
+    "Public domain": "公有领域",
+    "Lobby Stanley Lodge Estes Park Colorado 2024.jpg":
+      "Lobby Stanley Lodge Estes Park Colorado 2024.jpg",
+    "Corridor Stanley Hotel Estes Park Colorado 2024.jpg":
+      "Corridor Stanley Hotel Estes Park Colorado 2024.jpg",
+    "Room Stanley Hotel Estes Park Colorado 2024.jpg":
+      "Room Stanley Hotel Estes Park Colorado 2024.jpg",
+    "Deluxe Room - Twin beds.jpg": "Deluxe Room - Twin beds.jpg",
+    "Hotel Room Chicago Hilton2.jpg": "Hotel Room Chicago Hilton2.jpg",
+    "A gaunt night porter with a distorted face": "面部变形、瘦削的夜班门房",
+    "A veiled figure with a dark open mouth behind the glass":
+      "玻璃后蒙着面纱、张着黑洞般嘴巴的人影",
+    "An unfamiliar face and long fingers pressed against observation glass":
+      "贴在观察室玻璃上的陌生面孔与细长手指",
+    "The woman on the landing": "电梯口的女人",
+    "The wrong reflection": "镜子里不是您",
+    "The figure wears the same jacket as the night porter. When it turns, its mouth keeps moving after the rest of its face has stopped.":
+      "那件外套和夜班门房的一样。它转过头来，脸已经不动了，嘴却还在慢慢张开。",
+    "A woman stands between the lift doors. Her veil catches on something outside the frame. The doors close, but her face stays on the screen.":
+      "一个女人站在电梯门中间，面纱像被画面外的什么东西勾住了。门合上了，她的脸却还留在屏幕上。",
+    "You move the pointer. The hand in the glass moves first. You take your hand off the mouse. The other hand keeps going.":
+      "您刚想移动鼠标，玻璃里的手已经先动了。您把手拿开，它却没有停。",
+    "Review the next anomalous frame →": "检查下一帧异常画面 →",
+    "DO NOT": "不要",
+    "LET HER IN.": "让她进来。",
+    "IT MOVES": "它比您",
+    "BEFORE YOU DO.": "先动了一步。",
+    "CAM 03 / THE LIFT HAS NOT MOVED": "监控 03 / 电梯没有移动",
+    "OBSERVATION FEED / DO NOT TOUCH THE GLASS": "观察室画面 / 不要碰玻璃",
   };
   const normalize = (value) => String(value).replace(/\s+/g, " ").trim();
   const translatedValues = new Set(Object.values(dictionary).map(normalize));

@@ -1016,7 +1016,7 @@ dialog::backdrop {
   overflow: hidden;
   background:
     linear-gradient(#50604844, #1a23135c),
-    url("assets/hallway.png") center/cover;
+    url("assets/hallway.jpg") center/cover;
   color: #e7e6d5;
   font: 10px var(--sans);
   filter: grayscale(0.85) sepia(0.3);
@@ -2389,7 +2389,7 @@ dialog::backdrop {
   padding: 32px 36px;
   background:
     linear-gradient(110deg, #2b1618e8, #100d0e88),
-    url("assets/hallway.png") 80% center/cover;
+    url("assets/hallway.jpg") 80% center/cover;
   position: relative;
   overflow: hidden;
 }
@@ -2674,7 +2674,7 @@ dialog::backdrop {
   border: 7px solid #3b2523;
   background:
     linear-gradient(90deg, #090709cc, #170c1166),
-    url("assets/visitor.svg") right center/contain no-repeat,
+    url("assets/scare-reflection.png") right center/contain no-repeat,
     #080708;
   padding: 25px 18px;
   display: flex;
@@ -2774,7 +2774,7 @@ dialog::backdrop {
   pointer-events: none;
   background:
     linear-gradient(#24060788, #110408b0),
-    url("assets/visitor.svg") center 30% / auto 110% no-repeat,
+    var(--scare-image, url("assets/scare-porter.png")) center / cover no-repeat,
     #070405;
   animation: intrusion-reveal 0.6s ease-out both;
 }
@@ -3124,7 +3124,7 @@ dialog::backdrop {
   z-index: 100;
   background:
     linear-gradient(#24060788, #110408b0),
-    url("assets/visitor.svg") center 30% / auto 110% no-repeat,
+    var(--scare-image, url("assets/scare-porter.png")) center / cover no-repeat,
     #070405;
   animation: intrusion-reveal 0.6s ease-out both;
 }
@@ -3303,5 +3303,118 @@ button.underlined {
     margin-left: 0;
     padding-left: 0;
     white-space: nowrap;
+  }
+}
+
+.dialog-header #dialog-back {
+  font: 10px/1.5 var(--sans);
+  border: 1px solid #b5ab9055;
+  padding: 5px 8px;
+  margin-right: 14px;
+  white-space: nowrap;
+}
+.dialog-header #dialog-back[hidden] {
+  display: none;
+}
+.dialog-header #dialog-label {
+  flex: 1;
+}
+.caption-record {
+  border: 1px solid #afa084;
+  background: #ece5d5;
+  padding: 24px;
+  text-align: center;
+  margin: 23px 0;
+  font: 12px/1.9 var(--sans);
+}
+.caption-record > span {
+  letter-spacing: 2px;
+  color: #8a714a;
+}
+.caption-record p {
+  font: 10px/1.9 var(--sans);
+  margin-top: 12px;
+  color: #776b55;
+}
+.breached .caption-record {
+  background: #211517;
+  border-color: #6b4538;
+}
+.breached .caption-record p {
+  color: #be9a7d;
+}
+.credit-item {
+  border-top: 1px solid var(--line);
+  padding-top: 15px;
+  margin-top: 20px;
+  overflow-wrap: anywhere;
+}
+.credit-item h3 {
+  font-size: 18px !important;
+}
+.credit-item p {
+  font-size: 12px;
+  line-height: 1.8;
+}
+.credit-item a {
+  font: 11px/1.9 var(--sans);
+  color: var(--bronze);
+}
+.intrusion-figure {
+  inset: 0 0 0 auto;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.75;
+  filter: brightness(0.65) contrast(1.15);
+  mask-image: linear-gradient(90deg, transparent 0%, #0009 28%, #000 65%);
+}
+.intrusion-frame strong {
+  max-width: 320px;
+  text-shadow: 0 2px 15px #000;
+}
+.visitor-window img {
+  object-position: center;
+  filter: brightness(0.55) saturate(0.35);
+}
+.mirror-record {
+  background-size: cover;
+  background-position: center;
+}
+.room-image.room-twin img {
+  transform: none;
+  object-position: center;
+}
+.room-image.room-long img {
+  object-position: center;
+}
+.room-photo-label {
+  max-width: calc(100% - 28px);
+}
+@media (max-width: 540px) {
+  .dialog-header #dialog-back {
+    font-size: 9px;
+    margin-right: 9px;
+    padding: 4px 6px;
+  }
+  .dialog-header #dialog-label {
+    font-size: 7px;
+    letter-spacing: 0.5px;
+  }
+  .intrusion-figure {
+    width: 100%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    opacity: 0.7;
+  }
+  .intrusion-frame strong {
+    font-size: 38px;
+    max-width: 235px;
+  }
+  .locale-zh .intrusion-frame strong {
+    font-size: 30px;
+    max-width: 220px;
   }
 }
