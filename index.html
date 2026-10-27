@@ -1,256 +1,167 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#141410" />
+    <meta name="theme-color" content="#2c3c3e" />
     <meta
       name="description"
-      content="无归旅馆，一段发生在不存在的酒店里的互动谜案。请遵守住客须知，并记住来时的路。"
+      content="Quiet rooms. Thoughtful service. Memories worth keeping. Discover The Stillwater Hotel, a fictional interactive hotel mystery."
     />
-    <title>无归旅馆 NO RETURN HOTEL — 为每一位迷途的客人留灯</title>
+    <title>The Stillwater Hotel — A familiar place, every time</title>
     <link rel="icon" href="assets/emblem.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="style.css" />
     <script src="app.js" defer></script>
   </head>
   <body>
-    <div class="site-shell">
-      <header class="header">
-        <a class="brand" href="#" aria-label="无归旅馆首页"
-          ><span class="emblem" aria-hidden="true">♜</span
-          ><span class="brand-copy"
-            ><b>无归旅馆</b><small>NO RETURN HOTEL</small></span
-          ><span class="brand-year">EST.<br />1984</span></a
-        >
-        <nav aria-label="主要导航">
-          <a href="#" class="nav-link active">酒店首页</a
-          ><button class="nav-link" data-action="rules">住客须知</button
-          ><a href="#rooms" class="nav-link">客房一览</a
-          ><button class="nav-link" data-action="archives">
-            异常档案 <span class="nav-dot"></span></button
-          ><button class="nav-link" data-action="guestbook">住客留言</button>
-        </nav>
-        <button class="header-reserve" data-action="lookup">
-          <span class="key-icon">⚿</span> 查询我的房间 <span>↗</span>
-        </button>
-        <button class="mobile-menu" aria-label="打开导航" aria-expanded="false">
-          ☰
-        </button>
-      </header>
-      <div class="utility-bar">
-        <span
-          ><i class="status-dot"></i> 酒店正常营业中
-          <span class="utility-separator">/</span> VACANCY AVAILABLE</span
-        ><span class="local-time"
-          >当地时间 <b id="hotel-clock">03:17:00</b>
-          <span class="utility-separator">|</span> 天气：持续阴天</span
-        >
-      </div>
-      <main>
-        <section class="hero" aria-labelledby="hero-title">
-          <div
-            class="hero-image"
-            role="img"
-            aria-label="空无一人的昏暗老式酒店走廊"
-          ></div>
-          <div class="hero-shade"></div>
-          <div class="hero-content">
-            <p class="eyebrow">
-              <span></span> A PLACE BETWEEN HERE AND NOWHERE
-            </p>
-            <h1 id="hero-title">
-              夜深了。<br />您终于<span class="word-back">回来</span>了。
-            </h1>
-            <p class="hero-english">Some places are never meant to be found.</p>
-            <p class="hero-description">
-              城市边缘，地图之外。<br />这里有一盏为您留着的灯，和一间早已准备好的客房。<br /><span
-                >请放心入住。我们记得每一位客人。</span
-              >
-            </p>
-            <div class="hero-actions">
-              <button class="button button-red" data-action="checkin">
-                办理入住 <span>↗</span></button
-              ><button class="text-button" data-action="rules">
-                <span class="book-icon">▤</span> 入住前，请阅读须知
-                <span>→</span>
-              </button>
-            </div>
-            <div class="hero-note">
-              <span>✳</span> 无需预约 · 全天候接待 · 离店时间待定
-            </div>
-          </div>
-          <div class="camera-label">
-            <span class="record-dot"></span> CAM 01 <span>/</span> LOBBY
-            ENTRANCE
-          </div>
-          <div class="room-tag">
-            <span>YOUR ROOM IS READY</span><b>3<span>0</span>7</b
-            ><small>钥匙一直在前台。</small>
-            <div class="tag-line"></div>
-            <span>PLEASE, MAKE YOURSELF AT HOME.</span>
-          </div>
-          <div class="image-coordinates">34°00′00.0″N &nbsp; 000°00′00.0″E</div>
-          <div class="hero-bottom">
-            <span>SCROLL TO DISCOVER <span class="down-arrow">↓</span></span
-            ><span>您是今晚第 <b id="visitor-number">000,307</b> 位访客</span>
-          </div>
-        </section>
-        <div class="notice-strip">
-          <span class="notice-title"><span>◈</span> 前台提醒</span>
-          <p>
-            若您听到走廊里有人呼唤您的名字，请不要回应。<span
-              class="notice-secondary"
-              >夜间服务时间：00:00 — 06:00</span
-            >
-          </p>
-          <button data-action="rules" aria-label="阅读前台提醒">→</button>
-        </div>
-        <section class="welcome section-pad">
-          <div class="section-intro">
-            <div>
-              <p class="eyebrow">A FAMILIAR PLACE. AN UNFAMILIAR FEELING.</p>
-              <h2>一切如常。<span>也许。</span></h2>
-            </div>
-            <p class="section-description">
-              我们致力于提供安静、舒适、不被打扰的住宿体验。<br />有些事情不必深究，有些门不必打开。
-            </p>
-          </div>
-          <div class="feature-grid">
-            <button class="feature-card" data-action="rules">
-              <span class="feature-number">01 / GUEST GUIDELINES</span>
-              <div class="feature-main">
-                <span class="feature-icon">▤</span>
-                <h3>住客须知</h3>
-                <span class="card-arrow">↗</span>
-              </div>
-              <p>一些简单的规则，确保您度过平静的一晚。</p>
-              <span class="feature-foot"
-                ><i class="tiny-dot"></i> 请务必在入住前阅读
-                <span>READ CAREFULLY</span></span
-              >
-            </button>
-            <button class="feature-card" data-action="monitor">
-              <span class="feature-number">02 / SECURITY MONITOR</span>
-              <div class="feature-main">
-                <span class="feature-icon monitor-icon">▣</span>
-                <h3>公共区域监控</h3>
-                <span class="card-arrow">↗</span>
-              </div>
-              <p>您的安全，是我们始终如一的关注。</p>
-              <span class="feature-foot"
-                ><i class="tiny-dot green"></i> 实时画面连接中
-                <span>LIVE FEED</span></span
-              >
-            </button>
-            <button class="feature-card" data-action="guestbook">
-              <span class="feature-number">03 / GUEST MESSAGES</span>
-              <div class="feature-main">
-                <span class="feature-icon">✎</span>
-                <h3>那些留下的声音</h3>
-                <span class="card-arrow">↗</span>
-              </div>
-              <p>他们也曾在这里，度过一段难忘的时光。</p>
-              <span class="feature-foot"
-                ><i class="tiny-dot"></i> 最后一条留言：日期不详
-                <span>LEAVE A TRACE</span></span
-              >
-            </button>
-          </div>
-        </section>
-        <section class="rooms section-pad" id="rooms">
-          <div class="section-intro">
-            <div>
-              <p class="eyebrow">STAY A LITTLE LONGER</p>
-              <h2>总有一间，属于您。</h2>
-            </div>
-            <button class="text-button" data-action="explore">
-              查看楼层导览 <span>↗</span>
-            </button>
-          </div>
-          <div class="room-grid">
-            <button class="room-card room-normal" data-room="307">
-              <div class="room-photo">
-                <span class="room-badge">可入住 · AVAILABLE</span
-                ><span class="door-number">307</span>
-              </div>
-              <div class="room-caption">
-                <div>
-                  <small>THIRD FLOOR / 三层</small>
-                  <h3>静谧标准间</h3>
-                </div>
-                <span>查看客房 ↗</span>
-              </div></button
-            ><button class="room-card room-anomaly" data-room="404">
-              <div class="room-photo">
-                <span class="room-badge anomalous">暂不开放 · RESTRICTED</span
-                ><span class="door-number glitch-number">404</span>
-              </div>
-              <div class="room-caption">
-                <div>
-                  <small>FOURTH FLOOR / <s>四层</s></small>
-                  <h3>此房间不存在</h3>
-                </div>
-                <span>请勿进入 ↗</span>
-              </div>
-            </button>
-          </div>
-        </section>
-        <section class="dispatch section-pad">
-          <div class="dispatch-title">
-            <span class="tiny-dot"></span> 酒店公告
-            <small>NOTICES FROM THE FRONT DESK</small>
-          </div>
-          <button data-action="notice">
-            <time>1984.11.03</time><span>关于四层电梯临时停用的通知</span
-            ><span class="dispatch-tag">设施维护</span><span>↗</span></button
-          ><button data-action="lost">
-            <time>1984.11.01</time><span>失物招领：一本没有署名的住客日记</span
-            ><span class="dispatch-tag">失物招领</span><span>↗</span>
-          </button>
-        </section>
-        <section class="closing">
-          <span class="closing-symbol">✳</span>
-          <p>如果您忘记了来时的路，<br /><em>也没关系。</em></p>
-          <small>WE HAVE ALL THE TIME IN THE WORLD.</small
-          ><button data-action="checkin">
-            前台始终为您服务 <span>↗</span>
-          </button>
-        </section>
-      </main>
-      <footer>
-        <div class="footer-brand">无归旅馆 <small>NO RETURN HOTEL</small></div>
-        <p>
-          © 1984 无归旅馆 · 本站为虚构互动叙事作品<br /><span
-            >没有真实的住客。也没有真实的出口。</span
-          >
-        </p>
-        <button data-action="about">关于本次入住 ↗</button>
-      </footer>
-      <div class="bottom-bar">
-        <span
-          ><i class="status-dot"></i> 连接正常
-          <span class="bottom-divider">/</span>
-          <span id="session-label">访客模式</span></span
-        >
-        <div>
-          <button id="journal-button" data-action="journal">
-            线索笔记 <span id="clue-count">00</span></button
-          ><span class="bottom-divider">|</span
-          ><button id="sound-button" aria-pressed="false">
-            <span id="sound-icon">◌</span> 环境音：关闭
-          </button>
-        </div>
-        <span class="bottom-message">请不要在走廊里奔跑。</span>
+    <a class="skip-link" href="#page-content">Skip to content</a>
+    <div class="topbar">
+      <div class="header-width">
+        <span>ESTABLISHED 1987 · STILLWATER, NORTH AMERICA</span
+        ><span>WELCOME TO YOUR HOME AWAY FROM HOME</span>
       </div>
     </div>
+    <div class="masthead-band">
+      <header class="masthead header-width">
+        <a class="brand" href="#home" aria-label="The Stillwater Hotel home"
+          ><span class="monogram" aria-hidden="true">S</span
+          ><span
+            ><span class="hotel-name">The Stillwater Hotel</span
+            ><span class="brand-tagline"
+              >A FAMILIAR PLACE, EVERY TIME</span
+            ></span
+          ></a
+        >
+        <p class="masthead-note">
+          Quiet rooms. Thoughtful service.<br />Memories worth keeping.
+        </p>
+      </header>
+    </div>
+    <nav class="navigation" aria-label="Main navigation">
+      <div class="header-width">
+        <a href="#home" data-nav="home" aria-current="page">Home</a
+        ><a href="#rooms" data-nav="rooms">Rooms &amp; Suites</a
+        ><a href="#history" data-nav="history">Our History</a
+        ><a href="#guestbook" data-nav="guestbook">Guestbook</a
+        ><a href="#reservations" data-nav="reservations">Reservations</a>
+      </div>
+    </nav>
+    <main id="page-content" class="content-width" tabindex="-1">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">A tradition of hospitality since 1987</p>
+          <h1>Your room is<br />waiting.</h1>
+          <p>
+            Discover a quieter pace at Stillwater Hotel, where every stay feels
+            pleasantly familiar.
+          </p>
+          <a href="#rooms" class="button"
+            >Explore the rooms <span aria-hidden="true">→</span></a
+          >
+        </div>
+        <figure class="hero-photo">
+          <img
+            src="assets/lobby.png"
+            alt="The empty historic lobby, with dark wood reception desks and warmly lit balconies"
+          />
+          <figcaption>Our historic main lobby</figcaption>
+        </figure>
+      </section>
+      <section class="invitation">
+        <div>
+          <p class="eyebrow">Our invitation</p>
+          <h2>Comfort in every corner.</h2>
+          <p>
+            Nestled far from the crowds, the Stillwater has welcomed travelers
+            for generations. Our familiar corridors, handpicked furnishings, and
+            attentive service make every visit one to remember.
+          </p>
+          <p>
+            Whether you are staying for a night or looking for somewhere to
+            begin again, a place has already been prepared for you.
+          </p>
+        </div>
+        <aside class="notice">
+          <p class="eyebrow">Notice to our guests · Updated 10/03</p>
+          <h3>Third-floor maintenance</h3>
+          <p>
+            Some areas of the third floor remain temporarily unavailable. We
+            appreciate your understanding as we preserve the character of our
+            historic property.
+          </p>
+          <a href="#history" class="underlined">Learn about our hotel →</a>
+        </aside>
+      </section>
+      <section class="home-links" aria-label="Discover the hotel">
+        <article>
+          <p class="eyebrow">01 / Rooms</p>
+          <h3>Time to unwind</h3>
+          <p>
+            Classic interiors and quiet spaces for the perfect night's rest.
+          </p>
+          <a href="#rooms" class="underlined">View rooms →</a>
+        </article>
+        <article>
+          <p class="eyebrow">02 / Memories</p>
+          <h3>Stories from our guests</h3>
+          <p>
+            Read messages from people who have stayed with us over the years.
+          </p>
+          <a href="#guestbook" class="underlined">Guestbook →</a>
+        </article>
+        <article>
+          <p class="eyebrow">03 / Since 1987</p>
+          <h3>A history of belonging</h3>
+          <p>A family-run destination with a story behind every door.</p>
+          <a href="#history" class="underlined">Our history →</a>
+        </article>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="header-width">
+        <div class="footer-columns">
+          <div>
+            <a href="#home" class="footer-brand">The Stillwater Hotel</a>
+            <p>Come as a guest.<br />Leave with a story worth remembering.</p>
+          </div>
+          <div>
+            <h2>Explore</h2>
+            <a href="#rooms">Rooms &amp; Suites</a
+            ><a href="#guestbook">Guestbook</a
+            ><a href="#history">Our History</a>
+          </div>
+          <div>
+            <h2>Hotel resources</h2>
+            <button data-action="inquiry">Make an Inquiry</button
+            ><a href="#employees">Employee Access</a
+            ><button data-action="about">Site Information</button>
+          </div>
+        </div>
+        <div class="copyright">
+          © 1987–2026 THE STILLWATER HOTEL · A FICTIONAL INTERACTIVE MYSTERY.
+          No real hotel, booking, or account exists. All imagery and characters
+          are fictional.
+        </div>
+      </div>
+    </footer>
+    <button
+      id="journal-button"
+      class="notebook-tab"
+      data-action="journal"
+      aria-label="Open guest notebook"
+    >
+      <span aria-hidden="true">▤</span> Guest notebook
+      <span id="clue-count">0 / 6</span>
+    </button>
     <dialog id="story-dialog" aria-labelledby="dialog-title">
-      <div class="dialog-top">
-        <span id="dialog-label">NO RETURN HOTEL / RECEPTION</span
-        ><button id="dialog-close" aria-label="关闭窗口">✕</button>
+      <div class="dialog-header">
+        <span id="dialog-label">THE STILLWATER HOTEL</span
+        ><button id="dialog-close" aria-label="Close window">×</button>
       </div>
       <div id="dialog-body"></div>
       <div class="dialog-footer">
-        <span>无归旅馆 · 内部留存</span><span>PLEASE DO NOT REMOVE.</span>
+        <span>THE STILLWATER HOTEL · EST. 1987</span
+        ><span id="session-label">GUEST COPY</span>
       </div>
     </dialog>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>

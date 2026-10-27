@@ -1,104 +1,236 @@
 import { test, expect } from "@playwright/test";
 
-const close = async (page) =>
-  page.getByRole("button", { name: "关闭窗口" }).click();
-const act = (page, name) =>
+const close = (page) =>
+  page.getByRole("button", { name: "Close window", exact: true }).click();
+const action = (page, name) =>
   page.locator(`dialog [data-action="${name}"]`).click();
+const record = (page, id) => page.locator(`[data-clue="${id}"]`).click();
+async function navigate(page, route) {
+  await page.locator(`nav [data-nav="${route}"]`).click();
+  await expect(page.locator(`nav [data-nav="${route}"]`)).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
+}
+async function register(page, name = "Avery") {
+  await navigate(page, "reservations");
+  await page.getByLabel("Guest name", { exact: true }).fill(name);
+  await page.locator("#agree-guidelines").check();
+  await page.getByRole("button", { name: "Collect my room key" }).click();
+  await expect(
+    page.getByRole("heading", { name: `Welcome back, ${name}.` }),
+  ).toBeVisible();
+}
+async function unlock(page) {
+  await page.locator("#journal-button").click();
+  await page.locator('dialog [data-room="404"]').click();
+  await page.getByLabel("Four-digit door code").fill("0404");
+  await page.getByRole("button", { name: "Turn the lock" }).click();
+  await expect(
+    page.getByRole("heading", { name: "A choice of departures" }),
+  ).toBeVisible();
+}
 
-test("complete investigation, wrong code, both endings, persistence and reset", async ({
+test("full six-record investigation, all three endings, persistence and reset", async ({
   page,
 }) => {
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
-  await page.locator('.hero [data-action="checkin"]').click();
-  await page.getByLabel("住客姓名 / GUEST NAME").fill("夜行者");
-  await page.locator('input[name="rules"]').check();
-  await page.getByRole("button", { name: "领取 307 号房钥匙" }).click();
-  await expect(
-    page.getByRole("heading", { name: "欢迎回来，夜行者。" }),
-  ).toBeVisible();
-  await act(page, "explore");
+  await register(page);
+  await page.locator('main [data-action="explore"]').click();
   await page.locator('dialog [data-room="307"]').click();
-  await expect(
-    page.getByRole("heading", { name: "307 · 您的房间" }),
-  ).toBeVisible();
+  await action(page, "diary");
+  await record(page, "clock");
+  await expect(page.locator('[data-clue="clock"]')).toBeDisabled();
   await close(page);
 
-  await page.locator('nav [data-action="rules"]').click();
-  await act(page, "clue-clock");
-  await act(page, "clue-clock");
-  await expect(page.locator("#clue-count")).toHaveText("01");
-  await close(page);
-
-  await page.locator('.feature-grid [data-action="monitor"]').click();
+  await page.locator('main [data-action="explore"]').click();
+  await action(page, "monitor");
   await page.locator('[data-camera="2"]').click();
   await expect(page.locator(".camera-note")).toContainText("404");
-  await act(page, "clue-tape");
+  await record(page, "door");
   await page.locator('[data-camera="3"]').click();
-  await expect(page.locator(".camera-note")).toContainText("04:04");
+  await expect(page.locator(".camera-note")).toContainText("CIRCUIT");
   await close(page);
 
-  await page.locator('nav [data-action="guestbook"]').click();
-  await act(page, "clue-name");
-  await expect(page.locator("#clue-count")).toHaveText("03");
+  await navigate(page, "guestbook");
+  await record(page, "ribbon");
+  await navigate(page, "history");
+  await page.locator('[data-action="ledger"]').click();
+  await expect(page.locator(".ledger-table")).toContainText("Eleanor Vale");
+  await record(page, "register");
+  await page.locator('dialog [data-page="employees"]').click();
+  await expect(
+    page.getByRole("heading", { name: "Employee access", exact: true }),
+  ).toBeVisible();
+  await page.getByLabel("Staff access code").fill("1987");
+  await page.getByRole("button", { name: "Open staff records" }).click();
+  await expect(page.locator("#employee-error")).toContainText(
+    "Opening day, month first",
+  );
+  await page.getByLabel("Staff access code").fill("1003");
+  await page.getByRole("button", { name: "Open staff records" }).click();
+  await page.locator('[data-action="maintenance"]').click();
+  await record(page, "switch");
+  await close(page);
+  await page.locator('[data-action="letter"]').click();
+  await record(page, "letter");
+  await expect(page.locator("#clue-count")).toHaveText("6 / 6");
   await close(page);
   await page.reload();
-  await expect(page.locator("#clue-count")).toHaveText("03");
-  await expect(page.locator("#session-label")).toHaveText("夜行者 · 307");
+  await expect(page.locator("#clue-count")).toHaveText("6 / 6");
+  await expect(
+    page.getByRole("heading", { name: "The night desk archive" }),
+  ).toBeVisible();
 
   await page.locator("#journal-button").click();
-  await expect(page.locator(".journal-list")).toContainText(
-    "白色的门通向下一次入住",
+  await page.locator('dialog [data-room="404"]').click();
+  await page.getByLabel("Four-digit door code").fill("1234");
+  await page.getByRole("button", { name: "Turn the lock" }).click();
+  await expect(page.locator("#unlock-error")).toContainText(
+    "lock does not move",
   );
-  await page.locator('dialog [data-room="404"]').click();
-  await page.getByLabel("请输入四位数字 / ACCESS CODE").fill("1234");
-  await page.getByRole("button", { name: "转动门锁" }).click();
-  await expect(page.locator("#form-error")).toContainText("门没有打开");
-  await page.getByLabel("请输入四位数字 / ACCESS CODE").fill("0404");
-  await page.getByRole("button", { name: "转动门锁" }).click();
-  await act(page, "ending-exit");
-  await expect(page.getByRole("heading", { name: "天亮以后" })).toBeVisible();
-  await act(page, "journal");
-  await expect(page.locator("dialog")).toContainText("已记录结局：天亮以后");
-  await page.locator('dialog [data-room="404"]').click();
-  await page.getByLabel("请输入四位数字 / ACCESS CODE").fill("0404");
-  await page.getByRole("button", { name: "转动门锁" }).click();
-  await act(page, "ending-stay");
-  await expect(page.getByRole("heading", { name: "另一位归客" })).toBeVisible();
+  await page.getByLabel("Four-digit door code").fill("0404");
+  await page.getByRole("button", { name: "Turn the lock" }).click();
+  await action(page, "ending-release");
+  await expect(
+    page.getByRole("heading", { name: "The last checkout" }),
+  ).toBeVisible();
+  await expect(page.locator(".ending")).toContainText("Eleanor is last");
   await close(page);
-
-  await page.locator('footer [data-action="about"]').click();
-  await act(page, "reset-prompt");
-  await act(page, "reset-confirm");
-  await expect(page.locator("#clue-count")).toHaveText("00");
-  await expect(page.locator("#session-label")).toHaveText("访客模式");
+  await unlock(page);
+  await action(page, "ending-departure");
+  await expect(
+    page.getByRole("heading", { name: "The road home" }),
+  ).toBeVisible();
+  await close(page);
+  await unlock(page);
+  await action(page, "ending-return");
+  await expect(
+    page.getByRole("heading", { name: "A familiar place", exact: true }),
+  ).toBeVisible();
+  await expect(page.locator(".ending")).toContainText("3 of 3 endings");
+  await close(page);
+  await page.reload();
+  await page.locator("#journal-button").click();
+  await expect(page.locator("dialog")).toContainText("The last checkout");
+  await close(page);
+  await page.locator('[data-action="about"]').click();
+  await action(page, "reset-prompt");
+  await action(page, "reset-confirm");
+  await expect(page.locator("#clue-count")).toHaveText("0 / 6");
+  await expect(page).toHaveURL(/#home$/);
   expect(errors).toEqual([]);
 });
 
-test("lookup validation, safe guest names, keyboard modal and optional audio", async ({
+test("early third ending is locked; bedside card records the clock only once", async ({
+  page,
+}) => {
+  await page.goto("/#rooms");
+  await page.locator('[data-action="rules"]').click();
+  await record(page, "clock");
+  await expect(page.locator('[data-clue="clock"]')).toBeDisabled();
+  await close(page);
+  await expect(page.locator("#clue-count")).toHaveText("1 / 6");
+  await unlock(page);
+  await expect(
+    page.locator('dialog [data-action="ending-release"]'),
+  ).toBeDisabled();
+  await action(page, "ending-departure");
+  await expect(
+    page.getByRole("heading", { name: "The road home" }),
+  ).toBeVisible();
+});
+
+test("room selection, registration validation, editable preferences, unregistered room and lookup", async ({
+  page,
+}) => {
+  await page.goto("/#rooms");
+  await page.locator('[data-action="explore"]').click();
+  await page.locator('dialog [data-room="307"]').click();
+  await expect(
+    page.getByRole("heading", { name: "A key is waiting for you" }),
+  ).toBeVisible();
+  await close(page);
+  await page.locator('[data-roomtype="residence"]').click();
+  await page.locator('[data-book="residence"]').click();
+  await expect(page.locator("#room-preference")).toHaveValue("residence");
+  await page.getByLabel("Guest name", { exact: true }).fill("   ");
+  await page.locator("#agree-guidelines").check();
+  await page.getByRole("button", { name: "Collect my room key" }).click();
+  await expect(page.locator("#reservation-error")).toContainText(
+    "Please leave a name",
+  );
+  await page.getByLabel("Guest name", { exact: true }).fill("<img src=x>");
+  await page.getByRole("button", { name: "Collect my room key" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Welcome back, <img src=x>." }),
+  ).toBeVisible();
+  expect(await page.locator('main img[src="x"]').count()).toBe(0);
+  await page.locator('[data-action="edit-reservation"]').click();
+  await page.getByLabel("Length of stay").selectOption("3");
+  await page.locator("#agree-guidelines").check();
+  await page.getByRole("button", { name: "Collect my room key" }).click();
+  await expect(page.locator(".details-list").first()).toContainText("3 nights");
+  await page.locator('[data-action="lookup"]').click();
+  await page.getByLabel("Room number", { exact: true }).fill("999");
+  await page
+    .getByRole("button", { name: "Find my room", exact: false })
+    .last()
+    .click();
+  await expect(page.locator("#lookup-error")).toContainText(
+    "not in our records",
+  );
+  await page.getByLabel("Room number", { exact: true }).fill("307");
+  await page
+    .getByRole("button", { name: "Find my room", exact: false })
+    .last()
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Room 307 — your room" }),
+  ).toBeVisible();
+});
+
+test("guestbook notes are local, escaped, retained after reload and limited to five", async ({
+  page,
+}) => {
+  await page.goto("/#guestbook");
+  await page.getByLabel("Your name or initials").fill("   ");
+  await page.getByLabel("Your message", { exact: true }).fill("   ");
+  await page.getByRole("button", { name: "Leave a note" }).click();
+  await expect(page.locator("#guestbook-error")).toContainText(
+    "both a name and a message",
+  );
+  for (let n = 0; n < 6; n++) {
+    await page.getByLabel("Your name or initials").fill("Guest <img src=x>");
+    await page
+      .getByLabel("Your message", { exact: true })
+      .fill(`Memory ${n}: <script>bad()</script>`);
+    await expect(page.locator("#message-count")).not.toHaveText("0");
+    await page.getByRole("button", { name: "Leave a note" }).click();
+  }
+  await expect(page.locator(".local-guest-entry")).toHaveCount(5);
+  await expect(page.locator(".local-guest-entry").first()).toContainText(
+    "Memory 1",
+  );
+  await expect(page.locator(".local-guest-entry").last()).toContainText(
+    "<script>bad()</script>",
+  );
+  expect(
+    await page
+      .locator(".local-guest-entry script, .local-guest-entry img")
+      .count(),
+  ).toBe(0);
+  await page.reload();
+  await expect(page.locator(".local-guest-entry")).toHaveCount(5);
+});
+
+test("keyboard document dismissal, optional sound, navigation history and staff logout", async ({
   page,
 }) => {
   await page.goto("/");
-  await page.locator('[data-action="lookup"]').click();
-  await page.getByLabel("房间号码 / ROOM NUMBER").fill("999");
-  await page
-    .getByRole("button", { name: "查询房间", exact: false })
-    .last()
-    .click();
-  await expect(page.locator("#form-error")).toContainText("没有这间客房");
-  await page.keyboard.press("Escape");
-  await expect(page.locator("dialog")).not.toBeVisible();
-  await expect(page.locator('[data-action="lookup"]')).toBeFocused();
-  await page.locator('.hero [data-action="checkin"]').click();
-  await page.getByLabel("住客姓名 / GUEST NAME").fill("<img src=x>");
-  await page.locator('input[name="rules"]').check();
-  await page.getByRole("button", { name: "领取 307 号房钥匙" }).click();
-  await expect(
-    page.getByRole("heading", { name: "欢迎回来，<img src=x>。" }),
-  ).toBeVisible();
-  expect(await page.locator("dialog img").count()).toBe(0);
-  await close(page);
+  await page.locator('[data-action="about"]').click();
   await expect(page.locator("#sound-button")).toHaveAttribute(
     "aria-pressed",
     "false",
@@ -113,52 +245,128 @@ test("lookup validation, safe guest names, keyboard modal and optional audio", a
     "aria-pressed",
     "false",
   );
+  await page.keyboard.press("Escape");
+  await expect(page.locator("dialog")).not.toBeVisible();
+  await expect(page.locator('[data-action="about"]')).toBeFocused();
+  await navigate(page, "history");
+  await navigate(page, "rooms");
+  await page.goBack();
+  await expect(
+    page.getByRole("heading", { name: "Some places stay with you." }),
+  ).toBeVisible();
+  await page.locator('a[href="#employees"]').click();
+  await page.getByLabel("Staff access code").fill("1003");
+  await page.getByLabel("Staff access code").press("Enter");
+  await page.locator('[data-action="staff-logout"]').click();
+  await expect(
+    page.getByRole("heading", { name: "Night desk sign-in" }),
+  ).toBeVisible();
 });
 
-for (const width of [320, 390, 768, 1440]) {
-  test(`layout and navigation at ${width}px`, async ({ page }) => {
+for (const width of [320, 390, 768, 1320, 1440]) {
+  test(`English content, functional navigation and no overflow at ${width}px`, async ({
+    page,
+  }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/");
+    await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    const navWidths = await page.locator("nav > div").evaluate(el => ({ content: el.scrollWidth, visible: el.clientWidth }));
+    expect(navWidths.content).toBeLessThanOrEqual(navWidths.visible + 1);
+    for (const route of [
+      "home",
+      "rooms",
+      "history",
+      "guestbook",
+      "reservations",
+    ]) {
+      await navigate(page, route);
+      expect(
+        await page.evaluate(() => document.documentElement.scrollWidth),
+      ).toBe(width);
+      expect(await page.locator("main").innerText()).not.toMatch(
+        /[\u3400-\u9fff]/,
+      );
+      const broken = await page
+        .locator("main img")
+        .evaluateAll(async (images) => {
+          await Promise.all(
+            images.map((img) =>
+              img.complete
+                ? Promise.resolve()
+                : new Promise((resolve) => {
+                    img.onload = resolve;
+                    img.onerror = resolve;
+                  }),
+            ),
+          );
+          return images
+            .filter((img) => !img.naturalWidth)
+            .map((img) => img.src);
+        });
+      expect(broken).toEqual([]);
+    }
+    await page.locator('a[href="#employees"]').click();
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth),
     ).toBe(width);
-    const headline = await page
-      .locator("h1")
-      .evaluate((el) => ({
-        height: el.clientHeight,
-        line: parseFloat(getComputedStyle(el).lineHeight),
-      }));
-    expect(headline.height).toBeLessThanOrEqual(headline.line * 2 + 2);
-    if (width <= 800) {
-      await page.getByRole("button", { name: "打开导航" }).click();
-      await expect(page.locator(".mobile-menu")).toHaveAttribute(
-        "aria-expanded",
-        "true",
-      );
-    }
-    await page.locator('nav [data-action="archives"]').click();
-    await expect(
-      page.getByRole("heading", { name: "异常档案室" }),
-    ).toBeVisible();
-    await act(page, "notice");
-    await expect(
-      page.getByRole("heading", { name: "关于四层电梯临时停用的通知" }),
-    ).toBeVisible();
-    await close(page);
-    await page.locator('.room-card[data-room="404"]').click();
-    await expect(page.getByLabel("请输入四位数字 / ACCESS CODE")).toBeVisible();
+    await page.locator("#journal-button").click();
     const rect = await page.locator("dialog").boundingBox();
     expect(rect.x).toBeGreaterThanOrEqual(0);
     expect(rect.x + rect.width).toBeLessThanOrEqual(width);
+    await close(page);
+    await expect(page.locator("#journal-button")).toBeFocused();
   });
 }
 
-test("corrupt storage does not break the story", async ({ page }) => {
+test("corrupt storage does not block play", async ({ page }) => {
   await page.goto("/");
   await page.evaluate(() =>
-    localStorage.setItem("no-return-hotel:v1", "{invalid"),
+    localStorage.setItem("stillwater-hotel:v2", "{invalid"),
   );
   await page.reload();
-  await page.locator('.hero [data-action="checkin"]').click();
-  await expect(page.getByLabel("住客姓名 / GUEST NAME")).toBeVisible();
+  await expect(page.locator("#clue-count")).toHaveText("0 / 6");
+  await register(page);
+});
+
+test("unavailable storage retains session play", async ({ page }) => {
+  await page.addInitScript(() => {
+    Storage.prototype.getItem = () => {
+      throw new Error("Storage blocked");
+    };
+    Storage.prototype.setItem = () => {
+      throw new Error("Storage blocked");
+    };
+  });
+  await page.goto("/");
+  await register(page);
+  await page.locator('main [data-action="rules"]').click();
+  await record(page, "clock");
+  await expect(page.locator("#clue-count")).toHaveText("1 / 6");
+});
+
+test("previous edition progress migrates without losing recovered clues", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.evaluate(() => {
+    localStorage.removeItem("stillwater-hotel:v2");
+    localStorage.setItem(
+      "no-return-hotel:v1",
+      JSON.stringify({
+        name: "Returning guest",
+        checkedIn: true,
+        clues: ["clock", "tape", "name"],
+        ending: "exit",
+      }),
+    );
+  });
+  await page.reload();
+  await expect(page.locator("#clue-count")).toHaveText("3 / 6");
+  await navigate(page, "reservations");
+  await expect(
+    page.getByRole("heading", { name: "Welcome back, Returning guest." }),
+  ).toBeVisible();
+  await page.locator("#journal-button").click();
+  await expect(page.locator("dialog")).toContainText("The road home");
+  await expect(page.locator("dialog")).toContainText("A sixth door");
 });

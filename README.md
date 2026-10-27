@@ -1,75 +1,101 @@
-# 无归旅馆 · NO RETURN HOTEL
+# The Stillwater Hotel
 
-一个中文后室风格的原创 ARG 互动网站。旧酒店官网只是入口：住客须知、监控录像和留言簿中藏着通往「不存在的客房」的线索。
+An original, English-language, Backrooms-inspired browser mystery hidden inside an unassuming hotel website. Warm ivory paper, bronze rules, traditional typography, and a restrained deep-teal masthead conceal a story told through guest records, impossible architecture, and undelivered letters.
 
-## 下载试玩（无需安装依赖）
+## Download and play
 
-在 GitHub 仓库页面点击 **Code → Download ZIP**，完整解压后，用 Chrome 或 Edge 打开根目录中的 `index.html`。不要直接在压缩包中打开文件。
+On the [GitHub repository](https://github.com/RieyekiWong/123), choose **Code → Download ZIP**. Extract the entire archive, then open the root `index.html` with Chrome or Edge. Do not open the HTML from inside the compressed archive.
 
-如需修改代码、开发或运行测试，再使用下面的 Node.js 方式。
+There are no runtime dependencies, remote fonts, image services, sign-ups, API keys, or backend services. All images and scripts are included. If your browser or organization blocks local HTML files, use the local development server below.
 
-## 本地运行
+## What is inside
 
-需要 Node.js 20 或更新版本（已在 Node.js 24 验证）。
+- **Home:** the hotel's invitation, historic lobby, and maintenance notice.
+- **Rooms & Suites:** three room descriptions, room details, amenities, guest guidelines, and an interactive floor directory.
+- **Our History:** a five-part history and the original opening-night register.
+- **Guestbook:** returning guests, a loose page from E. Rowan, and a local-only guest note form.
+- **Reservations:** fictional registration, room preferences, a room key, and editable arrival details.
+- **Employee Access:** a story keypad protecting maintenance logs, returned correspondence, security recordings, and shift instructions.
+- **Guest notebook:** six recoverable records, contextual hints, and three remembered endings.
+
+This is a fictional narrative. No real booking is made. No note is published. Nicknames, registrations, story progress, and the five most recent notes stay in this browser's `localStorage`. Clearing site data erases them. If storage is unavailable, play can continue in the current tab. The employee keypad is a puzzle, not an authentication mechanism. No investigation outside this site is required.
+
+Optional ambient sound is generated locally with Web Audio and defaults to off. There are no sudden jump scares or flashing images. Reduced-motion preferences are respected. Documents support keyboard focus, Escape dismissal, and focus restoration.
+
+## Development
+
+Requires Node.js 20 or newer; verified with Node.js 24.
 
 ```bash
 npm ci
 npm run dev
 ```
 
-默认端口为 `3000`。可通过 `npm run dev -- --port 8080` 更换端口。运行时使用原生 HTML、CSS 和 JavaScript，无框架依赖、数据库、账号或 API 密钥；所有视觉资源随项目提供。首次加载无需第三方字体或图片服务。
+The development server listens on port `3000`. To use another port:
 
-## 游玩
+```bash
+npm run dev -- --port 8080
+```
 
-1. 办理入住，领取 307 号房钥匙。
-2. 阅读住客须知、切换公共区域监控、翻阅住客留言，主动记录三条线索。
-3. 在客房一览或楼层导览中进入 404，输入推理出的密码。
-4. 选择离开的方向，探索两个不同的结局。
+The project uses plain HTML, CSS, JavaScript, and a small Node.js static server. Files can be edited directly; reload the browser to see changes.
 
-姓名、线索和结局只保存在当前浏览器的 `localStorage` 中。「关于本次入住」提供重置入口。禁用本地存储时仍可在当前页面继续游玩。环境音默认关闭，开启后由 Web Audio 在本地合成；没有突然惊吓画面。
-
-所有人物、事件及地址均为虚构，故事无需现实调查。参考链接仅用于理解网页 ARG 的形式；本项目的酒店设定、故事文案、布局和交互均重新制作，走廊背景为生成素材。
-
-## 构建与部署
+## Build and deployment
 
 ```bash
 npm run build
 ```
 
-生成的 `dist/` 可部署到 GitHub Pages、Netlify、Vercel 等静态托管。资源使用相对路径，可部署到 GitHub Pages 的仓库子目录。将 `dist/` 的**内容**作为发布文件；无需部署 Node 开发服务器。
+Publish the **contents** of `dist/` to a static host such as GitHub Pages. Relative asset paths and hash-based navigation support repository subdirectories. Uploading code does not automatically enable an online website. The Node.js development server is not needed for static hosting.
 
-上传源码不等于发布在线网站。若使用 GitHub Pages，可通过自己的部署流程将构建产物发布到 Pages。
-
-## 验证
+## Validation
 
 ```bash
 npm run build
 npm test
 ```
 
-以上检查源码与构建产物的 HTTP 资源、404 响应与开发服务器文件访问范围。
+The service tests check the source and built websites, local image delivery, 404 handling, and protection of project metadata.
 
-浏览器测试：
+For browser tests:
 
 ```bash
 npx playwright install chromium
 npm run test:e2e
 ```
 
-环境存在 `/usr/bin/chromium` 时会直接使用；也可通过 `CHROMIUM_PATH` 指定浏览器可执行文件。覆盖完整解谜、两个结局、错误密码、进度保存与重置、姓名转义、音频开关、键盘关闭弹窗，以及 320 / 390 / 768 / 1440 像素布局。测试自动使用独立的 3107 端口。
+If `/usr/bin/chromium` exists, it is used automatically. `CHROMIUM_PATH` can override the executable. Browser tests start an independent server on port `3107` and cover:
 
-## 文件
+- The full six-record investigation and all three endings.
+- Wrong codes, locked ending conditions, employee access, and archive logout.
+- Room preferences, registration validation, editing, lookup, and local guest notes.
+- Escaping user-provided text and keeping at most five local messages.
+- Persistence, reset, corrupt or unavailable storage, and migration from the earlier edition.
+- Keyboard dismissal, optional sound, browser navigation, English content, image delivery, and layouts at 320, 390, 768, 1320, and 1440 pixels.
 
-- `index.html`：酒店首页与无障碍弹窗容器
-- `style.css`：响应式布局、旧纸张弹窗和氛围样式
-- `app.js`：故事、谜题、进度与可选环境音
-- `assets/`：本地走廊图片和酒店标志
-- `server.mjs` / `build.mjs`：开发服务器与静态构建
-- `tests/`：服务测试与浏览器端到端测试
+## Files
+
+- `index.html`: hotel home, navigation, footer, and document container.
+- `style.css`: responsive public pages and archive document styles.
+- `app.js`: navigation, story documents, puzzles, local state, and optional audio.
+- `assets/`: bundled generated hotel imagery and the Stillwater monogram.
+- `server.mjs` / `build.mjs`: local server and static build.
+- `tests/`: service and browser tests.
+
+The hotel, characters, events, reservations, and correspondence are fictional. The supplied visual reference inspired the public website's presentation; story text and interactions are original. Hotel images are generated assets. Earlier local story progress is migrated when possible without deleting the old record; an explicit reset clears both editions.
 
 <details>
-<summary>谜题答案（剧透）</summary>
+<summary>Story walkthrough — spoilers</summary>
 
-密码为 `0404`，来自须知和日记中的停钟时间。CAM 02 记录不存在的 404 号房，林远的留言指向红色出口。红门通向「天亮以后」，白门通向「另一位归客」。线索收集不强制锁住结局，方便自由探索和重玩。
+1. Register under a nickname and collect the Room 307 key.
+2. Read the guest guidelines or the diary under the pillow. Record the stopped time, **04:04**.
+3. From the floor directory, consult the security recording and switch to **CAM 02**. Save the frame showing the extra door.
+4. In the guestbook, record **E. Rowan's warning** about red and white doors.
+5. In Our History, open the **opening-night register** and copy the record. Opening day was **03 October 1987**.
+6. Open Employee Access. The night desk code is the opening date, month first: **1003**.
+7. Record the **maintenance log** and **Eleanor's letter**. You now have all six records.
+8. Open the guest notebook and find Room 404. Its lock code is the stopped time without the colon: **0404**.
+9. The red EXIT leads to **The road home**. The white door leads to **A familiar place**. With an active registration and all six records, the service disconnect leads to **The last checkout**.
+
+You can remember all three endings without resetting. Use Site Information in the footer to start a new stay.
 
 </details>

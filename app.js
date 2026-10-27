@@ -1,40 +1,13 @@
 (() => {
   "use strict";
-  const STORAGE_KEY = "no-return-hotel:v1";
-  const freshState = () => ({
-    name: "",
-    checkedIn: false,
-    clues: [],
-    ending: null,
-  });
-  let state = freshState();
-  try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (saved && typeof saved === "object")
-      state = {
-        name: typeof saved.name === "string" ? saved.name.slice(0, 20) : "",
-        checkedIn: saved.checkedIn === true,
-        clues: Array.isArray(saved.clues)
-          ? [
-              ...new Set(
-                saved.clues.filter((c) =>
-                  ["clock", "tape", "name"].includes(c),
-                ),
-              ),
-            ]
-          : [],
-        ending: ["exit", "stay"].includes(saved.ending) ? saved.ending : null,
-      };
-  } catch {
-    /* Private browsing still supports this session. */
-  }
-  const $ = (s) => document.querySelector(s);
+  const STORAGE_KEY = "stillwater-hotel:v2";
+  const $ = (selector) => document.querySelector(selector);
+  const main = $("#page-content");
+  const homeMarkup = main.innerHTML;
   const dialog = $("#story-dialog");
-  const body = $("#dialog-body");
-  let toastTimer;
-  let previousFocus;
-  const escape = (text) =>
-    String(text).replace(
+  const dialogBody = $("#dialog-body");
+  const escape = (value) =>
+    String(value).replace(
       /[&<>"']/g,
       (c) =>
         ({
@@ -45,51 +18,161 @@
           "'": "&#39;",
         })[c],
     );
-  const clueText = {
-    clock: [
-      "停下来的时钟",
-      "住客须知背面写着：时钟停在 04:04。不存在的门，只认四位数字。",
-    ],
-    tape: [
-      "被剪去的四楼",
-      "03:17 的走廊监控中出现了 404 号门。电梯上被刮掉的数字是 4。",
-    ],
-    name: [
-      "林远的留言",
-      "失踪住客林远留下警告：真正的出口是红色的。白色的门通向下一次入住。",
-    ],
+  const fresh = () => ({
+    name: "",
+    checkedIn: false,
+    arrival: "2026-10-27",
+    nights: 1,
+    roomType: "classic",
+    clues: [],
+    endings: [],
+    staff: false,
+    messages: [],
+  });
+  const clues = {
+    clock: {
+      title: "The stopped clock",
+      source: "Read the guest guidelines or the diary in Room 307.",
+      text: "Every clock stops at 04:04. The lock on the unlisted door accepts four numbers, without a colon.",
+    },
+    door: {
+      title: "A sixth door",
+      source: "Look carefully at Camera 02 in the security office.",
+      text: "The third-floor plan has five rooms. The recording shows a sixth door: 404. It appears when the clock stops.",
+    },
+    ribbon: {
+      title: "Rowan’s warning",
+      source: "Read the loose page in the guestbook.",
+      text: "Follow the red EXIT sign. The welcoming white door brings you back to reception, not home.",
+    },
+    register: {
+      title: "The original register",
+      source: "Examine the opening-night ledger in Our History.",
+      text: "The hotel opened on 03 October 1987. Eleanor Vale in Room 307 never checked out. The penciled instruction says: the staff keypad uses opening day, month first.",
+    },
+    switch: {
+      title: "The service disconnect",
+      source: "Find the maintenance log in the employee archive.",
+      text: "Behind the lobby clock is a brass disconnect marked STILLWATER. Take the original register, cut the power, then use the service stair instead of either exit door.",
+    },
+    letter: {
+      title: "A letter never delivered",
+      source: "Open Returned Correspondence in the employee archive.",
+      text: "Eleanor left a signed group checkout slip inside the original register. With every record accounted for, one living guest can release everyone. Bring all six pieces of evidence.",
+    },
   };
-  function toast(text) {
-    $("#toast").textContent = text;
+  let state = fresh();
+  try {
+    let raw = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (!raw) {
+      const old = JSON.parse(localStorage.getItem("no-return-hotel:v1"));
+      if (old && typeof old === "object")
+        raw = {
+          ...old,
+          clues: (Array.isArray(old.clues) ? old.clues : []).map(
+            (c) => ({ clock: "clock", tape: "door", name: "ribbon" })[c],
+          ),
+          endings: old.ending
+            ? [old.ending === "exit" ? "departure" : "return"]
+            : [],
+        };
+    }
+    if (raw && typeof raw === "object")
+      state = {
+        ...fresh(),
+        name: typeof raw.name === "string" ? raw.name.slice(0, 40) : "",
+        checkedIn:
+          raw.checkedIn === true &&
+          typeof raw.name === "string" &&
+          !!raw.name.trim(),
+        arrival:
+          typeof raw.arrival === "string" &&
+          /^\d{4}-\d{2}-\d{2}$/.test(raw.arrival)
+            ? raw.arrival
+            : fresh().arrival,
+        nights:
+          Number.isInteger(raw.nights) && raw.nights >= 1 && raw.nights <= 7
+            ? raw.nights
+            : 1,
+        roomType: ["classic", "twin", "residence"].includes(raw.roomType)
+          ? raw.roomType
+          : "classic",
+        clues: Array.isArray(raw.clues)
+          ? [...new Set(raw.clues.filter((c) => Object.hasOwn(clues, c)))]
+          : [],
+        endings: Array.isArray(raw.endings)
+          ? [
+              ...new Set(
+                raw.endings.filter((e) =>
+                  ["departure", "return", "release"].includes(e),
+                ),
+              ),
+            ]
+          : [],
+        staff: raw.staff === true,
+        messages: Array.isArray(raw.messages)
+          ? raw.messages
+              .filter(
+                (m) =>
+                  m && typeof m.name === "string" && typeof m.text === "string",
+              )
+              .slice(-5)
+              .map((m) => ({
+                name: m.name.slice(0, 40),
+                text: m.text.slice(0, 400),
+              }))
+          : [],
+      };
+  } catch {
+    /* A damaged or unavailable store must never prevent play. */
+  }
+  let toastTimer;
+  let returnFocus;
+  let soundContext = null;
+  let storageWarning = false;
+  function toast(message) {
+    $("#toast").textContent = message;
     $("#toast").classList.add("visible");
     clearTimeout(toastTimer);
     toastTimer = setTimeout(
       () => $("#toast").classList.remove("visible"),
-      4000,
+      4200,
     );
   }
   function save() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch {
-      toast("浏览器未允许存储，本次探索仍可继续。");
+      if (!storageWarning) {
+        storageWarning = true;
+        toast("Storage is unavailable. You can still explore in this tab.");
+      }
     }
-    $("#clue-count").textContent = String(state.clues.length).padStart(2, "0");
+    $("#clue-count").textContent = `${state.clues.length} / 6`;
     $("#session-label").textContent = state.checkedIn
-      ? `${state.name} · 307`
-      : "访客模式";
+      ? `${state.name} · ROOM 307`
+      : "GUEST COPY";
   }
+  const clueButton = (id, label = "Keep this in my notebook") =>
+    `<button class="paper-button" data-clue="${id}" ${state.clues.includes(id) ? "disabled" : ""}>${state.clues.includes(id) ? "Recorded in your notebook ✓" : label + " ＋"}</button>`;
   function collect(id) {
-    if (!state.clues.includes(id)) {
-      state.clues.push(id);
-      save();
-      toast(`线索已记录：${clueText[id][0]} · ${state.clues.length}/3`);
-    } else toast("这条线索已保存在您的笔记中。");
+    if (!Object.hasOwn(clues, id) || state.clues.includes(id)) return;
+    state.clues.push(id);
+    save();
+    document.querySelectorAll(`[data-clue="${id}"]`).forEach((button) => {
+      button.textContent = "Recorded in your notebook ✓";
+      button.disabled = true;
+    });
+    toast(`Added to notebook: ${clues[id].title} (${state.clues.length}/6)`);
   }
-  function show(title, content, label = "NO RETURN HOTEL / RECEPTION") {
-    if (!dialog.open) previousFocus = document.activeElement;
+  function show(
+    title,
+    content,
+    label = "THE STILLWATER HOTEL / GUEST SERVICES",
+  ) {
+    if (!dialog.open) returnFocus = document.activeElement;
     $("#dialog-label").textContent = label;
-    body.innerHTML = `<p class="eyebrow">NO RETURN HOTEL · EST. 1984</p><h2 id="dialog-title">${title}</h2>${content}`;
+    dialogBody.innerHTML = `<p class="eyebrow">The Stillwater Hotel · Est. 1987</p><h2 id="dialog-title">${escape(title)}</h2>${content}`;
     if (!dialog.open) dialog.showModal();
     dialog.scrollTop = 0;
     $("#dialog-close").focus({ preventScroll: true });
@@ -98,324 +181,548 @@
     dialog.close();
   }
   $("#dialog-close").addEventListener("click", close);
-  dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) {
-      const r = dialog.getBoundingClientRect();
-      if (
-        event.clientX < r.left ||
-        event.clientX > r.right ||
-        event.clientY < r.top ||
-        event.clientY > r.bottom
-      )
-        close();
-    }
-  });
   dialog.addEventListener("close", () => {
-    if (previousFocus?.isConnected)
-      previousFocus.focus({ preventScroll: true });
+    if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
+  });
+  dialog.addEventListener("click", (event) => {
+    if (event.target !== dialog) return;
+    const r = dialog.getBoundingClientRect();
+    if (
+      event.clientX < r.left ||
+      event.clientX > r.right ||
+      event.clientY < r.top ||
+      event.clientY > r.bottom
+    )
+      close();
+  });
+  const heading = (eyebrow, title, text, meta = "") =>
+    `<header class="page-heading"><p class="eyebrow">${eyebrow}</p><h1>${title}</h1><p class="lead">${text}</p>${meta ? `<p class="heading-meta">${meta}</p>` : ""}</header>`;
+  const roomCards = [
+    [
+      "classic",
+      "A classic welcome",
+      "Classic Double",
+      "A well-made bed, a reading lamp, and the quiet reassurance of a room that feels like your own. Our original rooms overlook the sheltered courtyard.",
+      "One double bed · Private bath · Writing desk",
+      "assets/guestroom.png",
+      "A warmly lit vintage bedroom with a walnut bed and a writing desk",
+      "",
+    ],
+    [
+      "twin",
+      "A little more room",
+      "Heritage Twin",
+      "Traditional furnishings and space to settle in together. Soft lighting, crisp linens, and a sitting corner for conversations that last a little longer.",
+      "Two single beds · Sitting area · Tea service",
+      "assets/guestroom.png",
+      "The warm furnishings of a heritage guest room",
+      "room-twin",
+    ],
+    [
+      "residence",
+      "For a longer stay",
+      "The Residence",
+      "For guests who prefer not to hurry. Located at the quieter end of the third floor, with a private vestibule and all the time you need.",
+      "Third floor · Extended stays · Turn-down service",
+      "assets/hallway.png",
+      "A quiet corridor leading to the Residence rooms",
+      "room-long",
+    ],
+  ];
+  function roomsPage() {
+    return (
+      heading(
+        "Rooms & suites",
+        "A place already prepared for you.",
+        "Considered comforts, familiar furnishings, and no reason to rush. Every room has its own character. We will find the one that remembers you.",
+      ) +
+      `<div class="page-main"><div class="room-grid">${roomCards.map(([id, label, title, text, features, photo, alt, css]) => `<article class="room-card"><div class="room-image ${css}"><img src="${photo}" alt="${alt}"><span class="room-photo-label">${label}</span></div><div class="room-card-copy"><p class="eyebrow">${id === "residence" ? "Third floor / Limited availability" : "Guest accommodation"}</p><h2>${title}</h2><p>${text}</p><div class="room-features">${features}</div><button class="underlined" data-roomtype="${id}">View room details →</button></div></article>`).join("")}</div><div class="two-column"><section class="prose"><p class="eyebrow">Included in every stay</p><h2>Nothing overlooked.</h2><ul class="amenities"><li>Daily housekeeping</li><li>Fresh linens & towels</li><li>In-room tea service</li><li>24-hour front desk</li><li>Private bathroom</li><li>Complimentary wake-up calls</li></ul><p>Breakfast is served in the ground-floor dining room from 7:00 to 9:00. Please leave your key at reception before taking a walk. We are always pleased to see you return.</p><a class="button" href="#reservations">Request a room →</a></section><aside class="notice"><p class="eyebrow">For your comfort</p><h3>A few house traditions</h3><p>Quiet hours begin at 10:00 p.m. Our third-floor restoration is ongoing. Before settling in, please take a moment to read the card left on your bedside table.</p><button class="underlined" data-action="rules">Read the guest guidelines →</button></aside></div><div class="archive-teaser"><div><p class="eyebrow">A note about our floor plan</p><h3>Three floors. A familiar way home.</h3><p>If your key does not match a room on our plan, please consult reception before proceeding.</p></div><button class="unlisted-link" data-action="explore">Consult the floor directory →</button></div></div>`
+    );
+  }
+  function historyPage() {
+    return (
+      heading(
+        "Our history",
+        "Some places stay with you.",
+        "Built on a simple promise: a warm welcome, a comfortable room, and a place to return to. The Stillwater has been keeping that promise since 1987.",
+      ) +
+      `<div class="page-main two-column"><section><div class="timeline"><article><p class="eyebrow">03 October 1987</p><h2>Our doors open.</h2><p>Walter and Eleanor Vale welcome their first guests to a small family hotel on the old Stillwater road. Eleanor writes each name in a leather-bound register. The original book remains in our care.</p></article><article><p class="eyebrow">1996</p><h2>More room to belong.</h2><p>The east wing brings additional guest rooms and a covered courtyard. The family insists that every corridor should feel just like the first. Some guests still find it difficult to tell them apart.</p></article><article><p class="eyebrow">2003</p><h2>A gift of time.</h2><p>A returning guest donates the brass clock above the reception desk. It is the only original fixture that has never needed winding. Its maintenance records are held by the night porter.</p></article><article><p class="eyebrow">2016</p><h2>Preserving what matters.</h2><p>A careful restoration begins on the third floor. Work continues today. We thank our long-stay residents for their extraordinary patience.</p></article><article><p class="eyebrow">Today</p><h2>The same welcome, every time.</h2><p>Our family may have changed, but our promise has not. Many of our earliest guests are still with us in spirit. A few have simply never found the right time to leave.</p></article></div><p class="quote">“A hotel is not its rooms. It is the people it remembers.”<br><span class="fine-print">— Eleanor Vale, opening-night address</span></p></section><aside><img class="history-photo" src="assets/lobby.png" alt="The historic lobby, shown with an aged photographic finish"><div class="archive-box"><p class="eyebrow">From the hotel collection</p><h3>The opening-night register</h3><p>Seven entries. Seven brass keys. A page written on the first evening that our doors opened. Reproduced here by permission of the family.</p><button class="underlined" data-action="ledger">Examine the original page →</button></div><div class="archive-box" style="margin-top:22px"><p class="eyebrow">Restoration bulletin / 10.03</p><h3>A temporary inconvenience</h3><p>Third-floor access is restricted after quiet hours. Please disregard floor numbers not listed on your guest map.</p><button class="underlined" data-action="notice">Read the full bulletin →</button></div></aside></div>`
+    );
+  }
+  function guestbookPage() {
+    return (
+      heading(
+        "The guestbook",
+        "A few words from familiar faces.",
+        "For almost four decades, guests have left a little of themselves between these pages. We keep every message. Some seem to find their way back.",
+      ) +
+      `<div class="page-main book-layout"><section aria-label="Guest messages"><article class="guest-entry"><div class="entry-meta"><span>Margaret H. · Room 108</span><time>14 June 2026</time></div><blockquote>“I came for a quiet weekend and ended up staying a little longer. The staff remembered exactly how I take my tea. I do not recall telling them.”</blockquote><p class="signature">A very thoughtful place.</p></article><article class="guest-entry"><div class="entry-meta"><span>David & Ruth · Room 214</span><time>22 August 2026</time></div><blockquote>“The same wallpaper, the same armchair, the same gentleman at reception. Our first visit was in 1987. It is wonderful how little things change here.”</blockquote><p class="signature">We will be back. Apparently, we always are.</p></article><article class="guest-entry"><div class="entry-meta"><span>Anonymous · Long-stay guest</span><time>Date not recorded</time></div><blockquote>“The view outside my window has not changed in six days. The bird on the railing has not moved. Housekeeping says the weather is holding.”</blockquote></article><article class="guest-entry suspect"><div class="entry-meta"><span>E. Rowan · Room 307</span><span>A loose page, folded twice</span></div><blockquote>“If you are reading this, do not let them turn another page. The red EXIT is the way out. The white door only brings you back to the desk. I have signed that book so many times I no longer recognize my own handwriting.”</blockquote><p class="signature">There is a small red ribbon pressed into the paper.</p><div class="inline-actions">${clueButton("ribbon", "Keep Rowan’s warning")}</div></article>${state.messages.map((m) => `<article class="guest-entry local-guest-entry"><div class="entry-meta"><span>${escape(m.name)} · A note from this visit</span><span>Saved on this device</span></div><blockquote>${escape(m.text)}</blockquote></article>`).join("")}</section><aside class="sidebar-sticky"><form id="guestbook-form" class="form-panel"><p class="eyebrow">Leave a little of yourself</p><h2>Your page in our story.</h2><p>A memory, a thought, a message for the next person who finds this book.</p><label class="field-label" for="message-name">Your name or initials</label><input class="text-input" id="message-name" name="guestName" maxlength="40" value="${escape(state.name)}" required autocomplete="nickname"><label class="field-label" for="guest-message">Your message</label><textarea class="text-input text-area" id="guest-message" name="message" maxlength="400" placeholder="Something worth remembering…" required></textarea><div class="character-count"><span id="message-count">0</span> / 400</div><div id="guestbook-error" class="form-error" role="status"></div><button class="button full-width" type="submit">Leave a note →</button><p class="local-note">This is a fictional guestbook. Notes are kept only in your browser, never published or sent. The five most recent notes are retained.</p></form><div class="notice" style="margin-top:23px"><p class="eyebrow">Looking for someone?</p><h3>We keep our records.</h3><p>If a name seems familiar, our opening-night register may help you remember why.</p><a class="underlined" href="#history">Visit the hotel collection →</a></div></aside></div>`
+    );
+  }
+  function reservationForm() {
+    return `<form id="reservation-form" class="form-panel"><p class="eyebrow">Guest registration</p><h2>Let us keep a room for you.</h2><p>Please use a nickname. This is part of the story, not a real reservation.</p><label class="field-label" for="guest-name">Guest name</label><input class="text-input" id="guest-name" name="guestName" maxlength="40" value="${escape(state.name)}" placeholder="The name on your invitation" autocomplete="nickname" required><div class="form-row"><div><label class="field-label" for="arrival-date">Arrival date</label><input class="text-input" id="arrival-date" type="date" name="arrival" value="${state.arrival}" min="1987-10-03" max="2099-12-31" required></div><div><label class="field-label" for="stay-length">Length of stay</label><select class="text-input" name="nights" id="stay-length">${[1, 2, 3, 4, 5, 6, 7].map((n) => `<option value="${n}" ${state.nights === n ? "selected" : ""}>${n} night${n > 1 ? "s" : ""}</option>`).join("")}</select></div></div><label class="field-label" for="room-preference">Room preference</label><select class="text-input" name="roomType" id="room-preference">${roomCards.map(([id, , title]) => `<option value="${id}" ${state.roomType === id ? "selected" : ""}>${title}</option>`).join("")}</select><div class="check-row"><input type="checkbox" name="guidelines" id="agree-guidelines" required><label for="agree-guidelines">I have read the <button type="button" class="underlined" data-action="rules">guest guidelines</button> and agree to remain on the floors listed on my map.</label></div><div class="form-error" id="reservation-error" role="status"></div><button class="button full-width" type="submit">Collect my room key <span>→</span></button><p class="local-note">No payment, email, or personal identification is needed. Your registration stays on this device.</p></form>`;
+  }
+  function confirmation() {
+    return `<section class="form-panel"><p class="eyebrow">Your registration is complete</p><h2>Welcome back, ${escape(state.name)}.</h2><p>We have taken care of your room preference. As always, the key waiting at reception is yours.</p><div class="welcome-key"><p class="eyebrow">Your room is ready</p><div class="key-number">307</div><p>Third floor · The end of the west corridor</p></div><ul class="details-list"><li><span>Guest</span><span>${escape(state.name)}</span></li><li><span>Arrival</span><span>${state.arrival}</span></li><li><span>Requested stay</span><span>${state.nights} night${state.nights > 1 ? "s" : ""}</span></li><li><span>Departure</span><span>To be confirmed</span></li></ul><div class="inline-actions"><button class="button" data-action="explore">Go to my room →</button><button class="underlined" data-action="edit-reservation">Amend registration</button></div><p class="local-note">A fictional registration, saved only on this device.</p></section>`;
+  }
+  function reservationsPage(edit = false) {
+    return (
+      heading(
+        "Reservations",
+        "We have been expecting you.",
+        "A night away. A fresh beginning. A familiar place to rest. Tell us what to call you, and we will take care of the rest.",
+      ) +
+      `<div class="page-main reservation-layout">${state.checkedIn && !edit ? confirmation() : reservationForm()}<aside class="reservation-aside"><p class="eyebrow">The small details</p><h2>Make yourself at home.</h2><p>Reception is staffed day and night. There is no need to hurry your arrival; a lamp will be left on until you are settled.</p><ul class="details-list"><li><span>Check-in</span><span>From 3:00 p.m.</span></li><li><span>Quiet hours</span><span>10:00 p.m. – 7:00 a.m.</span></li><li><span>Breakfast</span><span>7:00 – 9:00 a.m.</span></li><li><span>Front desk</span><span>Always here</span></li></ul><div class="notice"><p class="eyebrow">Before you settle in</p><h3>A familiar routine.</h3><p>Please read the guest guidelines, keep your room key with you, and do not follow voices into an unlit corridor. A member of staff will find you if you need us.</p><button class="underlined" data-action="rules">Read the guest guidelines →</button></div><div class="inline-actions"><button class="underlined" data-action="lookup">Already have a room number? →</button></div></aside></div>`
+    );
+  }
+  function employeesPage() {
+    if (!state.staff)
+      return (
+        heading(
+          "Hotel resources",
+          "Employee access",
+          "For current Stillwater staff and the night porter. Guest services can be reached through reception.",
+        ) +
+        `<div class="page-main"><div class="employee-intro"><form id="employee-form" class="form-panel"><p class="eyebrow">Internal records / Authorized staff</p><h2>Night desk sign-in</h2><p>Enter the four-digit access code from your induction card.</p><label class="field-label" for="staff-code">Staff access code</label><input class="text-input" id="staff-code" name="staffCode" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="off" placeholder="Four digits" required><div class="form-error" id="employee-error" role="status"></div><button class="button full-width" type="submit">Open staff records →</button><p class="employee-notice">Forgotten the code? Mr. Vale’s old instruction still applies: “Opening day. Month first.” The date is preserved in our public history.</p><p class="local-note">This is a story puzzle, not a real account or authentication system.</p></form><div class="inline-actions"><a class="underlined" href="#history">Consult the hotel history →</a></div></div></div>`
+      );
+    return (
+      heading(
+        "Internal hotel resources",
+        "The night desk archive",
+        "Please return every file to the drawer in which you found it. Do not amend a guest’s departure date without their consent.",
+      ) +
+      `<div class="page-main"><div class="staff-status"><span>ACCESS GRANTED · NIGHT PORTER / SESSION STORED LOCALLY</span><button data-action="staff-logout">Lock archive</button></div><div class="staff-tools"><button class="button" data-action="monitor">Security monitors →</button><button class="button button-secondary" data-action="explore">Third-floor directory →</button></div><div class="document-grid"><button class="document-card" data-action="maintenance"><p class="eyebrow">File 01 / Facilities</p><h2>Maintenance log</h2><p>Repeated clock failures, a service stair not shown on public plans, and an electrical disconnect that must never be touched.</p><span class="underlined">Read the log →</span></button><button class="document-card" data-action="letter"><p class="eyebrow">File 02 / Undelivered mail</p><h2>Returned correspondence</h2><p>A letter addressed to the next occupant of Room 307. It has been opened, resealed, and returned for thirty-nine years.</p><span class="underlined">Open the letter →</span></button><button class="document-card" data-action="ledger"><p class="eyebrow">File 03 / Guest records</p><h2>The original register</h2><p>Opening-night guest names. All seven entries share the same unresolved departure field.</p><span class="underlined">Examine the register →</span></button><button class="document-card" data-action="nightmemo"><p class="eyebrow">File 04 / Personnel</p><h2>Instructions for the relief porter</h2><p>The face behind the desk may change. The instructions do not. Please do not read the final paragraph aloud.</p><span class="underlined">Read shift instructions →</span></button></div></div>`
+    );
+  }
+  const pageTitles = {
+    home: "A familiar place, every time",
+    rooms: "Rooms & Suites",
+    history: "Our History",
+    guestbook: "Guestbook",
+    reservations: "Reservations",
+    employees: "Employee Access",
+  };
+  function render(moveFocus = false, editReservation = false) {
+    let route = location.hash.slice(1).split("?")[0] || "home";
+    if (!Object.hasOwn(pageTitles, route)) route = "home";
+    main.innerHTML =
+      route === "home"
+        ? homeMarkup
+        : {
+            rooms: roomsPage,
+            history: historyPage,
+            guestbook: guestbookPage,
+            reservations: () => reservationsPage(editReservation),
+            employees: employeesPage,
+          }[route]();
+    document.title = `The Stillwater Hotel — ${pageTitles[route]}`;
+    document.querySelectorAll("[data-nav]").forEach((a) => {
+      if (a.dataset.nav === route) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    if (moveFocus) {
+      window.scrollTo(0, 0);
+      main.focus({ preventScroll: true });
+    }
+  }
+  function go(route) {
+    if (dialog.open) close();
+    if (location.hash === "#" + route) render(true);
+    else location.hash = route;
+  }
+  window.addEventListener("hashchange", () => {
+    if (dialog.open) close();
+    render(true);
   });
   const actions = {
     rules() {
       show(
-        "住客须知",
-        `<p class="document-intro">尊敬的住客，欢迎入住无归旅馆。为了您与其他住客的安全，请仔细阅读并牢记以下规定。</p>
-      <ol class="rules-list"><li><span>本旅馆只有三层。若电梯显示第四层，请闭上眼睛，直到铃声停止。</span></li><li><span>您的房间是 307。不要接受任何人递来的第二把钥匙，即使那个人看起来像您。</span></li><li><span>凌晨 <b>04:04</b> 后，请勿离开客房。如果时钟停下，请不要尝试修理。</span></li><li><span>走廊里没有儿童。若听见儿童的笑声，请将电视音量调到最小。</span></li><li><span>若有人敲门，请先确认门外是否有影子。没有影子时，<span class="redacted" title="不要开门">不要开门</span>。</span></li><li><span>离店时请寻找红色出口标识。我们从未安装过白色的出口门。</span></li></ol><p class="handwritten">背面有一行潦草的小字：<br>「不存在的门，只认停下来的时间。四位数字，别加冒号。」</p><button class="paper-button" data-action="clue-clock">记下背面的文字 ＋</button><div><span class="document-stamp">请勿带离客房</span></div>`,
-        "GUEST GUIDELINES / DOCUMENT 001",
+        "A few house traditions",
+        `<p class="document-intro">A copy of this card is placed in every guest room. Following these small courtesies helps everyone enjoy a peaceful stay.</p><ol class="rules-list"><li><span>The Stillwater has three floors. Should the lift announce a fourth, close your eyes until the bell has stopped.</span></li><li><span>Keep your assigned key. Do not accept a replacement from a person who resembles you.</span></li><li><span>After <b>04:04 a.m.</b>, please remain in your room. A stopped clock is not a fault that requires your attention.</span></li><li><span>We do not accommodate children in the west wing. If you hear laughter, turn your television down and do not investigate.</span></li><li><span>Before opening your door at night, check for a shadow beneath it. If there is no shadow, do not open the door.</span></li><li><span>For departure, follow the <b>red EXIT</b> signs. We have never installed a white exit door.</span></li><li><span>If you discover a second guest register, do not sign it. The original belongs behind the reception desk.</span></li></ol><p class="handwritten">On the reverse, in pencil:<br>“The unlisted door keeps the time we lost. Four digits. Leave out the colon.”</p>${clueButton("clock", "Copy the penciled note")}<div class="dialog-actions"><button class="paper-button" data-page="reservations">Return to registration →</button></div>`,
+        "GUEST SERVICES / BEDSIDE CARD 01",
       );
     },
-    "clue-clock"() {
-      collect("clock");
-    },
-    "clue-tape"() {
-      collect("tape");
-    },
-    "clue-name"() {
-      collect("name");
-    },
-    checkin() {
-      if (state.checkedIn) return actions.key();
+    notice() {
       show(
-        "您的客房，已等候多时。",
-        `<p class="document-intro">请在登记簿上留下您的名字。无需证件，我们知道您从哪里来。</p><form id="checkin-form"><label class="form-label" for="guest-name">住客姓名 / GUEST NAME</label><input class="text-input" id="guest-name" name="name" autocomplete="nickname" maxlength="20" placeholder="请填写您的称呼" required><label class="check-row"><input type="checkbox" name="rules" required><span>我已阅读住客须知，并承诺不进入不存在的楼层。<br><button type="button" class="danger-link" data-action="rules" style="margin:0">阅读完整住客须知 ↗</button></span></label><div class="form-error" id="form-error" role="status"></div><button class="button button-red full-button" type="submit">领取 307 号房钥匙 <span>⚿</span></button></form><p class="form-hint">登记内容仅保存在当前浏览器，不会上传至任何服务器。</p>`,
-      );
-    },
-    key() {
-      show(
-        "欢迎回来，" + escape(state.name) + "。",
-        `<div class="key-card"><span class="eyebrow" style="justify-content:center">YOUR ROOM / 您的房间</span><div class="key-number">307</div><p>三层 · 走廊尽头 · 左手边第二间</p><span class="document-stamp">已登记入住</span></div><p>前台将一把冰凉的铜钥匙放在您手心。钥匙牌背面刻着一行字：<br><em>「您上次落下的东西，我们都替您保留着。」</em></p><div class="dialog-actions"><button class="button button-red" data-action="explore">前往客房 <span>→</span></button><button class="paper-button" data-action="journal">打开线索笔记</button></div>`,
-      );
-    },
-    lookup() {
-      if (state.checkedIn) return actions.key();
-      show(
-        "查询您的房间",
-        `<p class="document-intro">请提供房号。若您尚未登记，前台一直在这里。</p><form id="lookup-form"><label class="form-label" for="room-number">房间号码 / ROOM NUMBER</label><input class="text-input" id="room-number" inputmode="numeric" maxlength="3" pattern="[0-9]{3}" placeholder="例如：307" required><div class="form-error" id="form-error" role="status"></div><button class="button button-red full-button" type="submit">查询房间 →</button></form><div class="dialog-actions"><button class="paper-button" data-action="checkin">尚未登记？办理入住 ↗</button></div>`,
+        "Third-floor maintenance",
+        `<p class="eyebrow">Restoration bulletin · Updated 10/03</p><p>As part of our continuing conservation work, the west end of the third floor is temporarily unavailable after quiet hours. Guests are asked to use only the rooms marked on their printed map.</p><p>The elevator may occasionally display an incorrect floor number. Please remain inside until it returns to a listed floor. Do not use the service stair without a member of staff.</p><p class="handwritten">Typewritten addendum:<br>“There is no fourth floor. Any reference to a fourth floor in earlier bulletins was an administrative error.”</p><p>We appreciate your patience.<br><i>The Management</i></p><div class="dialog-actions"><button class="paper-button" data-action="explore">View the approved floor plan →</button><button class="paper-button" data-action="rules">Read the guest guidelines</button></div>`,
+        "HOTEL NOTICE / CONSERVATION OFFICE",
       );
     },
     explore() {
       show(
-        "三层 · 客房走廊",
-        `<p class="document-intro">电梯门缓缓打开。空气里有旧地毯与消毒水的气味。走廊比您想象的更长。</p><div class="floor-map"><button data-room="301">301<small>请勿打扰</small></button><button data-room="303">303<small>门缝透出微光</small></button><button data-room="307">307<small>您的房间</small></button><button data-room="309">309<small>空置</small></button><button data-room="311">311<small>正在清洁</small></button><button class="locked" data-room="404">404<small>不在平面图上</small></button></div><p class="handwritten">您数了两遍。这里明明只有五扇门。<br>但走廊的尽头，似乎还有一扇。</p><button class="paper-button" data-action="monitor">查看走廊监控 ↗</button>`,
-        "FLOOR DIRECTORY / LEVEL 03",
+        "The third-floor directory",
+        `<p class="document-intro">The lift opens onto a long, quiet corridor. According to the framed plan beside the door, there are five rooms on this floor.</p><div class="floor-map"><button data-room="301">301<small>Do not disturb</small></button><button data-room="303">303<small>A light under the door</small></button><button data-room="307">307<small>${state.checkedIn ? "Your room" : "A key is waiting"}</small></button><button data-room="309">309<small>Awaiting service</small></button><button data-room="311">311<small>Housekeeping</small></button><button class="locked" data-room="404">404<small>Not on the plan</small></button></div><p class="handwritten">You count the doors twice. There are six.<br>The last one was not there when you stepped out of the lift.</p><div class="dialog-actions"><button class="paper-button" data-action="monitor">Consult the corridor recording →</button>${!state.checkedIn ? '<button class="paper-button" data-page="reservations">Collect your room key</button>' : ""}</div>`,
+        "FLOOR DIRECTORY / LEVEL THREE",
+      );
+    },
+    lookup() {
+      show(
+        "Find your room",
+        `<p class="document-intro">Please enter the number stamped on your key. If you have not collected one, reception will be happy to help.</p><form id="lookup-form"><label class="field-label" for="room-number">Room number</label><input class="text-input" id="room-number" name="roomNumber" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" placeholder="For example, 307" required><div id="lookup-error" class="form-error" role="status"></div><button class="button full-width" type="submit">Find my room →</button></form><div class="dialog-actions"><button class="paper-button" data-page="reservations">Return to reception</button></div>`,
+      );
+    },
+    ledger() {
+      show(
+        "The opening-night register",
+        `<p class="eyebrow">Original guest ledger / 03 October 1987</p><p class="document-intro">The page is stained with tea. The ink on the names is faded, but the departure column looks freshly written.</p><table class="ledger-table"><thead><tr><th>ROOM</th><th>GUEST</th><th>DEPARTURE</th></tr></thead><tbody><tr><td>108</td><td>Margaret H.</td><td>Pending</td></tr><tr><td>214</td><td>David & Ruth</td><td>Pending</td></tr><tr><td>301</td><td>Arthur Bell</td><td>Pending</td></tr><tr><td>303</td><td>E. Rowan</td><td>Pending</td></tr><tr class="marked"><td>307</td><td>Eleanor Vale</td><td>Waiting</td></tr><tr><td>309</td><td>The relief porter</td><td>Pending</td></tr><tr><td>311</td><td><i>Name removed</i></td><td>Pending</td></tr></tbody></table><p class="handwritten">In the margin: “Night desk keypad: opening day, month first. Nothing here should be difficult to remember.”</p><p>Below the final line, in smaller handwriting: “Every name on this page is still checked in. Do not leave them behind.”</p>${clueButton("register", "Copy the opening-night record")}<div class="dialog-actions"><button class="paper-button" data-page="employees">Find the night desk archive →</button></div>`,
+        "HOTEL COLLECTION / REGISTER NO. 001",
       );
     },
     monitor() {
       camera(1);
     },
-    archives() {
+    maintenance() {
+      if (!state.staff) return go("employees");
       show(
-        "异常档案室",
-        `<p class="document-intro">这些记录从未正式归档。若您正在阅读，请不要告诉前台。</p><button class="entry archive-entry" style="width:100%;text-align:left" data-action="monitor"><div class="entry-top"><span>CASE 001 / 监控异常</span><span>1984.11.03 ↗</span></div><p>第三层走廊录像中，出现了一扇未在图纸上标记的门。</p></button><button class="entry archive-entry" style="width:100%;text-align:left" data-action="lost"><div class="entry-top"><span>CASE 002 / 遗失物品</span><span>1984.11.01 ↗</span></div><p>307 号房枕头下的日记。最后几页被反复撕下，又粘了回去。</p></button><button class="entry archive-entry" style="width:100%;text-align:left" data-action="notice"><div class="entry-top"><span>CASE 003 / 电梯停运</span><span>日期已涂去 ↗</span></div><p>旅馆只有三层，但电梯检修记录里出现了第四个按钮。</p></button>`,
-        "RESTRICTED ARCHIVE / STAFF ONLY",
+        "Maintenance log",
+        `<p class="eyebrow">Facilities / Retained by the night porter</p><article class="entry"><p><b>03 October 1987, 04:04.</b> All guest-room clocks stopped simultaneously. The west corridor now measures six doors longer than the building. Main supply remains energized despite isolation at the street.</p><p><b>04 October, same time.</b> Found a second supply behind the reception clock. Brass lever, marked STILLWATER. It feeds the hotel, not the lights. Pulling it briefly revealed a stairwell where the wall should be.</p><p><b>Date no longer advancing.</b> The hotel will offer two exits. Both belong to it. The service stair does not.</p></article><p class="handwritten">Take the original register. Cut the supply at the brass disconnect. Only then use the service stair. Do not let the book close before the last guest has crossed.</p>${clueButton("switch", "Record the service-stair procedure")}`,
+        "STAFF ARCHIVE / MAINTENANCE FILE 01",
       );
     },
-    guestbook() {
+    letter() {
+      if (!state.staff) return go("employees");
       show(
-        "那些留下的声音",
-        `<p class="document-intro">留言簿上的墨迹还没有干。您分不清这些话写于昨天，还是很多年以前。</p><article class="entry"><div class="entry-top"><span>住客 021 · 陈女士</span><span>1984.10.28</span></div><p>很安静。窗外的景色每天都一样，连树上的那只鸟也没有动过。下次还会来。</p></article><article class="entry"><div class="entry-top"><span>住客 306 · 佚名</span><span>1984.11.01</span></div><p>我不记得自己住了多久。前台说我的家人已经回去了。可我一直是一个人来的。</p></article><article class="entry"><div class="entry-top"><span>住客 307 · 林远</span><span>日期不详</span></div><p class="handwritten">如果你能看到这些字，记住：红色的门才是出口。白色的门，会让你回到第一天。别像我一样，再次签下自己的名字。</p><button class="paper-button" data-action="clue-name">记下林远的警告 ＋</button></article><p class="form-hint">这一页的背面，依稀透着您的名字。</p>`,
-        "GUEST MESSAGES / VOLUME 04",
+        "A letter to the next guest",
+        `<p class="eyebrow">Returned correspondence / Room 307</p><p class="document-intro">The envelope has your room number on it. Beneath the stamps, someone has written “PLEASE TRY AGAIN.”</p><p><i>Dear whoever finally finds this,</i></p><p>My name is Eleanor Vale. We built a place where nobody would have to feel alone. I asked it to keep our guests safe. I did not understand what it meant to keep them.</p><p>The register is the promise. The clock is the lock. The doors are only distractions.</p><p>I have signed a group checkout slip and left it inside the original book. A living guest must complete the record: the stopped time, the extra door, Rowan’s warning, the opening page, the disconnect, and this letter. Six things the hotel would rather you forget.</p><p>Carry the book to the service stair after cutting the supply. Do not sign a new page. Let the last guest leave before you do.</p><p><i>With all the apologies a lifetime can hold,<br>Eleanor</i></p>${clueButton("letter", "Keep Eleanor’s letter")}`,
+        "STAFF ARCHIVE / UNDELIVERED ITEM 0307",
       );
     },
-    notice() {
+    nightmemo() {
+      if (!state.staff) return go("employees");
       show(
-        "关于四层电梯临时停用的通知",
-        `<p class="eyebrow">1984.11.03 / 设施维护通知</p><p>因例行检修，四层电梯按钮即日起停止使用。请各位住客从三层返回客房。</p><p>若检修期间听见井道内有人呼救，请勿自行开启电梯门。值班人员将予以处理。</p><p class="handwritten">补充说明：本旅馆没有四层。<br>上一段通知系打字员失误，请忽略。</p><p>经理室 敬启<br>无归旅馆设施管理部</p><button class="paper-button" data-action="explore">查看楼层导览 ↗</button>`,
-        "HOTEL NOTICE / 1984.11.03",
+        "Instructions for the relief porter",
+        `<p class="document-intro">Please familiarize yourself with the following before beginning your first shift.</p><ol class="rules-list"><li><span>Keep a lamp lit at reception. A guest arriving after midnight may not remember making a reservation. This is normal.</span></li><li><span>Offer Room 307. Regardless of the requested room type, offer Room 307.</span></li><li><span>If a guest asks to leave, indicate the red sign. Do not mention the white door.</span></li><li><span>Do not open returned mail. Mrs. Vale’s correspondence concerns the original booking only.</span></li><li><span>If the ventilation hum stops, do not restart it. Take your personal belongings and wait by the service stair.</span></li></ol><p class="handwritten">At the bottom, written in a different hand:<br>“You are not the porter. You were a guest. Check the ledger.”</p><div class="dialog-actions"><button class="paper-button" data-action="ledger">Reopen the original register →</button></div>`,
+        "STAFF ARCHIVE / NIGHT SHIFT HANDOVER",
       );
     },
-    lost() {
+    diary() {
       show(
-        "失物招领：无名日记",
-        `<p class="eyebrow">LOST & FOUND / ITEM 0307</p><p>日记封皮已经开裂，扉页的名字被划掉了。</p><article class="entry"><p>「第一天。下雨了，我走进这家旅馆避雨。前台说我的房间已经准备好。奇怪，我明明没有预约。」</p><p>「第三天。走廊尽头那扇门，只在 <b>04:04</b> 出现。四位数字是钥匙。我用口袋里的纸记下来，却发现纸上早就写着同样的数字。」</p><p>「第……天。不要相信白色的光。找到林远。他在留言簿里留了答案。」</p></article><button class="paper-button" data-action="clue-clock">记录日记中的时间 ＋</button><div class="dialog-actions"><button class="paper-button" data-action="guestbook">翻阅住客留言 ↗</button></div>`,
-        "LOST & FOUND / INTERNAL RECORD",
+        "The notebook under the pillow",
+        `<p class="document-intro">The cover has softened with age. On the first page, someone has written your room number over and over.</p><article class="entry"><p><i>First night.</i> It was raining. I came inside to ask for directions. The porter said my room had been ready for years.</p><p><i>Third night.</i> At <b>04:04</b>, a door appears at the end of the corridor. Its lock accepts four digits. I wrote the time on my palm. When I woke, it was in someone else’s handwriting.</p><p><i>A later night.</i> I found a loose page in the guestbook. Rowan knows about the exits. Eleanor knows about the hotel. I think leaving and ending this are two different things.</p></article><p class="handwritten">“If you can, do not leave alone.”</p>${clueButton("clock", "Record the time in the notebook")}<div class="dialog-actions"><button class="paper-button" data-page="guestbook">Find Rowan’s page →</button><button class="paper-button" data-page="history">Find Eleanor’s history →</button></div>`,
+        "PERSONAL EFFECTS / ROOM 307",
       );
     },
     journal() {
-      const count = state.clues.length;
+      const titles = {
+        departure: "The road home",
+        return: "A familiar place",
+        release: "The last checkout",
+      };
       show(
-        "您的线索笔记",
-        `<p class="document-intro">${state.checkedIn ? escape(state.name) + " · 307 号房住客" : "一位尚未登记的访客"}<br>已收集 ${count} / 3 条线索。${count === 3 ? "现在，您知道去哪里，也知道如何离开。" : "留意须知的背面、走廊的监控，以及最后一位住客的留言。"}</p><div class="progress-track"><div style="width:${(count / 3) * 100}%"></div></div><ul class="journal-list">${Object.entries(
-          clueText,
+        "Your guest notebook",
+        `<p class="document-intro">${state.checkedIn ? escape(state.name) + " · Room 307" : "An unregistered guest"}<br>${state.clues.length} of 6 records recovered. ${state.clues.length === 6 ? "The record is complete. You can now find another way out." : "Take your time. The small details are usually the ones worth keeping."}</p><div class="progress-track"><div style="width:${(state.clues.length / 6) * 100}%"></div></div><ul class="journal-list">${Object.entries(
+          clues,
         )
           .map(
-            ([id, [title, text]], i) =>
-              `<li><span>0${i + 1}</span>${state.clues.includes(id) ? "<b>" + title + "</b><p>" + text + "</p>" : "尚未找到 · " + ["住客须知", "公共区域监控", "住客留言"][i]}</li>`,
+            ([id, clue], i) =>
+              `<li><span class="journal-number">0${i + 1}</span><div>${state.clues.includes(id) ? `<strong>${clue.title}</strong><p>${clue.text}</p>` : `<span class="journal-missing">A missing piece</span><p>${clue.source}</p>`}</div></li>`,
           )
           .join(
             "",
-          )}</ul>${state.ending ? `<p class="handwritten">已记录结局：${state.ending === "exit" ? "天亮以后" : "另一位归客"}</p>` : ""}<div class="dialog-actions"><button class="button button-red" data-room="404">寻找那扇门 →</button><button class="paper-button" data-action="archives">前往档案室</button></div>`,
+          )}</ul>${state.endings.length ? `<h3>Departures remembered</h3><p>${state.endings.map((e) => titles[e]).join(" · ")}</p>` : ""}<div class="dialog-actions"><button class="button" data-room="404">Find the unlisted door →</button><button class="paper-button" data-page="employees">Visit the night desk</button></div><p class="local-note">Notes are saved on this device. All story clues can be found on this website; no outside investigation is required.</p>`,
+        "PERSONAL EFFECTS / GUEST NOTEBOOK",
+      );
+    },
+    inquiry() {
+      show(
+        "At your service",
+        `<p>Our front desk is open at every hour, in every season. Whether you are looking for a room or someone you remember, we are pleased to help.</p><h3>Before you arrive</h3><p>Rooms may be requested through our reservations page. The guest guidelines explain our quiet hours and a few hotel traditions. Our public history includes the dates and details most visitors need.</p><h3>If you are already here</h3><p>Keep your key with you. Consult the third-floor directory if a room number seems unfamiliar. Messages for past guests are kept in the guestbook.</p><div class="dialog-actions"><button class="button" data-page="reservations">Visit reception →</button><button class="paper-button" data-action="lookup">Find my room</button></div><p class="local-note">This hotel and its contact details are fictional. No inquiry is sent, and no real reservation is made.</p>`,
       );
     },
     about() {
       show(
-        "关于本次入住",
-        `<p>《无归旅馆》是一部原创、虚构的后室风格 ARG 网页短篇。它包含规则怪谈、阅读解谜与两个结局。所有人物、地址、监控和留言均属故事设定。</p><h3>如何游玩</h3><p>办理入住后，阅读住客须知，切换监控，翻看住客留言。主动将发现记入笔记，再去寻找不存在的客房。整个谜题都能在本站内解开，无需访问现实地点或联系任何人。</p><p class="accessibility-note">无突然惊吓画面。环境音默认关闭，可随时切换。进度仅保存在此浏览器中；系统减少动态效果设置会被尊重。</p><button class="danger-link" data-action="reset-prompt">重新开始 / 清除本地探索进度</button>`,
+        "About your stay",
+        `<p><i>The Stillwater Hotel</i> is an original, fictional, Backrooms-inspired interactive mystery. Its comfortable public website conceals an ongoing story told through guest records, security footage, and staff correspondence.</p><h3>How to explore</h3><p>Register under a nickname, collect your key, and read carefully. Save discoveries to your notebook. Two doors offer two endings; a complete record may reveal a third. All clues are inside this site. You never need to contact anyone or visit a real place.</p><h3>Comfort & accessibility</h3><p>No sudden jump scares or flashing images. Optional ambient audio starts only when you choose. Reduced-motion preferences are respected. Press Escape to close a document.</p><button class="sound-button" id="sound-button" data-action="sound" aria-pressed="${!!soundContext}">Ambient sound: ${soundContext ? "on" : "off"}</button><h3>Your information</h3><p>Your nickname, registration, notes, and progress stay in this browser. They are not sent to a server. Clearing site data erases them. The employee keypad is a fictional puzzle, not real security. Images are generated; characters, hotel, and bookings are fictional.</p><p class="local-note">Source files can be opened locally after extracting the ZIP, or served using the included Node.js development server.</p><div class="dialog-actions"><button class="danger-link" data-action="reset-prompt">Start over / clear this device’s story progress</button></div>`,
+        "HOTEL RESOURCES / SITE INFORMATION",
       );
     },
     "reset-prompt"() {
       show(
-        "重新登记？",
-        `<p>这将清除当前浏览器中的姓名、线索和结局。环境音也会关闭。</p><div class="dialog-actions"><button class="button button-red" data-action="reset-confirm">确认重新开始</button><button class="paper-button" data-action="about">保留我的记录</button></div>`,
+        "Begin a new stay?",
+        `<p>This clears your registration, notebook, local guestbook messages, archive access, and discovered endings. The hotel will remember you as a first-time visitor.</p><div class="dialog-actions"><button class="button" data-action="reset-confirm">Clear progress & begin again</button><button class="paper-button" data-action="about">Keep my records</button></div>`,
       );
     },
     "reset-confirm"() {
-      state = freshState();
+      state = fresh();
+      try {
+        localStorage.removeItem("no-return-hotel:v1");
+      } catch {
+        /* Optional migration record. */
+      }
       save();
       if (soundContext) {
-        soundContext.close();
+        void soundContext.close();
         soundContext = null;
-        setSoundButton(false);
       }
       close();
-      toast("登记簿翻到了新的一页。欢迎第一次来到这里。");
+      go("home");
+      toast("A fresh page. Welcome to your first stay.");
     },
-    "ending-exit"() {
-      ending("exit");
+    "edit-reservation"() {
+      render(true, true);
     },
-    "ending-stay"() {
-      ending("stay");
+    "staff-logout"() {
+      state.staff = false;
+      save();
+      render(true);
+      toast("The archive is locked.");
+    },
+    "ending-departure"() {
+      ending("departure");
+    },
+    "ending-return"() {
+      ending("return");
+    },
+    "ending-release"() {
+      if (!state.checkedIn || state.clues.length !== 6)
+        return toast(
+          "A living, registered guest must complete all six records first.",
+        );
+      ending("release");
+    },
+    async sound() {
+      if (soundContext) {
+        await soundContext.close();
+        soundContext = null;
+        updateSound();
+        return;
+      }
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const context = new AudioContext();
+        soundContext = context;
+        await context.resume();
+        const gain = context.createGain();
+        gain.gain.setValueAtTime(0, context.currentTime);
+        gain.gain.linearRampToValueAtTime(0.025, context.currentTime + 2);
+        gain.connect(context.destination);
+        for (const frequency of [55, 55.4, 110]) {
+          const oscillator = context.createOscillator();
+          oscillator.frequency.value = frequency;
+          oscillator.connect(gain);
+          oscillator.start();
+        }
+        updateSound();
+      } catch {
+        if (soundContext) void soundContext.close();
+        soundContext = null;
+        updateSound();
+        toast(
+          "Ambient sound is not supported here. You can continue without it.",
+        );
+      }
     },
   };
+  function updateSound() {
+    const button = $("#sound-button");
+    if (button) {
+      button.textContent = `Ambient sound: ${soundContext ? "on" : "off"}`;
+      button.setAttribute("aria-pressed", String(!!soundContext));
+    }
+  }
   function camera(id) {
     const feeds = {
       1: [
-        "LOBBY / 大堂",
+        "MAIN LOBBY",
         "03:17:02",
-        "前台空无一人。登记簿却被翻到了新的一页。",
+        "The desk is unattended. The register is open to a clean page. A lamp has been left on for the next guest.",
       ],
       2: [
-        "CORRIDOR / 三层走廊",
-        "03:17:04",
-        "画面里有六扇门。第六扇门的铜牌上，清晰地写着 404。电梯按钮上的「4」被人刮掉了。",
+        "WEST CORRIDOR / LEVEL 03",
+        "04:04:00",
+        "There should be five doors. A sixth stands at the end of the hall. The brass plate reads 404. The clock above it is not moving.",
       ],
       3: [
-        "ELEVATOR / 电梯间",
+        "SERVICE LIFT",
         "04:04:00",
-        "画面停在了 04:04:00。电梯门开着，里面似乎又是一条完全相同的走廊。",
+        "The lift opens onto another copy of the same corridor. Someone has taped a note over the fourth-floor button: “DO NOT COMPLETE THE CIRCUIT.”",
       ],
     };
-    const [title, time, note] = feeds[id];
+    const [name, time, note] = feeds[id];
     show(
-      "公共区域监控",
-      `<p class="document-intro">画面仅供住客安全使用。系统显示的时间可能存在偏差。</p><div class="camera-screen" style="background-position:${id === 1 ? "center" : id === 2 ? "75% center" : "25% center"}"><div class="camera-top"><span>● REC &nbsp; CAM 0${id}</span><span>${time}</span></div>${id === 2 ? '<span class="door-number" style="font-size:28px">404</span>' : ""}<div class="camera-bottom">${title} &nbsp; / &nbsp; 1984.11.03</div></div><div class="camera-switches">${[1, 2, 3].map((n) => `<button class="${n === id ? "selected" : ""}" data-camera="${n}" aria-pressed="${n === id}">CAM 0${n}</button>`).join("")}</div><p class="camera-note">${note}</p>${id === 2 ? '<button class="paper-button" data-action="clue-tape">保存异常画面 ＋</button>' : '<p class="form-hint">试试切换到其他摄像头，留意走廊尽头。</p>'}`,
-      "SECURITY SYSTEM / LIVE FEED",
+      "Public-area security",
+      `<p class="document-intro">Archived footage is available for guest safety. The date and time shown by older cameras may not reflect current conditions.</p><div class="camera-screen" style="background-image:linear-gradient(#50604844,#1a23135c),url('assets/${id === 1 ? "lobby" : "hallway"}.png');background-position:${id === 3 ? "20%" : "center"} center"><div class="camera-top"><span>● REC &nbsp; CAM 0${id}</span><span>${time}</span></div>${id === 2 ? '<span class="camera-door">404</span>' : ""}<div class="camera-bottom">${name} / 03.10.1987</div></div><div class="camera-controls">${[1, 2, 3].map((n) => `<button data-camera="${n}" aria-pressed="${id === n}">CAM 0${n}</button>`).join("")}</div><p class="camera-note">${note}</p>${id === 2 ? clueButton("door", "Save the anomalous frame") : '<p class="fine-print">Select another camera to review the other public areas.</p>'}`,
+      "SECURITY OFFICE / RETAINED RECORDING",
+    );
+  }
+  function roomDetail(id) {
+    const card = roomCards.find((c) => c[0] === id);
+    if (!card) return;
+    show(
+      card[2],
+      `<p class="eyebrow">${card[1]}</p><p class="document-intro">${card[3]}</p><img class="history-photo" src="${card[5]}" alt="${card[6]}"><ul class="amenities">${card[4]
+        .split(" · ")
+        .map((t) => `<li>${t}</li>`)
+        .join(
+          "",
+        )}<li>Daily housekeeping</li><li>Private bathroom</li><li>24-hour reception</li></ul><p>${id === "residence" ? "The Residence is on our original third floor. Guests are asked to keep the bedside card and their room key close at hand. The view is particularly consistent." : "Our team will prepare your room before you arrive. Please note that final room assignments are made at reception."}</p><div class="dialog-actions"><button class="button" data-book="${id}">Request this room →</button><button class="paper-button" data-action="rules">Guest guidelines</button></div>`,
     );
   }
   function room(number) {
     if (number === "404")
       return show(
-        "404 · 此房间不存在",
-        `<p class="document-intro">您走到了走廊尽头。门牌并不在平面图上。门锁没有钥匙孔，只有四个旧数字转盘。</p><form id="unlock-form"><label class="form-label" for="door-code">请输入四位数字 / ACCESS CODE</label><input class="text-input" id="door-code" name="code" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="_ _ _ _" autocomplete="off" required><div class="form-error" id="form-error" role="status"></div><button class="button button-red full-button" type="submit">转动门锁 →</button></form><div class="dialog-actions"><button class="paper-button" data-action="journal">查看线索笔记</button><button class="paper-button" data-action="rules">回想住客须知</button></div>`,
-        "ROOM 404 / ACCESS RESTRICTED",
+        "Room 404",
+        `<p class="document-intro">The brass plate is cold. This room is not listed in any hotel brochure. There is no keyhole, only four tarnished number wheels.</p><p>The corridor has become very quiet. Behind the door, a clock ticks once.</p><form id="unlock-form"><label class="field-label" for="door-code">Four-digit door code</label><input class="text-input" id="door-code" name="code" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="off" placeholder="— — — —" required><div class="form-error" id="unlock-error" role="status"></div><button class="button full-width" type="submit">Turn the lock →</button></form><div class="dialog-actions"><button class="paper-button" data-action="journal">Consult my notebook</button><button class="paper-button" data-action="rules">Recall the bedside card</button></div>`,
+        "UNLISTED ACCOMMODATION / 404",
       );
     if (number === "307") {
-      if (!state.checkedIn) return actions.checkin();
+      if (!state.checkedIn)
+        return show(
+          "A key is waiting for you",
+          `<p>The door will not open without your key. A small paper tag on the handle says: “Please collect at reception. Your room has already been prepared.”</p><div class="dialog-actions"><button class="button" data-page="reservations">Visit reception →</button></div>`,
+        );
       return show(
-        "307 · 您的房间",
-        `<p class="document-intro">钥匙转动了两圈。门开了。房间里的一切似乎都很熟悉。</p><p>一张单人床，一盏床头灯，一台没有信号的电视。墙上的时钟停在了 <b>04:04</b>。窗外是一条没有尽头的走廊。</p><p>枕头下面有一本日记。封面已经褪色，但您认出了自己的笔迹。</p><p class="handwritten">「不要睡着。找到不存在的房间。」</p><div class="dialog-actions"><button class="paper-button" data-action="lost">翻开枕下的日记 ↗</button><button class="button button-red" data-action="explore">回到走廊 →</button></div>`,
-        "GUEST ROOM / 307",
+        "Room 307 — your room",
+        `<p class="document-intro">Your key turns twice. The door opens onto a room that smells faintly of cedar and old rain.</p><img class="history-photo" src="assets/guestroom.png" alt="Your quiet, warmly lit hotel room"><p>A single lamp is lit. Your slippers are beside the bed, in your size. The clock reads <b>04:04</b>. Through a gap in the curtains you see another corridor, exactly like the one outside.</p><p>There is a worn notebook under the pillow. Its cover has your room number on it.</p><div class="dialog-actions"><button class="button" data-action="diary">Read the notebook →</button><button class="paper-button" data-action="explore">Return to the corridor</button></div>`,
+        "GUEST ACCOMMODATION / ROOM 307",
       );
     }
-    const notes = {
-      301: "里面传来缓慢的脚步声。门把手轻轻转了一下。您决定不再打扰。",
-      303: "门缝里的光突然熄灭了。一个声音说：「您走错了，您的房间在前面。」",
-      309: "门上挂着一张褪色的清洁卡。日期是明天。",
-      311: "您听到了拖把拖过地毯的声音。可这里不应该用拖把。",
+    const descriptions = {
+      301: "Slow footsteps stop just behind the door. The handle moves. You decide not to disturb the occupant.",
+      303: "The strip of light beneath the door goes dark. A voice says, very gently, “Your room is farther down.”",
+      309: "A housekeeping card hangs from the handle. Its service date is tomorrow. The ink is still wet.",
+      311: "Someone is mopping behind the door. You remember that every floor in this wing is carpeted.",
     };
     show(
-      escape(number) + " · 请勿打扰",
-      `<p>${notes[number] || "这间客房暂不开放。"}</p><div class="dialog-actions"><button class="paper-button" data-action="explore">返回走廊 ←</button></div>`,
+      `Room ${number} — do not disturb`,
+      `<p>${descriptions[number] || "This accommodation is currently unavailable."}</p><div class="dialog-actions"><button class="paper-button" data-action="explore">← Return to the corridor</button></div>`,
     );
   }
-  function unlock() {
+  function beyondDoor() {
+    const ready = state.checkedIn && state.clues.length === 6;
     show(
-      "门后的两束光",
-      `<p class="document-intro">门锁发出一声轻响。里面不是客房，而是一座没有按钮的电梯。</p><p>电梯下行了很久。门再次打开时，您看见两条路。</p><div class="entry"><h3>左边 · 红色出口</h3><p>生锈的铁门上亮着暗红色的 EXIT。门后吹来潮湿的风，带着陌生城市的气味。</p><button class="button button-red" data-action="ending-exit">推开红色的门 →</button></div><div class="entry"><h3>右边 · 白色的门</h3><p>明亮、温暖，像家一样。一个熟悉的声音在门后说：「欢迎回来，房间已经准备好了。」</p><button class="paper-button" data-action="ending-stay">走向白色的光 →</button></div><button class="danger-link" data-action="journal">先回想一下林远的警告</button>`,
-      "BASEMENT / THE LAST CHOICE",
+      "A choice of departures",
+      `<p class="document-intro">The lock clicks. Beyond the door is a small lift with no buttons. It descends for a long time. When it opens, you are back in the lobby. This time, nobody is behind the desk.</p><section class="ending-option"><h3>The red EXIT</h3><p>A rusted iron door. Cold air moves beneath it, carrying the smell of rain on a road you almost remember.</p><button class="button" data-action="ending-departure">Follow the red sign →</button></section><section class="ending-option"><h3>The white door</h3><p>Warm light. A voice you have missed. “Your room is waiting,” it says. “You do not have to go anywhere.”</p><button class="paper-button" data-action="ending-return">Step into the white light →</button></section><section class="ending-option special"><h3>${ready ? "The service stair" : "A third possibility"}</h3><p>${ready ? "The record is complete. You recognize the brass disconnect behind the clock. The original register lies open beside it, Eleanor’s signed checkout slip between its pages. There is still time to bring the others." : "Behind the reception clock, a seam in the wallpaper catches your eye. Something here is unfinished. Recover all six records and register as a guest to understand it."}</p><button class="paper-button" data-action="ending-release" ${ready ? "" : "disabled"}>Take the register & cut the supply →</button></section><div class="dialog-actions"><button class="underlined" data-action="journal">Review what you remember →</button></div>`,
+      "GROUND FLOOR / AFTER QUIET HOURS",
     );
   }
-  function ending(type) {
-    state.ending = type;
-    save();
+  function ending(id) {
+    if (!state.endings.includes(id)) {
+      state.endings.push(id);
+      save();
+    }
+    const contents = {
+      departure: [
+        "01 / THE ROAD HOME",
+        "The road home",
+        "☼",
+        '<p>You push the red door open.<br>Morning air touches your face. You are standing on an ordinary road, beside an ordinary, empty field.</p><p>There is no hotel behind you.</p><p>In your palm, the brass key is still warm. On its reverse, a new line has appeared:</p><p class="handwritten">“We look forward to your next visit.”</p>',
+      ],
+      return: [
+        "02 / A FAMILIAR PLACE",
+        "A familiar place",
+        "S",
+        '<p>The light is warm. You close your eyes for just a moment.</p><p>When you open them, you are at reception. The porter smiles as though you have only stepped outside for a little air.</p><p>“Your room is waiting,” he says, turning the register toward you.</p><p class="handwritten">This time, your name is already on the page.</p>',
+      ],
+      release: [
+        "03 / THE LAST CHECKOUT",
+        "The last checkout",
+        "↗",
+        '<p>You lift the original register and pull the brass lever.</p><p>The hum stops. For the first time, you hear the hotel settling: wood, rain, a long, tired breath. A narrow stair appears behind the desk.</p><p>They come quietly. Margaret with her teacup. Arthur carrying his coat. Rowan with a red ribbon tied around one wrist. Eleanor is last. She places a hand on the open page.</p><p>One by one, the departure fields fill themselves in.</p><p>When you step outside, the windows behind you go dark. Your key has become a small piece of ordinary brass.</p><p class="handwritten">For once, nobody is waiting for you to come back.</p>',
+      ],
+    };
+    const [code, title, icon, text] = contents[id];
     show(
-      type === "exit" ? "天亮以后" : "另一位归客",
-      `<div class="ending"><div class="ending-symbol">${type === "exit" ? "☼" : "⚿"}</div><p class="ending-code">ENDING ${type === "exit" ? "01 / THE WAY OUT" : "02 / WELCOME BACK"}</p>${type === "exit" ? '<p>您推开了生锈的门。<br>清晨的空气冰凉，却真实得让人想哭。<br>身后是一堵旧墙。旅馆不见了。</p><p>您摊开手心。那把 307 号房的钥匙还在。</p><p class="handwritten">这一次，请记住回家的路。</p>' : '<p>白光温柔地包裹了您。<br>再睁眼时，您站在前台。<br>一个面带微笑的人，把登记簿推到您面前。</p><p>「夜深了。您终于回来了。」</p><p class="handwritten">桌上的登记簿，又多了一个您的名字。</p>'}<div class="dialog-actions" style="justify-content:center"><button class="paper-button" data-action="journal">查看本次探索记录</button><button class="paper-button" data-room="404">返回那扇门</button></div><p class="form-hint">结局已保存在本地。您可以继续探索，或在「关于本次入住」中重新开始。</p></div>`,
-      "STAY COMPLETE / AN ENDING, PERHAPS",
+      title,
+      `<div class="ending"><div class="ending-icon">${icon}</div><p class="ending-code">${code}</p>${text}<div class="dialog-actions"><button class="button" data-action="journal">Keep the story in my notebook</button><button class="paper-button" data-room="404">Revisit the last door</button></div><p class="local-note">${state.endings.length} of 3 endings remembered. Your progress remains saved; you can keep exploring without starting over.</p></div>`,
+      "THE STILLWATER HOTEL / DEPARTURE RECORD",
     );
   }
   document.addEventListener("click", (event) => {
     const trigger = event.target.closest(
-      "[data-action], [data-room], [data-camera]",
+      "[data-action],[data-page],[data-room],[data-camera],[data-clue],[data-roomtype],[data-book]",
     );
-    if (!trigger) return;
-    if (trigger.dataset.action) actions[trigger.dataset.action]?.();
+    if (!trigger || trigger.disabled) return;
+    if (trigger.dataset.action) void actions[trigger.dataset.action]?.();
+    else if (trigger.dataset.page) go(trigger.dataset.page);
     else if (trigger.dataset.room) room(trigger.dataset.room);
     else if (trigger.dataset.camera) camera(Number(trigger.dataset.camera));
-    closeMenu();
+    else if (trigger.dataset.clue) collect(trigger.dataset.clue);
+    else if (trigger.dataset.roomtype) roomDetail(trigger.dataset.roomtype);
+    else if (trigger.dataset.book) {
+      state.roomType = trigger.dataset.book;
+      save();
+      go("reservations");
+    }
+  });
+  document.addEventListener("input", (event) => {
+    if (event.target.id === "guest-message")
+      $("#message-count").textContent = event.target.value.length;
   });
   document.addEventListener("submit", (event) => {
+    const form = event.target;
     if (
-      !["checkin-form", "lookup-form", "unlock-form"].includes(event.target.id)
+      ![
+        "reservation-form",
+        "guestbook-form",
+        "lookup-form",
+        "unlock-form",
+        "employee-form",
+      ].includes(form.id)
     )
       return;
     event.preventDefault();
-    const form = event.target;
-    if (form.id === "checkin-form") {
-      const name = form.elements.name.value.trim();
+    if (form.id === "reservation-form") {
+      const name = form.elements.guestName.value.trim();
       if (!name) {
-        $("#form-error").textContent = "请留下一个名字，前台才能为您登记。";
+        $("#reservation-error").textContent =
+          "Please leave a name for the register.";
         return;
       }
-      state.name = name;
+      state.name = name.slice(0, 40);
+      state.arrival = form.elements.arrival.value;
+      state.nights = Number(form.elements.nights.value);
+      state.roomType = form.elements.roomType.value;
       state.checkedIn = true;
       save();
-      actions.key();
-      toast("入住已登记 · 307 号房的钥匙交给您了。");
+      render(true);
+      toast("Your key is ready. Welcome to Room 307.");
+    } else if (form.id === "guestbook-form") {
+      const name = form.elements.guestName.value.trim();
+      const text = form.elements.message.value.trim();
+      if (!name || !text) {
+        $("#guestbook-error").textContent =
+          "Please leave both a name and a message.";
+        return;
+      }
+      state.messages.push({
+        name: name.slice(0, 40),
+        text: text.slice(0, 400),
+      });
+      state.messages = state.messages.slice(-5);
+      save();
+      render();
+      toast(
+        "Your note is saved on this device. Nothing was sent or published.",
+      );
     } else if (form.id === "lookup-form") {
-      const number = $("#room-number").value;
-      if (["307", "404"].includes(number)) room(number);
+      const number = form.elements.roomNumber.value;
+      if (["301", "303", "307", "309", "311", "404"].includes(number))
+        room(number);
       else
-        $("#form-error").textContent =
-          "登记簿里没有这间客房。请确认房号，或先办理入住。";
+        $("#lookup-error").textContent =
+          "That number is not in our records. Please check your key or return to reception.";
     } else if (form.id === "unlock-form") {
-      if ($("#door-code").value === "0404") unlock();
+      if (form.elements.code.value === "0404") beyondDoor();
       else {
-        $("#form-error").textContent =
-          "门没有打开。想一想：住客须知里的时钟停在几点？";
-        $("#door-code").select();
+        $("#unlock-error").textContent =
+          "The lock does not move. What time did the bedside card ask you to remember?";
+        form.elements.code.select();
+      }
+    } else if (form.id === "employee-form") {
+      if (form.elements.staffCode.value === "1003") {
+        state.staff = true;
+        save();
+        render(true);
+        toast("Night desk access granted. Please return every file.");
+      } else {
+        $("#employee-error").textContent =
+          "Code not recognized. Opening day, month first: consult Our History.";
+        form.elements.staffCode.select();
       }
     }
   });
-  function closeMenu() {
-    $("nav").classList.remove("open");
-    $(".mobile-menu").setAttribute("aria-expanded", "false");
-    $(".mobile-menu").setAttribute("aria-label", "打开导航");
-  }
-  $(".mobile-menu").addEventListener("click", () => {
-    const open = $("nav").classList.toggle("open");
-    $(".mobile-menu").setAttribute("aria-expanded", String(open));
-    $(".mobile-menu").setAttribute(
-      "aria-label",
-      open ? "关闭导航" : "打开导航",
-    );
-  });
-  document.querySelectorAll("nav a").forEach((a) =>
-    a.addEventListener("click", () => {
-      closeMenu();
-    }),
-  );
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeMenu();
-  });
-  // A quiet ventilation hum, generated locally. Sound only starts after an explicit click.
-  let soundContext = null;
-  function setSoundButton(on) {
-    $("#sound-button").setAttribute("aria-pressed", String(on));
-    $("#sound-button").innerHTML =
-      `<span id="sound-icon">${on ? "≋" : "◌"}</span> 环境音：${on ? "开启" : "关闭"}`;
-  }
-  $("#sound-button").addEventListener("click", async () => {
-    if (soundContext) {
-      await soundContext.close();
-      soundContext = null;
-      setSoundButton(false);
-      return;
-    }
-    try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      const context = new AudioContext();
-      soundContext = context;
-      await context.resume();
-      const gain = context.createGain();
-      gain.gain.setValueAtTime(0, context.currentTime);
-      gain.gain.linearRampToValueAtTime(0.035, context.currentTime + 2);
-      gain.connect(context.destination);
-      for (const frequency of [55, 55.4, 110]) {
-        const osc = context.createOscillator();
-        osc.frequency.value = frequency;
-        osc.type = "sine";
-        osc.connect(gain);
-        osc.start();
-      }
-      setSoundButton(true);
-    } catch {
-      soundContext = null;
-      setSoundButton(false);
-      toast("当前浏览器暂不支持环境音。您仍可正常探索。");
-    }
-  });
-  let elapsed = 0;
-  function tick() {
-    const total = 3 * 3600 + 17 * 60 + elapsed++;
-    $("#hotel-clock").textContent = [
-      Math.floor(total / 3600) % 24,
-      Math.floor(total / 60) % 60,
-      total % 60,
-    ]
-      .map((n) => String(n).padStart(2, "0"))
-      .join(":");
-  }
-  tick();
-  setInterval(tick, 1000);
   save();
+  render();
 })();

@@ -11,11 +11,13 @@ for (const target of [".", "dist"]) {
     const url = `http://127.0.0.1:${server.address().port}`;
     const index = await fetch(url);
     assert.equal(index.status, 200);
-    assert.match(await index.text(), /无归旅馆/);
+    assert.match(await index.text(), /The Stillwater Hotel/);
     for (const path of [
       "/style.css",
       "/app.js",
       "/assets/hallway.png",
+      "/assets/lobby.png",
+      "/assets/guestroom.png",
       "/assets/emblem.svg",
     ]) {
       const result = await fetch(url + path);

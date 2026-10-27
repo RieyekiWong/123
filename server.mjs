@@ -54,6 +54,6 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     Number(process.env.PORT) ||
     3000;
   createServer().listen(port, "0.0.0.0", () =>
-    console.log(`无归旅馆 · http://localhost:${port}`),
+    console.log(`The Stillwater Hotel · http://localhost:${port}`),
   );
 }
