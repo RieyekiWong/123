@@ -436,3 +436,132 @@
 #story-dialog.support-impostor .support-interruption {
   height: clamp(260px, 44vh, 480px);
 }
+
+/* The impostor takes over the whole hotel site, including the modal top layer.
+   A static palette change keeps the scene usable without flashing or motion. */
+body.supervisor-takeover {
+  --paper: #200e12;
+  --ivory: #2b1419;
+  --ink: #efd4cd;
+  --muted: #c09a93;
+  --bronze: #cf8e7c;
+  --line: #704039;
+  --dark: #14090d;
+  --light: #3c1c23;
+  background: var(--paper);
+  color: var(--ink);
+  color-scheme: dark;
+}
+.supervisor-takeover
+  :is(
+    .masthead-band,
+    .navigation,
+    .notice,
+    .archive-box,
+    .form-panel,
+    .applicant-banner,
+    .side-story-board article,
+    .document-card,
+    .room-card,
+    .guest-entry,
+    .staff-status,
+    .management-intro,
+    .notebook-tab,
+    .chapter-banner,
+    #surveillance-return
+  ) {
+  background: #2b1419;
+  color: #efd4cd;
+  border-color: #704039;
+}
+.supervisor-takeover :is(.topbar, .footer, .dialog-header) {
+  background: #14090d;
+  color: #e0b5ad;
+  border-color: #704039;
+}
+.supervisor-takeover
+  :is(.masthead, #page-content, .footer)
+  :is(h1, h2, h3, p, li, blockquote, a, span) {
+  color: #e0b5ad;
+}
+.supervisor-takeover .navigation a {
+  color: #e0b5ad;
+  border-color: #704039;
+}
+.supervisor-takeover .navigation a[aria-current="page"] {
+  background: #53262e;
+}
+.supervisor-takeover #page-content img {
+  filter: grayscale(0.85) sepia(0.65) saturate(0.7) brightness(0.55);
+}
+body.supervisor-takeover #story-dialog::backdrop {
+  background: #1a040440;
+  backdrop-filter: none;
+}
+body.supervisor-takeover #story-dialog.support-chat-dialog,
+body.supervisor-takeover #support-chat,
+.supervisor-takeover .support-chat-dialog .dialog-header,
+.supervisor-takeover #support-chat .support-contact,
+.supervisor-takeover #support-controls {
+  background: #241016;
+  color: #e8c4bc;
+  border-color: #704039;
+}
+.supervisor-takeover #support-chat .support-contact h3,
+.supervisor-takeover #support-chat .support-contact p,
+.supervisor-takeover #dialog-close,
+.supervisor-takeover #dialog-back {
+  color: #e8c4bc;
+}
+.supervisor-takeover #support-chat .support-interruption {
+  background: #16090e;
+}
+.supervisor-takeover #support-chat .support-signal-bubble {
+  background: #3a1920;
+  color: #efcbc1;
+  border-color: #a26153;
+  text-shadow: none;
+}
+.supervisor-takeover
+  #support-chat
+  :is(
+    .support-unknown-sender,
+    .support-reconnecting,
+    .support-signal-label,
+    .support-channel,
+    .support-suggestions > span,
+    .support-input-status,
+    .support-local-note
+  ) {
+  color: #c7968c;
+}
+.supervisor-takeover #support-keywords button,
+.supervisor-takeover #support-chat .support-acknowledge,
+.supervisor-takeover
+  #support-chat
+  :is(.support-primary, .support-secondary, .support-send) {
+  background: #54262e;
+  color: #f2d1c6;
+  border-color: #a26153;
+}
+.supervisor-takeover .support-composer,
+.supervisor-takeover #support-input {
+  background: #1c0c11;
+  color: #e8c4bc;
+  border-color: #704039;
+}
+.supervisor-takeover #support-input::placeholder {
+  color: #b48780;
+}
+
+.supervisor-takeover #page-content :is(.button, .paper-button) {
+  background: #54262e;
+  color: #f2d1c6;
+  border-color: #a26153;
+}
+
+.supervisor-takeover .notebook-tab > span {
+  background: #3c1c23;
+  color: #e0b5ad;
+  border-color: #704039;
+}

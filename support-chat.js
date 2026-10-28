@@ -338,6 +338,7 @@ window.StillwaterSupport = (() => {
       if (!currentMode()) return;
       const interrupted = active();
       const impostor = state().impostorActive;
+      document.body.classList.toggle("supervisor-takeover", impostor);
       const visualEffects =
         interrupted &&
         getState().scares &&
@@ -451,6 +452,7 @@ window.StillwaterSupport = (() => {
       timer = null;
       phase = -1;
       lastActive = null;
+      document.body.classList.remove("supervisor-takeover");
       $("#story-dialog")?.classList.remove(
         "support-chat-dialog",
         "support-corrupted",

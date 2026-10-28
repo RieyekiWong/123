@@ -26,24 +26,66 @@ for (const entry of ["index-zh.html", "index.html"])
     await page
       .locator('.management-profiles [data-action="contact-supervisor"]')
       .click();
+    const normalBody = await page
+      .locator("body")
+      .evaluate((el) => getComputedStyle(el).backgroundColor);
+    const normalNav = await page
+      .locator(".navigation")
+      .evaluate((el) => getComputedStyle(el).backgroundColor);
     await ask(page, "schedule");
     await ask(page, "startdate");
     await expect(page.locator("#support-interruption")).toBeHidden();
     await ask(page, "reporttime");
     await expect(page.locator("#story-dialog")).toHaveClass(/support-impostor/);
+    await expect(page.locator("body")).toHaveClass(/supervisor-takeover/);
+    expect(
+      await page
+        .locator("body")
+        .evaluate((el) => getComputedStyle(el).backgroundColor),
+    ).not.toBe(normalBody);
+    expect(
+      await page
+        .locator(".navigation")
+        .evaluate((el) => getComputedStyle(el).backgroundColor),
+    ).not.toBe(normalNav);
+    expect(
+      await page
+        .locator("#support-controls")
+        .evaluate((el) => getComputedStyle(el).backgroundColor),
+    ).toBe("rgb(36, 16, 22)");
+    expect(
+      await page
+        .locator("#story-dialog")
+        .evaluate((el) => getComputedStyle(el, "::backdrop").backdropFilter),
+    ).toBe("none");
     await expect(page.locator("#support-signal-messages")).toContainText(
       entry.includes("zh") ? "迪伦·哈克" : "Dylan Harker",
     );
     await expect(page.locator("#support-signal-messages")).toContainText(
       entry.includes("zh") ? "下班时间" : "finishing time",
     );
+    await page.locator("#dialog-close").click();
+    await expect(page.locator("body")).not.toHaveClass(/supervisor-takeover/);
+    expect(
+      await page
+        .locator("body")
+        .evaluate((el) => getComputedStyle(el).backgroundColor),
+    ).toBe(normalBody);
     await page.reload();
+    await expect(page.locator("body")).not.toHaveClass(/supervisor-takeover/);
     await page.locator('main [data-action="management"]').click();
     await page
       .locator('.management-profiles [data-action="contact-supervisor"]')
       .click();
     await expect(page.locator("[data-support-dismiss]")).toBeVisible();
+    await expect(page.locator("body")).toHaveClass(/supervisor-takeover/);
     await page.locator("[data-support-dismiss]").click();
+    await expect(page.locator("body")).not.toHaveClass(/supervisor-takeover/);
+    expect(
+      await page
+        .locator(".navigation")
+        .evaluate((el) => getComputedStyle(el).backgroundColor),
+    ).toBe(normalNav);
     await expect(page.locator("#support-input")).toBeEnabled();
     await ask(page, "duties");
     await expect(page.locator("#support-interruption")).toBeVisible();
@@ -130,3 +172,34 @@ test("later topics remain selectable during the fifteen-second interruption and 
   await page.locator(".support-send").click();
   await expect(page.locator(".support-message--user")).toHaveCount(4);
 });
+
+for (const reduced of [false, true])
+  test(`whole-site supervisor colors restore on Escape and navigation, reduced motion: ${reduced}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    if (reduced) await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.addInitScript(() =>
+      localStorage.setItem(
+        "stillwater-hotel:v2",
+        JSON.stringify({
+          scares: false,
+          sideQuests: { support: { impostorSeen: true, impostorActive: true } },
+        }),
+      ),
+    );
+    await page.goto("/index-zh.html");
+    await page.locator('main [data-action="contact-supervisor"]').click();
+    await expect(page.locator("body")).toHaveClass(/supervisor-takeover/);
+    expect(
+      await page
+        .locator("body")
+        .evaluate((el) => getComputedStyle(el).backgroundColor),
+    ).toBe("rgb(32, 14, 18)");
+    await page.keyboard.press("Escape");
+    await expect(page.locator("body")).not.toHaveClass(/supervisor-takeover/);
+    await page.locator('main [data-action="contact-supervisor"]').click();
+    await expect(page.locator("body")).toHaveClass(/supervisor-takeover/);
+    await page.evaluate(() => (location.hash = "history"));
+    await expect(page.locator("body")).not.toHaveClass(/supervisor-takeover/);
+  });
