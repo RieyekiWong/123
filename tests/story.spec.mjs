@@ -132,6 +132,8 @@ test("full two-chapter investigation, five departure records, persistence and re
   await close(page);
   await page.locator("#chapter-return button").click();
   await solveLowerChapter(page);
+  await expect(page.locator("#afterword-screen")).toBeVisible();
+  await page.locator("[data-afterword-close]").click();
   await expect(
     page.getByRole("heading", { name: "Outside, it is morning." }),
   ).toBeVisible();

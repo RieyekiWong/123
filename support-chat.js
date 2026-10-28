@@ -7,6 +7,8 @@ window.StillwaterSupport = (() => {
     "duties",
     "pay",
     "schedule",
+    "startdate",
+    "reporttime",
     "handover",
     "dylan",
     "registration",
@@ -23,6 +25,9 @@ window.StillwaterSupport = (() => {
     drafts: { supervisor: "", concierge: "" },
     interrupted: false,
     until: 0,
+    timeStreak: 0,
+    impostorSeen: false,
+    impostorActive: false,
   });
   function hydrate(raw) {
     const value = fresh();
@@ -55,6 +60,11 @@ window.StillwaterSupport = (() => {
           : "";
     }
     value.interrupted = raw.interrupted === true;
+    value.timeStreak = Number.isInteger(raw.timeStreak)
+      ? Math.max(0, Math.min(3, raw.timeStreak))
+      : 0;
+    value.impostorSeen = raw.impostorSeen === true;
+    value.impostorActive = value.impostorSeen && raw.impostorActive === true;
     value.until =
       value.interrupted &&
       Number.isFinite(raw.until) &&
@@ -74,7 +84,9 @@ window.StillwaterSupport = (() => {
       phase = -1,
       lastActive = null;
     const currentMode = () => $("#support-chat")?.dataset.supportMode;
-    const active = () => state().interrupted && state().until > Date.now();
+    const active = () =>
+      state().impostorActive ||
+      (state().interrupted && state().until > Date.now());
     const totalSent = () => state().sent.supervisor + state().sent.concierge;
     const canAccept = () =>
       getState().sideQuests.job.talked.includes("duties") &&
@@ -105,6 +117,14 @@ window.StillwaterSupport = (() => {
       handover: t(
         "我想办理入职，接下来该怎么做？",
         "I would like to start work. What should I do next?",
+      ),
+      startdate: t(
+        "如果入职，具体哪天开始上班？",
+        "If I accept, which date would I start?",
+      ),
+      reporttime: t(
+        "报到当天需要几点到酒店？",
+        "What time should I arrive on my first day?",
       ),
       registration: t(
         "请问办理入住需要哪些信息？",
@@ -149,6 +169,14 @@ window.StillwaterSupport = (() => {
           schedule: t(
             "今晚 23:00 到次日 7:00。请先问清岗位内容，再到前台办理住宿登记。下一班到岗后，会有人通知你。",
             "Tonight’s hours are 11 p.m. to 7 a.m. Check the role first, then register for your room. Someone will notify you when your relief arrives.",
+          ),
+          startdate: t(
+            "本次招募安排今晚入职。如果今晚无法到岗，请提前联系前台，确认是否还有其他班次。",
+            "This vacancy starts tonight. If you cannot arrive tonight, let reception know so they can check for another shift.",
+          ),
+          reporttime: t(
+            "请在 22:40 到前台报到，23:00 正式接班。住宿登记请在交接前办好，监控室会有人带你过去。",
+            "Report to reception at 10:40 p.m. for an 11 p.m. handover. Complete your room registration first; someone will take you to surveillance.",
           ),
           handover: t(
             "请先确认岗位、班次和住宿安排。沟通完成后，点击下方“确认入职”，再到前台登记领取钥匙。",
@@ -209,6 +237,12 @@ window.StillwaterSupport = (() => {
       if (/入住|预订|登记|check.?in|registration|reservation/i.test(text))
         return "registration";
       if (
+        /几点|什么时候|哪天|日期|时间|几号|班次|交接|排班|小时|hours|schedule|what time|which date|when.*(start|work|shift|arriv)|shift.*(start|finish)/i.test(
+          text,
+        )
+      )
+        return "schedule";
+      if (
         /入职|接下|接受|报到|确认工作|start.*work|accept|appointment|handover/i.test(
           text,
         )
@@ -241,11 +275,12 @@ window.StillwaterSupport = (() => {
         mode === "supervisor"
           ? ["duties", "pay", "schedule", "handover"]
           : ["registration", "room", "supervisor"];
+      if (mode === "supervisor") ids.push("startdate", "reporttime");
       if (getState().sideQuests.dylan.met) ids.push("messages", "dylan");
       return ids
         .map(
           (id) =>
-            `<button type="button" data-support-keyword="${id}">${labels[id]}</button>`,
+            `<button type="button" data-support-keyword="${id}" aria-pressed="false">${labels[id] || t(id === "startdate" ? "入职日期" : "报到时间", id === "startdate" ? "Start date" : "Arrival time")}</button>`,
         )
         .join("");
     }
@@ -302,6 +337,7 @@ window.StillwaterSupport = (() => {
     function reconcile() {
       if (!currentMode()) return;
       const interrupted = active();
+      const impostor = state().impostorActive;
       const visualEffects =
         interrupted &&
         getState().scares &&
@@ -310,14 +346,74 @@ window.StillwaterSupport = (() => {
       $("#support-chat").classList.toggle("support-signal-active", interrupted);
       $("#support-thread").hidden = interrupted;
       $("#support-interruption").hidden = !interrupted;
-      $("#support-controls").disabled = interrupted;
+      // Keep topic selection available during a dropped connection. Only sending
+      // and changing the handover are paused; the selected draft survives it.
+      $("#support-controls").disabled = false;
+      $("#support-input").disabled = interrupted;
+      $(".support-send").disabled = interrupted;
+      $("#support-actions")
+        .querySelectorAll("button")
+        .forEach((button) => {
+          button.disabled =
+            interrupted ||
+            (button.dataset.action === "job-accept" &&
+              !canAccept() &&
+              getState().sideQuests.job.stage !== "hired");
+        });
+      $("#story-dialog").classList.toggle("support-impostor", impostor);
       if (lastActive !== interrupted) {
         $("#support-connection").innerHTML = interrupted
-          ? t("连接异常 · 正在恢复", "Connection unstable · Reconnecting")
+          ? impostor
+            ? t("里德 · 已读", "Reed · Read")
+            : t("连接异常 · 正在恢复", "Connection unstable · Reconnecting")
           : `<i></i>${t("在线", "Online")}`;
         lastActive = interrupted;
       }
       if (interrupted) {
+        if (impostor) {
+          if (phase !== 99) {
+            phase = 99;
+            $("#support-signal-messages").innerHTML =
+              `<p class="support-unknown-sender">${t("里德 · 夜班主管", "Reed · Night supervisor")}</p>${[
+                t(
+                  "你已经问了三次时间。我每一次都按时回答了。",
+                  "You have asked about the time three times. I answered on time each time.",
+                ),
+                t(
+                  "请把你的明天留给排班。迪伦·哈克没有明天，不必替他安排。",
+                  "Please leave your tomorrow available for the rota. Dylan Harker has no tomorrow. You need not arrange one for him.",
+                ),
+                t(
+                  "如果你继续查他的事，我们会把损失记在你的名下。先扣掉你的下班时间。然后是别人记得你的时间。",
+                  "If you keep looking into him, we will charge the loss to your name. Your finishing time will be deducted first. Then the time for which other people remember you.",
+                ),
+                t(
+                  "收到请回复。不要让我再等到你。",
+                  "Please acknowledge receipt. Do not make me wait until you again.",
+                ),
+              ]
+                .map(
+                  (message) =>
+                    `<div class="support-signal-bubble">${message}</div>`,
+                )
+                .join(
+                  "",
+                )}<button type="button" class="support-acknowledge" data-support-dismiss>${t("我知道了。", "Understood.")}</button>`;
+            $(".support-signal-label").innerHTML =
+              "<span>STAFF SESSION / 00:00</span><span>R. / R.</span>";
+            $(".support-reconnecting").textContent = t(
+              "另一台设备正在使用此身份。",
+              "This identity is active on another device.",
+            );
+          }
+          return;
+        }
+        $(".support-signal-label").innerHTML =
+          "<span>CONNECTION LOST</span><span>… / D.H.</span>";
+        $(".support-reconnecting").textContent = t(
+          "正在尝试恢复会话…",
+          "Attempting to restore the conversation…",
+        );
         const elapsed = DURATION - (state().until - Date.now());
         const nextPhase =
           elapsed >= 8000 ? 3 : elapsed >= 5000 ? 2 : elapsed >= 2000 ? 1 : 0;
@@ -342,6 +438,12 @@ window.StillwaterSupport = (() => {
         save();
         $("#support-signal-messages").innerHTML = "";
         updateConversation();
+        $("#support-input-status").textContent = state().drafts[currentMode()]
+          ? t(
+              "会话已恢复，可以发送刚才选择的问题。",
+              "Connection restored. You can send your selected question.",
+            )
+          : "";
       }
     }
     function detach() {
@@ -352,6 +454,7 @@ window.StillwaterSupport = (() => {
       $("#story-dialog")?.classList.remove(
         "support-chat-dialog",
         "support-corrupted",
+        "support-impostor",
       );
     }
     function onDocumentChange() {
@@ -386,11 +489,20 @@ window.StillwaterSupport = (() => {
       state().threads[mode] = state().threads[mode].slice(-80);
       state().sent[mode]++;
       state().drafts[mode] = "";
+      state().timeStreak =
+        mode === "supervisor" &&
+        ["schedule", "startdate", "reporttime"].includes(key)
+          ? state().timeStreak + 1
+          : 0;
       if (mode === "supervisor" && ["duties", "pay", "dylan"].includes(key)) {
         const job = getState().sideQuests.job;
         if (!job.talked.includes(key)) job.talked.push(key);
       }
-      if (!state().interrupted && state().sent[mode] === 3) {
+      if (state().timeStreak >= 3 && !state().impostorSeen) {
+        state().impostorSeen = true;
+        state().impostorActive = true;
+        phase = -1;
+      } else if (!state().interrupted && state().sent[mode] >= 3) {
         state().interrupted = true;
         state().until = Date.now() + DURATION;
         phase = -1;
@@ -403,14 +515,38 @@ window.StillwaterSupport = (() => {
       if (!active()) $("#support-input").focus({ preventScroll: true });
     }
     document.addEventListener("click", (event) => {
+      if (event.target.closest("[data-support-dismiss]") && currentMode()) {
+        state().impostorActive = false;
+        state().timeStreak = 0;
+        phase = -1;
+        lastActive = null;
+        save();
+        updateConversation();
+        reconcile();
+        return;
+      }
       const chip = event.target.closest("[data-support-keyword]");
-      if (!chip || !currentMode() || active()) return;
+      if (!chip || !currentMode()) return;
       const value = questions[chip.dataset.supportKeyword];
       if (!value) return;
       $("#support-input").value = value;
+      $("#support-keywords")
+        .querySelectorAll("button")
+        .forEach((button) =>
+          button.setAttribute("aria-pressed", String(button === chip)),
+        );
+      $("#support-input-status").textContent = active()
+        ? t(
+            "问题已暂存，会话恢复后即可发送。",
+            "Question saved. Send it when the connection returns.",
+          )
+        : t(
+            "问题已填入，点击右侧箭头发送。",
+            "Question selected. Use the arrow to send it.",
+          );
       state().drafts[currentMode()] = value;
       save();
-      $("#support-input").focus({ preventScroll: true });
+      if (!active()) $("#support-input").focus({ preventScroll: true });
     });
     document.addEventListener("input", (event) => {
       if (event.target.id !== "support-input" || !currentMode()) return;

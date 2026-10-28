@@ -113,6 +113,8 @@ test("Chinese edition completes both chapters using Chinese puzzle answers and s
   await page.getByLabel("如何处理黄铜钥匙？").selectOption("leave");
   await page.getByLabel("从哪里离开？").selectOption("stair");
   await page.getByRole("button", { name: "确认退房并签名：旅人" }).click();
+  await expect(page.locator("#afterword-screen")).toBeVisible();
+  await page.locator("[data-afterword-close]").click();
   await expect(
     page.getByRole("heading", { name: "走出酒店时，天已经亮了。" }),
   ).toBeVisible();

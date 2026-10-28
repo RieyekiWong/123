@@ -1,0 +1,399 @@
+.management-intro {
+  margin: 25px 0 60px;
+  padding: 30px;
+  border: 1px solid var(--border, #cdbfa8);
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  justify-content: space-between;
+}
+.management-intro h2 {
+  margin: 5px 0 12px;
+  font-size: 28px;
+}
+.management-intro p {
+  max-width: 650px;
+}
+.management-intro .button {
+  flex-shrink: 0;
+}
+.management-profiles article {
+  display: flex;
+  gap: 20px;
+  padding: 26px 0;
+  border-top: 1px solid #cdbfa8;
+}
+.management-profiles h3 {
+  margin: 5px 0 12px;
+}
+.management-monogram {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 58px;
+  height: 68px;
+  border: 1px solid #aa8e60;
+  font:
+    25px Georgia,
+    serif;
+  color: #8a704a;
+}
+.afterword-invitation {
+  border-top: 1px solid #cdbfa8;
+  margin: 35px 0;
+  padding-top: 20px;
+}
+#afterword-screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  overflow: auto;
+}
+#afterword-screen::backdrop {
+  background: #000;
+}
+#afterword-screen [hidden] {
+  display: none !important;
+}
+#afterword-screen,
+#afterword-screen button,
+#afterword-screen input {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  letter-spacing: normal;
+}
+#afterword-screen button {
+  cursor: pointer;
+}
+#afterword-screen button:focus-visible,
+#afterword-screen input:focus-visible {
+  outline: 2px solid #95afbe;
+  outline-offset: 4px;
+}
+.afterword-black {
+  background: #000;
+  color: #b2b2b2;
+}
+.afterword-voice {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 60px 25px 100px;
+  text-align: center;
+}
+#afterword-start p {
+  color: #a5a5a5;
+  font-size: 13px;
+  margin-bottom: 26px;
+}
+.afterword-black button {
+  border: 1px solid #555;
+  background: transparent;
+  color: #c5c5c5;
+  padding: 10px 18px;
+  font-size: 12px;
+}
+#afterword-start button {
+  margin: 6px;
+}
+#afterword-caption {
+  min-height: 28px;
+  font:
+    20px/1.6 Georgia,
+    serif;
+  color: #bbb;
+}
+.afterword-black.audio-only #afterword-caption {
+  color: transparent;
+}
+#afterword-answer {
+  width: min(100%, 330px);
+}
+#afterword-answer label {
+  display: block;
+  font-size: 13px;
+  margin: 20px 0;
+}
+#afterword-input {
+  box-sizing: border-box;
+  width: 100%;
+  background: #000;
+  border: 0;
+  border-bottom: 1px solid #666;
+  color: #eee;
+  padding: 15px 8px;
+  border-radius: 0;
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+#afterword-error {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #b89e91;
+}
+.afterword-tools {
+  position: fixed;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  right: 18px;
+  display: flex;
+  gap: 8px;
+}
+.afterword-tools button {
+  border: 0;
+  color: #8e8e8e;
+  font-size: 11px;
+  padding: 9px;
+}
+.afterword-mail {
+  background: #f3f5f8;
+  color: #252b34;
+}
+.warning-mail {
+  min-height: 100%;
+  font:
+    14px/1.8 -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+.warning-mail > header {
+  min-height: 75px;
+  box-sizing: border-box;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  background: #fff;
+  border-bottom: 1px solid #dde2e8;
+}
+.warning-mail > header strong {
+  font-size: 21px;
+  font-weight: 750;
+  color: #263a50;
+  letter-spacing: 1px;
+}
+.warning-mail > header strong span {
+  color: #8491a0;
+  font-size: 11px;
+  font-weight: 400;
+}
+.mail-account {
+  margin-left: auto;
+  font-size: 11px;
+  color: #738093;
+}
+.warning-mail button {
+  padding: 9px 18px;
+  border-radius: 5px;
+  border: 1px solid #ccd4de;
+  background: #fff;
+  color: #3d5269;
+  font-size: 12px;
+}
+.mail-layout {
+  display: grid;
+  grid-template-columns: 215px minmax(0, 1fr);
+  min-height: calc(100dvh - 75px);
+}
+.mail-layout > aside {
+  padding: 25px 15px;
+  border-right: 1px solid #dde2e8;
+}
+.mail-layout > aside p {
+  padding: 10px 17px;
+  margin: 5px 0;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.mail-folder-selected {
+  color: #375d8c;
+  background: #e0e9f5;
+  border-radius: 6px;
+}
+.mail-folder-selected b {
+  float: right;
+}
+.mail-layout .mail-offline {
+  margin-top: 50px;
+  font-size: 11px;
+  color: #8a96a3;
+}
+.mail-reader {
+  min-width: 0;
+}
+.mail-toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 38px;
+  border-bottom: 1px solid #e0e5eb;
+  font-size: 11px;
+  color: #7a8797;
+}
+.mail-reader article {
+  box-sizing: border-box;
+  max-width: 890px;
+  margin: 30px auto 60px;
+  background: #fff;
+  border: 1px solid #e3e7eb;
+  border-radius: 8px;
+  padding: 38px 45px;
+}
+.mail-tag {
+  color: #678070;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+#afterword-screen .mail-reader h1 {
+  font-family: inherit;
+  font-size: clamp(23px, 3vw, 34px);
+  line-height: 1.5;
+  font-weight: 600;
+  margin: 10px 0 26px;
+}
+.mail-sender {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #e9edf0;
+}
+.mail-avatar {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e5e9ee;
+  color: #6c788a;
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+}
+.mail-sender div {
+  min-width: 0;
+}
+.mail-sender strong,
+.mail-sender span:not(.mail-avatar),
+.mail-sender small {
+  display: block;
+}
+.mail-sender div span,
+.mail-sender small {
+  color: #88929f;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.mail-sender time {
+  margin-left: auto;
+  font: 11px monospace;
+  color: #7f8895;
+}
+.mail-body {
+  padding: 22px 0;
+}
+.mail-body p {
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 2.1;
+  margin: 0 0 22px;
+}
+.mail-signature {
+  padding-top: 10px;
+  color: #667587;
+}
+.mail-signature small {
+  font-size: 11px;
+}
+.mail-reader footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-top: 1px solid #e8ebef;
+  padding-top: 22px;
+}
+.mail-reader footer > span {
+  font-size: 10px;
+  color: #97a0ab;
+  margin-right: auto;
+}
+@media (max-width: 700px) {
+  .management-intro {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 23px;
+  }
+  .management-profiles article {
+    gap: 13px;
+  }
+  .management-monogram {
+    width: 40px;
+    height: 52px;
+    font-size: 19px;
+  }
+  .warning-mail > header {
+    padding: 14px 17px;
+    gap: 10px;
+  }
+  .warning-mail > header strong {
+    font-size: 17px;
+  }
+  .mail-account {
+    display: none;
+  }
+  .warning-mail > header button {
+    margin-left: auto;
+  }
+  .mail-layout {
+    display: block;
+  }
+  .mail-layout > aside {
+    display: flex;
+    padding: 10px 15px;
+    border-right: 0;
+    border-bottom: 1px solid #dde2e8;
+    gap: 12px;
+  }
+  .mail-layout > aside p {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  .mail-layout .mail-offline {
+    display: none;
+  }
+  .mail-folder-selected b {
+    margin-left: 15px;
+  }
+  .mail-toolbar {
+    padding: 12px 22px;
+  }
+  .mail-reader article {
+    margin: 15px 12px 35px;
+    padding: 25px 20px;
+  }
+  .mail-sender {
+    gap: 9px;
+  }
+  .mail-avatar {
+    width: 32px;
+    height: 32px;
+  }
+  .mail-body p {
+    font-size: 14px;
+  }
+  .afterword-tools {
+    right: 8px;
+    gap: 2px;
+  }
+}

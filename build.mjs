@@ -11,6 +11,8 @@ for (const path of [
   "branches.css",
   "support-chat.js",
   "support-chat.css",
+  "afterword.js",
+  "afterword.css",
   "style.css",
   "app.js",
   "story-expansion.js",

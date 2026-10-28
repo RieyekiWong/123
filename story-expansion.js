@@ -618,6 +618,7 @@ window.StillwaterExpansion = {
           go("below");
           render(true);
           toast("All accounts closed. There are no guests waiting.");
+          api.startAfterword();
         } else
           reject(
             "The duplicate, the key, or the offered doors keep the circuit closed. Re-read the night audit and the reflected instruction.",

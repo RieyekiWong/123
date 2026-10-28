@@ -16,6 +16,7 @@ export function createServer(
     ".jpg": "image/jpeg",
     ".webp": "image/webp",
     ".ico": "image/x-icon",
+    ".mp3": "audio/mpeg",
   };
   return http.createServer(async (req, res) => {
     try {
@@ -36,6 +37,8 @@ export function createServer(
         file === resolve(base, "branches.css") ||
         file === resolve(base, "support-chat.js") ||
         file === resolve(base, "support-chat.css") ||
+        file === resolve(base, "afterword.js") ||
+        file === resolve(base, "afterword.css") ||
         file === resolve(base, "style.css") ||
         file === resolve(base, "app.js") ||
         file === resolve(base, "story-expansion.js") ||

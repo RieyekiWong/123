@@ -413,3 +413,26 @@
     font-size: 12px;
   }
 }
+
+#support-keywords button[aria-pressed="true"] {
+  background: #deebdf;
+  border-color: #8aab8e;
+  color: #183e21;
+}
+#support-chat .support-acknowledge {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #29241f;
+  color: #e0d2c2;
+  border: 1px solid #8e7560;
+  border-radius: 3px;
+}
+.support-impostor .support-avatar {
+  border-radius: 3px 50% 3px 50%;
+}
+.support-impostor .support-signal-label {
+  color: #986c5a;
+}
+#story-dialog.support-impostor .support-interruption {
+  height: clamp(260px, 44vh, 480px);
+}

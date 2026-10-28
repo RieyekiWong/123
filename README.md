@@ -28,7 +28,7 @@ There are no runtime packages, remote fonts, external image services, sign-ups, 
 
 Contact supervisor and Contact support open a local messaging interface with conversation bubbles, keyword suggestions above the composer, and editable free-text messages. Suggestions fill the composer; the player still sends the message. Enter sends and Shift+Enter adds a line, with IME composition protected.
 
-The first thread to reach its third sent message briefly loses its connection. Dylan’s plea arrives in stages for **15 seconds**, then the normal conversation returns without keeping the injected messages in its transcript. The deadline persists across closing, reloading and language changes and is triggered once per playthrough. Reduced-motion and quiet-effects settings keep the text readable without the stronger visual distortion.
+Normally, the first thread to reach its third sent message briefly loses its connection. Three consecutive time questions instead summon the impostor first; after acknowledging it, a further message allows the original interruption. Dylan’s plea arrives in stages for **15 seconds**, then the normal conversation returns without keeping the injected messages in its transcript. The deadline persists across closing, reloading and language changes and is triggered once per playthrough. Reduced-motion and quiet-effects settings keep the text readable without the stronger visual distortion.
 
 The public homepage contains ordinary support and recruitment contacts, not Dylan’s plea. A guest review signed **D. H.** has an attached message that reveals the trail and preserves the camera-order clue if the temporary interruption was missed. Existing saves retain both story branches, surveillance checks and the original lower investigation. Support messages and drafts are stored locally and never sent to a service or model API.
 
@@ -164,5 +164,17 @@ The configuration uses `/usr/bin/chromium` when present, or `CHROMIUM_PATH` if s
 6. **Chronology:** **doors opened → clocks stopped → first guest returned**, corresponding to 03, 04, and 05 October 1987.
 7. **Final discharge:** present the **original register**, **leave the key untouched**, and take the **service stair**. This closes the accounts and reveals the true ending, **For the first time, morning**.
 8. Accepting the uniform instead records **The new night porter**. You can reject that appointment and retry the final discharge without losing progress.
+
+</details>
+
+## Management and the last transmission (3.6)
+
+Management profiles are accessible from the home recruitment card and hotel history. Supervisor keyword chips now highlight the selected question and explicitly explain how to send it; all topics remain reusable after an interruption.
+
+<details><summary>Additional story spoilers</summary>
+
+Three consecutive sent time questions to Reed (shift hours, start date, arrival time) summon an impostor once per stay. Other questions reset the streak. Acknowledge the impostor to return; Dylan's existing fifteen-second interruption remains available separately.
+
+Completing the original final discharge opens a black-screen transmission. Choose audio or captions. The local synthetic adult male voice completes six calls of “help me” before a response field appears. Enter `help me` to open Dylan's final warning as an offline inbox message. No real email is requested or transmitted. Audio pauses when hidden or closed; only completed calls are saved. Existing completed saves can use the new button on their departure record to continue without resetting. The final letter remains available for review.
 
 </details>

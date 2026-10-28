@@ -55,3 +55,12 @@ scare-porter.png, scare-veil.png and scare-reflection.png are generated fictiona
 The digits, timestamps and scan lines displayed over the real hotel photographs in the surveillance game are fictional CSS overlays, not marks in the source photographs.
 
 `dylan-room.png` 为迪伦·哈克虚构支线的原创生成插图，并非真实死亡事件照片。监控画面的数字、时间戳及扫描线由游戏叠加，不属于酒店实拍原图。
+
+## Dylan’s last transmission / 最后的求救录音
+
+`dylan-help.mp3` is synthesized English speech for the fictional adult Dylan Harker, generated locally with Piper's `en_US-ryan-medium` model. It is not a recording of an actor or an imitation of a specified real person. Band limiting, short dropouts, pitch slowing and a quiet room echo create the interrupted connection. The game plays the clip six times, at a controlled volume, only after the player chooses playback; captions provide the same puzzle without sound.
+
+Voice model: https://huggingface.co/rhasspy/piper-voices/tree/main/en/en_US/ryan/medium
+Model card identifies the RyanSpeech training dataset under CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/ . Model and synthesis tools are not shipped with the website. This attribution concerns the voice source, separately from the hotel photographs and game code.
+
+成人男声为本地合成的虚构人物语音，经过断续及混响处理，并非真实求救录音。网页不调用外部语音服务。

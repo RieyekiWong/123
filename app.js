@@ -36,10 +36,12 @@
     scares: true,
     wrongAnswers: 0,
     sideQuests: window.StillwaterBranches.fresh(),
+    afterword: window.StillwaterAfterword.fresh(),
   });
   let expansion;
   let branches;
   let support;
+  let afterword;
   const baseClueIds = [
     "clock",
     "door",
@@ -105,6 +107,7 @@
         ...fresh(),
         applicant: raw.applicant === true,
         sideQuests: window.StillwaterBranches.hydrate(raw.sideQuests),
+        afterword: window.StillwaterAfterword.hydrate(raw.afterword),
         name: typeof raw.name === "string" ? raw.name.slice(0, 40) : "",
         checkedIn:
           raw.checkedIn === true &&
@@ -469,6 +472,7 @@
             employees: employeesPage,
           }[route]();
     branches?.decorate(route);
+    afterword?.decorate(route);
     document.title = `The Stillwater Hotel — ${pageTitles[route]}`;
     document.querySelectorAll("[data-nav]").forEach((a) => {
       if (a.dataset.nav === route) a.setAttribute("aria-current", "page");
@@ -619,6 +623,7 @@
     },
     "reset-confirm"() {
       branches?.cancelTimers();
+      afterword?.close();
       const retainedScares = state.scares;
       state = fresh();
       state.scares = retainedScares;
@@ -903,6 +908,7 @@
     baseReady,
     playKnock,
     resetDocuments,
+    startAfterword: () => afterword.open(),
   });
   Object.assign(actions, expansion.actions);
   branches = window.StillwaterBranches.create({
@@ -926,6 +932,13 @@
     save,
     escape,
   });
+  afterword = window.StillwaterAfterword.create({
+    getState: () => state,
+    save,
+    show,
+    escape,
+  });
+  Object.assign(actions, afterword.actions);
   window.addEventListener("stillwater-career-enter", () => {
     state.applicant = true;
     save();
