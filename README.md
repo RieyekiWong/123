@@ -8,6 +8,14 @@ This edition includes both story chapters, twelve records, and linked puzzles. P
 
 完整解压后，打开 **`index-zh.html`** 即可试玩中文版本；也可点击英文首页右上角的 **中文**。中文说明见 [README.zh-CN.md](README.zh-CN.md)。
 
+## New recruitment opening
+
+First-time visitors start at **Shiftwork**, a fictional hospitality jobs website. The player has just left a hotel reception job and is looking for work with accommodation. Search, category filters, vacancy details and applications are interactive. Every advertised vacancy rejects the application. After all six jobs have been attempted, a message from the Stillwater Hotel appears in the bottom-right corner. Following it opens the original hotel site with an applicant notice explaining the temporary room and reception registration.
+
+Applications stay in the browser and are never submitted to employers. No real CV, account or contact details are needed. Partial application attempts survive reloads and language switches. Returning hotel players keep their save and bypass the introduction; **Replay the job search** in the hotel footer replays the opening without clearing hotel progress.
+
+The hotel layout, two chapters, twelve records, original puzzle answers and five endings remain. Chinese text uses direct hotel service language on public pages and conversational narrative in the mystery. Lower puzzles have three optional hint levels, selection counts and undo controls; the radio accepts exact numeric entry as well as the slider.
+
 ## Download and play
 
 On the [GitHub repository](https://github.com/RieyekiWong/123), choose **Code → Download ZIP**. Extract the entire archive and open the root `index.html` with Chrome or Edge. Do not open the HTML from inside the compressed archive. Extract this edition into a new folder rather than mixing its scripts with an old download.
@@ -100,6 +108,7 @@ The configuration uses `/usr/bin/chromium` when present, or `CHROMIUM_PATH` if s
 
 - `index.html` / `index-zh.html`: English and Simplified Chinese entries, shared navigation, chapter banner, and document container.
 - `locale-zh.js`: complete offline Chinese catalogue and an idempotent DOM localizer. It translates text and accessibility attributes while preserving user content, field values, internal IDs, and the English originals required by puzzles. New English copy needs a corresponding catalogue entry.
+- `career.js` / `career.css`: self-contained bilingual recruitment opening.
 - `app.js`: public story, registration, base clues, state migration, and audio.
 - `story-expansion.js`: hotel guide, expanded documents, lower chapter, puzzle validation, and true ending.
 - `style.css`: responsive public site, printed records, corrupted theme, and optional visual effects.

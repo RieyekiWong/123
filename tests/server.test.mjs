@@ -16,6 +16,8 @@ for (const target of [".", "dist"]) {
       "/style.css",
       "/app.js",
       "/locale-zh.js",
+      "/career.js",
+      "/career.css",
       "/index-zh.html",
       "/story-expansion.js",
       "/assets/scare-porter.png",

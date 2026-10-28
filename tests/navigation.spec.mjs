@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./hotel-fixture.mjs";
 const base = ["clock", "door", "ribbon", "register", "switch", "letter"];
 const lowerSteps = ["power", "radio", "archive", "identity", "mirror"];
 async function seed(page, puzzles = []) {

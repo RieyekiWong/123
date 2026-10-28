@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./hotel-fixture.mjs";
 const baseClues = ["clock", "door", "ribbon", "register", "switch", "letter"];
 async function seed(page, extra = {}) {
   await page.addInitScript(

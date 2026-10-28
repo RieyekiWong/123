@@ -66,6 +66,69 @@ window.StillwaterExpansion = {
     };
     let circuit = [];
     let dates = [];
+    const puzzleHints = {
+      power: [
+        "Use the facilities sheet in the hotel guide. Match departments to circuit numbers.",
+        "The bell comes first, followed by the kitchen and linen service. The night desk is last.",
+        "Select circuits 3, 1, 4, 2, then energize the sequence.",
+      ],
+      radio: [
+        "The dining room kept a card for the station played at breakfast.",
+        "Read the frequency printed beside WSTL on the programme card.",
+        "Tune the receiver to 88.7 MHz. Sound is not needed.",
+      ],
+      archive: [
+        "The radio tells you which part of the menu matters.",
+        "Read the first English letter of each course, from top to bottom.",
+        "The five initials are S, T, I, L, L.",
+      ],
+      identity: [
+        "Compare the original photograph captions with the opening-night register.",
+        "You need the founder assigned to Room 311, rather than the porter in Room 309.",
+        "Enter Walter Vale, or 沃尔特·维尔 in the Chinese edition.",
+      ],
+      mirror: [
+        "The card is reflected. Its letters are in reverse order.",
+        "Read from the right-hand end and separate the result into ordinary words.",
+        "The warning is DO NOT TURN THE KEY. Chinese answers are also accepted.",
+      ],
+      chronology: [
+        "Use the dates in the incident report; the camera timestamps are frozen.",
+        "Opening day is October 3. The clock failure is the following day.",
+        "Choose opening, clock failure, then the first guest’s return.",
+      ],
+      discharge: [
+        "Compare the night audit with the warning from the mirror.",
+        "A new register would start the cycle again. Keep the original, and remember what the warning says about the key.",
+        "Present the original register, leave the key untouched, and use the service stair.",
+      ],
+    };
+    function documentHelp(content) {
+      const id = content.match(/id="lower-(\w+)-form"/)?.[1];
+      if (!puzzleHints[id]) return "";
+      return `<details class="puzzle-help"><summary>Need a hint?</summary><p>Open one hint at a time. Later hints reveal more of the answer.</p>${puzzleHints[id].map((hint, index) => `<details class="puzzle-hint"><summary>${["Hint 1 / Where to look", "Hint 2 / How to read it", "Hint 3 / Show the answer"][index]}</summary><p>${hint}</p></details>`).join("")}</details>`;
+    }
+    function updateSequence(kind) {
+      const values = kind === "circuit" ? circuit : dates;
+      document.querySelectorAll(`[data-${kind}]`).forEach((button) => {
+        button.disabled = values.includes(button.dataset[kind]);
+      });
+      const labels = {
+        open: "OPENING",
+        stop: "CLOCK FAILURE",
+        return: "FIRST RETURN",
+      };
+      $(`#${kind === "circuit" ? "circuit" : "dates"}-readout`).textContent =
+        values.length
+          ? values
+              .map((value) => (kind === "circuit" ? value : labels[value]))
+              .join(" → ")
+          : kind === "circuit"
+            ? "NO CIRCUITS SELECTED"
+            : "NO EVENTS SELECTED";
+      $(`#${kind}-count`).textContent =
+        `${values.length} / ${kind === "circuit" ? 4 : 3}`;
+    }
     let threatTimer;
     let lastScare = -1;
     const scareDeck = [
@@ -423,22 +486,23 @@ window.StillwaterExpansion = {
             )
             .join(
               "",
-            )}</div><p class="sequence-readout" id="circuit-readout" aria-live="polite">NO CIRCUITS SELECTED</p><form id="lower-power-form"><div class="form-error" id="puzzle-error" role="status"></div><div class="dialog-actions"><button class="button" type="submit">Energize selected sequence →</button><button class="paper-button" type="button" data-action="clear-circuits">Clear sequence</button></div></form><div class="dialog-actions"><button class="underlined" data-action="switchboard">Read the retained service sheet →</button><button class="underlined" data-page="below">Return to the lower register</button></div>`,
+            )}</div><p class="sequence-readout" id="circuit-readout" aria-live="polite">NO CIRCUITS SELECTED</p><p class="selection-count"><span>Selected circuits</span><output id="circuit-count">0 / 4</output></p><form id="lower-power-form"><div class="form-error" id="puzzle-error" role="status"></div><div class="dialog-actions"><button class="button" type="submit">Energize selected sequence →</button><button class="paper-button" type="button" data-action="clear-circuits">Clear sequence</button><button class="paper-button" type="button" data-action="undo-circuit">Undo last selection</button></div></form><div class="dialog-actions"><button class="underlined" data-action="switchboard">Read the retained service sheet →</button><button class="underlined" data-page="below">Return to the lower register</button></div>`,
           "SECOND SUPPLY / MANUAL RESTORATION",
         );
       },
       "clear-circuits"() {
         circuit = [];
-        $("#circuit-readout").textContent = "NO CIRCUITS SELECTED";
-        document
-          .querySelectorAll("[data-circuit]")
-          .forEach((b) => (b.disabled = false));
+        updateSequence("circuit");
+      },
+      "undo-circuit"() {
+        circuit.pop();
+        updateSequence("circuit");
       },
       "puzzle-radio"() {
         if (!guard("radio")) return;
         show(
           "02 / The voice at breakfast",
-          `<p class="document-intro">The receiver has power. Between stations, the static sounds like people trying to say the same word at different speeds.</p><p>The dining staff kept a programme card. Tune to the station played at breakfast. Audio is not required; a decoded transcript appears when the carrier locks.</p><form id="lower-radio-form"><label class="field-label" for="radio-frequency">Receiver frequency / FM</label><div class="radio-tuner"><output id="frequency-output" for="radio-frequency">86.0 MHz</output><input id="radio-frequency" name="frequency" type="range" min="860" max="920" step="1" value="860"><div><span>86.0</span><span>92.0</span></div></div><div class="form-error" id="puzzle-error" role="status"></div><button class="button full-width" type="submit">Lock carrier & decode transcript →</button></form><div class="dialog-actions"><button class="underlined" data-action="weather">Consult the programme card →</button></div>`,
+          `<p class="document-intro">The receiver has power. Between stations, the static sounds like people trying to say the same word at different speeds.</p><p>The dining staff kept a programme card. Tune to the station played at breakfast. Audio is not required; a decoded transcript appears when the carrier locks.</p><form id="lower-radio-form"><label class="field-label" for="radio-frequency">Receiver frequency / FM</label><div class="radio-tuner"><output id="frequency-output" for="radio-frequency">86.0 MHz</output><input id="radio-frequency" name="frequency" type="range" min="860" max="920" step="1" value="860"><div><span>86.0</span><span>92.0</span></div></div><label class="field-label" for="radio-frequency-number">Or enter a frequency / MHz</label><input class="text-input frequency-number" id="radio-frequency-number" name="frequencyNumber" type="number" inputmode="decimal" min="86" max="92" step="0.1" value="86.0" required><div class="form-error" id="puzzle-error" role="status"></div><button class="button full-width" type="submit">Lock carrier & decode transcript →</button></form><div class="dialog-actions"><button class="underlined" data-action="weather">Consult the programme card →</button></div>`,
           "LOWER RECEIVER / NO SIGNAL",
         );
       },
@@ -471,16 +535,17 @@ window.StillwaterExpansion = {
         dates = [];
         show(
           "06 / The first three days",
-          `<p class="document-intro">The lower register has three incident cards arranged in the wrong order. Its date stamps cannot be trusted. Use the incident review, not the frozen clock.</p><p>Select all three events in the order they happened: earliest first. Each card can be used once.</p><div class="date-buttons"><button data-date="return">The first guest returned</button><button data-date="stop">All clocks stopped</button><button data-date="open">The hotel doors opened</button></div><p class="sequence-readout" id="dates-readout" aria-live="polite">NO EVENTS SELECTED</p><form id="lower-chronology-form"><div class="form-error" id="puzzle-error" role="status"></div><div class="dialog-actions"><button class="button" type="submit">Commit the corrected sequence →</button><button class="paper-button" type="button" data-action="clear-dates">Clear sequence</button></div></form><div class="dialog-actions"><button class="underlined" data-action="incident">Read the incident review →</button></div>`,
+          `<p class="document-intro">The lower register has three incident cards arranged in the wrong order. Its date stamps cannot be trusted. Use the incident review, not the frozen clock.</p><p>Select all three events in the order they happened: earliest first. Each card can be used once.</p><div class="date-buttons"><button data-date="return">The first guest returned</button><button data-date="stop">All clocks stopped</button><button data-date="open">The hotel doors opened</button></div><p class="sequence-readout" id="dates-readout" aria-live="polite">NO EVENTS SELECTED</p><p class="selection-count"><span>Selected events</span><output id="date-count">0 / 3</output></p><form id="lower-chronology-form"><div class="form-error" id="puzzle-error" role="status"></div><div class="dialog-actions"><button class="button" type="submit">Commit the corrected sequence →</button><button class="paper-button" type="button" data-action="clear-dates">Clear sequence</button><button class="paper-button" type="button" data-action="undo-date">Undo last selection</button></div></form><div class="dialog-actions"><button class="underlined" data-action="incident">Read the incident review →</button></div>`,
           "DEPARTURE DESK / CHRONOLOGY EXCEPTION",
         );
       },
       "clear-dates"() {
         dates = [];
-        $("#dates-readout").textContent = "NO EVENTS SELECTED";
-        document
-          .querySelectorAll("[data-date]")
-          .forEach((b) => (b.disabled = false));
+        updateSequence("date");
+      },
+      "undo-date"() {
+        dates.pop();
+        updateSequence("date");
       },
       "final-discharge"() {
         if (state().chapter < 2 || steps.some((id) => !solved(id)))
@@ -489,7 +554,7 @@ window.StillwaterExpansion = {
           );
         show(
           "The final discharge",
-          `<p class="document-intro">Twelve records recovered. One living signature required. Behind the desk, the empty uniform turns toward you.</p><p>A clean register and a brass key have been placed on the desk. Beside them is a checkout form. The name field has already been filled in with your name.</p><form id="lower-discharge-form"><label class="field-label" for="discharge-register">Which register will you present?</label><select class="text-input" id="discharge-register" name="register"><option value="" selected disabled>Choose the record</option><option value="copy">The new, clean duplicate</option><option value="original">The original opening-night register</option></select><label class="field-label" for="discharge-key">What will you do with the brass key?</label><select class="text-input" id="discharge-key" name="key"><option value="" selected disabled>Choose what happens to the key</option><option value="turn">Turn it in the offered lock</option><option value="leave">Leave it untouched</option></select><label class="field-label" for="discharge-route">Which departure will you record?</label><select class="text-input" id="discharge-route" name="route"><option value="" selected disabled>Choose the way out</option><option value="white">The welcoming white doorway</option><option value="stair">The service stair</option><option value="red">The red EXIT door</option></select><div class="form-error" id="puzzle-error" role="status"></div><button class="button full-width" type="submit">Sign as ${escape(state().name)} & close the accounts →</button></form><div class="dialog-actions"><button class="underlined" data-action="nightaudit">Review the discharge requirements</button><button class="danger-link" data-action="accept-uniform">Accept the porter’s uniform instead</button></div>`,
+          `<p class="document-intro">Twelve records recovered. One living signature required. Behind the desk, the empty uniform turns toward you.</p><p>A clean register and a brass key have been placed on the desk. Beside them is a checkout form. The name field has already been filled in with your name.</p><form id="lower-discharge-form"><label class="field-label" for="discharge-register">Which register will you present?</label><select class="text-input" id="discharge-register" name="register"><option value="" selected disabled>Choose the record</option><option value="copy">The new, clean duplicate</option><option value="original">The original opening-night register</option></select><label class="field-label" for="discharge-key">What will you do with the brass key?</label><select class="text-input" id="discharge-key" name="key"><option value="" selected disabled>Choose what happens to the key</option><option value="turn">Turn it in the offered lock</option><option value="leave">Leave it untouched</option></select><label class="field-label" for="discharge-route">Which departure will you record?</label><select class="text-input" id="discharge-route" name="route"><option value="" selected disabled>Choose the way out</option><option value="white">The welcoming white doorway</option><option value="stair">The service stair</option><option value="red">The red EXIT door</option></select><div class="form-error" id="puzzle-error" role="status"></div><button class="button full-width" type="submit">Sign as ${escape(state().name)} & close the accounts →</button></form><div class="dialog-actions"><button class="underlined" data-action="nightaudit">Review the discharge requirements</button><button class="danger-link" data-action="accept-uniform">Stay and take the night shift</button></div>`,
           "FINAL DISCHARGE / NO COPIES ACCEPTED",
         );
       },
@@ -654,32 +719,31 @@ window.StillwaterExpansion = {
       const circuitButton = event.target.closest("[data-circuit]");
       if (circuitButton && !circuitButton.disabled && available("power")) {
         circuit.push(circuitButton.dataset.circuit);
-        circuitButton.disabled = true;
-        $("#circuit-readout").textContent = circuit.join(" → ");
+        updateSequence("circuit");
       }
       const dateButton = event.target.closest("[data-date]");
       if (dateButton && !dateButton.disabled && available("chronology")) {
         dates.push(dateButton.dataset.date);
-        dateButton.disabled = true;
-        $("#dates-readout").textContent = dates
-          .map(
-            (id) =>
-              ({
-                open: "OPENING",
-                stop: "CLOCK FAILURE",
-                return: "FIRST RETURN",
-              })[id],
-          )
-          .join(" → ");
+        updateSequence("date");
       }
     });
     document.addEventListener("input", (event) => {
-      if (event.target.id === "radio-frequency")
+      if (event.target.id === "radio-frequency") {
+        $("#radio-frequency-number").value = (
+          Number(event.target.value) / 10
+        ).toFixed(1);
         $("#frequency-output").textContent =
           `${(Number(event.target.value) / 10).toFixed(1)} MHz`;
+      } else if (event.target.id === "radio-frequency-number") {
+        const value = Number(event.target.value);
+        if (event.target.value && value >= 86 && value <= 92) {
+          $("#radio-frequency").value = String(Math.round(value * 10));
+          $("#frequency-output").textContent = `${value.toFixed(1)} MHz`;
+        }
+      }
     });
     function epilogue() {
-      return `<div class="page-main epilogue"><p class="eyebrow">DEPARTURE RECORD / ALL ACCOUNTS CLOSED</p><h1>For the first time,<br>morning.</h1><p class="epilogue-number">05</p><h2>The hotel no longer remembers you.</h2><p>You carry the original book to the stair. The key remains on the desk. Behind you, the offered lock closes around nothing.</p><p>The guests cross quietly. David counts Ruth’s steps. Margaret leaves her empty cup on the last landing. Arthur folds the coat that has finally dried. Rowan unties the ribbon. Eleanor pauses for the name that has been missing from every version of this morning.</p><p>Walter comes down last. Without the uniform’s reflection, he looks old, exhausted, and entirely human. He signs beside his wife. The final departure field accepts its date.</p><p>You step onto a road that continues in both directions. Behind you is an unoccupied building with a printed sign that someone has turned face down. There is no bell. No light remains at reception.</p><p class="file-note">YOUR ACCOUNT: CLOSED<br>ROOMS AWAITING RETURN: 0<br>NEXT GUEST: NONE</p><p class="epilogue-last">This time, you do not look back.</p><div class="inline-actions"><button class="button" data-action="journal">Read the completed records</button><button class="paper-button" data-page="home">Return to the public hotel archive</button><button class="paper-button" data-action="about">Settings & start a new stay</button></div><p class="local-note">True ending remembered. Your records remain saved. To replay the lower chapter, start a new stay in Site Information. Earlier “release” endings now lead into this chapter when revisited.</p></div>`;
+      return `<div class="page-main epilogue"><p class="eyebrow">DEPARTURE RECORD / ALL ACCOUNTS CLOSED</p><h1>Outside, it is morning.</h1><p class="epilogue-number">05</p><h2>The hotel no longer remembers you.</h2><p>You carry the original book to the stair. The key remains on the desk. Behind you, the offered lock closes around nothing.</p><p>The guests cross quietly. David counts Ruth’s steps. Margaret leaves her empty cup on the last landing. Arthur folds the coat that has finally dried. Rowan unties the ribbon. Eleanor pauses for the name that has been missing from every version of this morning.</p><p>Walter comes down last. Without the uniform’s reflection, he looks old, exhausted, and entirely human. He signs beside his wife. The final departure field accepts its date.</p><p>You step onto a road that continues in both directions. Behind you is an unoccupied building with a printed sign that someone has turned face down. There is no bell. No light remains at reception.</p><p class="file-note">YOUR ACCOUNT: CLOSED<br>ROOMS AWAITING RETURN: 0<br>NEXT GUEST: NONE</p><p class="epilogue-last">This time, you do not look back.</p><div class="inline-actions"><button class="button" data-action="journal">Read the completed records</button><button class="paper-button" data-page="home">Return to the public hotel archive</button><button class="paper-button" data-action="about">Settings & start a new stay</button></div><p class="local-note">True ending remembered. Your records remain saved. To replay the lower chapter, start a new stay in Site Information. Earlier “release” endings now lead into this chapter when revisited.</p></div>`;
     }
     function applyTheme() {
       document.body.classList.toggle("breached", state().chapter === 2);
@@ -701,6 +765,7 @@ window.StillwaterExpansion = {
       applyTheme,
       publicClues: ["clock", "door", "ribbon", "register", "switch", "letter"],
       preloadScares,
+      documentHelp,
       captureDocumentState: () => ({
         circuit: [...circuit],
         dates: [...dates],

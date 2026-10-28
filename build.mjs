@@ -5,6 +5,8 @@ for (const path of [
   "index.html",
   "index-zh.html",
   "locale-zh.js",
+  "career.js",
+  "career.css",
   "style.css",
   "app.js",
   "story-expansion.js",

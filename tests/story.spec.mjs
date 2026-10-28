@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./hotel-fixture.mjs";
 
 const close = (page) =>
   page.getByRole("button", { name: "Close window", exact: true }).click();
@@ -126,13 +126,13 @@ test("full two-chapter investigation, five departure records, persistence and re
   await page.locator("#chapter-return button").click();
   await solveLowerChapter(page);
   await expect(
-    page.getByRole("heading", { name: "For the first time, morning." }),
+    page.getByRole("heading", { name: "Outside, it is morning." }),
   ).toBeVisible();
   await expect(page.locator("body")).not.toHaveClass(/breached/);
   await expect(page.locator("#clue-count")).toHaveText("12 / 12");
   await page.reload();
   await expect(
-    page.getByRole("heading", { name: "For the first time, morning." }),
+    page.getByRole("heading", { name: "Outside, it is morning." }),
   ).toBeVisible();
   await page.locator('footer [data-action="about"]').click();
   await action(page, "reset-prompt");
@@ -359,6 +359,14 @@ test("unavailable storage retains session play", async ({ page }) => {
     };
   });
   await page.goto("/");
+  // With storage blocked, the new opening still works entirely in memory.
+  for (const id of ["harbor", "park", "cedar", "lake", "union", "elm"]) {
+    await page.locator(`[data-job-card="${id}"] [data-career-apply]`).click();
+    await expect(
+      page.locator(`[data-job-card="${id}"] .career-result`),
+    ).toBeVisible();
+  }
+  await page.locator('[data-career="enter"]').click();
   await register(page);
   await page.locator('main [data-action="rules"]').click();
   await record(page, "clock");

@@ -20,8 +20,11 @@
     );
   const fresh = () => ({
     name: "",
+    applicant: false,
     checkedIn: false,
-    arrival: "2026-10-27",
+    arrival: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+      .toISOString()
+      .slice(0, 10),
     nights: 1,
     roomType: "classic",
     clues: [],
@@ -97,6 +100,7 @@
     if (raw && typeof raw === "object")
       state = {
         ...fresh(),
+        applicant: raw.applicant === true,
         name: typeof raw.name === "string" ? raw.name.slice(0, 40) : "",
         checkedIn:
           raw.checkedIn === true &&
@@ -195,6 +199,10 @@
     }
     $("#clue-count").textContent = `${state.clues.length} / ${recordTarget()}`;
     expansion?.applyTheme();
+    const applicantBanner = $("#applicant-banner");
+    if (applicantBanner)
+      applicantBanner.hidden =
+        !state.applicant || state.checkedIn || state.chapter > 1;
     $("#session-label").textContent = state.checkedIn
       ? `${state.name} · ROOM 307`
       : "GUEST COPY";
@@ -266,7 +274,7 @@
     pendingDocument = null;
     replaceDocument = false;
     $("#dialog-label").textContent = label;
-    dialogBody.innerHTML = `<p class="eyebrow">The Stillwater Hotel · Est. 1987</p><h2 id="dialog-title">${escape(title)}</h2>${content}`;
+    dialogBody.innerHTML = `<p class="eyebrow">The Stillwater Hotel · Est. 1987</p><h2 id="dialog-title">${escape(title)}</h2>${content}${expansion?.documentHelp(content) || ""}`;
     updateDocumentNavigation();
     if (!dialog.open) dialog.showModal();
     dialog.scrollTop = 0;
@@ -390,14 +398,16 @@
     return `<form id="reservation-form" class="form-panel"><p class="eyebrow">Guest registration</p><h2>Let us keep a room for you.</h2><p>Please use a nickname. This is part of the story, not a real reservation.</p><label class="field-label" for="guest-name">Guest name</label><input class="text-input" id="guest-name" name="guestName" maxlength="40" value="${escape(state.name)}" placeholder="The name on your invitation" autocomplete="nickname" required><div class="form-row"><div><label class="field-label" for="arrival-date">Arrival date</label><input class="text-input" id="arrival-date" type="date" name="arrival" value="${state.arrival}" min="1987-10-03" max="2099-12-31" required></div><div><label class="field-label" for="stay-length">Length of stay</label><select class="text-input" name="nights" id="stay-length">${[1, 2, 3, 4, 5, 6, 7].map((n) => `<option value="${n}" ${state.nights === n ? "selected" : ""}>${n} night${n > 1 ? "s" : ""}</option>`).join("")}</select></div></div><label class="field-label" for="room-preference">Room preference</label><select class="text-input" name="roomType" id="room-preference">${roomCards.map(([id, , title]) => `<option value="${id}" ${state.roomType === id ? "selected" : ""}>${title}</option>`).join("")}</select><div class="check-row"><input type="checkbox" name="guidelines" id="agree-guidelines" required><label for="agree-guidelines">I have read the <button type="button" class="underlined" data-action="rules">guest guidelines</button> and agree to remain on the floors listed on my map.</label></div><div class="form-error" id="reservation-error" role="status"></div><button class="button full-width" type="submit">Collect my room key <span>→</span></button><p class="local-note">No payment, email, or personal identification is needed. Your registration stays on this device.</p></form>`;
   }
   function confirmation() {
-    return `<section class="form-panel"><p class="eyebrow">Your registration is complete</p><h2>Welcome back, ${escape(state.name)}.</h2><p>We have noted your room preference. Only Room 307 is available in the west wing tonight; its key is ready at reception.</p><div class="welcome-key"><p class="eyebrow">Your room is ready</p><div class="key-number">307</div><p>Third floor · The end of the west corridor</p></div><ul class="details-list"><li><span>Guest</span><span data-user-text>${escape(state.name)}</span></li><li><span>Arrival</span><span>${state.arrival}</span></li><li><span>Requested stay</span><span>${state.nights} night${state.nights > 1 ? "s" : ""}</span></li><li><span>Departure</span><span>To be confirmed</span></li></ul><div class="inline-actions"><button class="button" data-action="explore">Go to my room →</button><button class="underlined" data-action="edit-reservation">Amend registration</button></div><p class="local-note">A fictional registration, saved only on this device.</p></section>`;
+    return `<section class="form-panel"><p class="eyebrow">Your registration is complete</p><h2>Welcome back, ${escape(state.name)}.</h2><p>${state.applicant ? "Your arrival for the night receptionist interview has been noted. Room 307 is your temporary accommodation. Read the bedside card and look through the hotel information before your shift." : "We have noted your room preference. Only Room 307 is available in the west wing tonight; its key is ready at reception."}</p><div class="welcome-key"><p class="eyebrow">Your room is ready</p><div class="key-number">307</div><p>Third floor · The end of the west corridor</p></div><ul class="details-list"><li><span>Guest</span><span data-user-text>${escape(state.name)}</span></li><li><span>Arrival</span><span>${state.arrival}</span></li><li><span>Requested stay</span><span>${state.nights} night${state.nights > 1 ? "s" : ""}</span></li><li><span>Departure</span><span>To be confirmed</span></li></ul><div class="inline-actions"><button class="button" data-action="explore">Go to my room →</button><button class="underlined" data-action="edit-reservation">Amend registration</button></div><p class="local-note">A fictional registration, saved only on this device.</p></section>`;
   }
   function reservationsPage(edit = false) {
     return (
       heading(
         "Reservations",
         "We have been expecting you.",
-        "A night away. A fresh beginning. A familiar place to rest. Tell us what to call you, and we will take care of the rest.",
+        state.applicant
+          ? "Here for the night receptionist vacancy? Please register at reception first. Room 307 is reserved for your temporary accommodation; this is not a staff contract."
+          : "A night away. A fresh beginning. A familiar place to rest. Tell us what to call you, and we will take care of the rest.",
       ) +
       `<div class="page-main reservation-layout">${state.checkedIn && !edit ? confirmation() : reservationForm()}<aside class="reservation-aside"><p class="eyebrow">The small details</p><h2>Make yourself at home.</h2><p>Reception is staffed day and night. There is no need to hurry your arrival; a lamp will be left on until you are settled.</p><ul class="details-list"><li><span>Check-in</span><span>From 3:00 p.m.</span></li><li><span>Quiet hours</span><span>10:00 p.m. – 7:00 a.m.</span></li><li><span>Breakfast</span><span>7:00 – 9:00 a.m.</span></li><li><span>Front desk</span><span>Always here</span></li></ul><div class="notice"><p class="eyebrow">Before you settle in</p><h3>A familiar routine.</h3><p>Please read the guest guidelines, keep your room key with you, and do not follow voices into an unlit corridor. A member of staff will find you if you need us.</p><button class="underlined" data-action="rules">Read the guest guidelines →</button></div><div class="inline-actions"><button class="underlined" data-action="lookup">Already have a room number? →</button></div></aside></div>`
     );
@@ -467,6 +477,10 @@
     render(true);
   });
   const actions = {
+    "replay-introduction"() {
+      close();
+      window.StillwaterCareer?.replay();
+    },
     credits() {
       show(
         "Hotel photographs and artwork",
@@ -580,7 +594,7 @@
     about() {
       show(
         "About your stay",
-        `<p><i>The Stillwater Hotel</i> is an original, fictional, Backrooms-inspired interactive mystery. Its comfortable public website conceals an ongoing story told through guest records, security footage, and staff correspondence.</p><h3>How to explore</h3><p>Register under a nickname, collect your key, and read carefully. Save discoveries to your notebook. Two doors offer two endings; a complete public record reveals what lies below. The apparent third ending is the beginning of a second, more demanding chapter. Use the Hotel Guide to cross-check menus, service orders, and incident reports. All clues are inside this site. You never need to contact anyone or visit a real place.</p><h3>Comfort & accessibility</h3><p>Contains unsettling figures, sudden visual interruptions, and a second horror chapter after the apparent ending. Sudden effects can be disabled below without losing any puzzles. There is no rapid flashing. Audio remains off until you choose; reduced-motion preferences are respected. Press Escape to close a document.</p><button class="sound-button" id="sound-button" data-action="sound" aria-pressed="${!!soundContext}">Ambient sound: ${soundContext ? "on" : "off"}</button><div class="inline-actions"><button class="sound-button" data-action="toggle-scares" aria-pressed="${state.scares}">Sudden visual effects: ${state.scares ? "on" : "off"}</button></div><p><button class="underlined" data-action="credits">View photograph sources and licenses →</button></p><h3>Your information</h3><p>Your nickname, registration, notes, and progress stay in this browser. They are not sent to a server. Clearing site data erases them. The employee keypad is a fictional puzzle, not real security. Hotel photographs are real; the characters, story, and bookings are fictional.</p><p class="local-note">Source files can be opened locally after extracting the ZIP, or served using the included Node.js development server.</p><div class="dialog-actions"><button class="danger-link" data-action="reset-prompt">Start over / clear this device’s story progress</button></div>`,
+        `<p><i>The Stillwater Hotel</i> is an original, fictional, Backrooms-inspired interactive mystery. Its comfortable public website conceals an ongoing story told through guest records, security footage, and staff correspondence.</p><h3>How to explore</h3><p>Register under a nickname, collect your key, and read carefully. Save discoveries to your notebook. Two doors offer two endings; a complete public record reveals what lies below. The apparent third ending is the beginning of a second, more demanding chapter. Use the Hotel Guide to cross-check menus, service orders, and incident reports. All clues are inside this site. You never need to contact anyone or visit a real place.</p><h3>Comfort & accessibility</h3><p>Contains unsettling figures, sudden visual interruptions, and a second horror chapter after the apparent ending. Sudden effects can be disabled below without losing any puzzles. There is no rapid flashing. Audio remains off until you choose; reduced-motion preferences are respected. Press Escape to close a document.</p><button class="sound-button" id="sound-button" data-action="sound" aria-pressed="${!!soundContext}">Ambient sound: ${soundContext ? "on" : "off"}</button><div class="inline-actions"><button class="sound-button" data-action="toggle-scares" aria-pressed="${state.scares}">Sudden visual effects: ${state.scares ? "on" : "off"}</button></div><p><button class="underlined" data-action="credits">View photograph sources and licenses →</button></p><h3>Your information</h3><p>Your nickname, registration, notes, and progress stay in this browser. They are not sent to a server. Clearing site data erases them. The employee keypad is a fictional puzzle, not real security. Hotel photographs are real; the characters, story, and bookings are fictional.</p><p class="local-note">Source files can be opened locally after extracting the ZIP, or served using the included Node.js development server.</p><div class="dialog-actions"><button class="paper-button" data-action="replay-introduction">Replay the job search without clearing progress</button><button class="danger-link" data-action="reset-prompt">Start over / clear this device’s story progress</button></div>`,
         "HOTEL RESOURCES / SITE INFORMATION",
       );
     },
@@ -902,6 +916,12 @@
     resetDocuments,
   });
   Object.assign(actions, expansion.actions);
+  window.addEventListener("stillwater-career-enter", () => {
+    state.applicant = true;
+    save();
+    if (location.hash !== "#home") location.hash = "home";
+    render(true);
+  });
   function updateLanguageLink() {
     const link = document.querySelector("[data-language-link]");
     if (link)

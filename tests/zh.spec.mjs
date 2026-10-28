@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./hotel-fixture.mjs";
 import { readFile } from "node:fs/promises";
 import vm from "node:vm";
 const close = (page) =>
@@ -41,7 +41,7 @@ test("Chinese edition completes both chapters using Chinese puzzle answers and s
   await page.locator('[data-action="ledger"]').click();
   await record(page, "register");
   await page.locator('dialog [data-page="employees"]').click();
-  await page.getByLabel("员工访问代码").fill("1003");
+  await page.getByLabel("员工通行码").fill("1003");
   await page.getByRole("button", { name: "打开员工档案" }).click();
   await page.locator('[data-action="maintenance"]').click();
   await record(page, "switch");
@@ -58,7 +58,7 @@ test("Chinese edition completes both chapters using Chinese puzzle answers and s
   await page.getByLabel("四位数字门锁密码").fill("0404");
   await page.getByRole("button", { name: "转动门锁" }).click();
   await action(page, "ending-release");
-  await expect(page.getByRole("heading", { name: "退房已拒绝" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "退房失败" })).toBeVisible();
   await action(page, "continue-below");
   await page.locator('main [data-action="puzzle-power"]').click();
   await expect(page.locator('[data-circuit="3"]')).toContainText("前台铃");
@@ -66,14 +66,14 @@ test("Chinese edition completes both chapters using Chinese puzzle answers and s
     await page.locator(`[data-circuit="${id}"]`).click();
   await page.getByRole("button", { name: "按所选顺序通电" }).click();
   await expect(
-    page.getByRole("heading", { name: "第二路电源回应了" }),
+    page.getByRole("heading", { name: "地下设备恢复供电" }),
   ).toBeVisible();
   await action(page, "puzzle-radio");
   await page.getByLabel("接收频率 / FM 调频").evaluate((input) => {
     input.value = "887";
     input.dispatchEvent(new Event("input", { bubbles: true }));
   });
-  await page.getByRole("button", { name: "锁定载波并解码转录" }).click();
+  await page.getByRole("button", { name: "确认频率，接收广播" }).click();
   await expect(page.locator("dialog")).toContainText("英文菜名的首字母");
   await action(page, "puzzle-archive");
   await action(page, "dining");
@@ -88,18 +88,18 @@ test("Chinese edition completes both chapters using Chinese puzzle answers and s
   await action(page, "puzzle-identity");
   await page.getByLabel("311 号房最初住客的全名").fill("埃莉诺·维尔");
   await page.getByRole("button", { name: "恢复被抹去的姓名" }).click();
-  await expect(page.locator("#puzzle-error")).toContainText("属于另一条记录");
+  await expect(page.locator("#puzzle-error")).toContainText("姓名不匹配");
   await page.getByLabel("311 号房最初住客的全名").fill("沃尔特·维尔");
   await page.getByRole("button", { name: "恢复被抹去的姓名" }).click();
   await action(page, "puzzle-mirror");
   await expect(page.locator(".mirror-record")).toContainText(
     "YEK EHT NRUT TON OD",
   );
-  await page.getByLabel("解码后的指令").fill("转动钥匙");
-  await page.getByRole("button", { name: "记录指令" }).click();
+  await page.getByLabel("纸条上的提示").fill("转动钥匙");
+  await page.getByRole("button", { name: "记下纸条内容" }).click();
   await expect(page.locator("#puzzle-error")).toContainText("从右向左");
-  await page.getByLabel("解码后的指令").fill("不要转动钥匙。");
-  await page.getByRole("button", { name: "记录指令" }).click();
+  await page.getByLabel("纸条上的提示").fill("不要转动钥匙。");
+  await page.getByRole("button", { name: "记下纸条内容" }).click();
   await action(page, "puzzle-chronology");
   for (const id of ["open", "stop", "return"])
     await page.locator(`[data-date="${id}"]`).click();
@@ -109,27 +109,27 @@ test("Chinese edition completes both chapters using Chinese puzzle answers and s
   await page.getByRole("button", { name: "提交更正后的顺序" }).click();
   await expect(page.locator("#clue-count")).toHaveText("12 / 12");
   await action(page, "final-discharge");
-  await page.getByLabel("您要出示哪一本登记簿？").selectOption("original");
-  await page.getByLabel("您将如何处理黄铜钥匙？").selectOption("leave");
-  await page.getByLabel("您将登记哪一种离店方式？").selectOption("stair");
-  await page
-    .getByRole("button", { name: "以 旅人 的姓名签字并结清账户" })
-    .click();
+  await page.getByLabel("带哪一本登记簿？").selectOption("original");
+  await page.getByLabel("如何处理黄铜钥匙？").selectOption("leave");
+  await page.getByLabel("从哪里离开？").selectOption("stair");
+  await page.getByRole("button", { name: "确认退房并签名：旅人" }).click();
   await expect(
-    page.getByRole("heading", { name: /第一次，\s*天亮了。/ }),
+    page.getByRole("heading", { name: "走出酒店时，天已经亮了。" }),
   ).toBeVisible();
-  await expect(page.locator(".epilogue")).toContainText("这次，您真的离开了。");
+  await expect(page.locator(".epilogue")).toContainText(
+    "所有人的退房手续都办好了。",
+  );
   await page.reload();
   await expect(page.locator("#clue-count")).toHaveText("12 / 12");
   await page.locator("[data-language-link]").click();
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
   await expect(
-    page.getByRole("heading", { name: "For the first time, morning." }),
+    page.getByRole("heading", { name: "Outside, it is morning." }),
   ).toBeVisible();
   await expect(page.locator("#clue-count")).toHaveText("12 / 12");
   await page.locator("[data-language-link]").click();
   await expect(
-    page.getByRole("heading", { name: /第一次，\s*天亮了。/ }),
+    page.getByRole("heading", { name: "走出酒店时，天已经亮了。" }),
   ).toBeVisible();
   expect(errors).toEqual([]);
 });
@@ -138,9 +138,9 @@ test("Chinese localization never rewrites user names, notes, HTML escapes or fie
   page,
 }) => {
   await page.goto("/index-zh.html#guestbook");
-  await page.getByLabel("您的姓名或简称").fill("Guest");
-  await page.getByLabel("您的留言", { exact: true }).fill("Home");
-  await page.getByRole("button", { name: "留下留言" }).click();
+  await page.getByLabel("姓名或昵称").fill("Guest");
+  await page.getByLabel("留言内容", { exact: true }).fill("Home");
+  await page.getByRole("button", { name: "提交留言" }).click();
   await expect(
     page.locator(".local-guest-entry [data-user-text]").first(),
   ).toHaveText("Guest");
@@ -244,7 +244,7 @@ for (const width of [320, 390, 768, 1320]) {
     );
     await page.goto("/index-zh.html#below");
     await page.reload();
-    await expect(page.locator("main h1")).toHaveText("它仍然不肯放您走。");
+    await expect(page.locator("main h1")).toHaveText("你又回到了前台。");
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth),
     ).toBe(width);
