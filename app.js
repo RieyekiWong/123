@@ -39,6 +39,7 @@
   });
   let expansion;
   let branches;
+  let support;
   const baseClueIds = [
     "clock",
     "door",
@@ -276,10 +277,12 @@
     }
     pendingDocument = null;
     replaceDocument = false;
+    support?.detach();
     $("#dialog-label").textContent = label;
     dialogBody.innerHTML = `<p class="eyebrow">The Stillwater Hotel · Est. 1987</p><h2 id="dialog-title">${escape(title)}</h2>${content}${branches?.appendix(title) || ""}${expansion?.documentHelp(content) || ""}`;
     updateDocumentNavigation();
     if (!dialog.open) dialog.showModal();
+    support?.onDocumentChange();
     dialog.scrollTop = 0;
     $("#dialog-close").focus({ preventScroll: true });
   }
@@ -291,6 +294,7 @@
     const previous = dialogHistory.pop();
     if (!previous) return;
     pendingDocument = null;
+    support?.detach();
     dialogBody.innerHTML = previous.html;
     $("#dialog-label").textContent = previous.label;
     const fields = [...dialogBody.querySelectorAll("input,textarea,select")];
@@ -302,6 +306,7 @@
     });
     expansion?.restoreDocumentState(previous.context);
     branches?.refreshDocument();
+    support?.onDocumentChange();
     dialogBody.querySelectorAll("[data-clue]").forEach((button) => {
       if (state.clues.includes(button.dataset.clue)) {
         button.disabled = true;
@@ -318,6 +323,7 @@
   });
   dialog.addEventListener("close", () => {
     if (dialog.open) return;
+    support?.detach();
     dialogHistory.length = 0;
     pendingDocument = null;
     updateDocumentNavigation();
@@ -593,10 +599,10 @@
       );
     },
     inquiry() {
-      show(
-        "At your service",
-        `<p>Our front desk is open at every hour, in every season. Whether you are looking for a room or someone you remember, we are pleased to help.</p><h3>Before you arrive</h3><p>Rooms may be requested through our reservations page. The guest guidelines explain our quiet hours and a few hotel traditions. Our public history includes the dates and details most visitors need.</p><h3>If you are already here</h3><p>Keep your key with you. Consult the third-floor directory if a room number seems unfamiliar. Messages for past guests are kept in the guestbook.</p><div class="dialog-actions"><button class="button" data-page="reservations">Visit reception →</button><button class="paper-button" data-action="lookup">Find my room</button></div><p class="local-note">This hotel and its contact details are fictional. No inquiry is sent, and no real reservation is made.</p>`,
-      );
+      support.open("concierge");
+    },
+    "contact-supervisor"() {
+      support.open("supervisor");
     },
     about() {
       show(
@@ -769,7 +775,7 @@
     const ready = baseReady();
     show(
       "A choice of departures",
-      `<p class="document-intro">The lock clicks. Beyond the door is a small lift with no buttons. It descends for a long time. When it opens, you are back in the lobby. This time, nobody is behind the desk.</p><section class="ending-option"><h3>The red EXIT</h3><p>A rusted iron door. Cold air moves beneath it, carrying the smell of rain on a road you almost remember.</p><button class="button" data-action="ending-departure">Read Dylan’s message →</button></section><section class="ending-option"><h3>The white door</h3><p>Warm light. A voice you have missed. “Your room is waiting,” it says. “You do not have to go anywhere.”</p><button class="paper-button" data-action="ending-return">Attend the night interview →</button></section><section class="ending-option special"><h3>${ready ? "The service stair" : "A third possibility"}</h3><p>${ready ? "The record is complete. You recognize the brass disconnect behind the clock. The original register lies open beside it, Eleanor’s signed checkout slip between its pages. There is still time to bring the others." : "Behind the reception clock, a seam in the wallpaper catches your eye. Something here is unfinished. Recover all six records and register as a guest to understand it."}</p><button class="paper-button" data-action="ending-release" ${ready ? "" : "disabled"}>Take the register & cut the supply →</button></section><div class="dialog-actions"><button class="underlined" data-action="journal">Review what you remember →</button></div>`,
+      `<p class="document-intro">The lock clicks. Beyond the door is a small lift with no buttons. It descends for a long time. When it opens, you are back in the lobby. This time, nobody is behind the desk.</p><section class="ending-option"><h3>The red EXIT</h3><p>A rusted iron door. Cold air moves beneath it, carrying the smell of rain on a road you almost remember.</p><button class="button" data-action="ending-departure">Read the note beside the door →</button></section><section class="ending-option"><h3>The white door</h3><p>Warm light. A voice you have missed. “Your room is waiting,” it says. “You do not have to go anywhere.”</p><button class="paper-button" data-action="ending-return">Attend the night interview →</button></section><section class="ending-option special"><h3>${ready ? "The service stair" : "A third possibility"}</h3><p>${ready ? "The record is complete. You recognize the brass disconnect behind the clock. The original register lies open beside it, Eleanor’s signed checkout slip between its pages. There is still time to bring the others." : "Behind the reception clock, a seam in the wallpaper catches your eye. Something here is unfinished. Recover all six records and register as a guest to understand it."}</p><button class="paper-button" data-action="ending-release" ${ready ? "" : "disabled"}>Take the register & cut the supply →</button></section><div class="dialog-actions"><button class="underlined" data-action="journal">Review what you remember →</button></div>`,
       "GROUND FLOOR / AFTER QUIET HOURS",
     );
   }
@@ -909,9 +915,17 @@
     escape,
     playKnock,
     preloadScares: expansion.preloadScares,
+    openSupport: (mode) => support.open(mode),
+    canAcceptJob: () => support.canAccept(),
     actions,
   });
   Object.assign(actions, branches.actions);
+  support = window.StillwaterSupport.create({
+    getState: () => state,
+    show,
+    save,
+    escape,
+  });
   window.addEventListener("stillwater-career-enter", () => {
     state.applicant = true;
     save();

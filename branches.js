@@ -5,6 +5,7 @@ window.StillwaterBranches = (() => {
   const feeds = ["lobby", "corridor", "room"];
   const stages = ["none", "interview", "hired", "working", "escaped"];
   const fresh = () => ({
+    support: window.StillwaterSupport.fresh(),
     dylan: { met: false, notes: [], found: false },
     job: {
       stage: "none",
@@ -19,6 +20,7 @@ window.StillwaterBranches = (() => {
   function hydrate(raw) {
     const value = fresh();
     if (!raw || typeof raw !== "object") return value;
+    value.support = window.StillwaterSupport.hydrate(raw.support);
     const d = raw.dylan || {},
       j = raw.job || {};
     value.dylan = {
@@ -135,7 +137,7 @@ window.StillwaterBranches = (() => {
     }
     function notebook() {
       if (!dylan().met && job().stage === "none") return "";
-      return `<section class="side-notebook" data-puzzle-original><h3>${t("迪伦与夜班记录", "Dylan & the night shift")}</h3>${dylan().met ? `<p>${t("迪伦留下的机位顺序：", "Dylan’s camera order: ")}<b>${t("走廊 → 前台 → 客房", "Corridor → reception → guest room")}</b></p><ul>${noteIds.map((id) => `<li>${dylan().notes.includes(id) ? "✓ " + notes[id].clue : "— " + notes[id].title}</li>`).join("")}</ul><button class="paper-button" data-action="dylan-trail">${t("整理求助线索", "Review the rescue trail")} →</button>` : ""}${job().stage !== "none" ? `<p>${t("监控巡检记录：", "Surveillance checks: ")}${job().reviewed.length} / 9</p><button class="paper-button" data-action="job-interview">${t("返回夜班记录", "Return to night-shift records")} →</button>` : ""}</section>`;
+      return `<section class="side-notebook" data-puzzle-original><h3>${t("其他调查记录", "Additional investigation records")}</h3>${dylan().met ? `<p>${t("迪伦留下的机位顺序：", "Dylan’s camera order: ")}<b>${t("走廊 → 前台 → 客房", "Corridor → reception → guest room")}</b></p><ul>${noteIds.map((id) => `<li>${dylan().notes.includes(id) ? "✓ " + notes[id].clue : "— " + notes[id].title}</li>`).join("")}</ul><button class="paper-button" data-action="dylan-trail">${t("整理求助线索", "Review the rescue trail")} →</button>` : ""}${job().stage !== "none" ? `<p>${t("监控巡检记录：", "Surveillance checks: ")}${job().reviewed.length} / 9</p><button class="paper-button" data-action="job-interview">${t("返回夜班记录", "Return to night-shift records")} →</button>` : ""}</section>`;
     }
     function startDylan() {
       dylan().met = true;
@@ -190,7 +192,7 @@ window.StillwaterBranches = (() => {
     function foundRoom() {
       show(
         t("216 号房", "Room 216"),
-        `<div class="dylan-discovery" data-puzzle-original><p class="ending-code">${t("支线一 / 未能送达的求助", "SIDE STORY 01 / THE UNANSWERED MESSAGE")}</p><p>${t("门开了。没有人回应。你找到的是一间早已封存的客房。床上的人被白布完整盖住，桌边放着迪伦的工牌。", "The door opens. Nobody answers. The room was sealed long ago. A person on the bed is completely covered by a white sheet. Dylan’s staff badge lies on the desk.")}</p><figure class="dylan-room-photo"><img src="assets/dylan-room.png" alt="${t("封存的酒店客房，床上的人被白布完整盖住，床边留有行李和工牌", "A sealed hotel room with a fully covered figure on the bed, luggage and an employee badge")}"><figcaption>${t("216 号房 / 虚构场景插图", "ROOM 216 / FICTIONAL SCENE ILLUSTRATION")}</figcaption></figure><p>${t("抽屉里的旧记录确认：迪伦·哈克已自杀身亡。那几条求助留言在多年前就发出了，只是网站至今仍把它们排在最上面。", "An old record in the drawer confirms that Dylan Harker died by suicide. The messages were sent years ago; the website has continued to display them as if they were new.")}</p><p>${t("他的工牌、借书卡和行李标签对得上。你把它们收进同一个封套，带离这间房。这一次，求助记录没有再被删掉。", "The badge, library card and luggage tag match. You put them in the same envelope and take it from the room. This time, the request for help remains in the record.")}</p><div class="dialog-actions"><button class="button" data-action="dylan-finish">${t("带走记录，离开东楼", "Take the records & leave the wing")} →</button><button class="paper-button" data-action="dylan-message">${t("重读迪伦的留言", "Read Dylan’s message again")}</button></div></div>`,
+        `<div class="dylan-discovery" data-puzzle-original><p class="ending-code">${t("支线一 / 未能送达的求助", "SIDE STORY 01 / THE UNANSWERED MESSAGE")}</p><p>${t("门开了。没有人回应。你找到的是一间早已封存的客房。床上的人被白布完整盖住，桌边放着迪伦的工牌。", "The door opens. Nobody answers. The room was sealed long ago. A person on the bed is completely covered by a white sheet. Dylan’s staff badge lies on the desk.")}</p><figure class="dylan-room-photo"><img src="assets/dylan-room.png" alt="${t("封存的酒店客房，床上的人被白布完整盖住，床边留有行李和工牌", "A sealed hotel room with a fully covered figure on the bed, luggage and an employee badge")}"><figcaption>${t("216 号房 / 虚构场景插图", "ROOM 216 / FICTIONAL SCENE ILLUSTRATION")}</figcaption></figure><p>${t("抽屉里的旧记录确认：迪伦·哈克已自杀身亡。那几条求助留言在多年前就发出了，却一直夹在旧评价的附件里。", "An old record in the drawer confirms that Dylan Harker died by suicide. The messages were sent years ago and remained attached to the old guest reviews.")}</p><p>${t("他的工牌、借书卡和行李标签对得上。你把它们收进同一个封套，带离这间房。这一次，求助记录没有再被删掉。", "The badge, library card and luggage tag match. You put them in the same envelope and take it from the room. This time, the request for help remains in the record.")}</p><div class="dialog-actions"><button class="button" data-action="dylan-finish">${t("带走记录，离开东楼", "Take the records & leave the wing")} →</button><button class="paper-button" data-action="dylan-message">${t("重读迪伦的留言", "Read Dylan’s message again")}</button></div></div>`,
         t("封存客房 / 迪伦·哈克", "SEALED ROOM / DYLAN HARKER"),
       );
     }
@@ -205,55 +207,15 @@ window.StillwaterBranches = (() => {
     function endingLinks() {
       return `<div class="dialog-actions"><button class="button" data-action="journal">${t("查看已保存的记录", "View saved records")}</button><button class="paper-button" data-room="404">${t("回看另一种选择", "Revisit another choice")} →</button><button class="paper-button" data-page="home">${t("返回酒店网站", "Return to the hotel website")}</button></div><p class="local-note">${t("这个结局已保存。其他支线及原来的地下调查仍可继续。", "This ending is saved. The other side story and the original lower investigation remain available.")}</p>`;
     }
-    const replies = {
-      duties: t(
-        "里德：先看三路监控，一轮三路，共三轮。每路看清楚以后确认记录。不要为了赶时间乱按。",
-        "Reed: Three feeds per round, three rounds. Confirm each feed after examining it. Do not rush the checks.",
-      ),
-      pay: t(
-        "里德：工资按夜班结算，住宿已经给你安排了。先完成今晚的交接，合同明早再谈。她没有递来合同，只递来一张工牌。",
-        "Reed: Night-shift pay, with a room included. Finish tonight’s handover; we can discuss the contract in the morning. She gives you a badge, but no contract.",
-      ),
-      dylan: t(
-        "里德：迪伦？员工表里没有这个人。她低头翻了一页，却用手盖住了“D. Harker”那一行。",
-        "Reed: Dylan? Nobody by that name works here. She turns a page and covers the line marked “D. Harker.”",
-      ),
-    };
-    function interview(reply) {
+    function interview() {
       if (job().stage === "escaped") return jobEnding();
-      if (job().stage === "working" && !reply) return go("surveillance");
-      if (job().stage === "none") job().stage = "interview";
-      if (reply && !job().talked.includes(reply)) job().talked.push(reply);
-      save();
-      show(
-        t("夜班主管的回复", "The night supervisor’s reply"),
-        `<div class="employee-dialogue" data-puzzle-original><p class="eyebrow">${t("里德主管 / 夜班交接", "MS. REED / NIGHT HANDOVER")}</p><div class="employee-bubble"><p>${reply ? replies[reply] : t("里德：你是看招聘消息来的吧？前台今晚有人，缺的是监控室值班员。先坐一下，有什么想问的？", "Reed: You came about the advert? Reception is covered tonight. We need someone in surveillance. Sit down. What would you like to ask?")}</p></div><div class="dialogue-choices">${[
-          ["duties", t("具体要做什么？", "What would I be doing?")],
-          [
-            "pay",
-            t("工资和住宿怎么安排？", "What about pay and accommodation?"),
-          ],
-          [
-            "dylan",
-            t(
-              "迪伦·哈克还在这里工作吗？",
-              "Does Dylan Harker still work here?",
-            ),
-          ],
-        ]
-          .map(
-            ([id, label]) =>
-              `<button class="paper-button" data-action="job-talk-${id}">${job().talked.includes(id) ? "✓ " : ""}${label}</button>`,
-          )
-          .join(
-            "",
-          )}</div><p>${t("值班须知：先看清每个场景，再确认记录；出现异常时保留画面；门锁失灵时，使用工作台上的三位校验码面板。", "Shift notes: Examine each location before confirming the log. Preserve unusual details. If the door fails, use the three-digit verification panel on the desk.")}</p><p class="fine-print">${t("正式员工档案仍使用原来的四位通行码；这张临时工牌只能进入监控室。", "The original four-digit access code still protects the staff archive. This temporary badge only opens surveillance.")}</p><div class="dialog-actions"><button class="button" data-action="job-accept" ${job().talked.includes("duties") ? "" : "disabled"}>${t("接下今晚的监控值班", "Accept tonight’s surveillance shift")} →</button><button class="underlined" data-action="dylan-message">${t("先看看迪伦的留言", "Read Dylan’s message first")}</button></div></div>`,
-      );
+      if (job().stage === "working") return go("surveillance");
+      api.openSupport("supervisor");
     }
     function acceptJob() {
       if (job().stage === "escaped") return jobEnding();
       void api.preloadScares();
-      if (!job().talked.includes("duties")) return interview();
+      if (job().stage !== "hired" && !api.canAcceptJob()) return interview();
       if (!getState().checkedIn)
         return show(
           t("先办理住宿登记", "Register for your room first"),
@@ -321,7 +283,7 @@ window.StillwaterBranches = (() => {
       if (!["hired", "working"].includes(job().stage))
         return `<div class="page-main" data-puzzle-original><h1>${t("监控室尚未交接", "The surveillance handover is incomplete")}</h1><p>${t("请先与里德主管交谈，完成住宿登记并领取临时工牌。", "Speak to Reed, register for your room and collect your temporary badge first.")}</p><button class="button" data-action="job-interview">${t("联系夜班主管", "Contact the night supervisor")} →</button></div>`;
       const j = job();
-      return `<div class="page-main surveillance-desk" data-puzzle-original><header class="surveillance-heading"><div><p class="eyebrow">STILLWATER / SECURITY OPERATIONS</p><h1>${t("夜班监控工作台", "Night surveillance desk")}</h1><p>${t("三路画面，每轮各确认一次，共三轮。留意画面里后来出现的标记。", "Check each of the three feeds once per round, for three rounds. Watch for marks that appear later.")}</p></div><div class="shift-clock">04:04<span>${t("室门：已锁", "DOOR: LOCKED")}</span></div></header><div class="surveillance-layout"><section><div class="shift-tabs" role="group" aria-label="${t("选择监控机位", "Choose a surveillance feed")}">${feeds.map((id) => `<button data-action="monitor-feed-${id}" aria-pressed="${j.feed === id}">CAM ${feedInfo[id].camera}<span>${feedInfo[id].name}</span></button>`).join("")}</div><div id="shift-feed-container">${feedMarkup()}</div><div class="shift-watch-controls"><button class="button" id="monitor-log" data-action="monitor-log" disabled>${t("画面同步中…", "Synchronizing feed…")}</button><p id="monitor-status" role="status">${t("请检查画面后再确认。", "Examine the feed before confirming it.")}</p></div><div class="shift-rounds"><span>${t("本轮巡检", "CURRENT ROUND")} <b>${j.round} / 3</b></span><span>${t("已确认画面", "FEEDS CONFIRMED")} <b id="monitor-total">${j.reviewed.length} / 9</b></span></div><div class="shift-checklist">${feeds.map((id) => `<span data-check-feed="${id}">${j.reviewed.includes(`${j.round}:${id}`) ? "✓" : "○"} ${feedInfo[id].name}</span>`).join("")}</div><button class="paper-button" id="monitor-next-round" data-action="monitor-next-round" ${j.round === 3 || !reviewedRound() ? "hidden" : ""}>${t("开始下一轮巡检", "Begin the next round")} →</button></section><aside class="shift-side-panel"><div class="shift-handover"><p class="eyebrow">${t("交接记录", "HANDOVER LOG")}</p><p id="shift-round-message">${roundMessage()}</p><button class="underlined" data-action="dylan-message">${t("查看迪伦留下的机位顺序", "Read Dylan’s camera-order note")} →</button><button class="underlined" data-action="monitor-settings">${t("画面与声音设置", "Visual & audio settings")}</button></div><div class="shift-evidence"><h2>${t("画面中的数字", "Numbers in the feeds")}</h2><ul>${feeds.map((id) => `<li><span>${feedInfo[id].name}</span><b data-feed-evidence="${id}">${j.inspected.includes(id) ? feedInfo[id].number : "—"}</b></li>`).join("")}</ul><p>${t("点击画面里的标记，将数字记到这里。", "Inspect a mark in the scene to record it here.")}</p></div><form id="monitor-escape-form" class="monitor-keypad"><h2>${t("应急开门校验", "Emergency door verification")}</h2><p>${t("完成三轮巡检并找到三个数字后，按迪伦提示的顺序输入。", "Complete three rounds, find all three numbers and enter them in Dylan’s order.")}</p><label for="monitor-code">${t("三位数字校验码", "Three-digit verification code")}</label><input class="text-input" id="monitor-code" name="code" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" autocomplete="off" required placeholder="— — —"><p class="form-error" id="monitor-error" role="status"></p><button class="button full-width" type="submit">${t("解除门锁", "Release the door lock")} →</button></form></aside></div></div>`;
+      return `<div class="page-main surveillance-desk" data-puzzle-original><header class="surveillance-heading"><div><p class="eyebrow">STILLWATER / SECURITY OPERATIONS</p><h1>${t("夜班监控工作台", "Night surveillance desk")}</h1><p>${t("三路画面，每轮各确认一次，共三轮。留意画面里后来出现的标记。", "Check each of the three feeds once per round, for three rounds. Watch for marks that appear later.")}</p></div><div class="shift-clock">04:04<span>${t("室门：已锁", "DOOR: LOCKED")}</span></div></header><div class="surveillance-layout"><section><div class="shift-tabs" role="group" aria-label="${t("选择监控机位", "Choose a surveillance feed")}">${feeds.map((id) => `<button data-action="monitor-feed-${id}" aria-pressed="${j.feed === id}">CAM ${feedInfo[id].camera}<span>${feedInfo[id].name}</span></button>`).join("")}</div><div id="shift-feed-container">${feedMarkup()}</div><div class="shift-watch-controls"><button class="button" id="monitor-log" data-action="monitor-log" disabled>${t("画面同步中…", "Synchronizing feed…")}</button><p id="monitor-status" role="status">${t("请检查画面后再确认。", "Examine the feed before confirming it.")}</p></div><div class="shift-rounds"><span>${t("本轮巡检", "CURRENT ROUND")} <b>${j.round} / 3</b></span><span>${t("已确认画面", "FEEDS CONFIRMED")} <b id="monitor-total">${j.reviewed.length} / 9</b></span></div><div class="shift-checklist">${feeds.map((id) => `<span data-check-feed="${id}">${j.reviewed.includes(`${j.round}:${id}`) ? "✓" : "○"} ${feedInfo[id].name}</span>`).join("")}</div><button class="paper-button" id="monitor-next-round" data-action="monitor-next-round" ${j.round === 3 || !reviewedRound() ? "hidden" : ""}>${t("开始下一轮巡检", "Begin the next round")} →</button></section><aside class="shift-side-panel"><div class="shift-handover"><p class="eyebrow">${t("交接记录", "HANDOVER LOG")}</p><p id="shift-round-message">${roundMessage()}</p><button class="underlined" data-action="monitor-order-note">${t("查阅住客留下的旧备注", "Read the old guest notes")} →</button><button class="underlined" data-action="monitor-settings">${t("画面与声音设置", "Visual & audio settings")}</button></div><div class="shift-evidence"><h2>${t("画面中的数字", "Numbers in the feeds")}</h2><ul>${feeds.map((id) => `<li><span>${feedInfo[id].name}</span><b data-feed-evidence="${id}">${j.inspected.includes(id) ? feedInfo[id].number : "—"}</b></li>`).join("")}</ul><p>${t("点击画面里的标记，将数字记到这里。", "Inspect a mark in the scene to record it here.")}</p></div><form id="monitor-escape-form" class="monitor-keypad"><h2>${t("应急开门校验", "Emergency door verification")}</h2><p>${t("完成三轮巡检并找到三个数字后，按旧备注中的场景顺序输入。", "Complete three rounds, find all three numbers and follow the location order in the old notes.")}</p><label for="monitor-code">${t("三位数字校验码", "Three-digit verification code")}</label><input class="text-input" id="monitor-code" name="code" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" autocomplete="off" required placeholder="— — —"><p class="form-error" id="monitor-error" role="status"></p><button class="button full-width" type="submit">${t("解除门锁", "Release the door lock")} →</button></form></aside></div></div>`;
     }
     function roundMessage() {
       return [
@@ -450,12 +412,12 @@ window.StillwaterBranches = (() => {
       if (route === "home")
         $("#page-content").insertAdjacentHTML(
           "beforeend",
-          `<section class="side-story-board" data-puzzle-original><article><p class="eyebrow">${t("未处理的住客留言", "UNANSWERED GUEST MESSAGE")}</p><h2>${t("“有人看得到吗？”", "“Can anyone see this?”")}</h2><p>${t("一位叫迪伦·哈克的人，在酒店网站上留下了求助消息。", "A guest named Dylan Harker has left a request for help on the hotel website.")}</p><button class="underlined" data-action="dylan-message">${t("查看迪伦的留言", "Read Dylan’s message")} →</button></article><article><p class="eyebrow">${t("夜班面试通知", "NIGHT-SHIFT APPOINTMENT")}</p><h2>${t("招聘方有了新的回复。", "The employer has replied.")}</h2><p>${t("里德主管请你到前台谈谈今晚的工作安排。", "Ms. Reed would like to discuss tonight’s work at reception.")}</p><button class="underlined" data-action="job-interview">${job().stage === "working" ? t("继续监控值班", "Resume surveillance") : t("与夜班主管交谈", "Speak to the night supervisor")} →</button></article></section>`,
+          `<section class="side-story-board" data-puzzle-original><article><p class="eyebrow">${t("招聘与交接", "RECRUITMENT & HANDOVER")}</p><h2>${t("想了解今晚的岗位？", "Questions about tonight’s role?")}</h2><p>${t("夜班安排、住宿和报到事项，可直接联系值班主管。", "Contact the night supervisor about duties, accommodation and your arrival.")}</p><button class="underlined" data-action="contact-supervisor">${t("联系主管", "Contact supervisor")} →</button></article><article><p class="eyebrow">${t("前台在线服务", "GUEST SUPPORT")}</p><h2>${t("入住前，有什么想问的？", "How can we help before your stay?")}</h2><p>${t("查询客房、入住登记或其他服务信息。", "Ask about rooms, check-in or hotel services.")}</p><button class="underlined" data-action="inquiry">${t("联系客服", "Contact support")} →</button></article></section>`,
         );
       if (route === "guestbook")
         $("main [aria-label]")?.insertAdjacentHTML(
-          "afterbegin",
-          `<article class="guest-entry dylan-public-entry" data-puzzle-original><div class="entry-meta"><span>${t("迪伦·哈克", "Dylan Harker")}</span><span>${t("发送时间不明", "Timestamp missing")}</span></div><blockquote>${t("“有人能帮我出去吗？别信前台说的。我留下了纸条。监控室开门时，先看走廊，再看前台，最后看客房。”", "“Can someone help me get out? Do not believe reception. I left notes. To open surveillance, use corridor, then reception, then guest room.”")}</blockquote><button class="underlined" data-action="dylan-message">${t("展开求助留言", "Open the full message")} →</button></article>`,
+          "beforeend",
+          `<article class="guest-entry dylan-public-entry" data-puzzle-original><div class="entry-meta"><span>D. H. · ${t("夜班住宿", "Night-shift accommodation")}</span><span>${t("日期未注明", "Undated")}</span></div><blockquote>${t("“晚到的话，最好先问清楚谁负责交班。前台的铃声隔着两层楼也听得见，走廊的灯一整晚都没关。”", "“If you arrive late, check who is responsible for the handover. You can hear the reception bell two floors away. The corridor lights stayed on all night.”")}</blockquote><p class="fine-print">${t("这条评价下还有一段没有显示在正文里的补充。", "There is an additional message attached beneath this review.")}</p><button class="underlined" data-action="dylan-message">${t("查看附带的留言", "Read the attached message")} →</button></article>`,
         );
       const working = job().stage === "working";
       $("#surveillance-return").hidden = !working || route === "surveillance";
@@ -495,6 +457,13 @@ window.StillwaterBranches = (() => {
         save();
         render();
       },
+      "monitor-order-note"() {
+        if (dylan().met) return startDylan();
+        show(
+          t("旧值班备注", "Old shift notes"),
+          `<div data-puzzle-original><p>${t("旧备注保存在住客留言里。有一条署名 D. H. 的评价，下面附着一段补充内容。", "The old notes are kept with the guest messages. Look for the review signed D. H. and open its attached message.")}</p><p class="file-note">D. H. · ${t("夜班住宿 / 附带一段补充留言", "Night-shift accommodation / An additional message is attached")}</p><button class="button" data-action="dylan-message">${t("查看附带的留言", "Read the attached message")} →</button><button class="paper-button" data-page="guestbook">${t("浏览全部住客留言", "Browse all guest messages")}</button></div>`,
+        );
+      },
       "monitor-settings"() {
         api.actions.about();
       },
@@ -514,8 +483,6 @@ window.StillwaterBranches = (() => {
         );
       };
     }
-    for (const id of ["duties", "pay", "dylan"])
-      actions[`job-talk-${id}`] = () => interview(id);
     for (const id of feeds) {
       actions[`monitor-feed-${id}`] = () => selectFeed(id);
       actions[`monitor-inspect-${id}`] = () => {
@@ -568,8 +535,8 @@ window.StillwaterBranches = (() => {
           job().mistakes++;
           save();
           $("#monitor-error").textContent = t(
-            "顺序不正确。迪伦说的是场景顺序，不是摄像头编号。",
-            "Wrong order. Dylan listed locations, not camera numbers.",
+            "顺序不正确。旧备注写的是场景顺序，不是摄像头编号。",
+            "Wrong order. The old notes list locations, not camera numbers.",
           );
           scare();
           return;

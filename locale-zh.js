@@ -1516,6 +1516,8 @@
     "This clears the Dylan and surveillance side stories, their notes and patrol logs, both original chapters, registration, local messages, archive access and discovered endings. Your visual-effects preference is retained; audio will be switched off.":
       "这会清除迪伦与监控室支线的纸条、对话、巡检，以及原有两章的登记、线索、留言、档案权限和结局。突发惊吓设置会保留，声音将关闭。",
     "Attend the night handover →": "前往夜班交接 →",
+    "Contact support": "联系客服",
+    "Read the note beside the door →": "查看门边的便条 →",
   };
   const normalize = (value) => String(value).replace(/\s+/g, " ").trim();
   const translatedValues = new Set(Object.values(dictionary).map(normalize));

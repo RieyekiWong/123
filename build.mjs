@@ -9,6 +9,8 @@ for (const path of [
   "career.css",
   "branches.js",
   "branches.css",
+  "support-chat.js",
+  "support-chat.css",
   "style.css",
   "app.js",
   "story-expansion.js",

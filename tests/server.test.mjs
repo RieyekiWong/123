@@ -20,6 +20,8 @@ for (const target of [".", "dist"]) {
       "/career.css",
       "/branches.js",
       "/branches.css",
+      "/support-chat.js",
+      "/support-chat.css",
       "/assets/dylan-room.png",
       "/index-zh.html",
       "/story-expansion.js",

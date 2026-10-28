@@ -5,6 +5,8 @@ import {
   acceptShift,
   patrol,
   sideAction,
+  openDylan,
+  prepareHire,
 } from "./sidequest-helpers.mjs";
 async function seed(page, extra = {}) {
   await page.addInitScript(
@@ -23,7 +25,7 @@ for (const entry of ["index.html", "index-zh.html"]) {
   }) => {
     await seed(page);
     await page.goto("/" + entry);
-    await page.locator('main [data-action="dylan-message"]').click();
+    await openDylan(page);
     await expect(page.locator("#dylan-order")).toContainText(
       entry.includes("zh")
         ? "先走廊，再前台，最后客房"
@@ -63,7 +65,7 @@ for (const entry of ["index.html", "index-zh.html"]) {
     await sideAction(page, "dylan-finish");
     await page.reload();
     expect((await readState(page)).endings).toContain("departure");
-    await page.locator('main [data-action="dylan-message"]').click();
+    await openDylan(page);
     await sideAction(page, "dylan-trail");
     await sideAction(page, "dylan-finish");
     expect(
@@ -77,12 +79,8 @@ for (const entry of ["index.html", "index-zh.html"]) {
     test.setTimeout(60000);
     await seed(page);
     await page.goto("/" + entry);
-    await page.locator('main [data-action="job-interview"]').click();
+    await page.locator('main [data-action="contact-supervisor"]').click();
     await expect(page.locator('[data-action="job-accept"]')).toBeDisabled();
-    await sideAction(page, "job-talk-pay");
-    await sideAction(page, "job-talk-dylan");
-    await sideAction(page, "dylan-message");
-    await sideAction(page, "job-interview");
     await acceptShift(page);
     await page.locator("#monitor-code").fill("472");
     await page.locator('#monitor-escape-form [type="submit"]').click();
@@ -95,7 +93,8 @@ for (const entry of ["index.html", "index-zh.html"]) {
     await expect(page.locator("#monitor-error")).toContainText(
       entry.includes("zh") ? "顺序不正确" : "Wrong order",
     );
-    await page.locator('[data-action="dylan-message"]').click();
+    await page.locator('[data-action="monitor-order-note"]').click();
+    await sideAction(page, "dylan-message");
     await expect(page.locator("#dylan-order")).toBeVisible();
     await page.locator("#dialog-close").click();
     await expect(page.locator("#monitor-code")).toHaveValue("742");
@@ -118,7 +117,7 @@ test("partial Dylan notes survive reload and the unopened room cannot be skipped
 }) => {
   await seed(page);
   await page.goto("/index-zh.html");
-  await page.locator('main [data-action="dylan-message"]').click();
+  await openDylan(page);
   await sideAction(page, "dylan-trail");
   await expect(page.locator('[data-action="dylan-door"]')).toBeDisabled();
   await sideAction(page, "readingroom");
@@ -136,7 +135,7 @@ test("monitor progress and inspected digits survive reload and leaving the work 
 }) => {
   await seed(page);
   await page.goto("/");
-  await page.locator('main [data-action="job-interview"]').click();
+  await page.locator('main [data-action="contact-supervisor"]').click();
   await acceptShift(page);
   for (const feed of ["lobby", "corridor", "room"]) {
     await page.locator(`[data-action="monitor-feed-${feed}"]`).click();
@@ -215,7 +214,7 @@ for (const width of [320, 390, 768, 1320])
     await expect(page.locator('[data-feed-evidence="corridor"]')).toHaveText(
       "4",
     );
-    await page.locator('[data-action="dylan-message"]').click();
+    await page.locator('[data-action="monitor-order-note"]').click();
     const r = await page.locator("#story-dialog").boundingBox();
     expect(r.x + r.width).toBeLessThanOrEqual(width);
     expect(
@@ -229,8 +228,8 @@ test("an unregistered applicant can finish registration and return directly to t
   page,
 }) => {
   await page.goto("/index-zh.html");
-  await page.locator('main [data-action="job-interview"]').click();
-  await sideAction(page, "job-talk-duties");
+  await page.locator('main [data-action="contact-supervisor"]').click();
+  await prepareHire(page);
   await sideAction(page, "job-accept");
   await expect(page.locator("#dialog-title")).toHaveText("先办理住宿登记");
   await page.locator('dialog [data-page="reservations"]').click();

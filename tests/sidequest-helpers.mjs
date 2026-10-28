@@ -23,8 +23,30 @@ export async function completeDylan(page) {
   await expect(page.locator(".dylan-room-photo img")).toBeVisible();
   await sideAction(page, "dylan-finish");
 }
+const clockedPages = new WeakSet();
+export async function openDylan(page) {
+  if (await page.locator("#story-dialog").isVisible())
+    await page.locator("#dialog-close").click();
+  await page.locator('nav [data-nav="guestbook"]').click();
+  await page
+    .locator('.dylan-public-entry [data-action="dylan-message"]')
+    .click();
+}
+export async function prepareHire(page) {
+  if (!clockedPages.has(page)) {
+    await page.clock.install();
+    clockedPages.add(page);
+  }
+  for (const key of ["duties", "pay", "schedule"]) {
+    await page.locator(`[data-support-keyword="${key}"]`).click();
+    await page.locator(".support-send").click();
+    if (await page.locator("#support-interruption").isVisible())
+      await page.clock.fastForward(15050);
+  }
+  await expect(page.locator('[data-action="job-accept"]')).toBeEnabled();
+}
 export async function acceptShift(page) {
-  await sideAction(page, "job-talk-duties");
+  await prepareHire(page);
   await sideAction(page, "job-accept");
   await sideAction(page, "job-resume");
   await expect(page.locator(".surveillance-desk")).toBeVisible();

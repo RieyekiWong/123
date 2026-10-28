@@ -24,16 +24,24 @@ All images, scripts, and styles are included. Five real hotel photographs replac
 
 There are no runtime packages, remote fonts, external image services, sign-ups, API keys, or backend services. If your browser or organization blocks local HTML, use the local development server below.
 
+## Support conversations
+
+Contact supervisor and Contact support open a local messaging interface with conversation bubbles, keyword suggestions above the composer, and editable free-text messages. Suggestions fill the composer; the player still sends the message. Enter sends and Shift+Enter adds a line, with IME composition protected.
+
+The first thread to reach its third sent message briefly loses its connection. Dylan’s plea arrives in stages for **15 seconds**, then the normal conversation returns without keeping the injected messages in its transcript. The deadline persists across closing, reloading and language changes and is triggered once per playthrough. Reduced-motion and quiet-effects settings keep the text readable without the stronger visual distortion.
+
+The public homepage contains ordinary support and recruitment contacts, not Dylan’s plea. A guest review signed **D. H.** has an attached message that reveals the trail and preserves the camera-order clue if the temporary interruption was missed. Existing saves retain both story branches, surveillance checks and the original lower investigation. Support messages and drafts are stored locally and never sent to a service or model API.
+
 ## Two full side stories
 
-The first two departure choices now lead to complete side stories, also accessible from the public homepage and guestbook. **The unanswered message** follows Dylan Harker’s plea through three retained documents and a sealed room. It contains non-graphic references to a fictional suicide and an original generated aftermath illustration. **The last shift** includes an employee conversation, a temporary badge, nine surveillance checks across three rounds, three spatial number clues, intermittent optional creature interruptions, and a door-code escape. The order is provided by Dylan’s earlier public message rather than camera numbering.
+The first two departure choices now lead to complete side stories, found through support conversations and attached guestbook messages. **The unanswered message** follows Dylan Harker’s plea through three retained documents and a sealed room. It contains non-graphic references to a fictional suicide and an original generated aftermath illustration. **The last shift** includes an employee conversation, a temporary badge, nine surveillance checks across three rounds, three spatial number clues, intermittent optional creature interruptions, and a door-code escape. The order is provided by Dylan’s earlier public message rather than camera numbering.
 
 Side-story records persist separately from the original twelve clues. A temporary surveillance badge never grants original archive access. The original third choice, false checkout, six lower puzzles and final discharge retain their mechanics and answers. Existing saves migrate without clearing progress; old short-ending records can be revisited as full side stories.
 
 <details><summary>Side-story puzzle answers (spoilers)</summary>
 
 - Dylan: read the message, then save the library card, lost-property tag and breakfast roster. Floor 2 + ending 16 gives Room **216**. First shift June 14 gives code **0614**. Leave with the records after examining the room to record ending 01.
-- Surveillance: ask Reed about duties, register for accommodation and accept the shift. Confirm each feed in all three rounds. Inspect the scene marks: corridor **4**, reception **7**, room **2**. Enter **472**, following Dylan’s location order, after completing all nine checks.
+- Surveillance: ask Reed about duties, pay and hours in the support chat; after the 15-second interruption, register for accommodation and accept the shift. Confirm each feed in all three rounds. Inspect the scene marks: corridor **4**, reception **7**, room **2**. Enter **472**, following Dylan’s location order, after completing all nine checks.
 
 </details>
 
@@ -122,7 +130,8 @@ The configuration uses `/usr/bin/chromium` when present, or `CHROMIUM_PATH` if s
 - `index.html` / `index-zh.html`: English and Simplified Chinese entries, shared navigation, chapter banner, and document container.
 - `locale-zh.js`: complete offline Chinese catalogue and an idempotent DOM localizer. It translates text and accessibility attributes while preserving user content, field values, internal IDs, and the English originals required by puzzles. New English copy needs a corresponding catalogue entry.
 - `career.js` / `career.css`: bilingual recruitment portal.
-- `branches.js` / `branches.css`: Dylan’s trail, employee dialogue and surveillance escape.
+- `branches.js` / `branches.css`: Dylan’s trail and surveillance escape.
+- `support-chat.js` / `support-chat.css`: local support threads, keyword composer and timed interruption.
 - `app.js`: public story, registration, base clues, state migration, and audio.
 - `story-expansion.js`: hotel guide, expanded documents, lower chapter, puzzle validation, and true ending.
 - `style.css`: responsive public site, printed records, corrupted theme, and optional visual effects.
