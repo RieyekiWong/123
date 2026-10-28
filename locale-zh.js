@@ -1506,6 +1506,16 @@
       "长住套间位于三层。请妥善保管钥匙，并阅读床头卡片。窗外景色一直没变；如有疑问，请联系前台。",
     "The hotel, people, correspondence, keypad, bookings, apparent site compromise, and error messages are fictional.":
       "酒店、招聘岗位、人物、预订及页面异常均为虚构剧情。",
+    "Night surveillance shift": "夜班监控值班",
+    "Read Dylan’s message →": "阅读迪伦的求助留言 →",
+    "Attend the night interview →": "与夜班主管交谈 →",
+    "The unanswered message": "未能送达的求助",
+    "The last shift": "最后一班",
+    "Real hotel photographs are used as fictional scenery. The hotels and photographers are not connected with this story. The horror portraits and Dylan’s sealed-room scene are generated fictional illustrations.":
+      "酒店实拍照片用于虚构场景，现实酒店与摄影师均与剧情无关。惊吓角色及迪伦房间的画面为原创生成插图。",
+    "This clears the Dylan and surveillance side stories, their notes and patrol logs, both original chapters, registration, local messages, archive access and discovered endings. Your visual-effects preference is retained; audio will be switched off.":
+      "这会清除迪伦与监控室支线的纸条、对话、巡检，以及原有两章的登记、线索、留言、档案权限和结局。突发惊吓设置会保留，声音将关闭。",
+    "Attend the night handover →": "前往夜班交接 →",
   };
   const normalize = (value) => String(value).replace(/\s+/g, " ").trim();
   const translatedValues = new Set(Object.values(dictionary).map(normalize));

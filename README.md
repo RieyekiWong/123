@@ -24,6 +24,19 @@ All images, scripts, and styles are included. Five real hotel photographs replac
 
 There are no runtime packages, remote fonts, external image services, sign-ups, API keys, or backend services. If your browser or organization blocks local HTML, use the local development server below.
 
+## Two full side stories
+
+The first two departure choices now lead to complete side stories, also accessible from the public homepage and guestbook. **The unanswered message** follows Dylan Harker’s plea through three retained documents and a sealed room. It contains non-graphic references to a fictional suicide and an original generated aftermath illustration. **The last shift** includes an employee conversation, a temporary badge, nine surveillance checks across three rounds, three spatial number clues, intermittent optional creature interruptions, and a door-code escape. The order is provided by Dylan’s earlier public message rather than camera numbering.
+
+Side-story records persist separately from the original twelve clues. A temporary surveillance badge never grants original archive access. The original third choice, false checkout, six lower puzzles and final discharge retain their mechanics and answers. Existing saves migrate without clearing progress; old short-ending records can be revisited as full side stories.
+
+<details><summary>Side-story puzzle answers (spoilers)</summary>
+
+- Dylan: read the message, then save the library card, lost-property tag and breakfast roster. Floor 2 + ending 16 gives Room **216**. First shift June 14 gives code **0614**. Leave with the records after examining the room to record ending 01.
+- Surveillance: ask Reed about duties, register for accommodation and accept the shift. Confirm each feed in all three rounds. Inspect the scene marks: corridor **4**, reception **7**, room **2**. Enter **472**, following Dylan’s location order, after completing all nine checks.
+
+</details>
+
 ## Two chapters
 
 **The public hotel** contains rooms, a history, guest messages, fictional registration, the opening-night register, security footage, and a night-desk archive. The Hotel Guide adds dining and radio information, a reading room, courtyard walks, service instructions, residents' records, and lost property. The expanded employee archive includes an incident chronology and an unresolved night audit.
@@ -70,7 +83,7 @@ The server uses port `3000`. Select another port with:
 npm run dev -- --port 8080
 ```
 
-This is a plain HTML, CSS, and JavaScript project. The two deferred scripts use no module imports so extracted copies can be played without installing dependencies. Reload after editing source files.
+This is a plain HTML, CSS, and JavaScript project. All application scripts are deferred classic scripts with no module imports so extracted copies can be played without installing dependencies. Reload after editing source files.
 
 ## Build and deployment
 
@@ -108,11 +121,12 @@ The configuration uses `/usr/bin/chromium` when present, or `CHROMIUM_PATH` if s
 
 - `index.html` / `index-zh.html`: English and Simplified Chinese entries, shared navigation, chapter banner, and document container.
 - `locale-zh.js`: complete offline Chinese catalogue and an idempotent DOM localizer. It translates text and accessibility attributes while preserving user content, field values, internal IDs, and the English originals required by puzzles. New English copy needs a corresponding catalogue entry.
-- `career.js` / `career.css`: self-contained bilingual recruitment opening.
+- `career.js` / `career.css`: bilingual recruitment portal.
+- `branches.js` / `branches.css`: Dylan’s trail, employee dialogue and surveillance escape.
 - `app.js`: public story, registration, base clues, state migration, and audio.
 - `story-expansion.js`: hotel guide, expanded documents, lower chapter, puzzle validation, and true ending.
 - `style.css`: responsive public site, printed records, corrupted theme, and optional visual effects.
-- `assets/`: five credited real hotel photographs, three generated horror portraits, the monogram, and source/license records.
+- `assets/`: five credited real hotel photographs, three generated horror portraits, Dylan’s fictional room scene, the monogram, and source/license records.
 - `server.mjs` / `build.mjs`: local server and static build.
 - `tests/`: service and browser tests.
 
@@ -128,7 +142,7 @@ The configuration uses `/usr/bin/chromium` when present, or `CHROMIUM_PATH` if s
 5. Copy the **opening-night register** in Our History. The hotel opened **03 October 1987**.
 6. Enter the employee code **1003**: opening day, month first.
 7. Record the **maintenance log** and **Eleanor's letter**. You now have six public records.
-8. Unlock Room 404 with **0404**. The red EXIT and white door retain the two short endings.
+8. Unlock Room 404 with **0404**. The first two choices lead to Dylan’s rescue trail and the surveillance shift; see the side-story walkthrough above.
 9. With a room key and all six public records, choose the service stair. The group checkout is rejected and the lower register opens.
 
 ### The lower register

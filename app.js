@@ -35,8 +35,10 @@
     puzzles: [],
     scares: true,
     wrongAnswers: 0,
+    sideQuests: window.StillwaterBranches.fresh(),
   });
   let expansion;
+  let branches;
   const baseClueIds = [
     "clock",
     "door",
@@ -101,6 +103,7 @@
       state = {
         ...fresh(),
         applicant: raw.applicant === true,
+        sideQuests: window.StillwaterBranches.hydrate(raw.sideQuests),
         name: typeof raw.name === "string" ? raw.name.slice(0, 40) : "",
         checkedIn:
           raw.checkedIn === true &&
@@ -274,7 +277,7 @@
     pendingDocument = null;
     replaceDocument = false;
     $("#dialog-label").textContent = label;
-    dialogBody.innerHTML = `<p class="eyebrow">The Stillwater Hotel · Est. 1987</p><h2 id="dialog-title">${escape(title)}</h2>${content}${expansion?.documentHelp(content) || ""}`;
+    dialogBody.innerHTML = `<p class="eyebrow">The Stillwater Hotel · Est. 1987</p><h2 id="dialog-title">${escape(title)}</h2>${content}${branches?.appendix(title) || ""}${expansion?.documentHelp(content) || ""}`;
     updateDocumentNavigation();
     if (!dialog.open) dialog.showModal();
     dialog.scrollTop = 0;
@@ -298,6 +301,7 @@
         fields[index].checked = saved.checked;
     });
     expansion?.restoreDocumentState(previous.context);
+    branches?.refreshDocument();
     dialogBody.querySelectorAll("[data-clue]").forEach((button) => {
       if (state.clues.includes(button.dataset.clue)) {
         button.disabled = true;
@@ -398,7 +402,7 @@
     return `<form id="reservation-form" class="form-panel"><p class="eyebrow">Guest registration</p><h2>Let us keep a room for you.</h2><p>Please use a nickname. This is part of the story, not a real reservation.</p><label class="field-label" for="guest-name">Guest name</label><input class="text-input" id="guest-name" name="guestName" maxlength="40" value="${escape(state.name)}" placeholder="The name on your invitation" autocomplete="nickname" required><div class="form-row"><div><label class="field-label" for="arrival-date">Arrival date</label><input class="text-input" id="arrival-date" type="date" name="arrival" value="${state.arrival}" min="1987-10-03" max="2099-12-31" required></div><div><label class="field-label" for="stay-length">Length of stay</label><select class="text-input" name="nights" id="stay-length">${[1, 2, 3, 4, 5, 6, 7].map((n) => `<option value="${n}" ${state.nights === n ? "selected" : ""}>${n} night${n > 1 ? "s" : ""}</option>`).join("")}</select></div></div><label class="field-label" for="room-preference">Room preference</label><select class="text-input" name="roomType" id="room-preference">${roomCards.map(([id, , title]) => `<option value="${id}" ${state.roomType === id ? "selected" : ""}>${title}</option>`).join("")}</select><div class="check-row"><input type="checkbox" name="guidelines" id="agree-guidelines" required><label for="agree-guidelines">I have read the <button type="button" class="underlined" data-action="rules">guest guidelines</button> and agree to remain on the floors listed on my map.</label></div><div class="form-error" id="reservation-error" role="status"></div><button class="button full-width" type="submit">Collect my room key <span>→</span></button><p class="local-note">No payment, email, or personal identification is needed. Your registration stays on this device.</p></form>`;
   }
   function confirmation() {
-    return `<section class="form-panel"><p class="eyebrow">Your registration is complete</p><h2>Welcome back, ${escape(state.name)}.</h2><p>${state.applicant ? "Your arrival for the night receptionist interview has been noted. Room 307 is your temporary accommodation. Read the bedside card and look through the hotel information before your shift." : "We have noted your room preference. Only Room 307 is available in the west wing tonight; its key is ready at reception."}</p><div class="welcome-key"><p class="eyebrow">Your room is ready</p><div class="key-number">307</div><p>Third floor · The end of the west corridor</p></div><ul class="details-list"><li><span>Guest</span><span data-user-text>${escape(state.name)}</span></li><li><span>Arrival</span><span>${state.arrival}</span></li><li><span>Requested stay</span><span>${state.nights} night${state.nights > 1 ? "s" : ""}</span></li><li><span>Departure</span><span>To be confirmed</span></li></ul><div class="inline-actions"><button class="button" data-action="explore">Go to my room →</button><button class="underlined" data-action="edit-reservation">Amend registration</button></div><p class="local-note">A fictional registration, saved only on this device.</p></section>`;
+    return `<section class="form-panel"><p class="eyebrow">Your registration is complete</p><h2>Welcome back, ${escape(state.name)}.</h2><p>${state.applicant ? "Your arrival for the night receptionist interview has been noted. Room 307 is your temporary accommodation. Read the bedside card and look through the hotel information before your shift." : "We have noted your room preference. Only Room 307 is available in the west wing tonight; its key is ready at reception."}</p><div class="welcome-key"><p class="eyebrow">Your room is ready</p><div class="key-number">307</div><p>Third floor · The end of the west corridor</p></div><ul class="details-list"><li><span>Guest</span><span data-user-text>${escape(state.name)}</span></li><li><span>Arrival</span><span>${state.arrival}</span></li><li><span>Requested stay</span><span>${state.nights} night${state.nights > 1 ? "s" : ""}</span></li><li><span>Departure</span><span>To be confirmed</span></li></ul><div class="inline-actions"><button class="button" data-action="explore">Go to my room →</button><button class="underlined" data-action="edit-reservation">Amend registration</button>${state.applicant || ["interview", "hired"].includes(state.sideQuests.job.stage) ? '<button class="paper-button" data-action="job-interview">Attend the night handover →</button>' : ""}</div><p class="local-note">A fictional registration, saved only on this device.</p></section>`;
   }
   function reservationsPage(edit = false) {
     return (
@@ -440,6 +444,7 @@
     employees: "Employee Access",
     guide: "Hotel Guide",
     below: "The Lower Register",
+    surveillance: "Night surveillance shift",
   };
   function render(moveFocus = false, editReservation = false) {
     expansion?.applyTheme();
@@ -450,12 +455,14 @@
         ? homeMarkup
         : {
             ...expansion.pages,
+            ...branches.pages,
             rooms: roomsPage,
             history: historyPage,
             guestbook: guestbookPage,
             reservations: () => reservationsPage(editReservation),
             employees: employeesPage,
           }[route]();
+    branches?.decorate(route);
     document.title = `The Stillwater Hotel — ${pageTitles[route]}`;
     document.querySelectorAll("[data-nav]").forEach((a) => {
       if (a.dataset.nav === route) a.setAttribute("aria-current", "page");
@@ -484,7 +491,7 @@
     credits() {
       show(
         "Hotel photographs and artwork",
-        '<p>Real hotel photographs are used as fictional scenery. The hotels and photographers are not connected with this story. The horror portraits are generated creature illustrations.</p><article class="credit-item"><h3>lobby.jpg</h3><p>Lobby Stanley Lodge Estes Park Colorado 2024.jpg<br>Larry D. Moore</p><a href="https://commons.wikimedia.org/wiki/File:Lobby_Stanley_Lodge_Estes_Park_Colorado_2024.jpg" target="_blank" rel="noopener noreferrer">Source ↗</a> · <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0 ↗</a></article><article class="credit-item"><h3>hallway.jpg</h3><p>Corridor Stanley Hotel Estes Park Colorado 2024.jpg<br>Larry D. Moore</p><a href="https://commons.wikimedia.org/wiki/File:Corridor_Stanley_Hotel_Estes_Park_Colorado_2024.jpg" target="_blank" rel="noopener noreferrer">Source ↗</a> · <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0 ↗</a></article><article class="credit-item"><h3>guestroom.jpg</h3><p>Room Stanley Hotel Estes Park Colorado 2024.jpg<br>Larry D. Moore</p><a href="https://commons.wikimedia.org/wiki/File:Room_Stanley_Hotel_Estes_Park_Colorado_2024.jpg" target="_blank" rel="noopener noreferrer">Source ↗</a> · <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0 ↗</a></article><article class="credit-item"><h3>twin.jpg</h3><p>Deluxe Room - Twin beds.jpg<br>Holidayinnklg</p><a href="https://commons.wikimedia.org/wiki/File:Deluxe_Room_-_Twin_beds.jpg" target="_blank" rel="noopener noreferrer">Source ↗</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0 ↗</a></article><article class="credit-item"><h3>suite.jpg</h3><p>Hotel Room Chicago Hilton2.jpg<br>Michael Gray</p><a href="https://commons.wikimedia.org/wiki/File:Hotel_Room_Chicago_Hilton2.jpg" target="_blank" rel="noopener noreferrer">Source ↗</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0 ↗</a></article>',
+        '<p>Real hotel photographs are used as fictional scenery. The hotels and photographers are not connected with this story. The horror portraits and Dylan’s sealed-room scene are generated fictional illustrations.</p><article class="credit-item"><h3>lobby.jpg</h3><p>Lobby Stanley Lodge Estes Park Colorado 2024.jpg<br>Larry D. Moore</p><a href="https://commons.wikimedia.org/wiki/File:Lobby_Stanley_Lodge_Estes_Park_Colorado_2024.jpg" target="_blank" rel="noopener noreferrer">Source ↗</a> · <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0 ↗</a></article><article class="credit-item"><h3>hallway.jpg</h3><p>Corridor Stanley Hotel Estes Park Colorado 2024.jpg<br>Larry D. Moore</p><a href="https://commons.wikimedia.org/wiki/File:Corridor_Stanley_Hotel_Estes_Park_Colorado_2024.jpg" target="_blank" rel="noopener noreferrer">Source ↗</a> · <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0 ↗</a></article><article class="credit-item"><h3>guestroom.jpg</h3><p>Room Stanley Hotel Estes Park Colorado 2024.jpg<br>Larry D. Moore</p><a href="https://commons.wikimedia.org/wiki/File:Room_Stanley_Hotel_Estes_Park_Colorado_2024.jpg" target="_blank" rel="noopener noreferrer">Source ↗</a> · <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0 ↗</a></article><article class="credit-item"><h3>twin.jpg</h3><p>Deluxe Room - Twin beds.jpg<br>Holidayinnklg</p><a href="https://commons.wikimedia.org/wiki/File:Deluxe_Room_-_Twin_beds.jpg" target="_blank" rel="noopener noreferrer">Source ↗</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0 ↗</a></article><article class="credit-item"><h3>suite.jpg</h3><p>Hotel Room Chicago Hilton2.jpg<br>Michael Gray</p><a href="https://commons.wikimedia.org/wiki/File:Hotel_Room_Chicago_Hilton2.jpg" target="_blank" rel="noopener noreferrer">Source ↗</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0 ↗</a></article>',
         "PHOTO CREDITS / SOURCES & LICENSES",
       );
     },
@@ -558,8 +565,8 @@
     },
     journal() {
       const titles = {
-        departure: "The road home",
-        return: "A familiar place",
+        departure: "The unanswered message",
+        return: "The last shift",
         release: "The last checkout — rejected",
         custodian: "The new night porter",
         dawn: "For the first time, morning",
@@ -581,7 +588,7 @@
           )
           .join(
             "",
-          )}</ul>${state.endings.length ? `<h3>Departures remembered</h3><p>${state.endings.map((e) => titles[e]).join(" · ")}</p>` : ""}${expansion.extraNotebook()}<div class="dialog-actions"><button class="button" data-room="404">Find the unlisted door →</button><button class="paper-button" data-page="employees">Visit the night desk</button></div><p class="local-note">Notes are saved on this device. All story clues can be found on this website; no outside investigation is required.</p>`,
+          )}</ul>${state.endings.length ? `<h3>Departures remembered</h3><p>${state.endings.map((e) => titles[e]).join(" · ")}</p>` : ""}${expansion.extraNotebook()}${branches?.notebook() || ""}<div class="dialog-actions"><button class="button" data-room="404">Find the unlisted door →</button><button class="paper-button" data-page="employees">Visit the night desk</button></div><p class="local-note">Notes are saved on this device. All story clues can be found on this website; no outside investigation is required.</p>`,
         "PERSONAL EFFECTS / GUEST NOTEBOOK",
       );
     },
@@ -601,10 +608,11 @@
     "reset-prompt"() {
       show(
         "Begin a new stay?",
-        `<p>This clears both chapters, registration, notebook, local messages, solved stations, archive access, and discovered endings. The hotel will remember you as a first-time visitor. Your visual-effects preference is retained; audio will be switched off.</p><div class="dialog-actions"><button class="button" data-action="reset-confirm">Clear progress & begin again</button><button class="paper-button" data-action="about">Keep my records</button></div>`,
+        `<p>This clears the Dylan and surveillance side stories, their notes and patrol logs, both original chapters, registration, local messages, archive access and discovered endings. Your visual-effects preference is retained; audio will be switched off.</p><div class="dialog-actions"><button class="button" data-action="reset-confirm">Clear progress & begin again</button><button class="paper-button" data-action="about">Keep my records</button></div>`,
       );
     },
     "reset-confirm"() {
+      branches?.cancelTimers();
       const retainedScares = state.scares;
       state = fresh();
       state.scares = retainedScares;
@@ -623,6 +631,7 @@
       }
       close();
       go("home");
+      render(true);
       toast("A fresh page. Welcome to your first stay.");
     },
     "edit-reservation"() {
@@ -635,10 +644,10 @@
       toast("The archive is locked.");
     },
     "ending-departure"() {
-      ending("departure");
+      branches.startDylan();
     },
     "ending-return"() {
-      ending("return");
+      branches.startJob();
     },
     "ending-release"() {
       if (!baseReady())
@@ -760,34 +769,8 @@
     const ready = baseReady();
     show(
       "A choice of departures",
-      `<p class="document-intro">The lock clicks. Beyond the door is a small lift with no buttons. It descends for a long time. When it opens, you are back in the lobby. This time, nobody is behind the desk.</p><section class="ending-option"><h3>The red EXIT</h3><p>A rusted iron door. Cold air moves beneath it, carrying the smell of rain on a road you almost remember.</p><button class="button" data-action="ending-departure">Follow the red sign →</button></section><section class="ending-option"><h3>The white door</h3><p>Warm light. A voice you have missed. “Your room is waiting,” it says. “You do not have to go anywhere.”</p><button class="paper-button" data-action="ending-return">Step into the white light →</button></section><section class="ending-option special"><h3>${ready ? "The service stair" : "A third possibility"}</h3><p>${ready ? "The record is complete. You recognize the brass disconnect behind the clock. The original register lies open beside it, Eleanor’s signed checkout slip between its pages. There is still time to bring the others." : "Behind the reception clock, a seam in the wallpaper catches your eye. Something here is unfinished. Recover all six records and register as a guest to understand it."}</p><button class="paper-button" data-action="ending-release" ${ready ? "" : "disabled"}>Take the register & cut the supply →</button></section><div class="dialog-actions"><button class="underlined" data-action="journal">Review what you remember →</button></div>`,
+      `<p class="document-intro">The lock clicks. Beyond the door is a small lift with no buttons. It descends for a long time. When it opens, you are back in the lobby. This time, nobody is behind the desk.</p><section class="ending-option"><h3>The red EXIT</h3><p>A rusted iron door. Cold air moves beneath it, carrying the smell of rain on a road you almost remember.</p><button class="button" data-action="ending-departure">Read Dylan’s message →</button></section><section class="ending-option"><h3>The white door</h3><p>Warm light. A voice you have missed. “Your room is waiting,” it says. “You do not have to go anywhere.”</p><button class="paper-button" data-action="ending-return">Attend the night interview →</button></section><section class="ending-option special"><h3>${ready ? "The service stair" : "A third possibility"}</h3><p>${ready ? "The record is complete. You recognize the brass disconnect behind the clock. The original register lies open beside it, Eleanor’s signed checkout slip between its pages. There is still time to bring the others." : "Behind the reception clock, a seam in the wallpaper catches your eye. Something here is unfinished. Recover all six records and register as a guest to understand it."}</p><button class="paper-button" data-action="ending-release" ${ready ? "" : "disabled"}>Take the register & cut the supply →</button></section><div class="dialog-actions"><button class="underlined" data-action="journal">Review what you remember →</button></div>`,
       "GROUND FLOOR / AFTER QUIET HOURS",
-    );
-  }
-  function ending(id) {
-    if (!state.endings.includes(id)) {
-      state.endings.push(id);
-      save();
-    }
-    const contents = {
-      departure: [
-        "01 / THE ROAD HOME",
-        "The road home",
-        "☼",
-        '<p>You push the red door open.<br>Morning air touches your face. You are standing on an ordinary road, beside an ordinary, empty field.</p><p>You turn around. There is a field where the hotel should be.</p><p>In your palm, the brass key is still warm. On its reverse, a new line has appeared:</p><p class="file-note">“We look forward to your next visit.”</p>',
-      ],
-      return: [
-        "02 / A FAMILIAR PLACE",
-        "A familiar place",
-        "S",
-        '<p>You step into the light. For a moment you can smell the soap from your bathroom at home.</p><p>When you open them, you are at reception. The porter smiles as though you have only stepped outside for a little air.</p><p>“Your room is waiting,” he says, turning the register toward you.</p><p class="file-note">This time, your name is already on the page.</p>',
-      ],
-    };
-    const [code, title, icon, text] = contents[id];
-    show(
-      title,
-      `<div class="ending"><div class="ending-icon">${icon}</div><p class="ending-code">${code}</p>${text}<div class="dialog-actions"><button class="button" data-action="journal">Keep the story in my notebook</button><button class="paper-button" data-room="404">Revisit the last door</button></div><p class="local-note">${state.endings.length} of 5 departure records remembered. Your progress remains saved. The service-stair checkout conceals another chapter; you can keep exploring without starting over.</p></div>`,
-      "THE STILLWATER HOTEL / DEPARTURE RECORD",
     );
   }
   document.addEventListener("click", (event) => {
@@ -916,6 +899,19 @@
     resetDocuments,
   });
   Object.assign(actions, expansion.actions);
+  branches = window.StillwaterBranches.create({
+    getState: () => state,
+    show,
+    save,
+    go,
+    render,
+    toast,
+    escape,
+    playKnock,
+    preloadScares: expansion.preloadScares,
+    actions,
+  });
+  Object.assign(actions, branches.actions);
   window.addEventListener("stillwater-career-enter", () => {
     state.applicant = true;
     save();

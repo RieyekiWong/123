@@ -47,3 +47,11 @@ These are photographs of real hotels, used as illustrative settings for a fictio
 ## Horror character art
 
 scare-porter.png, scare-veil.png and scare-reflection.png are generated fictional creature illustrations. They are separate from the real hotel photography and do not depict hotel employees or guests.
+
+## Dylan’s sealed-room scene
+
+`dylan-room.png` is an original generated illustration for the fictional Dylan Harker story. It depicts a respectfully covered figure in an abandoned room. It is not a photograph of a real death or hotel incident.
+
+The digits, timestamps and scan lines displayed over the real hotel photographs in the surveillance game are fictional CSS overlays, not marks in the source photographs.
+
+`dylan-room.png` 为迪伦·哈克虚构支线的原创生成插图，并非真实死亡事件照片。监控画面的数字、时间戳及扫描线由游戏叠加，不属于酒店实拍原图。

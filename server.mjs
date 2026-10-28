@@ -32,6 +32,8 @@ export function createServer(
         file === resolve(base, "locale-zh.js") ||
         file === resolve(base, "career.js") ||
         file === resolve(base, "career.css") ||
+        file === resolve(base, "branches.js") ||
+        file === resolve(base, "branches.css") ||
         file === resolve(base, "style.css") ||
         file === resolve(base, "app.js") ||
         file === resolve(base, "story-expansion.js") ||

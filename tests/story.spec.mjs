@@ -1,3 +1,8 @@
+import {
+  completeDylan,
+  acceptShift,
+  escapeShift,
+} from "./sidequest-helpers.mjs";
 import { test, expect } from "./hotel-fixture.mjs";
 
 const close = (page) =>
@@ -34,8 +39,8 @@ async function unlock(page) {
 test("full two-chapter investigation, five departure records, persistence and reset", async ({
   page,
 }) => {
-  test.setTimeout(60_000);
-  page.setDefaultTimeout(10_000);
+  test.setTimeout(120_000);
+  page.setDefaultTimeout(30_000);
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
@@ -106,19 +111,21 @@ test("full two-chapter investigation, five departure records, persistence and re
   await expect(page.locator('[data-action="puzzle-radio"]')).toBeDisabled();
   await unlock(page);
   await action(page, "ending-departure");
+  await completeDylan(page);
   await expect(
-    page.getByRole("heading", { name: "The road home" }),
+    page.getByRole("heading", { name: "The unanswered message", exact: true }),
   ).toBeVisible();
   await close(page);
   await unlock(page);
   await action(page, "ending-return");
-  await expect(
-    page.getByRole("heading", { name: "A familiar place", exact: true }),
-  ).toBeVisible();
-  await expect(page.locator(".ending")).toContainText(
-    "3 of 5 departure records",
+  await acceptShift(page);
+  await escapeShift(page);
+  const savedEndings = await page.evaluate(
+    () => JSON.parse(localStorage.getItem("stillwater-hotel:v2")).endings,
   );
-  await close(page);
+  expect(savedEndings).toEqual(
+    expect.arrayContaining(["departure", "return", "release"]),
+  );
   await page.reload();
   await page.locator("#journal-button").click();
   await expect(page.locator("dialog")).toContainText("The last checkout");
@@ -138,6 +145,13 @@ test("full two-chapter investigation, five departure records, persistence and re
   await action(page, "reset-prompt");
   await action(page, "reset-confirm");
   await expect(page.locator("#clue-count")).toHaveText("0 / 6");
+  const clearedSideStories = await page.evaluate(
+    () => JSON.parse(localStorage.getItem("stillwater-hotel:v2")).sideQuests,
+  );
+  expect(clearedSideStories.dylan.notes).toEqual([]);
+  expect(clearedSideStories.job.reviewed).toEqual([]);
+  expect(clearedSideStories.job.stage).toBe("none");
+  await expect(page.locator("#surveillance-return")).toBeHidden();
   await expect(page).toHaveURL(/#home$/);
   expect(errors).toEqual([]);
 });
@@ -157,7 +171,7 @@ test("early third ending is locked; bedside card records the clock only once", a
   ).toBeDisabled();
   await action(page, "ending-departure");
   await expect(
-    page.getByRole("heading", { name: "The road home" }),
+    page.getByRole("heading", { name: "Dylan Harker’s message" }),
   ).toBeVisible();
 });
 
@@ -350,6 +364,7 @@ test("corrupt storage does not block play", async ({ page }) => {
 });
 
 test("unavailable storage retains session play", async ({ page }) => {
+  test.setTimeout(60_000);
   await page.addInitScript(() => {
     Storage.prototype.getItem = () => {
       throw new Error("Storage blocked");
@@ -396,7 +411,7 @@ test("previous edition progress migrates without losing recovered clues", async 
     page.getByRole("heading", { name: "Welcome back, Returning guest." }),
   ).toBeVisible();
   await page.locator("#journal-button").click();
-  await expect(page.locator("dialog")).toContainText("The road home");
+  await expect(page.locator("dialog")).toContainText("The unanswered message");
   await expect(page.locator("dialog")).toContainText("A sixth door");
 });
 

@@ -7,6 +7,8 @@ for (const path of [
   "locale-zh.js",
   "career.js",
   "career.css",
+  "branches.js",
+  "branches.css",
   "style.css",
   "app.js",
   "story-expansion.js",
