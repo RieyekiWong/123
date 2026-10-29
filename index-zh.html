@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#2c3c3e" />
     <meta
       name="description"
-      content="安静的客房，通宵值班的前台。静水旅馆是一部藏在旧酒店官网中的两阶段互动恐怖谜案。"
+      content="静水镇的家庭旅馆，提供舒适客房、每日早餐和全天前台服务。"
     />
     <title>静水旅馆 — 安心入住，舒适相伴</title>
     <link rel="icon" href="assets/emblem.svg" type="image/svg+xml" />
@@ -14,18 +14,18 @@
     <link rel="stylesheet" href="career.css?v=3.7.0" />
     <link rel="stylesheet" href="branches.css?v=3.6.0" />
     <link rel="stylesheet" href="support-chat.css?v=3.6.1" />
-    <script src="locale-zh.js?v=3.8.0" defer></script>
-    <script src="story-expansion.js?v=3.8.0" defer></script>
+    <script src="locale-zh.js?v=3.9.0" defer></script>
+    <script src="story-expansion.js?v=3.9.0" defer></script>
     <script src="support-chat.js?v=3.6.1" defer></script>
-    <script src="branches.js?v=3.6.0" defer></script>
+    <script src="branches.js?v=3.9.0" defer></script>
     <link rel="stylesheet" href="afterword.css?v=3.6.0" />
-    <script src="afterword.js?v=3.6.0" defer></script>
+    <script src="afterword.js?v=3.9.0" defer></script>
     <link rel="stylesheet" href="lobby-music.css?v=3.8.2" />
-    <link rel="stylesheet" href="heritage.css?v=3.8.2" />
+    <link rel="stylesheet" href="heritage.css?v=3.9.0" />
     <script src="lobby-music.js?v=3.8.2" defer></script>
-    <script src="app.js?v=3.8.1" defer></script>
+    <script src="app.js?v=3.9.0" defer></script>
     <link rel="stylesheet" href="instructions.css?v=3.8.0" />
-    <script src="instructions.js?v=3.8.2" defer></script>
+    <script src="instructions.js?v=3.9.0" defer></script>
     <script src="career.js?v=3.7.0" defer></script>
   </head>
   <body class="locale-zh heritage-hotel">
@@ -63,19 +63,34 @@
       </div>
       <nav class="navigation" aria-label="主导航">
         <div class="header-width">
-          <a href="#home" data-nav="home" aria-current="page">首页</a
-          ><a href="#rooms" data-nav="rooms">客房与套房</a
-          ><a href="#history" data-nav="history">旅馆往事</a
-          ><a href="#guestbook" data-nav="guestbook">住客留言</a
-          ><a href="#reservations" data-nav="reservations">预订与入住</a
-          ><a href="#guide" data-nav="guide">旅馆指南</a>
-        </div>
-      </nav>
+          <a href="#home" data-nav="home" aria-current="page">首页</a><a href="#rooms" data-nav="rooms">客房</a><a href="#guide" data-nav="guide">设施与服务</a><a href="#history" data-nav="history">关于旅馆</a><a href="#reservations" data-nav="reservations">预订与入住</a><a href="#surveillance" class="monitor-shortcut" data-action="job-resume" hidden>监控室 →</a></div></nav>
       <div id="chapter-return" class="chapter-banner" hidden>
         <button data-page="below">
           <span id="chapter-return-label">RETURN TO LOWER REGISTER</span> →
         </button>
       </div>
+
+      <aside id="surveillance-return" hidden>
+        <button class="footer-monitor-link" data-action="job-resume">继续监控室值班 →</button>
+      </aside>
+      <main id="page-content" class="content-width" tabindex="-1">
+        <section class="hero hotel-welcome" aria-label="静水旅馆">
+          <div class="hero-copy">
+            <p class="eyebrow">家庭经营 · 始于 1987 年</p>
+            <h1>静水旅馆</h1>
+            <p>静水镇的家庭旅馆。舒适客房、每日早餐，前台全天为您服务。</p>
+            <a href="#rooms" class="button">查看客房 <span aria-hidden="true">→</span></a>
+          </div>
+          <figure class="hero-photo">
+            <img src="assets/lobby.jpg" alt="有木质楼梯与吊灯的酒店大堂" fetchpriority="high" />
+            <figcaption>旅馆大堂</figcaption>
+          </figure>
+        </section>
+        <div class="home-service-line">
+          <p>每日早餐 · 免费 Wi-Fi · 24 小时前台</p>
+          <a class="underlined" href="#guide">查看设施与服务 →</a>
+        </div>
+      </main>
       <aside
         id="applicant-banner"
         class="applicant-banner content-width"
@@ -84,74 +99,12 @@
         <div>
           <p class="eyebrow">Night receptionist / Applicant information</p>
           <h2>Before your first shift</h2>
-          <p>
-            Room and board are included. Report to reception, register under
-            your name, and collect the temporary key to Room 307. Please read
-            the guest guidelines before starting work. Your staff access code
-            will be issued after induction.
-          </p>
+          <p>Room and board are included. Register at reception before contacting the night supervisor for your handover.</p>
         </div>
         <button class="button" data-page="reservations">
           Report to reception →
         </button>
       </aside>
-      <aside id="surveillance-return" hidden>
-        <button data-action="job-resume">继续监控室值班 →</button>
-      </aside>
-      <main id="page-content" class="content-width" tabindex="-1">
-        <section class="hero">
-          <div class="hero-copy">
-            <p class="eyebrow">静水旅馆 · 始于 1987 年</p>
-            <h1>安静舒适，<br />自在入住。</h1>
-            <p>位于静水镇老路旁，提供安静客房、每日早餐和 24 小时前台服务。</p>
-            <a href="#rooms" class="button"
-              >查看客房 <span aria-hidden="true">→</span></a
-            >
-          </div>
-          <figure class="hero-photo">
-            <img src="assets/lobby.jpg" alt="有木质楼梯与吊灯的老酒店大堂" />
-            <figcaption>旅馆大堂</figcaption>
-          </figure>
-        </section>
-        <section class="invitation">
-          <div>
-            <p class="eyebrow">酒店介绍</p>
-            <h2>在静水镇，住得舒心。</h2>
-            <p>
-              静水旅馆在进镇的老路边，由一家人经营。楼梯和大部分家具还是以前的。晚到的客人请按前台铃，会有人下来接待。
-            </p>
-            <p>短住或长住均可安排。如需额外毯子或安静房间，请联系前台。</p>
-          </div>
-          <aside class="notice">
-            <p class="eyebrow">住客公告 · 更新于 10 月 3 日</p>
-            <h3>三层维护通知</h3>
-            <p>
-              三层西端正在维修。请按房卡上的标记通行，不要自行进入施工区域。
-            </p>
-            <a href="#history" class="underlined">了解旅馆 →</a>
-          </aside>
-        </section>
-        <section class="home-links" aria-label="了解旅馆">
-          <article>
-            <p class="eyebrow">01 / 客房</p>
-            <h3>舒适客房</h3>
-            <p>经典陈设，齐全设施，为旅途留一晚好眠。</p>
-            <a href="#rooms" class="underlined">查看客房 →</a>
-          </article>
-          <article>
-            <p class="eyebrow">02 / 回忆</p>
-            <h3>住客评价</h3>
-            <p>看看住客们分享的入住感受。</p>
-            <a href="#guestbook" class="underlined">查看住客留言 →</a>
-          </article>
-          <article>
-            <p class="eyebrow">03 / 始于 1987</p>
-            <h3>我们的故事</h3>
-            <p>从 1987 年开始，一家人用心经营的旅馆。</p>
-            <a href="#history" class="underlined">了解旅馆历史 →</a>
-          </article>
-        </section>
-      </main>
       <footer class="footer">
         <div class="header-width">
           <div class="footer-columns">
@@ -163,18 +116,20 @@
             <div>
               <h2>了解旅馆</h2>
               <a href="#rooms">客房与套房</a><a href="#guestbook">住客留言</a
-              ><a href="#history">旅馆往事</a><a href="#guide">旅馆指南</a>
+              ><a href="#history">关于旅馆</a><a href="#guide">设施与服务</a>
             </div>
             <div>
               <h2>旅馆服务</h2>
               <button data-action="inquiry">联系客服</button
-              ><a href="#employees">员工入口</a
-              ><button data-action="about">网站说明</button
-              ><button data-action="replay-introduction">重看求职开场</button
-              ><button data-action="credits">图片来源</button
-              ><button type="button" data-open-instructions>游戏说明</button>
-            </div>
+              ><button data-action="job-resume">监控室</button><a href="#careers">加入我们</a><a href="#employees">员工入口</a
+              ><button data-action="journal">我的笔记</button><button data-action="about">网站说明</button
+              ></div>
           </div>
+            <div class="footer-site-notes" aria-label="网站信息">
+              <button data-action="replay-introduction">重看求职开场</button>
+              <button data-action="credits">图片来源</button>
+              <button type="button" data-open-instructions>游戏说明</button>
+            </div>
           <div class="copyright">
             © 1987–2026 静水旅馆 ·
             虚构互动恐怖谜案。静水旅馆、人物和事件均为虚构，不接受真实预订。酒店图片为真实摄影，来源见「图片来源」。
@@ -182,7 +137,7 @@
         </div>
       </footer>
       <button
-        id="journal-button"
+        id="journal-button" hidden
         class="notebook-tab"
         data-action="journal"
         aria-label="打开住客笔记"

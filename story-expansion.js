@@ -339,51 +339,13 @@ window.StillwaterExpansion = {
     };
     function guidePage() {
       const cards = [
-        [
-          "dining",
-          "01 / Dining",
-          "A table set for you",
-          "Breakfast radio, the original five-course dinner, and a few customs retained by our kitchen.",
-        ],
-        [
-          "readingroom",
-          "02 / Reading room",
-          "Something worth keeping",
-          "Local histories, donated books, and a visitor’s desk facing a wall that sounds like another room.",
-        ],
-        [
-          "garden",
-          "03 / Courtyard",
-          "A little fresh air",
-          "A loop around the fountain, the northern bench, and the route recommended after dusk.",
-        ],
-        [
-          "switchboard",
-          "04 / Hotel facilities",
-          "A familiar order",
-          "The original restoration sheet for our four service circuits. Useful when the lights behave unexpectedly.",
-        ],
-        [
-          "residents",
-          "05 / Residents",
-          "A community of regulars",
-          "Meeting notes, room assignments, and a request concerning the guest in 311.",
-        ],
-        [
-          "inventory",
-          "06 / Reception",
-          "Things left behind",
-          "Our lost-property collection includes keys, a coat, a photograph, and an item without an obvious owner.",
-        ],
+        ["dining", "Dining", "Breakfast & dining", "Breakfast is served in the ground-floor dining room, daily from 7:00 to 9:00. View meal information and our sample dinner menu."],
+        ["readingroom", "Reading room", "A quiet place to read", "Books, local histories and a writing desk in the east wing. Browse the reading-room information and lending records."],
+        ["garden", "Courtyard", "Take a seat outside", "The courtyard is reached from the lobby, with seating beside the fountain. Read our garden and access information."],
+        ["inventory", "Reception services", "Lost property", "Left something behind? Reception keeps a record of items handed in by guests and housekeeping."],
       ];
-      return (
-        heading(
-          "Around the hotel",
-          "A little more to discover.",
-          "Meal times, room facilities, and a few notices from reception. Keep the service sheets nearby if you plan to explore the older part of the building.",
-        ) +
-        `<div class="page-main"><div class="guide-introduction"><p>The reading room is in the east wing. The courtyard opens from the lobby, beside the fern. We have also kept a few old notices here; some guests ask for them when the lights go out.</p><aside class="notice"><p class="eyebrow">A note from reception</p><h3>Please keep these cards.</h3><p>Facility information is not changed during a supply interruption. The printed instructions remain valid even if the building looks unfamiliar.</p></aside></div><div class="document-grid guide-grid">${cards.map(([id, label, title, text]) => `<button class="document-card" data-action="${id}"><p class="eyebrow">${label}</p><h2>${title}</h2><p>${text}</p><span class="underlined">Read the guest information →</span></button>`).join("")}</div><div class="archive-teaser"><div><p class="eyebrow">The hotel collection</p><h3>The faces behind the welcome.</h3><p>Our original photograph identifies the founders and the first relief porter. Names matter here; we take care not to misplace them.</p></div><button class="underlined" data-action="photograph">View contact sheet 001-B →</button></div></div>`
-      );
+      return heading("Facilities & services", "During your stay", "Breakfast, shared spaces and practical information for your visit. Our reception team is available around the clock.") +
+        `<div class="page-main"><dl class="service-facts"><div><dt>Front desk</dt><dd>24 hours</dd></div><div><dt>Breakfast</dt><dd>07:00–09:00</dd></div><div><dt>Wi-Fi</dt><dd>Complimentary in guest rooms</dd></div></dl><div class="document-grid guide-grid">${cards.map(([id, label, title, text]) => `<button class="document-card" data-action="${id}"><p class="eyebrow">${label}</p><h2>${title}</h2><p>${text}</p><span class="underlined">View information →</span></button>`).join("")}</div><section class="service-contact"><div><h2>How can we help?</h2><p>For extra bedding, arrival arrangements or questions about the hotel, contact our front desk.</p></div><button class="button" data-action="inquiry">Contact support →</button></section><details class="service-notices"><summary>Guest information & notices</summary><p>Quiet hours are 22:00–07:00. Some third-floor areas are being refurbished; please ask reception about access.</p><div class="collection-links"><button class="underlined" data-action="rules">Read the guest guidelines →</button><button class="underlined" data-action="notice">Read the full bulletin →</button><button class="underlined" data-action="switchboard">Service circuit sheet →</button><button class="underlined" data-action="residents">Residents’ notices →</button><button class="underlined" data-action="photograph">View contact sheet 001-B →</button></div></details></div>`;
     }
     function lowerPage() {
       if (state().chapter < 2)

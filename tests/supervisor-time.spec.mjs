@@ -100,7 +100,7 @@ test("all supervisor topics can be selected and sent, including the formerly unr
 }) => {
   await clock(page);
   await page.goto("/index-zh.html");
-  await page.locator('main [data-action="contact-supervisor"]').click();
+  await page.locator('footer [data-action="job-resume"]').click();
   for (const [index, key] of [
     "duties",
     "pay",
@@ -126,7 +126,7 @@ test("a non-time question resets the consecutive count and free-text date questi
 }) => {
   await clock(page);
   await page.goto("/index-zh.html");
-  await page.locator('main [data-action="contact-supervisor"]').click();
+  await page.locator('footer [data-action="job-resume"]').click();
   await ask(page, "schedule");
   await ask(page, "startdate");
   await ask(page, "pay");
@@ -155,7 +155,7 @@ test("later topics remain selectable during the fifteen-second interruption and 
 }) => {
   await clock(page);
   await page.goto("/index-zh.html");
-  await page.locator('main [data-action="contact-supervisor"]').click();
+  await page.locator('footer [data-action="job-resume"]').click();
   for (const key of ["duties", "pay", "schedule"]) await ask(page, key);
   await expect(page.locator("#support-interruption")).toBeVisible();
   await page.locator('[data-support-keyword="handover"]').click();
@@ -189,7 +189,7 @@ for (const reduced of [false, true])
       ),
     );
     await page.goto("/index-zh.html");
-    await page.locator('main [data-action="contact-supervisor"]').click();
+    await page.locator('footer [data-action="job-resume"]').click();
     await expect(page.locator("body")).toHaveClass(/supervisor-takeover/);
     expect(
       await page
@@ -198,7 +198,7 @@ for (const reduced of [false, true])
     ).toBe("rgb(32, 14, 18)");
     await page.keyboard.press("Escape");
     await expect(page.locator("body")).not.toHaveClass(/supervisor-takeover/);
-    await page.locator('main [data-action="contact-supervisor"]').click();
+    await page.locator('footer [data-action="job-resume"]').click();
     await expect(page.locator("body")).toHaveClass(/supervisor-takeover/);
     await page.evaluate(() => (location.hash = "history"));
     await expect(page.locator("body")).not.toHaveClass(/supervisor-takeover/);

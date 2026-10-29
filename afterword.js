@@ -266,11 +266,6 @@ window.StillwaterAfterword = (() => {
           "beforeend",
           `<section class="management-intro" data-puzzle-original><div><p class="eyebrow">${t("关于酒店", "ABOUT THE HOTEL")}</p><h2>${t("认识我们的管理团队", "Meet our management team")}</h2><p>${t("了解酒店创办人，以及负责日常运营和夜间服务的管理人员。", "Meet the founders and the people responsible for day-to-day and overnight operations.")}</p></div><button class="button button-secondary" data-action="management">${t("查看团队介绍", "Meet the team")} →</button></section>`,
         );
-      if (route === "home")
-        $(".side-story-board article")?.insertAdjacentHTML(
-          "beforeend",
-          `<p data-puzzle-original><button class="underlined" data-action="management">${t("了解管理团队", "Meet our management team")} →</button></p>`,
-        );
       if (route === "below" && getState().chapter === 3)
         $(".epilogue .inline-actions")?.insertAdjacentHTML(
           "beforebegin",

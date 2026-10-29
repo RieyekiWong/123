@@ -123,7 +123,7 @@ test("camera channel changes replace the current feed while Back returns to its 
   );
   await expect(page.locator("#dialog-back")).toBeHidden();
   await close(page);
-  await page.locator("#journal-button").click();
+  await page.locator('footer [data-action="journal"]').click();
   await expect(page.locator("#dialog-back")).toBeHidden();
 });
 

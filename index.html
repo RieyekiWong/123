@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#2c3c3e" />
     <meta
       name="description"
-      content="Quiet rooms. Thoughtful service. Memories worth keeping. Discover The Stillwater Hotel, a fictional interactive hotel mystery."
+      content="A family-run hotel in Stillwater, with comfortable rooms, daily breakfast and round-the-clock reception."
     />
     <title>The Stillwater Hotel — A familiar place, every time</title>
     <link rel="icon" href="assets/emblem.svg" type="image/svg+xml" />
@@ -14,17 +14,17 @@
     <link rel="stylesheet" href="career.css?v=3.7.0" />
     <link rel="stylesheet" href="branches.css?v=3.6.0" />
     <link rel="stylesheet" href="support-chat.css?v=3.6.1" />
-    <script src="story-expansion.js?v=3.8.0" defer></script>
+    <script src="story-expansion.js?v=3.9.0" defer></script>
     <script src="support-chat.js?v=3.6.1" defer></script>
-    <script src="branches.js?v=3.6.0" defer></script>
+    <script src="branches.js?v=3.9.0" defer></script>
     <link rel="stylesheet" href="afterword.css?v=3.6.0" />
-    <script src="afterword.js?v=3.6.0" defer></script>
+    <script src="afterword.js?v=3.9.0" defer></script>
     <link rel="stylesheet" href="lobby-music.css?v=3.8.2" />
-    <link rel="stylesheet" href="heritage.css?v=3.8.2" />
+    <link rel="stylesheet" href="heritage.css?v=3.9.0" />
     <script src="lobby-music.js?v=3.8.2" defer></script>
-    <script src="app.js?v=3.8.1" defer></script>
+    <script src="app.js?v=3.9.0" defer></script>
     <link rel="stylesheet" href="instructions.css?v=3.8.0" />
-    <script src="instructions.js?v=3.8.2" defer></script>
+    <script src="instructions.js?v=3.9.0" defer></script>
     <script src="career.js?v=3.7.0" defer></script>
   </head>
   <body class="heritage-hotel">
@@ -64,19 +64,34 @@
       </div>
       <nav class="navigation" aria-label="Main navigation">
         <div class="header-width">
-          <a href="#home" data-nav="home" aria-current="page">Home</a
-          ><a href="#rooms" data-nav="rooms">Rooms &amp; Suites</a
-          ><a href="#history" data-nav="history">Our History</a
-          ><a href="#guestbook" data-nav="guestbook">Guestbook</a
-          ><a href="#reservations" data-nav="reservations">Reservations</a
-          ><a href="#guide" data-nav="guide">Hotel Guide</a>
-        </div>
-      </nav>
+          <a href="#home" data-nav="home" aria-current="page">Home</a><a href="#rooms" data-nav="rooms">Rooms & Suites</a><a href="#guide" data-nav="guide">Facilities & Services</a><a href="#history" data-nav="history">About the Hotel</a><a href="#reservations" data-nav="reservations">Reservations</a><a href="#surveillance" class="monitor-shortcut" data-action="job-resume" hidden>Surveillance →</a></div></nav>
       <div id="chapter-return" class="chapter-banner" hidden>
         <button data-page="below">
           <span id="chapter-return-label">RETURN TO LOWER REGISTER</span> →
         </button>
       </div>
+
+      <aside id="surveillance-return" hidden>
+        <button class="footer-monitor-link" data-action="job-resume">Resume surveillance shift →</button>
+      </aside>
+      <main id="page-content" class="content-width" tabindex="-1">
+        <section class="hero hotel-welcome" aria-label="The Stillwater Hotel">
+          <div class="hero-copy">
+            <p class="eyebrow">Family-run since 1987</p>
+            <h1>The Stillwater Hotel</h1>
+            <p>A family-run stay in Stillwater. Comfortable rooms, daily breakfast and round-the-clock reception.</p>
+            <a href="#rooms" class="button">Explore the rooms <span aria-hidden="true">→</span></a>
+          </div>
+          <figure class="hero-photo">
+            <img src="assets/lobby.jpg" alt="Hotel lobby with a wooden staircase and chandeliers" fetchpriority="high" />
+            <figcaption>Our main lobby</figcaption>
+          </figure>
+        </section>
+        <div class="home-service-line">
+          <p>Daily breakfast · Complimentary Wi-Fi · 24-hour reception</p>
+          <a class="underlined" href="#guide">Facilities & services →</a>
+        </div>
+      </main>
       <aside
         id="applicant-banner"
         class="applicant-banner content-width"
@@ -85,92 +100,12 @@
         <div>
           <p class="eyebrow">Night receptionist / Applicant information</p>
           <h2>Before your first shift</h2>
-          <p>
-            Room and board are included. Report to reception, register under
-            your name, and collect the temporary key to Room 307. Please read
-            the guest guidelines before starting work. Your staff access code
-            will be issued after induction.
-          </p>
+          <p>Room and board are included. Register at reception before contacting the night supervisor for your handover.</p>
         </div>
         <button class="button" data-page="reservations">
           Report to reception →
         </button>
       </aside>
-      <aside id="surveillance-return" hidden>
-        <button data-action="job-resume">Resume surveillance shift →</button>
-      </aside>
-      <main id="page-content" class="content-width" tabindex="-1">
-        <section class="hero">
-          <div class="hero-copy">
-            <p class="eyebrow">A tradition of hospitality since 1987</p>
-            <h1>Your room is<br />waiting.</h1>
-            <p>
-              Stay a little outside town, with quiet rooms, a late-night desk,
-              and breakfast downstairs.
-            </p>
-            <a href="#rooms" class="button"
-              >Explore the rooms <span aria-hidden="true">→</span></a
-            >
-          </div>
-          <figure class="hero-photo">
-            <img
-              src="assets/lobby.jpg"
-              alt="An old hotel lobby with a wooden staircase and chandeliers"
-            />
-            <figcaption>Our historic main lobby</figcaption>
-          </figure>
-        </section>
-        <section class="invitation">
-          <div>
-            <p class="eyebrow">Our invitation</p>
-            <h2>Settle in for the night.</h2>
-            <p>
-              Stillwater is a small, family-run hotel on the old road into town.
-              We have kept the original staircase and most of the furniture. If
-              you arrive late, ring the bell at reception; someone will come
-              down.
-            </p>
-            <p>
-              We welcome overnight visitors and longer stays. Let reception know
-              if you need an extra blanket or a quiet room.
-            </p>
-          </div>
-          <aside class="notice">
-            <p class="eyebrow">Notice to our guests · Updated 10/03</p>
-            <h3>Third-floor maintenance</h3>
-            <p>
-              The west end of the third floor is closed for repairs. Please use
-              the rooms marked on your key card and ask reception before
-              entering the work area.
-            </p>
-            <a href="#history" class="underlined">Learn about our hotel →</a>
-          </aside>
-        </section>
-        <section class="home-links" aria-label="Discover the hotel">
-          <article>
-            <p class="eyebrow">01 / Rooms</p>
-            <h3>Time to unwind</h3>
-            <p>
-              Classic interiors and quiet spaces for the perfect night's rest.
-            </p>
-            <a href="#rooms" class="underlined">View rooms →</a>
-          </article>
-          <article>
-            <p class="eyebrow">02 / Memories</p>
-            <h3>Stories from our guests</h3>
-            <p>
-              Read messages from people who have stayed with us over the years.
-            </p>
-            <a href="#guestbook" class="underlined">Guestbook →</a>
-          </article>
-          <article>
-            <p class="eyebrow">03 / Since 1987</p>
-            <h3>A history of belonging</h3>
-            <p>A family-run destination with a story behind every door.</p>
-            <a href="#history" class="underlined">Our history →</a>
-          </article>
-        </section>
-      </main>
       <footer class="footer">
         <div class="header-width">
           <div class="footer-columns">
@@ -183,22 +118,21 @@
               <h2>Explore</h2>
               <a href="#rooms">Rooms &amp; Suites</a
               ><a href="#guestbook">Guestbook</a
-              ><a href="#history">Our History</a
-              ><a href="#guide">Hotel Guide</a>
+              ><a href="#history">About the Hotel</a
+              ><a href="#guide">Facilities & Services</a>
             </div>
             <div>
               <h2>Hotel resources</h2>
               <button data-action="inquiry">Contact support</button
-              ><a href="#employees">Employee Access</a
-              ><button data-action="about">Site Information</button
-              ><button data-action="replay-introduction">
-                Replay the job search</button
-              ><button data-action="credits">Photo credits</button
-              ><button type="button" data-open-instructions>
-                Game instructions
-              </button>
-            </div>
+              ><button data-action="job-resume">Surveillance room</button><a href="#careers">Careers</a><a href="#employees">Employee Access</a
+              ><button data-action="journal">My notes</button><button data-action="about">Site Information</button
+              ></div>
           </div>
+            <div class="footer-site-notes" aria-label="Site information">
+              <button data-action="replay-introduction">Replay job search</button>
+              <button data-action="credits">Photograph credits</button>
+              <button type="button" data-open-instructions>Game instructions</button>
+            </div>
           <div class="copyright">
             © 1987–2026 THE STILLWATER HOTEL · A FICTIONAL INTERACTIVE HORROR
             MYSTERY. Stillwater, its characters and events are fictional. No
@@ -208,7 +142,7 @@
         </div>
       </footer>
       <button
-        id="journal-button"
+        id="journal-button" hidden
         class="notebook-tab"
         data-action="journal"
         aria-label="Open guest notebook"

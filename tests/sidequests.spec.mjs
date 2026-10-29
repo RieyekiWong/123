@@ -79,7 +79,7 @@ for (const entry of ["index.html", "index-zh.html"]) {
     test.setTimeout(60000);
     await seed(page);
     await page.goto("/" + entry);
-    await page.locator('main [data-action="contact-supervisor"]').click();
+    await page.locator('footer [data-action="job-resume"]').click();
     await expect(page.locator('[data-action="job-accept"]')).toBeDisabled();
     await acceptShift(page);
     await page.locator("#monitor-code").fill("472");
@@ -135,7 +135,7 @@ test("monitor progress and inspected digits survive reload and leaving the work 
 }) => {
   await seed(page);
   await page.goto("/");
-  await page.locator('main [data-action="contact-supervisor"]').click();
+  await page.locator('footer [data-action="job-resume"]').click();
   await acceptShift(page);
   for (const feed of ["lobby", "corridor", "room"]) {
     await page.locator(`[data-action="monitor-feed-${feed}"]`).click();
@@ -228,7 +228,7 @@ test("an unregistered applicant can finish registration and return directly to t
   page,
 }) => {
   await page.goto("/index-zh.html");
-  await page.locator('main [data-action="contact-supervisor"]').click();
+  await page.locator('footer [data-action="job-resume"]').click();
   await prepareHire(page);
   await sideAction(page, "job-accept");
   await expect(page.locator("#dialog-title")).toHaveText("先办理住宿登记");

@@ -11,11 +11,13 @@ const action = (page, name) =>
   page.locator(`dialog [data-action="${name}"]`).click();
 const record = (page, id) => page.locator(`[data-clue="${id}"]`).click();
 async function navigate(page, route) {
-  await page.locator(`nav [data-nav="${route}"]`).click();
-  await expect(page.locator(`nav [data-nav="${route}"]`)).toHaveAttribute(
-    "aria-current",
-    "page",
-  );
+  if (route === "guestbook") {
+    await page.locator('footer a[href="#guestbook"]').click();
+    await expect(page).toHaveURL(/#guestbook$/);
+  } else {
+    await page.locator(`nav [data-nav="${route}"]`).click();
+    await expect(page.locator(`nav [data-nav="${route}"]`)).toHaveAttribute("aria-current", "page");
+  }
 }
 async function register(page, name = "Avery") {
   await navigate(page, "reservations");
@@ -62,6 +64,7 @@ test("full two-chapter investigation, five departure records, persistence and re
   await close(page);
 
   await navigate(page, "guestbook");
+  await page.locator(".guestbook-archive > summary").click();
   await record(page, "ribbon");
   await navigate(page, "history");
   await page.locator('[data-action="ledger"]').click();
@@ -162,7 +165,8 @@ test("early third ending is locked; bedside card records the clock only once", a
   page,
 }) => {
   await page.goto("/#rooms");
-  await page.locator('[data-action="rules"]').click();
+  await page.locator('main [data-roomtype="classic"]').click();
+  await page.locator('dialog [data-action="rules"]').click();
   await record(page, "clock");
   await expect(page.locator('[data-clue="clock"]')).toBeDisabled();
   await close(page);
@@ -286,7 +290,7 @@ test("keyboard document dismissal, optional sound, navigation history and staff 
   await navigate(page, "rooms");
   await page.goBack();
   await expect(
-    page.getByRole("heading", { name: "Some places stay with you." }),
+    page.getByRole("heading", { name: "A family hotel since 1987." }),
   ).toBeVisible();
   await page.locator('a[href="#employees"]').click();
   await page.getByLabel("Staff access code").fill("1003");
@@ -346,12 +350,12 @@ for (const width of [320, 390, 768, 1320, 1440]) {
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth),
     ).toBe(width);
-    await page.locator("#journal-button").click();
+    await page.locator('footer [data-action="journal"]').click();
     const rect = await page.locator("dialog").boundingBox();
     expect(rect.x).toBeGreaterThanOrEqual(0);
     expect(rect.x + rect.width).toBeLessThanOrEqual(width);
     await close(page);
-    await expect(page.locator("#journal-button")).toBeFocused();
+    await expect(page.locator('footer [data-action="journal"]')).toBeFocused();
   });
 }
 

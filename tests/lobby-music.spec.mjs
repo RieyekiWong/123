@@ -114,7 +114,7 @@ for (const mode of ["supervisor", "concierge", "impostor"])
       .locator(
         mode === "concierge"
           ? 'footer [data-action="inquiry"]'
-          : 'main [data-action="contact-supervisor"]',
+          : 'footer [data-action="job-resume"]',
       )
       .click();
     for (const key of mode === "concierge"
@@ -150,7 +150,7 @@ test("an anomaly during the countdown cancels the future playback before any pla
 }) => {
   await prepare(page);
   await enter(page);
-  await page.locator('main [data-action="contact-supervisor"]').click();
+  await page.locator('footer [data-action="job-resume"]').click();
   for (const key of ["duties", "pay", "schedule"]) await ask(page, key);
   await page.clock.runFor(60000);
   expect(await page.evaluate(() => window.__ytPlayers.length)).toBe(0);
@@ -246,7 +246,7 @@ test("an interruption while the YouTube API is still loading prevents the late p
     delete window.YT;
   });
   await page.clock.runFor(10000);
-  await page.locator('main [data-action="contact-supervisor"]').click();
+  await page.locator('footer [data-action="job-resume"]').click();
   for (const key of ["duties", "pay", "schedule"]) await ask(page, key);
   await page.evaluate(() => {
     window.YT = window.__savedYT;
@@ -269,7 +269,7 @@ test("the mobile player stays visible without covering the notebook, and can be 
   expect(frame.height).toBeGreaterThanOrEqual(200);
   expect(frame.x).toBeGreaterThanOrEqual(0);
   expect(frame.x + frame.width).toBeLessThanOrEqual(320);
-  await page.locator("#journal-button").click();
+  await page.locator('footer [data-action="journal"]').click();
   await expect(page.locator("#story-dialog")).toBeVisible();
   await page.locator("#dialog-close").click();
   await page.locator(".lobby-record-close").click();

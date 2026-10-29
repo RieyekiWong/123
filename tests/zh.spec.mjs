@@ -6,7 +6,7 @@ const close = (page) =>
 const action = (page, id) =>
   page.locator(`dialog [data-action="${id}"]`).click();
 const record = (page, id) => page.locator(`[data-clue="${id}"]`).click();
-const navigate = (page, id) => page.locator(`nav [data-nav="${id}"]`).click();
+const navigate = (page, id) => page.locator(id === "guestbook" ? 'footer a[href="#guestbook"]' : `nav [data-nav="${id}"]`).click();
 
 // Exercise the real Chinese route and every second-chapter station without seeding progress.
 test("Chinese edition completes both chapters using Chinese puzzle answers and shares hosted progress", async ({
@@ -36,6 +36,7 @@ test("Chinese edition completes both chapters using Chinese puzzle answers and s
   await record(page, "door");
   await close(page);
   await navigate(page, "guestbook");
+  await page.locator(".guestbook-archive > summary").click();
   await record(page, "ribbon");
   await navigate(page, "history");
   await page.locator('[data-action="ledger"]').click();
@@ -202,6 +203,8 @@ test("bilingual clue translation is idempotent and all guide documents are local
     "residents",
     "inventory",
   ]) {
+    if (["switchboard", "residents"].includes(id) && (await page.locator(".service-notices").getAttribute("open")) === null)
+      await page.locator(".service-notices > summary").click();
     await page.locator(`main [data-action="${id}"]`).click();
     await expect(page.locator("dialog #dialog-title")).toContainText(
       /[\u3400-\u9fff]/,

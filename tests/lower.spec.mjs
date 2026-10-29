@@ -21,7 +21,7 @@ async function seed(page, extra = {}) {
 const close = (page) =>
   page.getByRole("button", { name: "Close window", exact: true }).click();
 
-test("printed hotel guide documents expose all fair puzzle sources", async ({
+test("public services and expandable notices retain all fair puzzle sources", async ({
   page,
 }) => {
   await page.goto("/#guide");
@@ -37,7 +37,9 @@ test("printed hotel guide documents expose all fair puzzle sources", async ({
     ["residents", "A circular for long-stay residents", "Walter Vale"],
     ["inventory", "Lost property, awaiting collection", "Do not turn"],
   ];
-  await expect(page.locator(".guide-grid .document-card")).toHaveCount(6);
+  await expect(page.locator(".guide-grid .document-card")).toHaveCount(4);
+  await expect(page.locator('main [data-action="switchboard"]')).toBeHidden();
+  await page.locator(".service-notices > summary").click();
   for (const [id, title, clue] of cards) {
     await page.locator(`main [data-action="${id}"]`).click();
     await expect(

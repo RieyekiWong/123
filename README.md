@@ -206,3 +206,12 @@ The smaller player occupies a separate right rail on desktop or a bottom region 
 ## Footer player placement (3.8.2)
 
 The player now lives beneath the hotel description in the first footer column and scrolls normally with the page. It does not float, reserve a side rail or reduce the game viewport. Collapse and resume remain available; the restore button stays in the same footer position.
+
+
+### 3.9.0 · Public hotel information architecture
+
+The homepage now presents one lobby photograph, the hotel name, a short introduction and one room CTA. The five primary destinations cover home, rooms, facilities, about and reservations. Guest reviews and careers remain in the footer. Original branding, photographs and the aged website treatment are retained.
+
+Room cards and their booking dialogs show area and occupancy. Facilities concentrate practical service information; technical sheets and historical photographs remain reachable through expandable notices and the About collection. All original guest reviews, Rowan’s warning and Dylan’s attached note are retained under Earlier guestbook entries. An unregistered visitor sees no floating clue counter; footer notes remain accessible. Applicant information appears below the main content.
+
+A visible footer Surveillance room button opens the supervisor handover before employment and resumes existing shifts. A navigation shortcut appears after a temporary badge is issued. The new Careers page contains job information and the supervisor contact. Save keys, puzzle answers, story document actions and all three branches are unchanged.

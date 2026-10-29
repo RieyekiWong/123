@@ -13,7 +13,7 @@ async function open(page, entry = "index-zh.html", mode = "supervisor") {
   await page
     .locator(
       mode === "supervisor"
-        ? 'main [data-action="contact-supervisor"]'
+        ? 'footer [data-action="job-resume"]'
         : 'footer [data-action="inquiry"]',
     )
     .click();
@@ -101,7 +101,7 @@ test("closing or reloading during the interruption preserves its deadline and re
   await page.locator("#dialog-close").click();
   await page.clock.runFor(4000);
   await page.reload();
-  await page.locator('main [data-action="contact-supervisor"]').click();
+  await page.locator('footer [data-action="job-resume"]').click();
   await expect(page.locator("#support-interruption")).toBeVisible();
   await page.clock.runFor(5999);
   await expect(page.locator("#support-interruption")).toBeVisible();
@@ -117,7 +117,9 @@ test("homepage conceals Dylan; an ordinary guest review contains the attached pl
   expect(await page.locator("main").innerText()).not.toMatch(
     /迪伦|Dylan|Harker|求助/,
   );
-  await page.locator('nav [data-nav="guestbook"]').click();
+  await page.locator('footer a[href="#guestbook"]').click();
+  await expect(page.locator(".dylan-public-entry")).toBeHidden();
+  await page.locator(".guestbook-archive > summary").click();
   const review = page.locator(".dylan-public-entry");
   await expect(review).toContainText("D. H.");
   expect(await review.innerText()).not.toMatch(/迪伦|求助|出不去/);
@@ -143,7 +145,7 @@ test("free text, draft persistence, keyboard sending and HTML escaping work with
   await page.locator("#support-input").fill("还没发出的草稿");
   await page.locator("#dialog-close").click();
   await page.reload();
-  await page.locator('main [data-action="contact-supervisor"]').click();
+  await page.locator('footer [data-action="job-resume"]').click();
   await expect(page.locator("#support-input")).toHaveValue("还没发出的草稿");
   await page.locator("#support-input").fill("");
   await page.locator(".support-send").click();

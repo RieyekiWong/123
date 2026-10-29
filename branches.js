@@ -409,15 +409,10 @@ window.StillwaterBranches = (() => {
       return `<aside class="dylan-document-appendix" data-puzzle-original><p>${t("资料夹里还夹着一份署名 D. Harker 的记录。", "There is another record in the folder, signed D. Harker.")}</p><button class="underlined" data-action="dylan-note-${id}">${notes[id].title} →</button></aside>`;
     }
     function decorate(route) {
-      if (route === "home")
-        $("#page-content").insertAdjacentHTML(
-          "beforeend",
-          `<section class="side-story-board" data-puzzle-original><article><p class="eyebrow">${t("招聘与交接", "RECRUITMENT & HANDOVER")}</p><h2>${t("想了解今晚的岗位？", "Questions about tonight’s role?")}</h2><p>${t("夜班安排、住宿和报到事项，可直接联系值班主管。", "Contact the night supervisor about duties, accommodation and your arrival.")}</p><button class="underlined" data-action="contact-supervisor">${t("联系主管", "Contact supervisor")} →</button></article><article><p class="eyebrow">${t("前台在线服务", "GUEST SUPPORT")}</p><h2>${t("入住前，有什么想问的？", "How can we help before your stay?")}</h2><p>${t("查询客房、入住登记或其他服务信息。", "Ask about rooms, check-in or hotel services.")}</p><button class="underlined" data-action="inquiry">${t("联系客服", "Contact support")} →</button></article></section>`,
-        );
       if (route === "guestbook")
-        $("main [aria-label]")?.insertAdjacentHTML(
+        $("#guestbook-archive-entries")?.insertAdjacentHTML(
           "beforeend",
-          `<article class="guest-entry dylan-public-entry" data-puzzle-original><div class="entry-meta"><span>D. H. · ${t("夜班住宿", "Night-shift accommodation")}</span><span>${t("日期未注明", "Undated")}</span></div><blockquote>${t("“晚到的话，最好先问清楚谁负责交班。前台的铃声隔着两层楼也听得见，走廊的灯一整晚都没关。”", "“If you arrive late, check who is responsible for the handover. You can hear the reception bell two floors away. The corridor lights stayed on all night.”")}</blockquote><p class="fine-print">${t("这条评价下还有一段没有显示在正文里的补充。", "There is an additional message attached beneath this review.")}</p><button class="underlined" data-action="dylan-message">${t("查看附带的留言", "Read the attached message")} →</button></article>`,
+          `<article class="guest-entry dylan-public-entry" data-puzzle-original><div class="entry-meta"><span>D. H. · ${t("夜班住宿", "Night-shift accommodation")}</span><span>${t("日期未注明", "Undated")}</span></div><blockquote>${t("“晚到的话，最好先问清楚谁负责交班。前台的铃声隔着两层楼也听得见，走廊的灯一整晚都没关。”", "“If you arrive late, check who is responsible for the handover. You can hear the reception bell two floors away. The corridor lights stayed on all night.”")}</blockquote><button class="underlined" data-action="dylan-message">${t("查看附带的留言", "Read the attached message")} →</button></article>`,
         );
       const working = job().stage === "working";
       $("#surveillance-return").hidden = !working || route === "surveillance";

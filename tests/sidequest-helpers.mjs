@@ -27,7 +27,8 @@ const clockedPages = new WeakSet();
 export async function openDylan(page) {
   if (await page.locator("#story-dialog").isVisible())
     await page.locator("#dialog-close").click();
-  await page.locator('nav [data-nav="guestbook"]').click();
+  await page.locator('footer a[href="#guestbook"]').click();
+  await page.locator(".guestbook-archive > summary").click();
   await page
     .locator('.dylan-public-entry [data-action="dylan-message"]')
     .click();
