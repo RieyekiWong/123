@@ -1,4 +1,4 @@
-import { test, expect } from './hotel-fixture.mjs';
+import { test, expect, readCopy } from './hotel-fixture.mjs';
 for (const entry of ['index.html', 'index-zh.html']) {
   test(`${entry}: ordinary hotel pages lead to booking and optional archived clues`, async ({ page }) => {
     const errors = [];
@@ -20,7 +20,7 @@ for (const entry of ['index.html', 'index-zh.html']) {
     await expect(page.locator('[data-clue="ribbon"]')).toBeHidden();
     await expect(page.locator('.dylan-public-entry')).toBeHidden();
     await page.locator('.guestbook-archive > summary').click();
-    await page.locator('[data-clue="ribbon"]').click();
+    await readCopy(page, 'ribbon');
     await expect(page.locator('#journal-button')).toBeVisible();
     await page.reload();
     await expect(page.locator('.guestbook-archive')).not.toHaveAttribute('open');
@@ -50,6 +50,8 @@ for (const entry of ['index.html', 'index-zh.html']) {
       localStorage.setItem(key, JSON.stringify(save));
     });
     await page.reload();
+    await page.goto('/' + entry + '#surveillance');
+    await expect(page.locator("#monitor-log")).toBeEnabled();
     await expect(page.locator('.monitor-shortcut')).toBeVisible();
     await page.locator('.monitor-shortcut').click();
     await expect(page.locator('.surveillance-desk')).toBeVisible();

@@ -20,6 +20,7 @@ for (const path of [
   "heritage.css",
   "style.css",
   "app.js",
+  "exploration.js",
   "story-expansion.js",
   "assets",
 ])

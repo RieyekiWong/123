@@ -14,7 +14,7 @@ First-time visitors start at **Shiftwork**, a fictional hospitality jobs website
 
 Applications stay in the browser and are never submitted to employers. No real CV, account or contact details are needed. Partial application attempts survive reloads and language switches. Returning hotel players keep their save and bypass the introduction; **Replay the job search** in the hotel footer replays the opening without clearing hotel progress.
 
-The hotel layout, two chapters, twelve records, original puzzle answers and five endings remain. Chinese text uses direct hotel service language on public pages and conversational narrative in the mystery. Lower puzzles have three optional hint levels, selection counts and undo controls; the radio accepts exact numeric entry as well as the slider.
+The hotel layout, two chapters, twelve records, original puzzle answers and five endings remain. Chinese text uses direct hotel service language on public pages and conversational narrative in the mystery. Lower puzzles retain original-source references, selection counts and undo controls; the radio accepts exact numeric entry as well as the slider.
 
 ## Download and play
 
@@ -62,7 +62,7 @@ Six linked stations require different kinds of reasoning:
 
 A final discharge combines the recovered instructions. An alternative staff appointment is a false resolution. In total, five departure records can be remembered, including the true ending. Completed stations stay unlocked and can be reviewed without duplicating evidence.
 
-All required clues are inside this website. No real-world contact or outside investigation is needed. Source links beside the lower puzzles let you revisit relevant documents, and the notebook gives contextual pointers to missing records. Use the document header’s **Back** button to return without losing a typed answer, selected circuit sequence, tuned frequency, or selected incident cards. Camera channel changes replace the current feed, so Back returns directly to the directory. Returning from guidelines to the current registration page retains unfinished form fields.
+All required clues are inside this website. No real-world contact or outside investigation is needed. Source links beside the lower puzzles let you revisit relevant documents, and the notebook retains only documents already viewed. Use the document header’s **Back** button to return without losing a typed answer, selected circuit sequence, tuned frequency, or selected incident cards. Camera channel changes replace the current feed, so Back returns directly to the directory. Returning from guidelines to the current registration page retains unfinished form fields.
 
 ## Horror settings and local data
 
@@ -215,3 +215,10 @@ The homepage now presents one lobby photograph, the hotel name, a short introduc
 Room cards and their booking dialogs show area and occupancy. Facilities concentrate practical service information; technical sheets and historical photographs remain reachable through expandable notices and the About collection. All original guest reviews, Rowan’s warning and Dylan’s attached note are retained under Earlier guestbook entries. An unregistered visitor sees no floating clue counter; footer notes remain accessible. Applicant information appears below the main content.
 
 A visible footer Surveillance room button opens the supervisor handover before employment and resumes existing shifts. A navigation shortcut appears after a temporary badge is issued. The new Careers page contains job information and the supervisor contact. Save keys, puzzle answers, story document actions and all three branches are unchanged.
+
+
+### 3.10.0 · Contextual exploration
+
+See [the complete journey and audit](PLAYER-JOURNEY.zh-CN.md) for the six-phase route and original puzzle sources (creator spoilers). Room availability and a recent Room 307 review lead through reception’s reply, an access notice, the opening register and legacy staff access. The room diary, Rowan’s attachment, camera recording, undelivered letter and maintenance file then reference one another. Existing endings, job prologue, Dylan trail, surveillance work and the recording/email remain intact.
+
+`exploration.js` adds validated retained-reading history to the existing save, contextual references and automatic retention when an important original is actually opened. The notebook lists retained records only; public clue totals, missing-objective lists, progress bars and completion notifications are removed. The lower desk shows one responsive device, with every other device preserved in an expandable index. Source notes replace answer reveals. Ordinary services are shown before archived service cards. Instructions, credits and comfort settings remain optional in the footer, without a forced first-visit tutorial.

@@ -46,6 +46,7 @@ export function createServer(
         file === resolve(base, "heritage.css") ||
         file === resolve(base, "style.css") ||
         file === resolve(base, "app.js") ||
+        file === resolve(base, "exploration.js") ||
         file === resolve(base, "story-expansion.js") ||
         file.startsWith(resolve(base, "assets") + sep);
       if (!allowed || !(await stat(file)).isFile()) {

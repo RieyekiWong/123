@@ -1520,6 +1520,18 @@
     "Read the note beside the door →": "查看门边的便条 →",
   };
   Object.assign(dictionary, {
+    "Record unavailable.": "暂时无法调阅此记录。",
+    "This retained record is not associated with your current stay. Reception can help you find the correct registration.": "这份留存记录尚未关联到本次入住。您可以返回前台核对登记。",
+    "The original register is open. A living guest’s signature is required. Behind the desk, the empty uniform turns toward you.": "登记簿原件已经翻开，需要一位仍活着的住客签名。柜台后，那套空制服转向了你。",
+    "Open equipment record →": "查看设备记录 →",
+    "Open the powered receiver": "查看已通电的接收机",
+    "Open the kitchen cabinet file": "查看厨房柜锁资料",
+    "Read entry 311": "查看 311 号登记",
+    "Open the observation room": "打开观察室",
+    "Review the dated incident file": "核对事件原件",
+
+    "View source record →": "查看原始资料 →",
+    "Please use a nickname. This local registration is a simulation; no real booking is made.": "请使用昵称。本登记仅在本设备模拟，不会产生真实预订。",
     "Contact support →": "联系客服 →",
     "Contact supervisor →": "联系主管 →",
     "Meet our management team →": "了解管理团队 →",

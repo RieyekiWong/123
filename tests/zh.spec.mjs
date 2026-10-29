@@ -1,11 +1,11 @@
-import { test, expect } from "./hotel-fixture.mjs";
+import { test, expect, readCopy, reveal } from "./hotel-fixture.mjs";
 import { readFile } from "node:fs/promises";
 import vm from "node:vm";
 const close = (page) =>
   page.getByRole("button", { name: "关闭窗口", exact: true }).click();
 const action = (page, id) =>
   page.locator(`dialog [data-action="${id}"]`).click();
-const record = (page, id) => page.locator(`[data-clue="${id}"]`).click();
+const record = (page, id) => readCopy(page, id);
 const navigate = (page, id) => page.locator(id === "guestbook" ? 'footer a[href="#guestbook"]' : `nav [data-nav="${id}"]`).click();
 
 // Exercise the real Chinese route and every second-chapter station without seeding progress.
@@ -41,17 +41,17 @@ test("Chinese edition completes both chapters using Chinese puzzle answers and s
   await navigate(page, "history");
   await page.locator('[data-action="ledger"]').click();
   await record(page, "register");
-  await page.locator('dialog [data-page="employees"]').click();
+  await page.locator('dialog .document-reference a[href="#employees"]').click();
   await page.getByLabel("员工通行码").fill("1003");
   await page.getByRole("button", { name: "打开员工档案" }).click();
-  await page.locator('[data-action="maintenance"]').click();
+  await (await reveal(page, page.locator('main [data-action="maintenance"]'))).click();
   await record(page, "switch");
   await close(page);
-  await page.locator('[data-action="letter"]').click();
+  await page.locator('main [data-action="letter"]').click();
   await record(page, "letter");
   await close(page);
   await page.locator("#journal-button").click();
-  await expect(page.locator("dialog")).toContainText("已找回 6 / 6 条记录");
+  await expect(page.locator(".journal-list > li")).toHaveCount(6);
   await page.locator('dialog [data-room="404"]').click();
   await page.getByLabel("四位数字门锁密码").fill("1234");
   await page.getByRole("button", { name: "转动门锁" }).click();
@@ -61,7 +61,7 @@ test("Chinese edition completes both chapters using Chinese puzzle answers and s
   await action(page, "ending-release");
   await expect(page.getByRole("heading", { name: "退房失败" })).toBeVisible();
   await action(page, "continue-below");
-  await page.locator('main [data-action="puzzle-power"]').click();
+  await (await reveal(page, page.locator('main [data-action="puzzle-power"]'))).click();
   await expect(page.locator('[data-circuit="3"]')).toContainText("前台铃");
   for (const id of [3, 1, 4, 2])
     await page.locator(`[data-circuit="${id}"]`).click();
@@ -83,7 +83,7 @@ test("Chinese edition completes both chapters using Chinese puzzle answers and s
   );
   await expect(page.locator(".printed-menu")).toContainText("烟熏番茄清汤");
   await close(page);
-  await page.locator('main [data-action="puzzle-archive"]').click();
+  await (await reveal(page, page.locator('main [data-action="puzzle-archive"]'))).click();
   await page.getByLabel("柜锁的五字母密码").fill("STILL");
   await page.getByRole("button", { name: "打开名册盒" }).click();
   await action(page, "puzzle-identity");
@@ -203,13 +203,15 @@ test("bilingual clue translation is idempotent and all guide documents are local
     "residents",
     "inventory",
   ]) {
-    if (["switchboard", "residents"].includes(id) && (await page.locator(".service-notices").getAttribute("open")) === null)
-      await page.locator(".service-notices > summary").click();
+    const technical = ['switchboard', 'residents'].includes(id);
+    await page.locator(`nav [data-nav="${technical ? 'history' : 'guide'}"]`).click();
+    if (technical && (await page.locator('.hotel-collection').getAttribute('open')) === null) await page.locator('.hotel-collection > summary').click();
     await page.locator(`main [data-action="${id}"]`).click();
     await expect(page.locator("dialog #dialog-title")).toContainText(
       /[\u3400-\u9fff]/,
     );
-    await expect(page.locator("dialog .document-intro")).toContainText(
+    if (await page.locator(".facility-records").count()) await page.locator(".facility-records > summary").click();
+    await expect(page.locator("dialog .document-intro").first()).toContainText(
       /[\u3400-\u9fff]/,
     );
     await close(page);
@@ -253,7 +255,7 @@ for (const width of [320, 390, 768, 1320]) {
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth),
     ).toBe(width);
-    await page.locator('main [data-action="puzzle-power"]').click();
+    await (await reveal(page, page.locator('main [data-action="puzzle-power"]'))).click();
     const rect = await page.locator("dialog").boundingBox();
     expect(rect.x + rect.width).toBeLessThanOrEqual(width);
     await action(page, "switchboard");

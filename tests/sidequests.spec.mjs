@@ -127,7 +127,7 @@ test("partial Dylan notes survive reload and the unopened room cannot be skipped
   await page.locator("#journal-button").click();
   await expect(page.locator(".side-notebook")).toContainText("二层");
   await sideAction(page, "dylan-trail");
-  await expect(page.locator(".side-progress")).toContainText("1 / 3");
+  await expect(page.locator(".dylan-retained")).toContainText("二层");
 });
 
 test("monitor progress and inspected digits survive reload and leaving the work page", async ({

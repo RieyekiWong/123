@@ -15,6 +15,7 @@ for (const target of [".", "dist"]) {
     for (const path of [
       "/style.css",
       "/app.js",
+      "/exploration.js",
       "/locale-zh.js",
       "/career.js",
       "/career.css",

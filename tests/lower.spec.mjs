@@ -1,4 +1,4 @@
-import { test, expect } from "./hotel-fixture.mjs";
+import { test, expect, reveal } from "./hotel-fixture.mjs";
 const baseClues = ["clock", "door", "ribbon", "register", "switch", "letter"];
 async function seed(page, extra = {}) {
   await page.addInitScript(
@@ -41,7 +41,11 @@ test("public services and expandable notices retain all fair puzzle sources", as
   await expect(page.locator('main [data-action="switchboard"]')).toBeHidden();
   await page.locator(".service-notices > summary").click();
   for (const [id, title, clue] of cards) {
+    const technical = ['switchboard', 'residents'].includes(id);
+    await page.locator(`nav [data-nav="${technical ? 'history' : 'guide'}"]`).click();
+    if (technical && (await page.locator('.hotel-collection').getAttribute('open')) === null) await page.locator('.hotel-collection > summary').click();
     await page.locator(`main [data-action="${id}"]`).click();
+    if (await page.locator(".facility-records").count()) await page.locator(".facility-records > summary").click();
     await expect(
       page.getByRole("heading", { name: title, exact: true }),
     ).toBeVisible();
@@ -69,7 +73,7 @@ test("lower station dependencies and solved progress survive reloading", async (
   await expect(
     page.locator('main [data-action="final-discharge"]'),
   ).toBeDisabled();
-  await page.locator('main [data-action="puzzle-power"]').click();
+  await (await reveal(page, page.locator('main [data-action="puzzle-power"]'))).click();
   await expect(page.locator("dialog")).toContainText(
     "This station is complete.",
   );
@@ -82,7 +86,8 @@ test("lower station dependencies and solved progress survive reloading", async (
   await expect(page.locator("#clue-count")).toHaveText("7 / 12");
   await close(page);
   await page.reload();
-  await expect(page.locator(".lower-card.verified")).toHaveCount(1);
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem("stillwater-hotel:v2")).puzzles)).toEqual(["power"]);
+  await expect(page.locator('.lower-current [data-action="puzzle-radio"]')).toBeVisible();
   await expect(page.locator('main [data-action="puzzle-radio"]')).toBeEnabled();
 });
 
@@ -109,7 +114,7 @@ test("sudden-effect preference persists and does not block puzzle interaction", 
       .locator(".visitor-window img")
       .evaluate((img) => getComputedStyle(img).visibility),
   ).toBe("hidden");
-  await page.locator('main [data-action="puzzle-power"]').click();
+  await (await reveal(page, page.locator('main [data-action="puzzle-power"]'))).click();
   for (let n = 0; n < 3; n++)
     await page
       .getByRole("button", { name: "Energize selected sequence" })
@@ -130,7 +135,7 @@ test("reduced motion suppresses animated interruptions", async ({ page }) => {
   await seed(page);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/#below");
-  await page.locator('main [data-action="puzzle-power"]').click();
+  await (await reveal(page, page.locator('main [data-action="puzzle-power"]'))).click();
   for (let n = 0; n < 3; n++)
     await page
       .getByRole("button", { name: "Energize selected sequence" })
@@ -158,7 +163,7 @@ for (const width of [320, 390, 768, 1320]) {
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth),
     ).toBe(width);
-    await page.locator('main [data-action="puzzle-power"]').click();
+    await (await reveal(page, page.locator('main [data-action="puzzle-power"]'))).click();
     const rect = await page.locator("dialog").boundingBox();
     expect(rect.x).toBeGreaterThanOrEqual(0);
     expect(rect.x + rect.width).toBeLessThanOrEqual(width);
@@ -215,7 +220,7 @@ test("reset removes both chapters and a direct lower URL cannot skip the story",
   await expect(page.locator("body")).toHaveClass(/quiet-effects/);
   await page.goto("/#below");
   await expect(
-    page.getByRole("heading", { name: "This floor is not listed." }),
+    page.getByRole("heading", { name: "Record unavailable." }),
   ).toBeVisible();
   await expect(page.locator(".lower-card")).toHaveCount(0);
 });

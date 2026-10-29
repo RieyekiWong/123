@@ -605,3 +605,118 @@ body.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(.superv
 .heritage-hotel .navigation a[hidden] {
   display: none;
 }
+
+/* References resemble ordinary hotel paperwork, with no objective or completion UI. */
+#clue-count[hidden], .floor-map button[hidden], .discharge-bar[hidden] {
+  display: none;
+}
+.room-availability {
+  margin: 30px 0 10px;
+  padding: 20px 0;
+  border-block: 1px solid var(--line);
+  font: 13px/1.9 var(--sans);
+}
+.room-availability p {
+  margin-bottom: 12px;
+}
+.document-reference {
+  border-top: 1px solid var(--line);
+  margin-top: 28px;
+  padding-top: 18px;
+}
+.document-reference > p {
+  font: 10px/1.8 var(--sans);
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+.document-reference .underlined {
+  display: inline-block;
+  max-width: 100%;
+  white-space: normal;
+  text-align: left;
+}
+.retained-copy:disabled {
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 12px 0;
+  color: var(--muted);
+  font: 11px/1.8 var(--sans);
+  opacity: 1;
+}
+:is(.public-access-notice, .retained-entry, .reception-reply, .hotel-timeline, .archive-file-index, .sealed-correspondence, .facility-records, .dylan-retained, .lower-directory) {
+  margin-top: 24px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+:is(.public-access-notice, .retained-entry, .reception-reply, .hotel-timeline, .archive-file-index, .sealed-correspondence, .facility-records, .dylan-retained, .lower-directory) > summary {
+  cursor: pointer;
+  font: 13px/1.9 var(--sans);
+  color: var(--ink);
+  padding: 8px 0;
+}
+.reception-reply > p {
+  margin: 16px 0;
+  font-size: 14px;
+}
+.west-access-notice {
+  max-width: 65ch;
+  padding: 22px 0;
+}
+.west-access-notice h2 {
+  font-size: 27px;
+  margin: 8px 0 20px;
+}
+.west-access-notice p:not(.eyebrow) {
+  font-size: 15px;
+  line-height: 1.95;
+  margin-bottom: 18px;
+}
+.heritage-hotel .retained-entry .guest-entry {
+  margin-top: 12px;
+}
+.hotel-timeline article {
+  margin-top: 24px;
+  padding-bottom: 20px;
+}
+.archive-file-index .document-grid {
+  margin-top: 20px;
+}
+.lower-current {
+  max-width: 650px;
+  margin: 28px 0;
+}
+.lower-current .lower-card {
+  width: 100%;
+  min-height: 0;
+}
+.lower-current .lower-card p {
+  margin: 18px 0 24px;
+}
+.lower-directory {
+  border-color: #62382f;
+  margin-bottom: 24px;
+}
+.lower-directory summary {
+  color: #d8c5b2;
+}
+.lower-directory .lower-card {
+  min-height: 180px;
+}
+.notebook-tab > #clue-count {
+  display: none;
+}
+@media (max-width: 760px) {
+  .west-access-notice h2 {
+    font-size: 24px;
+  }
+  .document-reference .underlined {
+    line-height: 1.9;
+  }
+}
+.lower-card[hidden], .lower-directory[hidden] {
+  display: none;
+}
+.service-notices [hidden] {
+  display: none;
+}

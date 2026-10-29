@@ -20,3 +20,18 @@ export const test = base.extend({
   },
 });
 export { expect };
+
+// Regression paths may reopen a retained file from its ordinary collapsed index.
+export async function reveal(page, target) {
+  const parents = await target.locator('xpath=ancestor::details').all();
+  for (const parent of parents) {
+    if ((await parent.getAttribute('open')) === null)
+      await parent.locator(':scope > summary').click();
+  }
+  return target;
+}
+export async function readCopy(page, id) {
+  const target = page.locator(`[data-clue="${id}"]`);
+  await reveal(page, target);
+  await expect(target).toBeDisabled();
+}

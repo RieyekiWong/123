@@ -1,12 +1,12 @@
 import { test, expect } from "@playwright/test";
 const enter = (page) => page.locator('[data-instructions="enter"]').click();
 for (const entry of ["index-zh.html", "index.html"])
-  test(`${entry}: instructions appear before the job search, acknowledge once and can be reopened`, async ({
+  test(`${entry}: instructions are optional, explicitly opened, and can be reopened`, async ({
     page,
   }) => {
     const errors = [];
     page.on("pageerror", (e) => errors.push(e.message));
-    await page.goto("/" + entry);
+    await page.goto("/" + entry + "?instructions=1");
     await expect(page.locator("#game-instructions")).toBeVisible();
     await expect(page.locator("#game-instructions")).toContainText(
       entry.includes("zh") ? "注意事项" : "Content & comfort",
@@ -67,7 +67,7 @@ test("a returning player sees the guide without losing hotel records, and the ho
         }),
       );
   });
-  await page.goto("/index-zh.html#below");
+  await page.goto("/index-zh.html?instructions=1#below");
   await expect(page.locator("#game-instructions")).toBeVisible();
   await expect(page.locator('[data-instructions="scares"]')).toHaveAttribute(
     "aria-pressed",
@@ -95,7 +95,7 @@ test("sound and scare switches use the real hotel settings and audio remains off
       JSON.stringify({ entered: true }),
     ),
   );
-  await page.goto("/index-zh.html");
+  await page.goto("/index-zh.html?instructions=1");
   await page.locator('[data-instructions="sound"]').click();
   await expect(page.locator('[data-instructions="sound"]')).toHaveAttribute(
     "aria-pressed",
@@ -131,7 +131,7 @@ test("credit details identify all five real photographs and licences without loa
   page.on("request", (r) => {
     if (!r.url().startsWith("http://127.0.0.1:3107")) external.push(r.url());
   });
-  await page.goto("/index-zh.html");
+  await page.goto("/index-zh.html?instructions=1");
   await page.locator(".instructions-credits summary").click();
   await expect(page.locator(".instructions-credits")).toContainText(
     "Larry D. Moore",
@@ -164,7 +164,7 @@ test("storage failures never block the instructions or the first application", a
       throw Error("blocked");
     };
   });
-  await page.goto("/index-zh.html");
+  await page.goto("/index-zh.html?instructions=1");
   await enter(page);
   await page.locator('[data-job-card="harbor"] [data-career-apply]').click();
   await expect(
@@ -176,7 +176,7 @@ for (const width of [320, 390, 768, 1320])
     page,
   }) => {
     await page.setViewportSize({ width, height: 820 });
-    await page.goto("/index-zh.html");
+    await page.goto("/index-zh.html?instructions=1");
     await page.locator(".instructions-credits summary").click();
     expect(
       await page
@@ -194,7 +194,7 @@ for (const width of [320, 390, 768, 1320])
 test("switching languages while rereading keeps the guide open and preserves application records", async ({
   page,
 }) => {
-  await page.goto("/index-zh.html");
+  await page.goto("/index-zh.html?instructions=1");
   await enter(page);
   await page.locator('[data-job-card="harbor"] [data-career-apply]').click();
   await expect(

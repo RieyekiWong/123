@@ -192,6 +192,7 @@ test("the guide and recruitment do not start music; entering the hotel starts a 
     localStorage.removeItem("stillwater-career:v1");
   });
   await enter(page);
+  await page.locator(".career-footer [data-open-instructions]").click();
   await page.clock.runFor(20000);
   expect(await page.evaluate(() => window.__ytPlayers.length)).toBe(0);
   await page.locator('[data-instructions="enter"]').click();

@@ -66,47 +66,20 @@ window.StillwaterExpansion = {
     };
     let circuit = [];
     let dates = [];
-    const puzzleHints = {
-      power: [
-        "Use the facilities sheet in the hotel guide. Match departments to circuit numbers.",
-        "The bell comes first, followed by the kitchen and linen service. The night desk is last.",
-        "Select circuits 3, 1, 4, 2, then energize the sequence.",
-      ],
-      radio: [
-        "The dining room kept a card for the station played at breakfast.",
-        "Read the frequency printed beside WSTL on the programme card.",
-        "Tune the receiver to 88.7 MHz. Sound is not needed.",
-      ],
-      archive: [
-        "The radio tells you which part of the menu matters.",
-        "Read the first English letter of each course, from top to bottom.",
-        "The five initials are S, T, I, L, L.",
-      ],
-      identity: [
-        "Compare the original photograph captions with the opening-night register.",
-        "You need the founder assigned to Room 311, rather than the porter in Room 309.",
-        "Enter Walter Vale, or 沃尔特·维尔 in the Chinese edition.",
-      ],
-      mirror: [
-        "The card is reflected. Its letters are in reverse order.",
-        "Read from the right-hand end and separate the result into ordinary words.",
-        "The warning is DO NOT TURN THE KEY. Chinese answers are also accepted.",
-      ],
-      chronology: [
-        "Use the dates in the incident report; the camera timestamps are frozen.",
-        "Opening day is October 3. The clock failure is the following day.",
-        "Choose opening, clock failure, then the first guest’s return.",
-      ],
-      discharge: [
-        "Compare the night audit with the warning from the mirror.",
-        "A new register would start the cycle again. Keep the original, and remember what the warning says about the key.",
-        "Present the original register, leave the key untouched, and use the service stair.",
-      ],
+    const sourceNotes = {
+      power: ["设备资料 SW-14 与当前面板使用同一套部门名称。供电说明保留在旅馆设施原件中。", "Facilities sheet SW-14 uses the same department names as this panel. The original service sheet retains the wiring procedure."],
+      radio: ["餐厅保留的早餐节目单注明了原接收机使用的电台。", "The dining-room programme identifies the station used by the original receiver."],
+      archive: ["广播提到了菜单的读法。晚餐菜单保留了厨房原来的排版。", "The transmission refers to the way the menu was read. The dinner menu retains the kitchen’s original layout."],
+      identity: ["原照片的身份卡与登记簿使用相同房号。长住客通知也保留了当时的称呼。", "The original photograph’s identification cards use the register’s room numbers. The residents’ circular retains the names used at the time."],
+      mirror: ["阅览室的留存说明提到过反射文字。", "The retained reading-room information refers to reflected writing."],
+      chronology: ["事件报告记录了三天不同的事，录像显示的日期并不可靠。", "The incident report records three separate days. The camera dates are unreliable."],
+      discharge: ["夜间核查、维修文件与玻璃后的原纸条可相互核对。", "The night audit, maintenance file and original card behind the glass can be checked against one another."],
     };
     function documentHelp(content) {
       const id = content.match(/id="lower-(\w+)-form"/)?.[1];
-      if (!puzzleHints[id]) return "";
-      return `<details class="puzzle-help"><summary>Need a hint?</summary><p>Open one hint at a time. Later hints reveal more of the answer.</p>${puzzleHints[id].map((hint, index) => `<details class="puzzle-hint"><summary>${["Hint 1 / Where to look", "Hint 2 / How to read it", "Hint 3 / Show the answer"][index]}</summary><p>${hint}</p></details>`).join("")}</details>`;
+      if (!sourceNotes[id]) return "";
+      const zh = document.documentElement.lang === 'zh-CN';
+      return `<details class="puzzle-help" data-puzzle-original><summary>${zh ? '原件出处' : 'Source record'}</summary><p>${sourceNotes[id][zh ? 0 : 1]}</p></details>`;
     }
     function updateSequence(kind) {
       const values = kind === "circuit" ? circuit : dates;
@@ -222,7 +195,7 @@ window.StillwaterExpansion = {
       const next = steps[steps.indexOf(id) + 1];
       show(
         title,
-        `<p class="document-intro">LOWER REGISTER / RECORD VERIFIED</p><p>${text}</p><p class="system-note">Progress saved. This station will remain open when you return.</p><div class="dialog-actions">${next ? `<button class="button" data-action="puzzle-${next}">Continue to the next station →</button>` : '<button class="button" data-action="final-discharge">Prepare the final discharge →</button>'}<button class="paper-button" data-page="below">Return to lower register</button></div>`,
+        `<p class="document-intro">LOWER REGISTER / RECORD VERIFIED</p><p>${text}</p><div class="dialog-actions">${next ? `<button class="button" data-action="puzzle-${next}">${({radio:"Open the powered receiver",archive:"Open the kitchen cabinet file",identity:"Read entry 311",mirror:"Open the observation room",chronology:"Review the dated incident file"})[next]} →</button>` : '<button class="button" data-action="final-discharge">Prepare the final discharge →</button>'}<button class="paper-button" data-page="below">Return to lower register</button></div>`,
         "LOWER REGISTER / VERIFIED RECORD",
       );
     }
@@ -352,10 +325,10 @@ window.StillwaterExpansion = {
         return (
           heading(
             "Hotel resources",
-            "This floor is not listed.",
-            "The directory does not show a way down. The story must reach the service stair before the lower register can answer.",
+            "Record unavailable.",
+            "This retained record is not associated with your current stay. Reception can help you find the correct registration.",
           ) +
-          '<div class="page-main"><button class="button" data-action="journal">Return to your records →</button></div>'
+          '<div class="page-main"><button class="button" data-page="reservations">Return to reception →</button></div>'
         );
       if (state().chapter === 3) return epilogue();
       const cards = [
@@ -396,8 +369,11 @@ window.StillwaterExpansion = {
           "Separate the hotel’s version of events from the sequence that actually happened.",
         ],
       ];
-      return `<div class="page-main lower-register"><header class="breach-heading"><p class="eyebrow">UNINDEXED FLOOR / YOUR DEPARTURE WAS NOT ACCEPTED</p><div class="breach-heading-row"><h1>IT IS STILL<br>KEEPING YOU.</h1><div class="visitor-window"><img src="assets/scare-porter.png" alt="A figure behind the reception glass"><span>CAM 00 / DO NOT ANSWER</span></div></div><p>You are back at the desk. The checkout slip is blank again, and somebody has crossed out Room 311 in the book. A second register is wedged under the counter. Its last line has never been filled in.</p><div class="breach-stats"><span>PUBLIC RECORDS <b>6 / 6</b></span><span>LOWER STATIONS <b>${state().puzzles.length} / 6</b></span><span>DEPARTURE <b>DENIED</b></span></div></header><div class="lower-intro"><p>Work through the stations in order. Each restored record unlocks the next. The guest information above is still accessible; it was never only decoration.</p><div class="inline-actions"><button class="paper-button" data-page="guide">Recover the hotel guide ↑</button><button class="paper-button" data-action="journal">Open your notebook</button><button class="paper-button" data-action="about">Visual & audio settings</button></div></div><div class="lower-grid">${cards.map(([id, label, title, text]) => `<button class="lower-card ${solved(id) ? "verified" : ""}" data-action="puzzle-${id}" ${available(id) ? "" : "disabled"}><span class="eyebrow">${label}</span><h2>${title}</h2><p>${text}</p><span class="station-state">${solved(id) ? "RECORD VERIFIED ✓ / REVIEW" : available(id) ? "LINE OPEN →" : "WAITING FOR PREVIOUS STATION"}</span></button>`).join("")}</div><section class="discharge-bar"><div><p class="eyebrow">NO FURTHER DOORS WILL BE OFFERED</p><h2>The final discharge</h2><p>${state().puzzles.length === 6 ? "All six stations are working. Bring the correct book to the desk, follow the warning about the key, and choose your route out." : "Six stations must be restored before the final desk will accept a living signature."}</p></div><button class="button" data-action="final-discharge" ${state().puzzles.length === 6 ? "" : "disabled"}>Approach the desk →</button></section></div>`;
+      const current = steps.find(id => !solved(id));
+      const card = ([id, label, title, text]) => `<button class="lower-card" data-action="puzzle-${id}" ${available(id) ? '' : 'disabled hidden'}><h2>${title}</h2><p>${text}</p><span class="underlined">Open equipment record →</span></button>`;
+      return `<div class="page-main lower-register"><header class="breach-heading"><p class="eyebrow">UNINDEXED FLOOR / YOUR DEPARTURE WAS NOT ACCEPTED</p><div class="breach-heading-row"><h1>IT IS STILL<br>KEEPING YOU.</h1><div class="visitor-window"><img src="assets/scare-porter.png" alt="A figure behind the reception glass"><span>CAM 00 / DO NOT ANSWER</span></div></div><p>You are back at the desk. The checkout slip is blank again, and somebody has crossed out Room 311 in the book. A second register is wedged under the counter. Its last line has never been filled in.</p></header><div class="lower-intro"><p data-puzzle-original>${document.documentElement.lang === 'zh-CN' ? (current ? '柜台上的终端没有关机。其中一台设备还在响应。' : '终端重新连上了前台。旧登记簿的退房栏终于可以填写。') : (current ? 'The desk terminals are still on. One device is responding.' : 'The terminal has reconnected to reception. The departure field in the original register can now be completed.')}</p></div><div class="lower-current">${current ? card(cards.find(c => c[0] === current)) : ''}</div><details class="lower-directory" ${state().puzzles.length ? '' : 'hidden'}><summary data-puzzle-original>${document.documentElement.lang === 'zh-CN' ? '柜台设备目录' : 'Desk equipment index'}</summary><div class="lower-grid">${cards.filter(c => c[0] !== current).map(card).join('')}</div></details><div class="inline-actions"><button class="underlined" data-page="guide">Recover the hotel guide ↑</button><button class="underlined" data-action="journal">Open your notebook</button><button class="underlined" data-action="about">Visual & audio settings</button></div><section class="discharge-bar" ${current ? 'hidden' : ''}><div><h2>The final discharge</h2></div><button class="button" data-action="final-discharge" ${current ? 'disabled' : ''}>Approach the desk →</button></section></div>`;
     }
+
     function form(id, label, placeholder, prompt) {
       return `<form id="lower-${id}-form"><label class="field-label" for="answer-${id}">${label}</label><input class="text-input" id="answer-${id}" name="answer" maxlength="80" placeholder="${placeholder}" autocomplete="off" required><div class="form-error" id="puzzle-error" role="status"></div><button class="button full-width" type="submit">${prompt} →</button></form>`;
     }
@@ -516,7 +492,7 @@ window.StillwaterExpansion = {
           );
         show(
           "The final discharge",
-          `<p class="document-intro">Twelve records recovered. One living signature required. Behind the desk, the empty uniform turns toward you.</p><p>A clean register and a brass key have been placed on the desk. Beside them is a checkout form. The name field has already been filled in with your name.</p><form id="lower-discharge-form"><label class="field-label" for="discharge-register">Which register will you present?</label><select class="text-input" id="discharge-register" name="register"><option value="" selected disabled>Choose the record</option><option value="copy">The new, clean duplicate</option><option value="original">The original opening-night register</option></select><label class="field-label" for="discharge-key">What will you do with the brass key?</label><select class="text-input" id="discharge-key" name="key"><option value="" selected disabled>Choose what happens to the key</option><option value="turn">Turn it in the offered lock</option><option value="leave">Leave it untouched</option></select><label class="field-label" for="discharge-route">Which departure will you record?</label><select class="text-input" id="discharge-route" name="route"><option value="" selected disabled>Choose the way out</option><option value="white">The welcoming white doorway</option><option value="stair">The service stair</option><option value="red">The red EXIT door</option></select><div class="form-error" id="puzzle-error" role="status"></div><button class="button full-width" type="submit">Sign as ${escape(state().name)} & close the accounts →</button></form><div class="dialog-actions"><button class="underlined" data-action="nightaudit">Review the discharge requirements</button><button class="danger-link" data-action="accept-uniform">Stay and take the night shift</button></div>`,
+          `<p class="document-intro">The original register is open. A living guest’s signature is required. Behind the desk, the empty uniform turns toward you.</p><p>A clean register and a brass key have been placed on the desk. Beside them is a checkout form. The name field has already been filled in with your name.</p><form id="lower-discharge-form"><label class="field-label" for="discharge-register">Which register will you present?</label><select class="text-input" id="discharge-register" name="register"><option value="" selected disabled>Choose the record</option><option value="copy">The new, clean duplicate</option><option value="original">The original opening-night register</option></select><label class="field-label" for="discharge-key">What will you do with the brass key?</label><select class="text-input" id="discharge-key" name="key"><option value="" selected disabled>Choose what happens to the key</option><option value="turn">Turn it in the offered lock</option><option value="leave">Leave it untouched</option></select><label class="field-label" for="discharge-route">Which departure will you record?</label><select class="text-input" id="discharge-route" name="route"><option value="" selected disabled>Choose the way out</option><option value="white">The welcoming white doorway</option><option value="stair">The service stair</option><option value="red">The red EXIT door</option></select><div class="form-error" id="puzzle-error" role="status"></div><button class="button full-width" type="submit">Sign as ${escape(state().name)} & close the accounts →</button></form><div class="dialog-actions"><button class="underlined" data-action="nightaudit">Review the discharge requirements</button><button class="danger-link" data-action="accept-uniform">Stay and take the night shift</button></div>`,
           "FINAL DISCHARGE / NO COPIES ACCEPTED",
         );
       },
@@ -741,7 +717,7 @@ window.StillwaterExpansion = {
       },
       extraNotebook: () =>
         state().chapter >= 2
-          ? `<p class="system-note">Lower stations verified: ${state().puzzles.length}/6. ${state().chapter === 3 ? "The final discharge is complete." : "The first checkout was not the end. Continue in the lower register."}</p><button class="button" data-page="below">${state().chapter === 3 ? "Read the true ending" : "Return below"} →</button>`
+          ? `<p class="system-note">${state().chapter === 3 ? "The final discharge is complete." : "The first checkout was not the end."}</p><button class="button" data-page="below">${state().chapter === 3 ? "Read the true ending" : "Return below"} →</button>`
           : "",
       onWrongCode: () => {
         state().wrongAnswers++;

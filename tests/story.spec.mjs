@@ -3,17 +3,17 @@ import {
   acceptShift,
   escapeShift,
 } from "./sidequest-helpers.mjs";
-import { test, expect } from "./hotel-fixture.mjs";
+import { test, expect, readCopy, reveal } from "./hotel-fixture.mjs";
 
 const close = (page) =>
   page.getByRole("button", { name: "Close window", exact: true }).click();
 const action = (page, name) =>
   page.locator(`dialog [data-action="${name}"]`).click();
-const record = (page, id) => page.locator(`[data-clue="${id}"]`).click();
+const record = (page, id) => readCopy(page, id);
 async function navigate(page, route) {
-  if (route === "guestbook") {
-    await page.locator('footer a[href="#guestbook"]').click();
-    await expect(page).toHaveURL(/#guestbook$/);
+  if (["guestbook", "employees"].includes(route)) {
+    await page.locator(`footer a[href="#${route}"]`).click();
+    await expect(page).toHaveURL(new RegExp("#" + route + "$"));
   } else {
     await page.locator(`nav [data-nav="${route}"]`).click();
     await expect(page.locator(`nav [data-nav="${route}"]`)).toHaveAttribute("aria-current", "page");
@@ -70,7 +70,7 @@ test("full two-chapter investigation, five departure records, persistence and re
   await page.locator('[data-action="ledger"]').click();
   await expect(page.locator(".ledger-table")).toContainText("Eleanor Vale");
   await record(page, "register");
-  await page.locator('dialog [data-page="employees"]').click();
+  await page.locator('dialog .document-reference a[href="#employees"]').click();
   await expect(
     page.getByRole("heading", { name: "Employee access", exact: true }),
   ).toBeVisible();
@@ -81,10 +81,10 @@ test("full two-chapter investigation, five departure records, persistence and re
   );
   await page.getByLabel("Staff access code").fill("1003");
   await page.getByRole("button", { name: "Open staff records" }).click();
-  await page.locator('[data-action="maintenance"]').click();
+  await (await reveal(page, page.locator('main [data-action="maintenance"]'))).click();
   await record(page, "switch");
   await close(page);
-  await page.locator('[data-action="letter"]').click();
+  await page.locator('main [data-action="letter"]').click();
   await record(page, "letter");
   await expect(page.locator("#clue-count")).toHaveText("6 / 6");
   await close(page);
@@ -164,13 +164,20 @@ test("full two-chapter investigation, five departure records, persistence and re
 test("early third ending is locked; bedside card records the clock only once", async ({
   page,
 }) => {
-  await page.goto("/#rooms");
+  await page.goto("/#employees");
+  await page.locator("#staff-code").fill("1003");
+  await page.locator('#employee-form [type="submit"]').click();
+  await navigate(page, "rooms");
   await page.locator('main [data-roomtype="classic"]').click();
   await page.locator('dialog [data-action="rules"]').click();
   await record(page, "clock");
   await expect(page.locator('[data-clue="clock"]')).toBeDisabled();
   await close(page);
   await expect(page.locator("#clue-count")).toHaveText("1 / 6");
+  await navigate(page, "employees");
+  await page.locator('main [data-action="monitor"]').click();
+  await page.locator('[data-camera="2"]').click();
+  await close(page);
   await unlock(page);
   await expect(
     page.locator('dialog [data-action="ending-release"]'),
@@ -380,7 +387,7 @@ test("unavailable storage retains session play", async ({ page }) => {
     };
   });
   await page.goto("/");
-  await page.locator('[data-instructions="enter"]').click();
+  await expect(page.locator("#game-instructions")).toHaveCount(0);
   // With storage blocked, the new opening still works entirely in memory.
   for (const id of ["harbor", "park", "cedar", "lake", "union", "elm"]) {
     await page.locator(`[data-job-card="${id}"] [data-career-apply]`).click();
@@ -390,7 +397,9 @@ test("unavailable storage retains session play", async ({ page }) => {
   }
   await page.locator('[data-career="enter"]').click();
   await register(page);
-  await page.locator('main [data-action="rules"]').click();
+  await page.locator('main [data-action="explore"]').click();
+  await page.locator('dialog [data-room="307"]').click();
+  await action(page, "diary");
   await record(page, "clock");
   await expect(page.locator("#clue-count")).toHaveText("1 / 6");
 });
@@ -423,7 +432,7 @@ test("previous edition progress migrates without losing recovered clues", async 
 });
 
 async function solveLowerChapter(page) {
-  await page.locator('main [data-action="puzzle-power"]').click();
+  await (await reveal(page, page.locator('main [data-action="puzzle-power"]'))).click();
   for (const id of [1, 2, 3, 4])
     await page.locator(`[data-circuit="${id}"]`).click();
   await page
@@ -495,7 +504,8 @@ async function solveLowerChapter(page) {
   await expect(page.locator("#clue-count")).toHaveText("12 / 12");
   await close(page);
   await page.reload();
-  await expect(page.locator(".lower-card.verified")).toHaveCount(6);
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem("stillwater-hotel:v2")).puzzles)).toHaveLength(6);
+  await expect(page.locator('main [data-action="final-discharge"]')).toBeEnabled();
   await page.locator('main [data-action="final-discharge"]').click();
   await page
     .getByLabel("Which register will you present?")

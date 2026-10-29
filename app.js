@@ -36,6 +36,7 @@
     scares: true,
     wrongAnswers: 0,
     musicInterrupted: false,
+    exploration: window.StillwaterExploration.fresh(),
     sideQuests: window.StillwaterBranches.fresh(),
     afterword: window.StillwaterAfterword.fresh(),
   });
@@ -44,6 +45,7 @@
   let support;
   let afterword;
   let lobbyMusic;
+  let exploration;
   const baseClueIds = [
     "clock",
     "door",
@@ -109,6 +111,7 @@
         ...fresh(),
         applicant: raw.applicant === true,
         musicInterrupted: raw.musicInterrupted === true,
+        exploration: window.StillwaterExploration.hydrate(raw.exploration),
         sideQuests: window.StillwaterBranches.hydrate(raw.sideQuests),
         afterword: window.StillwaterAfterword.hydrate(raw.afterword),
         name: typeof raw.name === "string" ? raw.name.slice(0, 40) : "",
@@ -239,7 +242,7 @@
   }
   const clueButton = (id, label = "Keep this in my notebook") =>
     `<button class="paper-button" data-clue="${id}" ${state.clues.includes(id) ? "disabled" : ""}>${state.clues.includes(id) ? "Recorded in your notebook ✓" : label + " ＋"}</button>`;
-  function collect(id) {
+  function collect(id, quiet = false) {
     if (!Object.hasOwn(clues, id) || state.clues.includes(id)) return;
     state.clues.push(id);
     save();
@@ -247,9 +250,8 @@
       button.textContent = "Recorded in your notebook ✓";
       button.disabled = true;
     });
-    toast(
-      `Added to notebook: ${clues[id].title} (${state.clues.length}/${recordTarget()})`,
-    );
+    // A retained document is saved silently; no task-completion announcement.
+    void quiet;
   }
   const dialogHistory = [];
   let pendingDocument = null;
@@ -306,6 +308,7 @@
     support?.detach();
     $("#dialog-label").textContent = label;
     dialogBody.innerHTML = `<p class="eyebrow">The Stillwater Hotel · Est. 1987</p><h2 id="dialog-title">${escape(title)}</h2>${content}${branches?.appendix(title) || ""}${expansion?.documentHelp(content) || ""}`;
+    exploration?.documentView(title, dialogBody);
     updateDocumentNavigation();
     if (!dialog.open) dialog.showModal();
     support?.onDocumentChange();
@@ -430,7 +433,7 @@
     );
   }
   function reservationForm() {
-    return `<form id="reservation-form" class="form-panel"><p class="eyebrow">Guest registration</p><h2>Let us keep a room for you.</h2><p>Please use a nickname. This is part of the story, not a real reservation.</p><label class="field-label" for="guest-name">Guest name</label><input class="text-input" id="guest-name" name="guestName" maxlength="40" value="${escape(state.name)}" placeholder="The name on your invitation" autocomplete="nickname" required><div class="form-row"><div><label class="field-label" for="arrival-date">Arrival date</label><input class="text-input" id="arrival-date" type="date" name="arrival" value="${state.arrival}" min="1987-10-03" max="2099-12-31" required></div><div><label class="field-label" for="stay-length">Length of stay</label><select class="text-input" name="nights" id="stay-length">${[1, 2, 3, 4, 5, 6, 7].map((n) => `<option value="${n}" ${state.nights === n ? "selected" : ""}>${n} night${n > 1 ? "s" : ""}</option>`).join("")}</select></div></div><label class="field-label" for="room-preference">Room preference</label><select class="text-input" name="roomType" id="room-preference">${roomCards.map(([id, , title]) => `<option value="${id}" ${state.roomType === id ? "selected" : ""}>${title}</option>`).join("")}</select><div class="check-row"><input type="checkbox" name="guidelines" id="agree-guidelines" required><label for="agree-guidelines">I have read the <button type="button" class="underlined" data-action="rules">guest guidelines</button> and understand the check-in arrangements.</label></div><div class="form-error" id="reservation-error" role="status"></div><button class="button full-width" type="submit">Collect my room key <span>→</span></button><p class="local-note">No payment, email, or personal identification is needed. Your registration stays on this device.</p></form>`;
+    return `<form id="reservation-form" class="form-panel"><p class="eyebrow">Guest registration</p><h2>Let us keep a room for you.</h2><p>Please use a nickname. This local registration is a simulation; no real booking is made.</p><label class="field-label" for="guest-name">Guest name</label><input class="text-input" id="guest-name" name="guestName" maxlength="40" value="${escape(state.name)}" placeholder="The name on your invitation" autocomplete="nickname" required><div class="form-row"><div><label class="field-label" for="arrival-date">Arrival date</label><input class="text-input" id="arrival-date" type="date" name="arrival" value="${state.arrival}" min="1987-10-03" max="2099-12-31" required></div><div><label class="field-label" for="stay-length">Length of stay</label><select class="text-input" name="nights" id="stay-length">${[1, 2, 3, 4, 5, 6, 7].map((n) => `<option value="${n}" ${state.nights === n ? "selected" : ""}>${n} night${n > 1 ? "s" : ""}</option>`).join("")}</select></div></div><label class="field-label" for="room-preference">Room preference</label><select class="text-input" name="roomType" id="room-preference">${roomCards.map(([id, , title]) => `<option value="${id}" ${state.roomType === id ? "selected" : ""}>${title}</option>`).join("")}</select><div class="check-row"><input type="checkbox" name="guidelines" id="agree-guidelines" required><label for="agree-guidelines">I have read the <button type="button" class="underlined" data-action="rules">guest guidelines</button> and understand the check-in arrangements.</label></div><div class="form-error" id="reservation-error" role="status"></div><button class="button full-width" type="submit">Collect my room key <span>→</span></button><p class="local-note">No payment, email, or personal identification is needed. Your registration stays on this device.</p></form>`;
   }
   function confirmation() {
     return `<section class="form-panel"><p class="eyebrow">Your registration is complete</p><h2>Welcome back, ${escape(state.name)}.</h2><p>${state.applicant ? "Your arrival for the night receptionist interview has been noted. Room 307 is your temporary accommodation. Read the bedside card and look through the hotel information before your shift." : "We have noted your room preference. Only Room 307 is available in the west wing tonight; its key is ready at reception."}</p><div class="welcome-key"><p class="eyebrow">Your room is ready</p><div class="key-number">307</div><p>Third floor · The end of the west corridor</p></div><ul class="details-list"><li><span>Guest</span><span data-user-text>${escape(state.name)}</span></li><li><span>Arrival</span><span>${state.arrival}</span></li><li><span>Requested stay</span><span>${state.nights} night${state.nights > 1 ? "s" : ""}</span></li><li><span>Departure</span><span>To be confirmed</span></li></ul><div class="inline-actions"><button class="button" data-action="explore">Go to my room →</button><button class="underlined" data-action="edit-reservation">Amend registration</button>${state.applicant || ["interview", "hired"].includes(state.sideQuests.job.stage) ? '<button class="paper-button" data-action="job-interview">Attend the night handover →</button>' : ""}</div><p class="local-note">A fictional registration, saved only on this device.</p></section>`;
@@ -501,6 +504,7 @@
     document.body.dataset.hotelPage = route;
     branches?.decorate(route);
     afterword?.decorate(route);
+    exploration?.pageView(route);
     document.title = `The Stillwater Hotel — ${pageTitles[route]}`;
     document.querySelectorAll("[data-nav]").forEach((a) => {
       if (a.dataset.nav === route) a.setAttribute("aria-current", "page");
@@ -610,24 +614,11 @@
         custodian: "The new night porter",
         dawn: "For the first time, morning",
       };
+      const paths = {clock: '#reservations', door: '#employees', ribbon: '#guestbook?entry=rowan', register: '#history?file=ledger', switch: '#employees', letter: '#employees?file=letter'};
+      const records = state.clues.map(id => `<li><div><strong>${clues[id].title}</strong>${baseClueIds.includes(id) ? `<p>${clues[id].text}</p>` : ''}<a class="underlined" href="${paths[id] || '#below'}">View source record →</a></div></li>`).join('');
       show(
         "Your guest notebook",
-        `<p class="document-intro">${state.checkedIn ? escape(state.name) + " · Room 307" : "An unregistered guest"}<br>${state.clues.length} of ${recordTarget()} records recovered. ${baseReady() ? (state.chapter >= 2 ? "The public record was only the first layer." : "The public record is complete. The service stair is ready.") : "Take your time. The small details are usually the ones worth keeping."}</p><div class="progress-track"><div style="width:${(state.clues.length / 6) * 100}%"></div></div><ul class="journal-list">${Object.entries(
-          clues,
-        )
-          .filter(([id]) => state.chapter >= 2 || baseClueIds.includes(id))
-          .sort(
-            ([a], [b]) =>
-              (baseClueIds.indexOf(a) < 0 ? 99 : baseClueIds.indexOf(a)) -
-              (baseClueIds.indexOf(b) < 0 ? 99 : baseClueIds.indexOf(b)),
-          )
-          .map(
-            ([id, clue], i) =>
-              `<li><span class="journal-number">0${i + 1}</span><div>${state.clues.includes(id) ? `<strong>${clue.title}</strong><p>${clue.text}</p>` : `<span class="journal-missing">A missing piece</span><p>${clue.source}</p>`}</div></li>`,
-          )
-          .join(
-            "",
-          )}</ul>${state.endings.length ? `<h3>Departures remembered</h3><p>${state.endings.map((e) => titles[e]).join(" · ")}</p>` : ""}${expansion.extraNotebook()}${branches?.notebook() || ""}<div class="dialog-actions"><button class="button" data-room="404">Find the unlisted door →</button><button class="paper-button" data-page="employees">Visit the night desk</button></div><p class="local-note">Notes are saved on this device. All story clues can be found on this website; no outside investigation is required.</p>`,
+        `<p class="document-intro" data-puzzle-original>${document.documentElement.lang === 'zh-CN' ? '此处留存本设备已经查看的资料副本。' : 'Copies of documents already viewed on this device.'}</p>${records ? `<ul class="journal-list">${records}</ul>` : ''}${state.endings.length ? `<h3>Departures remembered</h3><p>${state.endings.map(e => titles[e]).join(' · ')}</p>` : ''}${expansion.extraNotebook()}${branches?.notebook() || ''}<div class="dialog-actions">${state.clues.includes('door') ? '<button class="button" data-room="404">Find the unlisted door →</button>' : ''}${state.staff ? '<button class="paper-button" data-page="employees">Visit the night desk</button>' : ''}</div><p class="local-note">Notes are saved on this device. All story clues can be found on this website; no outside investigation is required.</p>`,
         "PERSONAL EFFECTS / GUEST NOTEBOOK",
       );
     },
@@ -972,6 +963,9 @@
     escape,
   });
   Object.assign(actions, afterword.actions);
+  exploration = window.StillwaterExploration.create({
+    getState: () => state, save, collect, actions, escape,
+  });
   window.addEventListener("stillwater-career-enter", () => {
     state.applicant = true;
     save();

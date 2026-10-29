@@ -14,18 +14,19 @@
     <link rel="stylesheet" href="career.css?v=3.7.0" />
     <link rel="stylesheet" href="branches.css?v=3.6.0" />
     <link rel="stylesheet" href="support-chat.css?v=3.6.1" />
-    <script src="locale-zh.js?v=3.9.0" defer></script>
-    <script src="story-expansion.js?v=3.9.0" defer></script>
+    <script src="locale-zh.js?v=3.10.0" defer></script>
+    <script src="story-expansion.js?v=3.10.0" defer></script>
     <script src="support-chat.js?v=3.6.1" defer></script>
-    <script src="branches.js?v=3.9.0" defer></script>
+    <script src="branches.js?v=3.10.0" defer></script>
     <link rel="stylesheet" href="afterword.css?v=3.6.0" />
     <script src="afterword.js?v=3.9.0" defer></script>
     <link rel="stylesheet" href="lobby-music.css?v=3.8.2" />
-    <link rel="stylesheet" href="heritage.css?v=3.9.0" />
+    <link rel="stylesheet" href="heritage.css?v=3.10.0" />
     <script src="lobby-music.js?v=3.8.2" defer></script>
-    <script src="app.js?v=3.9.0" defer></script>
+    <script src="exploration.js?v=3.10.0" defer></script>
+    <script src="app.js?v=3.10.0" defer></script>
     <link rel="stylesheet" href="instructions.css?v=3.8.0" />
-    <script src="instructions.js?v=3.9.0" defer></script>
+    <script src="instructions.js?v=3.10.0" defer></script>
     <script src="career.js?v=3.7.0" defer></script>
   </head>
   <body class="locale-zh heritage-hotel">
@@ -121,7 +122,7 @@
             <div>
               <h2>旅馆服务</h2>
               <button data-action="inquiry">联系客服</button
-              ><button data-action="job-resume">监控室</button><a href="#careers">加入我们</a><a href="#employees">员工入口</a
+              ><button class="footer-monitor-link" data-action="job-resume">监控室</button><a href="#careers">加入我们</a><a href="#employees">员工入口</a
               ><button data-action="journal">我的笔记</button><button data-action="about">网站说明</button
               ></div>
           </div>
@@ -143,7 +144,7 @@
         aria-label="打开住客笔记"
       >
         <span aria-hidden="true">▤</span> 住客笔记
-        <span id="clue-count">0 / 6</span>
+        <span id="clue-count" hidden>0 / 6</span>
       </button>
     </div>
     <dialog id="story-dialog" aria-labelledby="dialog-title">

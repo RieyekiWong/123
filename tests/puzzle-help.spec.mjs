@@ -17,7 +17,7 @@ async function seed(page, puzzles = []) {
   );
 }
 
-test("power selection supports undo, counts accurately and reveals hints only on request", async ({
+test("power selection supports undo, counts accurately and retains source references without an answer reveal", async ({
   page,
 }) => {
   await seed(page);
@@ -30,14 +30,13 @@ test("power selection supports undo, counts accurately and reveals hints only on
   await expect(page.locator("#circuit-readout")).toHaveText("3");
   await expect(page.locator('[data-circuit="2"]')).toBeEnabled();
   await page.locator(".puzzle-help > summary").click();
-  await expect(page.locator(".puzzle-hint p").nth(2)).toBeHidden();
-  await page.locator(".puzzle-hint > summary").nth(0).click();
-  await expect(page.locator(".puzzle-hint p").nth(0)).toContainText("供电说明");
-  await expect(page.locator(".puzzle-hint p").nth(2)).toBeHidden();
+  await expect(page.locator(".puzzle-help p")).toContainText("供电说明");
+  await expect(page.locator(".puzzle-help")).not.toContainText("3142");
+  await expect(page.locator(".puzzle-hint")).toHaveCount(0);
   await page.locator('dialog [data-action="switchboard"]').click();
   await page.locator("#dialog-back").click();
   await expect(page.locator("#circuit-count")).toHaveText("1 / 4");
-  await expect(page.locator(".puzzle-hint p").nth(0)).toBeVisible();
+  await expect(page.locator(".puzzle-help p")).toBeVisible();
   for (const n of [1, 4, 2])
     await page.locator(`[data-circuit="${n}"]`).click();
   await page.locator('#lower-power-form [type="submit"]').click();

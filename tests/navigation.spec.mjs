@@ -1,4 +1,4 @@
-import { test, expect } from "./hotel-fixture.mjs";
+import { test, expect, reveal } from "./hotel-fixture.mjs";
 const base = ["clock", "door", "ribbon", "register", "switch", "letter"];
 const lowerSteps = ["power", "radio", "archive", "identity", "mirror"];
 async function seed(page, puzzles = []) {
@@ -44,7 +44,7 @@ for (const entry of ["index.html", "index-zh.html"]) {
   }) => {
     await seed(page);
     await page.goto("/" + entry + "#below");
-    await page.locator('main [data-action="puzzle-power"]').click();
+    await (await reveal(page, page.locator('main [data-action="puzzle-power"]'))).click();
     for (const n of [3, 1]) await page.locator(`[data-circuit="${n}"]`).click();
     await page.locator('dialog [data-action="switchboard"]').click();
     await expect(page.locator("#dialog-back")).toBeVisible();
@@ -62,7 +62,7 @@ test("a nested radio reference preserves tuning and decodes the restored value",
 }) => {
   await seed(page, ["power"]);
   await page.goto("/#below");
-  await page.locator('main [data-action="puzzle-radio"]').click();
+  await (await reveal(page, page.locator('main [data-action="puzzle-radio"]'))).click();
   await page.locator("#radio-frequency").evaluate((el) => {
     el.value = "887";
     el.dispatchEvent(new Event("input", { bubbles: true }));
@@ -85,14 +85,14 @@ test("looking up a menu preserves typed answers and chronology keeps partially s
 }) => {
   await seed(page, lowerSteps);
   await page.goto("/#below");
-  await page.locator('main [data-action="puzzle-archive"]').click();
+  await (await reveal(page, page.locator('main [data-action="puzzle-archive"]'))).click();
   await page.locator('dialog [data-action="replay-archive"]').click();
   await page.locator("#answer-archive").fill("STI");
   await page.locator('dialog [data-action="dining"]').click();
   await back(page);
   await expect(page.locator("#answer-archive")).toHaveValue("STI");
   await close(page);
-  await page.locator('main [data-action="puzzle-chronology"]').click();
+  await (await reveal(page, page.locator('main [data-action="puzzle-chronology"]'))).click();
   await page.locator('[data-date="open"]').click();
   await page.locator('[data-date="stop"]').click();
   await page.locator('dialog [data-action="incident"]').click();

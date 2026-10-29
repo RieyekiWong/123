@@ -137,7 +137,7 @@ window.StillwaterBranches = (() => {
     }
     function notebook() {
       if (!dylan().met && job().stage === "none") return "";
-      return `<section class="side-notebook" data-puzzle-original><h3>${t("其他调查记录", "Additional investigation records")}</h3>${dylan().met ? `<p>${t("迪伦留下的机位顺序：", "Dylan’s camera order: ")}<b>${t("走廊 → 前台 → 客房", "Corridor → reception → guest room")}</b></p><ul>${noteIds.map((id) => `<li>${dylan().notes.includes(id) ? "✓ " + notes[id].clue : "— " + notes[id].title}</li>`).join("")}</ul><button class="paper-button" data-action="dylan-trail">${t("整理求助线索", "Review the rescue trail")} →</button>` : ""}${job().stage !== "none" ? `<p>${t("监控巡检记录：", "Surveillance checks: ")}${job().reviewed.length} / 9</p><button class="paper-button" data-action="job-interview">${t("返回夜班记录", "Return to night-shift records")} →</button>` : ""}</section>`;
+      return `<section class="side-notebook" data-puzzle-original><h3>${t('留存来件', 'Retained correspondence')}</h3>${dylan().met ? `<p>${t('迪伦写下的机位顺序：走廊 → 前台 → 客房。', 'Dylan’s camera order: corridor → reception → guest room.')}</p>${dylan().notes.map(id => `<p>${notes[id].clue}</p>`).join('')}<button class="underlined" data-action="dylan-trail">${t('查看迪伦的来件', 'Read Dylan’s correspondence')} →</button>` : ''}${job().stage !== 'none' ? `<button class="underlined" data-action="job-interview">${t('夜班交接记录', 'Night handover record')} →</button>` : ''}</section>`;
     }
     function startDylan() {
       dylan().met = true;
@@ -156,23 +156,22 @@ window.StillwaterBranches = (() => {
         property: "inventory",
         roster: "weather",
       };
-      show(
-        t("寻找迪伦", "Looking for Dylan"),
-        `<div data-puzzle-original><p class="document-intro">${t("这三份资料能确认他的房间与门禁。它们不会计入原来的六份酒店记录。", "These three documents identify his room and door code. They are separate from the six original hotel records.")}</p><ol class="trail-list">${noteIds.map((id) => `<li><span class="trail-status">${dylan().notes.includes(id) ? "✓" : "○"}</span><div><h3>${notes[id].title}</h3><p>${dylan().notes.includes(id) ? notes[id].clue : t("尚未保存", "Not yet saved")}</p><button class="underlined" data-action="${targets[id]}">${t("查看原始资料", "Open the source document")} →</button></div></li>`).join("")}</ol><p class="side-progress">${t("已保存纸条", "Saved notes")} <b>${dylan().notes.length} / 3</b></p><div class="dialog-actions"><button class="button" data-action="dylan-door" ${dylan().notes.length < 3 ? "disabled" : ""}>${t("去东楼找他的房间", "Find his room in the east wing")} →</button><button class="paper-button" data-action="dylan-message">${t("重读求助留言", "Read the message again")}</button></div></div>`,
-      );
+      const next = noteIds.find(id => !dylan().notes.includes(id));
+      show(t("寻找迪伦", "Looking for Dylan"), `<div data-puzzle-original><p class="document-intro">${next ? (next === 'library' ? t('留言里最后提到东翼阅览室的一张借书卡。', 'The message refers to a library card in the east-wing reading room.') : notes[noteIds[noteIds.indexOf(next)-1]].text) : t('借书卡、行李标签与首次值班日期已经放在同一个封套里。', 'The library card, luggage tag and first-shift date are in the same envelope.')}</p><div class="dialog-actions">${next ? `<button class="button" data-action="${targets[next]}">${notes[next].title} →</button>` : `<button class="button" data-action="dylan-door">${t('去东楼找他的房间', 'Find his room in the east wing')} →</button>`}</div><details class="dylan-retained"><summary>${t('封套里的原件', 'Originals in the envelope')}</summary>${dylan().notes.map(id => `<p>${notes[id].clue}</p><button class="underlined" data-action="${targets[id]}">${notes[id].title} →</button>`).join('')}${next ? `<button class="paper-button" data-action="dylan-door" disabled>${t('东楼门禁记录', 'East-wing door record')}</button>` : ''}</details><button class="underlined" data-action="dylan-message">${t('重读求助留言', 'Read the message again')}</button></div>`);
     }
     function showNote(id) {
       if (!dylan().met) return startDylan();
+      if (!dylan().notes.includes(id)) { dylan().notes.push(id); save(); }
       show(
         notes[id].title,
-        `<div class="dylan-note" data-puzzle-original><p class="document-intro">D. HARKER / ${t("留在酒店里的记录", "RETAINED HOTEL RECORD")}</p><p>${notes[id].text}</p><p class="file-note">${notes[id].clue}</p><div class="dialog-actions"><button class="button" data-action="dylan-keep-${id}" data-dylan-fragment="${id}" ${dylan().notes.includes(id) ? "disabled" : ""}>${dylan().notes.includes(id) ? t("已保存纸条 ✓", "Note saved ✓") : t("保存这张纸条", "Save this note")}</button><button class="paper-button" data-action="dylan-trail">${t("整理线索", "Review the trail")} →</button></div></div>`,
+        `<div class="dylan-note" data-puzzle-original><p class="document-intro">D. HARKER / ${t("留在酒店里的记录", "RETAINED HOTEL RECORD")}</p><p>${notes[id].text}</p><p class="file-note">${notes[id].clue}</p><div class="dialog-actions"><button class="button" data-action="dylan-keep-${id}" data-dylan-fragment="${id}" ${dylan().notes.includes(id) ? "disabled" : ""}>${dylan().notes.includes(id) ? t("副本已留存", "Copy retained") : t("保存这张纸条", "Save this note")}</button><button class="paper-button" data-action="dylan-trail">${t("整理线索", "Review the trail")} →</button></div></div>`,
       );
     }
     function refreshDocument() {
       document.querySelectorAll("[data-dylan-fragment]").forEach((button) => {
         if (dylan().notes.includes(button.dataset.dylanFragment)) {
           button.disabled = true;
-          button.textContent = t("已保存纸条 ✓", "Note saved ✓");
+          button.textContent = t("副本已留存", "Copy retained");
         }
       });
     }
@@ -186,7 +185,7 @@ window.StillwaterBranches = (() => {
         );
       show(
         t("东楼二层", "East wing, second floor"),
-        `<div data-puzzle-original><p class="document-intro">${t("走廊尽头有一排拆掉门牌的房间。请先确认房号，再输入迪伦留下的门禁。", "At the end of the corridor, several doors have lost their numbers. Identify the room before entering Dylan’s door code.")}</p><form id="dylan-room-form"><label class="field-label" for="dylan-room">${t("要找的房号", "Room to find")}</label><input class="text-input" id="dylan-room" name="room" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" required autocomplete="off"><label class="field-label" for="dylan-code">${t("四位门禁密码", "Four-digit door code")}</label><input class="text-input" id="dylan-code" name="code" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" required autocomplete="off"><p id="dylan-error" class="form-error" role="status"></p><button class="button" type="submit">${t("确认房间并开门", "Find the room & unlock it")} →</button></form><div class="dialog-actions"><button class="underlined" data-action="dylan-trail">${t("核对三份纸条", "Check the three notes")}</button></div><details class="puzzle-help"><summary>${t("需要一点提示？", "Need a hint?")}</summary><p>${t("二层加上房号末两位 16，是 216。首次值班日期为 6 月 14 日，门禁按 MMDD 填写。", "Floor 2 and the last two digits, 16, give 216. His first shift was June 14; use MMDD for the code.")}</p></details></div>`,
+        `<div data-puzzle-original><p class="document-intro">${t("走廊尽头有一排拆掉门牌的房间。请先确认房号，再输入迪伦留下的门禁。", "At the end of the corridor, several doors have lost their numbers. Identify the room before entering Dylan’s door code.")}</p><form id="dylan-room-form"><label class="field-label" for="dylan-room">${t("要找的房号", "Room to find")}</label><input class="text-input" id="dylan-room" name="room" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" required autocomplete="off"><label class="field-label" for="dylan-code">${t("四位门禁密码", "Four-digit door code")}</label><input class="text-input" id="dylan-code" name="code" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" required autocomplete="off"><p id="dylan-error" class="form-error" role="status"></p><button class="button" type="submit">${t("确认房间并开门", "Find the room & unlock it")} →</button></form><div class="dialog-actions"><button class="underlined" data-action="dylan-trail">${t("核对三份纸条", "Check the three notes")}</button></div><details class="puzzle-help"><summary>${t("需要一点提示？", "Need a hint?")}</summary><p>${t("借书卡记录楼层，行李标签记录房号末两位。门禁格式写在衬衫口袋的原纸条上。", "The library card records the floor; the luggage tag retains the final two room digits. The note in the shirt pocket records the door-code format.")}</p></details></div>`,
       );
     }
     function foundRoom() {
@@ -282,6 +281,7 @@ window.StillwaterBranches = (() => {
       if (job().stage === "escaped") return jobEndingMarkup();
       if (!["hired", "working"].includes(job().stage))
         return `<div class="page-main" data-puzzle-original><h1>${t("监控室尚未交接", "The surveillance handover is incomplete")}</h1><p>${t("请先与里德主管交谈，完成住宿登记并领取临时工牌。", "Speak to Reed, register for your room and collect your temporary badge first.")}</p><button class="button" data-action="job-interview">${t("联系夜班主管", "Contact the night supervisor")} →</button></div>`;
+      if (job().stage === "hired") { job().stage = "working"; save(); }
       const j = job();
       return `<div class="page-main surveillance-desk" data-puzzle-original><header class="surveillance-heading"><div><p class="eyebrow">STILLWATER / SECURITY OPERATIONS</p><h1>${t("夜班监控工作台", "Night surveillance desk")}</h1><p>${t("三路画面，每轮各确认一次，共三轮。留意画面里后来出现的标记。", "Check each of the three feeds once per round, for three rounds. Watch for marks that appear later.")}</p></div><div class="shift-clock">04:04<span>${t("室门：已锁", "DOOR: LOCKED")}</span></div></header><div class="surveillance-layout"><section><div class="shift-tabs" role="group" aria-label="${t("选择监控机位", "Choose a surveillance feed")}">${feeds.map((id) => `<button data-action="monitor-feed-${id}" aria-pressed="${j.feed === id}">CAM ${feedInfo[id].camera}<span>${feedInfo[id].name}</span></button>`).join("")}</div><div id="shift-feed-container">${feedMarkup()}</div><div class="shift-watch-controls"><button class="button" id="monitor-log" data-action="monitor-log" disabled>${t("画面同步中…", "Synchronizing feed…")}</button><p id="monitor-status" role="status">${t("请检查画面后再确认。", "Examine the feed before confirming it.")}</p></div><div class="shift-rounds"><span>${t("本轮巡检", "CURRENT ROUND")} <b>${j.round} / 3</b></span><span>${t("已确认画面", "FEEDS CONFIRMED")} <b id="monitor-total">${j.reviewed.length} / 9</b></span></div><div class="shift-checklist">${feeds.map((id) => `<span data-check-feed="${id}">${j.reviewed.includes(`${j.round}:${id}`) ? "✓" : "○"} ${feedInfo[id].name}</span>`).join("")}</div><button class="paper-button" id="monitor-next-round" data-action="monitor-next-round" ${j.round === 3 || !reviewedRound() ? "hidden" : ""}>${t("开始下一轮巡检", "Begin the next round")} →</button></section><aside class="shift-side-panel"><div class="shift-handover"><p class="eyebrow">${t("交接记录", "HANDOVER LOG")}</p><p id="shift-round-message">${roundMessage()}</p><button class="underlined" data-action="monitor-order-note">${t("查阅住客留下的旧备注", "Read the old guest notes")} →</button><button class="underlined" data-action="monitor-settings">${t("画面与声音设置", "Visual & audio settings")}</button></div><div class="shift-evidence"><h2>${t("画面中的数字", "Numbers in the feeds")}</h2><ul>${feeds.map((id) => `<li><span>${feedInfo[id].name}</span><b data-feed-evidence="${id}">${j.inspected.includes(id) ? feedInfo[id].number : "—"}</b></li>`).join("")}</ul><p>${t("点击画面里的标记，将数字记到这里。", "Inspect a mark in the scene to record it here.")}</p></div><form id="monitor-escape-form" class="monitor-keypad"><h2>${t("应急开门校验", "Emergency door verification")}</h2><p>${t("完成三轮巡检并找到三个数字后，按旧备注中的场景顺序输入。", "Complete three rounds, find all three numbers and follow the location order in the old notes.")}</p><label for="monitor-code">${t("三位数字校验码", "Three-digit verification code")}</label><input class="text-input" id="monitor-code" name="code" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" autocomplete="off" required placeholder="— — —"><p class="form-error" id="monitor-error" role="status"></p><button class="button full-width" type="submit">${t("解除门锁", "Release the door lock")} →</button></form></aside></div></div>`;
     }
@@ -470,12 +470,7 @@ window.StillwaterBranches = (() => {
         if (!dylan().notes.includes(id)) dylan().notes.push(id);
         save();
         refreshDocument();
-        toast(
-          t(
-            "纸条已保存，可以在住客笔记里核对。",
-            "Note saved. Review it in your notebook.",
-          ),
-        );
+
       };
     }
     for (const id of feeds) {

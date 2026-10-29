@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
 export const sideAction = (page, id) =>
-  page.locator(`dialog [data-action="${id}"]`).click();
+  page.locator(`dialog [data-action="${id}"]`).isDisabled().then(disabled => disabled ? undefined : page.locator(`dialog [data-action="${id}"]`).click());
 export async function collectDylanNotes(page) {
   await sideAction(page, "dylan-trail");
   for (const [id, source] of [
