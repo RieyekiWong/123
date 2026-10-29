@@ -1,4 +1,5 @@
-.career-mode > :not(#career-scene):not(script):not(style) {
+.career-mode
+  > :not(#career-scene):not(#game-instructions):not(script):not(style) {
   display: none !important;
 }
 #career-scene {

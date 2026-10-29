@@ -376,6 +376,7 @@ test("unavailable storage retains session play", async ({ page }) => {
     };
   });
   await page.goto("/");
+  await page.locator('[data-instructions="enter"]').click();
   // With storage blocked, the new opening still works entirely in memory.
   for (const id of ["harbor", "park", "cedar", "lake", "union", "elm"]) {
     await page.locator(`[data-job-card="${id}"] [data-career-apply]`).click();

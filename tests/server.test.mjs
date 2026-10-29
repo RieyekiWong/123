@@ -24,6 +24,8 @@ for (const target of [".", "dist"]) {
       "/support-chat.css",
       "/afterword.js",
       "/afterword.css",
+      "/instructions.js",
+      "/instructions.css",
       "/assets/dylan-help.mp3",
       "/assets/dylan-room.png",
       "/index-zh.html",

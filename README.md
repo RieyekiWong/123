@@ -178,3 +178,10 @@ Three consecutive sent time questions to Reed (shift hours, start date, arrival 
 Completing the original final discharge opens a black-screen transmission. Choose audio or captions. The local synthetic adult male voice completes six calls of “help me” before a response field appears. Enter `help me` to open Dylan's final warning as an offline inbox message. No real email is requested or transmitted. Audio pauses when hidden or closed; only completed calls are saved. Existing completed saves can use the new button on their departure record to continue without resetting. The final letter remains available for review.
 
 </details>
+
+
+## First-visit instructions (3.7)
+
+A full-page guide precedes recruitment on first visit, covering content notes, controls, optional audio, local saves and the difference between resetting hotel progress and replaying the job search. Expandable credits list all five photographs, original sources and licences, generated art and voice provenance. Its sound and sudden-effect buttons use the same settings as the hotel. Sound is off by default.
+
+Acknowledgement is stored separately from story progress; existing saves remain intact. Game instructions can be reopened from either the recruitment or hotel footer. The guide works in both languages and remains dismissible when storage is blocked.

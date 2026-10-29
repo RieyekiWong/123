@@ -952,6 +952,12 @@
   }
   window.addEventListener("hashchange", updateLanguageLink);
   updateLanguageLink();
+  window.StillwaterPlayerSettings = {
+    soundEnabled: () => !!soundContext,
+    scaresEnabled: () => state.scares,
+    toggleSound: () => actions.sound(),
+    toggleScares: () => actions["toggle-scares"](),
+  };
   save();
   render();
 })();

@@ -39,6 +39,8 @@ export function createServer(
         file === resolve(base, "support-chat.css") ||
         file === resolve(base, "afterword.js") ||
         file === resolve(base, "afterword.css") ||
+        file === resolve(base, "instructions.js") ||
+        file === resolve(base, "instructions.css") ||
         file === resolve(base, "style.css") ||
         file === resolve(base, "app.js") ||
         file === resolve(base, "story-expansion.js") ||
