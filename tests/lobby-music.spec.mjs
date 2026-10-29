@@ -292,3 +292,58 @@ test("the first optional horror frame also cuts the music, even when sudden face
   await expect(page.locator(".lobby-youtube-mount iframe")).toHaveCount(0);
   expect(await page.evaluate(() => window.__ytPlayers[0].destroyed)).toBe(true);
 });
+
+for (const width of [390, 1320])
+  test(`player has its own region and can collapse and resume at ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await prepare(page);
+    await enter(page);
+    await begin(page);
+    const game = await page.locator("#hotel-game-viewport").boundingBox();
+    const frame = await page
+      .locator(".lobby-youtube-mount iframe")
+      .boundingBox();
+    if (width < 900)
+      expect(frame.y).toBeGreaterThanOrEqual(game.y + game.height);
+    else expect(frame.x).toBeGreaterThanOrEqual(game.x + game.width);
+    expect(
+      await page
+        .locator("#hotel-game-viewport")
+        .evaluate((el) => el.scrollWidth <= el.clientWidth + 1),
+    ).toBe(true);
+    await page.locator(".lobby-record-collapse").click();
+    await expect(page.locator(".lobby-record-player")).toBeHidden();
+    await expect(page.locator(".lobby-record-restore")).toBeVisible();
+    expect(await page.evaluate(() => window.__ytPlayers[0].paused)).toBe(true);
+    expect(await page.evaluate(() => window.__ytPlayers[0].destroyed)).toBe(
+      false,
+    );
+    await page.clock.runFor(30000);
+    expect(await page.evaluate(() => window.__ytPlayers.length)).toBe(1);
+    await page.locator(".lobby-record-restore").click();
+    await expect(page.locator(".lobby-record-player")).toBeVisible();
+    await expect(page.locator(".lobby-record-status")).toContainText(
+      "等着你回来",
+    );
+    expect(await page.evaluate(() => window.__ytPlayers.length)).toBe(1);
+    expect(await page.evaluate(() => window.__ytPlayers[0].paused)).toBe(false);
+  });
+test("a collapsed player remains hidden on reload and does not restart automatically", async ({
+  page,
+}) => {
+  await prepare(page);
+  await enter(page);
+  await begin(page);
+  await page.locator(".lobby-record-collapse").click();
+  await page.reload();
+  await page.clock.runFor(20000);
+  await expect(page.locator(".lobby-record-restore")).toBeVisible();
+  await expect(page.locator(".lobby-record-player")).toBeHidden();
+  expect(await page.evaluate(() => window.__ytPlayers.length)).toBe(0);
+  await page.locator(".lobby-record-restore").click();
+  await expect(page.locator(".lobby-record-status")).toContainText(
+    "等着你回来",
+  );
+});

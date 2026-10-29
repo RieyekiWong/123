@@ -196,3 +196,8 @@ The first hotel phase waits ten seconds before attempting playback of the three 
 A supervisor/concierge interruption, the impostor, Dylan's investigation, accepting the job or advancing beyond chapter one latches `musicInterrupted` in the story save and immediately destroys the player. Closing the conversation, normal public-page navigation and reloading cannot restart those records. A new hotel stay clears that story latch; the separate music preference remains. Recruitment and the opening instructions do not start playback. Hiding the page pauses the player.
 
 Timing, ordering, volume ramps, autoplay fallback and immediate interruption are tested against a YouTube API stand-in. The execution environment blocks access to YouTube, so actual playback and each uploader's embedding permission still require a browser with YouTube access.
+
+
+## Compact player and dedicated playback region (3.8.1)
+
+The smaller player occupies a separate right rail on desktop or a bottom region on mobile. Hotel content scrolls in the remaining viewport rather than underneath the player. Collapse pauses playback and leaves a small restore button; expanding resumes the same player. The collapsed preference persists, preventing playback after reload until expanded. Story interruptions still destroy the player and prevent subsequent playback.

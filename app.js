@@ -492,6 +492,7 @@
       else a.removeAttribute("aria-current");
     });
     if (moveFocus) {
+      document.querySelector("#hotel-game-viewport")?.scrollTo(0, 0);
       window.scrollTo(0, 0);
       main.focus({ preventScroll: true });
     }

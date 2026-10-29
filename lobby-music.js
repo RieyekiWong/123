@@ -178,10 +178,12 @@ window.StillwaterLobbyMusic = (() => {
     const zh = document.documentElement.lang === "zh-CN";
     const t = (a, b) => (zh ? a : b);
     let enabled = true,
+      collapsed = false,
       level = 0.24;
     try {
       const stored = JSON.parse(localStorage.getItem(key));
       if (typeof stored?.enabled === "boolean") enabled = stored.enabled;
+      if (typeof stored?.collapsed === "boolean") collapsed = stored.collapsed;
       if (Number.isFinite(stored?.level))
         level = Math.max(0, Math.min(0.6, stored.level));
     } catch {
@@ -197,14 +199,33 @@ window.StillwaterLobbyMusic = (() => {
     let phase = "idle",
       stoppedForStory = false,
       destroyed = false,
-      preloadStarted = false;
+      preloadStarted = false,
+      dockOpen = false;
     const root = document.querySelector("footer.footer .header-width");
     const panel = document.createElement("section");
     panel.className = "lobby-record-player";
+    panel.id = "lobby-record-player";
     panel.setAttribute("data-puzzle-original", "");
     panel.setAttribute("aria-label", t("大堂留声机", "Lobby record player"));
-    panel.innerHTML = `<div><span class="lobby-record-label">${t("大堂留声机", "LOBBY RECORD PLAYER")}</span><p class="lobby-record-status" role="status" aria-live="polite"></p><a class="lobby-record-source" target="_blank" rel="noopener noreferrer" hidden></a></div><div class="lobby-record-controls"><button type="button" class="lobby-record-close" aria-label="${t("关闭官网音乐", "Turn hotel music off")}">×</button><button type="button" data-lobby-action="toggle"></button><button type="button" data-lobby-action="replay" hidden>${t("重新播放", "Replay")}</button><label>${t("音量", "Volume")}<input type="range" min="0" max="60" value="${Math.round(level * 100)}" step="1" aria-label="${t("官网音乐音量", "Hotel music volume")}"></label></div><div class="lobby-youtube-mount" hidden></div>`;
+    panel.innerHTML = `<div><span class="lobby-record-label">${t("大堂留声机", "LOBBY RECORD PLAYER")}</span><p class="lobby-record-status" role="status" aria-live="polite"></p><a class="lobby-record-source" target="_blank" rel="noopener noreferrer" hidden></a></div><div class="lobby-record-controls"><button type="button" class="lobby-record-collapse" aria-label="${t("收起留声机并暂停", "Collapse player and pause")}" aria-expanded="true" aria-controls="lobby-record-player">${t("收起", "Hide")}</button><button type="button" class="lobby-record-close" aria-label="${t("关闭官网音乐", "Turn hotel music off")}">×</button><button type="button" data-lobby-action="toggle"></button><button type="button" data-lobby-action="replay" hidden>${t("重新播放", "Replay")}</button><label>${t("音量", "Volume")}<input type="range" min="0" max="60" value="${Math.round(level * 100)}" step="1" aria-label="${t("官网音乐音量", "Hotel music volume")}"></label></div><div class="lobby-youtube-mount" hidden></div>`;
     root?.prepend(panel);
+    const restore = document.createElement("button");
+    restore.type = "button";
+    restore.className = "lobby-record-restore";
+    restore.setAttribute("data-puzzle-original", "");
+    restore.setAttribute(
+      "aria-label",
+      t("展开留声机，继续播放", "Expand record player to resume"),
+    );
+    restore.setAttribute("aria-expanded", "false");
+    restore.setAttribute("aria-controls", panel.id);
+    restore.title = t(
+      "留声机已收起，音乐已暂停",
+      "Player collapsed; music paused",
+    );
+    restore.textContent = t("♫ 留声机", "♫ Music");
+    restore.hidden = true;
+    document.body.append(restore);
     const status = panel.querySelector(".lobby-record-status");
     const toggle = panel.querySelector('[data-lobby-action="toggle"]');
     const replay = panel.querySelector('[data-lobby-action="replay"]');
@@ -226,10 +247,13 @@ window.StillwaterLobbyMusic = (() => {
       !document.hidden &&
       !document.querySelector("#afterword-screen[open]") &&
       (location.hash.slice(1) || "home") !== "surveillance";
-    const allowed = () => inHotel() && !storyOver() && enabled;
+    const allowed = () => inHotel() && !storyOver() && enabled && !collapsed;
     function persist() {
       try {
-        localStorage.setItem(key, JSON.stringify({ enabled, level }));
+        localStorage.setItem(
+          key,
+          JSON.stringify({ enabled, level, collapsed }),
+        );
       } catch {
         /* Session preference remains available. */
       }
@@ -248,6 +272,10 @@ window.StillwaterLobbyMusic = (() => {
           "Paused. Resume in the player.",
         ),
         starting: t("正在连接 YouTube…", "Connecting to YouTube…"),
+        collapsed: t(
+          "留声机已收起，音乐已暂停。",
+          "Player collapsed; music paused.",
+        ),
         muted: t("官网音乐已关闭。", "Hotel music is off."),
         blocked: t("点按播放，开启大堂音乐。", "Tap to start the lobby music."),
         unavailable: t(
@@ -278,15 +306,31 @@ window.StillwaterLobbyMusic = (() => {
         source.href = playlist[index].link;
         source.textContent = t("在 YouTube 观看 ↗", "Watch on YouTube ↗");
       }
+      panel.hidden = collapsed;
+      restore.hidden = !collapsed || !inHotel() || storyOver();
       panel.classList.toggle(
         "is-youtube-visible",
-        !!audio &&
-          ["playing", "starting", "blocked", "user-paused"].includes(phase),
+        !collapsed &&
+          !storyOver() &&
+          inHotel() &&
+          (dockOpen ||
+            (!!audio &&
+              ["playing", "starting", "blocked", "user-paused"].includes(
+                phase,
+              ))),
       );
-      document.body.classList.toggle(
+      const viewport = document.querySelector("#hotel-game-viewport");
+      const wasDocked = document.body.classList.contains(
         "lobby-youtube-visible",
-        panel.classList.contains("is-youtube-visible"),
       );
+      const docked = panel.classList.contains("is-youtube-visible");
+      const scroll =
+        wasDocked && viewport ? viewport.scrollTop : window.scrollY;
+      document.body.classList.toggle("lobby-youtube-visible", docked);
+      if (viewport && wasDocked !== docked) {
+        if (docked) viewport.scrollTop = scroll;
+        else window.scrollTo({ top: scroll, behavior: "instant" });
+      }
       window.dispatchEvent(new CustomEvent("stillwater-music-change"));
     }
     function cancel() {
@@ -421,6 +465,7 @@ window.StillwaterLobbyMusic = (() => {
         release();
         entryAt = null;
         stoppedForStory = true;
+        dockOpen = false;
         phase = "stopped";
         update();
         return;
@@ -439,6 +484,12 @@ window.StillwaterLobbyMusic = (() => {
         return;
       }
       if (entryAt === null) entryAt = Date.now();
+      if (collapsed) {
+        cancel();
+        phase = "collapsed";
+        update();
+        return;
+      }
       if (!enabled) {
         cancel();
         phase = "muted";
@@ -461,6 +512,10 @@ window.StillwaterLobbyMusic = (() => {
       )
         return;
       const remaining = Math.max(0, 10000 - (Date.now() - entryAt));
+      if (remaining === 0) {
+        play();
+        return;
+      }
       if (timer === null) {
         phase = "waiting";
         timer = setTimeout(play, remaining);
@@ -471,7 +526,9 @@ window.StillwaterLobbyMusic = (() => {
       enabled = value;
       persist();
       if (!value) {
-        cancel();
+        if (phase === "starting") release();
+        else cancel();
+        dockOpen = false;
         phase = "muted";
       } else if (["muted", "blocked", "unavailable"].includes(phase))
         phase = "idle";
@@ -479,9 +536,35 @@ window.StillwaterLobbyMusic = (() => {
       update();
       return enabled;
     }
+    function setCollapsed(value) {
+      if (storyOver()) return;
+      collapsed = value;
+      if (value) {
+        if (phase === "starting") release();
+        else cancel();
+        dockOpen = false;
+        phase = "collapsed";
+      } else {
+        dockOpen = true;
+        if (phase === "collapsed") phase = "idle";
+      }
+      persist();
+      sync();
+      update();
+      if (value && !restore.hidden) restore.focus({ preventScroll: true });
+      else if (!value)
+        panel
+          .querySelector(".lobby-record-collapse")
+          .focus({ preventScroll: true });
+    }
     panel
-      .querySelector(".lobby-record-close")
-      .addEventListener("click", () => setEnabled(false));
+      .querySelector(".lobby-record-collapse")
+      .addEventListener("click", () => setCollapsed(true));
+    restore.addEventListener("click", () => setCollapsed(false));
+    panel.querySelector(".lobby-record-close").addEventListener("click", () => {
+      setEnabled(false);
+      setCollapsed(true);
+    });
     toggle.addEventListener("click", () => {
       if (storyOver()) return;
       if (["blocked", "unavailable"].includes(phase)) {
@@ -536,6 +619,7 @@ window.StillwaterLobbyMusic = (() => {
         window.removeEventListener("hashchange", sync);
         window.removeEventListener("pagehide", unload);
         panel.remove();
+        restore.remove();
         document.body.classList.remove("lobby-youtube-visible");
       },
     };

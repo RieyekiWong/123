@@ -56,7 +56,7 @@
 .heritage-hotel .notice {
   border-radius: 0;
 }
-.heritage-hotel .lobby-record-player {
+.heritage-hotel .lobby-record-player:not(.is-youtube-visible) {
   padding-bottom: 20px;
   margin-bottom: 26px;
 }

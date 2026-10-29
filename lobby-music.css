@@ -69,7 +69,7 @@
   width: min(400px, 100%);
   max-width: 400px;
   min-width: 200px;
-  min-height: 225px;
+  min-height: 200px;
   background: #172523;
   border: 1px solid #6a7770;
 }
@@ -77,24 +77,25 @@
   display: block;
   width: 100%;
   min-width: 200px;
-  height: 225px;
+  height: 200px;
   border: 0;
 }
 
-.lobby-record-close {
+.lobby-record-close,
+.lobby-record-collapse {
   display: none;
 }
 .lobby-record-player.is-youtube-visible {
   position: fixed;
-  bottom: 18px;
-  left: 18px;
+  bottom: 16px;
+  left: 12px;
   z-index: 80;
-  width: min(315px, calc(100vw - 36px));
+  width: min(236px, calc(100vw - 24px));
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 10px;
-  padding: 14px;
+  gap: 6px;
+  padding: 8px;
   margin: 0;
   background: linear-gradient(#475747, #283b30);
   border: 1px solid #a28b5e;
@@ -103,20 +104,21 @@
 .is-youtube-visible .lobby-record-close {
   display: block;
   position: absolute;
-  right: 8px;
-  top: 8px;
+  right: 5px;
+  top: 5px;
   border: 0;
   padding: 0 6px;
   font-size: 19px;
 }
 .is-youtube-visible .lobby-record-controls {
-  gap: 10px;
+  gap: 6px;
 }
 .is-youtube-visible .lobby-youtube-mount {
   flex-basis: auto;
 }
 .is-youtube-visible .lobby-record-status {
-  padding-right: 18px;
+  padding-right: 0;
+  font-size: 11px;
 }
 .lobby-youtube-visible #story-dialog::backdrop {
   backdrop-filter: none;
@@ -125,5 +127,164 @@
 @media (max-width: 650px) {
   .lobby-record-player.is-youtube-visible {
     bottom: 78px;
+  }
+}
+
+.lobby-record-player[hidden],
+.lobby-record-restore[hidden] {
+  display: none !important;
+}
+.is-youtube-visible .lobby-record-collapse {
+  display: block;
+  position: absolute;
+  top: 7px;
+  right: 29px;
+  padding: 0 4px;
+  border: 0;
+  font-size: 11px;
+}
+.is-youtube-visible .lobby-record-label {
+  display: block;
+  padding-right: 55px;
+  font-size: 9px;
+}
+.is-youtube-visible .lobby-record-controls > button[data-lobby-action] {
+  padding: 4px 7px;
+  font-size: 10px;
+}
+.is-youtube-visible .lobby-record-controls input {
+  width: 62px;
+}
+.is-youtube-visible .lobby-record-source {
+  font-size: 9px;
+}
+.lobby-record-restore {
+  position: fixed;
+  left: 12px;
+  bottom: 16px;
+  z-index: 75;
+  padding: 7px 12px;
+  border: 1px solid #a28b5e;
+  border-radius: 3px;
+  background: linear-gradient(#475747, #283b30);
+  color: #f1e6cf;
+  box-shadow: 0 2px 5px #0003;
+  font:
+    11px/1.5 Arial,
+    "PingFang SC",
+    "Microsoft YaHei",
+    sans-serif;
+}
+.lobby-record-restore:focus-visible {
+  outline: 2px solid #a28b5e;
+  outline-offset: 3px;
+}
+
+/* Give the player its own region; it never overlays the hotel viewport. */
+#hotel-game-viewport {
+  display: contents;
+}
+body.lobby-youtube-visible {
+  --lobby-rail-width: 252px;
+  overflow: hidden;
+}
+.lobby-youtube-visible #hotel-game-viewport {
+  display: block;
+  position: fixed;
+  inset: 0 var(--lobby-rail-width) 0 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.lobby-record-player.is-youtube-visible {
+  right: 8px;
+  left: auto;
+  bottom: 16px;
+}
+.lobby-youtube-visible .notebook-tab {
+  right: calc(var(--lobby-rail-width) + 12px);
+}
+.lobby-youtube-visible #story-dialog {
+  left: 0;
+  right: var(--lobby-rail-width);
+  margin-inline: auto;
+  max-width: calc(100vw - var(--lobby-rail-width) - 26px);
+}
+@media (max-width: 899px) {
+  body.lobby-youtube-visible {
+    --lobby-dock-height: 224px;
+  }
+  .lobby-youtube-visible #hotel-game-viewport {
+    inset: 0 0 var(--lobby-dock-height) 0;
+  }
+  .lobby-record-player.is-youtube-visible {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: var(--lobby-dock-height);
+    border-radius: 0;
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) minmax(82px, 110px);
+    grid-template-rows: auto 1fr;
+    gap: 5px 8px;
+    padding: 8px;
+  }
+  .is-youtube-visible > div:first-child {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+  }
+  .is-youtube-visible .lobby-record-controls {
+    grid-column: 2;
+    grid-row: 2;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 3px;
+  }
+  .is-youtube-visible .lobby-youtube-mount {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 100%;
+    max-width: none;
+    min-height: 200px;
+  }
+  .is-youtube-visible .lobby-record-label {
+    padding-right: 0;
+    font-size: 9px;
+  }
+  .is-youtube-visible .lobby-record-status {
+    font-size: 10px;
+    margin: 3px 0;
+  }
+  .is-youtube-visible
+    .lobby-record-controls
+    :is(.lobby-record-collapse, .lobby-record-close) {
+    position: static;
+    padding: 0 5px;
+  }
+  .is-youtube-visible .lobby-record-close {
+    align-self: flex-end;
+    margin-top: -24px;
+  }
+  .is-youtube-visible .lobby-record-controls label {
+    flex-wrap: wrap;
+    gap: 2px;
+  }
+  .is-youtube-visible .lobby-record-controls input {
+    width: 70px;
+  }
+  .lobby-youtube-visible .notebook-tab {
+    right: 10px;
+    bottom: calc(var(--lobby-dock-height) + 12px);
+  }
+  .lobby-youtube-visible #story-dialog {
+    inset: 0 0 var(--lobby-dock-height) 0;
+    margin: auto;
+    max-width: calc(100vw - 20px);
+    max-height: calc(100dvh - var(--lobby-dock-height) - 20px);
+  }
+  .lobby-youtube-visible .toast {
+    bottom: calc(var(--lobby-dock-height) + 20px);
   }
 }
