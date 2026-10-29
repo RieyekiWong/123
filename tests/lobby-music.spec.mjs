@@ -294,25 +294,34 @@ test("the first optional horror frame also cuts the music, even when sudden face
 });
 
 for (const width of [390, 1320])
-  test(`player has its own region and can collapse and resume at ${width}px`, async ({
+  test(`player stays below the footer description and can collapse and resume at ${width}px`, async ({
     page,
   }) => {
     await page.setViewportSize({ width, height: 900 });
     await prepare(page);
     await enter(page);
     await begin(page);
-    const game = await page.locator("#hotel-game-viewport").boundingBox();
-    const frame = await page
-      .locator(".lobby-youtube-mount iframe")
-      .boundingBox();
-    if (width < 900)
-      expect(frame.y).toBeGreaterThanOrEqual(game.y + game.height);
-    else expect(frame.x).toBeGreaterThanOrEqual(game.x + game.width);
+    const description = await page.locator(".footer-brand + p").boundingBox();
+    const player = await page.locator(".lobby-record-player").boundingBox();
+    expect(player.y).toBeGreaterThanOrEqual(description.y + description.height);
+    expect(
+      await page
+        .locator(".lobby-record-player")
+        .evaluate((el) => el.parentElement.hasAttribute("data-footer-player")),
+    ).toBe(true);
+    expect(
+      await page
+        .locator(".lobby-record-player")
+        .evaluate((el) => getComputedStyle(el).position),
+    ).toBe("relative");
     expect(
       await page
         .locator("#hotel-game-viewport")
-        .evaluate((el) => el.scrollWidth <= el.clientWidth + 1),
-    ).toBe(true);
+        .evaluate((el) => getComputedStyle(el).display),
+    ).toBe("contents");
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth),
+    ).toBe(width);
     await page.locator(".lobby-record-collapse").click();
     await expect(page.locator(".lobby-record-player")).toBeHidden();
     await expect(page.locator(".lobby-record-restore")).toBeVisible();

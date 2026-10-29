@@ -201,3 +201,8 @@ Timing, ordering, volume ramps, autoplay fallback and immediate interruption are
 ## Compact player and dedicated playback region (3.8.1)
 
 The smaller player occupies a separate right rail on desktop or a bottom region on mobile. Hotel content scrolls in the remaining viewport rather than underneath the player. Collapse pauses playback and leaves a small restore button; expanding resumes the same player. The collapsed preference persists, preventing playback after reload until expanded. Story interruptions still destroy the player and prevent subsequent playback.
+
+
+## Footer player placement (3.8.2)
+
+The player now lives beneath the hotel description in the first footer column and scrolls normally with the page. It does not float, reserve a side rail or reduce the game viewport. Collapse and resume remain available; the restore button stays in the same footer position.

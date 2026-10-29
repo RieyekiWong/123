@@ -1,43 +1,58 @@
+/* The record player is an ordinary footer card, underneath the hotel message. */
+#hotel-game-viewport {
+  display: contents;
+}
+.footer-player-slot {
+  margin-top: 16px;
+  max-width: 260px;
+  min-width: 0;
+}
 .lobby-record-player {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 25px;
-  padding: 0 0 25px;
-  margin: 0 0 30px;
-  border-bottom: 1px solid #65706a;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  width: min(250px, 100%);
+  max-width: 100%;
+  padding: 9px;
+  margin: 0;
+  background: linear-gradient(#475747, #283b30);
+  border: 1px solid #a28b5e;
+  box-shadow: 0 2px 5px #0002;
   font:
-    12px/1.8 Arial,
+    11px/1.8 Arial,
     "PingFang SC",
     "Microsoft YaHei",
     sans-serif;
 }
 .lobby-record-label {
+  display: block;
   color: #c2a46f;
-  font-size: 10px;
+  font-size: 9px;
   letter-spacing: 1px;
+  padding-right: 55px;
 }
-.lobby-record-status {
+.lobby-record-player .lobby-record-status {
   margin: 4px 0;
   color: #e5e1d4;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 11px;
   line-height: 1.6;
 }
 .lobby-record-source {
   color: #c9cdc5;
-  font-size: 10px;
+  font-size: 9px;
 }
 .lobby-record-controls {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 14px;
+  gap: 7px;
 }
 .lobby-record-controls button {
   color: #e5e1d4;
-  padding: 7px 12px;
+  padding: 4px 7px;
   background: transparent;
   border: 1px solid #89958d;
   font: inherit;
@@ -45,29 +60,21 @@
 .lobby-record-controls label {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 6px;
   color: #c9cdc5;
   font-size: 10px;
 }
 .lobby-record-controls input {
-  width: 85px;
+  width: 63px;
   accent-color: #c2a46f;
 }
-.lobby-record-player [hidden] {
+.lobby-record-player [hidden],
+.lobby-record-player[hidden],
+.lobby-record-restore[hidden] {
   display: none !important;
 }
-@media (max-width: 650px) {
-  .lobby-record-player {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-}
-
 .lobby-youtube-mount {
-  flex-basis: 100%;
-  width: min(400px, 100%);
-  max-width: 400px;
+  width: 100%;
   min-width: 200px;
   min-height: 200px;
   background: #172523;
@@ -80,95 +87,35 @@
   height: 200px;
   border: 0;
 }
-
-.lobby-record-close,
-.lobby-record-collapse {
+.lobby-record-collapse,
+.lobby-record-close {
   display: none;
-}
-.lobby-record-player.is-youtube-visible {
-  position: fixed;
-  bottom: 16px;
-  left: 12px;
-  z-index: 80;
-  width: min(236px, calc(100vw - 24px));
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 6px;
-  padding: 8px;
-  margin: 0;
-  background: linear-gradient(#475747, #283b30);
-  border: 1px solid #a28b5e;
-  box-shadow: 0 3px 15px #0005;
-}
-.is-youtube-visible .lobby-record-close {
-  display: block;
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  border: 0;
-  padding: 0 6px;
-  font-size: 19px;
-}
-.is-youtube-visible .lobby-record-controls {
-  gap: 6px;
-}
-.is-youtube-visible .lobby-youtube-mount {
-  flex-basis: auto;
-}
-.is-youtube-visible .lobby-record-status {
-  padding-right: 0;
-  font-size: 11px;
-}
-.lobby-youtube-visible #story-dialog::backdrop {
-  backdrop-filter: none;
-}
-
-@media (max-width: 650px) {
-  .lobby-record-player.is-youtube-visible {
-    bottom: 78px;
-  }
-}
-
-.lobby-record-player[hidden],
-.lobby-record-restore[hidden] {
-  display: none !important;
 }
 .is-youtube-visible .lobby-record-collapse {
   display: block;
   position: absolute;
-  top: 7px;
-  right: 29px;
+  top: 5px;
+  right: 28px;
+  min-height: 24px;
   padding: 0 4px;
   border: 0;
   font-size: 11px;
 }
-.is-youtube-visible .lobby-record-label {
+.is-youtube-visible .lobby-record-close {
   display: block;
-  padding-right: 55px;
-  font-size: 9px;
-}
-.is-youtube-visible .lobby-record-controls > button[data-lobby-action] {
-  padding: 4px 7px;
-  font-size: 10px;
-}
-.is-youtube-visible .lobby-record-controls input {
-  width: 62px;
-}
-.is-youtube-visible .lobby-record-source {
-  font-size: 9px;
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  padding: 0 6px;
+  border: 0;
+  font-size: 19px;
 }
 .lobby-record-restore {
-  position: fixed;
-  left: 12px;
-  bottom: 16px;
-  z-index: 75;
   padding: 7px 12px;
   border: 1px solid #a28b5e;
   border-radius: 3px;
   background: linear-gradient(#475747, #283b30);
   color: #f1e6cf;
-  box-shadow: 0 2px 5px #0003;
   font:
     11px/1.5 Arial,
     "PingFang SC",
@@ -178,113 +125,4 @@
 .lobby-record-restore:focus-visible {
   outline: 2px solid #a28b5e;
   outline-offset: 3px;
-}
-
-/* Give the player its own region; it never overlays the hotel viewport. */
-#hotel-game-viewport {
-  display: contents;
-}
-body.lobby-youtube-visible {
-  --lobby-rail-width: 252px;
-  overflow: hidden;
-}
-.lobby-youtube-visible #hotel-game-viewport {
-  display: block;
-  position: fixed;
-  inset: 0 var(--lobby-rail-width) 0 0;
-  overflow: auto;
-  overscroll-behavior: contain;
-}
-.lobby-record-player.is-youtube-visible {
-  right: 8px;
-  left: auto;
-  bottom: 16px;
-}
-.lobby-youtube-visible .notebook-tab {
-  right: calc(var(--lobby-rail-width) + 12px);
-}
-.lobby-youtube-visible #story-dialog {
-  left: 0;
-  right: var(--lobby-rail-width);
-  margin-inline: auto;
-  max-width: calc(100vw - var(--lobby-rail-width) - 26px);
-}
-@media (max-width: 899px) {
-  body.lobby-youtube-visible {
-    --lobby-dock-height: 224px;
-  }
-  .lobby-youtube-visible #hotel-game-viewport {
-    inset: 0 0 var(--lobby-dock-height) 0;
-  }
-  .lobby-record-player.is-youtube-visible {
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: var(--lobby-dock-height);
-    border-radius: 0;
-    display: grid;
-    grid-template-columns: minmax(200px, 1fr) minmax(82px, 110px);
-    grid-template-rows: auto 1fr;
-    gap: 5px 8px;
-    padding: 8px;
-  }
-  .is-youtube-visible > div:first-child {
-    grid-column: 2;
-    grid-row: 1;
-    min-width: 0;
-  }
-  .is-youtube-visible .lobby-record-controls {
-    grid-column: 2;
-    grid-row: 2;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 3px;
-  }
-  .is-youtube-visible .lobby-youtube-mount {
-    grid-column: 1;
-    grid-row: 1 / span 2;
-    width: 100%;
-    max-width: none;
-    min-height: 200px;
-  }
-  .is-youtube-visible .lobby-record-label {
-    padding-right: 0;
-    font-size: 9px;
-  }
-  .is-youtube-visible .lobby-record-status {
-    font-size: 10px;
-    margin: 3px 0;
-  }
-  .is-youtube-visible
-    .lobby-record-controls
-    :is(.lobby-record-collapse, .lobby-record-close) {
-    position: static;
-    padding: 0 5px;
-  }
-  .is-youtube-visible .lobby-record-close {
-    align-self: flex-end;
-    margin-top: -24px;
-  }
-  .is-youtube-visible .lobby-record-controls label {
-    flex-wrap: wrap;
-    gap: 2px;
-  }
-  .is-youtube-visible .lobby-record-controls input {
-    width: 70px;
-  }
-  .lobby-youtube-visible .notebook-tab {
-    right: 10px;
-    bottom: calc(var(--lobby-dock-height) + 12px);
-  }
-  .lobby-youtube-visible #story-dialog {
-    inset: 0 0 var(--lobby-dock-height) 0;
-    margin: auto;
-    max-width: calc(100vw - 20px);
-    max-height: calc(100dvh - var(--lobby-dock-height) - 20px);
-  }
-  .lobby-youtube-visible .toast {
-    bottom: calc(var(--lobby-dock-height) + 20px);
-  }
 }
