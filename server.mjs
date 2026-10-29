@@ -41,6 +41,9 @@ export function createServer(
         file === resolve(base, "afterword.css") ||
         file === resolve(base, "instructions.js") ||
         file === resolve(base, "instructions.css") ||
+        file === resolve(base, "lobby-music.js") ||
+        file === resolve(base, "lobby-music.css") ||
+        file === resolve(base, "heritage.css") ||
         file === resolve(base, "style.css") ||
         file === resolve(base, "app.js") ||
         file === resolve(base, "story-expansion.js") ||

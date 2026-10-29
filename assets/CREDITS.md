@@ -64,3 +64,14 @@ Voice model: https://huggingface.co/rhasspy/piper-voices/tree/main/en/en_US/ryan
 Model card identifies the RyanSpeech training dataset under CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/ . Model and synthesis tools are not shipped with the website. This attribution concerns the voice source, separately from the hotel photographs and game code.
 
 成人男声为本地合成的虚构人物语音，经过断续及混响处理，并非真实求救录音。网页不调用外部语音服务。
+
+
+## Optional lobby playlist / 官网留声机
+
+The playlist uses the three YouTube links supplied by the player-project owner, delivered through visible official YouTube iframe players. Recordings are not downloaded, extracted or bundled with the game. Playback requires access to YouTube and remains subject to the platform and each uploader's embedding settings.
+
+1. 白光 — 等着你回来: https://www.youtube.com/watch?v=LYDTJtV7vCE
+2. 白光 — 期待: https://www.youtube.com/watch?v=Wno9SKAxmcg
+3. 白光 — 今晚且流连: https://www.youtube.com/watch?v=TPj2Z6WLCQ8
+
+曲目名称与顺序按用户提供的信息设置。视频内容及嵌入权限由 YouTube 和上传者提供；本项目未将试听片段当作完整录音，也未提取视频音频。

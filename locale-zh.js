@@ -601,8 +601,8 @@
     "Register under a nickname, collect your key, and read carefully. Save discoveries to your notebook. Two doors offer two endings; a complete public record reveals what lies below. The apparent third ending is the beginning of a second, more demanding chapter. Use the Hotel Guide to cross-check menus, service orders, and incident reports. All clues are inside this site. You never need to contact anyone or visit a real place.":
       "使用昵称登记、领取钥匙，并仔细阅读。将发现记入笔记。两扇门通往两个结局；完整的公开记录，则会揭开地下的秘密。看似第三个结局，其实是更深入的第二章起点。用旅馆指南交叉核对菜单、服务顺序和事件报告。所有线索都在本站内，无需联系任何人，也不必前往现实地点。",
     "Comfort & accessibility": "声音与画面设置",
-    "Contains unsettling figures, sudden visual interruptions, and a second horror chapter after the apparent ending. Sudden effects can be disabled below without losing any puzzles. There is no rapid flashing. Audio remains off until you choose; reduced-motion preferences are respected. Press Escape to close a document.":
-      "包含令人不安的人影、短暂的突发画面，以及假结局后的第二段恐怖章节。可在下方关闭突发效果，不影响解谜。没有快速频闪。声音只有手动开启后才会播放；系统的减少动态效果设置会被尊重。按 Esc 可关闭档案。",
+    "Contains unsettling figures, sudden visual interruptions, and a second horror chapter after the apparent ending. Sudden effects can be disabled below without losing any puzzles. There is no rapid flashing. Ambient sound remains off until you choose; reduced-motion preferences are respected. Press Escape to close a document.":
+      "包含令人不安的人影、短暂的突发画面，以及假结局后的第二段恐怖章节。可在下方关闭突发效果，不影响解谜。没有快速频闪。环境音只有手动开启后才会播放；系统的减少动态效果设置会被尊重。按 Esc 可关闭档案。",
     "Ambient sound: off": "环境音：关闭",
     "Sudden visual effects: on": "突发惊吓画面：开启",
     "Your information": "您的资料",

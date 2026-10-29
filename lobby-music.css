@@ -1,0 +1,129 @@
+.lobby-record-player {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 0 0 25px;
+  margin: 0 0 30px;
+  border-bottom: 1px solid #65706a;
+  font:
+    12px/1.8 Arial,
+    "PingFang SC",
+    "Microsoft YaHei",
+    sans-serif;
+}
+.lobby-record-label {
+  color: #c2a46f;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.lobby-record-status {
+  margin: 4px 0;
+  color: #e5e1d4;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.lobby-record-source {
+  color: #c9cdc5;
+  font-size: 10px;
+}
+.lobby-record-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+.lobby-record-controls button {
+  color: #e5e1d4;
+  padding: 7px 12px;
+  background: transparent;
+  border: 1px solid #89958d;
+  font: inherit;
+}
+.lobby-record-controls label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #c9cdc5;
+  font-size: 10px;
+}
+.lobby-record-controls input {
+  width: 85px;
+  accent-color: #c2a46f;
+}
+.lobby-record-player [hidden] {
+  display: none !important;
+}
+@media (max-width: 650px) {
+  .lobby-record-player {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+.lobby-youtube-mount {
+  flex-basis: 100%;
+  width: min(400px, 100%);
+  max-width: 400px;
+  min-width: 200px;
+  min-height: 225px;
+  background: #172523;
+  border: 1px solid #6a7770;
+}
+.lobby-youtube-mount iframe {
+  display: block;
+  width: 100%;
+  min-width: 200px;
+  height: 225px;
+  border: 0;
+}
+
+.lobby-record-close {
+  display: none;
+}
+.lobby-record-player.is-youtube-visible {
+  position: fixed;
+  bottom: 18px;
+  left: 18px;
+  z-index: 80;
+  width: min(315px, calc(100vw - 36px));
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  padding: 14px;
+  margin: 0;
+  background: linear-gradient(#475747, #283b30);
+  border: 1px solid #a28b5e;
+  box-shadow: 0 3px 15px #0005;
+}
+.is-youtube-visible .lobby-record-close {
+  display: block;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  border: 0;
+  padding: 0 6px;
+  font-size: 19px;
+}
+.is-youtube-visible .lobby-record-controls {
+  gap: 10px;
+}
+.is-youtube-visible .lobby-youtube-mount {
+  flex-basis: auto;
+}
+.is-youtube-visible .lobby-record-status {
+  padding-right: 18px;
+}
+.lobby-youtube-visible #story-dialog::backdrop {
+  backdrop-filter: none;
+}
+
+@media (max-width: 650px) {
+  .lobby-record-player.is-youtube-visible {
+    bottom: 78px;
+  }
+}

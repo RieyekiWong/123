@@ -138,6 +138,7 @@ body.instructions-open {
   font-weight: 500;
   line-height: 1.5;
 }
+#game-instructions button[data-instructions="music"],
 #game-instructions button[data-instructions="sound"],
 #game-instructions button[data-instructions="scares"] {
   background: transparent;
@@ -294,4 +295,8 @@ body.instructions-open {
   #game-instructions .instructions-footer button {
     width: 100%;
   }
+}
+
+#game-instructions button[data-instructions="music"] {
+  margin: 0 8px 8px 0;
 }

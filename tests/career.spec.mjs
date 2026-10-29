@@ -1,9 +1,13 @@
 import { test, expect } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() =>
-    localStorage.setItem("stillwater-instructions:v1", "read"),
-  );
+  await page.addInitScript(() => {
+    localStorage.setItem(
+      "stillwater-lobby-music:v1",
+      JSON.stringify({ enabled: false }),
+    );
+    localStorage.setItem("stillwater-instructions:v1", "read");
+  });
 });
 const failures = ["harbor", "park", "cedar", "lake", "union", "elm"];
 async function apply(page, id) {

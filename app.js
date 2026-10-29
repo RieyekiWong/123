@@ -35,6 +35,7 @@
     puzzles: [],
     scares: true,
     wrongAnswers: 0,
+    musicInterrupted: false,
     sideQuests: window.StillwaterBranches.fresh(),
     afterword: window.StillwaterAfterword.fresh(),
   });
@@ -42,6 +43,7 @@
   let branches;
   let support;
   let afterword;
+  let lobbyMusic;
   const baseClueIds = [
     "clock",
     "door",
@@ -106,6 +108,7 @@
       state = {
         ...fresh(),
         applicant: raw.applicant === true,
+        musicInterrupted: raw.musicInterrupted === true,
         sideQuests: window.StillwaterBranches.hydrate(raw.sideQuests),
         afterword: window.StillwaterAfterword.hydrate(raw.afterword),
         name: typeof raw.name === "string" ? raw.name.slice(0, 40) : "",
@@ -196,6 +199,16 @@
     );
   }
   function save() {
+    const side = state.sideQuests;
+    if (
+      state.chapter > 1 ||
+      side.support.interrupted ||
+      side.support.impostorSeen ||
+      side.dylan.met ||
+      ["hired", "working", "escaped"].includes(side.job.stage)
+    )
+      state.musicInterrupted = true;
+    lobbyMusic?.sync();
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch {
@@ -611,7 +624,7 @@
     about() {
       show(
         "About your stay",
-        `<p><i>The Stillwater Hotel</i> is an original, fictional, Backrooms-inspired interactive mystery. Its comfortable public website conceals an ongoing story told through guest records, security footage, and staff correspondence.</p><h3>How to explore</h3><p>Register under a nickname, collect your key, and read carefully. Save discoveries to your notebook. Two doors offer two endings; a complete public record reveals what lies below. The apparent third ending is the beginning of a second, more demanding chapter. Use the Hotel Guide to cross-check menus, service orders, and incident reports. All clues are inside this site. You never need to contact anyone or visit a real place.</p><h3>Comfort & accessibility</h3><p>Contains unsettling figures, sudden visual interruptions, and a second horror chapter after the apparent ending. Sudden effects can be disabled below without losing any puzzles. There is no rapid flashing. Audio remains off until you choose; reduced-motion preferences are respected. Press Escape to close a document.</p><button class="sound-button" id="sound-button" data-action="sound" aria-pressed="${!!soundContext}">Ambient sound: ${soundContext ? "on" : "off"}</button><div class="inline-actions"><button class="sound-button" data-action="toggle-scares" aria-pressed="${state.scares}">Sudden visual effects: ${state.scares ? "on" : "off"}</button></div><p><button class="underlined" data-action="credits">View photograph sources and licenses →</button></p><h3>Your information</h3><p>Your nickname, registration, notes, and progress stay in this browser. They are not sent to a server. Clearing site data erases them. The employee keypad is a fictional puzzle, not real security. Hotel photographs are real; the characters, story, and bookings are fictional.</p><p class="local-note">Source files can be opened locally after extracting the ZIP, or served using the included Node.js development server.</p><div class="dialog-actions"><button class="paper-button" data-action="replay-introduction">Replay the job search without clearing progress</button><button class="danger-link" data-action="reset-prompt">Start over / clear this device’s story progress</button></div>`,
+        `<p><i>The Stillwater Hotel</i> is an original, fictional, Backrooms-inspired interactive mystery. Its comfortable public website conceals an ongoing story told through guest records, security footage, and staff correspondence.</p><h3>How to explore</h3><p>Register under a nickname, collect your key, and read carefully. Save discoveries to your notebook. Two doors offer two endings; a complete public record reveals what lies below. The apparent third ending is the beginning of a second, more demanding chapter. Use the Hotel Guide to cross-check menus, service orders, and incident reports. All clues are inside this site. You never need to contact anyone or visit a real place.</p><h3>Comfort & accessibility</h3><p>Contains unsettling figures, sudden visual interruptions, and a second horror chapter after the apparent ending. Sudden effects can be disabled below without losing any puzzles. There is no rapid flashing. Ambient sound remains off until you choose; reduced-motion preferences are respected. Press Escape to close a document.</p><button class="sound-button" id="sound-button" data-action="sound" aria-pressed="${!!soundContext}">Ambient sound: ${soundContext ? "on" : "off"}</button><div class="inline-actions"><button class="sound-button" data-action="toggle-scares" aria-pressed="${state.scares}">Sudden visual effects: ${state.scares ? "on" : "off"}</button></div><p><button class="underlined" data-action="credits">View photograph sources and licenses →</button></p><p data-puzzle-original>${document.documentElement.lang === "zh-CN" ? "官网音乐与环境音分别控制。第一阶段进入酒店十秒后，留声机会尝试播放白光的歌曲；可在酒店页脚的“大堂留声机”关闭或调整音量，也可在“游戏说明”中关闭。" : "Hotel music is separate from ambient sound. In the first phase, the record player starts after ten seconds. Use the lobby player in the footer to turn it off or adjust its volume, or switch it off in Game instructions."}</p><h3>Your information</h3><p>Your nickname, registration, notes, and progress stay in this browser. They are not sent to a server. Clearing site data erases them. The employee keypad is a fictional puzzle, not real security. Hotel photographs are real; the characters, story, and bookings are fictional.</p><p class="local-note">Source files can be opened locally after extracting the ZIP, or served using the included Node.js development server.</p><div class="dialog-actions"><button class="paper-button" data-action="replay-introduction">Replay the job search without clearing progress</button><button class="danger-link" data-action="reset-prompt">Start over / clear this device’s story progress</button></div>`,
         "HOTEL RESOURCES / SITE INFORMATION",
       );
     },
@@ -909,6 +922,10 @@
     playKnock,
     resetDocuments,
     startAfterword: () => afterword.open(),
+    stopHotelMusic: () => {
+      state.musicInterrupted = true;
+      save();
+    },
   });
   Object.assign(actions, expansion.actions);
   branches = window.StillwaterBranches.create({
@@ -952,7 +969,10 @@
   }
   window.addEventListener("hashchange", updateLanguageLink);
   updateLanguageLink();
+  lobbyMusic = window.StillwaterLobbyMusic.create({ getState: () => state });
   window.StillwaterPlayerSettings = {
+    musicEnabled: () => lobbyMusic.enabled(),
+    toggleMusic: () => lobbyMusic.setEnabled(!lobbyMusic.enabled()),
     soundEnabled: () => !!soundContext,
     scaresEnabled: () => state.scares,
     toggleSound: () => actions.sound(),

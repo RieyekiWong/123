@@ -20,7 +20,7 @@ The hotel layout, two chapters, twelve records, original puzzle answers and five
 
 On the [GitHub repository](https://github.com/RieyekiWong/123), choose **Code → Download ZIP**. Extract the entire archive and open the root `index.html` with Chrome or Edge. Do not open the HTML from inside the compressed archive. Extract this edition into a new folder rather than mixing its scripts with an old download.
 
-All images, scripts, and styles are included. Five real hotel photographs replace the earlier generated hotel scenes. Photographer names, original source pages, and licenses are available through **Photo credits**, `assets/CREDITS.md`, and `assets/photo-credits.json`. These photos illustrate a fictional setting; their real locations and staff are not involved in the story. The English entry is `index.html`; the Simplified Chinese entry is `index-zh.html`. Header links switch editions and retain the current page. Both use the same progress schema and share saved progress when served from the same origin. Local-file storage isolation is browser-dependent.
+All hotel images, game scripts, and styles are included. Optional lobby music uses the official YouTube player and requires access to YouTube. Five real hotel photographs replace the earlier generated hotel scenes. Photographer names, original source pages, and licenses are available through **Photo credits**, `assets/CREDITS.md`, and `assets/photo-credits.json`. These photos illustrate a fictional setting; their real locations and staff are not involved in the story. The English entry is `index.html`; the Simplified Chinese entry is `index-zh.html`. Header links switch editions and retain the current page. Both use the same progress schema and share saved progress when served from the same origin. Local-file storage isolation is browser-dependent.
 
 There are no runtime packages, remote fonts, external image services, sign-ups, API keys, or backend services. If your browser or organization blocks local HTML, use the local development server below.
 
@@ -182,6 +182,17 @@ Completing the original final discharge opens a black-screen transmission. Choos
 
 ## First-visit instructions (3.7)
 
-A full-page guide precedes recruitment on first visit, covering content notes, controls, optional audio, local saves and the difference between resetting hotel progress and replaying the job search. Expandable credits list all five photographs, original sources and licences, generated art and voice provenance. Its sound and sudden-effect buttons use the same settings as the hotel. Sound is off by default.
+A full-page guide precedes recruitment on first visit, covering content notes, controls, optional audio, local saves and the difference between resetting hotel progress and replaying the job search. Expandable credits list all five photographs, original sources and licences, generated art and voice provenance. Its sound and sudden-effect buttons use the same settings as the hotel. Ambient sound is off by default; the optional lobby records have their own setting.
 
 Acknowledgement is stored separately from story progress; existing saves remain intact. Game instructions can be reopened from either the recruitment or hotel footer. The guide works in both languages and remains dismissible when storage is blocked.
+
+
+## Lobby records and older hotel styling (3.8)
+
+The public hotel pages use a compact mid-2010s layout, textured paper, framed photographs and slightly raised navigation and buttons. Recruitment, support chat and both story chapters retain their interaction flows.
+
+The first hotel phase waits ten seconds before attempting playback of the three user-supplied YouTube recordings in order: 等着你回来 (`LYDTJtV7vCE`), 期待 (`Wno9SKAxmcg`), 今晚且流连 (`TPj2Z6WLCQ8`). The first track fades in over six seconds; later tracks fade in over two. A visible YouTube player provides normal platform controls, volume and a music-off button. Browser autoplay restrictions show a play button. Inaccessible or non-embeddable videos do not block the game; their YouTube links remain available. No recordings are downloaded or extracted.
+
+A supervisor/concierge interruption, the impostor, Dylan's investigation, accepting the job or advancing beyond chapter one latches `musicInterrupted` in the story save and immediately destroys the player. Closing the conversation, normal public-page navigation and reloading cannot restart those records. A new hotel stay clears that story latch; the separate music preference remains. Recruitment and the opening instructions do not start playback. Hiding the page pauses the player.
+
+Timing, ordering, volume ramps, autoplay fallback and immediate interruption are tested against a YouTube API stand-in. The execution environment blocks access to YouTube, so actual playback and each uploader's embedding permission still require a browser with YouTube access.

@@ -3,6 +3,10 @@ export const test = base.extend({
   page: async ({ page }, use) => {
     await page.addInitScript(() => {
       try {
+        localStorage.setItem(
+          "stillwater-lobby-music:v1",
+          JSON.stringify({ enabled: false }),
+        );
         localStorage.setItem("stillwater-instructions:v1", "read");
         localStorage.setItem(
           "stillwater-career:v1",

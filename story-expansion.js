@@ -570,6 +570,7 @@ window.StillwaterExpansion = {
         );
       },
       "inspect-shadow"() {
+        api.stopHotelMusic();
         const encounter = chooseScare();
         show(
           encounter.title,

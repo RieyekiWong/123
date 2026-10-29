@@ -1,0 +1,279 @@
+/* A compact, mid-2010s independent-hotel website. Later story themes retain their colours. */
+.heritage-hotel .header-width,
+.heritage-hotel .content-width {
+  max-width: 1080px;
+}
+.heritage-hotel .masthead {
+  min-height: 108px;
+}
+.heritage-hotel .hotel-name {
+  font-size: 30px;
+}
+.heritage-hotel .monogram {
+  width: 53px;
+  height: 61px;
+  font-size: 34px;
+}
+.heritage-hotel #page-content {
+  padding: 0 25px 34px;
+}
+.heritage-hotel .hero {
+  margin-top: 24px;
+  min-height: 355px;
+  grid-template-columns: 46% 54%;
+}
+.heritage-hotel .hero-copy {
+  padding: 40px 32px;
+}
+.heritage-hotel .hero h1 {
+  font-size: 44px;
+  line-height: 1.25;
+}
+.heritage-hotel .hero-copy > p:not(.eyebrow) {
+  font-size: 15px;
+}
+.heritage-hotel .page-heading {
+  padding-top: 34px;
+}
+.heritage-hotel .page-heading h1 {
+  font-size: 38px;
+}
+.heritage-hotel .navigation a {
+  padding: 13px 17px;
+  font-size: 11px;
+}
+.heritage-hotel .footer {
+  padding-top: 28px;
+  border-top-width: 3px;
+}
+.heritage-hotel .footer-columns {
+  margin-bottom: 28px;
+  gap: 30px;
+}
+.heritage-hotel .side-story-board {
+  margin: 10px 0 0;
+}
+.heritage-hotel .notice {
+  border-radius: 0;
+}
+.heritage-hotel .lobby-record-player {
+  padding-bottom: 20px;
+  margin-bottom: 26px;
+}
+body.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  ) {
+  --paper: #e8e1d3;
+  --ivory: #f8f5ec;
+  --ink: #413e35;
+  --muted: #817867;
+  --bronze: #92713d;
+  --line: #c9bea7;
+  --dark: #30403c;
+  background-color: #d6cfbf;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      #9a8e7010 0,
+      #9a8e7010 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #fff2 0,
+      #fff2 1px,
+      transparent 1px,
+      transparent 5px
+    );
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  :is(.masthead-band, #page-content) {
+  background-color: #f2ecdf;
+  background-image: linear-gradient(
+    90deg,
+    #b6a88e0b,
+    transparent 10%,
+    transparent 90%,
+    #b6a88e0b
+  );
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  #page-content {
+  border-inline: 1px solid #c3b79f;
+  box-shadow: 0 0 14px #51452712;
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  .masthead-band {
+  border-bottom: 1px solid #fff9;
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  .topbar {
+  border-bottom: 1px solid #1e2a26;
+  background: linear-gradient(#43524a, #2d3a34);
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  .brand-tagline {
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  .navigation {
+  background: linear-gradient(#f1ebde, #d8cbb3);
+  border-block: 1px solid #ad9b7c;
+  box-shadow:
+    inset 0 1px #fff9,
+    0 2px 3px #41362416;
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  .navigation
+  a {
+  border-color: #bfb197;
+  text-shadow: 0 1px #fff9;
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  .navigation
+  a[aria-current="page"] {
+  background: linear-gradient(#d5c3a2, #e9ddc8);
+  box-shadow: inset 0 2px 4px #55472d26;
+  color: #51452e;
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  .hero {
+  border: 1px solid #baab8e;
+  box-shadow:
+    0 1px 0 #fff,
+    0 3px 6px #51432a12;
+  background: linear-gradient(110deg, #fffdf5, #eee5d4);
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  .hero-photo {
+  border-left: 4px solid #c5b694;
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  .hero-photo
+  img {
+  filter: sepia(0.13) saturate(0.75) contrast(0.96);
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  #page-content
+  :is(.button, .paper-button) {
+  border-radius: 2px;
+  border: 1px solid #4d5a4c;
+  background: linear-gradient(#536252, #344337);
+  box-shadow:
+    inset 0 1px #ffffff35,
+    0 1px 2px #40382126;
+  color: #f6f0df;
+  font-size: 11px;
+  text-shadow: 0 -1px #25302966;
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  #page-content
+  .button-secondary {
+  background: linear-gradient(#fffaf0, #dfd2ba);
+  color: #685638;
+  border-color: #ac9871;
+  text-shadow: 0 1px #fff;
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  #page-content
+  :is(
+    .room-card,
+    .document-card,
+    .form-panel,
+    .notice,
+    .archive-box,
+    .management-intro,
+    .side-story-board article
+  ) {
+  background: linear-gradient(#f8f4e9, #eae0cb);
+  border: 1px solid #c4b28e;
+  box-shadow: inset 0 1px #fff9;
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  .feature-row
+  article {
+  border-top: 3px double #ac9872;
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  .footer {
+  background: linear-gradient(#3d4b40, #2e3c33);
+  border-top-color: #a58a59;
+  box-shadow: inset 0 1px #536050;
+}
+.heritage-hotel:not(.breached):not(.aftermath):not(.career-mode):not(
+    .supervisor-takeover
+  )
+  .notebook-tab {
+  background: linear-gradient(#fff8e9, #dacfba);
+  border: 1px solid #a99672;
+  box-shadow: 0 2px 6px #332d2130;
+}
+@media (max-width: 760px) {
+  .heritage-hotel #page-content {
+    padding: 0 16px 26px;
+  }
+  .heritage-hotel .masthead {
+    min-height: 94px;
+  }
+  .heritage-hotel .hotel-name {
+    font-size: 25px;
+  }
+  .heritage-hotel .hero {
+    grid-template-columns: 1fr;
+    margin-top: 17px;
+  }
+  .heritage-hotel .hero-copy {
+    padding: 30px 25px;
+  }
+  .heritage-hotel .hero h1 {
+    font-size: 36px;
+  }
+  .heritage-hotel .page-heading h1 {
+    font-size: 32px;
+  }
+  .heritage-hotel .navigation a {
+    padding: 12px 13px;
+  }
+  .heritage-hotel .footer-columns {
+    gap: 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .heritage-hotel .button {
+    transition: none;
+  }
+}
