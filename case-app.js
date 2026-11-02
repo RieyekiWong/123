@@ -64,128 +64,124 @@
   });
   const errors = {
     sample: [
-      "请回到岗位样本核对原件编号。",
+      "先去看工作样本，上面有编号。",
       "Return to the role sample and check its original reference.",
     ],
     reservation: [
-      "未找到该编号。请核对原样本中的档案引用。",
+      "没查到这条。看看编号有没有输错。",
       "No record found. Check the reference on the original sample.",
     ],
     booking: [
-      "请先找到对应的留存预订。",
+      "还没找到对应的预订单。",
       "Identify the retained booking first.",
     ],
     inventory: [
-      "这不是原预订单上的分配房号。请回看原记录。",
+      "选的房号和预订单对不上。",
       "This is not the assignment on the original booking. Check that record.",
     ],
     "inventory-first": [
-      "这条留言需与对应房型目录关联。",
+      "先确认要查的是哪间房。",
       "Associate the booking with the guest inventory first.",
     ],
     "message-first": [
-      "请核对该预订关联的钥匙留言。",
+      "还有一条住客留言没看。",
       "Review the key entry associated with the booking.",
     ],
     "inspect-first": [
-      "请先打开平面图上的位置登记卡。",
+      "先点一下平面图上的灰色区域。",
       "Open the position card on the floor plan first.",
     ],
     classification: [
-      "位置卡记录的是服务用途，门牌和钥匙套不能证明真实入住。",
-      "The card records a service use. A label or sleeve alone cannot establish occupancy.",
+      "这个分类和登记卡对不上。",
+      "That classification does not match the position card.",
     ],
     "service-first": [
-      "请先核对平面图中的位置属性。",
+      "平面图上的登记卡还没看完。",
       "Check the position classification on the floor plan first.",
     ],
     maintenance: [
-      "未找到这份维修单。请核对原通告编号。",
+      "没有这张维修单，看看公告上的编号。",
       "No docket found. Check the original access notice reference.",
     ],
     "maintenance-first": [
-      "来源记录尚未关联到这笔预订，请核对原维修单。",
+      "维修单还没核对完。",
       "The source records are not yet associated with this booking. Check its maintenance docket.",
     ],
     "audit-order": [
-      "来源时间与当前顺序不一致。请按各原件的时间戳核对。",
+      "顺序还是不对，再看看每条记录的时间。",
       "The source timestamps do not match this sequence. Check each original timestamp.",
     ],
     "audit-assessment": [
-      "02:50 的客房部记录证明的是房间状态，不是入住人的身份或去向。",
-      "The 02:50 housekeeping record establishes room condition, not a person’s identity or location.",
+      "这个判断还缺依据。",
+      "That finding is not supported by the records.",
     ],
     "audit-first": [
-      "人员资料须关联已复核的夜审记录。",
+      "当晚记录还没核对完。",
       "The personnel file requires a reconciled night-audit record.",
     ],
     "revision-unchanged": [
-      "勾选项中含有未被改写的字段，请逐行对照两个版本。",
+      "有一项其实没改。再对一遍左右两栏。",
       "An unchanged field was selected. Compare the versions row by row.",
     ],
     "revision-missing": [
-      "仍有改写字段未记录，请核对两份原件。",
+      "还有改过的地方没勾出来。",
       "A changed field is still unrecorded. Check both originals.",
     ],
     "revisions-first": [
-      "这份续页需关联修订记录。",
+      "修改记录还没核对完。",
       "Associate this addendum with the revision record first.",
     ],
     "closure-first": [
-      "请先查阅停止营业通知，核对原备注的时间背景。",
+      "这份草稿附在通知后面。",
       "Read the closure notice to establish the note’s historical context.",
     ],
     "evidence-incomplete": [
-      "仍有来源未核对，当前不能提交结案决定。可从复核记录回看原件。",
+      "还有文件没看完，暂时不能提交。",
       "A source remains unreconciled. A closing decision cannot be submitted yet. Reopen originals from Case Notes.",
     ],
     "evidence-occupancy": [
-      "钥匙套只记录标签文字，不能据此确认入住。",
-      "A key sleeve records label text, not verified occupancy.",
+      "这一条还缺能对得上的记录。",
+      "This finding needs a matching record.",
     ],
     "evidence-operating": [
-      "招聘发布时间与停止营业通知属于不同年代，不能证明酒店继续接待住客。",
-      "The advert and closure notice belong to different periods; the advert does not establish continued hotel operation.",
+      "这一条和通知内容对不上。",
+      "This finding does not match the notice.",
     ],
     "evidence-consent": [
-      "请核对 Mara 原备注的授权范围。",
+      "这一条和 Mara 写的不一样。",
       "Check the authorization in Mara’s original note.",
     ],
     "evidence-missing": [
-      "请只提交能够由原件交叉验证的三项证据。",
+      "选三条有记录能证明的事。",
       "Submit only the three findings that can be cross-checked against the originals.",
     ],
     unknown: [
-      "未识别该操作。原资料仍可回看。",
+      "操作没有成功，文件还在。",
       "This operation is not recognized. The original records remain available.",
     ],
   };
-  function feedback(id, result) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.textContent = t(...(errors[result.error] || errors.unknown));
-    el.focus({ preventScroll: true });
-  }
+  const feedback = window.StillwaterCaseFeedback({t});
   function perform(action, payload = {}, errorId = "case-status") {
     const result = M.transition(state, action, payload);
     save();
-    if (!result.ok) feedback(errorId, result);
+    if (!result.ok) feedback.show(errorId, result, t(...(errors[result.error] || errors.unknown)), action);
+    else feedback.reset(action);
     return result.ok;
   }
   function careers() {
-    return `<section class="career-heading"><p class="kicker">STILLWATER HERITAGE RECORDS</p><h1>${t("让每一份旧档案都有据可查。", "A careful eye for the historical record.")}</h1><p>${t("远程档案整理与复核岗位。", "Remote opportunities in archive reconciliation.")}</p></section><form id="job-search" class="job-search"><label for="job-keyword">${t("搜索岗位", "Search roles")}</label><div><input id="job-keyword" name="keyword" type="search" placeholder="${t("职位名称或工作内容", "Role or area of work")}"><select name="work" aria-label="${t("工作方式", "Work arrangement")}"><option value="remote">${t("远程", "Remote")}</option><option value="onsite">${t("现场", "On site")}</option></select><button type="submit">${t("搜索", "Search")}</button></div></form><p id="job-result" role="status"></p><article class="job-card" id="archive-job"><p class="kicker">${t("合同制 · 远程", "CONTRACT · REMOTE")}</p><h2>${t("历史档案复核员", "Night Archive Reconciliation Assistant")}</h2><p>${t("整理一家已停业湖畔酒店的历史预订资料。", "Help digitize reservation records from a closed lakeside hotel.")}</p><p>${t("通过一份记录核对样本，了解具体工作。", "Start with a short record-matching sample.")}</p><p>${t("样本档案", "Sample case")}: <span class="reference">${F.reservation}</span></p><button class="primary" data-case-action="sample">${t("查看样本资料", "Review sample record")} →</button><details><summary>${t("岗位详情与公司介绍", "Role details & company information")}</summary><p>${t("工作包括核对来源、整理时间、比较历史修订和保留无法证实的项目。样本不需要简历、账号或联系方式。", "Review sources, reconcile timestamps, compare revisions and retain unresolved entries. No CV, account or contact information is needed for the sample.")}</p><p>Stillwater Heritage Records · ${F.recruitment}</p></details></article>`;
+    return `<section class="career-heading"><p class="kicker">STILLWATER HERITAGE RECORDS</p><h1>${t("旧档案整理，远程兼职。", "A careful eye for the historical record.")}</h1><p>${t("工作地点不限，有电脑就能做。", "Remote opportunities in archive reconciliation.")}</p></section><form id="job-search" class="job-search"><label for="job-keyword">${t("搜索岗位", "Search roles")}</label><div><input id="job-keyword" name="keyword" type="search" placeholder="${t("职位名称或工作内容", "Role or area of work")}"><select name="work" aria-label="${t("工作方式", "Work arrangement")}"><option value="remote">${t("远程", "Remote")}</option><option value="onsite">${t("现场", "On site")}</option></select><button type="submit">${t("搜索", "Search")}</button></div></form><p id="job-result" role="status"></p><article class="job-card" id="archive-job"><p class="kicker">${t("合同制 · 远程", "CONTRACT · REMOTE")}</p><h2>${t("旧预订资料整理员", "Night Archive Reconciliation Assistant")}</h2><p>${t("帮一家湖畔旅馆整理以前的预订单。", "Help a lakeside hotel sort its older reservation records.")}</p><p>${t("想知道具体做什么？先试一份样本。", "Start with a short record-matching sample.")}</p><p>${t("样本档案", "Sample case")}: <span class="reference">${F.reservation}</span></p><button class="primary" data-case-action="sample">${t("试做一份", "Review sample record")} →</button><details><summary>${t("工作内容", "Role details & company information")}</summary><p>${t("对照旧预订单、客房记录和修改记录，看看有没有对不上的地方。这份样本不用注册，也不用上传简历。", "Review sources, reconcile timestamps, compare revisions and retain unresolved entries. No CV, account or contact information is needed for the sample.")}</p><p>Stillwater Heritage Records · ${F.recruitment}</p></details></article>`;
   }
   function guarded(route) {
     const recovery = M.recovery(state, route);
     return (
       views.heading(
         "RECORD INDEX",
-        t("暂时无法调阅此资料", "Record not currently available"),
+        t("文件暂时打不开", "Record not currently available"),
         t(
-          "这份原件尚未关联到本次复核。可以先核对下列来源。",
+          "前面的资料还没核对完。先看看这份文件从哪里来的。",
           "This original is not yet associated with the current review. Identify its source record first.",
         ),
-      ) + views.reference(recovery, t("查看来源记录", "Open the source record"))
+      ) + views.reference(recovery, t("查看相关文件", "Open the source record"))
     );
   }
   function currentRoute() {
@@ -242,9 +238,9 @@
     const placeholder = () =>
       views.heading(
         "STAFF ARCHIVE",
-        t("留存文件索引", "Retained file index"),
+        t("旧文件目录", "Retained file index"),
         t(
-          "此页仅提供已关联来源的只读资料。",
+          "这里只能查看这次工作中已经打开的文件。",
           "This index contains read-only material associated with the review.",
         ),
       ) + views.reference("notes", "Case Notes");
@@ -277,7 +273,7 @@
           t("夜审登记员", "Night Audit Clerk") + " / " + F.temporary;
     }
     document.querySelector("#case-shell").innerHTML =
-      `<header class="site-header"><a class="site-brand" href="#${route === "careers" ? "careers" : staff ? "staff" : "hotel"}">${route === "careers" ? "Stillwater Heritage Careers" : staff ? "STILLWATER / STAFF ARCHIVE" : "The Stillwater Hotel"}</a><a data-case-language href="${zh ? "index.html" : "index-zh.html"}${location.hash}">${zh ? "English" : "简体中文"}</a></header>${route === "careers" ? '<nav class="careers-nav">' + a("careers", t("工作机会", "Opportunities")) + "</nav>" : staff ? '<nav class="staff-nav">' + a("hotel", t("酒店目录", "Hotel index")) + a("notes", "Case Notes") + a("staff", t("员工档案", "Staff archive")) + "</nav>" : '<nav class="hotel-nav">' + a("hotel", t("首页", "Home")) + a("rooms", t("客房", "Rooms")) + a("reservations", t("预订查询", "Reservations")) + a("contact", t("联系前台", "Contact")) + "</nav>"}<main id="content" tabindex="-1">${content}</main><footer><p>${t("虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。", "A fictional interactive work. The hotel, role and records are part of the story. No real applications or payments are accepted.")}</p>${storageFailed ? `<p role="status">${t("本设备无法保存进度；当前标签页仍可继续。", "Storage is unavailable; the current tab remains playable.")}</p>` : ""}${a("careers", t("招聘主页", "Careers"))} · ${a("guestbook", t("住客留言", "Guestbook"))} · ${a("history", t("历史资料", "History"))} · ${a("notices", t("旧公告", "Notices"))} · ${a("staff", t("员工档案", "Staff archive"))} · ${a("notes", "Case Notes")} · <button class="footer-settings" data-case-action="settings">${t("声音与设置", "Sound & settings")}</button> · ${a("credits", t("图片来源", "Image credits"))} · <a href="${zh ? "classic-zh.html" : "classic.html"}">${t("上一版与原存档", "Previous edition & saved stay")}</a></footer>`;
+      `<header class="site-header"><a class="site-brand" href="#${route === "careers" ? "careers" : staff ? "staff" : "hotel"}">${route === "careers" ? "Stillwater Heritage Careers" : staff ? "STILLWATER / STAFF ARCHIVE" : "The Stillwater Hotel"}</a><a data-case-language href="${zh ? "index.html" : "index-zh.html"}${location.hash}">${zh ? "English" : "简体中文"}</a></header>${route === "careers" ? '<nav class="careers-nav">' + a("careers", t("招聘信息", "Opportunities")) + "</nav>" : staff ? '<nav class="staff-nav">' + a("hotel", t("酒店目录", "Hotel index")) + a("notes", "Case Notes") + a("staff", t("员工档案", "Staff archive")) + "</nav>" : '<nav class="hotel-nav">' + a("hotel", t("首页", "Home")) + a("rooms", t("客房", "Rooms")) + a("reservations", t("预订查询", "Reservations")) + a("contact", t("联系前台", "Contact")) + "</nav>"}<main id="content" tabindex="-1">${content}</main><footer><p>${t("虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。", "A fictional interactive work. The hotel, role and records are part of the story. No real applications or payments are accepted.")}</p>${storageFailed ? `<p role="status">${t("目前无法保存进度。这个页面暂时还能继续用。", "Storage is unavailable; the current tab remains playable.")}</p>` : ""}${a("careers", t("返回招聘页", "Careers"))} · ${a("guestbook", t("住客留言", "Guestbook"))} · ${a("history", t("旅馆历史", "History"))} · ${a("notices", t("公告栏", "Notices"))} · ${a("staff", t("员工档案", "Staff archive"))} · ${a("notes", "Case Notes")} · <button class="footer-settings" data-case-action="settings">${t("声音与设置", "Sound & settings")}</button> · ${a("credits", t("图片来源", "Image credits"))} · <a href="${zh ? "classic-zh.html" : "classic.html"}">${t("上一版与原存档", "Previous edition & saved stay")}</a></footer>`;
     document.querySelectorAll("nav a").forEach((el) => {
       if (el.getAttribute("href") === "#" + route)
         el.setAttribute("aria-current", "page");

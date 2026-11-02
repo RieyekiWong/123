@@ -95,7 +95,7 @@ globalThis.StillwaterCaseData = (() => {
       source: "guestbook",
       label: ["钥匙留言", "Key-sleeve entry"],
       text: [
-        `住客 ${facts.guest} 表示：前台分配 ${facts.bookedRoom}，钥匙套却写着 ${facts.service}。`,
+        `${facts.guest} 留言：前台说是 ${facts.bookedRoom}，钥匙套却写着 ${facts.service}。`,
         `Guest ${facts.guest} reports assignment to ${facts.bookedRoom}, but a key sleeve marked ${facts.service}.`,
       ],
     },
@@ -105,7 +105,7 @@ globalThis.StillwaterCaseData = (() => {
       source: "maintenance",
       label: ["客房部记录", "Housekeeping record"],
       text: [
-        `${facts.bookedRoom} 房无人入住，床品未使用。此记录没有确认其他位置是否有人。`,
+        `查房：${facts.bookedRoom} 空置，床品未使用。这里只记了这间房的情况。`,
         `Room ${facts.bookedRoom} is empty; bedding unused. This record does not establish occupancy elsewhere.`,
       ],
     },
@@ -115,7 +115,7 @@ globalThis.StillwaterCaseData = (() => {
       source: "maintenance",
       label: ["系统移交", "System handover"],
       text: [
-        `${facts.system} 将 ${facts.reservation} 转入服务缓冲位 ${facts.service}，处理人为 ${facts.reviewer}。`,
+        `${facts.system} 将 ${facts.reservation} 转到 ${facts.service}（服务缓冲位），交给 ${facts.reviewer} 处理。`,
         `${facts.system} moves ${facts.reservation} to service holding ${facts.service}, assigned to ${facts.reviewer}.`,
       ],
     },
@@ -125,7 +125,7 @@ globalThis.StillwaterCaseData = (() => {
       source: "night-audit",
       label: ["夜审备注", "Night-audit note"],
       text: [
-        `${facts.reviewer}：没有已确认住客入住服务位 ${facts.service} 的证据，记录仍待核实。`,
+        `${facts.reviewer} 备注：${facts.service} 是否住过人，目前查不清，保留待核实。`,
         `${facts.reviewer}: no confirmed guest is evidenced at service holding ${facts.service}. Record remains unverified.`,
       ],
     },
@@ -188,7 +188,7 @@ globalThis.StillwaterCaseData = (() => {
       correct: true,
       clue: "C5",
       text: [
-        `${facts.service} 是服务缓冲位，不是已确认入住的客房。`,
+        `登记卡写明：${facts.service} 是服务缓冲位，不是客房。`,
         `${facts.service} is a service holding position, not a confirmed occupied guest room.`,
       ],
     },
@@ -197,7 +197,7 @@ globalThis.StillwaterCaseData = (() => {
       correct: true,
       clue: "C6",
       text: [
-        `${facts.reviewer} 是该记录的夜审处理人。`,
+        `${facts.reviewer} 负责处理这条夜审记录。`,
         `${facts.reviewer} is the night-audit reviewer assigned to this record.`,
       ],
     },
@@ -206,7 +206,7 @@ globalThis.StillwaterCaseData = (() => {
       correct: true,
       clue: "C7",
       text: [
-        `2007 修订把原来未核实的记录改为已完成。`,
+        `2007 年的修改把“待核实”改成了“已完成”。`,
         `The 2007 revision changes an unverified record to a completed one.`,
       ],
     },
@@ -215,7 +215,7 @@ globalThis.StillwaterCaseData = (() => {
       correct: false,
       clue: "C4",
       text: [
-        `钥匙套足以证明 ${facts.guest} 实际入住 ${facts.service}。`,
+        `有钥匙套，就能确定 ${facts.guest} 住进了 ${facts.service}。`,
         `The key sleeve proves ${facts.guest} actually occupied ${facts.service}.`,
       ],
     },
@@ -224,7 +224,7 @@ globalThis.StillwaterCaseData = (() => {
       correct: false,
       clue: "C8",
       text: [
-        `2026 招聘证明酒店仍正常接待住客。`,
+        `2026 年还在招人，所以酒店仍在接待住客。`,
         `The 2026 job advert proves the hotel is still receiving guests.`,
       ],
     },
@@ -233,7 +233,7 @@ globalThis.StillwaterCaseData = (() => {
       correct: false,
       clue: "C9",
       text: [
-        `${facts.reviewerName} 同意由下一任自动代签结案。`,
+        `${facts.reviewerName} 允许下一任替她直接结案。`,
         `${facts.reviewerName} authorized her successor to auto-close on her behalf.`,
       ],
     },

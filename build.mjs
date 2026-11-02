@@ -12,6 +12,7 @@ for (const path of [
   "case-app.js",
   "case-pages.js",
   "case-comfort.js",
+  "case-feedback.js",
   "case-style.css",
   "locale-zh.js",
   "career.js",
