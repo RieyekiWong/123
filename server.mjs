@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 
 export function createServer(
   root = fileURLToPath(new URL("./", import.meta.url)),
+  options = {},
 ) {
   const base = resolve(root);
   const types = {
@@ -23,11 +24,14 @@ export function createServer(
       const pathname = decodeURIComponent(
         new URL(req.url, "http://localhost").pathname,
       );
-      const file = resolve(
+      let file = resolve(
         base,
         "." + (pathname === "/" ? "/index.html" : pathname),
       );
+      if (options.legacy && file === resolve(base, "index.html")) file = resolve(base, "classic.html");
+      if (options.legacy && file === resolve(base, "index-zh.html")) file = resolve(base, "classic-zh.html");
       const allowed =
+        ["classic.html", "classic-zh.html", "classic-bridge.js", "case-data.js", "case-state.js", "case-app.js", "case-style.css"].some(name => file === resolve(base,name)) ||
         file === resolve(base, "index.html") ||
         file === resolve(base, "index-zh.html") ||
         file === resolve(base, "locale-zh.js") ||
@@ -71,7 +75,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     Number(args[args.indexOf("--port") + 1]) ||
     Number(process.env.PORT) ||
     3000;
-  createServer().listen(port, "0.0.0.0", () =>
+  createServer(undefined, {legacy:args.includes("--legacy")}).listen(port, "0.0.0.0", () =>
     console.log(`The Stillwater Hotel · http://localhost:${port}`),
   );
 }
