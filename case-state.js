@@ -11,7 +11,7 @@ globalThis.StillwaterCaseState = (() => {
   const met=(state,requirement)=>!requirement||requirement==='public'||has(state,requirement)||state.completed[requirement]===true;
   const canRecord=(state,id)=>!!D.clues[id]&&met(state,D.clues[id].unlockedAt);
   function record(state,id){if(!canRecord(state,id))return false;if(!has(state,id))state.evidence.push(id);return true;}
-  const canOpen=(state,route)=>Object.hasOwn(routes,route)&&met(state,routes[route]);
+  const canOpen=(state,route)=>Object.hasOwn(routes,route)&&(route==='ending'&&state.endings.length>0||met(state,routes[route]));
   function recovery(state,route){
     if(!has(state,'C1'))return 'careers';
     for(const id of Object.keys(D.clues)){
@@ -41,7 +41,7 @@ globalThis.StillwaterCaseState = (() => {
       state.drafts[key]=Array.isArray(draft[key])?[...new Set(draft[key].filter(id=>registry.some(row=>row.id===id)))]:[];
     }
     const ends=['auto-close','unverified'];
-    state.endings=state.completed.finalEvidence&&Array.isArray(raw.endings)?ends.filter(id=>raw.endings.includes(id)):[];
+    state.endings=state.completed.audit&&Object.keys(D.clues).every(id=>has(state,id))&&Array.isArray(raw.endings)?ends.filter(id=>raw.endings.includes(id)):[];
     state.lastEnding=state.endings.includes(raw.lastEnding)?raw.lastEnding:'';
     state.notices={shown:raw.notices?.shown===true,dismissed:raw.notices?.dismissed===true};
     state.queueRefreshed=raw.queueRefreshed===true&&has(state,'C7');
@@ -95,6 +95,7 @@ globalThis.StillwaterCaseState = (() => {
         if(selected.has('consent'))return fail('evidence-consent');
         if(selected.size!==expected.length||expected.some(id=>!selected.has(id)))return fail('evidence-missing');
         state.completed.finalEvidence=true;return ok();}
+      case 'edit-evidence':state.completed.finalEvidence=false;return ok();
       case 'ending':
         if(!state.completed.finalEvidence||!Object.keys(D.clues).every(id=>has(state,id)))return fail('evidence-incomplete');
         if(!['auto-close','unverified'].includes(payload.ending))return fail('ending');
