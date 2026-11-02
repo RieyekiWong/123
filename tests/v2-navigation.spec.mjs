@@ -13,7 +13,7 @@ import {
 test("role filters, restrained hotel home and reopenable non-modal notice", async ({
   page,
 }) => {
-  await page.goto("/index-zh.html");
+  await page.goto("/index-zh.html#careers");
   await expect(page.locator(".job-card")).toHaveCount(1);
   await page.locator("[name=work]").selectOption("onsite");
   await page.locator("#job-search button").click();
@@ -22,10 +22,11 @@ test("role filters, restrained hotel home and reopenable non-modal notice", asyn
   await page.locator("#job-keyword").fill("不存在的职位");
   await page.locator("#job-search button").click();
   await expect(page.locator(".job-card")).toBeHidden();
-  await page.locator("#job-keyword").fill("复核");
+  await page.locator("#job-keyword").fill("预订");
   await page.locator("#job-search button").click();
   await expect(page.locator(".job-card")).toBeVisible();
   await page.locator("[data-case-action=sample]").click();
+  await page.locator('nav a[href="#hotel"]').click();
   await expect(page.locator(".hotel-nav a")).toHaveCount(4);
   await expect(page.locator("main img")).toHaveCount(1);
   await expect(page.locator("main")).not.toContainText("317");
@@ -188,7 +189,7 @@ test("corrupt and unavailable storage keep navigation usable without false save 
     await page.goto("http://127.0.0.1:3110/index-zh.html#staff");
     await page.locator("main .source-link a").click();
     await page.locator("[data-case-action=sample]").click();
-    await link(page, "reservations");
+    await expect(page.locator("#reservation-search")).toBeVisible();
     await page.locator("#reservation-reference").fill("R-4829");
     await page.locator("#reservation-search button").click();
     await expect(page.locator("#reservation-result")).toBeVisible();
@@ -241,15 +242,18 @@ test("the built static V2 distribution loads the case with bundled resources", a
   page.on("pageerror", (e) => errors.push(e.message));
   try {
     await page.goto(`http://127.0.0.1:${server.address().port}/index-zh.html`);
+    await page.locator(".forum-recruit-link").click();
     await expect(page.locator(".job-card")).toBeVisible();
     await page.locator("[data-case-action=sample]").click();
+    await page.locator('nav a[href="#hotel"]').click();
     await expect(page.locator(".hotel-hero img")).toBeVisible();
     expect(
       await page
         .locator(".hotel-hero img")
         .evaluate((img) => img.complete && img.naturalWidth > 0),
     ).toBe(true);
-    await link(page, "reservations");
+    await page.locator('nav a[href="#reservations"]').click();
+    await expect(page.locator("#reservation-search")).toBeVisible();
     await page.locator("#reservation-reference").fill("R-4829");
     await page.locator("#reservation-search button").click();
     await expect(page.locator("#reservation-result")).toContainText("318");

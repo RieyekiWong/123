@@ -24,7 +24,7 @@ globalThis.StillwaterForum = ({ t, esc, getState }) => {
       )
       .join(
         "",
-      )}</ul>${section ? `<a href="#forum">${t("查看全部话题", "All topics")}</a>` : ""}</section><section class="bbs-about"><h2>${t("关于这里", "Around here")}</h2><p>${t("夜猫子们聊工作，也聊不工作的事。无需登录，随便看看。", "Night owls talk about work and everything else. No sign-in needed to browse.")}</p><p>${t("帖子为本地展示，不接收或发布真实回复。", "These local posts do not accept or publish real replies.")}</p></section><div data-inline-ad></div></aside></div>`;
+      )}</ul>${section ? `<a href="#forum">${t("查看全部话题", "All topics")}</a>` : ""}</section><section class="bbs-about"><h2>${t("关于这里", "Around here")}</h2><p>${t("夜猫子们聊工作，也聊不工作的事。无需登录，随便看看。", "Night owls talk about work and everything else. No sign-in needed to browse.")}</p><p>${t("当前只开放浏览，暂不接收新回复。", "Read-only at the moment. New replies are closed.")}</p></section><div data-inline-ad></div></aside></div>`;
   }
   return { render };
 };

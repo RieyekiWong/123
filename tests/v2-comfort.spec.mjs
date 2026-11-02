@@ -11,7 +11,7 @@ test("sound is opt-in, settings are keyboard-accessible and reset preserves the 
       '{"name":"Classic visitor","chapter":2}',
     ),
   );
-  await page.goto("/index-zh.html");
+  await page.goto("/index-zh.html#careers");
   await expect(page.locator("iframe")).toHaveCount(0);
   await page.locator("[data-case-action=settings]").click();
   await expect(page.locator("[data-comfort=sound]")).toHaveAttribute(

@@ -1,6 +1,6 @@
-# The Stillwater Hotel — V2
+# The Stillwater Hotel — V2.1
 
-A bilingual browser ARG about a routine archive-reconciliation job. A modern careers page leads to a retained 2006 hotel website, then to night-audit records and two evidence-based dispositions. Built from the existing Stillwater project following the supplied V2 brief and design bible.
+A bilingual browser ARG that begins with an ordinary forum post: someone wants help checking a part-time job. A modern careers page leads to a retained 2006 hotel website, night-audit records and two evidence-based dispositions. V2.1 adds Night Owl BBS, seven fictional local-shop adverts and plainer Chinese puzzle instructions without changing the case or its answers.
 
 **Play:** [简体中文](https://rieyekiwong.github.io/123/index-zh.html) · [English](https://rieyekiwong.github.io/123/index.html)
 
@@ -16,6 +16,14 @@ npm run dev
 ```
 
 Open `http://localhost:3000/index-zh.html`. Node.js 20 or newer is required for the development tools, not for the static game.
+
+## Forum and local adverts
+
+New visitors start at Night Owl BBS. Follow the job preview, then review the sample to reach the reservation search. Existing V2 saves continue from a usable record; **Back to the forum** revisits the opening. Explicit hash links and language switches keep their destination.
+
+Local adverts can be closed, kept, folded or opened from **My ad folder**. They appear infrequently on public pages, pause during forms and never appear in the investigation’s serious records. All advertising stops after Mara’s note. The shops have complete bilingual local pages, original SVG illustrations and no external tracking, media, orders or data collection. They are scenery, not puzzle clues.
+
+Saved adverts use `stillwater-ads:v1`; sessionStorage holds per-tab cooldown and display history. Restarting the main case preserves the folder. Remove saved adverts individually in the folder.
 
 ## Saves and settings
 
@@ -45,4 +53,4 @@ GitHub Pages publishes `main` from `/ (root)`. Relative asset links support the 
 
 Photo authors and licenses are retained in [assets/CREDITS.md](assets/CREDITS.md), `assets/photo-credits.json` and the in-site credits. The real photographed properties and photographers are not part of this fictional story. Annotation layers are illustrative overlays. No reference-brand logos or website screenshots are shipped.
 
-Production notes: [migration and staged checks](docs/V2-MIGRATION.md). **Spoilers:** [complete investigation route](docs/V2-PLAYER-ROUTE.zh-CN.md). [中文说明](README.zh-CN.md).
+Production notes: [V2.1 delivery and screenshots](docs/V2_1-DELIVERY.zh-CN.md), [migration and staged checks](docs/V2-MIGRATION.md). **Spoilers:** [complete investigation route](docs/V2-PLAYER-ROUTE.zh-CN.md). [中文说明](README.zh-CN.md).

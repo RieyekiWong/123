@@ -5,9 +5,10 @@ export const state = (page) =>
   page.evaluate(() => JSON.parse(localStorage.getItem("stillwater-case:v2")));
 export async function toAudit(page, entry = "index-zh.html") {
   await page.goto("/" + entry);
+  await page.locator(".forum-recruit-link").click();
   const reference = await page.locator(".job-card .reference").innerText();
   await page.locator("[data-case-action=sample]").click();
-  await link(page, "reservations");
+  await expect(page.locator("#reservation-search")).toBeVisible();
   await page.locator("#reservation-reference").fill("R-wrong");
   await page.locator("#reservation-search button").click();
   await expect(page.locator("#reservation-error")).not.toBeEmpty();
@@ -47,16 +48,14 @@ export async function toRevisions(page) {
   await page.locator("[name=assessment][value=insufficient]").check();
   await page.locator("#night-audit-form > button").click();
   await expect(page.locator("#audit-error")).not.toBeEmpty();
-  const rows = await page
-    .locator(".audit-cards li")
-    .evaluateAll((els) =>
-      els
-        .map((el) => ({
-          id: el.dataset.log,
-          at: el.querySelector("time").dateTime,
-        }))
-        .sort((a, b) => a.at.localeCompare(b.at)),
-    );
+  const rows = await page.locator(".audit-cards li").evaluateAll((els) =>
+    els
+      .map((el) => ({
+        id: el.dataset.log,
+        at: el.querySelector("time").dateTime,
+      }))
+      .sort((a, b) => a.at.localeCompare(b.at)),
+  );
   for (let index = 0; index < rows.length; index++) {
     while (
       (await page

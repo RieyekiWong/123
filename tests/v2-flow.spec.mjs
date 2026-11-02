@@ -41,6 +41,11 @@ for (const [entry, ending] of [
     await page.locator(`[data-ending="${other}"]`).click();
     await expect(page.locator(`[data-ending-record="${other}"]`)).toBeVisible();
     expect((await state(page)).endings).toHaveLength(2);
+    await link(page, "forum", "footer");
+    await expect(page.locator(".bbs-update")).toBeVisible();
+    await expect(
+      page.locator(".ad-inline,[data-active-ad],.ad-saved-tab"),
+    ).toHaveCount(0);
     expect(errors).toEqual([]);
   });
 }
