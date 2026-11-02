@@ -23,10 +23,14 @@ globalThis.StillwaterCaseState = (() => {
     closure: "C7",
     mara: "C8",
     review: "C9",
-    ending: "finalEvidence",
+    ending: "historicalEnding",
+    mirror: "finalEvidence",
+    cameras: "mirrorStarted",
+    terminal: "serviceDoor",
   };
   const fresh = () => ({
     schema: 2,
+    night: globalThis.StillwaterNightModel.fresh(),
     evidence: [],
     completed: { serviceInspected: false, audit: false, finalEvidence: false },
     drafts: {
@@ -45,6 +49,7 @@ globalThis.StillwaterCaseState = (() => {
     effectSeen: false,
     preferences: {
       sound: false,
+      breathing: false,
       volume: 0.2,
       reduceMotion: false,
       skipScares: true,
@@ -55,7 +60,9 @@ globalThis.StillwaterCaseState = (() => {
     !requirement ||
     requirement === "public" ||
     has(state, requirement) ||
-    state.completed[requirement] === true;
+    state.completed[requirement] === true ||
+    (requirement === "mirrorStarted" && state.night.started) ||
+    (requirement === "serviceDoor" && state.night.door);
   const canRecord = (state, id) =>
     !!D.clues[id] && met(state, D.clues[id].unlockedAt);
   function record(state, id) {
@@ -65,6 +72,8 @@ globalThis.StillwaterCaseState = (() => {
   }
   const canOpen = (state, route) =>
     Object.hasOwn(routes, route) &&
+    (!["mirror", "cameras", "terminal"].includes(route) ||
+      state.completed.finalEvidence) &&
     ((route === "ending" && state.endings.length > 0) ||
       met(state, routes[route]));
   function recovery(state, route) {
@@ -74,7 +83,12 @@ globalThis.StillwaterCaseState = (() => {
       if (id === "C7" && !state.completed.audit) return "night-audit";
       return D.clues[id].route;
     }
-    return "review";
+    if (!state.completed.finalEvidence) return "review";
+    return state.night.started
+      ? state.night.door
+        ? "terminal"
+        : "cameras"
+      : "review";
   }
 
   function hydrate(raw) {
@@ -129,7 +143,16 @@ globalThis.StillwaterCaseState = (() => {
     )
       ? draft.photoVersion
       : "original";
-    const ends = ["auto-close", "unverified"];
+    state.night = globalThis.StillwaterNightModel.hydrate(
+      raw.night,
+      state.completed.finalEvidence ||
+        (state.completed.audit && has(state, "C9")),
+    );
+    const ends = [
+      "auto-close",
+      "unverified",
+      ...(state.night.released ? ["released"] : []),
+    ];
     state.endings =
       state.completed.audit &&
       Object.keys(D.clues).every((id) => has(state, id)) &&
@@ -148,6 +171,7 @@ globalThis.StillwaterCaseState = (() => {
     const pref = raw.preferences || {};
     state.preferences = {
       sound: false,
+      breathing: pref.breathing === true,
       volume: Number.isFinite(pref.volume)
         ? Math.max(0, Math.min(0.5, pref.volume))
         : 0.2,
@@ -159,6 +183,8 @@ globalThis.StillwaterCaseState = (() => {
   const ok = () => ({ ok: true });
   const fail = (error) => ({ ok: false, error });
   function transition(state, action, payload = {}) {
+    if (action.startsWith("night-") && !state.completed.finalEvidence)
+      return fail("evidence-incomplete");
     switch (action) {
       case "sample":
         record(state, "C1");
@@ -247,14 +273,111 @@ globalThis.StillwaterCaseState = (() => {
       case "edit-evidence":
         state.completed.finalEvidence = false;
         return ok();
+      case "night-start":
+        if (!state.completed.finalEvidence) return fail("evidence-incomplete");
+        state.night.started = true;
+        return ok();
+      case "night-pan": {
+        if (
+          !state.night.started ||
+          ![0, 1, 2].includes(payload.cam) ||
+          ![0, 1, 2].includes(payload.pan)
+        )
+          return fail("night-access");
+        state.night.pans[payload.cam] = payload.pan;
+        return ok();
+      }
+      case "night-link": {
+        const i = payload.link,
+          n = state.night,
+          N = globalThis.StillwaterNightModel;
+        if (!n.started || ![0, 1].includes(i)) return fail("night-access");
+        const left = N.anchor(i, n.pans[i]),
+          right = N.anchor(i + 1, n.pans[i + 1]);
+        if (!left || left !== right) return fail("night-landmark");
+        if (!n.links.includes(i)) n.links.push(i);
+        return ok();
+      }
+      case "night-door":
+        if (state.night.links.length !== 2 || state.night.pans[2] !== 2)
+          return fail("night-door");
+        state.night.door = true;
+        return ok();
+      case "night-frame":
+        if (!state.night.door) return fail("night-access");
+        state.night.frame = true;
+        return ok();
+      case "night-rotate":
+      case "night-isolate":
+      case "night-manual":
+      case "night-reset":
+      case "night-undo": {
+        const n = state.night;
+        if (!n.door) return fail("night-access");
+        if (
+          action === "night-rotate" &&
+          ![0, 1, 2, 3, 4, 5].includes(payload.node)
+        )
+          return fail("night-access");
+        const snapshot = () => ({
+          orientations: [...n.orientations],
+          isolated: n.isolated,
+          manual: n.manual,
+        });
+        if (action === "night-undo") {
+          const previous = n.undo.pop();
+          if (previous) Object.assign(n, previous);
+        } else {
+          n.undo.push(snapshot());
+          if (n.undo.length > 30) n.undo.shift();
+          if (action === "night-rotate")
+            n.orientations[payload.node] =
+              (n.orientations[payload.node] + 1) % 4;
+          if (action === "night-isolate") n.isolated = !n.isolated;
+          if (action === "night-manual") n.manual = !n.manual;
+          if (action === "night-reset")
+            Object.assign(n, snapshot(), {
+              orientations:
+                globalThis.StillwaterNightModel.fresh().orientations,
+              isolated: false,
+              manual: false,
+            });
+        }
+        n.operations++;
+        n.saved = false;
+        n.locked = false;
+        return ok();
+      }
+      case "night-save":
+        if (
+          !state.night.door ||
+          !globalThis.StillwaterNightModel.circuit(state.night).valid
+        )
+          return fail("night-circuit");
+        state.night.saved = true;
+        return ok();
+      case "night-lock":
+        if (
+          !state.night.saved ||
+          !state.night.frame ||
+          !globalThis.StillwaterNightModel.circuit(state.night).valid
+        )
+          return fail("night-circuit");
+        state.night.locked = true;
+        return ok();
       case "ending":
         if (
           !state.completed.finalEvidence ||
           !Object.keys(D.clues).every((id) => has(state, id))
         )
           return fail("evidence-incomplete");
-        if (!["auto-close", "unverified"].includes(payload.ending))
+        if (!state.night.door || !state.night.frame || !state.night.operations)
+          return fail("night-access");
+        if (payload.ending === "released" && !state.night.locked)
+          return fail("night-circuit");
+        if (!["auto-close", "unverified", "released"].includes(payload.ending))
           return fail("ending");
+        if (payload.ending === "released") state.night.released = true;
         state.lastEnding = payload.ending;
         if (!state.endings.includes(payload.ending))
           state.endings.push(payload.ending);

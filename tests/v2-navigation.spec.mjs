@@ -6,6 +6,7 @@ import {
   toRevisions,
   toReview,
   validateFindings,
+  toNight,
   state,
   link,
 } from "./v2-helpers.mjs";
@@ -152,15 +153,16 @@ test("every unsupported final finding can be corrected; historical endings remai
     await page.locator(`[name=claim][value=${claim}]`).uncheck();
   }
   await validateFindings(page);
+  await toNight(page);
   await page.locator("[data-ending=unverified]").click();
-  await link(page, "review");
+  await page.goto("/index-zh.html#review");
   await page.locator("[data-case-action=edit-evidence]").click();
   await page.reload();
   await page.locator("[name=claim][value=service]").uncheck();
   await link(page, "notes", "footer");
   await page.locator('a[href="#ending?view=unverified"]').click();
   await expect(page.locator("[data-ending-record=unverified]")).toBeVisible();
-  await link(page, "review");
+  await page.goto("/index-zh.html#review");
   await expect(page.locator("[data-ending]")).toHaveCount(0);
   expect(outgoing).toEqual([]);
   await expect(

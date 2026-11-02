@@ -1,6 +1,6 @@
-# The Stillwater Hotel — V2.1
+# The Stillwater Hotel — V2.3
 
-A bilingual browser ARG that begins with an ordinary forum post: someone wants help checking a part-time job. A modern careers page leads to a hotel website and its retained 2006 records, night-audit records and two evidence-based dispositions. V2.1 adds Night Owl BBS, seven fictional local-shop adverts and plainer Chinese puzzle instructions without changing the case or its answers.
+A bilingual browser ARG that begins with an ordinary forum post: someone wants help checking a part-time job. A modern careers page leads to a hotel website and its retained 2006 records, night-audit records and two evidence-based dispositions. V2.3 preserves Night Owl BBS, the seven fictional shops and the original case, then adds a mirrored hotel, spatial camera relay, operable circuit graph and a third disposition.
 
 **Play:** [简体中文](https://rieyekiwong.github.io/123/index-zh.html) · [English](https://rieyekiwong.github.io/123/index.html)
 
@@ -23,15 +23,15 @@ The forum and careers page have their own footers; hotel operations appear on th
 
 New visitors start at Night Owl BBS. Follow the job preview, then review the sample to reach the reservation search. Existing V2 saves continue from a usable record; **Back to the forum** revisits the opening. Explicit hash links and language switches keep their destination.
 
-Local adverts can be closed, kept, folded or opened from **My ad folder**. They appear infrequently on public pages, pause during forms and never appear in the investigation’s serious records. All advertising stops after Mara’s note. The shops have complete bilingual local pages, existing licensed photographs and no external tracking, media, orders or data collection. They are scenery, not puzzle clues.
+Local adverts can be closed, kept, folded or opened from **My ad folder**. They appear infrequently on public pages, pause during forms and never appear in the investigation’s serious records. Advertising stops after Mara’s note and during the altered chapters; saved adverts are preserved and return after the true ending. The shops have complete bilingual local pages, existing licensed photographs and no external tracking, media, orders or data collection. They are scenery, not puzzle clues.
 
 Saved adverts use `stillwater-ads:v1`; sessionStorage holds per-tab cooldown and display history. Restarting the main case preserves the folder. Remove saved adverts individually in the folder.
 
 ## Saves and settings
 
-The V2 save is `stillwater-case:v2`, with a versioned schema. Sources, unfinished sorting and selections, dispositions and viewing preferences survive refreshes and language changes on the same origin. **Case Notes** reopens sources already observed. Unavailable deep links offer a usable source link. If storage is blocked, the current tab remains playable and the footer explains that progress cannot be retained.
+The V2 save is `stillwater-case:v2`, with a versioned schema. Sources, unfinished sorting and selections, camera directions and connections, circuit rotations and switches, undo history, dispositions and viewing preferences survive refreshes and language changes on the same origin. **Case Notes** reopens sources already observed. Unavailable deep links offer a usable source link. If storage is blocked, the current tab remains playable and the footer explains that progress cannot be retained.
 
-**Sound & settings** in the footer has opt-in low-volume notification audio, Reduce Motion, Skip Scares and a confirmed restart of this case. Sound starts off on every load. Brief connection effects are skipped by default; this edition has no monster-face interruptions, screams or embedded video. Audio is never necessary for a finding.
+**Sound & settings** in the footer controls optional audio, separate night-terminal breathing, Reduce Motion, Skip Scares and a confirmed restart. Sound starts off on every load and scares are skipped by default. A single optional mask frame is triggered explicitly by restoring the final camera frame; it has no scream. Every puzzle is solvable silently and with reduced motion.
 
 No form collects a name, email, phone, CV, payment information or real application. No answers are submitted to a server. The footer identifies the hotel, recruitment and records as fiction.
 
@@ -56,3 +56,12 @@ GitHub Pages publishes `main` from `/ (root)`. Relative asset links support the 
 Photo authors and licenses are retained in [assets/CREDITS.md](assets/CREDITS.md), `assets/photo-credits.json` and the in-site credits. The real photographed properties and photographers are not part of this fictional story. Annotation layers are illustrative overlays. No reference-brand logos or website screenshots are shipped.
 
 Production notes: [V2.1 delivery and screenshots](docs/V2_1-DELIVERY.zh-CN.md), [migration and staged checks](docs/V2-MIGRATION.md). **Spoilers:** [complete investigation route](docs/V2-PLAYER-ROUTE.zh-CN.md). [中文说明](README.zh-CN.md).
+
+
+## V2.3 equipment chapters
+
+The original forum, advertisements, case sources and classic edition remain. After the final source review, synchronize the directory to enter a persistent altered hotel, a camera-panning spatial relay and a six-junction circuit puzzle with actual reciprocal-port graph traversal. Isolate auto-write, select manual mode and lock the original archive for the new hidden disposition. Schema-two saves retain their original clues, drafts and past endings.
+
+All raster images have local low-resolution display copies; originals and licenses are preserved. Shared CCTV treatment covers both editions. The night terminal includes optional soft synthesized breathing, a single explicitly triggered, skippable mask frame and a small pointer-local glass ripple that respects reduced motion and touch input.
+
+See [implementation and route](docs/V2_3-IMPLEMENTATION.zh-CN.md), [complete Chinese copy audit](COPY-AUDIT.zh-CN.md), [verification](docs/V2_3-VERIFICATION.zh-CN.md) and [image derivatives / licenses](assets/RETRO-IMAGES.md).

@@ -36,14 +36,14 @@ globalThis.StillwaterCaseData = (() => {
       route: "reservations",
       usedFor: ["inventory_comparison"],
       unlockedAt: "C1",
-      title: ["原预订与分配房号", "Original booking and room assignment"],
+      title: ["原预订单与登记房号", "Original booking and room assignment"],
     },
     C3: {
       source: "hotel/rooms",
       route: "rooms",
       usedFor: ["room_317_gap"],
       unlockedAt: "C2",
-      title: ["三层官方客房清单", "Official third-floor guest inventory"],
+      title: ["三楼客房目录", "Official third-floor guest inventory"],
     },
     C4: {
       source: "hotel/guestbook/" + facts.message,
@@ -57,7 +57,7 @@ globalThis.StillwaterCaseData = (() => {
       route: "floor-plan",
       usedFor: ["service_docket", "final_evidence_service"],
       unlockedAt: "C4",
-      title: ["服务区域的登记属性", "Classification of the service area"],
+      title: ["服务区域的登记用途", "Classification of the service area"],
     },
     C6: {
       source: "staff/incident/" + facts.notice,
@@ -115,7 +115,7 @@ globalThis.StillwaterCaseData = (() => {
       source: "maintenance",
       label: ["系统移交", "System handover"],
       text: [
-        `${facts.system} 将 ${facts.reservation} 转到 ${facts.service}（服务缓冲位），交给 ${facts.reviewer} 处理。`,
+        `${facts.system} 将 ${facts.reservation} 转到 ${facts.service}（服务暂存区），交给 ${facts.reviewer} 处理。`,
         `${facts.system} moves ${facts.reservation} to service holding ${facts.service}, assigned to ${facts.reviewer}.`,
       ],
     },
@@ -139,7 +139,7 @@ globalThis.StillwaterCaseData = (() => {
   const revisions = Object.freeze([
     {
       id: "owner",
-      label: ["处理人 / 记录归属", "Handler / record ownership"],
+      label: ["处理人及人员类别", "Handler / record ownership"],
       original: [
         `${facts.reviewer} / ${facts.reviewerName}（员工，处理人）`,
         `${facts.reviewer} / ${facts.reviewerName} (staff reviewer)`,
@@ -152,9 +152,9 @@ globalThis.StillwaterCaseData = (() => {
     },
     {
       id: "location",
-      label: ["位置属性", "Position type"],
+      label: ["区域用途", "Position type"],
       original: [
-        `${facts.service} / 服务缓冲位`,
+        `${facts.service} / 服务暂存区`,
         `${facts.service} / SERVICE HOLDING`,
       ],
       revised: [`${facts.service} / 客房`, `${facts.service} / GUEST ROOM`],
@@ -169,14 +169,14 @@ globalThis.StillwaterCaseData = (() => {
     },
     {
       id: "reference",
-      label: ["原预订引用", "Original booking reference"],
+      label: ["原预订编号", "Original booking reference"],
       original: [facts.reservation, facts.reservation],
       revised: [facts.reservation, facts.reservation],
       changed: false,
     },
     {
       id: "assignment",
-      label: ["原分配房号", "Original assignment"],
+      label: ["原登记房号", "Original assignment"],
       original: [facts.bookedRoom, facts.bookedRoom],
       revised: [facts.bookedRoom, facts.bookedRoom],
       changed: false,
@@ -188,7 +188,7 @@ globalThis.StillwaterCaseData = (() => {
       correct: true,
       clue: "C5",
       text: [
-        `登记卡写明：${facts.service} 是服务缓冲位，不是客房。`,
+        `登记卡写明：${facts.service} 是服务暂存区，不是客房。`,
         `${facts.service} is a service holding position, not a confirmed occupied guest room.`,
       ],
     },

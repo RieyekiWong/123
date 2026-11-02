@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import "../case-data.js";
+import "../case-night-model.js";
 import "../case-state.js";
 const D = globalThis.StillwaterCaseData,
   M = globalThis.StillwaterCaseState,
@@ -98,6 +99,17 @@ test("the same verified evidence supports two replayable endings and survives re
       "evidence",
       { selection: D.finalClaims.filter((r) => r.correct).map((r) => r.id) },
     ],
+    ["night-start", {}],
+    ["night-pan", {cam:0,pan:2}],
+    ["night-pan", {cam:1,pan:0}],
+    ["night-link", {link:0}],
+    ["night-pan", {cam:1,pan:2}],
+    ["night-pan", {cam:2,pan:0}],
+    ["night-link", {link:1}],
+    ["night-pan", {cam:2,pan:2}],
+    ["night-door", {}],
+    ["night-frame", {}],
+    ["night-rotate", {node:0}],
     ["ending", { ending: "auto-close" }],
     ["ending", { ending: "unverified" }],
   ])
@@ -136,7 +148,8 @@ test("editing a current conclusion invalidates new sign-off without erasing hist
   M.transition(s, "evidence", {
     selection: ["service", "reviewer", "revision"],
   });
-  M.transition(s, "ending", { ending: "unverified" });
+  // A pre-4.3 saved disposition remains viewable after current findings change.
+  s.endings=["unverified"];s.lastEnding="unverified";
   M.transition(s, "edit-evidence");
   assert.equal(M.transition(s, "ending", { ending: "auto-close" }).ok, false);
   const restored = M.hydrate(JSON.parse(JSON.stringify(s)));

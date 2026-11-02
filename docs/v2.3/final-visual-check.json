@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "width": 498,
+    "height": 370,
+    "passiveOverlay": "none",
+    "pictureFilter": "grayscale(0.7) sepia(0.3) contrast(1.4) brightness(0.7) drop-shadow(rgb(139, 44, 44) 2px 0px 0px) drop-shadow(rgb(52, 115, 118) -2px 0px 0px)",
+    "ripple": true
+  },
+  "errors": []
+}

@@ -1,0 +1,202 @@
+[
+  {
+    "original": "lobby.jpg",
+    "display": "lowres/lobby.jpg",
+    "width": 480,
+    "height": 320,
+    "sha256": "69372415844c3363a294afdb12ba9b769d29f3f323b15abde6490e150f9a31c5",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "hallway.jpg",
+    "display": "lowres/hallway.jpg",
+    "width": 480,
+    "height": 320,
+    "sha256": "375edcec86ada4634491393dd81dfe31525b00afa2a0d5a361e00c9a969f1a95",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "guestroom.jpg",
+    "display": "lowres/guestroom.jpg",
+    "width": 480,
+    "height": 320,
+    "sha256": "5bc443fb1a6db52f55bc619da9e0604de93bd27091d5aadf1bd6c3d806f4bf0d",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "twin.jpg",
+    "display": "lowres/twin.jpg",
+    "width": 480,
+    "height": 320,
+    "sha256": "563cbe52aedc8413b8bbbfe5e4e9468f4aae3238d75d4fddde68d3a562bdda74",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "suite.jpg",
+    "display": "lowres/suite.jpg",
+    "width": 480,
+    "height": 360,
+    "sha256": "900a5138b2b3296d1b6652e8df58af51082d62f64092b1c6dec493b7ec666d9c",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "night-mask.jpg",
+    "display": "lowres/night-mask.jpg",
+    "width": 480,
+    "height": 720,
+    "sha256": "b797a32b992344d41cd29f253b50331d675a48434f221343f786fc739487b0c5",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "scare-porter.png",
+    "display": "lowres/scare-porter.jpg",
+    "width": 480,
+    "height": 320,
+    "sha256": "a96f5a3bc001a335a3fecd0766dcb9c3af1f78b3162d8f368779db89406e9808",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "scare-veil.png",
+    "display": "lowres/scare-veil.jpg",
+    "width": 480,
+    "height": 320,
+    "sha256": "1b15ef7d9237dc227bcd814c33bee5ecb34744a4e62ff5f4dd04e68d6e31977e",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "scare-reflection.png",
+    "display": "lowres/scare-reflection.jpg",
+    "width": 480,
+    "height": 320,
+    "sha256": "d4099a2e432fcd495b30074547d6f9606b2d51ebbb6c2d55ffff6021886781e6",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "dylan-room.png",
+    "display": "lowres/dylan-room.jpg",
+    "width": 480,
+    "height": 270,
+    "sha256": "603805778516e6b8a17bd854f9c3da73b4f24e73d7ab04c3826d9245507c62d6",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "web/ad-cat-snow.jpg",
+    "display": "lowres/web-ad-cat-snow.jpg",
+    "width": 480,
+    "height": 320,
+    "sha256": "09e5278e4c0aac24e1a9e8fcb1c260511e5a62c4370042dcd30b11bb890560ac",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "web/ad-cat-tabby.jpg",
+    "display": "lowres/web-ad-cat-tabby.jpg",
+    "width": 480,
+    "height": 641,
+    "sha256": "9012cbc73faaa6bc8d490b1e63b45299235a13f5b65bb1227fd83f79cb567560",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "web/ad-cat.jpg",
+    "display": "lowres/web-ad-cat.jpg",
+    "width": 480,
+    "height": 577,
+    "sha256": "8ebb6a48f77934c0fd1ff35d94b945bebc2158dacac005bc0ff13131b16e5369",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "web/ad-cinema.jpg",
+    "display": "lowres/web-ad-cinema.jpg",
+    "width": 480,
+    "height": 360,
+    "sha256": "7816fe31086040cf570123c2bd59bf94c509204f86b41cb658bedbb74be45f88",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "web/ad-clouds.jpg",
+    "display": "lowres/web-ad-clouds.jpg",
+    "width": 480,
+    "height": 309,
+    "sha256": "1597863c889dc29cf6a24959e77ed590645870be053ac5d45549405d656c5276",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "web/ad-computer.jpg",
+    "display": "lowres/web-ad-computer.jpg",
+    "width": 480,
+    "height": 258,
+    "sha256": "a1fe7aa8052b2c0a952740426ce6873057bdb9125d015e66adef5d7e63a62c3c",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "web/ad-dog.jpg",
+    "display": "lowres/web-ad-dog.jpg",
+    "width": 480,
+    "height": 320,
+    "sha256": "d1ed7eced7de27754fee57caa192b8f94cc1c693e7fd0b9bcb513851e8b40c8f",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "web/ad-print.jpg",
+    "display": "lowres/web-ad-print.jpg",
+    "width": 480,
+    "height": 360,
+    "sha256": "a94ae6458602feee7fdf7989cb0baf47521f1525ebf2d365875eb393c497d558",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "web/ad-records.jpg",
+    "display": "lowres/web-ad-records.jpg",
+    "width": 480,
+    "height": 319,
+    "sha256": "dd4e568ddb68d91fcf1438f70fcd10b844812606c3c93726e639af5a5cb4094b",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "web/hotel-breakfast.jpg",
+    "display": "lowres/web-hotel-breakfast.jpg",
+    "width": 480,
+    "height": 360,
+    "sha256": "8641f03507b81de9d3d533ee0ae1c2da49f6d11e969ecfc4080cdcb593ce6ac8",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "web/hotel-dayroom.jpg",
+    "display": "lowres/web-hotel-dayroom.jpg",
+    "width": 480,
+    "height": 320,
+    "sha256": "4cdd485dc23881e41b35c1722102ac83c61f437e1a3d61e48c3fa164b10ea785",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "web/hotel-dining.jpg",
+    "display": "lowres/web-hotel-dining.jpg",
+    "width": 480,
+    "height": 320,
+    "sha256": "fb54dbf1f4764f5aee39f35c283007536613cb13d5f4b30c14d047c28f313d13",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "web/hotel-exterior.jpg",
+    "display": "lowres/web-hotel-exterior.jpg",
+    "width": 480,
+    "height": 275,
+    "sha256": "49b0898f5748b869f1d718495010fc23a5a0cb45984f69cfc2c79f2cdfd4c011",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "web/hotel-garden.jpg",
+    "display": "lowres/web-hotel-garden.jpg",
+    "width": 480,
+    "height": 640,
+    "sha256": "ec38868b2fd6e7d5a13d494bf3112e2be559924230adbbd8038baae975dca49a",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  },
+  {
+    "original": "web/hotel-lounge.jpg",
+    "display": "lowres/web-hotel-lounge.jpg",
+    "width": 480,
+    "height": 320,
+    "sha256": "84a8bbe4c5012751836dafed0e589516581551916fdbcaebdc9fee3f703076c4",
+    "changes": "Downsampled to at most 480px wide and JPEG quality 0.46. Original retained. Same author and license as original; see photo ledgers."
+  }
+]

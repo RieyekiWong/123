@@ -35,14 +35,14 @@
     "Whether you are staying for a night or looking for somewhere to begin again, a place has already been prepared for you.":
       "短住或长住均可安排。如需额外毯子或安静房间，请联系前台。",
     "Notice to our guests · Updated 10/03": "住客公告 · 更新于 10 月 3 日",
-    "Third-floor maintenance": "三层维护通知",
+    "Third-floor maintenance": "三层维修通知",
     "Some areas of the third floor remain temporarily unavailable. We appreciate your understanding as we preserve the character of our historic property.":
       "三层西端正在维修。请按房卡上的标记通行，不要自行进入施工区域。",
     "Learn about our hotel →": "了解旅馆 →",
     "01 / Rooms": "01 / 客房",
     "Time to unwind": "舒适客房",
     "Classic interiors and quiet spaces for the perfect night's rest.":
-      "经典陈设，齐全设施，为旅途留一晚好眠。",
+      "经典陈设与独立卫浴，满足日常入住需要。",
     "View rooms →": "查看客房 →",
     "02 / Memories": "02 / 回忆",
     "Stories from our guests": "住客评价",
@@ -102,7 +102,7 @@
     "Third floor · Extended stays · Turn-down service":
       "位于三层 · 适合长住 · 夜间整理",
     "Included in every stay": "客房设施与服务",
-    "Nothing overlooked.": "所需设施，一应俱全。",
+    "Nothing overlooked.": "客房设施",
     "Daily housekeeping": "每日客房清洁",
     "Fresh linens & towels": "床品与毛巾",
     "In-room tea service": "客房茶饮服务",
@@ -159,7 +159,7 @@
     "Restoration bulletin / 10.03": "修缮公告 / 10 月 3 日",
     "A temporary inconvenience": "施工期间通行提示",
     "Third-floor access is restricted after quiet hours. Please disregard floor numbers not listed on your guest map.":
-      "安静时段后，三层通行受到限制。请忽略住客地图中没有列出的楼层编号。",
+      "夜间三层部分区域不开放，请按住客地图上的路线通行。",
     "Read the full bulletin →": "阅读全文 →",
     "The historic lobby, shown with an aged photographic finish":
       "带有老照片质感的历史大堂",
@@ -294,7 +294,7 @@
     "A note from reception": "前台提示",
     "Please keep these cards.": "请保留这些卡片。",
     "Facility information is not changed during a supply interruption. The printed instructions remain valid even if the building looks unfamiliar.":
-      "供电中断期间，设施说明不会变更。即使建筑看起来陌生，纸上印着的流程依然有效。",
+      "停电时仍可按这张卡上的流程操作，请妥善保管。",
     "01 / Dining": "01 / 用餐",
     "A table set for you": "餐饮服务",
     "Breakfast radio, the original five-course dinner, and a few customs retained by our kitchen.":
@@ -534,7 +534,7 @@
     "Your guest notebook": "您的住客笔记",
     "TEST_GUEST · Room 307": "TEST_GUEST · 307 号房",
     "12 of 12 records recovered. The public record was only the first layer.":
-      "已找回 12 / 12 条记录。公开记录，只是第一层。",
+      "已找回 12 / 12 条记录。还有地下的记录可查。",
     "The stopped clock": "停下的时钟",
     "Every clock stops at 04:04. The lock on the unlisted door accepts four numbers, without a colon.":
       "房里的时钟停在 04:04。走廊尽头那扇门用四位数字开锁，输入时间时不要加冒号。",
@@ -569,7 +569,7 @@
       "镜中纸条写着“不要转动钥匙”。之前的退房没有成功，这次要带上登记簿原件，把黄铜钥匙留在桌上，走员工楼梯。",
     "Three days, in their proper order": "最初三天的顺序",
     "03 October: doors open. 04 October: clocks stop. 05 October: the first returned guest. The hotel must admit that a departure comes after an arrival. The final discharge can now be signed.":
-      "10 月 3 日开业；4 日时钟停摆；5 日第一位离开的住客返回。旅馆必须承认，抵达之后可以有离开。现在可以签署最后一次退房。",
+      "10 月 3 日开业；4 日时钟停摆；5 日第一位离开的住客返回。登记簿的日期不再变化了，可以去办理最后一次退房。",
     "Departures remembered": "已发现的结局",
     "The road home · A familiar place · The last checkout — rejected · The new night porter · For the first time, morning":
       "回家的路 · 再回前台 · 退房失败 · 留下值夜班 · 走出酒店",
@@ -599,7 +599,7 @@
       "是一部原创、虚构的后室风格互动谜案。舒适的酒店官网背后，住客记录、监控录像与员工信件，正在讲述一个尚未结束的故事。",
     "How to explore": "玩法说明",
     "Register under a nickname, collect your key, and read carefully. Save discoveries to your notebook. Two doors offer two endings; a complete public record reveals what lies below. The apparent third ending is the beginning of a second, more demanding chapter. Use the Hotel Guide to cross-check menus, service orders, and incident reports. All clues are inside this site. You never need to contact anyone or visit a real place.":
-      "使用昵称登记、领取钥匙，并仔细阅读。将发现记入笔记。两扇门通往两个结局；完整的公开记录，则会揭开地下的秘密。看似第三个结局，其实是更深入的第二章起点。用旅馆指南交叉核对菜单、服务顺序和事件报告。所有线索都在本站内，无需联系任何人，也不必前往现实地点。",
+      "使用昵称登记、领取钥匙，并仔细阅读。重要资料可记入笔记。两扇门通往两个结局；完整的公开记录，则会揭开地下的秘密。看似第三个结局，其实是更深入的第二章起点。用旅馆指南交叉核对菜单、服务顺序和事件报告。所有线索都在本站内，无需联系任何人，也不必前往现实地点。",
     "Comfort & accessibility": "声音与画面设置",
     "Contains unsettling figures, sudden visual interruptions, and a second horror chapter after the apparent ending. Sudden effects can be disabled below without losing any puzzles. There is no rapid flashing. Ambient sound remains off until you choose; reduced-motion preferences are respected. Press Escape to close a document.":
       "包含令人不安的人影、短暂的突发画面，以及假结局后的第二段恐怖章节。可在下方关闭突发效果，不影响解谜。没有快速频闪。环境音只有手动开启后才会播放；系统的减少动态效果设置会被尊重。按 Esc 可关闭档案。",
@@ -607,7 +607,7 @@
     "Sudden visual effects: on": "突发惊吓画面：开启",
     "Your information": "您的资料",
     "Your nickname, registration, notes, and progress stay in this browser. They are not sent to a server. Clearing site data erases them. The employee keypad is a fictional puzzle, not real security. Images are generated; characters, hotel, and bookings are fictional.":
-      "昵称、登记、留言与进度只保存在此浏览器中，不会发送到服务器。清除网站数据会删除它们。员工键盘是虚构谜题，不是真实的身份验证。酒店图片为生成素材，人物、旅馆与预订均属虚构。",
+      "昵称、登记、留言与进度只保存在此浏览器中，不会发送到服务器。清除网站数据会删除它们。员工键盘是虚构谜题，不是真实的身份验证。酒店照片为实拍，人物、旅馆与预订均属虚构。",
     "Source files can be opened locally after extracting the ZIP, or served using the included Node.js development server.":
       "完整解压 ZIP 后，可直接打开源文件试玩，也可使用附带的 Node.js 开发服务器。",
     "Start over / clear this device’s story progress":
@@ -715,7 +715,7 @@
     "The uncropped opening photograph": "未经裁切的开业合影",
     "Hotel collection / Contact sheet 001-B": "旅馆藏品 / 原版照片 001-B",
     "CONTACT SHEET 001-B · ORIGINAL IDENTIFICATION RETAINED":
-      "原版照片 001-B · 保留原始身份标注",
+      "原版照片 001-B · 保留原始姓名和房号标注",
     "Two founders stand on either side of the reception desk. The faces have faded out of the print. The typewritten captions remain intact.":
       "两位创办人分别站在前台两侧。脸部影像已从照片上褪去，打字标注却保存完整。",
     LEFT: "左侧",
@@ -745,9 +745,9 @@
     "Books bearing a white label are ordinary donations. Red labels indicate material belonging to the original hotel collection. A book with no label may contain a page from the guest register. Return that page to its original binding; loose names are easily misplaced.":
       "白色标签是普通捐赠书，红色标签属于旅馆原始藏品。没有标签的书，可能夹着住客登记簿的一页。请将那一页放回原来的装订册，散落的姓名很容易弄丢。",
     "At the back of the room is a visitor’s desk with a mirror instead of a window. The porter insists that the glass faces the outside wall. You can hear pages turning on the other side.":
-      "阅览室后方有张访客桌，本应是窗的位置却装着镜子。前台值班员坚称，玻璃朝向的是外墙。您能听见另一侧翻书的声音。",
+      "阅览室后方有张访客桌，本应是窗的位置却装着镜子。前台值班员坚称，玻璃后面就是外墙。您能听见另一侧翻书的声音。",
     "Conservation note: reflected writing must be read in reverse. Do not turn the physical object to face the glass. The reversal belongs to the message, not to your hands.":
-      "藏品维护说明：镜中的字需要倒着读。不要把实物转向玻璃。需要反转的是信息，不是您的手。",
+      "藏品维护说明：镜中的字需要倒着读。不要把实物转向玻璃。请倒着读字，不要把卡片翻过去。",
     "Consult lost property →": "查阅失物记录 →",
     "GUEST FACILITIES / COURTYARD GUIDE": "住客设施 / 庭院指南",
     "The courtyard walk": "庭院散步",
@@ -791,7 +791,7 @@
       "录音带是在 311 门外找到的。不管谁拿着播放器，放出来的都像那个人自己的声音，换人时并没有换磁带。",
     "STAFF ARCHIVE / INCIDENT REVIEW 03": "员工档案 / 事件复核 03",
     "Incident review / The dates have not been corrected to match the hotel clock":
-      "事件复核 / 日期未经旅馆时钟校正",
+      "事件记录 / 按原始日期保存",
     "03 October 1987 — OPENING.": "1987 年 10 月 3 日 —— 开业。",
     "The doors open. Seven entries are made in the register. Walter retains 311 and asks the porter not to allocate it.":
       "旅馆开门迎客，登记簿写入七条记录。沃尔特保留 311，并要求前台值班员不要将它分配出去。",
@@ -802,7 +802,7 @@
     "Arthur leaves in a black coat. At breakfast he returns through the courtyard, wet from rain nobody else remembers. A second entry appears under his first.":
       "阿瑟穿着黑色外套离开。早餐时，他从庭院回来，浑身被一场其他人都不记得的雨打湿。他第一次登记的下面，出现了第二条记录。",
     "The order matters. The opening came first, the interruption second, the return third. Any version in which a guest returns before arriving is the hotel’s reconstruction, not our record.":
-      "顺序很重要。先开业，再中断，最后才是返回。任何“住客先返回、后抵达”的版本，都是旅馆重构的故事，不是我们的记录。",
+      "顺序很重要。先开业，再中断，最后才是返回。任何“住客先返回、后抵达”的版本，都是后来被改写的版本，与原始记录不符。",
     "Use this chronology to restore the date order in the lower register. Do not use the times stamped on the surveillance tapes; they all show the same minute.":
       "使用这份时间线，还原地下前台的日期顺序。不要使用监控录像上的时间戳，它们全停在同一分钟。",
     "Read the audit comparison": "查看核查报告",
@@ -1102,7 +1102,7 @@
     "Take your time. The small details are usually the ones worth keeping.":
       "有些线索藏在日常通知里，没头绪时可以回去翻翻。",
     "A fresh page. Welcome to your first stay.":
-      "崭新的一页。欢迎您第一次来到这里。",
+      "进度已清除，欢迎重新入住。",
     "The archive is locked.": "档案室已锁定。",
     "A living, registered guest must complete all six records first.":
       "请先完成入住登记，并收集齐六份资料。",
@@ -1111,7 +1111,7 @@
     "WEST CORRIDOR / LEVEL 03": "西侧走廊 / 三层",
     "Save the anomalous frame": "保存异常画面",
     "The Residence is on our original third floor. Guests are asked to keep the bedside card and their room key close at hand. The view is particularly consistent.":
-      "长住套间位于旅馆最初的三层。请将床头卡与钥匙放在触手可及之处。这里的窗外景色，格外稳定。",
+      "长住套间位于旅馆最初的三层。请将床头卡与钥匙放在触手可及之处。窗外景色一直没变过。",
     "Our team will prepare your room before you arrive. Please note that final room assignments are made at reception.":
       "我们会在您抵达前准备好客房。具体房号，由前台最终安排。",
     "A key is waiting for you": "有一把钥匙，正在等您",
@@ -1221,7 +1221,7 @@
       "门锁轻响。门后是一座没有按钮的小电梯。它下行了很久，再打开时，您又站在大堂里。这一次，前台后面没有人。",
     "The red EXIT": "红色 EXIT 出口",
     "A rusted iron door. Cold air moves beneath it, carrying the smell of rain on a road you almost remember.":
-      "一扇生锈的铁门。冰凉空气从门下流过，带着一条您几乎记得的道路上，雨水的气味。",
+      "一扇生锈的铁门。冰凉空气从门下流过，带着路边雨水的气味。",
     "Follow the red sign →": "跟随红色标识 →",
     "The white door": "白色的门",
     "Warm light. A voice you have missed. “Your room is waiting,” it says. “You do not have to go anywhere.”":
@@ -1521,7 +1521,7 @@
   };
   Object.assign(dictionary, {
     "Record unavailable.": "暂时无法调阅此记录。",
-    "This retained record is not associated with your current stay. Reception can help you find the correct registration.": "这份留存记录尚未关联到本次入住。您可以返回前台核对登记。",
+    "This retained record is not associated with your current stay. Reception can help you find the correct registration.": "本次入住尚未登记这份资料，可返回前台核对。",
     "The original register is open. A living guest’s signature is required. Behind the desk, the empty uniform turns toward you.": "登记簿原件已经翻开，需要一位仍活着的住客签名。柜台后，那套空制服转向了你。",
     "Open equipment record →": "查看设备记录 →",
     "Open the powered receiver": "查看已通电的接收机",

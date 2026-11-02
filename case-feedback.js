@@ -36,7 +36,7 @@ globalThis.StillwaterCaseFeedback = ({ t }) => {
       "Look at the booking’s assigned-room field.",
     ],
     classification: [
-      "位置登记卡中有一栏写着“登记用途”。",
+      "区域登记卡的“登记用途”一栏写明了用途。",
       "The position card has a registered-use field.",
     ],
     maintenance: [
@@ -48,7 +48,7 @@ globalThis.StillwaterCaseFeedback = ({ t }) => {
       "Use the full dates and times, earliest first.",
     ],
     "audit-assessment": [
-      "客房部查的是房间；再看看有没有记录写明客人去了哪里。",
+      "客房部只查了这间房，记录没有说明客人的去向。",
       "Housekeeping checked a room. Look for a record that establishes where the guest went.",
     ],
     "revision-unchanged": [
@@ -72,7 +72,7 @@ globalThis.StillwaterCaseFeedback = ({ t }) => {
       "The last sentence of the draft addresses signing on someone’s behalf.",
     ],
     "evidence-missing": [
-      "每一项都要在已经看过的文件里找到对应的话。",
+      "已打开的原始文件中应有对应依据。",
       "Find a supporting entry for each selected finding.",
     ],
   };
@@ -111,7 +111,7 @@ globalThis.StillwaterCaseFeedback = ({ t }) => {
     if (count >= 2) {
       const p = document.createElement("p");
       p.append(
-        document.createTextNode(t("再看看这里：", "Check this page: ")),
+        document.createTextNode(t("相关资料：", "Check this page: ")),
         link.cloneNode(true),
       );
       el.insertBefore(p, help);

@@ -17,7 +17,7 @@ globalThis.StillwaterForumData = Object.freeze([
         "I’ve been looking for part-time work I can do on my computer. Found a company hiring people to sort some old hotel records.",
       ],
       [
-        "工作倒不难，说是核对以前的预订单。不过他们的网站有点奇怪，招聘页是新的，点进去的酒店网站却像十几年前的。",
+        "说是核对以前的预订单。招聘页还挺新，酒店那个页面就老多了，不知道多久没更新过。",
         "It sounds straightforward: checking old bookings. The website is odd, though. The careers page looks current, but the hotel site it links to looks decades old.",
       ],
       [
@@ -50,14 +50,14 @@ globalThis.StillwaterForumData = Object.freeze([
       [
         ["paperclip_04", "paperclip_04"],
         [
-          "就是那个样本，我总觉得哪里没看明白。",
+          "我卡在样本那儿了，还没试明白。",
           "It’s the sample I’m stuck on. I feel like I’ve missed something.",
         ],
       ],
       [
         ["路过的三明治", "passing_sandwich"],
         [
-          "看着挺像资料校对的。有空的人试试吧，记得回来告诉楼主。",
+          "像是校对吧。我上班摸鱼只能看两眼，楼主试完说说。",
           "Looks like proofreading records. Someone with a spare minute should try it and let the OP know.",
         ],
       ],
@@ -203,7 +203,7 @@ globalThis.StillwaterForumData = Object.freeze([
     views: 505,
     paragraphs: [
       [
-        "我先提名：闹钟响得太准，把我吓得又睡着了。评论里提名就行，楼主下班后手动数票。",
+        "我今天说地铁坐过站了。其实是出门下楼才发现电脑没拿，又回去了一趟。你们还有什么招？",
         "My nomination: the alarm was so punctual it startled me back to sleep. Nominate an excuse in the replies; I’ll count them after work.",
       ],
     ],
@@ -214,7 +214,7 @@ globalThis.StillwaterForumData = Object.freeze([
       ],
       [
         ["折角纸", "folded_corner"],
-        ["鞋带两边没达成一致。", "My shoelaces couldn’t reach an agreement."],
+        ["我说电梯坏了。老板问我不是住二楼吗。", "My shoelaces couldn’t reach an agreement."],
       ],
     ],
   },

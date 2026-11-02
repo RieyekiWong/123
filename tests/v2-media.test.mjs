@@ -62,3 +62,11 @@ test("the original five photographs and classic credit manifest remain unchanged
       photo.file,
     );
 });
+
+test('every raster illustration has a local low-resolution derivative and the real mask has an attributable reusable source',()=>{
+ const copies=JSON.parse(readFileSync(new URL('../assets/lowres-manifest.json',import.meta.url)));
+ assert.equal(copies.length,25);
+ for(const copy of copies){assert.ok(copy.width<=480);const bytes=readFileSync(new URL('../assets/'+copy.display,import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),copy.sha256);assert.ok(readFileSync(new URL('../assets/'+copy.original,import.meta.url)).length);}
+ const mask=JSON.parse(readFileSync(new URL('../assets/night-mask-credit.json',import.meta.url)));
+ assert.equal(mask.license,'CC0');assert.equal(mask.author,'Wilfredor');assert.match(mask.source,/commons.wikimedia.org\/wiki\/File:/);assert.equal(createHash('sha256').update(readFileSync(new URL('../assets/'+mask.file,import.meta.url))).digest('hex'),mask.sha256);
+});

@@ -1,0 +1,267 @@
+import { test, expect } from "@playwright/test";
+import {
+  toAudit,
+  toRevisions,
+  toReview,
+  validateFindings,
+  toNight,
+  wireNight,
+  state,
+  link,
+} from "./v2-helpers.mjs";
+async function oldSave(page, extra = {}) {
+  await page.goto("/index-zh.html#hotel");
+  const old = await page.evaluate((extra) => {
+    const s = StillwaterCaseState.fresh();
+    s.evidence = Object.keys(StillwaterCaseData.clues);
+    s.completed = { audit: true, finalEvidence: true, serviceInspected: true };
+    delete s.night;
+    s.endings = ["auto-close", "unverified"];
+    s.lastEnding = "unverified";
+    return Object.assign(s, extra);
+  }, extra);
+  // Seed before the new document runs. The old ad instance saves on pagehide.
+  await page.addInitScript((old) => {
+    if (sessionStorage.getItem("v23-test-migration-seeded")) return;
+    sessionStorage.setItem("v23-test-migration-seeded", "yes");
+    localStorage.setItem("stillwater-case:v2", JSON.stringify(old));
+    localStorage.setItem(
+      "stillwater-ads:v1",
+      JSON.stringify({ schema: 1, pinnedIds: ["pet"], collapsedPinnedIds: [] }),
+    );
+    localStorage.setItem(
+      "stillwater-hotel:v2",
+      '{"name":"Old guest","checkedIn":true}',
+    );
+  }, old);
+  await page.goto("/index-zh.html?old-save=1#review");
+}
+test("full unseeded Chinese true ending uses spatial relay, real wiring and explicit lock", async ({
+  page,
+}) => {
+  test.setTimeout(100000);
+  await toAudit(page);
+  await toRevisions(page);
+  await toReview(page);
+  await validateFindings(page);
+  await toNight(page);
+  await page.locator("[data-night-action=save]").click();
+  await expect(page.locator("#night-feedback")).not.toBeEmpty();
+  await wireNight(page);
+  await page.reload();
+  expect((await state(page)).night.saved).toBe(true);
+  await page.locator("[data-case-language]").click();
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  expect((await state(page)).night.saved).toBe(true);
+  await page.locator("[data-night-action=lock]").click();
+  await page.locator("[data-ending=released]").click();
+  await expect(page.locator("[data-ending-record=released]")).toBeVisible();
+  await expect(page.locator("body")).toHaveAttribute(
+    "data-anomaly",
+    "resolved",
+  );
+  await page.reload();
+  await expect(page.locator("[data-ending-record=released]")).toBeVisible();
+  await link(page, "careers");
+  await expect(page.locator("main")).toContainText("withdrawn");
+});
+test("old saves keep both dispositions and original copies; false room has a return path", async ({
+  page,
+}) => {
+  await oldSave(page);
+  expect((await state(page)).endings).toEqual(["auto-close", "unverified"]);
+  await toNight(page);
+  expect(
+    await page.evaluate(
+      () => JSON.parse(localStorage.getItem("stillwater-ads:v1")).pinnedIds,
+    ),
+  ).toEqual(["pet"]);
+  await expect(page.locator("[data-active-ad],.ad-saved-tab")).toHaveCount(0);
+  await page.goto("/index-zh.html#rooms");
+  await expect(page.locator(".room-inventory a")).toHaveText("317");
+  await link(page, "rooms?copy=original");
+  await expect(page.locator(".room-inventory")).not.toContainText("317");
+  await page.goto("/index-zh.html#guestbook");
+  await expect(page.locator(".case-message")).toContainText("已正常入住");
+  await link(page, "guestbook?copy=original");
+  await expect(page.locator(".case-message")).toContainText("钥匙套");
+  await page.goto("/index-zh.html#mirror?room=317");
+  await expect(page.locator(".mirror-wait")).toBeVisible();
+  await link(page, "mirror");
+  await expect(page.locator(".mirror-wait")).toHaveCount(0);
+  expect(
+    await page.evaluate(() => localStorage.getItem("stillwater-hotel:v2")),
+  ).toContain("Old guest");
+});
+test("mouse ripple is local, leaves on pointer exit, and respects reduced motion", async ({
+  page,
+}) => {
+  await oldSave(page);
+  await toNight(page);
+  const frame = page.locator(".cctv-frame");
+  await frame.hover();
+  await expect(frame).toHaveClass(/ripple-active/);
+  await expect(page.locator(".cctv-ripple")).toHaveCount(1);
+  await page.locator("h1").hover();
+  await expect(frame).not.toHaveClass(/ripple-active/);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await frame.hover();
+  await expect(frame).not.toHaveClass(/ripple-active/);
+});
+test("explicit frame scare happens once and is filtered, skip mode retains the same information", async ({
+  page,
+}) => {
+  await oldSave(page);
+  await toNight(page);
+  await expect(page.locator(".frame-face")).toHaveCount(0);
+  await expect(page.locator(".last-frame")).toContainText("E-014");
+  await page.evaluate(() => {
+    const s = JSON.parse(localStorage.getItem("stillwater-case:v2"));
+    s.night.frame = false;
+    s.preferences.skipScares = false;
+    s.preferences.reduceMotion = false;
+    localStorage.setItem("stillwater-case:v2", JSON.stringify(s));
+  });
+  await page.reload();
+  await page.locator("[data-night-action=frame]").click();
+  await expect(page.locator(".frame-face")).toBeVisible();
+  await expect(page.locator(".frame-face")).toHaveCount(0, { timeout: 3000 });
+  await page.reload();
+  await expect(page.locator("[data-night-action=frame]")).toBeDisabled();
+  await expect(page.locator(".last-frame")).toContainText("E-014");
+});
+for (const width of [375, 768, 1440])
+  test(`equipment at ${width}px fits and retains 4:3 screens`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await oldSave(page);
+    await toNight(page);
+    await wireNight(page);
+    const sizes = await page
+      .locator(".cctv-frame")
+      .evaluateAll((els) =>
+        els.map((el) => ({ w: el.clientWidth, h: el.clientHeight })),
+      );
+    for (const r of sizes)
+      expect(Math.abs(r.w / r.h - 4 / 3)).toBeLessThan(0.03);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    await page.screenshot({
+      path: `docs/v2.3/terminal-${width}.png`,
+      fullPage: true,
+    });
+  });
+test("all added terminal deep links remain gated for a fresh browser", async ({
+  page,
+}) => {
+  for (const route of [
+    "mirror",
+    "cameras",
+    "terminal",
+    "ending?view=released",
+  ]) {
+    await page.goto("/index-zh.html#" + route);
+    await expect(page.locator("[data-night-action]")).toHaveCount(0);
+    await expect(page.locator("main .source-link a")).toHaveAttribute(
+      "href",
+      "#careers",
+    );
+  }
+});
+
+test("breathing is opt-in, starts only in the terminal, stops immediately on mute and never resumes on reload", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    window.audioTrace = { contexts: [], buffers: 0, stopped: 0 };
+    const Audio = window.AudioContext;
+    window.AudioContext = class extends Audio {
+      constructor(...args) {
+        super(...args);
+        window.audioTrace.contexts.push(this);
+      }
+      createBufferSource() {
+        const source = super.createBufferSource(),
+          stop = source.stop.bind(source);
+        window.audioTrace.buffers++;
+        source.stop = (...args) => {
+          window.audioTrace.stopped++;
+          return stop(...args);
+        };
+        return source;
+      }
+    };
+  });
+  await oldSave(page);
+  await toNight(page);
+  expect(await page.evaluate(() => audioTrace.buffers)).toBe(0);
+  await page.locator("[data-night-action=settings]").click();
+  await page.locator("[name=skip-scares]").uncheck();
+  await page.locator("[name=breathing]").check();
+  expect(await page.evaluate(() => audioTrace.buffers)).toBe(0);
+  await page.locator("[data-comfort=sound]").click();
+  await expect
+    .poll(() => page.evaluate(() => audioTrace.buffers))
+    .toBeGreaterThan(0);
+  await page.locator("[data-comfort=sound]").click();
+  await expect
+    .poll(() =>
+      page.evaluate(() =>
+        audioTrace.contexts.every((c) => c.state === "suspended"),
+      ),
+    )
+    .toBe(true);
+  const count = await page.evaluate(() => audioTrace.buffers);
+  await page.keyboard.press("Escape");
+  await page.reload();
+  expect((await state(page)).preferences.sound).toBe(false);
+  expect(await page.evaluate(() => audioTrace.buffers)).toBe(0);
+  expect(count).toBeGreaterThan(0);
+});
+
+test("true ending restores saved advertisements without clearing their separate storage", async ({
+  page,
+}) => {
+  await oldSave(page);
+  await toNight(page);
+  await wireNight(page);
+  await page.locator("[data-night-action=lock]").click();
+  await page.locator("[data-ending=released]").click();
+  await link(page, "hotel");
+  await page.locator("footer [data-ad-action=folder]").click();
+  await expect(page.locator(".ad-folder-item")).toContainText("旺旺动物门诊");
+  expect(
+    await page.evaluate(
+      () => JSON.parse(localStorage.getItem("stillwater-ads:v1")).pinnedIds,
+    ),
+  ).toEqual(["pet"]);
+});
+
+test("the persistent anomaly keeps older hotel and forum panels readable", async ({
+  page,
+}) => {
+  await oldSave(page);
+  await toNight(page);
+  for (const [route, selector] of [
+    ["hotel", ".hotel-hero>div"],
+    ["floor-plan", ".plan-room"],
+    ["forum", ".bbs-post>header"],
+  ]) {
+    await page.goto("/index-zh.html#" + route);
+    await expect(page.locator("body")).toHaveAttribute(
+      "data-anomaly",
+      "terminal",
+    );
+    const color = await page
+      .locator(selector)
+      .first()
+      .evaluate((el) => getComputedStyle(el).backgroundColor);
+    expect(color).toBe("rgb(46, 32, 30)");
+  }
+  await page.goto("/index-zh.html#floor-plan");
+  await expect(page.locator(".plan-room").first()).toContainText("301");
+});

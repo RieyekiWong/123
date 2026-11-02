@@ -4,6 +4,7 @@ import {
   toRevisions,
   toReview,
   validateFindings,
+  toNight,
   state,
   link,
 } from "./v2-helpers.mjs";
@@ -21,6 +22,7 @@ for (const [entry, ending] of [
     await toRevisions(page);
     await toReview(page);
     await validateFindings(page);
+    await toNight(page);
     await page.locator(`[data-ending="${ending}"]`).click();
     await expect(
       page.locator(`[data-ending-record="${ending}"]`),
@@ -36,7 +38,7 @@ for (const [entry, ending] of [
     await expect(
       page.locator(`[data-ending-record="${ending}"]`),
     ).toBeVisible();
-    await link(page, "review");
+    await link(page, "terminal");
     const other = ending === "auto-close" ? "unverified" : "auto-close";
     await page.locator(`[data-ending="${other}"]`).click();
     await expect(page.locator(`[data-ending-record="${other}"]`)).toBeVisible();

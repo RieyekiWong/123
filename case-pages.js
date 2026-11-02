@@ -2,6 +2,11 @@
 globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
   const D = globalThis.StillwaterCaseData,
     F = D.facts;
+  const mirrored = () =>
+    getState().night.started &&
+    getState().lastEnding !== "released" &&
+    new URLSearchParams(location.hash.split("?")[1] || "").get("copy") !==
+      "original";
   const has = (id) => getState().evidence.includes(id);
   const a = (route, label, cls = "") =>
     `<a class="${cls}" href="#${route}">${label}</a>`;
@@ -43,7 +48,7 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
     );
   }
   function booking() {
-    return `<section class="document" id="reservation-result"><h2>${t("旧预订单", "Retained booking")} · ${F.reservation}</h2><table><tbody><tr><th>${t("预订引用", "Reference")}</th><td>${F.reservation}</td></tr><tr><th>${t("住客姓名", "Guest initials")}</th><td>${F.guest}</td></tr><tr><th>${t("登记房号", "Assigned room")}</th><td>${F.bookedRoom}</td></tr><tr><th>${t("登记时间", "Created")}</th><td><time datetime="${F.created}">${date(F.created)}</time></td></tr><tr><th>${t("状态", "Status")}</th><td>UNRESOLVED / ${t("尚未处理", "Retained for reconciliation")}</td></tr></tbody></table><p class="small">${t("这里是原来的订房资料，实际入住情况还要看前台记录。", "The booking database records assignment only. Occupancy must be checked against housekeeping and reception records.")}</p>${reference("rooms", t("对一下房间列表", "Compare the official room directory"))}</section>`;
+    return `<section class="document" id="reservation-result"><h2>${t("旧预订单", "Retained booking")} · ${F.reservation}</h2><table><tbody><tr><th>${t("预订编号", "Reference")}</th><td>${F.reservation}</td></tr><tr><th>${t("住客姓名缩写", "Guest initials")}</th><td>${F.guest}</td></tr><tr><th>${t("登记房号", "Assigned room")}</th><td>${F.bookedRoom}</td></tr><tr><th>${t("登记时间", "Created")}</th><td><time datetime="${F.created}">${date(F.created)}</time></td></tr><tr><th>${t("状态", "Status")}</th><td>UNRESOLVED / ${t("尚未处理", "Retained for reconciliation")}</td></tr></tbody></table><p class="small">${t("这里是原来的订房资料，实际入住情况还要看前台记录。", "The booking database records assignment only. Occupancy must be checked against housekeeping and reception records.")}</p>${reference("rooms", t("查看客房目录", "Compare the official room directory"))}</section>`;
   }
   function rooms() {
     return (
@@ -84,7 +89,7 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
         )
         .join(
           "",
-        )}</div><div class="hotel-columns"><section><h2>${t("三楼房间列表", "Third-floor guest directory")}</h2><p class="small">${t("以下是三楼开放预订的房间。个别位置不对外开放。", "These third-floor rooms are available to book. Some areas are not open to guests.")}</p><ol class="room-inventory" aria-label="${t("官方房号", "Official room numbers")}">${D.inventory.map((n) => `<li>${n}</li>`).join("")}</ol>${has("C2") ? `<form id="inventory-check"><label for="inventory-room">${t("预订单上写的房号", "Room assigned on the original booking")}</label><div class="query-row"><select id="inventory-room" name="room" required><option value="">${t("选择房号", "Select the corresponding entry")}</option>${D.inventory.map((n) => `<option>${n}</option>`).join("")}</select><button>${t("查一下", "Compare record")}</button></div><div class="form-error" tabindex="-1" id="inventory-error" role="status"></div></form>${has("C3") ? reference("guestbook", t("查看同日住客留言", "Read the guest entry from that night")) : ""}` : reference("reservations", t("查旧预订单", "Find a retained booking"))}<details><summary>${t("入住服务", "Guest services")}</summary><p>${t("早餐在一层餐厅供应，时间为 7:00–9:00。可向前台申请额外床品。", "Breakfast is served in the ground-floor dining room from 07:00 to 09:00. Extra bedding is available from reception.")}</p>${reference("contact", t("前台服务卡", "Reception contact card"))}</details></section><div>${!getState().notices.dismissed ? noticeWindow() : `<aside class="notice-archive-link"><p>${t("以前的通行通知可在公告栏查看。", "Access information is retained in the notice archive.")}</p>${reference("notices", t("公告栏", "Notice archive"))}</aside>`}</div></div><p class="hotel-album-link">${a("gallery", t("更多客房与环境照片", "More room and hotel photographs"))} →</p>`
+        )}</div>${mirrored() ? `<p>${a("rooms?copy=original", t("查看历史房间目录", "View historical directory"))} · ${a("cameras", t("通道监控", "Passage cameras"))}</p>` : ""}<div class="hotel-columns"><section><h2>${t("三楼房间列表", "Third-floor guest directory")}</h2><p class="small">${t("以下是三楼开放预订的房间。个别位置不对外开放。", "These third-floor rooms are available to book. Some areas are not open to guests.")}</p><ol class="room-inventory" aria-label="${t("官方房号", "Official room numbers")}">${(mirrored() ? [...D.inventory, F.service].sort() : D.inventory).map((n) => `<li>${n === F.service ? a("mirror?room=317", n) : n}</li>`).join("")}</ol>${has("C2") ? `<form id="inventory-check"><label for="inventory-room">${t("预订单上写的房号", "Room assigned on the original booking")}</label><div class="query-row"><select id="inventory-room" name="room" required><option value="">${t("选择房号", "Select the corresponding entry")}</option>${D.inventory.map((n) => `<option>${n}</option>`).join("")}</select><button>${t("核对房号", "Compare record")}</button></div><div class="form-error" tabindex="-1" id="inventory-error" role="status"></div></form>${has("C3") ? reference("guestbook", t("查看同日住客留言", "Read the guest entry from that night")) : ""}` : reference("reservations", t("查询旧预订单", "Find a retained booking"))}<details><summary>${t("入住服务", "Guest services")}</summary><p>${t("早餐在一层餐厅供应，时间为 7:00–9:00。可向前台申请额外床品。", "Breakfast is served in the ground-floor dining room from 07:00 to 09:00. Extra bedding is available from reception.")}</p>${reference("contact", t("前台服务卡", "Reception contact card"))}</details></section><div>${!getState().notices.dismissed ? noticeWindow() : `<aside class="notice-archive-link"><p>${t("以前的通行通知可在公告栏查看。", "Access information is retained in the notice archive.")}</p>${reference("notices", t("公告栏", "Notice archive"))}</aside>`}</div></div><p class="hotel-album-link">${a("gallery", t("更多客房与环境照片", "More room and hotel photographs"))} →</p>`
     );
   }
   function guestbook() {
@@ -94,7 +99,7 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
         t("住客留言", "Guestbook"),
         t("以前住客留下的留言。", "Guest entries retained by reception."),
       ) +
-      `<article class="guest-message"><header><strong>R. Bennett</strong><time>2006-10-15 09:10</time></header><p>${t("早餐挺不错。我们到得很晚，前台还在，挺方便的。", "A good breakfast and helpful arrangements for our late arrival. Thank you.")}</p></article>${has("C3") ? `<article class="guest-message case-message"><header><strong>${F.guest}</strong><time datetime="${F.message}">${date(F.message)}</time></header><p>${message}</p><button data-case-action="read-key">${t("看前台回复", "Read reception’s attachment")}</button>${has("C4") ? `<div class="reception-attachment"><p>${t("收到。预订单上的房号没变，钥匙套的情况还在查。麻烦看一下当天的楼层图。", "Noted. The booking assignment is unchanged; we are checking the key sleeve. Please look at the floor plan from that date.")}</p>${reference("floor-plan", t("三楼平面图", "Third-floor plan"))}</div>` : ""}</article>` : `<p>${t("查找旧留言时，请用预订单上的房号。", "To locate an entry associated with a booking, first identify its reservation record.")}</p>${reference("reservations", t("按预订检索", "Look up a booking"))}`}<article class="guest-message"><header><strong>J. Park</strong><time>2006-10-18 08:15</time></header><p>${t("双床房还可以。早上坐在院子里很舒服。", "A tidy twin room. The courtyard was a pleasant place to sit in the morning.")}</p></article>`
+      `<article class="guest-message"><header><strong>R. Bennett</strong><time>2006-10-15 09:10</time></header><p>${t("早餐挺不错。我们到得很晚，前台还在，挺方便的。", "A good breakfast and helpful arrangements for our late arrival. Thank you.")}</p></article>${has("C3") ? `<article class="guest-message case-message"><header><strong>${F.guest}</strong><time datetime="${F.message}">${date(F.message)}</time></header><p>${mirrored() ? t("已正常入住。", "Checked in normally.") : message}</p>${mirrored() ? reference("guestbook?copy=original", t("查看历史留言副本", "View historical copy")) : ""}<button data-case-action="read-key">${t("看前台回复", "Read reception’s attachment")}</button>${has("C4") ? `<div class="reception-attachment"><p>${t("收到。预订单上的房号没变，钥匙套的情况还在查。麻烦看一下当天的楼层图。", "Noted. The booking assignment is unchanged; we are checking the key sleeve. Please look at the floor plan from that date.")}</p>${reference("floor-plan", t("三楼平面图", "Third-floor plan"))}</div>` : ""}</article>` : `<p>${t("查找旧留言时，请用预订单上的房号。", "To locate an entry associated with a booking, first identify its reservation record.")}</p>${reference("reservations", t("按预订检索", "Look up a booking"))}`}<article class="guest-message"><header><strong>J. Park</strong><time>2006-10-18 08:15</time></header><p>${t("双床房还可以。早上坐在院子里很舒服。", "A tidy twin room. The courtyard was a pleasant place to sit in the morning.")}</p></article>`
     );
   }
   function floorPlan() {
@@ -108,7 +113,7 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
           "Guest-door positions and maintenance access.",
         ),
       ) +
-      `<div class="floor-plan" aria-label="${t("三层位置图", "Third-floor layout")}"><div class="plan-corridor">${t("主走廊 · 通往前台楼梯", "MAIN CORRIDOR · RECEPTION STAIRS")}</div><div class="plan-rooms">${Array.from(
+      `<div class="floor-plan" aria-label="${t("三楼平面图", "Third-floor layout")}"><div class="plan-corridor">${t("主走廊 · 通往前台楼梯", "MAIN CORRIDOR · RECEPTION STAIRS")}</div><div class="plan-rooms">${Array.from(
         { length: 20 },
         (_, i) => String(301 + i),
       )
@@ -119,11 +124,11 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
         )
         .join("")}</div></div>${
         inspected
-          ? `<section class="document"><h2>${t("位置登记卡", "Position record")}</h2><table><tr><th>${t("内部标识", "Internal identifier")}</th><td>${F.service}</td></tr><tr><th>${t("登记用途", "Registered use")}</th><td>SERVICE HOLDING / ${t("服务缓冲位", "Service holding position")}</td></tr><tr><th>${t("公告编号", "Related notice")}</th><td>${F.notice}</td></tr></table><p>${t("用途：暂放尚未处理完的服务记录。不安排住客入住。", "Used to hold service records that cannot yet be reconciled. Not listed as assignable guest accommodation.")}</p><form id="service-classification"><fieldset><legend>${t("登记卡上的位置属于哪一类？", "How should this position be classified in the review?")}</legend>${[
+          ? `<section class="document"><h2>${t("区域登记卡", "Position record")}</h2><table><tr><th>${t("内部标识", "Internal identifier")}</th><td>${F.service}</td></tr><tr><th>${t("登记用途", "Registered use")}</th><td>SERVICE HOLDING / ${t("服务暂存区", "Service holding position")}</td></tr><tr><th>${t("公告编号", "Related notice")}</th><td>${F.notice}</td></tr></table><p>${t("用于暂存待处理的服务记录，不作客房使用。", "Used to hold service records that cannot yet be reconciled. Not listed as assignable guest accommodation.")}</p><form id="service-classification"><fieldset><legend>${t("登记卡上的位置属于哪一类？", "How should this position be classified in the review?")}</legend>${[
               ["guest", t("住客已入住的客房", "Confirmed occupied guest room")],
               [
                 "service",
-                t("非客房 / 服务缓冲位", "Non-guest space / service holding"),
+                t("非客房 / 服务暂存区", "Non-guest space / service holding"),
               ],
               [
                 "typo",
@@ -139,7 +144,7 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
               )
               .join(
                 "",
-              )}</fieldset><button>${t("保存选择", "Retain position classification")}</button><div class="form-error" tabindex="-1" id="service-error" role="status"></div></form>${has("C5") ? reference("maintenance", t("查同号维修单", "Look up the associated maintenance docket")) : ""}</section>`
+              )}</fieldset><button>${t("保存选择", "Retain position classification")}</button><div class="form-error" tabindex="-1" id="service-error" role="status"></div></form>${has("C5") ? reference("maintenance", t("查询对应维修单", "Look up the associated maintenance docket")) : ""}</section>`
           : ""
       }`
     );
@@ -150,11 +155,11 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
         "NOTICE ARCHIVE",
         t("公告栏", "Notice archive"),
         t(
-          "以前贴在前台的公告都在这里。",
+          "前台历年公告。",
           "Access and maintenance notices retained by reception.",
         ),
       ) +
-      `<article class="document"><p class="kicker">${F.notice} / ${F.transfer.slice(0, 10)}</p><h2>3F ROUTE NOTICE</h2><p>${t("三楼西侧通道正在维修，部分区域暂时不能进入。旧门牌与前台资料可能不同，请以登记卡为准。如发现房号不一致，交给当班人员处理。", "Repairs are in progress on the west third-floor passage. Some areas are temporarily closed. Old door labels may differ from reception records; consult the position card. Refer mismatched numbers to the staff on duty.")}</p><p>${t("详情见同号维修单。", "The corresponding maintenance docket retains the detailed record.")}</p>${has("C5") ? reference("maintenance", t("查询维修单", "Find the maintenance docket")) : reference(has("C4") ? "floor-plan" : "reservations", t("核对相关位置记录", "Identify the related position record"))}<button data-case-action="reopen-notice">${t("重新打开公告窗", "Reopen the notice window")}</button></article>`
+      `<article class="document"><p class="kicker">${F.notice} / ${F.transfer.slice(0, 10)}</p><h2>3F ROUTE NOTICE</h2><p>${t("三楼西侧通道正在维修，部分区域暂时不能进入。旧门牌与前台资料可能不同，请以登记卡为准。如发现房号不一致，交给当班人员处理。", "Repairs are in progress on the west third-floor passage. Some areas are temporarily closed. Old door labels may differ from reception records; consult the position card. Refer mismatched numbers to the staff on duty.")}</p><p>${t("详情见同号维修单。", "The corresponding maintenance docket retains the detailed record.")}</p>${has("C5") ? reference("maintenance", t("查询维修单", "Find the maintenance docket")) : reference(has("C4") ? "floor-plan" : "reservations", t("查看相关登记资料", "Identify the related position record"))}<button data-case-action="reopen-notice">${t("重新打开公告窗", "Reopen the notice window")}</button></article>`
     );
   }
   function maintenance() {
@@ -167,7 +172,7 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
           "Use the reference printed on the reception notice.",
         ),
       ) +
-      `<form id="maintenance-search" class="record-query"><label for="maintenance-reference">${t("通告 / 维修单编号", "Notice / docket reference")}</label><div class="query-row"><input id="maintenance-reference" name="reference" maxlength="32" value="${esc(getState().drafts.maintenance || "")}" placeholder="A-__-__" autocomplete="off" required><button>${t("打开维修单", "Open original")}</button></div><div id="maintenance-error" class="form-error" tabindex="-1" role="status"></div></form>${has("C6") && getState().drafts.maintenance.trim().toUpperCase() === F.notice ? `<article class="document" id="maintenance-result"><h2>${F.notice} / ${t("夜审移交", "Night-audit handover")}</h2><table><tr><th>${t("时间", "Timestamp")}</th><td><time datetime="${F.transfer}">${date(F.transfer)}</time></td></tr><tr><th>${t("预订编号", "Record reference")}</th><td>${F.reservation}</td></tr><tr><th>${t("位置属性", "Position classification")}</th><td>${F.service} / SERVICE HOLDING</td></tr><tr><th>${t("处理人", "Handover owner")}</th><td>${F.reviewer} / ${F.reviewerName}</td></tr></table><p>${t("夜审转存未处理的预订单，指定当班人员继续核查。入住情况未填写。", "Automatic night audit moved an unreconciled booking to a service holding position and required an owner. This action did not verify actual guest occupancy.")}</p><section class="handover-excerpt"><h3>${t("随单摘录：客房部巡查", "Attached extract: housekeeping check")}</h3><p><time datetime="${F.housekeeping}">${date(F.housekeeping)}</time> · ${t(...D.audit.find((row) => row.id === "housekeeping").text)}</p></section><figure class="service-photo"><img src="assets/hallway.jpg" alt="${t("酒店走廊及服务区域标注示意", "Hotel corridor with a service-area annotation")}"><figcaption>${t("登记位置", "Position annotation")}: ${F.service} / SERVICE HOLDING</figcaption></figure>${reference("night-audit", t("查看当晚记录", "Reconcile the source records from that night"))}</article>` : ""}`
+      `<form id="maintenance-search" class="record-query"><label for="maintenance-reference">${t("公告或维修单编号", "Notice / docket reference")}</label><div class="query-row"><input id="maintenance-reference" name="reference" maxlength="32" value="${esc(getState().drafts.maintenance || "")}" placeholder="A-__-__" autocomplete="off" required><button>${t("打开维修单", "Open original")}</button></div><div id="maintenance-error" class="form-error" tabindex="-1" role="status"></div></form>${has("C6") && getState().drafts.maintenance.trim().toUpperCase() === F.notice ? `<article class="document" id="maintenance-result"><h2>${F.notice} / ${t("夜审移交", "Night-audit handover")}</h2><table><tr><th>${t("时间", "Timestamp")}</th><td><time datetime="${F.transfer}">${date(F.transfer)}</time></td></tr><tr><th>${t("预订编号", "Record reference")}</th><td>${F.reservation}</td></tr><tr><th>${t("区域用途", "Position classification")}</th><td>${F.service} / SERVICE HOLDING</td></tr><tr><th>${t("处理人", "Handover owner")}</th><td>${F.reviewer} / ${F.reviewerName}</td></tr></table><p>${t("夜审转存未处理的预订单，指定当班人员继续核查。入住情况未填写。", "Automatic night audit moved an unreconciled booking to a service holding position and required an owner. This action did not verify actual guest occupancy.")}</p><section class="handover-excerpt"><h3>${t("附件：客房部巡查记录", "Attached extract: housekeeping check")}</h3><p><time datetime="${F.housekeeping}">${date(F.housekeeping)}</time> · ${t(...D.audit.find((row) => row.id === "housekeeping").text)}</p></section><figure class="service-photo"><img src="assets/hallway.jpg" alt="${t("酒店走廊及服务区域标注示意", "Hotel corridor with a service-area annotation")}"><figcaption>${t("登记区域", "Position annotation")}: ${F.service} / SERVICE HOLDING</figcaption></figure>${reference("night-audit", t("查看当晚记录", "Reconcile the source records from that night"))}</article>` : ""}`
     );
   }
   function history() {
@@ -193,7 +198,7 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
           "Guest-service card retained from the 2006 website.",
         ),
       ) +
-      `${photoStrip(["hotel-dining", "hotel-breakfast"], "hotel-service-photos")}<dl class="contact-facts"><div><dt>${t("前台", "Front desk")}</dt><dd>${t("全天值班", "Staffed around the clock")}</dd></div><div><dt>${t("早餐", "Breakfast")}</dt><dd>07:00–09:00</dd></div><div><dt>${t("客房用品", "Room supplies")}</dt><dd>${t("可提供额外毛毯与毛巾", "Extra blankets and towels available")}</dd></div></dl><p>${t("晚到请先到前台。额外的毛毯、毛巾也请在这里领取。", "This is a read-only historical contact card, not a real hotel’s telephone, email or booking service.")}</p>${reference("reservations", t("查旧预订单", "Find a retained reservation"))}${reference("guestbook", t("住客留言", "Guestbook"))}`
+      `${photoStrip(["hotel-dining", "hotel-breakfast"], "hotel-service-photos")}<dl class="contact-facts"><div><dt>${t("前台", "Front desk")}</dt><dd>${t("全天值班", "Staffed around the clock")}</dd></div><div><dt>${t("早餐", "Breakfast")}</dt><dd>07:00–09:00</dd></div><div><dt>${t("客房用品", "Room supplies")}</dt><dd>${t("可提供额外毛毯与毛巾", "Extra blankets and towels available")}</dd></div></dl><p>${t("晚到请先到前台。额外的毛毯、毛巾也请在这里领取。", "This is a read-only historical contact card, not a real hotel’s telephone, email or booking service.")}</p>${reference("reservations", t("查询旧预订单", "Find a retained reservation"))}${reference("guestbook", t("住客留言", "Guestbook"))}`
     );
   }
   function notes() {
@@ -212,7 +217,11 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
               .endings.map((id) =>
                 reference(
                   "ending?view=" + id,
-                  id === "auto-close" ? "AUTO CLOSE" : "MARK UNVERIFIED",
+                  id === "auto-close"
+                    ? "AUTO CLOSE"
+                    : id === "released"
+                      ? "REVIEW ENDED / RELEASED"
+                      : "MARK UNVERIFIED",
                 ),
               )
               .join("")}</section>`
@@ -222,7 +231,7 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
           ? `<div class="case-notes">${getState()
               .evidence.map((id) => {
                 const c = D.clues[id];
-                return `<article><h2>${t(...c.title)}</h2><p class="small">${t("来源", "Source")}: ${c.source}</p>${reference(c.route + (id === "C2" ? "?record=" + F.reservation : id === "C6" ? "?record=" + F.notice : ""), t("重新打开", "Reopen original"))}</article>`;
+                return `<article><h2>${t(...c.title)}</h2><p class="small">${t("来源", "Source")}: ${c.source}</p>${reference(c.route + (id === "C2" ? "?record=" + F.reservation : id === "C6" ? "?record=" + F.notice : id === "C3" || id === "C4" ? "?copy=original" : ""), t("重新打开", "Reopen original"))}</article>`;
               })
               .join("")}</div>`
           : `<p>${t("还没看过文件。招聘页上有一份工作样本。", "No records retained yet. Start with the role sample.")}</p>${reference("careers", t("查看岗位样本", "Review the role sample"))}`
@@ -276,11 +285,11 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
         "PERSONNEL / " + F.reviewer,
         t("人员档案", "Personnel record"),
         t(
-          "这位员工的旧档案。",
+          "当班人员登记资料。",
           "Read-only access associated with the reconciled night audit.",
         ),
       ) +
-      `<article class="document"><h2>${F.reviewerName} / ${F.reviewer}</h2><table><tr><th>${t("原岗位", "Original role")}</th><td>${t("夜班审计员", "Night-audit clerk")}</td></tr><tr><th>${t("职责", "Responsibility")}</th><td>${t("交叉核对客房、钥匙与预订记录。", "Cross-check guest inventory, keys and reservations.")}</td></tr><tr><th>${t("关联记录", "Associated record")}</th><td>${F.reservation} · ${F.notice}</td></tr><tr><th>${t("原责任时间", "Original handover")}</th><td>${date(F.transfer)}</td></tr></table><p>${t("同一预订编号下有两份文件，处理人一栏不一样。", "The personnel index retains her staff identity. A revision of the same transaction changes the record ownership. Both versions retain the same original booking reference.")}</p>${reference("revisions", t("比较原稿与修订副本", "Compare original and revised copies"))}</article>${has("C7") ? `<section class="queue-panel"><h2>${t("Continuity / 当前待办", "Continuity / Pending work")}</h2><p>${t("点击刷新，查看这条记录现在交给了谁。", "Reading the file does not refresh its queue. Request the current assignment for this record.")}</p><button data-case-action="refresh-queue">${t("刷新队列", "Refresh queue")}</button>${getState().queueRefreshed ? `<table class="current-queue"><tr><th>${t("引用", "Reference")}</th><td>${F.reservation}</td></tr><tr><th>${t("当前处理人", "Current reviewer")}</th><td>${F.temporary}</td></tr><tr><th>${t("生成批次", "Generated batch")}</th><td>${F.recruitment}</td></tr><tr><th>${t("状态", "Status")}</th><td>PENDING SIGN-OFF</td></tr></table><p class="warning-note">${t("未结记录必须有一名责任人。", "Every unresolved record must have an owner.")}</p>` : ""}</section>` : ""}`
+      `<article class="document"><h2>${F.reviewerName} / ${F.reviewer}</h2><table><tr><th>${t("原岗位", "Original role")}</th><td>${t("夜班审计员", "Night-audit clerk")}</td></tr><tr><th>${t("职责", "Responsibility")}</th><td>${t("核对房态、钥匙发放与预订记录。", "Cross-check guest inventory, keys and reservations.")}</td></tr><tr><th>${t("经手记录", "Associated record")}</th><td>${F.reservation} · ${F.notice}</td></tr><tr><th>${t("移交时间", "Original handover")}</th><td>${date(F.transfer)}</td></tr></table><p>${t("同一预订编号下有两份文件，处理人一栏不一样。", "The personnel index retains her staff identity. A revision of the same transaction changes the record ownership. Both versions retain the same original booking reference.")}</p>${reference("revisions", t("比较原稿与修订副本", "Compare original and revised copies"))}</article>${has("C7") ? `<section class="queue-panel"><h2>${t("Continuity / 当前待办", "Continuity / Pending work")}</h2><p>${t("点击刷新，查看这条记录现在交给了谁。", "Reading the file does not refresh its queue. Request the current assignment for this record.")}</p><button data-case-action="refresh-queue">${t("刷新待办", "Refresh queue")}</button>${getState().queueRefreshed ? `<table class="current-queue"><tr><th>${t("预订编号", "Reference")}</th><td>${F.reservation}</td></tr><tr><th>${t("当前处理人", "Current reviewer")}</th><td>${F.temporary}</td></tr><tr><th>${t("生成批次", "Generated batch")}</th><td>${F.recruitment}</td></tr><tr><th>${t("状态", "Status")}</th><td>PENDING SIGN-OFF</td></tr></table><p class="warning-note">${t("未结记录必须有一名责任人。", "Every unresolved record must have an owner.")}</p>` : ""}</section>` : ""}`
     );
   }
   function revisions() {
@@ -288,7 +297,7 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
     return (
       heading(
         "REVISION HISTORY / " + F.reservation,
-        t("这份记录被改过", "Two versions of one record"),
+        t("记录修改对照", "Two versions of one record"),
         t(
           "左边是原稿，右边是修改稿。逐行对照，只勾选内容不一样的行。",
           "Mark only fields that actually changed between these originals. The original booking reference is unchanged.",
@@ -303,11 +312,11 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
         "ARCHIVED ADDENDUM / " + F.closure,
         t("停业通知", "Closure notice"),
         t(
-          "后来补进档案的通知。",
+          "后附通知，原件日期见下方。",
           "A later addendum retained with the original hotel records.",
         ),
       ) +
-      `<article class="document"><p>${t("静水旅馆自 {date} 起停止接待住客，不再安排新的入住或夜间宾客服务。原始预订资料保留供后续核对。", "Stillwater Hotel ceased receiving guests on {date}. No further stays or overnight guest services were to be arranged. Original bookings were retained for reconciliation.").replace("{date}", F.closure)}</p><p>${t("酒店关门后，旧系统没有完全停下。它还在批量修改以前的记录。表格里写着“已完成”，不代表真的有人确认过。", "The batch-revision process continued to operate on retained data. A file marked completed does not establish renewed operation or verify its underlying events.")}</p><p class="archive-stamp">RETAINED / ${F.closure}</p></article>${reference("mara", t("所附草稿：Mara 的备注", "Retained in the same file: Mara’s original note"))}`
+      `<article class="document"><p>${t("静水旅馆自 {date} 起停止接待住客，不再安排新的入住或夜间宾客服务。原始预订资料保留供后续核对。", "Stillwater Hotel ceased receiving guests on {date}. No further stays or overnight guest services were to be arranged. Original bookings were retained for reconciliation.").replace("{date}", F.closure)}</p><p>${t("酒店关门后，旧系统没有完全停下。它还在批量修改以前的记录。表格里写着“已完成”，不代表真的有人确认过。", "The batch-revision process continued to operate on retained data. A file marked completed does not establish renewed operation or verify its underlying events.")}</p><p class="archive-stamp">RETAINED / ${F.closure}</p></article>${reference("mara", t("附件：Mara 的备注草稿", "Retained in the same file: Mara’s original note"))}`
     );
   }
   function mara() {
@@ -327,7 +336,7 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
         "FINAL REVIEW / " + F.reservation,
         t("最后确认", "Record disposition"),
         t(
-          "选三条能在之前的文件里找到依据的说法。核对通过后，再选择是否结案。",
+          "请选择三项有原始记录支持的说法，核对后同步资料。",
           "Associate three source-supported findings, then decide how the record should be filed.",
         ),
       ) +
@@ -337,7 +346,7 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
             .map((row) => `<p>${t(...row.text)}</p>`)
             .join(
               "",
-            )}<p>${t("本次工作编号", "Current review")}: ${F.temporary}</p><div class="decision-actions"><button data-case-action="close-case" data-ending="auto-close">AUTO CLOSE<br><span>${t("直接结案", "Automatically close the record")}</span></button><button data-case-action="close-case" data-ending="unverified">MARK UNVERIFIED<br><span>${t("标记为待核实", "Retain as unverified")}</span></button></div><p class="small">${t("所选处理方式将写入系统。", "The disposition does not change the original evidence. Automatic closure assigns an owner to the unresolved entry.")}</p><button class="text-button" data-case-action="edit-evidence">${t("返回修改", "Review the selected findings again")}</button></section>`
+            )}<p>${t("本次工作编号", "Current review")}: ${F.temporary}</p><p>${t("两份房间目录不一致。当前页面不是最新版本。", "The two room directories differ. This page is not the latest version.")}</p><button class="primary" data-case-action="sync-records">${t("同步资料，返回酒店查看", "Synchronize records and return to the hotel")}</button><button class="text-button" data-case-action="edit-evidence">${t("返回修改", "Review the selected findings again")}</button></section>`
         : `<form id="final-evidence-form"><fieldset><legend>${t("选择记录", "Evidence association")}</legend>${D.finalClaims.map((row) => `<label><input type="checkbox" name="claim" value="${row.id}" ${state.drafts.finalSelection.includes(row.id) ? "checked" : ""}><span>${t(...row.text)}</span></label>`).join("")}</fieldset><button class="primary">${t("核对这三条", "Validate the associated findings")}</button><div id="evidence-error" class="form-error" tabindex="-1" role="status"></div></form>`)
     );
   }
@@ -356,13 +365,13 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
           ? t("已提交。", "The system has accepted the reconciliation.")
           : t("修改已保存。", "Historical correction accepted."),
       ) +
-      `<article class="document ending-record" data-ending-record="${id}"><table><tr><th>${t("记录状态", "Record status")}</th><td>${auto ? "VERIFIED / CLOSED" : "UNVERIFIED"}</td></tr><tr><th>${t("当前员工编号", "Current identity")}</th><td>${auto ? `${F.temporary} / ${t("永久夜班员工", "PERMANENT NIGHT CLERK")}` : `${F.temporary} / ${t("临时工作已结束", "REVIEW CONCLUDED")}`}</td></tr><tr><th>${t("下一班", "Pending shift")}</th><td>${auto ? "ASSIGNED" : "REMOVED"}</td></tr><tr><th>Check-out</th><td>${auto ? "Not available" : t("无待办值班", "No pending shift associated")}</td></tr></table><p>${auto ? t("岗位：夜班审计员。临时期限：已取消。", "The temporary role on the sample page has become a night shift. The once-empty owner field now contains your identifier.") : t("原备注已恢复。这条记录继续保留为待核实。", "Mara’s original note is restored. No new guest identity is written into the service position. No successor is needed to confirm it on her behalf.")}</p>${!auto ? `<blockquote>${t("待核实，不得替我自动结案。", "The record remains unverified. Do not close on my behalf.")}<br><span>${F.reviewerName} / ${F.reviewer}</span></blockquote>` : ""}</article><div class="ending-links">${a("review", t("回看另一种处理方式", "Review the other disposition"), "primary")}${a("notes", t("回看本次原件", "Reopen the case records"))}${a("careers", t("返回招聘页", "Return to careers"))}</div>`
+      `<article class="document ending-record" data-ending-record="${id}"><table><tr><th>${t("记录状态", "Record status")}</th><td>${auto ? "VERIFIED / CLOSED" : "UNVERIFIED"}</td></tr><tr><th>${t("当前员工编号", "Current identity")}</th><td>${auto ? `${F.temporary} / ${t("永久夜班员工", "PERMANENT NIGHT CLERK")}` : `${F.temporary} / ${t("临时工作已结束", "REVIEW CONCLUDED")}`}</td></tr><tr><th>${t("下一班", "Pending shift")}</th><td>${auto ? "ASSIGNED" : "REMOVED"}</td></tr><tr><th>Check-out</th><td>${auto ? "Not available" : t("无后续班次", "No pending shift associated")}</td></tr></table><p>${auto ? t("岗位：夜班审计员。临时期限：已取消。", "The temporary role on the sample page has become a night shift. The once-empty owner field now contains your identifier.") : t("原备注已恢复。这条记录继续保留为待核实。", "Mara’s original note is restored. No new guest identity is written into the service position. No successor is needed to confirm it on her behalf.")}</p>${!auto ? `<blockquote>${t("待核实，不得替我自动结案。", "The record remains unverified. Do not close on my behalf.")}<br><span>${F.reviewerName} / ${F.reviewer}</span></blockquote>` : ""}</article><div class="ending-links">${a("terminal", t("返回夜班终端", "Return to the night terminal"), "primary")}${a("notes", t("查看本次原始资料", "Reopen the case records"))}${a("careers", t("返回招聘页", "Return to careers"))}</div>`
     );
   }
   function photoCompare() {
     const row = D.revisions.find((item) => item.id === "location"),
       revision = getState().drafts.photoVersion === "revision";
-    return `<details class="annotation-comparison"><summary>${t("照片上的登记文字", "Compare registration annotation layers (same base image)")}</summary><p>${t("这是一张走廊照片。切换按钮，查看两版登记文字，再和上表的“位置属性”一栏对照。", "The exported annotation layer changes, not the corridor itself. It corresponds to the position-type field in the revision table.")}</p><div class="photo-tabs" role="group" aria-label="${t("查看哪一版", "Choose annotation version")}"><button data-case-action="photo-version" data-version="original" aria-pressed="${!revision}">${F.draft.slice(0, 4)} ORIGINAL</button><button data-case-action="photo-version" data-version="revision" aria-pressed="${revision}">${F.closure.slice(0, 4)} REVISION</button></div><figure class="annotated-photo"><img src="assets/hallway.jpg" alt="${t("同一走廊照片，叠加两版位置标注", "The same corridor photograph with versioned position annotations")}"><figcaption>${t(...(revision ? row.revised : row.original))}</figcaption></figure></details>`;
+    return `<details class="annotation-comparison"><summary>${t("照片登记标注", "Compare registration annotation layers (same base image)")}</summary><p>${t("两版使用同一张走廊照片，但登记用途不同。可切换查看。", "The exported annotation layer changes, not the corridor itself. It corresponds to the position-type field in the revision table.")}</p><div class="photo-tabs" role="group" aria-label="${t("选择版本", "Choose annotation version")}"><button data-case-action="photo-version" data-version="original" aria-pressed="${!revision}">${F.draft.slice(0, 4)} ORIGINAL</button><button data-case-action="photo-version" data-version="revision" aria-pressed="${revision}">${F.closure.slice(0, 4)} REVISION</button></div><figure class="annotated-photo"><img src="assets/hallway.jpg" alt="${t("同一走廊照片，叠加两版位置标注", "The same corridor photograph with versioned position annotations")}"><figcaption>${t(...(revision ? row.revised : row.original))}</figcaption></figure></details>`;
   }
   function gallery() {
     return (
@@ -401,11 +410,11 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
         "IMAGE SOURCES",
         t("图片来源", "Image sources"),
         t(
-          "以下现成照片用于虚构酒店与商家展示，实拍场所、人物和摄影师不参与或代言剧情。图片文件未作修改，页面按版式裁切显示；档案中的服务区文字是另加的示意标注。",
-          "Existing photographs illustrate fictional hotels and shops. The real properties, people and photographers are not connected with the story. Files are unchanged; layouts crop their display. Service-area labels are separate illustrative overlays.",
+          "以下现成照片用于虚构酒店与商家展示，实拍场所、人物和摄影师不参与或代言剧情。原图保留，显示副本已降低分辨率并增加 JPEG 压缩；档案中的服务区文字是另加的示意标注。",
+          "Existing photographs illustrate fictional hotels and shops. The real properties, people and photographers are not connected with the story. Originals are retained; display copies are downsampled and JPEG-compressed. Service-area labels are separate illustrative overlays.",
         ),
       ) +
-      `<div class="credit-list">${[...D.photographs, ...media.photos].map((photo) => `<article><h2>${esc(photo.file)}</h2><p>${esc(photo.title)}<br>${esc(photo.author)}</p><a href="${photo.source}" target="_blank" rel="noopener noreferrer">${t("原始来源", "Original source")} ↗</a> · <a href="${photo.license_url}" target="_blank" rel="noopener noreferrer">${esc(photo.license)} ↗</a></article>`).join("")}</div><p class="small">${t("酒店页面借鉴 2010 年代官网的布局，内部文件保留档案样式，未复制真实品牌标识。", "The hotel layout draws on early 2010s websites; staff files retain their archival presentation. No brand identity is copied.")}</p>`
+      `<p><a href="https://commons.wikimedia.org/wiki/File:Mask_Diabo_of_Portugal_used_on_folk_fest_and_rituals.jpg" target="_blank" rel="noopener">${t("夜班监控面具照片", "Night camera mask photograph")} · Wilfredor · CC0</a> — ${t("民俗面具实拍，游戏内叠加监控滤镜。低清副本与原图沿用相同许可。", "Real folk-mask photograph, displayed with CCTV effects. Low-resolution copies retain their source licenses.")}</p><div class="credit-list">${[...D.photographs, ...media.photos].map((photo) => `<article><h2>${esc(photo.file)}</h2><p>${esc(photo.title)}<br>${esc(photo.author)}</p><a href="${photo.source}" target="_blank" rel="noopener noreferrer">${t("原始来源", "Original source")} ↗</a> · <a href="${photo.license_url}" target="_blank" rel="noopener noreferrer">${esc(photo.license)} ↗</a></article>`).join("")}</div><p class="small">${t("酒店页面借鉴 2010 年代官网的布局，内部文件保留档案样式，未复制真实品牌标识。", "The hotel layout draws on early 2010s websites; staff files retain their archival presentation. No brand identity is copied.")}</p>`
     );
   }
   return {

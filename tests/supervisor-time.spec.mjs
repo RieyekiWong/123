@@ -21,7 +21,7 @@ for (const entry of ["index-zh.html", "index.html"])
     await page.locator('main [data-action="management"]').click();
     await expect(page.locator(".management-profiles article")).toHaveCount(4);
     await expect(page.locator(".management-profiles")).toContainText(
-      entry.includes("zh") ? "很在意时间" : "particular about time",
+      entry.includes("zh") ? "交接时间要求严格" : "particular about time",
     );
     await page
       .locator('.management-profiles [data-action="contact-supervisor"]')

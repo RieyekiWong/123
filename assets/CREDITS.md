@@ -75,3 +75,8 @@ The playlist uses the three YouTube links supplied by the player-project owner, 
 3. 白光 — 今晚且流连: https://www.youtube.com/watch?v=TPj2Z6WLCQ8
 
 曲目名称与顺序按用户提供的信息设置。视频内容及嵌入权限由 YouTube 和上传者提供；本项目未将试听片段当作完整录音，也未提取视频音频。
+
+
+## V2.3 低清显示副本
+
+本轮新增低分辨率显示副本，原有照片文件仍未修改。副本的逐图署名、同源许可、处理方法及新增 CC0 民俗面具摄影详见 [RETRO-IMAGES.md](RETRO-IMAGES.md)。

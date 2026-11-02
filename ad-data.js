@@ -10,14 +10,14 @@ globalThis.StillwaterAdData = Object.freeze([
     tag: ["社区宠物护理", "Neighbourhood pet care"],
     cta: ["看看诊所", "Meet the clinic"],
     intro: [
-      "给小镇宠物留的一间小门诊。候诊区备了水和旧毛巾，前台的笔总是被绳子拴着。",
+      "社区宠物门诊。候诊区备有饮水和毛巾，带宠物来时记得牵绳或用航空箱。",
       "A little neighbourhood clinic for pets. Water and old towels in the waiting area; the pen at reception is always tied to a string.",
     ],
     items: [
       [
         ["今日值班", "On duty today"],
         [
-          "接待、打扫，还有给候诊的狗倒水。贴纸由前台手工贴歪。",
+          "今天陈医生值班，前台小周负责接待。小周的字不好看，但很喜欢狗。",
           "Reception, cleaning and water for waiting dogs. The receptionist put the duty sticker on crooked.",
         ],
       ],
@@ -74,7 +74,7 @@ globalThis.StillwaterAdData = Object.freeze([
       ],
     ],
     note: [
-      "原创虚构片单，只有文字海报，不播放视频。",
+      "虚构片单展示，不播放影片。",
       "Original fictional listings and typographic posters. No video playback.",
     ],
   },
@@ -132,7 +132,7 @@ globalThis.StillwaterAdData = Object.freeze([
       "旧台灯、二手唱片、少了一只轮子的办公椅，都有人要。",
       "Old lamps, used records, office chairs missing a wheel. Someone will want them.",
     ],
-    tag: ["东西旧一点，故事多一点", "Pre-owned. Well acquainted."],
+    tag: ["旧物上新，便宜转让", "Pre-owned. Well acquainted."],
     cta: ["逛一逛", "Have a browse"],
     intro: [
       "只陈列，不成交。店主还没想好怎么把这些东西搬下楼。",
@@ -142,7 +142,7 @@ globalThis.StillwaterAdData = Object.freeze([
       [
         ["旧台灯", "Desk lamp"],
         [
-          "标价：一杯热茶。灯泡还亮，灯罩有自己的想法。",
+          "标价：一杯热茶。灯还能亮，灯罩有点歪。",
           "Price: a hot cup of tea. The bulb works; the shade has a mind of its own.",
         ],
       ],
@@ -156,7 +156,7 @@ globalThis.StillwaterAdData = Object.freeze([
       [
         ["办公椅", "Office chair"],
         [
-          "附赠：找不到的第四个轮子。请勿坐着下坡。",
+          "只有三个轮子，第四个找不到了。介意的别买。",
           "Includes: a fourth wheel we cannot find. Not for downhill travel.",
         ],
       ],
@@ -228,7 +228,7 @@ globalThis.StillwaterAdData = Object.freeze([
       [
         ["不想上班", "Not today"],
         [
-          "作品名由猫脸决定，与摄影师的心情无关。",
+          "叫了半天都不看镜头，就这张最清楚。",
           "The cat chose the expression. Nothing to do with how the artist feels.",
         ],
       ],
@@ -242,7 +242,7 @@ globalThis.StillwaterAdData = Object.freeze([
       [
         ["耳朵先到", "Ears first"],
         [
-          "脸还没准备好，耳朵先进入画面。",
+          "刚按快门它就跑了，勉强拍到半张脸。",
           "The face wasn’t ready. The ears arrived first.",
         ],
       ],

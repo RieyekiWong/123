@@ -48,6 +48,11 @@
   const a = (route, label, cls = "") =>
     `<a class="${cls}" href="#${route}">${label}</a>`;
   const views = window.StillwaterCaseViews({ t, esc, getState: () => state });
+  const nightViews = window.StillwaterNightViews({ t, getState: () => state });
+  const nightAudio = window.StillwaterCaseAudio.create({
+    getState: () => state,
+    getRoute: currentRoute,
+  });
   const forum = window.StillwaterForum({ t, esc, getState: () => state });
   const PROLOGUE = "stillwater-prologue:v1";
   let prologue = { schema: 1, entered: false, lastRoute: "" };
@@ -90,8 +95,10 @@
   const comfort = window.StillwaterCaseComfort.create({
     getState: () => state,
     save,
-    onPreference: () =>
-      document.body.classList.toggle("reduced-motion", comfort.reduced()),
+    onPreference: () => {
+      document.body.classList.toggle("reduced-motion", comfort.reduced());
+      void nightAudio.sync();
+    },
     reset: () => {
       const preferences = { ...state.preferences, sound: false };
       state = M.fresh();
@@ -103,96 +110,96 @@
   });
   const errors = {
     sample: [
-      "先去看工作样本，上面有编号。",
+      "缺少样本编号。可返回招聘页查看。",
       "Return to the role sample and check its original reference.",
     ],
     reservation: [
-      "没查到这条。看看编号有没有输错。",
+      "未找到预订，请检查编号。",
       "No record found. Check the reference on the original sample.",
     ],
     booking: ["还没找到对应的预订单。", "Identify the retained booking first."],
     inventory: [
-      "选的房号和预订单对不上。",
+      "房号与预订单不符。",
       "This is not the assignment on the original booking. Check that record.",
     ],
     "inventory-first": [
-      "先确认要查的是哪间房。",
+      "尚未确认预订单上的房号。",
       "Associate the booking with the guest inventory first.",
     ],
     "message-first": [
-      "还有一条住客留言没看。",
+      "尚未打开对应的住客留言。",
       "Review the key entry associated with the booking.",
     ],
     "inspect-first": [
-      "先点一下平面图上的灰色区域。",
+      "尚未打开服务区域登记卡。",
       "Open the position card on the floor plan first.",
     ],
     classification: [
-      "这个分类和登记卡对不上。",
+      "所选用途与登记卡不符。",
       "That classification does not match the position card.",
     ],
     "service-first": [
-      "平面图上的登记卡还没看完。",
+      "服务区域用途尚未确认。",
       "Check the position classification on the floor plan first.",
     ],
     maintenance: [
-      "没有这张维修单，看看公告上的编号。",
+      "未找到维修单，请检查公告编号。",
       "No docket found. Check the original access notice reference.",
     ],
     "maintenance-first": [
-      "维修单还没核对完。",
+      "尚未查到对应的维修单。",
       "The source records are not yet associated with this booking. Check its maintenance docket.",
     ],
     "audit-order": [
-      "顺序还是不对，再看看每条记录的时间。",
+      "日期顺序有误。请检查每条记录的时间。",
       "The source timestamps do not match this sequence. Check each original timestamp.",
     ],
     "audit-assessment": [
-      "这个判断还缺依据。",
+      "现有记录不能支持这一判断。",
       "That finding is not supported by the records.",
     ],
     "audit-first": [
-      "当晚记录还没核对完。",
+      "当晚记录尚未核对。",
       "The personnel file requires a reconciled night-audit record.",
     ],
     "revision-unchanged": [
-      "有一项其实没改。再对一遍左右两栏。",
+      "选中了未修改的项目。请对照两栏内容。",
       "An unchanged field was selected. Compare the versions row by row.",
     ],
     "revision-missing": [
-      "还有改过的地方没勾出来。",
+      "有修改项尚未选中。",
       "A changed field is still unrecorded. Check both originals.",
     ],
     "revisions-first": [
-      "修改记录还没核对完。",
+      "修改记录尚未核对。",
       "Associate this addendum with the revision record first.",
     ],
     "closure-first": [
-      "这份草稿附在通知后面。",
+      "请从停业通知的附件打开这份草稿。",
       "Read the closure notice to establish the note’s historical context.",
     ],
     "evidence-incomplete": [
-      "还有文件没看完，暂时不能提交。",
+      "资料不全，暂时无法提交。",
       "A source remains unreconciled. A closing decision cannot be submitted yet. Reopen originals from Case Notes.",
     ],
     "evidence-occupancy": [
-      "这一条还缺能对得上的记录。",
+      "没有记录能确认住客实际入住。",
       "This finding needs a matching record.",
     ],
     "evidence-operating": [
-      "这一条和通知内容对不上。",
+      "该说法与停业通知不符。",
       "This finding does not match the notice.",
     ],
     "evidence-consent": [
-      "这一条和 Mara 写的不一样。",
+      "该说法与 Mara 的原备注不符。",
       "Check the authorization in Mara’s original note.",
     ],
     "evidence-missing": [
-      "选三条有记录能证明的事。",
+      "请选择三项有原始记录支持的说法。",
       "Submit only the three findings that can be cross-checked against the originals.",
     ],
     unknown: [
-      "操作没有成功，文件还在。",
+      "操作未完成，已保存的资料不受影响。",
       "This operation is not recognized. The original records remain available.",
     ],
   };
@@ -217,7 +224,15 @@
     return result.ok;
   }
   function careers() {
-    return `<section class="career-heading"><p class="kicker">STILLWATER HERITAGE RECORDS</p><h1>${t("旧档案整理，远程兼职。", "A careful eye for the historical record.")}</h1><p>${t("工作地点不限，有电脑就能做。", "Remote opportunities in archive reconciliation.")}</p></section><form id="job-search" class="job-search"><label for="job-keyword">${t("搜索岗位", "Search roles")}</label><div><input id="job-keyword" name="keyword" type="search" placeholder="${t("职位名称或工作内容", "Role or area of work")}"><select name="work" aria-label="${t("工作方式", "Work arrangement")}"><option value="remote">${t("远程", "Remote")}</option><option value="onsite">${t("现场", "On site")}</option></select><button type="submit">${t("搜索", "Search")}</button></div></form><p id="job-result" role="status"></p><article class="job-card" id="archive-job"><p class="kicker">${t("合同制 · 远程", "CONTRACT · REMOTE")}</p><h2>${t("旧预订资料整理员", "Night Archive Reconciliation Assistant")}</h2><p>${t("帮一家湖畔旅馆整理以前的预订单。", "Help a lakeside hotel sort its older reservation records.")}</p><p>${t("想知道具体做什么？先试一份样本。", "Start with a short record-matching sample.")}</p><p>${t("样本档案", "Sample case")}: <span class="reference">${F.reservation}</span></p><button class="primary" data-case-action="sample">${t("试做一份", "Review sample record")} →</button><details><summary>${t("工作内容", "Role details & company information")}</summary><p>${t("对照旧预订单、客房记录和修改记录，看看有没有对不上的地方。这份样本不用注册，也不用上传简历。", "Review sources, reconcile timestamps, compare revisions and retain unresolved entries. No CV, account or contact information is needed for the sample.")}</p><p>Stillwater Heritage Records · ${F.recruitment}</p></details></article>`;
+    if (state.lastEnding === "released")
+      return (
+        views.heading(
+          "STILLWATER HERITAGE RECORDS",
+          t("该岗位已撤下", "This vacancy has been withdrawn"),
+          t("目前没有可申请的岗位。", "No roles are currently available."),
+        ) + views.reference("forum", t("返回论坛", "Back to the forum"))
+      );
+    return `<section class="career-heading"><p class="kicker">STILLWATER HERITAGE RECORDS</p><h1>${t("旧预订资料整理兼职", "A careful eye for the historical record.")}</h1><p>${t("远程工作，需能使用电脑查看表格和扫描件。", "Remote opportunities in archive reconciliation.")}</p></section><form id="job-search" class="job-search"><label for="job-keyword">${t("搜索岗位", "Search roles")}</label><div><input id="job-keyword" name="keyword" type="search" placeholder="${t("职位名称或工作内容", "Role or area of work")}"><select name="work" aria-label="${t("工作方式", "Work arrangement")}"><option value="remote">${t("远程", "Remote")}</option><option value="onsite">${t("现场", "On site")}</option></select><button type="submit">${t("搜索", "Search")}</button></div></form><p id="job-result" role="status"></p><article class="job-card" id="archive-job"><p class="kicker">${t("合同制 · 远程", "CONTRACT · REMOTE")}</p><h2>${t("预订档案整理员", "Night Archive Reconciliation Assistant")}</h2><p>${t("帮一家湖畔旅馆整理以前的预订单。", "Help a lakeside hotel sort its older reservation records.")}</p><p>${t("申请前可先查看工作样本样本，无需注册。", "Start with a short record-matching sample.")}</p><p>${t("样本档案", "Sample case")}: <span class="reference">${F.reservation}</span></p><button class="primary" data-case-action="sample">${t("查看工作样本", "Review sample record")} →</button><details><summary>${t("工作内容", "Role details & company information")}</summary><p>${t("对照旧预订单、客房记录和修改记录，看看有没有对不上的地方。这份样本不用注册，也不用上传简历。", "Review sources, reconcile timestamps, compare revisions and retain unresolved entries. No CV, account or contact information is needed for the sample.")}</p><p>Stillwater Heritage Records · ${F.recruitment}</p></details></article>`;
   }
   function guarded(route) {
     const recovery = M.recovery(state, route);
@@ -226,7 +241,7 @@
         "RECORD INDEX",
         t("文件暂时打不开", "Record not currently available"),
         t(
-          "前面的资料还没核对完。先看看这份文件从哪里来的。",
+          "这份资料尚未加入本次工作。可从相关文件继续查找。",
           "This original is not yet associated with the current review. Identify its source record first.",
         ),
       ) + views.reference(recovery, t("查看相关文件", "Open the source record"))
@@ -237,7 +252,7 @@
   }
   function siteFooter(site) {
     const warning = storageFailed
-      ? `<p role="status">${t("目前无法保存进度。这个页面暂时还能继续用。", "Storage is unavailable; the current tab remains playable.")}</p>`
+      ? `<p role="status">${t("浏览器无法保存进度，当前标签页仍可继续操作。", "Storage is unavailable; the current tab remains playable.")}</p>`
       : "";
     const credits = `<button class="footer-settings" data-ad-action="credits">${t("图片鸣谢", "Photo acknowledgements")}</button>`;
     const folder = `<button class="footer-settings" data-ad-action="folder">${t("我的广告夹", "My ad folder")}</button>`;
@@ -245,7 +260,16 @@
       return `<footer class="forum-footer"><p class="footer-site-name">NIGHT OWL BBS · ${t("夜猫论坛", "Night Owl BBS")}</p><div class="footer-links">${a("forum", t("论坛首页", "Forum home"))} · ${a("forum?section=work", t("工作信息", "Work notices"))} · ${a("forum?section=web", t("老网站", "Old websites"))} · ${folder} · ${credits}</div><p>${t("虚构社区，帖子与商家均为作品内容，不接受真实交易。", "A fictional community. Posts and shops are part of the work; no real transactions are accepted.")}</p>${warning}</footer>`;
     if (site === "careers")
       return `<footer class="careers-footer"><p class="footer-site-name">STILLWATER HERITAGE RECORDS</p><div class="footer-links">${a("careers", t("招聘信息", "Opportunities"))} · ${a("forum", t("回论坛看看", "Back to the forum"))} · ${folder} · ${credits}</div><p>${t("虚构职位展示，不接收真实简历、申请或付款。", "A fictional job listing. No real CVs, applications or payments are accepted.")}</p>${warning}</footer>`;
-    return `<footer><p>${t("虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。", "A fictional interactive work. The hotel, role and records are part of the story. No real applications or payments are accepted.")}</p>${storageFailed ? `<p role="status">${t("目前无法保存进度。这个页面暂时还能继续用。", "Storage is unavailable; the current tab remains playable.")}</p>` : ""}${a("forum", t("回论坛看看", "Back to the forum"))} · ${a("careers", t("返回招聘页", "Careers"))} · ${a("guestbook", t("住客留言", "Guestbook"))} · ${a("history", t("旅馆历史", "History"))} · ${a("gallery", t("旅馆相册", "Photo gallery"))} · ${a("notices", t("公告栏", "Notices"))} · ${a("staff", t("员工档案", "Staff archive"))} · ${a("notes", t("工作笔记", "Case Notes"))} · <button class="footer-settings" data-case-action="settings">${t("声音与设置", "Sound & settings")}</button> · <button class="footer-settings" data-ad-action="folder">${t("我的广告夹", "My ad folder")}</button> · ${a("credits", t("图片来源", "Image credits"))} · <a href="${zh ? "classic-zh.html" : "classic.html"}">${t("上一版与原存档", "Previous edition & saved stay")}</a></footer>`;
+    return `<footer><p>${t("虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。", "A fictional interactive work. The hotel, role and records are part of the story. No real applications or payments are accepted.")}</p>${storageFailed ? `<p role="status">${t("浏览器无法保存进度，当前标签页仍可继续操作。", "Storage is unavailable; the current tab remains playable.")}</p>` : ""}${a("forum", t("回论坛看看", "Back to the forum"))} · ${a("careers", t("返回招聘页", "Careers"))} · ${a("guestbook", t("住客留言", "Guestbook"))} · ${a("history", t("旅馆历史", "History"))} · ${a("gallery", t("旅馆相册", "Photo gallery"))} · ${a("notices", t("公告栏", "Notices"))} · ${a("staff", t("员工档案", "Staff archive"))} · ${a("notes", t("工作笔记", "Case Notes"))} · <button class="footer-settings" data-case-action="settings">${t("声音与设置", "Sound & settings")}</button> · <button class="footer-settings" data-ad-action="folder">${t("我的广告夹", "My ad folder")}</button> · ${a("credits", t("图片来源", "Image credits"))} · <a href="${zh ? "classic-zh.html" : "classic.html"}">${t("上一版与原存档", "Previous edition & saved stay")}</a></footer>`;
+  }
+  function endingView() {
+    const requested = new URLSearchParams(
+      location.hash.split("?")[1] || "",
+    ).get("view");
+    const shown = state.endings.includes(requested)
+      ? requested
+      : state.lastEnding;
+    return shown === "released" ? nightViews.released() : views.ending();
   }
   function render(moveFocus = false) {
     let route = currentRoute();
@@ -264,6 +288,8 @@
       "mara",
       "review",
       "ending",
+      "cameras",
+      "terminal",
     ].includes(route);
     const site =
       route === "forum"
@@ -275,6 +301,15 @@
             : "hotel";
     rememberRoute(route);
     document.body.dataset.site = site;
+    document.body.dataset.anomaly =
+      state.lastEnding === "released"
+        ? "resolved"
+        : state.night.door
+          ? "terminal"
+          : state.night.started
+            ? "altered"
+            : "normal";
+    void nightAudio.sync();
     document.body.classList.toggle(
       "reduced-motion",
       state.preferences.reduceMotion ||
@@ -308,7 +343,7 @@
         "STAFF ARCHIVE",
         t("旧文件目录", "Retained file index"),
         t(
-          "这里只能查看这次工作中已经打开的文件。",
+          "这里只列出本次已打开的文件。",
           "This index contains read-only material associated with the review.",
         ),
       ) + views.reference("notes", t("工作笔记", "Case Notes"));
@@ -321,7 +356,15 @@
       save();
     }
     const content = allowed
-      ? ({ careers, forum: forum.render, ...views }[route] || placeholder)()
+      ? (
+          {
+            careers,
+            forum: forum.render,
+            ...views,
+            ...nightViews,
+            ending: endingView,
+          }[route] || placeholder
+        )()
       : guarded(route);
     document.title =
       route === "forum"
@@ -340,7 +383,7 @@
         : state.lastEnding;
       if (shown === "auto-close")
         document.title =
-          t("夜审登记员", "Night Audit Clerk") + " / " + F.temporary;
+          t("夜班审计员", "Night Audit Clerk") + " / " + F.temporary;
     }
     document.querySelector("#case-shell").innerHTML =
       `<header class="site-header"><a class="site-brand" href="#${route === "forum" ? "forum" : route === "careers" ? "careers" : staff ? "staff" : "hotel"}">${route === "forum" ? t('夜猫论坛<span class="bbs-subtitle">NIGHT OWL BBS</span>', 'Night Owl BBS<span class="bbs-subtitle">THE LATE THREAD</span>') : route === "careers" ? "Stillwater Heritage Careers" : staff ? "STILLWATER / STAFF ARCHIVE" : '<span class="hotel-brand-title">The Stillwater Hotel</span><span class="hotel-brand-subtitle">A FAMILIAR PLACE · SINCE 1987</span>'}</a><a data-case-language href="${zh ? "index.html" : "index-zh.html"}${esc(location.hash)}">${zh ? "English" : "简体中文"}</a></header>${
@@ -379,6 +422,18 @@
         el.setAttribute("aria-current", "page");
     });
     if (route === "night-audit" && allowed) comfort.signal();
+    if (
+      state.night.started &&
+      state.lastEnding !== "released" &&
+      route === "hotel"
+    ) {
+      document
+        .querySelector(".daily-notice")
+        ?.insertAdjacentHTML(
+          "afterend",
+          `<p class="document"><a href="#mirror">${t("客房目录已更新 · 查看当前页面", "Room directory updated · View current page")} →</a></p>`,
+        );
+    }
     ads.navigate();
     if (moveFocus) {
       window.scrollTo(0, 0);
@@ -393,7 +448,79 @@
       document.querySelector("#content")?.scrollIntoView();
       return;
     }
+    const nightControl = e.target.closest("[data-night-action]");
+    if (nightControl) {
+      const act = nightControl.dataset.nightAction;
+      if (act === "settings") {
+        comfort.open();
+        return;
+      }
+      const firstFrame = act === "frame" && !state.night.frame;
+      const payload = {
+        cam: Number(nightControl.dataset.cam),
+        pan: Number(nightControl.dataset.pan),
+        link: Number(nightControl.dataset.link),
+        node: Number(nightControl.dataset.node),
+      };
+      const result = M.transition(state, "night-" + act, payload);
+      save();
+      if (!result.ok) {
+        const el = document.querySelector("#night-feedback");
+        if (el) {
+          el.className = "night-feedback-error";
+          el.textContent =
+            result.error === "night-landmark"
+              ? t(
+                  "两路画面的地标对不上。已确认的连接还在。",
+                  "The landmarks do not match. Earlier connections are retained.",
+                )
+              : t(
+                  "配置未保存。检查原始录像是否接到右下出口，隔离闸和手动开关是否到位。",
+                  "Not saved. Check the reel path, isolation switch and manual mode.",
+                );
+        }
+        return;
+      }
+      if (act === "door") {
+        location.hash = "terminal";
+        return;
+      }
+      render();
+      const match = [...document.querySelectorAll("[data-night-action]")].find(
+        (el) =>
+          el.dataset.nightAction === act &&
+          (act !== "pan" ||
+            (el.dataset.cam === nightControl.dataset.cam &&
+              el.dataset.pan === nightControl.dataset.pan)) &&
+          (act !== "rotate" || el.dataset.node === nightControl.dataset.node) &&
+          (act !== "link" || el.dataset.link === nightControl.dataset.link),
+      );
+      match?.focus({ preventScroll: true });
+      if (
+        firstFrame &&
+        !state.preferences.skipScares &&
+        !comfort.reduced() &&
+        !document.hidden
+      ) {
+        nightAudio.stop();
+        const frame = document.querySelector(".terminal-layout .cctv-frame");
+        const face = document.createElement("div");
+        face.className = "frame-face";
+        face.setAttribute("aria-hidden", "true");
+        face.innerHTML = '<img src="assets/night-mask.jpg" alt="">';
+        frame?.append(face);
+        setTimeout(() => {
+          face.remove();
+          if (currentRoute() === "terminal") void nightAudio.sync();
+        }, 900);
+      }
+      return;
+    }
     const action = e.target.closest("[data-case-action]")?.dataset.caseAction;
+    if (action === "sync-records" && perform("night-start")) {
+      location.hash = "mirror";
+      return;
+    }
     if (action === "settings") comfort.open();
     if (action === "photo-version") {
       state.drafts.photoVersion =
@@ -435,7 +562,7 @@
           : candidate
         )?.focus({ preventScroll: true });
         document.querySelector("#case-status").textContent = t(
-          "已调整记录位置。",
+          "排列已保存。",
           "Record position changed.",
         );
       }
@@ -585,6 +712,44 @@
           ?.setAttribute("hidden", "");
     }
   });
+  let rippleFrame = null;
+  document.addEventListener(
+    "pointermove",
+    (event) => {
+      const frame = event.target.closest(".cctv-frame[data-cctv-phase]");
+      const allowed =
+        frame &&
+        state.night.started &&
+        !comfort.reduced() &&
+        matchMedia("(hover:hover) and (pointer:fine)").matches;
+      if (rippleFrame && rippleFrame !== frame)
+        rippleFrame.classList.remove("ripple-active");
+      rippleFrame = allowed ? frame : null;
+      if (!allowed) return;
+      let ripple = frame.querySelector(".cctv-ripple");
+      if (!ripple) {
+        ripple = document.createElement("span");
+        ripple.className = "cctv-ripple";
+        ripple.setAttribute("aria-hidden", "true");
+        frame.append(ripple);
+      }
+      const bounds = frame.getBoundingClientRect();
+      frame.style.setProperty("--ripple-x", event.clientX - bounds.left + "px");
+      frame.style.setProperty("--ripple-y", event.clientY - bounds.top + "px");
+      frame.classList.add("ripple-active");
+    },
+    { passive: true },
+  );
+  document.addEventListener(
+    "pointerout",
+    (event) => {
+      if (rippleFrame && !rippleFrame.contains(event.relatedTarget)) {
+        rippleFrame.classList.remove("ripple-active");
+        rippleFrame = null;
+      }
+    },
+    { passive: true },
+  );
   window.addEventListener("hashchange", () => render(true));
   render();
 })();

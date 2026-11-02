@@ -137,7 +137,7 @@ window.StillwaterBranches = (() => {
     }
     function notebook() {
       if (!dylan().met && job().stage === "none") return "";
-      return `<section class="side-notebook" data-puzzle-original><h3>${t('留存来件', 'Retained correspondence')}</h3>${dylan().met ? `<p>${t('迪伦写下的机位顺序：走廊 → 前台 → 客房。', 'Dylan’s camera order: corridor → reception → guest room.')}</p>${dylan().notes.map(id => `<p>${notes[id].clue}</p>`).join('')}<button class="underlined" data-action="dylan-trail">${t('查看迪伦的来件', 'Read Dylan’s correspondence')} →</button>` : ''}${job().stage !== 'none' ? `<button class="underlined" data-action="job-interview">${t('夜班交接记录', 'Night handover record')} →</button>` : ''}</section>`;
+      return `<section class="side-notebook" data-puzzle-original><h3>${t('旧留言附件', 'Retained correspondence')}</h3>${dylan().met ? `<p>${t('迪伦写下的机位顺序：走廊 → 前台 → 客房。', 'Dylan’s camera order: corridor → reception → guest room.')}</p>${dylan().notes.map(id => `<p>${notes[id].clue}</p>`).join('')}<button class="underlined" data-action="dylan-trail">${t('查看迪伦的来件', 'Read Dylan’s correspondence')} →</button>` : ''}${job().stage !== 'none' ? `<button class="underlined" data-action="job-interview">${t('夜班交接记录', 'Night handover record')} →</button>` : ''}</section>`;
     }
     function startDylan() {
       dylan().met = true;
@@ -157,21 +157,21 @@ window.StillwaterBranches = (() => {
         roster: "weather",
       };
       const next = noteIds.find(id => !dylan().notes.includes(id));
-      show(t("寻找迪伦", "Looking for Dylan"), `<div data-puzzle-original><p class="document-intro">${next ? (next === 'library' ? t('留言里最后提到东翼阅览室的一张借书卡。', 'The message refers to a library card in the east-wing reading room.') : notes[noteIds[noteIds.indexOf(next)-1]].text) : t('借书卡、行李标签与首次值班日期已经放在同一个封套里。', 'The library card, luggage tag and first-shift date are in the same envelope.')}</p><div class="dialog-actions">${next ? `<button class="button" data-action="${targets[next]}">${notes[next].title} →</button>` : `<button class="button" data-action="dylan-door">${t('去东楼找他的房间', 'Find his room in the east wing')} →</button>`}</div><details class="dylan-retained"><summary>${t('封套里的原件', 'Originals in the envelope')}</summary>${dylan().notes.map(id => `<p>${notes[id].clue}</p><button class="underlined" data-action="${targets[id]}">${notes[id].title} →</button>`).join('')}${next ? `<button class="paper-button" data-action="dylan-door" disabled>${t('东楼门禁记录', 'East-wing door record')}</button>` : ''}</details><button class="underlined" data-action="dylan-message">${t('重读求助留言', 'Read the message again')}</button></div>`);
+      show(t("寻找迪伦", "Looking for Dylan"), `<div data-puzzle-original><p class="document-intro">${next ? (next === 'library' ? t('留言里最后提到东翼阅览室的一张借书卡。', 'The message refers to a library card in the east-wing reading room.') : notes[noteIds[noteIds.indexOf(next)-1]].text) : t('借书卡、行李标签与首次值班日期已经放在同一个封套里。', 'The library card, luggage tag and first-shift date are in the same envelope.')}</p><div class="dialog-actions">${next ? `<button class="button" data-action="${targets[next]}">${notes[next].title} →</button>` : `<button class="button" data-action="dylan-door">${t('去东楼找他的房间', 'Find his room in the east wing')} →</button>`}</div><details class="dylan-retained"><summary>${t('已保存的纸条', 'Originals in the envelope')}</summary>${dylan().notes.map(id => `<p>${notes[id].clue}</p><button class="underlined" data-action="${targets[id]}">${notes[id].title} →</button>`).join('')}${next ? `<button class="paper-button" data-action="dylan-door" disabled>${t('东楼门禁记录', 'East-wing door record')}</button>` : ''}</details><button class="underlined" data-action="dylan-message">${t('重读求助留言', 'Read the message again')}</button></div>`);
     }
     function showNote(id) {
       if (!dylan().met) return startDylan();
       if (!dylan().notes.includes(id)) { dylan().notes.push(id); save(); }
       show(
         notes[id].title,
-        `<div class="dylan-note" data-puzzle-original><p class="document-intro">D. HARKER / ${t("留在酒店里的记录", "RETAINED HOTEL RECORD")}</p><p>${notes[id].text}</p><p class="file-note">${notes[id].clue}</p><div class="dialog-actions"><button class="button" data-action="dylan-keep-${id}" data-dylan-fragment="${id}" ${dylan().notes.includes(id) ? "disabled" : ""}>${dylan().notes.includes(id) ? t("副本已留存", "Copy retained") : t("保存这张纸条", "Save this note")}</button><button class="paper-button" data-action="dylan-trail">${t("整理线索", "Review the trail")} →</button></div></div>`,
+        `<div class="dylan-note" data-puzzle-original><p class="document-intro">D. HARKER / ${t("留在酒店里的记录", "RETAINED HOTEL RECORD")}</p><p>${notes[id].text}</p><p class="file-note">${notes[id].clue}</p><div class="dialog-actions"><button class="button" data-action="dylan-keep-${id}" data-dylan-fragment="${id}" ${dylan().notes.includes(id) ? "disabled" : ""}>${dylan().notes.includes(id) ? t("副本已保存", "Copy retained") : t("保存这张纸条", "Save this note")}</button><button class="paper-button" data-action="dylan-trail">${t("整理线索", "Review the trail")} →</button></div></div>`,
       );
     }
     function refreshDocument() {
       document.querySelectorAll("[data-dylan-fragment]").forEach((button) => {
         if (dylan().notes.includes(button.dataset.dylanFragment)) {
           button.disabled = true;
-          button.textContent = t("副本已留存", "Copy retained");
+          button.textContent = t("副本已保存", "Copy retained");
         }
       });
     }
@@ -200,7 +200,7 @@ window.StillwaterBranches = (() => {
       remember("departure");
       show(
         t("未能送达的求助", "The unanswered message"),
-        `<div class="ending" data-puzzle-original><p class="ending-code">${t("结局 01 / 迪伦·哈克", "ENDING 01 / DYLAN HARKER")}</p><p>${t("你推开红色出口，天已经快亮了。手里的封套装着迪伦留在酒店里的全部记录，背面还写着监控机位的顺序。", "You push through the red exit just before dawn. The envelope holds Dylan’s surviving records. On its back is the order of the surveillance locations.")}</p><p>${t("你没能把他带出来，但终于有人确认，他确实来过这里，也曾向外面求助。", "You could not bring him out. But his presence here, and his attempts to reach someone outside, have finally been recorded.")}</p><p class="file-note">${t("已收录迪伦的记录。监控顺序：走廊 → 前台 → 客房。", "Dylan’s records retained. Camera order: corridor → reception → guest room.")}</p>${endingLinks()}</div>`,
+        `<div class="ending" data-puzzle-original><p class="ending-code">${t("结局 01 / 迪伦·哈克", "ENDING 01 / DYLAN HARKER")}</p><p>${t("你推开红色出口，天已经快亮了。手里的封套装着迪伦留在酒店里的全部记录，背面还写着监控机位的顺序。", "You push through the red exit just before dawn. The envelope holds Dylan’s surviving records. On its back is the order of the surveillance locations.")}</p><p>${t("你没能把他带出来，但终于有人确认，他来过这里，也向外面求助过。", "You could not bring him out. But his presence here, and his attempts to reach someone outside, have finally been recorded.")}</p><p class="file-note">${t("迪伦的记录已保存。监控顺序：走廊 → 前台 → 客房。", "Dylan’s records retained. Camera order: corridor → reception → guest room.")}</p>${endingLinks()}</div>`,
       );
     }
     function endingLinks() {

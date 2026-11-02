@@ -56,6 +56,7 @@ test("one optional, non-obstructing signal and manually refreshed current queue"
   await page.keyboard.press("Escape");
   await link(page, "notes", "footer");
   await page.locator('footer a[href="#staff"]').click();
+  await expect(page).toHaveURL(/#staff$/);
   // The personnel gate refers back to the unresolved night audit.
   await page.locator("main .source-link a").click();
   await expect(page.locator(".connection-notice")).toBeVisible();

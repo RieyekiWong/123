@@ -208,11 +208,11 @@ window.StillwaterSupport = (() => {
           ),
           fallback: supervisor
             ? t(
-                "我在。你可以问岗位、薪资住宿、值班时间或入职办理，也可以选择输入框上方的关键词。",
+                "我在。岗位、工资、住宿和上班时间都可以问。输入框上方也有常见问题。",
                 "I’m here. Ask about duties, pay, shift hours or starting work, or choose a keyword above the message box.",
               )
             : t(
-                "可以帮你查询入住、客房和招聘安排。选一个上方关键词，或直接输入问题即可。",
+                "入住、客房或招聘的事情都可以问。你想了解哪方面？",
                 "I can help with check-in, rooms or recruitment. Choose a keyword above the box or type your question.",
               ),
         }[key] || ""
@@ -381,15 +381,15 @@ window.StillwaterSupport = (() => {
                   "You have asked about the time three times. I answered on time each time.",
                 ),
                 t(
-                  "请把你的明天留给排班。迪伦·哈克没有明天，不必替他安排。",
+                  "明天的时间已经排好了。迪伦·哈克不在排班里，不需要你替他安排。",
                   "Please leave your tomorrow available for the rota. Dylan Harker has no tomorrow. You need not arrange one for him.",
                 ),
                 t(
-                  "如果你继续查他的事，我们会把损失记在你的名下。先扣掉你的下班时间。然后是别人记得你的时间。",
+                  "你再查他的事，就得留下来补班。你的下班时间由我们通知。你家里那边也会收到同样的通知。",
                   "If you keep looking into him, we will charge the loss to your name. Your finishing time will be deducted first. Then the time for which other people remember you.",
                 ),
                 t(
-                  "收到请回复。不要让我再等到你。",
+                  "收到请回复。不要让我去找你。",
                   "Please acknowledge receipt. Do not make me wait until you again.",
                 ),
               ]
@@ -403,7 +403,7 @@ window.StillwaterSupport = (() => {
             $(".support-signal-label").innerHTML =
               "<span>STAFF SESSION / 00:00</span><span>R. / R.</span>";
             $(".support-reconnecting").textContent = t(
-              "另一台设备正在使用此身份。",
+              "此账号已在另一台设备登录。",
               "This identity is active on another device.",
             );
           }

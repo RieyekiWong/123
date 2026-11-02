@@ -50,7 +50,7 @@ window.StillwaterExploration = (() => {
       root.querySelectorAll('[data-clue]').forEach(el => {
         if (el.closest('details:not([open])')) return;
         collect(el.dataset.clue, true);
-        el.textContent = t('副本已保存在本设备', 'Copy retained on this device');
+        el.textContent = t('副本已保存到本机', 'Copy retained on this device');
         el.disabled = true;
         el.classList.add('retained-copy');
       });
@@ -86,7 +86,7 @@ window.StillwaterExploration = (() => {
       }
       if (title === 'Original photograph captions' && state().chapter < 2) {
         const heading = root.querySelector('#dialog-title').outerHTML;
-        root.innerHTML = heading + `<div data-puzzle-original><p class="document-intro">${t('旅馆影像登记 / 001-B / 公开副本', 'Hotel photograph record / 001-B / Public copy')}</p><p>${t('题签写着“维尔夫妇与当班前台”。这份公开副本裁掉了右侧的身份卡。原始题签与早期员工名册一同保存，不在公开目录中。', 'The caption reads “The Vales with the relief porter.” This public copy has been cropped at the right-hand identification strip. The original captions are filed with the early staff census, outside the public catalogue.')}</p>${reference(link('#employees', t('夜班档案目录', 'Night-desk archive catalogue')))}</div>`;
+        root.innerHTML = heading + `<div data-puzzle-original><p class="document-intro">${t('旅馆照片档案 / 001-B / 公开副本', 'Hotel photograph record / 001-B / Public copy')}</p><p>${t('题签写着“维尔夫妇与当班前台”。这份公开副本裁掉了右侧的身份卡。完整标注夹在早期员工名册里，公开目录中没有。', 'The caption reads “The Vales with the relief porter.” This public copy has been cropped at the right-hand identification strip. The original captions are filed with the early staff census, outside the public catalogue.')}</p>${reference(link('#employees', t('夜班档案目录', 'Night-desk archive catalogue')))}</div>`;
         return;
       }
       if (key) remember(key);
@@ -103,10 +103,10 @@ window.StillwaterExploration = (() => {
       let next = '';
       if (key === 'register') next = link('#employees', t('夜班档案索引', 'Night-desk archive index'));
       if (key === 'diary') next = link('#guestbook?entry=rowan', t('笔记提到的 E. Rowan 附页', 'E. Rowan’s page mentioned in the notebook'));
-      if (key === 'letter') next = button('maintenance', t('随信归档：铜钟维修记录', 'Filed with this letter: clock maintenance record'));
+      if (key === 'letter') next = button('maintenance', t('随信附件：铜钟维修记录', 'Filed with this letter: clock maintenance record'));
       if (key === 'maintenance') next = departureReference();
       if (key === 'camera' && root.querySelector('[data-camera="2"][aria-pressed="true"]')) {
-        next = state().clues.includes('ribbon') ? link('#employees?file=letter', t('307 号房未送达信件', 'Undelivered correspondence · Room 307')) : link('#guestbook?entry=rowan', t('同日归档：E. Rowan 附页', 'Filed on the same date: E. Rowan’s page'));
+        next = state().clues.includes('ribbon') ? link('#employees?file=letter', t('307 号房未送达信件', 'Undelivered correspondence · Room 307')) : link('#guestbook?entry=rowan', t('同日附件：E. Rowan 的留言页', 'Filed on the same date: E. Rowan’s page'));
       }
       if (next) {
         removeOldReferences(root);
@@ -120,7 +120,7 @@ window.StillwaterExploration = (() => {
       if (title === 'The Residence') root.insertAdjacentHTML('beforeend', roomStatus());
       if (title === 'A choice of departures' && (!state().checkedIn || ['clock','door','ribbon','register','switch','letter'].some(id => !state().clues.includes(id)))) {
         const copy = root.querySelector('.ending-option.special p');
-        if (copy) copy.textContent = t('留在柜台的交接封套里少了一份原件。封面上保留着最后一次转交的出处。', 'An original is missing from the handover envelope. Its cover retains the last forwarding reference.');
+        if (copy) copy.textContent = t('柜台的交接袋少了一份原件，封面上还写着它最后交到了哪里。', 'An original is missing from the handover envelope. Its cover retains the last forwarding reference.');
         root.querySelector('.ending-option.special')?.insertAdjacentHTML('beforeend', reference(departureReference()));
       }
     }
