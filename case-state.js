@@ -4,7 +4,7 @@ globalThis.StillwaterCaseState = (() => {
   const routes={careers:null,hotel:null,rooms:null,reservations:null,guestbook:null,history:null,contact:null,notices:null,notes:null,credits:null,
     'floor-plan':'C4',maintenance:'C5','night-audit':'C6',staff:'audit',revisions:'audit',closure:'C7',mara:'C8',review:'C9',ending:'finalEvidence'};
   const fresh=()=>({schema:2,evidence:[],completed:{serviceInspected:false,audit:false,finalEvidence:false},
-    drafts:{reservation:'',maintenance:'',auditOrder:[...D.auditInitial],auditAssessment:'',revisionSelection:[],finalSelection:[]},
+    drafts:{reservation:'',maintenance:'',auditOrder:[...D.auditInitial],auditAssessment:'',revisionSelection:[],finalSelection:[],photoVersion:'original'},
     endings:[],lastEnding:'',notices:{shown:false,dismissed:false},queueRefreshed:false,effectSeen:false,
     preferences:{sound:false,volume:0.2,reduceMotion:false,skipScares:true}});
   const has=(state,id)=>state.evidence.includes(id);
@@ -40,6 +40,7 @@ globalThis.StillwaterCaseState = (() => {
     for(const [key,registry] of [['revisionSelection',D.revisions],['finalSelection',D.finalClaims]]){
       state.drafts[key]=Array.isArray(draft[key])?[...new Set(draft[key].filter(id=>registry.some(row=>row.id===id)))]:[];
     }
+    state.drafts.photoVersion=['original','revision'].includes(draft.photoVersion)?draft.photoVersion:'original';
     const ends=['auto-close','unverified'];
     state.endings=state.completed.audit&&Object.keys(D.clues).every(id=>has(state,id))&&Array.isArray(raw.endings)?ends.filter(id=>raw.endings.includes(id)):[];
     state.lastEnding=state.endings.includes(raw.lastEnding)?raw.lastEnding:'';

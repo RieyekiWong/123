@@ -4,11 +4,15 @@
   const zh=document.documentElement.lang==='zh-CN',t=(a,b)=>zh?a:b;
   const KEY='stillwater-case:v2';
   let state=M.fresh(),storageFailed=false;
-  try {state=M.hydrate(JSON.parse(localStorage.getItem(KEY)));} catch {storageFailed=true;}
+  let existingSave=null;
+  try {existingSave=localStorage.getItem(KEY);} catch {storageFailed=true;}
+  if(existingSave){try {state=M.hydrate(JSON.parse(existingSave));} catch {state=M.fresh();}}
+  if(!existingSave)state.preferences.reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  function save(){try {localStorage.setItem(KEY,JSON.stringify(state));} catch {storageFailed=true;} }
+  function save(){try {localStorage.setItem(KEY,JSON.stringify(state));storageFailed=false;} catch {storageFailed=true;} }
   const a=(route,label,cls='')=>`<a class="${cls}" href="#${route}">${label}</a>`;
   const views=window.StillwaterCaseViews({t,esc,getState:()=>state});
+  const comfort=window.StillwaterCaseComfort.create({getState:()=>state,save,onPreference:()=>document.body.classList.toggle('reduced-motion',comfort.reduced()),reset:()=>{const preferences={...state.preferences,sound:false};state=M.fresh();state.preferences=preferences;save();location.hash='careers';render(true);}});
   const errors={
     sample:['请回到岗位样本核对原件编号。','Return to the role sample and check its original reference.'],
     reservation:['未找到该编号。请核对原样本中的档案引用。','No record found. Check the reference on the original sample.'],
@@ -54,10 +58,13 @@
     const content=allowed?(({careers,...views})[route]||placeholder)():guarded(route);
     document.title=route==='careers'?'Stillwater Heritage Careers':staff?'Stillwater / Staff Archive':'The Stillwater Hotel · 2006';
     if(route==='ending'&&allowed){const requested=new URLSearchParams(location.hash.split('?')[1]||'').get('view');const shown=state.endings.includes(requested)?requested:state.lastEnding;if(shown==='auto-close')document.title=t('夜审登记员','Night Audit Clerk')+' / '+F.temporary;}
-    document.querySelector('#case-shell').innerHTML=`<header class="site-header"><a class="site-brand" href="#${route==='careers'?'careers':staff?'staff':'hotel'}">${route==='careers'?'Stillwater Heritage Careers':staff?'STILLWATER / STAFF ARCHIVE':'The Stillwater Hotel'}</a><a data-case-language href="${zh?'index.html':'index-zh.html'}${location.hash}">${zh?'English':'简体中文'}</a></header>${route==='careers'?'<nav class="careers-nav">'+a('careers',t('工作机会','Opportunities'))+'</nav>':staff?'<nav class="staff-nav">'+a('hotel',t('酒店目录','Hotel index'))+a('notes','Case Notes')+a('staff',t('员工档案','Staff archive'))+'</nav>':'<nav class="hotel-nav">'+a('hotel',t('首页','Home'))+a('rooms',t('客房','Rooms'))+a('reservations',t('预订查询','Reservations'))+a('contact',t('联系前台','Contact'))+'</nav>'}<main id="content" tabindex="-1">${content}</main><footer><p>${t('虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。','A fictional interactive work. The hotel, role and records are part of the story. No real applications or payments are accepted.')}</p>${storageFailed?`<p role="status">${t('本设备无法保存进度；当前标签页仍可继续。','Storage is unavailable; the current tab remains playable.')}</p>`:''}${a('careers',t('招聘主页','Careers'))} · ${a('guestbook',t('住客留言','Guestbook'))} · ${a('history',t('历史资料','History'))} · ${a('notices',t('旧公告','Notices'))} · ${a('staff',t('员工档案','Staff archive'))} · ${a('notes','Case Notes')} · ${a('credits',t('图片来源','Image credits'))} · <a href="${zh?'classic-zh.html':'classic.html'}">${t('上一版与原存档','Previous edition & saved stay')}</a></footer>`;
+    document.querySelector('#case-shell').innerHTML=`<header class="site-header"><a class="site-brand" href="#${route==='careers'?'careers':staff?'staff':'hotel'}">${route==='careers'?'Stillwater Heritage Careers':staff?'STILLWATER / STAFF ARCHIVE':'The Stillwater Hotel'}</a><a data-case-language href="${zh?'index.html':'index-zh.html'}${location.hash}">${zh?'English':'简体中文'}</a></header>${route==='careers'?'<nav class="careers-nav">'+a('careers',t('工作机会','Opportunities'))+'</nav>':staff?'<nav class="staff-nav">'+a('hotel',t('酒店目录','Hotel index'))+a('notes','Case Notes')+a('staff',t('员工档案','Staff archive'))+'</nav>':'<nav class="hotel-nav">'+a('hotel',t('首页','Home'))+a('rooms',t('客房','Rooms'))+a('reservations',t('预订查询','Reservations'))+a('contact',t('联系前台','Contact'))+'</nav>'}<main id="content" tabindex="-1">${content}</main><footer><p>${t('虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。','A fictional interactive work. The hotel, role and records are part of the story. No real applications or payments are accepted.')}</p>${storageFailed?`<p role="status">${t('本设备无法保存进度；当前标签页仍可继续。','Storage is unavailable; the current tab remains playable.')}</p>`:''}${a('careers',t('招聘主页','Careers'))} · ${a('guestbook',t('住客留言','Guestbook'))} · ${a('history',t('历史资料','History'))} · ${a('notices',t('旧公告','Notices'))} · ${a('staff',t('员工档案','Staff archive'))} · ${a('notes','Case Notes')} · <button class="footer-settings" data-case-action="settings">${t('声音与设置','Sound & settings')}</button> · ${a('credits',t('图片来源','Image credits'))} · <a href="${zh?'classic-zh.html':'classic.html'}">${t('上一版与原存档','Previous edition & saved stay')}</a></footer>`;
+    if(route==='night-audit'&&allowed)comfort.signal();
     if(moveFocus){window.scrollTo(0,0);document.querySelector('#content').focus({preventScroll:true});}
   }
   document.addEventListener('click',e=>{const action=e.target.closest('[data-case-action]')?.dataset.caseAction;
+    if(action==='settings')comfort.open();
+    if(action==='photo-version'){state.drafts.photoVersion=e.target.closest('[data-version]').dataset.version==='revision'?'revision':'original';save();render();const details=document.querySelector('.annotation-comparison');if(details)details.open=true;}
     if(action==='sample'&&perform('sample'))location.hash='hotel';
     if(action==='read-key'&&perform('message'))render();
     if(action==='inspect-service'&&perform('inspect-service')){render();document.querySelector('#service-classification')?.scrollIntoView({block:'center'});}
@@ -72,7 +79,7 @@
   document.addEventListener('change',e=>{if(e.target.name==='assessment')state.drafts.auditAssessment=e.target.value;else if(e.target.name==='difference')state.drafts.revisionSelection=[...document.querySelectorAll('[name=difference]:checked')].map(el=>el.value);else if(e.target.name==='claim'){state.drafts.finalSelection=[...document.querySelectorAll('[name=claim]:checked')].map(el=>el.value);state.completed.finalEvidence=false;}else return;save();});
   document.addEventListener('submit',e=>{
     const form=e.target;
-    if(form.id==='job-search'){e.preventDefault();const keyword=form.keyword.value.trim().toLowerCase();const match=form.work.value==='remote'&&(!keyword||/档案|复核|记录|night|archive|record|reconcil/.test(keyword));document.querySelector('#archive-job').hidden=!match;document.querySelector('#job-result').textContent=match?t('找到 1 个岗位。','1 opportunity found.'):t('没有匹配岗位，请调整筛选。','No matching roles. Adjust the search.');}
+    if(form.id==='job-search'){e.preventDefault();const keyword=form.keyword.value.trim().toLowerCase();const searchable=document.querySelector('#archive-job').textContent.toLowerCase();const match=form.work.value==='remote'&&(!keyword||keyword.split(/\s+/).every(word=>searchable.includes(word)));document.querySelector('#archive-job').hidden=!match;document.querySelector('#job-result').textContent=match?t('找到 1 个岗位。','1 opportunity found.'):t('没有匹配岗位，请调整筛选。','No matching roles. Adjust the search.');}
     if(form.id==='reservation-search'){e.preventDefault();if(perform('reservation',{reference:form.reference.value},'reservation-error'))render();}
     if(form.id==='inventory-check'){e.preventDefault();if(perform('inventory',{room:form.room.value},'inventory-error'))render();}
     if(form.id==='service-classification'){e.preventDefault();if(perform('classify-service',{classification:form.classification.value},'service-error'))render();}

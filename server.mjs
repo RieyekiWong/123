@@ -31,7 +31,7 @@ export function createServer(
       if (options.legacy && file === resolve(base, "index.html")) file = resolve(base, "classic.html");
       if (options.legacy && file === resolve(base, "index-zh.html")) file = resolve(base, "classic-zh.html");
       const allowed =
-        ["classic.html", "classic-zh.html", "classic-bridge.js", "case-data.js", "case-state.js", "case-app.js", "case-pages.js", "case-style.css"].some(name => file === resolve(base,name)) ||
+        ["classic.html", "classic-zh.html", "classic-bridge.js", "case-data.js", "case-state.js", "case-app.js", "case-pages.js", "case-comfort.js", "case-style.css"].some(name => file === resolve(base,name)) ||
         file === resolve(base, "index.html") ||
         file === resolve(base, "index-zh.html") ||
         file === resolve(base, "locale-zh.js") ||
