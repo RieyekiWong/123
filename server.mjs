@@ -50,6 +50,8 @@ export function createServer(
           "ad-system.js",
           "ad-style.css",
           "case-style.css",
+          "site-media.js",
+          "hotel-2010.css",
         ].some((name) => file === resolve(base, name)) ||
         file === resolve(base, "index.html") ||
         file === resolve(base, "index-zh.html") ||

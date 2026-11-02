@@ -1,6 +1,6 @@
 # The Stillwater Hotel — V2.1
 
-A bilingual browser ARG that begins with an ordinary forum post: someone wants help checking a part-time job. A modern careers page leads to a retained 2006 hotel website, night-audit records and two evidence-based dispositions. V2.1 adds Night Owl BBS, seven fictional local-shop adverts and plainer Chinese puzzle instructions without changing the case or its answers.
+A bilingual browser ARG that begins with an ordinary forum post: someone wants help checking a part-time job. A modern careers page leads to a hotel website and its retained 2006 records, night-audit records and two evidence-based dispositions. V2.1 adds Night Owl BBS, seven fictional local-shop adverts and plainer Chinese puzzle instructions without changing the case or its answers.
 
 **Play:** [简体中文](https://rieyekiwong.github.io/123/index-zh.html) · [English](https://rieyekiwong.github.io/123/index.html)
 
@@ -19,9 +19,11 @@ Open `http://localhost:3000/index-zh.html`. Node.js 20 or newer is required for 
 
 ## Forum and local adverts
 
+The forum and careers page have their own footers; hotel operations appear on the hotel site. The public hotel now uses an early-2010s cream-and-bronze layout and a ten-photo album. Fifteen existing photographs were sourced from Wikimedia Commons and bundled locally, with no newly generated logos or images. See [photo sources and licenses](assets/WEB-PHOTOS.md).
+
 New visitors start at Night Owl BBS. Follow the job preview, then review the sample to reach the reservation search. Existing V2 saves continue from a usable record; **Back to the forum** revisits the opening. Explicit hash links and language switches keep their destination.
 
-Local adverts can be closed, kept, folded or opened from **My ad folder**. They appear infrequently on public pages, pause during forms and never appear in the investigation’s serious records. All advertising stops after Mara’s note. The shops have complete bilingual local pages, original SVG illustrations and no external tracking, media, orders or data collection. They are scenery, not puzzle clues.
+Local adverts can be closed, kept, folded or opened from **My ad folder**. They appear infrequently on public pages, pause during forms and never appear in the investigation’s serious records. All advertising stops after Mara’s note. The shops have complete bilingual local pages, existing licensed photographs and no external tracking, media, orders or data collection. They are scenery, not puzzle clues.
 
 Saved adverts use `stillwater-ads:v1`; sessionStorage holds per-tab cooldown and display history. Restarting the main case preserves the folder. Remove saved adverts individually in the folder.
 

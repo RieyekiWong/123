@@ -28,7 +28,8 @@ test("role filters, restrained hotel home and reopenable non-modal notice", asyn
   await page.locator("[data-case-action=sample]").click();
   await page.locator('nav a[href="#hotel"]').click();
   await expect(page.locator(".hotel-nav a")).toHaveCount(4);
-  await expect(page.locator("main img")).toHaveCount(1);
+  await expect(page.locator(".hotel-hero > img")).toHaveCount(1);
+  await expect(page.locator(".hotel-photo-strip img")).toHaveCount(3);
   await expect(page.locator("main")).not.toContainText("317");
   await link(page, "rooms", "nav");
   await expect(page.locator(".room-list article")).toHaveCount(3);

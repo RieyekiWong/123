@@ -1,0 +1,133 @@
+import { test, expect } from "@playwright/test";
+for (const entry of ["index-zh.html", "index.html"])
+  test(`${entry}: forum and careers expose only their own footer; hotel operations appear on the hotel site`, async ({
+    page,
+  }) => {
+    const errors = [];
+    page.on("pageerror", (e) => errors.push(e.message));
+    await page.goto("/" + entry);
+    for (const site of ["forum", "careers"]) {
+      if (site === "careers") await page.locator(".forum-recruit-link").click();
+      await expect(
+        page.locator(
+          'footer a[href="#staff"],footer a[href="#notes"],footer a[href="#history"],footer a[href="#guestbook"],footer a[href="#notices"],footer a[href="#gallery"],footer [data-case-action=settings],footer a[href*="classic"]',
+        ),
+      ).toHaveCount(0);
+      await expect(
+        page.locator(".hotel-nav,.hotel-brand-subtitle"),
+      ).toHaveCount(0);
+      await page.locator("footer [data-ad-action=credits]").click();
+      await expect(page.locator(".media-credit-grid article")).toHaveCount(9);
+      await expect(page).toHaveURL(new RegExp("#" + site + "$"));
+      await page.keyboard.press("Escape");
+      await expect(
+        page.locator("footer [data-ad-action=credits]"),
+      ).toBeFocused();
+    }
+    await page.locator("[data-case-action=sample]").click();
+    await expect(page.locator(".hotel-nav a")).toHaveCount(4);
+    await expect(page.locator('footer a[href="#staff"]')).toBeVisible();
+    await expect(
+      page.locator("footer [data-case-action=settings]"),
+    ).toBeVisible();
+    expect(errors).toEqual([]);
+  });
+test("all seven advertisements use local existing photographs, with source credits and three cat portraits", async ({
+  page,
+}) => {
+  await page.goto("/index-zh.html");
+  await expect(page.locator(".ad-inline img")).toBeVisible();
+  await expect
+    .poll(() =>
+      page.locator(".ad-inline img").evaluate((img) => img.naturalWidth),
+    )
+    .toBeGreaterThan(0);
+  await expect(page.locator(".ad-inline svg")).toHaveCount(0);
+  await page.locator("footer [data-ad-action=folder]").click();
+  await page.locator(".ad-directory > summary").click();
+  for (const id of [
+    "pet",
+    "cinema",
+    "repair",
+    "secondhand",
+    "print",
+    "cats",
+    "weather",
+  ]) {
+    await page.locator(`.ad-directory [data-ad-id=${id}]`).click();
+    const image = page.locator(".ad-shop-intro img");
+    await expect(image).toHaveAttribute("src", /^assets\/web\/ad-/);
+    await expect
+      .poll(() => image.evaluate((img) => img.naturalWidth))
+      .toBeGreaterThan(0);
+    await expect(
+      page.locator(".ad-mini-site > .ad-photo-credit a"),
+    ).toHaveCount(2);
+    if (id === "cats")
+      await expect(page.locator(".ad-shop-item img")).toHaveCount(3);
+    await page.locator("#ad-dialog [data-ad-action=folder]").click();
+    await page.locator(".ad-directory > summary").click();
+  }
+});
+test("hotel album has ten photographs and a reachable credit for each new source", async ({
+  page,
+}) => {
+  await page.goto("/index-zh.html#hotel");
+  await page.locator('.hotel-photo-section a[href="#gallery"]').first().click();
+  await expect(page.locator(".hotel-gallery-grid figure")).toHaveCount(10);
+  for (const image of await page.locator(".hotel-gallery-grid img").all()) {
+    await image.scrollIntoViewIfNeeded();
+    await expect
+      .poll(() => image.evaluate((img) => img.naturalWidth))
+      .toBeGreaterThan(0);
+  }
+  await page.locator('footer a[href="#credits"]').click();
+  await expect(page.locator(".credit-list article")).toHaveCount(20);
+  await expect(page.locator(".credit-list")).toContainText("Joselodos");
+  await expect(page.locator(".credit-list")).toContainText("Larry D. Moore");
+  await expect(page.locator(".credit-list")).toContainText("Basile Morin");
+});
+for (const width of [320, 375, 768, 1440])
+  test(`hotel pages and photographed ads fit ${width}px without covering page content`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.addInitScript(() => (Math.random = () => 0));
+    await page.clock.install({ time: new Date("2026-11-02T15:20:00Z") });
+    await page.clock.pauseAt(new Date("2026-11-02T15:20:01Z"));
+
+    for (const route of ["hotel", "rooms", "contact", "gallery", "history"]) {
+      await page.goto("/index-zh.html#" + route);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth + 1,
+        ),
+        route,
+      ).toBe(true);
+      await expect(page.locator(".hotel-brand-subtitle")).toBeVisible();
+    }
+    await page.goto("/index-zh.html#hotel");
+    // Install the clock before navigation so every interval is controlled.
+    await page.clock.runFor(45300);
+    await expect(page.locator("[data-active-ad] img")).toBeVisible();
+    const rect = await page.evaluate(() => {
+      const ad = document
+          .querySelector("[data-active-ad]")
+          .getBoundingClientRect(),
+        main = document.querySelector("main").getBoundingClientRect(),
+        shell = document.querySelector("#case-shell").getBoundingClientRect();
+      return {
+        adTop: ad.top,
+        adLeft: ad.left,
+        adHeight: ad.height,
+        mainRight: main.right,
+        shellBottom: shell.bottom,
+        overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      };
+    });
+    expect(rect.overflow).toBe(false);
+    if (width < 1200) {
+      expect(rect.shellBottom).toBeLessThanOrEqual(rect.adTop + 1);
+      expect(rect.adHeight).toBeLessThanOrEqual(900 * 0.28 + 1);
+    } else expect(rect.mainRight).toBeLessThanOrEqual(rect.adLeft);
+  });

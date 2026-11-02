@@ -16,11 +16,18 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
   )
     .replace("{booked}", F.bookedRoom)
     .replace("{service}", F.service);
+  const media = globalThis.StillwaterMedia;
+  const photo = (id, cls = "") => {
+    const p = media.find(id);
+    return `<img class="${cls}" src="assets/${esc(p.file)}" alt="${esc(t(...p.alt))}" width="${p.width}" height="${p.height}" loading="lazy">`;
+  };
+  const photoStrip = (ids, cls = "") =>
+    `<div class="hotel-photo-strip ${cls}">${ids.map((id) => `<figure>${a("gallery", photo(id))}<figcaption>${esc(t(...media.find(id).caption))}</figcaption></figure>`).join("")}</div>`;
   function noticeWindow() {
     return `<aside class="notice-window" aria-label="${t("历史通行公告", "Historic access notice")}"><header><span>3F ROUTE NOTICE</span><button type="button" data-case-action="dismiss-notice" aria-label="${t("关闭通行公告", "Close access notice")}">×</button></header><div><h2>${t("三楼西侧通道维修中", "West third-floor passage under repair")}</h2><p>${t("维修期间请走东侧楼梯。旧房卡如有问题，请找前台核对。", "Please use the east stairs during repairs. Bring any problems with old room keys to reception.")}</p><p class="reference">${F.notice} · ${F.transfer.slice(0, 10)}</p>${reference("notices", t("查看完整公告", "View original notice"))}</div></aside>`;
   }
   function hotel() {
-    return `<section class="hotel-hero"><img src="assets/lobby.jpg" alt="${t("酒店大堂与木质楼梯", "Hotel lobby and wooden staircase")}"><div><p class="kicker">LAKESIDE · INDEPENDENT · EST. 1987</p><h1>The Stillwater Hotel</h1><p>${t("来静水镇住一晚吧。", "A comfortable stay by the lake.")}</p>${a("reservations", t("预订查询", "Find a reservation"), "primary")}</div></section><p class="daily-notice">${t("前台通知：早餐 7:00–9:00；晚到住客请先在前台领取房卡。", "Reception: breakfast 07:00–09:00. Late arrivals should collect their room card at the desk.")}</p><div class="hotel-intro"><p>${t("我们有双人房、双床房和长住套间。房里有独立浴室，前台晚上也有人。", "Double, twin and longer-stay rooms with private bathrooms, a desk and tea facilities. Reception is staffed around the clock.")}</p>${a("rooms", t("浏览客房与设施", "Rooms & facilities"))}</div>`;
+    return `<section class="hotel-hero"><img src="assets/lobby.jpg" alt="${t("酒店大堂与木质楼梯", "Hotel lobby and wooden staircase")}"><div><p class="kicker">LAKESIDE · INDEPENDENT · EST. 1987</p><h1>The Stillwater Hotel</h1><p>${t("来静水镇住一晚吧。", "A comfortable stay by the lake.")}</p>${a("reservations", t("预订查询", "Find a reservation"), "primary")}</div></section><p class="daily-notice">${t("前台通知：早餐 7:00–9:00；晚到住客请先在前台领取房卡。", "Reception: breakfast 07:00–09:00. Late arrivals should collect their room card at the desk.")}</p><div class="hotel-intro"><p>${t("我们有双人房、双床房和长住套间。房里有独立浴室，前台晚上也有人。", "Double, twin and longer-stay rooms with private bathrooms, a desk and tea facilities. Reception is staffed around the clock.")}</p>${a("rooms", t("浏览客房与设施", "Rooms & facilities"))}</div><section class="hotel-photo-section"><header><div><p class="kicker">AROUND THE HOTEL</p><h2>${t("住在这里", "A look around")}</h2></div>${a("gallery", t("查看旅馆相册", "View our photo gallery"))}</header>${photoStrip(["hotel-dining", "hotel-garden", "hotel-dayroom"])}</section>`;
   }
   function reservations() {
     return (
@@ -77,7 +84,7 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
         )
         .join(
           "",
-        )}</div><div class="hotel-columns"><section><h2>${t("三楼房间列表", "Third-floor guest directory")}</h2><p class="small">${t("以下是三楼开放预订的房间。个别位置不对外开放。", "These third-floor rooms are available to book. Some areas are not open to guests.")}</p><ol class="room-inventory" aria-label="${t("官方房号", "Official room numbers")}">${D.inventory.map((n) => `<li>${n}</li>`).join("")}</ol>${has("C2") ? `<form id="inventory-check"><label for="inventory-room">${t("预订单上写的房号", "Room assigned on the original booking")}</label><div class="query-row"><select id="inventory-room" name="room" required><option value="">${t("选择房号", "Select the corresponding entry")}</option>${D.inventory.map((n) => `<option>${n}</option>`).join("")}</select><button>${t("查一下", "Compare record")}</button></div><div class="form-error" tabindex="-1" id="inventory-error" role="status"></div></form>${has("C3") ? reference("guestbook", t("查看同日住客留言", "Read the guest entry from that night")) : ""}` : reference("reservations", t("查旧预订单", "Find a retained booking"))}<details><summary>${t("入住服务", "Guest services")}</summary><p>${t("早餐在一层餐厅供应，时间为 7:00–9:00。可向前台申请额外床品。", "Breakfast is served in the ground-floor dining room from 07:00 to 09:00. Extra bedding is available from reception.")}</p>${reference("contact", t("前台服务卡", "Reception contact card"))}</details></section><div>${!getState().notices.dismissed ? noticeWindow() : `<aside class="notice-archive-link"><p>${t("以前的通行通知可在公告栏查看。", "Access information is retained in the notice archive.")}</p>${reference("notices", t("公告栏", "Notice archive"))}</aside>`}</div></div>`
+        )}</div><div class="hotel-columns"><section><h2>${t("三楼房间列表", "Third-floor guest directory")}</h2><p class="small">${t("以下是三楼开放预订的房间。个别位置不对外开放。", "These third-floor rooms are available to book. Some areas are not open to guests.")}</p><ol class="room-inventory" aria-label="${t("官方房号", "Official room numbers")}">${D.inventory.map((n) => `<li>${n}</li>`).join("")}</ol>${has("C2") ? `<form id="inventory-check"><label for="inventory-room">${t("预订单上写的房号", "Room assigned on the original booking")}</label><div class="query-row"><select id="inventory-room" name="room" required><option value="">${t("选择房号", "Select the corresponding entry")}</option>${D.inventory.map((n) => `<option>${n}</option>`).join("")}</select><button>${t("查一下", "Compare record")}</button></div><div class="form-error" tabindex="-1" id="inventory-error" role="status"></div></form>${has("C3") ? reference("guestbook", t("查看同日住客留言", "Read the guest entry from that night")) : ""}` : reference("reservations", t("查旧预订单", "Find a retained booking"))}<details><summary>${t("入住服务", "Guest services")}</summary><p>${t("早餐在一层餐厅供应，时间为 7:00–9:00。可向前台申请额外床品。", "Breakfast is served in the ground-floor dining room from 07:00 to 09:00. Extra bedding is available from reception.")}</p>${reference("contact", t("前台服务卡", "Reception contact card"))}</details></section><div>${!getState().notices.dismissed ? noticeWindow() : `<aside class="notice-archive-link"><p>${t("以前的通行通知可在公告栏查看。", "Access information is retained in the notice archive.")}</p>${reference("notices", t("公告栏", "Notice archive"))}</aside>`}</div></div><p class="hotel-album-link">${a("gallery", t("更多客房与环境照片", "More room and hotel photographs"))} →</p>`
     );
   }
   function guestbook() {
@@ -173,7 +180,7 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
           "An independent lakeside hotel with original woodwork and family-run hospitality.",
         ),
       ) +
-      `<img class="history-image" src="assets/lobby.jpg" alt="${t("旅馆大堂", "The hotel lobby")}"><p>${t("1987 年开业，后来增设庭院和东翼客房。档案中保留了历次房型与通行安排。", "Opened in 1987, with a courtyard and east-wing rooms added later. The archive retains changes to the guest inventory and access arrangements.")}</p>${has("C7") ? reference("closure", t("后来补入的通知", "Archived addendum: closure notice")) : reference("notices", t("前台留存公告", "Reception notice archive"))}`
+      `${photo("hotel-exterior", "history-image")}<p>${t("1987 年开业，后来增设庭院和东翼客房。档案中保留了历次房型与通行安排。", "Opened in 1987, with a courtyard and east-wing rooms added later. The archive retains changes to the guest inventory and access arrangements.")}</p>${photoStrip(["hotel-lounge", "hotel-dayroom"], "hotel-history-photos")}${has("C7") ? reference("closure", t("后来补入的通知", "Archived addendum: closure notice")) : reference("notices", t("前台留存公告", "Reception notice archive"))}`
     );
   }
   function contact() {
@@ -186,7 +193,7 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
           "Guest-service card retained from the 2006 website.",
         ),
       ) +
-      `<dl class="contact-facts"><div><dt>${t("前台", "Front desk")}</dt><dd>${t("全天值班", "Staffed around the clock")}</dd></div><div><dt>${t("早餐", "Breakfast")}</dt><dd>07:00–09:00</dd></div><div><dt>${t("客房用品", "Room supplies")}</dt><dd>${t("可提供额外毛毯与毛巾", "Extra blankets and towels available")}</dd></div></dl><p>${t("晚到请先到前台。额外的毛毯、毛巾也请在这里领取。", "This is a read-only historical contact card, not a real hotel’s telephone, email or booking service.")}</p>${reference("reservations", t("查旧预订单", "Find a retained reservation"))}${reference("guestbook", t("住客留言", "Guestbook"))}`
+      `${photoStrip(["hotel-dining", "hotel-breakfast"], "hotel-service-photos")}<dl class="contact-facts"><div><dt>${t("前台", "Front desk")}</dt><dd>${t("全天值班", "Staffed around the clock")}</dd></div><div><dt>${t("早餐", "Breakfast")}</dt><dd>07:00–09:00</dd></div><div><dt>${t("客房用品", "Room supplies")}</dt><dd>${t("可提供额外毛毯与毛巾", "Extra blankets and towels available")}</dd></div></dl><p>${t("晚到请先到前台。额外的毛毯、毛巾也请在这里领取。", "This is a read-only historical contact card, not a real hotel’s telephone, email or booking service.")}</p>${reference("reservations", t("查旧预订单", "Find a retained reservation"))}${reference("guestbook", t("住客留言", "Guestbook"))}`
     );
   }
   function notes() {
@@ -357,21 +364,53 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
       revision = getState().drafts.photoVersion === "revision";
     return `<details class="annotation-comparison"><summary>${t("照片上的登记文字", "Compare registration annotation layers (same base image)")}</summary><p>${t("这是一张走廊照片。切换按钮，查看两版登记文字，再和上表的“位置属性”一栏对照。", "The exported annotation layer changes, not the corridor itself. It corresponds to the position-type field in the revision table.")}</p><div class="photo-tabs" role="group" aria-label="${t("查看哪一版", "Choose annotation version")}"><button data-case-action="photo-version" data-version="original" aria-pressed="${!revision}">${F.draft.slice(0, 4)} ORIGINAL</button><button data-case-action="photo-version" data-version="revision" aria-pressed="${revision}">${F.closure.slice(0, 4)} REVISION</button></div><figure class="annotated-photo"><img src="assets/hallway.jpg" alt="${t("同一走廊照片，叠加两版位置标注", "The same corridor photograph with versioned position annotations")}"><figcaption>${t(...(revision ? row.revised : row.original))}</figcaption></figure></details>`;
   }
+  function gallery() {
+    return (
+      heading(
+        "PHOTO GALLERY",
+        t("旅馆相册", "Around the hotel"),
+        t(
+          "看看客房、庭院和公共区域。",
+          "A few photographs of the rooms, courtyard and shared spaces.",
+        ),
+      ) +
+      `<section class="hotel-gallery-grid">${media.photos
+        .filter((p) => p.group === "hotel")
+        .map(
+          (p) =>
+            `<figure>${photo(p.id)}<figcaption>${esc(t(...p.caption))}</figcaption></figure>`,
+        )
+        .join("")}${[
+        ["lobby.jpg", t("大堂", "Lobby")],
+        ["guestroom.jpg", t("标准双人房", "Classic double")],
+        ["twin.jpg", t("庭院双床房", "Courtyard twin")],
+        ["suite.jpg", t("长住套间", "Residence suite")],
+      ]
+        .map(
+          ([file, title]) =>
+            `<figure><img src="assets/${file}" alt="${title}" loading="lazy"><figcaption>${title}</figcaption></figure>`,
+        )
+        .join(
+          "",
+        )}</section><p class="hotel-album-link">${a("rooms", t("查看客房与设施", "Rooms & facilities"))} · ${a("contact", t("前台服务", "Reception services"))}</p>`
+    );
+  }
   function credits() {
     return (
       heading(
         "IMAGE SOURCES",
         t("图片来源", "Image sources"),
         t(
-          "实拍酒店照片仅用作虚构场景，与现实酒店、摄影师及其服务无关。档案中的服务区标注为本作品叠加的示意层，不是原照片的一部分。",
-          "Real hotel photographs are used as fictional scenery, with no connection to the real hotels, photographers or services. Service-area annotations are illustrative overlays, not part of the original photographs.",
+          "以下现成照片用于虚构酒店与商家展示，实拍场所、人物和摄影师不参与或代言剧情。图片文件未作修改，页面按版式裁切显示；档案中的服务区文字是另加的示意标注。",
+          "Existing photographs illustrate fictional hotels and shops. The real properties, people and photographers are not connected with the story. Files are unchanged; layouts crop their display. Service-area labels are separate illustrative overlays.",
         ),
       ) +
-      `<div class="credit-list">${D.photographs.map((photo) => `<article><h2>${esc(photo.file)}</h2><p>${esc(photo.title)}<br>${esc(photo.author)}</p><a href="${photo.source}" target="_blank" rel="noopener noreferrer">${t("原始来源", "Original source")} ↗</a> · <a href="${photo.license_url}" target="_blank" rel="noopener noreferrer">${esc(photo.license)} ↗</a></article>`).join("")}</div><p class="small">${t("界面借鉴早期酒店和办公网页的结构与密度，未复制真实招聘平台或酒店品牌标识。", "The interface studies the structure and density of early hotel and office websites. No real recruitment platform or hotel brand identity is copied.")}</p>`
+      `<div class="credit-list">${[...D.photographs, ...media.photos].map((photo) => `<article><h2>${esc(photo.file)}</h2><p>${esc(photo.title)}<br>${esc(photo.author)}</p><a href="${photo.source}" target="_blank" rel="noopener noreferrer">${t("原始来源", "Original source")} ↗</a> · <a href="${photo.license_url}" target="_blank" rel="noopener noreferrer">${esc(photo.license)} ↗</a></article>`).join("")}</div><p class="small">${t("酒店页面借鉴 2010 年代官网的布局，内部文件保留档案样式，未复制真实品牌标识。", "The hotel layout draws on early 2010s websites; staff files retain their archival presentation. No brand identity is copied.")}</p>`
     );
   }
   return {
     hotel,
+    gallery,
     reservations,
     rooms,
     guestbook,

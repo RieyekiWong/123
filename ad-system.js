@@ -118,20 +118,13 @@ globalThis.StillwaterAds = (() => {
       } catch {}
     };
     const item = (id) => data.find((ad) => ad.id === id);
-    const art = (kind, variant = 0) => {
-      const marks = {
-        paw: '<ellipse cx="55" cy="67" rx="23" ry="20"/><circle cx="29" cy="42" r="10"/><circle cx="48" cy="29" r="10"/><circle cx="70" cy="31" r="10"/><circle cx="87" cy="48" r="10"/>',
-        film: '<rect x="22" y="22" width="70" height="62" rx="4"/><path d="M12 36H102M12 68H102" stroke="currentColor" stroke-width="6"/><path d="M49 38L73 53L49 70" fill="#fff4c9"/>',
-        computer:
-          '<rect x="15" y="19" width="88" height="59" rx="2"/><path d="M22 27H96V68H22Z" fill="#dce7e5"/><path d="M53 78V90H70M34 93H84" stroke="currentColor" stroke-width="7"/>',
-        tv: '<rect x="14" y="30" width="91" height="57" rx="9"/><rect x="23" y="39" width="61" height="39" rx="7" fill="#e2eacb"/><path d="M46 28L30 11M66 28L83 10" stroke="currentColor" stroke-width="4"/>',
-        paper:
-          '<path d="M28 10H74L93 28V93H28Z"/><path d="M40 40H80M40 52H80M40 65H70" stroke="#fff" stroke-width="4"/>',
-        cat: `<path d="M20 70V22L46 39Q60 32 73 39L100 22V70Q99 97 60 97Q21 97 20 70"/><path d="M37 60h8m29 0h8M55 76l7 5 7-5" stroke="#fff" stroke-width="${variant === 1 ? 5 : 3}" fill="none"/>`,
-        cloud:
-          '<path d="M28 79Q5 75 18 54Q23 43 37 45Q39 22 62 25Q82 25 86 45Q111 42 111 63Q110 82 90 82H28Z"/><path d="M37 91L32 102M64 91L59 102M89 91L84 102" stroke="currentColor" stroke-width="4"/>',
-      };
-      return `<svg viewBox="0 0 120 112" class="ad-art" aria-hidden="true" focusable="false">${marks[kind] || marks.paper}</svg>`;
+    const photo = (id, usage = "card") => {
+      const p = globalThis.StillwaterMedia.find(id);
+      return `<img class="ad-photo ad-photo-${usage}" src="assets/${esc(p.file)}" alt="${esc(t(...p.alt))}" width="${p.width}" height="${p.height}" loading="${usage === "card" ? "eager" : "lazy"}">`;
+    };
+    const credit = (id) => {
+      const p = globalThis.StillwaterMedia.find(id);
+      return `<p class="ad-photo-credit"><span class="ad-photo-title">${esc(p.title)}</span><br>${t("摄影", "Photo")}: ${esc(p.author)} · <a href="${esc(p.source)}" target="_blank" rel="noopener noreferrer">${t("来源", "Source")}</a> · <a href="${esc(p.license_url)}" target="_blank" rel="noopener noreferrer">${esc(p.license)}</a></p>`;
     };
     function adjustLayout() {
       const dock = host.querySelector(".ad-dock");
@@ -168,7 +161,7 @@ globalThis.StillwaterAds = (() => {
       const ad = item(active),
         pinned = ad && persistent.pinnedIds.includes(ad.id);
       host.innerHTML = ad
-        ? `<aside class="ad-dock ad-card ad-${ad.kind}" aria-label="${t("广告", "Advertisement")}" data-active-ad="${ad.id}"><header><span>AD · ${t("广告", "ADVERTISEMENT")}</span><div><button data-ad-action="pin" data-ad-id="${ad.id}" ${pinned ? "disabled" : ""}>${pinned ? t("已留着", "Saved") : t("留着", "Keep")}</button>${pinned ? `<button data-ad-action="collapse" data-ad-id="${ad.id}">${t("收起", "Fold")}</button>` : ""}<button data-ad-action="close" data-ad-id="${ad.id}" aria-label="${t("关闭广告", "Close advertisement")}">×</button></div></header><div class="ad-card-body">${art(ad.kind)}<div><h2>${esc(t(...ad.headline))}</h2><p>${esc(t(...ad.copy))}</p><p class="ad-shop-name">${esc(t(...ad.name))}</p><button data-ad-action="detail" data-ad-id="${ad.id}">${esc(t(...ad.cta))} →</button></div></div></aside>`
+        ? `<aside class="ad-dock ad-card ad-${ad.kind}" aria-label="${t("广告", "Advertisement")}" data-active-ad="${ad.id}"><header><span>AD · ${t("广告", "ADVERTISEMENT")}</span><div><button data-ad-action="pin" data-ad-id="${ad.id}" ${pinned ? "disabled" : ""}>${pinned ? t("已留着", "Saved") : t("留着", "Keep")}</button>${pinned ? `<button data-ad-action="collapse" data-ad-id="${ad.id}">${t("收起", "Fold")}</button>` : ""}<button data-ad-action="close" data-ad-id="${ad.id}" aria-label="${t("关闭广告", "Close advertisement")}">×</button></div></header><div class="ad-card-body">${photo(ad.imageId)}<div><h2>${esc(t(...ad.headline))}</h2><p>${esc(t(...ad.copy))}</p><p class="ad-shop-name">${esc(t(...ad.name))}</p><button data-ad-action="detail" data-ad-id="${ad.id}">${esc(t(...ad.cta))} →</button></div></div></aside>`
         : persistent.pinnedIds.length
           ? `<aside class="ad-dock ad-saved-tab"><button data-ad-action="folder">${t("我留下的广告", "Saved ads")} · ${persistent.pinnedIds.length}</button></aside>`
           : "";
@@ -192,7 +185,7 @@ globalThis.StillwaterAds = (() => {
       openDialog(
         frame(
           t(...ad.name),
-          `<article class="ad-mini-site ad-${ad.kind}"><p class="ad-label">AD · ${t("虚构店铺", "FICTIONAL SHOP")}</p><div class="ad-shop-intro">${art(ad.kind)}<div><h3>${esc(t(...ad.headline))}</h3><p>${esc(t(...ad.intro))}</p></div></div><div class="ad-shop-items">${ad.items.map(([title, text], index) => `<section class="ad-shop-item">${ad.kind === "cat" ? art("cat", index) : ""}<h4>${esc(t(...title))}</h4><p>${esc(t(...text))}</p></section>`).join("")}</div><p class="ad-fineprint">${esc(t(...ad.note))}</p><div class="ad-detail-actions"><button data-ad-action="pin" data-ad-id="${id}" ${persistent.pinnedIds.includes(id) ? "disabled" : ""}>${persistent.pinnedIds.includes(id) ? t("已放进广告夹", "Saved") : t("留到广告夹", "Keep this ad")}</button><button data-ad-action="folder">${t("返回广告夹", "Back to the ad folder")}</button></div><p class="ad-feedback" role="status"></p></article>`,
+          `<article class="ad-mini-site ad-${ad.kind}"><p class="ad-label">AD · ${t("虚构店铺", "FICTIONAL SHOP")}</p><div class="ad-shop-intro">${photo(ad.imageId, "detail")}<div><h3>${esc(t(...ad.headline))}</h3><p>${esc(t(...ad.intro))}</p></div></div><div class="ad-shop-items">${ad.items.map(([title, text], index) => `<section class="ad-shop-item">${ad.galleryIds ? photo(ad.galleryIds[index], "gallery") : ""}<h4>${esc(t(...title))}</h4><p>${esc(t(...text))}</p></section>`).join("")}</div>${credit(ad.imageId)}${ad.galleryIds ? `<details class="ad-extra-credits"><summary>${t("作品照片署名", "Portrait photo credits")}</summary>${ad.galleryIds.map(credit).join("")}</details>` : ""}<p class="ad-fineprint">${esc(t(...ad.note))}</p><div class="ad-detail-actions"><button data-ad-action="pin" data-ad-id="${id}" ${persistent.pinnedIds.includes(id) ? "disabled" : ""}>${persistent.pinnedIds.includes(id) ? t("已放进广告夹", "Saved") : t("留到广告夹", "Keep this ad")}</button><button data-ad-action="folder">${t("返回广告夹", "Back to the ad folder")}</button></div><p class="ad-feedback" role="status"></p></article>`,
         ),
         trigger,
       );
@@ -217,6 +210,18 @@ globalThis.StillwaterAds = (() => {
         trigger,
       );
     }
+    function openCredits(trigger) {
+      const photos = globalThis.StillwaterMedia.photos.filter(
+        (p) => p.group === "ad",
+      );
+      openDialog(
+        frame(
+          t("图片鸣谢", "Photo acknowledgements"),
+          `<p>${t("以下实拍照片来自 Wikimedia Commons，用于虚构商家展示。照片中的场所、动物及摄影师不代言这些商家。图片文件未作修改，页面按版式裁切显示。", "Existing photographs from Wikimedia Commons illustrate fictional shops. The depicted places, animals and photographers do not endorse them. Files are unchanged; layouts crop their display.")}</p><div class="media-credit-grid">${photos.map((p) => `<article><img src="assets/${esc(p.file)}" alt="${esc(t(...p.alt))}" width="140" height="95" loading="lazy"><h3>${esc(t(...p.caption))}</h3>${credit(p.id)}</article>`).join("")}</div>`,
+        ),
+        trigger,
+      );
+    }
     function inline() {
       document.querySelectorAll("[data-inline-ad]").forEach((el) => {
         if (getState().evidence.includes("C9")) {
@@ -224,7 +229,7 @@ globalThis.StillwaterAds = (() => {
           return;
         }
         const ad = data[0];
-        el.innerHTML = `<aside class="ad-inline ad-paw"><p class="ad-label">AD · ${t("广告", "ADVERTISEMENT")}</p>${art("paw")}<h3>${esc(t(...ad.headline))}</h3><p>${esc(t(...ad.copy))}</p><button data-ad-action="detail" data-ad-id="${ad.id}">${esc(t(...ad.cta))} →</button><p class="ad-shop-name">${esc(t(...ad.name))}</p></aside>`;
+        el.innerHTML = `<aside class="ad-inline ad-paw"><p class="ad-label">AD · ${t("广告", "ADVERTISEMENT")}</p>${photo(ad.imageId, "inline")}<h3>${esc(t(...ad.headline))}</h3><p>${esc(t(...ad.copy))}</p><button data-ad-action="detail" data-ad-id="${ad.id}">${esc(t(...ad.cta))} →</button><p class="ad-shop-name">${esc(t(...ad.name))}</p></aside>`;
       });
     }
     function navigate() {
@@ -252,6 +257,7 @@ globalThis.StillwaterAds = (() => {
         id = button.dataset.adId;
       if (action === "detail") openDetail(id, button);
       if (action === "folder") openFolder(button);
+      if (action === "credits") openCredits(button);
       if (action === "dialog-close") dialog.close();
       if (action === "pin" && ids.has(id)) {
         if (!persistent.pinnedIds.includes(id)) persistent.pinnedIds.push(id);

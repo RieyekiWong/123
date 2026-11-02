@@ -1,0 +1,531 @@
+/* Public hotel skin only. Forum, careers, staff records and classic keep their own styles. */
+body[data-site="hotel"] {
+  --blue: #6f583a;
+  --navy: #304d49;
+  --paper: #f9f6ee;
+  --muted: #746c60;
+  --ink: #3f392f;
+  color: var(--ink);
+  background: #e7e1d5;
+  font:
+    14px/1.85 Arial,
+    "Microsoft YaHei",
+    sans-serif;
+  background-image: linear-gradient(#f5f1e8, #e4ddce 900px);
+}
+body[data-site="hotel"] .site-header,
+body[data-site="hotel"] .hotel-nav,
+body[data-site="hotel"] main,
+body[data-site="hotel"] footer {
+  max-width: 1100px;
+  margin-inline: auto;
+  border-inline: 1px solid #d1c5b2;
+}
+body[data-site="hotel"] .site-header {
+  min-height: 125px;
+  padding: 25px 38px;
+  background: #fdfbf5;
+  border-top: 4px solid #a78a5e;
+  border-bottom: 1px solid #d9cebc;
+  box-shadow: 0 0 18px #5a473812;
+}
+body[data-site="hotel"] .site-brand {
+  font:
+    34px/1.2 Georgia,
+    "Songti SC",
+    "SimSun",
+    serif;
+  color: #3f4238;
+  letter-spacing: 0.4px;
+  min-width: 0;
+}
+.hotel-brand-title {
+  display: block;
+}
+.hotel-brand-subtitle {
+  display: block;
+  font:
+    10px/1.6 Arial,
+    sans-serif;
+  letter-spacing: 2.4px;
+  color: #a08459;
+  margin-top: 10px;
+}
+body[data-site="hotel"] .site-header > a:last-child {
+  align-self: flex-start;
+  margin-top: 5px;
+  color: #857255;
+  font-size: 11px;
+}
+body[data-site="hotel"] .hotel-nav {
+  padding: 0 38px;
+  background: linear-gradient(#f0e9da, #e4dbc8);
+  border-block: 1px solid #d0c0a5;
+  box-shadow: inset 0 1px #fff9;
+  min-height: 46px;
+  align-items: stretch;
+}
+body[data-site="hotel"] .hotel-nav a {
+  padding: 12px 25px;
+  border-right: 1px solid #d2c4af;
+  color: #554b3d;
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 1.8;
+  text-transform: uppercase;
+}
+body[data-site="hotel"] .hotel-nav a:first-child {
+  padding-left: 0;
+  padding-right: 26px;
+}
+.hotel-nav a[aria-current="page"] {
+  text-decoration: none !important;
+  color: #7b5e32 !important;
+  font-weight: 600;
+}
+.hotel-nav a:hover {
+  color: #967644 !important;
+  text-decoration: underline;
+}
+body[data-site="hotel"] main {
+  padding: 34px 38px 65px;
+  background: #f9f6ee;
+  box-shadow: 0 9px 18px #5a473812;
+}
+body[data-site="hotel"] h1,
+body[data-site="hotel"] h2 {
+  font-family: Georgia, "Songti SC", "SimSun", serif;
+  font-weight: 400;
+  color: #403b32;
+}
+body[data-site="hotel"] .page-heading {
+  border-color: #d6cbb8;
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+body[data-site="hotel"] .page-heading h1 {
+  font-size: 33px;
+}
+.page-heading .kicker {
+  font-family: Arial, sans-serif;
+}
+body[data-site="hotel"] .primary {
+  border: 1px solid #2c4642;
+  background: linear-gradient(#45645e, #2e4a45);
+  color: #fffaf0;
+  box-shadow:
+    inset 0 1px #ffffff38,
+    0 1px 2px #0002;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 12px 22px;
+  border-radius: 2px;
+}
+body[data-site="hotel"] .hotel-hero {
+  display: block;
+  position: relative;
+  border: 6px solid #fffdf8;
+  outline: 1px solid #c7bda9;
+  background: #ddd;
+  box-shadow: 0 2px 6px #433c2d20;
+}
+body[data-site="hotel"] .hotel-hero > img {
+  display: block;
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: center 55%;
+}
+body[data-site="hotel"] .hotel-hero > div {
+  position: absolute;
+  right: 24px;
+  bottom: 25px;
+  width: 365px;
+  max-width: calc(100% - 48px);
+  padding: 24px 29px;
+  background: #fcf8efef;
+  border: 1px solid #e2d7c4;
+  box-shadow: 0 2px 9px #251e1326;
+}
+body[data-site="hotel"] .hotel-hero h1 {
+  font-size: 34px;
+  line-height: 1.25;
+  margin: 9px 0 12px;
+}
+.hotel-hero .kicker {
+  font-size: 9px;
+  letter-spacing: 1.4px;
+  color: #98794e;
+  margin: 0;
+}
+.hotel-hero p:not(.kicker) {
+  font-size: 14px;
+  margin: 0 0 18px;
+}
+body[data-site="hotel"] .daily-notice {
+  background: #eee8d9;
+  border: 1px solid #d9ccb6;
+  padding: 11px 17px;
+  font-size: 11px;
+  margin: 23px 0 25px;
+  color: #85745c;
+}
+body[data-site="hotel"] .hotel-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #d5c7b0;
+}
+.hotel-intro p {
+  max-width: 61ch;
+  margin: 0;
+  font-size: 13px;
+}
+.hotel-intro > a {
+  white-space: nowrap;
+  font-size: 12px;
+}
+.hotel-photo-section {
+  padding-top: 33px;
+}
+.hotel-photo-section > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.hotel-photo-section .kicker {
+  margin: 0;
+  font-size: 9px;
+  color: #a28556;
+}
+.hotel-photo-section h2 {
+  margin: 5px 0 0;
+  font-size: 25px;
+}
+.hotel-photo-section > header > a {
+  font-size: 11px;
+}
+.hotel-photo-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.hotel-photo-strip figure {
+  margin: 0;
+  border: 1px solid #cfc2ab;
+  background: #fffcf6;
+  padding: 5px;
+  box-shadow: 0 1px 2px #6d584114;
+}
+.hotel-photo-strip img {
+  display: block;
+  width: 100%;
+  height: 168px;
+  object-fit: cover;
+}
+.hotel-photo-strip figcaption {
+  font-size: 12px;
+  color: #7d6c52;
+  text-align: center;
+  padding: 9px 4px 4px;
+  letter-spacing: 0.5px;
+}
+.hotel-photo-strip a {
+  display: block;
+}
+.hotel-service-photos,
+.hotel-history-photos {
+  grid-template-columns: 1fr 1fr;
+  margin: 26px 0 33px;
+}
+.hotel-service-photos img {
+  height: 245px;
+}
+.hotel-history-photos img {
+  height: 230px;
+}
+.hotel-album-link {
+  border-top: 1px solid #d5c7b0;
+  padding-top: 18px;
+  margin: 30px 0 0;
+  font-size: 12px;
+}
+.hotel-gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 27px;
+}
+.hotel-gallery-grid figure {
+  margin: 0;
+  padding: 7px;
+  border: 1px solid #cabb9f;
+  background: #fffdf7;
+  box-shadow: 0 1px 3px #6a55311a;
+}
+.hotel-gallery-grid img {
+  display: block;
+  width: 100%;
+  height: 265px;
+  object-fit: cover;
+}
+.hotel-gallery-grid figcaption {
+  padding: 12px 10px 5px;
+  font:
+    15px/1.7 Georgia,
+    "SimSun",
+    serif;
+  color: #726146;
+}
+body[data-site="hotel"] .room-list {
+  gap: 22px;
+}
+body[data-site="hotel"] .room-list article {
+  border-color: #cbbda5;
+  background: #fffdf7;
+  box-shadow: 0 2px 3px #5c482717;
+}
+body[data-site="hotel"] .room-list img {
+  height: 202px;
+  border: 5px solid #fffdf7;
+}
+body[data-site="hotel"] .room-list h2 {
+  font-size: 20px;
+  margin-top: 12px;
+}
+body[data-site="hotel"] .room-list p {
+  font-size: 12px;
+}
+body[data-site="hotel"] .hotel-columns {
+  margin-top: 35px;
+}
+body[data-site="hotel"] .hotel-columns h2 {
+  font-size: 23px;
+}
+body[data-site="hotel"] .room-inventory {
+  border-color: #cabb9f;
+}
+body[data-site="hotel"] .room-inventory li {
+  background: #fffdf6;
+  border-color: #cabb9f;
+  color: #5b5243;
+}
+body[data-site="hotel"] input,
+body[data-site="hotel"] select {
+  border-color: #bfb098;
+  background: linear-gradient(#fff, #faf8f1);
+  border-radius: 1px;
+}
+body[data-site="hotel"] form button:not(.primary) {
+  border-color: #b6a180;
+  color: #70593a;
+  background: linear-gradient(#fffcf4, #ece3d1);
+  box-shadow: inset 0 1px #fff;
+  border-radius: 2px;
+}
+body[data-site="hotel"] .document,
+body[data-site="hotel"] .guest-message {
+  background: #fffcf5;
+  border-color: #cec0a9;
+}
+body[data-site="hotel"] th {
+  background: #eee7d8;
+  color: #776b55;
+}
+body[data-site="hotel"] th,
+body[data-site="hotel"] td {
+  border-color: #cbbfae;
+}
+body[data-site="hotel"] .source-link {
+  font-size: 12px;
+}
+body[data-site="hotel"] .history-image {
+  width: 100%;
+  max-width: none;
+  height: 365px;
+  border: 6px solid #fffcf5;
+  outline: 1px solid #d1c4af;
+  object-position: center 45%;
+}
+body[data-site="hotel"] .contact-facts {
+  background: #fffdf7;
+  padding: 0 23px;
+  border: 1px solid #cfc1a8;
+}
+.contact-facts > div {
+  max-width: none;
+}
+body[data-site="hotel"] .contact-facts dt {
+  font-size: 13px;
+  color: #88704b;
+}
+body[data-site="hotel"] .contact-facts dd {
+  font-size: 13px;
+  color: #5d584d;
+}
+body[data-site="hotel"] footer {
+  border-top: 4px solid #ac9266;
+  background: #304744;
+  color: #e4dfd0;
+  padding: 29px 38px 38px;
+  box-shadow: 0 9px 15px #55462a1f;
+}
+body[data-site="hotel"] footer p {
+  color: #bfc9c2;
+}
+body[data-site="hotel"] footer a,
+body[data-site="hotel"] footer .footer-settings {
+  color: #e6dfc9;
+}
+body[data-site="hotel"] footer a {
+  margin-right: 7px;
+}
+@media (max-width: 760px) {
+  body[data-site="hotel"] .site-header {
+    padding: 22px 20px;
+    min-height: 105px;
+  }
+  body[data-site="hotel"] .site-brand {
+    font-size: 26px;
+  }
+  .hotel-brand-subtitle {
+    font-size: 8px;
+    letter-spacing: 1.7px;
+  }
+  body[data-site="hotel"] .hotel-nav {
+    padding-inline: 20px !important;
+  }
+  body[data-site="hotel"] .hotel-nav a {
+    font-size: 11px;
+    letter-spacing: 0.2px;
+    padding: 11px 16px;
+  }
+  body[data-site="hotel"] main {
+    padding: 25px 20px 45px;
+  }
+  body[data-site="hotel"] .hotel-hero > img {
+    height: 340px;
+    object-position: 35% center;
+  }
+  body[data-site="hotel"] .hotel-hero > div {
+    right: 13px;
+    bottom: 14px;
+    padding: 18px 21px;
+    width: 315px;
+    max-width: calc(100% - 26px);
+  }
+  body[data-site="hotel"] .hotel-hero h1 {
+    font-size: 28px;
+  }
+  .hotel-hero .kicker {
+    font-size: 8px;
+  }
+  .hotel-intro {
+    align-items: flex-start !important;
+    flex-direction: column;
+    gap: 14px !important;
+  }
+  .hotel-photo-strip {
+    gap: 12px;
+  }
+  .hotel-photo-strip img {
+    height: 125px;
+  }
+  .hotel-photo-strip figcaption {
+    font-size: 11px;
+  }
+  .hotel-photo-section > header {
+    align-items: flex-end;
+  }
+  .hotel-photo-section h2 {
+    font-size: 23px;
+  }
+  .hotel-service-photos img,
+  .hotel-history-photos img {
+    height: 190px;
+  }
+  .hotel-gallery-grid {
+    gap: 15px;
+  }
+  .hotel-gallery-grid img {
+    height: 200px;
+  }
+  body[data-site="hotel"] .room-list img {
+    height: 170px;
+  }
+  body[data-site="hotel"] .history-image {
+    height: 260px;
+  }
+  body[data-site="hotel"] footer {
+    padding: 25px 20px 32px;
+  }
+}
+@media (max-width: 480px) {
+  body[data-site="hotel"] .site-brand {
+    font-size: 23px;
+  }
+  body[data-site="hotel"] .site-header {
+    gap: 8px;
+  }
+  .hotel-brand-subtitle {
+    font-size: 7px;
+    letter-spacing: 1.1px;
+  }
+  body[data-site="hotel"] .site-header > a:last-child {
+    font-size: 10px;
+  }
+  body[data-site="hotel"] .hotel-nav a {
+    padding-inline: 10px;
+    font-size: 10px;
+  }
+  body[data-site="hotel"] .hotel-nav a:first-child {
+    padding-right: 15px;
+  }
+  body[data-site="hotel"] main {
+    padding-inline: 17px;
+  }
+  body[data-site="hotel"] .hotel-hero > img {
+    height: 365px;
+  }
+  body[data-site="hotel"] .hotel-hero > div {
+    padding: 17px 19px;
+  }
+  .hotel-hero p:not(.kicker) {
+    font-size: 12px;
+  }
+  .hotel-photo-strip {
+    grid-template-columns: 1fr;
+  }
+  .hotel-photo-strip img {
+    height: 190px;
+  }
+  .hotel-service-photos,
+  .hotel-history-photos,
+  .hotel-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  .hotel-gallery-grid img {
+    height: 220px;
+  }
+  .hotel-photo-section > header > a {
+    font-size: 10px;
+    max-width: 92px;
+    text-align: right;
+  }
+  body[data-site="hotel"] .page-heading h1 {
+    font-size: 28px;
+  }
+  body[data-site="hotel"] .room-list article {
+    grid-template-columns: 42% 58%;
+  }
+  body[data-site="hotel"] .room-list img {
+    height: 165px;
+  }
+  .hotel-intro p {
+    font-size: 12px;
+  }
+}

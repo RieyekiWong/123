@@ -1,7 +1,8 @@
-/* All shops, services, posters and illustrations are fictional local scenery. */
+/* Shop copy and posters are fictional; photographs are existing licensed works. */
 globalThis.StillwaterAdData = Object.freeze([
   {
     id: "pet",
+    imageId: "ad-dog",
     kind: "paw",
     name: ["旺旺动物门诊", "Wag & Sigh Pet Clinic"],
     headline: ["狗狗最近怎么老叹气？", "Has your dog been sighing lately?"],
@@ -9,8 +10,8 @@ globalThis.StillwaterAdData = Object.freeze([
     tag: ["社区宠物护理", "Neighbourhood pet care"],
     cta: ["看看诊所", "Meet the clinic"],
     intro: [
-      "给小镇宠物留的一间小门诊。接待处的狗爪印是装饰，不是顾客签名。",
-      "A little neighbourhood clinic for pets. The paw prints at reception are decoration, not client signatures.",
+      "给小镇宠物留的一间小门诊。候诊区备了水和旧毛巾，前台的笔总是被绳子拴着。",
+      "A little neighbourhood clinic for pets. Water and old towels in the waiting area; the pen at reception is always tied to a string.",
     ],
     items: [
       [
@@ -35,6 +36,7 @@ globalThis.StillwaterAdData = Object.freeze([
   },
   {
     id: "cinema",
+    imageId: "ad-cinema",
     kind: "film",
     name: ["红沙发电影屋", "Red Sofa Picture House"],
     headline: ["今晚看什么？", "What’s on tonight?"],
@@ -78,6 +80,7 @@ globalThis.StillwaterAdData = Object.freeze([
   },
   {
     id: "repair",
+    imageId: "ad-computer",
     kind: "computer",
     name: ["老何电脑维修", "Mr Ho’s Computer Repairs"],
     headline: ["电脑又卡了？", "Computer stuck again?"],
@@ -121,6 +124,7 @@ globalThis.StillwaterAdData = Object.freeze([
   },
   {
     id: "secondhand",
+    imageId: "ad-records",
     kind: "tv",
     name: ["小镇二手货", "Smalltown Secondhand"],
     headline: ["还能用，就别扔！", "Still works? Keep it going!"],
@@ -164,6 +168,7 @@ globalThis.StillwaterAdData = Object.freeze([
   },
   {
     id: "print",
+    imageId: "ad-print",
     kind: "paper",
     name: ["明天再印复印店", "Print It Tomorrow"],
     headline: ["论文今晚交？", "Paper due tonight?"],
@@ -204,6 +209,8 @@ globalThis.StillwaterAdData = Object.freeze([
   },
   {
     id: "cats",
+    imageId: "ad-cat",
+    galleryIds: ["ad-cat-tabby", "ad-cat", "ad-cat-snow"],
     kind: "cat",
     name: ["咕咕猫咪照相馆", "Purr & Pose Studio"],
     headline: ["把猫拍得像猫。", "Cats, looking like cats."],
@@ -214,8 +221,8 @@ globalThis.StillwaterAdData = Object.freeze([
     tag: ["猫的想法，优先考虑", "The cat has final approval."],
     cta: ["看看作品", "View the portraits"],
     intro: [
-      "本店展示的是手绘头像。猫不肯坐好时，就画它站着的样子。",
-      "Hand-drawn portraits on display. If the cat refuses to sit, we draw it standing.",
+      "看看猫的不同表情。至于肯不肯配合，要看它当时的心情。",
+      "A few feline expressions. Cooperation depends entirely on the cat’s mood.",
     ],
     items: [
       [
@@ -241,12 +248,13 @@ globalThis.StillwaterAdData = Object.freeze([
       ],
     ],
     note: [
-      "原创插画展示，不索取照片或个人文件。",
-      "Original illustrated portraits. No photos or personal files requested.",
+      "实拍照片用于虚构店铺展示，不索取照片或个人文件。",
+      "Licensed photographs illustrate this fictional shop. No photos or personal files requested.",
     ],
   },
   {
     id: "weather",
+    imageId: "ad-clouds",
     kind: "cloud",
     name: ["一周天气小报", "The Weekly Maybe"],
     headline: ["明天可能会下雨。", "It might rain tomorrow."],

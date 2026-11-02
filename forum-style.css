@@ -312,3 +312,23 @@ body[data-site="forum"] footer {
     display: none;
   }
 }
+/* Community and recruitment footers do not expose hotel operations. */
+.footer-site-name {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-top: 0;
+}
+.forum-footer .footer-links,
+.careers-footer .footer-links {
+  line-height: 2.3;
+}
+.forum-footer .footer-links a,
+.careers-footer .footer-links a {
+  margin-right: 6px;
+}
+.forum-footer > p:last-child,
+.careers-footer > p:last-child {
+  margin-bottom: 0;
+  font-size: 10px;
+}

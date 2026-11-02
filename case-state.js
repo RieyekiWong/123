@@ -6,6 +6,7 @@ globalThis.StillwaterCaseState = (() => {
     forum: null,
     careers: null,
     hotel: null,
+    gallery: null,
     rooms: null,
     reservations: null,
     guestbook: null,

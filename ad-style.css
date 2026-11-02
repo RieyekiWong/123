@@ -416,3 +416,132 @@ body.ad-rail.ad-expanded {
     min-height: 140px;
   }
 }
+/* Existing licensed photographs replace the illustrated ad marks. */
+.ad-card-body {
+  display: block;
+  padding: 0;
+}
+.ad-card-body > div {
+  padding: 13px 15px;
+}
+.ad-photo {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 125px;
+  background: #e9e3d6;
+  border: 0;
+}
+.ad-photo-card {
+  height: 116px;
+}
+.ad-photo-inline {
+  height: 145px;
+  margin: 10px 0 16px;
+}
+.ad-inline .ad-photo {
+  max-width: none;
+}
+.ad-shop-intro > .ad-photo {
+  width: 44%;
+  height: 210px;
+  flex: 0 0 44%;
+  border: 4px solid #fff9;
+  box-shadow: 0 1px 3px #0002;
+}
+.ad-photo-gallery {
+  height: 160px;
+  margin-bottom: 12px;
+}
+.ad-photo-credit {
+  font:
+    10px/1.8 Arial,
+    "Microsoft YaHei",
+    sans-serif !important;
+  color: #6d716e !important;
+  margin: 15px 0 5px;
+  overflow-wrap: anywhere;
+}
+.ad-photo-credit a {
+  color: inherit;
+}
+.ad-extra-credits {
+  margin-top: 12px;
+  padding-top: 8px;
+}
+.ad-extra-credits summary {
+  font-size: 11px;
+}
+.media-credit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 20px;
+}
+.media-credit-grid article {
+  padding: 12px;
+  border: 1px solid #c1cbd2;
+  background: #fff;
+}
+.media-credit-grid h3 {
+  font-size: 13px;
+  margin: 10px 0;
+}
+.media-credit-grid img {
+  width: 100%;
+  height: 125px;
+  object-fit: cover;
+}
+.ad-directory button {
+  white-space: normal;
+  text-align: left;
+}
+@media (max-width: 1199px) {
+  .ad-card-body {
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 11px;
+    padding: 10px 12px;
+  }
+  .ad-card-body > div {
+    padding: 0;
+  }
+  .ad-photo-card {
+    height: 115px;
+    align-self: stretch;
+    max-height: 18vh;
+  }
+  .ad-card-body h2 {
+    font-size: 17px;
+  }
+  .ad-shop-intro {
+    align-items: flex-start;
+  }
+  .ad-shop-intro > .ad-photo {
+    width: 40%;
+    height: 150px;
+    flex-basis: 40%;
+  }
+  .media-credit-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 380px) {
+  .ad-card-body {
+    grid-template-columns: 82px minmax(0, 1fr);
+    gap: 9px;
+  }
+  .ad-card-body h2 {
+    font-size: 16px;
+  }
+  .ad-card-body p {
+    font-size: 10px;
+  }
+  .ad-card-body button {
+    font-size: 10px;
+    min-height: 29px;
+  }
+}
+.ad-photo-card[src*="ad-dog"] {
+  object-position: center 28%;
+}

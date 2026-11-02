@@ -20,6 +20,8 @@ for (const path of [
   "ad-system.js",
   "ad-style.css",
   "case-style.css",
+  "site-media.js",
+  "hotel-2010.css",
   "locale-zh.js",
   "career.js",
   "career.css",

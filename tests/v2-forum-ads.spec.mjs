@@ -133,7 +133,7 @@ test("ads wait, pause for typing and dialogs, keep focus and do not change case 
   await page.clock.runFor(180000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
   expect((await adSession(page)).remaining).toBe(45000);
-  await page.locator("[data-case-action=settings]").click();
+  await page.locator("footer [data-ad-action=folder]").click();
   await page.clock.runFor(180000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
   await page.keyboard.press("Escape");
@@ -141,7 +141,7 @@ test("ads wait, pause for typing and dialogs, keep focus and do not change case 
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
   await page.clock.runFor(2000);
   await expect(page.locator("[data-active-ad=pet]")).toBeVisible();
-  await expect(page.locator("[data-case-action=settings]")).toBeFocused();
+  await expect(page.locator("footer [data-ad-action=folder]")).toBeFocused();
   expect(
     await page.evaluate(() => localStorage.getItem("stillwater-case:v2")),
   ).toBeNull();
@@ -159,6 +159,7 @@ test("forum has no early floating ad, fixed banner is separate and the session c
   await page.locator("#ad-host [data-ad-action=close]").click();
   await page.clock.runFor(200000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
+  await page.locator("[data-case-action=sample]").click();
   await link(page, "history", "footer");
   await page.clock.runFor(6000);
   await expect(page.locator("[data-active-ad=cinema]")).toBeVisible();
@@ -222,6 +223,7 @@ test("keep, fold, reload, reopen, remove and Escape work; main reset leaves the 
   );
   await page.keyboard.press("Escape");
   await expect(page.locator("footer [data-ad-action=folder]")).toBeFocused();
+  await page.locator("[data-case-action=sample]").click();
   await page.locator("[data-case-action=settings]").click();
   await page.locator("#case-settings details summary").click();
   await page.locator("[data-comfort=reset-prompt]").click();

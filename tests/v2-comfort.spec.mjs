@@ -11,7 +11,7 @@ test("sound is opt-in, settings are keyboard-accessible and reset preserves the 
       '{"name":"Classic visitor","chapter":2}',
     ),
   );
-  await page.goto("/index-zh.html#careers");
+  await page.goto("/index-zh.html#hotel");
   await expect(page.locator("iframe")).toHaveCount(0);
   await page.locator("[data-case-action=settings]").click();
   await expect(page.locator("[data-comfort=sound]")).toHaveAttribute(
@@ -27,6 +27,7 @@ test("sound is opt-in, settings are keyboard-accessible and reset preserves the 
   await expect(page.locator("body")).toHaveClass(/reduced-motion/);
   await page.keyboard.press("Escape");
   await expect(page.locator("[data-case-action=settings]")).toBeFocused();
+  await link(page, "careers", "footer");
   await page.locator("[data-case-action=sample]").click();
   await page.reload();
   expect((await state(page)).preferences.sound).toBe(false);
