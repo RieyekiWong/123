@@ -183,7 +183,7 @@ test("the built static distribution plays the opening and enters the hotel with 
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));
   try {
-    await page.goto(`http://127.0.0.1:${server.address().port}/index-zh.html`);
+    await page.goto(`http://127.0.0.1:${server.address().port}/classic-zh.html`);
     await invitation(page);
     await page.locator('[data-career="enter"]').click();
     await page.locator('#applicant-banner [data-page="reservations"]').click();

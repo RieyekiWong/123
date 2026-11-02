@@ -57,6 +57,10 @@ async function begin(page) {
   await expect(page.locator(".lobby-record-status")).toContainText(
     "等着你回来",
   );
+  // The track label is also shown before the asynchronous player is ready.
+  await expect
+    .poll(() => page.evaluate(() => window.__ytPlayers.length))
+    .toBeGreaterThan(0);
 }
 async function ask(page, key) {
   await page.locator(`[data-support-keyword="${key}"]`).click();

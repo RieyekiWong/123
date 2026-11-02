@@ -153,6 +153,7 @@ test("a blocked recording offers subtitles; pause, close and reload never count 
 for (const width of [320, 390, 768, 1320])
   test(`the warning email fits ${width}px and does not transmit mail`, async ({
     page,
+    baseURL,
   }) => {
     await page.setViewportSize({ width, height: 900 });
     await seed(page, {
@@ -161,7 +162,7 @@ for (const width of [320, 390, 768, 1320])
     });
     const requests = [];
     page.on("request", (request) => {
-      if (!request.url().startsWith("http://127.0.0.1:3107"))
+      if (new URL(request.url()).origin !== new URL(baseURL).origin)
         requests.push(request.url());
     });
     await open(page);

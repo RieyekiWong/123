@@ -7,7 +7,7 @@
     "dev": "node server.mjs",
     "start": "node server.mjs",
     "build": "node build.mjs",
-    "test": "node --test tests/server.test.mjs",
+    "test": "node --test tests/server.test.mjs tests/v2-state.test.mjs",
     "test:e2e": "playwright test"
   },
   "engines": {

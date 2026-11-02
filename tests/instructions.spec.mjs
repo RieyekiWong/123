@@ -126,10 +126,11 @@ test("sound and scare switches use the real hotel settings and audio remains off
 });
 test("credit details identify all five real photographs and licences without loading external content", async ({
   page,
+  baseURL,
 }) => {
   const external = [];
   page.on("request", (r) => {
-    if (!r.url().startsWith("http://127.0.0.1:3107")) external.push(r.url());
+    if (new URL(r.url()).origin !== new URL(baseURL).origin) external.push(r.url());
   });
   await page.goto("/index-zh.html?instructions=1");
   await page.locator(".instructions-credits summary").click();

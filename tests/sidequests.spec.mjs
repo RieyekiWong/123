@@ -178,15 +178,32 @@ for (const setting of ["off", "reduced", "on"])
     await page.addInitScript(() => (Math.random = () => 0.01));
     if (setting === "reduced")
       await page.emulateMedia({ reducedMotion: "reduce" });
+    if (setting === "on") {
+      await page.clock.install({ time: new Date("2026-10-29T02:00:00Z") });
+      await page.clock.pauseAt(new Date("2026-10-29T02:00:01Z"));
+    }
     await page.goto("/#surveillance");
     if (setting === "on") {
+      // Observe the actual 650ms encounter with a controlled clock, rather
+      // than relying on a real-time polling interval under CI load.
+      await page.evaluate(() =>
+        Promise.all(
+          ["porter", "veil", "reflection"].map((name) => {
+            const image = new Image();
+            image.src = `assets/scare-${name}.png`;
+            return image.decode();
+          }),
+        ),
+      );
       const encounters = [];
       for (const feed of ["lobby", "corridor", "room"]) {
         await page.locator(`[data-action="monitor-feed-${feed}"]`).click();
+        await page.clock.runFor(500);
         await expect(page.locator("#monitor-threat")).toBeVisible();
         encounters.push(
           await page.locator("#monitor-threat img").getAttribute("src"),
         );
+        await page.clock.runFor(700);
         await expect(page.locator("#monitor-threat")).toBeHidden();
       }
       expect(new Set(encounters).size).toBe(3);
