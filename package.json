@@ -1,13 +1,13 @@
 {
   "name": "stillwater-hotel",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "node server.mjs",
     "start": "node server.mjs",
     "build": "node build.mjs",
-    "test": "node --test tests/server.test.mjs tests/v2-state.test.mjs",
+    "test": "node --test tests/server.test.mjs tests/v2-state.test.mjs tests/v2-ads-policy.test.mjs",
     "test:e2e": "playwright test"
   },
   "engines": {

@@ -28,10 +28,29 @@ export function createServer(
         base,
         "." + (pathname === "/" ? "/index.html" : pathname),
       );
-      if (options.legacy && file === resolve(base, "index.html")) file = resolve(base, "classic.html");
-      if (options.legacy && file === resolve(base, "index-zh.html")) file = resolve(base, "classic-zh.html");
+      if (options.legacy && file === resolve(base, "index.html"))
+        file = resolve(base, "classic.html");
+      if (options.legacy && file === resolve(base, "index-zh.html"))
+        file = resolve(base, "classic-zh.html");
       const allowed =
-        ["classic.html", "classic-zh.html", "classic-bridge.js", "case-data.js", "case-state.js", "case-app.js", "case-pages.js", "case-comfort.js", "case-feedback.js", "forum-data.js", "forum.js", "forum-style.css", "case-style.css"].some(name => file === resolve(base,name)) ||
+        [
+          "classic.html",
+          "classic-zh.html",
+          "classic-bridge.js",
+          "case-data.js",
+          "case-state.js",
+          "case-app.js",
+          "case-pages.js",
+          "case-comfort.js",
+          "case-feedback.js",
+          "forum-data.js",
+          "forum.js",
+          "forum-style.css",
+          "ad-data.js",
+          "ad-system.js",
+          "ad-style.css",
+          "case-style.css",
+        ].some((name) => file === resolve(base, name)) ||
         file === resolve(base, "index.html") ||
         file === resolve(base, "index-zh.html") ||
         file === resolve(base, "locale-zh.js") ||
@@ -75,7 +94,9 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     Number(args[args.indexOf("--port") + 1]) ||
     Number(process.env.PORT) ||
     3000;
-  createServer(undefined, {legacy:args.includes("--legacy")}).listen(port, "0.0.0.0", () =>
-    console.log(`The Stillwater Hotel · http://localhost:${port}`),
+  createServer(undefined, { legacy: args.includes("--legacy") }).listen(
+    port,
+    "0.0.0.0",
+    () => console.log(`The Stillwater Hotel · http://localhost:${port}`),
   );
 }

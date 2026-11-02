@@ -48,21 +48,44 @@
   const a = (route, label, cls = "") =>
     `<a class="${cls}" href="#${route}">${label}</a>`;
   const views = window.StillwaterCaseViews({ t, esc, getState: () => state });
-  const forum = window.StillwaterForum({t,esc,getState:()=>state});
-  const PROLOGUE='stillwater-prologue:v1';
-  let prologue={schema:1,entered:false,lastRoute:''};
-  try {const raw=JSON.parse(localStorage.getItem(PROLOGUE));if(raw?.schema===1)prologue={schema:1,entered:raw.entered===true,lastRoute:typeof raw.lastRoute==='string'?raw.lastRoute.slice(0,180):''};}catch{}
-  function rememberRoute(route){
-    if(!Object.hasOwn(M.routes,route))return;
-    if(route!=='forum')prologue.entered=true;
-    prologue.lastRoute=location.hash.slice(1)||route;
-    try{localStorage.setItem(PROLOGUE,JSON.stringify(prologue));}catch{}
+  const forum = window.StillwaterForum({ t, esc, getState: () => state });
+  const PROLOGUE = "stillwater-prologue:v1";
+  let prologue = { schema: 1, entered: false, lastRoute: "" };
+  try {
+    const raw = JSON.parse(localStorage.getItem(PROLOGUE));
+    if (raw?.schema === 1)
+      prologue = {
+        schema: 1,
+        entered: raw.entered === true,
+        lastRoute:
+          typeof raw.lastRoute === "string" ? raw.lastRoute.slice(0, 180) : "",
+      };
+  } catch {}
+  function rememberRoute(route) {
+    if (!Object.hasOwn(M.routes, route)) return;
+    if (route !== "forum") prologue.entered = true;
+    prologue.lastRoute = location.hash.slice(1) || route;
+    try {
+      localStorage.setItem(PROLOGUE, JSON.stringify(prologue));
+    } catch {}
   }
-  if(!location.hash){
-    const savedRoute=prologue.lastRoute.split('?')[0];
-    const hasProgress=state.evidence.length>0||state.endings.length>0;
-    const next=hasProgress?(M.canOpen(state,savedRoute)?prologue.lastRoute:state.lastEnding?'ending':M.recovery(state)):(prologue.entered?'careers':'forum');
-    history.replaceState(null,'',location.pathname+location.search+'#'+next);
+  if (!location.hash) {
+    const savedRoute = prologue.lastRoute.split("?")[0];
+    const hasProgress = state.evidence.length > 0 || state.endings.length > 0;
+    const next = hasProgress
+      ? M.canOpen(state, savedRoute)
+        ? prologue.lastRoute
+        : state.lastEnding
+          ? "ending"
+          : M.recovery(state)
+      : prologue.entered
+        ? "careers"
+        : "forum";
+    history.replaceState(
+      null,
+      "",
+      location.pathname + location.search + "#" + next,
+    );
   }
   const comfort = window.StillwaterCaseComfort.create({
     getState: () => state,
@@ -87,10 +110,7 @@
       "没查到这条。看看编号有没有输错。",
       "No record found. Check the reference on the original sample.",
     ],
-    booking: [
-      "还没找到对应的预订单。",
-      "Identify the retained booking first.",
-    ],
+    booking: ["还没找到对应的预订单。", "Identify the retained booking first."],
     inventory: [
       "选的房号和预订单对不上。",
       "This is not the assignment on the original booking. Check that record.",
@@ -176,11 +196,23 @@
       "This operation is not recognized. The original records remain available.",
     ],
   };
-  const feedback = window.StillwaterCaseFeedback({t});
+  const feedback = window.StillwaterCaseFeedback({ t });
+  const ads = window.StillwaterAds.create({
+    getState: () => state,
+    getRoute: currentRoute,
+    t,
+    esc,
+  });
   function perform(action, payload = {}, errorId = "case-status") {
     const result = M.transition(state, action, payload);
     save();
-    if (!result.ok) feedback.show(errorId, result, t(...(errors[result.error] || errors.unknown)), action);
+    if (!result.ok)
+      feedback.show(
+        errorId,
+        result,
+        t(...(errors[result.error] || errors.unknown)),
+        action,
+      );
     else feedback.reset(action);
     return result.ok;
   }
@@ -221,7 +253,14 @@
       "review",
       "ending",
     ].includes(route);
-    const site = route === "forum" ? "forum" : route === "careers" ? "careers" : staff ? "staff" : "hotel";
+    const site =
+      route === "forum"
+        ? "forum"
+        : route === "careers"
+          ? "careers"
+          : staff
+            ? "staff"
+            : "hotel";
     rememberRoute(route);
     document.body.dataset.site = site;
     document.body.classList.toggle(
@@ -260,7 +299,7 @@
           "这里只能查看这次工作中已经打开的文件。",
           "This index contains read-only material associated with the review.",
         ),
-      ) + views.reference("notes", "Case Notes");
+      ) + views.reference("notes", t("工作笔记", "Case Notes"));
     if (allowed && route === "closure" && !M.has(state, "C8")) {
       M.transition(state, "closure");
       save();
@@ -270,14 +309,16 @@
       save();
     }
     const content = allowed
-      ? ({ careers, forum:forum.render, ...views }[route] || placeholder)()
+      ? ({ careers, forum: forum.render, ...views }[route] || placeholder)()
       : guarded(route);
     document.title =
-      route === "forum" ? t("夜猫论坛 · 工作信息","Night Owl BBS · Work notices") : route === "careers"
-        ? "Stillwater Heritage Careers"
-        : staff
-          ? "Stillwater / Staff Archive"
-          : "The Stillwater Hotel · 2006";
+      route === "forum"
+        ? t("夜猫论坛 · 工作信息", "Night Owl BBS · Work notices")
+        : route === "careers"
+          ? "Stillwater Heritage Careers"
+          : staff
+            ? "Stillwater / Staff Archive"
+            : "The Stillwater Hotel · 2006";
     if (route === "ending" && allowed) {
       const requested = new URLSearchParams(
         location.hash.split("?")[1] || "",
@@ -290,14 +331,46 @@
           t("夜审登记员", "Night Audit Clerk") + " / " + F.temporary;
     }
     document.querySelector("#case-shell").innerHTML =
-      `<header class="site-header"><a class="site-brand" href="#${route === "forum" ? "forum" : route === "careers" ? "careers" : staff ? "staff" : "hotel"}">${route === "forum" ? t('夜猫论坛<span class="bbs-subtitle">NIGHT OWL BBS</span>','Night Owl BBS<span class="bbs-subtitle">THE LATE THREAD</span>') : route === "careers" ? "Stillwater Heritage Careers" : staff ? "STILLWATER / STAFF ARCHIVE" : "The Stillwater Hotel"}</a><a data-case-language href="${zh ? "index.html" : "index-zh.html"}${esc(location.hash)}">${zh ? "English" : "简体中文"}</a></header>${route === "forum" ? '<nav class="forum-nav" aria-label="'+t("论坛分区","Forum sections")+'">'+[["chat",t("闲聊","Chat")],["work",t("工作信息","Work notices")],["web",t("老网站","Old websites")],["help",t("求助","Help")]].map(([id,label])=>a("forum?section="+id,label)).join("")+"</nav>" : route === "careers" ? '<nav class="careers-nav">' + a("careers", t("招聘信息", "Opportunities")) + "</nav>" : staff ? '<nav class="staff-nav">' + a("hotel", t("酒店目录", "Hotel index")) + a("notes", "Case Notes") + a("staff", t("员工档案", "Staff archive")) + "</nav>" : '<nav class="hotel-nav">' + a("hotel", t("首页", "Home")) + a("rooms", t("客房", "Rooms")) + a("reservations", t("预订查询", "Reservations")) + a("contact", t("联系前台", "Contact")) + "</nav>"}<main id="content" tabindex="-1">${content}</main><footer><p>${t("虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。", "A fictional interactive work. The hotel, role and records are part of the story. No real applications or payments are accepted.")}</p>${storageFailed ? `<p role="status">${t("目前无法保存进度。这个页面暂时还能继续用。", "Storage is unavailable; the current tab remains playable.")}</p>` : ""}${a("forum",t("回论坛看看","Back to the forum"))} · ${a("careers", t("返回招聘页", "Careers"))} · ${a("guestbook", t("住客留言", "Guestbook"))} · ${a("history", t("旅馆历史", "History"))} · ${a("notices", t("公告栏", "Notices"))} · ${a("staff", t("员工档案", "Staff archive"))} · ${a("notes", "Case Notes")} · <button class="footer-settings" data-case-action="settings">${t("声音与设置", "Sound & settings")}</button> · ${a("credits", t("图片来源", "Image credits"))} · <a href="${zh ? "classic-zh.html" : "classic.html"}">${t("上一版与原存档", "Previous edition & saved stay")}</a></footer>`;
+      `<header class="site-header"><a class="site-brand" href="#${route === "forum" ? "forum" : route === "careers" ? "careers" : staff ? "staff" : "hotel"}">${route === "forum" ? t('夜猫论坛<span class="bbs-subtitle">NIGHT OWL BBS</span>', 'Night Owl BBS<span class="bbs-subtitle">THE LATE THREAD</span>') : route === "careers" ? "Stillwater Heritage Careers" : staff ? "STILLWATER / STAFF ARCHIVE" : "The Stillwater Hotel"}</a><a data-case-language href="${zh ? "index.html" : "index-zh.html"}${esc(location.hash)}">${zh ? "English" : "简体中文"}</a></header>${
+        route === "forum"
+          ? '<nav class="forum-nav" aria-label="' +
+            t("论坛分区", "Forum sections") +
+            '">' +
+            [
+              ["chat", t("闲聊", "Chat")],
+              ["work", t("工作信息", "Work notices")],
+              ["web", t("老网站", "Old websites")],
+              ["help", t("求助", "Help")],
+            ]
+              .map(([id, label]) => a("forum?section=" + id, label))
+              .join("") +
+            "</nav>"
+          : route === "careers"
+            ? '<nav class="careers-nav">' +
+              a("careers", t("招聘信息", "Opportunities")) +
+              "</nav>"
+            : staff
+              ? '<nav class="staff-nav">' +
+                a("hotel", t("酒店目录", "Hotel index")) +
+                a("notes", t("工作笔记", "Case Notes")) +
+                a("staff", t("员工档案", "Staff archive")) +
+                "</nav>"
+              : '<nav class="hotel-nav">' +
+                a("hotel", t("首页", "Home")) +
+                a("rooms", t("客房", "Rooms")) +
+                a("reservations", t("预订查询", "Reservations")) +
+                a("contact", t("联系前台", "Contact")) +
+                "</nav>"
+      }<main id="content" tabindex="-1">${content}</main><footer><p>${t("虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。", "A fictional interactive work. The hotel, role and records are part of the story. No real applications or payments are accepted.")}</p>${storageFailed ? `<p role="status">${t("目前无法保存进度。这个页面暂时还能继续用。", "Storage is unavailable; the current tab remains playable.")}</p>` : ""}${a("forum", t("回论坛看看", "Back to the forum"))} · ${a("careers", t("返回招聘页", "Careers"))} · ${a("guestbook", t("住客留言", "Guestbook"))} · ${a("history", t("旅馆历史", "History"))} · ${a("notices", t("公告栏", "Notices"))} · ${a("staff", t("员工档案", "Staff archive"))} · ${a("notes", t("工作笔记", "Case Notes"))} · <button class="footer-settings" data-case-action="settings">${t("声音与设置", "Sound & settings")}</button> · <button class="footer-settings" data-ad-action="folder">${t("我的广告夹", "My ad folder")}</button> · ${a("credits", t("图片来源", "Image credits"))} · <a href="${zh ? "classic-zh.html" : "classic.html"}">${t("上一版与原存档", "Previous edition & saved stay")}</a></footer>`;
     document.querySelectorAll("nav a").forEach((el) => {
       if (el.getAttribute("href") === "#" + route)
         el.setAttribute("aria-current", "page");
     });
     if (route === "night-audit" && allowed) comfort.signal();
+    ads.navigate();
     if (moveFocus) {
       window.scrollTo(0, 0);
+      document.querySelector("#case-shell").scrollTop = 0;
       document.querySelector("#content").focus({ preventScroll: true });
     }
   }
@@ -320,7 +393,8 @@
       const details = document.querySelector(".annotation-comparison");
       if (details) details.open = true;
     }
-    if (action === "sample" && perform("sample")) location.hash = "reservations";
+    if (action === "sample" && perform("sample"))
+      location.hash = "reservations";
     if (action === "read-key" && perform("message")) render();
     if (action === "inspect-service" && perform("inspect-service")) {
       render();
