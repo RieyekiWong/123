@@ -3,6 +3,7 @@ globalThis.StillwaterCaseState = (() => {
   const D = globalThis.StillwaterCaseData,
     F = D.facts;
   const routes = {
+    forum: null,
     careers: null,
     hotel: null,
     rooms: null,
