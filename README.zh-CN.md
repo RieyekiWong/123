@@ -69,3 +69,10 @@ npm run test:e2e
 ## V2.3 实现与审查
 
 [探索路线与实现说明](docs/V2_3-IMPLEMENTATION.zh-CN.md) · [完整中文审查对照](COPY-AUDIT.zh-CN.md) · [测试与截图](docs/V2_3-VERIFICATION.zh-CN.md)。新玩法的具体解法和结局条件包含剧透。旧版剧情、原图和独立存档仍然保留。
+
+
+### V2.4 · 通道探索与监控事件
+
+[新版试玩](https://rieyekiwong.github.io/123/index-zh.html) · [扩展路线与兼容说明](docs/V2_4-EXPLORATION.zh-CN.md) · [中文通关说明（剧透）](WALKTHROUGH.zh-CN.md) · [中文全量复查](COPY-AUDIT-V2_4.zh-CN.md) · [视觉审查](VISUAL-AUDIT.md) · [设计参数](DESIGN-TOKENS.md)。
+
+最终核对后先黑屏两秒，再回访被改写的客房和留言；通过监控确认通道后，进入可点击的 317 走廊，挪推车、开柜、给 B-3 门锁供电，再操作原有电路。六类事件由玩家操作触发并单独记忆。突发画面默认跳过，章节入口可自愿开启；跳过仍可走完全部故事。声音在底部菜单控制，深处呼吸随声音自动开启。顶部“存档与重置”仅重置新版，原版与广告夹保留。

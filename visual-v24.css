@@ -1,0 +1,813 @@
+/* Scoped refinements preserve each site's era rather than restyling classic. */
+body[data-site] {
+  font-family: var(--font-modern);
+  font-size: var(--text-body);
+  line-height: var(--body-leading);
+  color: var(--ink);
+}
+body[data-site="forum"] {
+  font-family: var(--font-forum);
+  background: #e5eaf0;
+}
+body[data-site="hotel"] {
+  font-family: var(--font-hotel-body);
+}
+body[data-site] :is(h1, h2, h3) {
+  line-height: 1.4;
+  overflow-wrap: break-word;
+}
+body[data-site] h1 {
+  font-size: var(--text-h1);
+}
+body[data-site] h2 {
+  font-size: var(--text-h2);
+}
+body[data-site] h3 {
+  font-size: var(--text-h3);
+}
+body[data-site] :is(p, li, label, summary, dt, dd) {
+  line-height: var(--body-leading);
+}
+body[data-site] p {
+  color: var(--muted);
+}
+body[data-site]
+  :is(
+    .small,
+    .source-link,
+    .form-error,
+    .landmark-description,
+    .last-frame,
+    .port-label
+  ) {
+  font-size: var(--text-sm);
+}
+body[data-site] .kicker {
+  font-size: var(--text-tiny);
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+}
+body[data-site]:lang(zh-CN)
+  :is(.kicker, nav a, .site-brand, .hotel-brand-subtitle, .ad-label) {
+  letter-spacing: normal;
+}
+body[data-site]
+  :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+  font-size: 16px;
+  min-height: 44px;
+  max-width: 100%;
+}
+body[data-site] :is(button, .primary) {
+  font-size: var(--text-sm);
+  min-height: 44px;
+  max-width: 100%;
+  white-space: normal;
+  line-height: 1.6;
+}
+body[data-site]
+  :is(
+    .reference,
+    .record-id,
+    .system-code,
+    .audit-cards time,
+    .circuit-status
+  ) {
+  font-family: var(--font-terminal);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+.record-id {
+  white-space: nowrap;
+  display: inline;
+}
+body[data-site] :is(td, th, fieldset, .form-error, .source-link) {
+  font-size: var(--text-sm);
+}
+body[data-site]
+  :is(
+    .document > p,
+    .mara-draft blockquote,
+    .page-heading > p,
+    .guest-message > p
+  ) {
+  max-width: 68ch;
+}
+body[data-site] :is(footer, .footer-links) {
+  font-size: var(--text-meta);
+  line-height: 1.9;
+}
+body[data-site] footer :is(a, button) {
+  display: inline-block;
+  margin-block: 3px;
+  overflow-wrap: anywhere;
+}
+body[data-site] :is(.site-header, nav, .settings-heading, .ad-dialog-heading) {
+  gap: var(--space-4);
+}
+body[data-site] .site-header {
+  flex-wrap: wrap;
+}
+.site-utilities {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+  font-size: var(--text-sm);
+}
+.site-utilities a {
+  font-size: var(--text-sm);
+}
+body[data-site] .site-utilities button {
+  background: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  padding: 6px 12px;
+}
+body[data-site] nav {
+  flex-wrap: wrap;
+}
+body[data-site] nav a {
+  font-size: var(--text-sm);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+body[data-site] .page-heading {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+}
+body[data-site] .page-heading h1 {
+  margin-block: 12px 16px;
+}
+body[data-site] #case-settings {
+  font-family: var(--font-modern);
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--surface);
+  max-height: 90dvh;
+}
+body[data-site] #case-settings :is(button, input) {
+  min-height: 44px;
+}
+body[data-site] #case-settings input[type="checkbox"] {
+  min-height: 0;
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+body[data-site] #case-settings .settings-content > p {
+  font-size: 14px;
+}
+.save-section {
+  border: 1px solid var(--border);
+  padding: 16px;
+  margin-top: 24px;
+  background: var(--surface-alt);
+}
+.save-section summary {
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.save-section [data-comfort="reset-prompt"] {
+  border-color: #974a40;
+  color: #7b3028;
+  background: #fff8f3;
+}
+/* Forum: readable, moderately dense blue-grey BBS. */
+body[data-site="forum"] .bbs-layout {
+  grid-template-columns: minmax(0, 1fr) 245px;
+  gap: 24px;
+}
+body[data-site="forum"] .bbs-post h1 {
+  font-size: clamp(25px, 2.1vw, 28px);
+}
+body[data-site="forum"] .bbs-post-text > p {
+  font-size: 16px;
+  line-height: 1.8;
+  max-width: 66ch;
+}
+body[data-site="forum"] .bbs-reply p {
+  font-size: 15px;
+  line-height: 1.8;
+}
+body[data-site="forum"]
+  :is(
+    .bbs-author,
+    .bbs-reply header,
+    .bbs-reply header > span:last-child,
+    .bbs-tag,
+    .bbs-breadcrumb
+  ) {
+  font-size: 13px;
+  color: #53616f;
+}
+body[data-site="forum"] :is(.bbs-author strong, .bbs-reply strong) {
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+body[data-site="forum"]
+  :is(
+    .bbs-link-preview p,
+    .bbs-sidebar p,
+    .bbs-sidebar li,
+    .bbs-link-preview a,
+    .bbs-replies > h2
+  ) {
+  font-size: 14px;
+}
+body[data-site="forum"] .bbs-link-preview h2 {
+  font-size: 18px;
+}
+body[data-site="forum"] .bbs-preview-monogram {
+  color: #fff;
+}
+body[data-site="forum"] .bbs-subtitle {
+  font-size: 12px;
+}
+/* Recruitment: a practical modern vacancy, separate from hotel typography. */
+body[data-site="careers"] main {
+  max-width: 1080px;
+  padding-block: 40px 64px;
+}
+body[data-site="careers"] .career-heading {
+  max-width: 720px;
+  margin-bottom: 32px;
+}
+body[data-site="careers"] .career-heading h1 {
+  font-weight: 600;
+  font-size: clamp(28px, 2.6vw, 36px);
+}
+body[data-site="careers"] .job-card {
+  max-width: 800px;
+  padding: 32px;
+  border-color: #becbd5;
+}
+body[data-site="careers"] .job-card h2 {
+  font-size: 24px;
+}
+body[data-site="careers"] .job-card p {
+  font-size: 16px;
+}
+body[data-site="careers"] .job-card .kicker {
+  font-size: 13px;
+}
+body[data-site="careers"] .job-search {
+  max-width: 800px;
+}
+/* Hotel: keep the cream paper, thin borders, square controls and old headings. */
+body[data-site="hotel"] :is(.site-brand, h1, h2) {
+  font-family: var(--font-hotel-heading);
+  font-weight: 400;
+}
+body[data-site="hotel"] .hotel-brand-title {
+  font-size: 34px;
+  line-height: 1.3;
+}
+body[data-site="hotel"] .hotel-brand-subtitle {
+  font-size: 12px;
+}
+body[data-site="hotel"]
+  :is(
+    .daily-notice,
+    .source-link,
+    .notice-window p,
+    .contact-facts dt,
+    .contact-facts dd,
+    .room-list p
+  ) {
+  font-size: 14px;
+}
+body[data-site="hotel"] :is(.hotel-intro p, .guest-message p) {
+  font-size: 16px;
+}
+body[data-site="hotel"] .hotel-hero > img {
+  height: 390px;
+}
+body[data-site="hotel"] .hotel-hero > div {
+  width: 390px;
+  max-width: calc(100% - 48px);
+}
+body[data-site="hotel"] .hotel-hero h1 {
+  font-size: 32px;
+}
+body[data-site="hotel"] :is(figcaption, .guest-message header) {
+  font-size: 14px;
+}
+body[data-site="hotel"] .room-inventory li {
+  font-size: 16px;
+}
+body[data-site="hotel"] footer :is(p, a, button) {
+  color: #e4dfd0;
+}
+body[data-site="hotel"] .contact-facts dd {
+  color: var(--ink);
+}
+body[data-site="hotel"] .contact-facts dt {
+  color: var(--muted);
+}
+/* Archive: readable fields and explicit horizontal scrolling for wide tables. */
+body[data-site="staff"] .site-brand {
+  font-family: var(--font-modern);
+  letter-spacing: 0.03em;
+  font-size: 16px;
+}
+body[data-site="staff"]
+  :is(
+    .audit-cards strong,
+    .audit-cards time,
+    .order-controls a,
+    .order-controls button
+  ) {
+  font-size: 14px;
+}
+body[data-site="staff"] .audit-cards header {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+body[data-site="staff"] .document {
+  border-radius: 0;
+  box-shadow: none;
+}
+body[data-site] .table-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+  overscroll-behavior-inline: contain;
+}
+body[data-site] .table-scroll::before {
+  content: "↔ Scroll to view all columns";
+  display: block;
+  font: 13px/1.6 var(--font-modern);
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+body[data-site]:lang(zh-CN) .table-scroll::before {
+  content: "↔ 可横向查看完整表格";
+}
+body[data-site] .table-scroll table {
+  min-width: 620px;
+}
+body[data-site] .plan-room small {
+  font-size: 13px;
+}
+body[data-site] .service-space :is(span, small) {
+  font-size: 14px;
+}
+body[data-site] :is(.floor-plan, .document) {
+  min-width: 0;
+}
+/* Equipment: labels remain crisp outside the optical image. */
+body[data-site] .camera-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 24px;
+}
+body[data-site] .camera-grid h2 {
+  font-family: var(--font-modern);
+  font-size: 17px;
+}
+body[data-site] :is(.terminal-layout, .camera-grid) {
+  align-items: start;
+}
+body[data-site] .patch-panel {
+  padding: 20px;
+  border: 1px solid #745b4d;
+  background: #201c19;
+  box-shadow: inset 0 0 0 3px #0003;
+}
+body[data-site] .circuit-node {
+  border: 1px solid #776552;
+  background: #292421 !important;
+  color: #e2d7c9 !important;
+}
+body[data-site] .circuit-node span {
+  font-size: 14px;
+}
+body[data-site] .circuit-node path {
+  stroke: #a49c84;
+  stroke-width: 5;
+}
+body[data-site] .circuit-node.energized path {
+  stroke: #c8d6b1;
+}
+body[data-site] .circuit-node.write-live path {
+  stroke: #c79864;
+}
+body[data-site] .map-edge {
+  flex-wrap: wrap;
+}
+body[data-site] .map-edge span {
+  font: 14px/1.8 var(--font-terminal);
+}
+body[data-site] .live-register {
+  font-family: var(--font-modern);
+}
+/* Seven shops retain their individual palettes and type choices. */
+body[data-site]
+  :is(
+    .ad-card-body p,
+    .ad-inline p,
+    .ad-mini-site p,
+    .ad-folder-item p,
+    .ad-dialog-content
+  ) {
+  font-size: 14px;
+}
+body[data-site] :is(.ad-card > header, .ad-label) {
+  font-size: 12px;
+  letter-spacing: 0;
+}
+body[data-site] .ad-shop-name {
+  font-size: 13px !important;
+  opacity: 1;
+}
+body[data-site]
+  :is(.ad-photo-credit, .ad-fineprint, .ad-dialog-content .small) {
+  font-size: 13px;
+}
+body[data-site] .ad-card > header {
+  flex-wrap: wrap;
+}
+body[data-site] .ad-card > header button {
+  min-width: 44px;
+  min-height: 44px;
+  font-size: 13px;
+}
+body[data-site] .ad-dialog-heading button {
+  min-width: 44px;
+  min-height: 44px;
+}
+body[data-site] .ad-card-body {
+  grid-template-columns: 46px minmax(0, 1fr);
+}
+body[data-site] .ad-card-body h2 {
+  font-size: 20px;
+}
+body[data-site] .ad-mini-site {
+  font-family: var(--font-forum);
+}
+body[data-site] .ad-film {
+  font-family: var(--font-hotel-heading);
+}
+body[data-site] .ad-computer {
+  font-family: var(--font-terminal);
+}
+body[data-site] .ad-cat {
+  --ad-ink: #74455d;
+}
+body[data-site] .ad-cat .ad-shop-item:nth-child(2) {
+  --ad-ink: #385c70;
+}
+body[data-site] .ad-cat .ad-shop-item:nth-child(3) {
+  --ad-ink: #77552b;
+}
+body[data-site] .ad-cloud {
+  --ad-ink: #34576c;
+}
+@media (max-width: 900px) {
+  body[data-site="forum"] .bbs-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body[data-site="forum"] .bbs-sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  body[data-site="forum"] .bbs-sidebar [data-inline-ad] {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 760px) {
+  body[data-site] main {
+    padding: 24px 16px 48px;
+  }
+  body[data-site] .site-header {
+    padding: 20px 16px;
+    gap: 12px;
+  }
+  body[data-site] .site-brand {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  body[data-site] .site-utilities {
+    width: 100%;
+    margin: 0;
+    justify-content: space-between;
+  }
+  body[data-site] :is(.site-brand, h1) {
+    font-size: 28px;
+  }
+  body[data-site] h2 {
+    font-size: 23px;
+  }
+  body[data-site] :is(nav, .staff-nav) {
+    padding: 8px 16px;
+    column-gap: 20px;
+    row-gap: 0;
+  }
+  body[data-site] .document {
+    padding: 16px;
+  }
+  body[data-site] .job-search > div {
+    flex-wrap: wrap;
+  }
+  body[data-site] .job-search input {
+    flex-basis: 100%;
+  }
+  body[data-site="careers"] .job-card {
+    padding: 24px 20px;
+  }
+  body[data-site="careers"] .job-card h2 {
+    font-size: 22px;
+  }
+  body[data-site="hotel"] .hotel-brand-title {
+    font-size: 29px;
+  }
+  body[data-site="hotel"] .hotel-hero {
+    display: block;
+    position: static;
+  }
+  body[data-site="hotel"] .hotel-hero > img {
+    height: 220px;
+    object-fit: cover;
+  }
+  body[data-site="hotel"] .hotel-hero > div {
+    position: static;
+    width: auto;
+    max-width: none;
+    padding: 24px;
+    margin: 0;
+    background: var(--surface);
+  }
+  body[data-site="hotel"] .hotel-hero h1 {
+    font-size: 28px;
+  }
+  body[data-site="hotel"] .hotel-hero .kicker {
+    font-size: 12px;
+  }
+  body[data-site="hotel"] .room-list article {
+    display: block;
+  }
+  body[data-site="hotel"] .room-list img {
+    height: 210px;
+    width: 100%;
+  }
+  body[data-site="hotel"] .room-list :is(h2, p) {
+    margin: 16px 20px;
+  }
+  body[data-site="forum"] :is(.bbs-post > header, .bbs-post-text, .bbs-reply) {
+    padding-inline: 16px;
+  }
+  body[data-site="forum"] .bbs-reply p {
+    padding-left: 0;
+  }
+  body[data-site="forum"] .bbs-sidebar {
+    display: block;
+  }
+  body[data-site="forum"] .bbs-sidebar > section {
+    margin-bottom: 16px;
+  }
+  body[data-site="forum"] .bbs-author time {
+    margin-left: 0;
+  }
+  body[data-site] .plan-rooms {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  body[data-site] .floor-plan {
+    padding: 12px;
+  }
+  body[data-site] .terminal-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body[data-site] .patch-panel {
+    padding: 14px;
+  }
+  body[data-site] .ad-shop-intro {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  body[data-site] .ad-mini-site {
+    padding: 16px;
+  }
+  body[data-site] .ad-dialog-content {
+    padding: 16px;
+  }
+  body[data-site] .ad-card-body {
+    padding: 10px;
+    gap: 8px;
+  }
+}
+#phase-blackout {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  background: #000;
+  touch-action: none;
+  cursor: wait;
+}
+body.case-switching {
+  overflow: hidden !important;
+  background: #000 !important;
+}
+body.case-switching :is(#case-shell, #ad-host, dialog) {
+  visibility: hidden !important;
+}
+body[data-site] .ad-card-body p,
+body[data-site] .ad-inline p,
+body[data-site] .ad-mini-site p {
+  color: var(--ad-ink);
+}
+.maintenance-label {
+  padding: 16px;
+  border: 1px solid #847157;
+  background: #2c2821;
+}
+.maintenance-label h3 {
+  font-size: 16px !important;
+  margin: 0 0 12px;
+}
+.maintenance-label p {
+  font-size: 14px;
+  margin: 10px 0;
+  line-height: 1.8;
+}
+body[data-site] footer [data-case-action="toggle-sound"] {
+  border: 1px solid currentColor;
+  padding: 5px 12px;
+  margin-right: 8px;
+}
+body[data-site="forum"] .bbs-sidebar h2 {
+  font-size: 18px;
+}
+body[data-site] :is(.credit-list, .ad-photo-credit, .media-credit-grid) {
+  overflow-wrap: anywhere;
+}
+body[data-site="forum"] .site-utilities button {
+  color: #243b4e;
+}
+body[data-site="staff"] .site-header .site-brand {
+  font-size: 16px;
+  font-family: var(--font-modern);
+  letter-spacing: 0.03em;
+}
+body[data-site="hotel"] .hotel-hero p:not(.kicker) {
+  font-size: 16px;
+  line-height: var(--body-leading);
+}
+.cctv-osd {
+  background: #0c1610e8;
+  color: #edf0df;
+}
+body[data-site="forum"] .bbs-subtitle {
+  color: #52677b;
+}
+body[data-site="hotel"] .hotel-brand-subtitle,
+body[data-site="hotel"] .kicker,
+body[data-site="hotel"] .hotel-photo-section .kicker {
+  color: #725933;
+}
+body[data-site="hotel"] .daily-notice {
+  color: #635744;
+}
+body[data-site="hotel"] th {
+  color: #5f533f;
+}
+body[data-site] .service-space small {
+  color: #263541;
+}
+body[data-site] :is(.settings-heading, .ad-dialog-heading) h2 {
+  color: #fff;
+}
+body[data-site] .ad-photo-credit {
+  font: 13px/1.8 var(--font-forum);
+  color: #4e5d55;
+}
+/* The physical panel keeps its own light-on-metal labels even in a recovered copy. */
+body[data-site] .patch-panel {
+  color: #e2d7c9;
+}
+body[data-site] .patch-panel :is(h2, h3, p, span) {
+  color: #e2d7c9;
+}
+body[data-site] .patch-panel button {
+  color: #ffe6c9;
+  background: #442a2b;
+  border-color: #a87761;
+}
+body[data-site] .decision-actions .primary {
+  background: #304d49;
+  color: #fff;
+  border-color: #304d49;
+}
+/* Connected service space retains a utilitarian playback console. */
+.chapter-comfort {
+  border: 1px solid var(--line);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  background: var(--panel);
+  color: var(--ink);
+}
+.chapter-comfort p {
+  max-width: 72ch;
+  margin: 0.35rem 0 0.7rem;
+}
+.chapter-comfort button {
+  margin: 0 0.6rem 0.5rem 0;
+}
+.space-console {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+  gap: 1.4rem;
+  align-items: start;
+}
+.space-controls {
+  min-width: 0;
+  padding: 1rem;
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.space-actions,
+.space-controls nav {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.6rem;
+}
+.space-controls nav {
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+.space-observations {
+  min-height: 4.5rem;
+  margin: 1rem 0;
+  font-size: 1rem;
+}
+.scene-hotspots {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+.scene-hotspots button {
+  pointer-events: auto;
+  position: absolute;
+  border: 1px solid #b1b29a99;
+  color: #e4e1c9;
+  background: #10180ebd;
+  font: 14px var(--font-terminal);
+  padding: 4px 9px;
+  min-height: 44px;
+  min-width: 44px;
+}
+.scene-hotspots button:hover,
+.scene-hotspots button:focus-visible {
+  outline: 2px solid #d6bf7b;
+  background: #242d1f;
+}
+.hotspot.plate {
+  right: 13%;
+  top: 39%;
+}
+.hotspot.peephole {
+  right: 14%;
+  top: 54%;
+}
+.hotspot.photo {
+  left: 8%;
+  top: 34%;
+}
+.hotspot.cart {
+  left: 22%;
+  top: 59%;
+}
+.hotspot.cabinet {
+  left: 8%;
+  top: 35%;
+}
+.hotspot.b3 {
+  right: 13%;
+  top: 44%;
+}
+body.event-signal-drop .cctv-picture {
+  filter: brightness(0.16) contrast(1.2);
+}
+body.reduced-motion.event-signal-drop .cctv-picture {
+  filter: none;
+}
+.authored-face {
+  z-index: 8;
+  background: #080c07;
+}
+@media (max-width: 760px) {
+  .space-console {
+    grid-template-columns: 1fr;
+  }
+  .space-controls {
+    padding: 1rem;
+  }
+  .scene-hotspots button {
+    font-size: 13px;
+  }
+}

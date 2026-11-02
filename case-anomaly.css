@@ -1,16 +1,69 @@
-body[data-anomaly="altered"],
-body[data-anomaly="terminal"] {
-  --ink: #e5d8c7;
-  --muted: #c1aa99;
-  --line: #705047;
-  --paper: #251a19;
-  --accent: #c99671;
-  background: #130e0d;
-  color: #e5d8c7;
+/* V2 abnormal palette. Background and foreground always travel together. */
+body[data-site][data-anomaly]:is(
+    [data-anomaly="altered"],
+    [data-anomaly="terminal"]
+  ) {
+  --surface: #1b1214;
+  --surface-alt: #24191b;
+  --ink: #dfd1c7;
+  --muted: #c5b3a7;
+  --blue: #e8bb8b;
+  --paper: #1b1214;
+  --border: #76524d;
+  --line: #76524d;
+  --accent: #d0a77b;
+  background: #100c0d;
+  color: var(--ink);
+  color-scheme: dark;
 }
-body:is([data-anomaly="altered"], [data-anomaly="terminal"])
-  :is(
-    #case-shell,
+body[data-site][data-anomaly]:is(
+    [data-anomaly="altered"],
+    [data-anomaly="terminal"]
+  )
+  :where(#case-shell, #case-settings, #ad-dialog) {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--border);
+}
+body[data-site][data-anomaly]:is(
+    [data-anomaly="altered"],
+    [data-anomaly="terminal"]
+  )
+  :is(#case-shell, #case-settings, #ad-dialog)
+  :where(
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    .bbs-breadcrumb,
+    span,
+    strong,
+    b,
+    em,
+    small,
+    label,
+    legend,
+    summary,
+    a,
+    dt,
+    dd,
+    time,
+    figcaption,
+    li,
+    .kicker,
+    .small
+  ) {
+  color: var(--ink);
+}
+body[data-site][data-anomaly]:is(
+    [data-anomaly="altered"],
+    [data-anomaly="terminal"]
+  )
+  :where(
+    .skip,
+    .queue-panel,
+    .warning-note,
     main,
     .site-header,
     nav,
@@ -18,55 +71,122 @@ body:is([data-anomaly="altered"], [data-anomaly="terminal"])
     article,
     .document,
     .job-card,
+    .hotel-hero,
+    .hotel-hero > div,
     .hotel-intro,
     .daily-notice,
+    .contact-facts,
     .page-heading,
-    dialog,
     .notice-window,
-    .bbs-sidebar,
-    .bbs-thread,
+    .notice-window > header,
+    .bbs-sidebar > section,
     .bbs-post,
+    .bbs-post > header,
+    .bbs-replies,
+    .bbs-replies > h2,
     .bbs-reply,
-    .bbs-thread-list,
-    .bbs-preview
+    .bbs-link-preview,
+    .bbs-avatar,
+    .bbs-dinner,
+    .ad-dialog-heading,
+    .settings-heading,
+    .ad-folder-item,
+    .ad-mini-site,
+    .ad-shop-item,
+    .ad-directory,
+    .ad-dialog-content
   ) {
-  background-color: #251a19 !important;
-  background-image: none !important;
-  color: #e5d8c7 !important;
-  border-color: #705047 !important;
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--border);
 }
-body:is([data-anomaly="altered"], [data-anomaly="terminal"])
-  :is(h1, h2, h3, h4, p, th, td, label, summary, .kicker, a, small, .small) {
-  color: #e5d8c7 !important;
-}
-body:is([data-anomaly="altered"], [data-anomaly="terminal"])
-  :is(button, input, select, textarea, .primary) {
-  background: #4c2924 !important;
-  color: #ffe6c9 !important;
-  border-color: #a87761 !important;
-}
-body:is([data-anomaly="altered"], [data-anomaly="terminal"])
-  :is(
-    tr,
+body[data-site][data-anomaly]:is(
+    [data-anomaly="altered"],
+    [data-anomaly="terminal"]
+  )
+  :where(
+    table,
     thead,
     tbody,
+    tr,
+    th,
+    td,
     blockquote,
     .guest-message,
-    .source-link,
     .reception-attachment,
-    .hotel-columns,
-    .room-inventory li
+    .floor-plan,
+    .plan-corridor,
+    .plan-room,
+    .room-inventory li,
+    .audit-cards li,
+    .service-photo figcaption,
+    .annotated-photo figcaption,
+    .hotel-gallery-grid figure,
+    .hotel-photo-strip figure,
+    .connection-notice,
+    .save-section
   ) {
-  background: #2e201e !important;
-  color: #e5d8c7 !important;
-  border-color: #705047 !important;
+  background: var(--surface-alt);
+  color: var(--ink);
+  border-color: var(--border);
+}
+body[data-site][data-anomaly]:is(
+    [data-anomaly="altered"],
+    [data-anomaly="terminal"]
+  )
+  :where(button, input, select, textarea, .primary) {
+  background: #442a2b;
+  color: #ffe6c9;
+  border-color: #a87761;
+  box-shadow: none;
+}
+body[data-site][data-anomaly]:is(
+    [data-anomaly="altered"],
+    [data-anomaly="terminal"]
+  )
+  :where(input, select, textarea, option) {
+  background: #261a1c;
+  color: #eadbd0;
+}
+body[data-site][data-anomaly]:is(
+    [data-anomaly="altered"],
+    [data-anomaly="terminal"]
+  )
+  :where(a) {
+  text-decoration-color: currentColor;
+}
+body[data-site][data-anomaly]:is(
+    [data-anomaly="altered"],
+    [data-anomaly="terminal"]
+  )
+  :where(.bbs-preview-monogram) {
+  background: #442a2b;
+  color: #ffe6c9;
+}
+body[data-site][data-anomaly]:is(
+    [data-anomaly="altered"],
+    [data-anomaly="terminal"]
+  )
+  :where(.service-space) {
+  background: #493b38;
+  color: #fff1df;
+  border-color: #b79884;
+}
+body[data-site][data-anomaly]:is(
+    [data-anomaly="altered"],
+    [data-anomaly="terminal"]
+  )
+  :where(.ad-mini-site, .ad-shop-item) {
+  --ad-ink: var(--ink);
+  --ad-paper: var(--surface-alt);
+  --ad-edge: var(--border);
 }
 body[data-anomaly="resolved"] {
   animation: site-restored 2s ease-out 1;
 }
 @keyframes site-restored {
   from {
-    background: #251a19;
+    background: #24191b;
   }
   to {
     background: #e8e4da;
@@ -124,59 +244,6 @@ body[data-anomaly="resolved"] {
 .map-edge.connected {
   border-left: 4px solid #a8c294;
   padding-left: 12px;
-}
-.scene-cart {
-  position: absolute;
-  left: 57%;
-  top: 47%;
-  width: 22%;
-  height: 34%;
-  background: #4c5441;
-  border: 3px solid #1a241d;
-  transform: perspective(150px) rotateY(-15deg);
-}
-.scene-cart i {
-  display: block;
-  width: 100%;
-  height: 12%;
-  background: repeating-linear-gradient(45deg, #e6ca59 0 6px, #7b752c 6px 10px);
-}
-.scene-cart b {
-  display: block;
-  font-size: 48px;
-  color: #a9ad8c;
-  text-align: center;
-}
-.scene-cart em {
-  position: absolute;
-  bottom: -14%;
-  left: 5%;
-  font-size: 20px;
-  font-style: normal;
-}
-.scene-notice {
-  position: absolute;
-  left: 62%;
-  top: 35%;
-  background: #d0c5a2;
-  color: #24291e;
-  padding: 10px 6px;
-  font: 9px/2 monospace;
-  clip-path: polygon(0 0, 100% 0, 100% 78%, 75% 100%, 0 100%);
-  transform: rotate(-4deg);
-}
-.scene-service-door {
-  position: absolute;
-  left: 50%;
-  top: 22%;
-  height: 65%;
-  width: 29%;
-  border: 5px solid #141a13;
-  background: #363e2f;
-  color: #d9d7b2;
-  padding-top: 20%;
-  text-align: center;
-  font: 10px monospace;
 }
 .terminal-layout {
   display: grid;
@@ -340,36 +407,21 @@ body[data-anomaly="resolved"] {
     font-size: 11px;
   }
 }
-/* Earlier public-page panels must stay readable after the whole site changes. */
-body:is([data-anomaly="altered"], [data-anomaly="terminal"])
-  :is(
-    .hotel-hero,
-    .hotel-hero > div,
-    .notice-window > header,
-    .floor-plan,
-    .plan-room,
-    .plan-corridor,
-    .service-photo figcaption,
-    .annotated-photo figcaption,
-    .audit-cards li,
-    .audit-cards li header,
-    .connection-notice,
-    .bbs-replies,
-    .bbs-sidebar > section,
-    .bbs-post > header,
-    .bbs-preview,
-    .bbs-avatar,
-    .bbs-replies > h2,
-    .bbs-dinner,
-    .job-search,
-    .hotel-photo-strip figure,
-    .hotel-gallery-grid figure
-  ) {
-  background: #2e201e !important;
-  color: #e5d8c7 !important;
-  border-color: #705047 !important;
-}
-body:is([data-anomaly="altered"], [data-anomaly="terminal"])
-  :is(span, strong, dt, dd, time, figcaption, li) {
-  color: #e5d8c7;
+
+body[data-site][data-anomaly]:is(
+    [data-anomaly="altered"],
+    [data-anomaly="terminal"]
+  )
+  .ad-mini-site,
+body[data-site][data-anomaly]:is(
+    [data-anomaly="altered"],
+    [data-anomaly="terminal"]
+  )
+  .ad-mini-site
+  .ad-shop-item {
+  --ad-ink: var(--ink);
+  --ad-paper: var(--surface-alt);
+  --ad-edge: var(--border);
+  background: var(--surface-alt);
+  color: var(--ink);
 }

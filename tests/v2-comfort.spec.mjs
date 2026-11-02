@@ -36,7 +36,8 @@ test("sound is opt-in, settings are keyboard-accessible and reset preserves the 
   await page.locator("#case-settings details > summary").click();
   await page.locator("[data-comfort=reset-prompt]").click();
   await page.locator("[data-comfort=reset-confirm]").click();
-  await expect(page.locator(".job-card")).toBeVisible();
+  await expect(page.locator(".bbs-post")).toBeVisible();
+  await expect(page).toHaveURL(/#forum$/);
   expect((await state(page)).evidence).toEqual([]);
   expect(
     await page.evaluate(

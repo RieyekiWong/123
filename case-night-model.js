@@ -3,6 +3,21 @@ globalThis.StillwaterNightModel = (() => {
   const initial = [0, 0, 0, 2, 2, 2];
   const fresh = () => ({
     started: false,
+    spreadRequired: false,
+    spread: { rooms: false, guestbook: false },
+    passageRequired: false,
+    passage: {
+      position: "landing",
+      inspected: [],
+      cartMoved: false,
+      cabinetOpen: false,
+      servicePower: false,
+      complete: false,
+    },
+    events: [],
+    steps: 0,
+    lastFaceStep: -100,
+    comfortAcknowledged: false,
     pans: [1, 1, 1],
     links: [],
     door: false,
@@ -82,6 +97,54 @@ globalThis.StillwaterNightModel = (() => {
     const n = fresh();
     if (!eligible || !raw?.started) return n;
     n.started = true;
+    // Missing flags deliberately preserve access for existing deep-chapter saves.
+    n.spreadRequired = raw.spreadRequired === true;
+    n.spread = {
+      rooms: raw.spread?.rooms === true,
+      guestbook: raw.spread?.guestbook === true,
+    };
+    n.passageRequired = raw.passageRequired === true;
+    const p = raw.passage || {};
+    n.passage = {
+      position: ["landing", "west", "service"].includes(p.position)
+        ? p.position
+        : "landing",
+      inspected: ["plate", "peephole", "photo", "notice"].filter(
+        (id) => Array.isArray(p.inspected) && p.inspected.includes(id),
+      ),
+      cartMoved: p.cartMoved === true,
+      cabinetOpen: p.cartMoved === true && p.cabinetOpen === true,
+      servicePower:
+        p.cartMoved === true &&
+        p.cabinetOpen === true &&
+        p.servicePower === true,
+      complete:
+        p.complete === true &&
+        p.servicePower === true &&
+        p.cabinetOpen === true &&
+        p.cartMoved === true,
+    };
+    n.events = Array.isArray(raw.events)
+      ? [
+          ...new Set(
+            raw.events.filter((id) =>
+              [
+                "plate-open-door",
+                "peephole-empty",
+                "hall-silhouette",
+                "cabinet-face",
+                "photo-face",
+                "last-frame",
+              ].includes(id),
+            ),
+          ),
+        ]
+      : [];
+    n.steps = Math.max(0, Math.min(100000, Number(raw.steps) || 0));
+    n.lastFaceStep = Number.isFinite(raw.lastFaceStep)
+      ? Math.min(n.steps, raw.lastFaceStep)
+      : -100;
+    n.comfortAcknowledged = raw.comfortAcknowledged === true;
     n.pans = n.pans.map((v, i) =>
       [0, 1, 2].includes(raw.pans?.[i]) ? raw.pans[i] : v,
     );
@@ -124,5 +187,26 @@ globalThis.StillwaterNightModel = (() => {
       : [];
     return n;
   }
-  return Object.freeze({ fresh, hydrate, ports, trace, circuit, anchor });
+  const spreadReady = (n) =>
+    !n.spreadRequired || (n.spread.rooms && n.spread.guestbook);
+  const passageReady = (n) =>
+    n.door && (!n.passageRequired || n.passage.complete);
+  function event(n, id, face = false) {
+    if (n.events.includes(id)) return { ok: true };
+    if (face && n.steps - n.lastFaceStep < 3) return { ok: true };
+    n.events.push(id);
+    if (face) n.lastFaceStep = n.steps;
+    return { ok: true, event: id };
+  }
+  return Object.freeze({
+    fresh,
+    hydrate,
+    ports,
+    trace,
+    circuit,
+    anchor,
+    spreadReady,
+    passageReady,
+    event,
+  });
 })();

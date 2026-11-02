@@ -1,0 +1,1839 @@
+{
+  "results": [
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "forum",
+      "count": 61,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "careers",
+      "count": 29,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "hotel",
+      "count": 48,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "gallery",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "rooms",
+      "count": 82,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "reservations",
+      "count": 54,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "guestbook",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "history",
+      "count": 43,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "contact",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "notices",
+      "count": 45,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "floor-plan",
+      "count": 94,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "maintenance",
+      "count": 56,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "night-audit",
+      "count": 67,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "staff",
+      "count": 52,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "revisions",
+      "count": 70,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "closure",
+      "count": 41,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "mara",
+      "count": 46,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "review",
+      "count": 44,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "notes",
+      "count": 79,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "credits",
+      "count": 161,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "ending?view=auto-close",
+      "count": 48,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "ending?view=unverified",
+      "count": 50,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "save-settings",
+      "count": 63,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "ad-pet",
+      "count": 67,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "ad-cinema",
+      "count": 69,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "ad-repair",
+      "count": 69,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "ad-secondhand",
+      "count": 69,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "ad-print",
+      "count": 69,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "ad-cats",
+      "count": 85,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "normal",
+      "route": "ad-weather",
+      "count": 65,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "forum",
+      "count": 61,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "careers",
+      "count": 29,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "hotel",
+      "count": 49,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "gallery",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "rooms",
+      "count": 86,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "reservations",
+      "count": 54,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "guestbook",
+      "count": 56,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "history",
+      "count": 43,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "contact",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "notices",
+      "count": 45,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "floor-plan",
+      "count": 94,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "maintenance",
+      "count": 56,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "night-audit",
+      "count": 67,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "staff",
+      "count": 52,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "revisions",
+      "count": 70,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "closure",
+      "count": 41,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "mara",
+      "count": 46,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "review",
+      "count": 44,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "notes",
+      "count": 79,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "credits",
+      "count": 161,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "ending?view=auto-close",
+      "count": 48,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "ending?view=unverified",
+      "count": 50,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "mirror",
+      "count": 57,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "cameras",
+      "count": 61,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "save-settings",
+      "count": 74,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "ad-pet",
+      "count": 78,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "ad-cinema",
+      "count": 80,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "ad-repair",
+      "count": 80,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "ad-secondhand",
+      "count": 80,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "ad-print",
+      "count": 80,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "ad-cats",
+      "count": 96,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "altered",
+      "route": "ad-weather",
+      "count": 76,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "forum",
+      "count": 61,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "careers",
+      "count": 29,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "hotel",
+      "count": 49,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "gallery",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "rooms",
+      "count": 86,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "reservations",
+      "count": 54,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "guestbook",
+      "count": 56,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "history",
+      "count": 43,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "contact",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "notices",
+      "count": 45,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "floor-plan",
+      "count": 94,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "maintenance",
+      "count": 56,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "night-audit",
+      "count": 67,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "staff",
+      "count": 52,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "revisions",
+      "count": 70,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "closure",
+      "count": 41,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "mara",
+      "count": 46,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "review",
+      "count": 44,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "notes",
+      "count": 79,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "credits",
+      "count": 161,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "ending?view=auto-close",
+      "count": 48,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "ending?view=unverified",
+      "count": 50,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "mirror",
+      "count": 57,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "cameras",
+      "count": 61,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "terminal",
+      "count": 72,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "service-passage",
+      "count": 47,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "save-settings",
+      "count": 60,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "ad-pet",
+      "count": 64,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "ad-cinema",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "ad-repair",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "ad-secondhand",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "ad-print",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "ad-cats",
+      "count": 82,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "terminal",
+      "route": "ad-weather",
+      "count": 62,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "forum",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "careers",
+      "count": 19,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "hotel",
+      "count": 48,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "gallery",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "rooms",
+      "count": 82,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "reservations",
+      "count": 54,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "guestbook",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "history",
+      "count": 43,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "contact",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "notices",
+      "count": 45,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "floor-plan",
+      "count": 94,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "maintenance",
+      "count": 56,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "night-audit",
+      "count": 67,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "staff",
+      "count": 52,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "revisions",
+      "count": 70,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "closure",
+      "count": 41,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "mara",
+      "count": 46,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "review",
+      "count": 44,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "notes",
+      "count": 81,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "credits",
+      "count": 161,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "ending?view=auto-close",
+      "count": 48,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "ending?view=unverified",
+      "count": 50,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "ending?view=released",
+      "count": 46,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "mirror",
+      "count": 38,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "cameras",
+      "count": 61,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "terminal",
+      "count": 78,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "service-passage",
+      "count": 47,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "save-settings",
+      "count": 60,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "ad-pet",
+      "count": 64,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "ad-cinema",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "ad-repair",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "ad-secondhand",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "ad-print",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "ad-cats",
+      "count": 82,
+      "issues": []
+    },
+    {
+      "lang": "zh",
+      "phase": "resolved",
+      "route": "ad-weather",
+      "count": 62,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "forum",
+      "count": 61,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "careers",
+      "count": 29,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "hotel",
+      "count": 48,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "gallery",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "rooms",
+      "count": 82,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "reservations",
+      "count": 54,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "guestbook",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "history",
+      "count": 43,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "contact",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "notices",
+      "count": 45,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "floor-plan",
+      "count": 94,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "maintenance",
+      "count": 56,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "night-audit",
+      "count": 67,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "staff",
+      "count": 52,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "revisions",
+      "count": 70,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "closure",
+      "count": 41,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "mara",
+      "count": 46,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "review",
+      "count": 44,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "notes",
+      "count": 79,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "credits",
+      "count": 161,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "ending?view=auto-close",
+      "count": 48,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "ending?view=unverified",
+      "count": 50,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "save-settings",
+      "count": 63,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "ad-pet",
+      "count": 67,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "ad-cinema",
+      "count": 69,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "ad-repair",
+      "count": 69,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "ad-secondhand",
+      "count": 69,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "ad-print",
+      "count": 69,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "ad-cats",
+      "count": 85,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "normal",
+      "route": "ad-weather",
+      "count": 65,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "forum",
+      "count": 61,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "careers",
+      "count": 29,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "hotel",
+      "count": 49,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "gallery",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "rooms",
+      "count": 86,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "reservations",
+      "count": 54,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "guestbook",
+      "count": 56,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "history",
+      "count": 43,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "contact",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "notices",
+      "count": 45,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "floor-plan",
+      "count": 94,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "maintenance",
+      "count": 56,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "night-audit",
+      "count": 67,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "staff",
+      "count": 52,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "revisions",
+      "count": 70,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "closure",
+      "count": 41,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "mara",
+      "count": 46,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "review",
+      "count": 44,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "notes",
+      "count": 79,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "credits",
+      "count": 161,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "ending?view=auto-close",
+      "count": 48,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "ending?view=unverified",
+      "count": 50,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "mirror",
+      "count": 57,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "cameras",
+      "count": 61,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "save-settings",
+      "count": 74,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "ad-pet",
+      "count": 78,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "ad-cinema",
+      "count": 80,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "ad-repair",
+      "count": 80,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "ad-secondhand",
+      "count": 80,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "ad-print",
+      "count": 80,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "ad-cats",
+      "count": 96,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "altered",
+      "route": "ad-weather",
+      "count": 76,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "forum",
+      "count": 61,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "careers",
+      "count": 29,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "hotel",
+      "count": 49,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "gallery",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "rooms",
+      "count": 86,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "reservations",
+      "count": 54,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "guestbook",
+      "count": 56,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "history",
+      "count": 43,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "contact",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "notices",
+      "count": 45,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "floor-plan",
+      "count": 94,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "maintenance",
+      "count": 56,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "night-audit",
+      "count": 67,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "staff",
+      "count": 52,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "revisions",
+      "count": 70,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "closure",
+      "count": 41,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "mara",
+      "count": 46,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "review",
+      "count": 44,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "notes",
+      "count": 79,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "credits",
+      "count": 161,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "ending?view=auto-close",
+      "count": 48,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "ending?view=unverified",
+      "count": 50,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "mirror",
+      "count": 57,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "cameras",
+      "count": 61,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "terminal",
+      "count": 72,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "service-passage",
+      "count": 47,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "save-settings",
+      "count": 60,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "ad-pet",
+      "count": 64,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "ad-cinema",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "ad-repair",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "ad-secondhand",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "ad-print",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "ad-cats",
+      "count": 82,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "terminal",
+      "route": "ad-weather",
+      "count": 62,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "forum",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "careers",
+      "count": 19,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "hotel",
+      "count": 48,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "gallery",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "rooms",
+      "count": 82,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "reservations",
+      "count": 54,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "guestbook",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "history",
+      "count": 43,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "contact",
+      "count": 51,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "notices",
+      "count": 45,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "floor-plan",
+      "count": 94,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "maintenance",
+      "count": 56,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "night-audit",
+      "count": 67,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "staff",
+      "count": 52,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "revisions",
+      "count": 70,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "closure",
+      "count": 41,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "mara",
+      "count": 46,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "review",
+      "count": 44,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "notes",
+      "count": 81,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "credits",
+      "count": 161,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "ending?view=auto-close",
+      "count": 48,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "ending?view=unverified",
+      "count": 50,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "ending?view=released",
+      "count": 46,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "mirror",
+      "count": 38,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "cameras",
+      "count": 61,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "terminal",
+      "count": 78,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "service-passage",
+      "count": 47,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "save-settings",
+      "count": 60,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "ad-pet",
+      "count": 64,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "ad-cinema",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "ad-repair",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "ad-secondhand",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "ad-print",
+      "count": 66,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "ad-cats",
+      "count": 82,
+      "issues": []
+    },
+    {
+      "lang": "en",
+      "phase": "resolved",
+      "route": "ad-weather",
+      "count": 62,
+      "issues": []
+    }
+  ],
+  "errors": []
+}

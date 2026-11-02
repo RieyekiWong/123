@@ -49,6 +49,7 @@
     `<a class="${cls}" href="#${route}">${label}</a>`;
   const views = window.StillwaterCaseViews({ t, esc, getState: () => state });
   const nightViews = window.StillwaterNightViews({ t, getState: () => state });
+  const spaceViews = window.StillwaterSpaceViews({ t, getState: () => state });
   const nightAudio = window.StillwaterCaseAudio.create({
     getState: () => state,
     getRoute: currentRoute,
@@ -92,21 +93,65 @@
       location.pathname + location.search + "#" + next,
     );
   }
+  const phaseTransition = window.StillwaterCaseTransition.create({
+    getState: () => state,
+    t,
+    onBegin: () => nightAudio.stop(),
+    complete: () => {
+      history.replaceState(
+        null,
+        "",
+        location.pathname + location.search + "#mirror",
+      );
+      render(true);
+    },
+  });
   const comfort = window.StillwaterCaseComfort.create({
     getState: () => state,
     save,
     onPreference: () => {
       document.body.classList.toggle("reduced-motion", comfort.reduced());
+      for (const button of document.querySelectorAll(
+        "[data-case-action=toggle-sound]",
+      )) {
+        button.textContent = state.preferences.sound
+          ? t("声音：开启", "Sound: On")
+          : t("声音：关闭", "Sound: Off");
+        button.setAttribute("aria-pressed", String(state.preferences.sound));
+      }
+      if (
+        state.preferences.skipScares ||
+        comfort.reduced() ||
+        !state.preferences.sound
+      )
+        nightEvents.clear();
       void nightAudio.sync();
     },
     reset: () => {
+      phaseTransition.cancel();
+      nightEvents.clear();
+      nightAudio.stop();
       const preferences = { ...state.preferences, sound: false };
       state = M.fresh();
       state.preferences = preferences;
       save();
-      location.hash = "careers";
+      prologue = { schema: 1, entered: false, lastRoute: "forum" };
+      try {
+        localStorage.setItem(PROLOGUE, JSON.stringify(prologue));
+      } catch {}
+      history.replaceState(
+        null,
+        "",
+        location.pathname + location.search + "#forum",
+      );
       render(true);
     },
+  });
+  const nightEvents = window.StillwaterEvents.create({
+    getState: () => state,
+    reduced: () => comfort.reduced(),
+    audio: nightAudio,
+    t,
   });
   const errors = {
     sample: [
@@ -232,7 +277,7 @@
           t("目前没有可申请的岗位。", "No roles are currently available."),
         ) + views.reference("forum", t("返回论坛", "Back to the forum"))
       );
-    return `<section class="career-heading"><p class="kicker">STILLWATER HERITAGE RECORDS</p><h1>${t("旧预订资料整理兼职", "A careful eye for the historical record.")}</h1><p>${t("远程工作，需能使用电脑查看表格和扫描件。", "Remote opportunities in archive reconciliation.")}</p></section><form id="job-search" class="job-search"><label for="job-keyword">${t("搜索岗位", "Search roles")}</label><div><input id="job-keyword" name="keyword" type="search" placeholder="${t("职位名称或工作内容", "Role or area of work")}"><select name="work" aria-label="${t("工作方式", "Work arrangement")}"><option value="remote">${t("远程", "Remote")}</option><option value="onsite">${t("现场", "On site")}</option></select><button type="submit">${t("搜索", "Search")}</button></div></form><p id="job-result" role="status"></p><article class="job-card" id="archive-job"><p class="kicker">${t("合同制 · 远程", "CONTRACT · REMOTE")}</p><h2>${t("预订档案整理员", "Night Archive Reconciliation Assistant")}</h2><p>${t("帮一家湖畔旅馆整理以前的预订单。", "Help a lakeside hotel sort its older reservation records.")}</p><p>${t("申请前可先查看工作样本样本，无需注册。", "Start with a short record-matching sample.")}</p><p>${t("样本档案", "Sample case")}: <span class="reference">${F.reservation}</span></p><button class="primary" data-case-action="sample">${t("查看工作样本", "Review sample record")} →</button><details><summary>${t("工作内容", "Role details & company information")}</summary><p>${t("对照旧预订单、客房记录和修改记录，看看有没有对不上的地方。这份样本不用注册，也不用上传简历。", "Review sources, reconcile timestamps, compare revisions and retain unresolved entries. No CV, account or contact information is needed for the sample.")}</p><p>Stillwater Heritage Records · ${F.recruitment}</p></details></article>`;
+    return `<section class="career-heading"><p class="kicker">STILLWATER HERITAGE RECORDS</p><h1>${t("旧预订资料整理兼职", "A careful eye for the historical record.")}</h1><p>${t("远程工作，需能使用电脑查看表格和扫描件。", "Remote opportunities in archive reconciliation.")}</p></section><form id="job-search" class="job-search"><label for="job-keyword">${t("搜索岗位", "Search roles")}</label><div><input id="job-keyword" name="keyword" type="search" placeholder="${t("职位名称或工作内容", "Role or area of work")}"><select name="work" aria-label="${t("工作方式", "Work arrangement")}"><option value="remote">${t("远程", "Remote")}</option><option value="onsite">${t("现场", "On site")}</option></select><button type="submit">${t("搜索", "Search")}</button></div></form><p id="job-result" role="status"></p><article class="job-card" id="archive-job"><p class="kicker">${t("合同制 · 远程", "CONTRACT · REMOTE")}</p><h2>${t("预订档案整理员", "Night Archive Reconciliation Assistant")}</h2><p>${t("帮一家湖畔旅馆整理以前的预订单。", "Help a lakeside hotel sort its older reservation records.")}</p><p>${t("申请前可先做一份工作样本，无需注册。", "Start with a short record-matching sample.")}</p><p>${t("样本档案", "Sample case")}: <span class="reference">${F.reservation}</span></p><button class="primary" data-case-action="sample">${t("查看工作样本", "Review sample record")} →</button><details><summary>${t("工作内容", "Role details & company information")}</summary><p>${t("对照旧预订单、客房记录和修改记录，看看有没有对不上的地方。这份样本不用注册，也不用上传简历。", "Review sources, reconcile timestamps, compare revisions and retain unresolved entries. No CV, account or contact information is needed for the sample.")}</p><p>Stillwater Heritage Records · ${F.recruitment}</p></details></article>`;
   }
   function guarded(route) {
     const recovery = M.recovery(state, route);
@@ -241,7 +286,7 @@
         "RECORD INDEX",
         t("文件暂时打不开", "Record not currently available"),
         t(
-          "这份资料尚未加入本次工作。可从相关文件继续查找。",
+          "暂时没有这份文件的访问权限。请从相关资料打开。",
           "This original is not yet associated with the current review. Identify its source record first.",
         ),
       ) + views.reference(recovery, t("查看相关文件", "Open the source record"))
@@ -260,7 +305,7 @@
       return `<footer class="forum-footer"><p class="footer-site-name">NIGHT OWL BBS · ${t("夜猫论坛", "Night Owl BBS")}</p><div class="footer-links">${a("forum", t("论坛首页", "Forum home"))} · ${a("forum?section=work", t("工作信息", "Work notices"))} · ${a("forum?section=web", t("老网站", "Old websites"))} · ${folder} · ${credits}</div><p>${t("虚构社区，帖子与商家均为作品内容，不接受真实交易。", "A fictional community. Posts and shops are part of the work; no real transactions are accepted.")}</p>${warning}</footer>`;
     if (site === "careers")
       return `<footer class="careers-footer"><p class="footer-site-name">STILLWATER HERITAGE RECORDS</p><div class="footer-links">${a("careers", t("招聘信息", "Opportunities"))} · ${a("forum", t("回论坛看看", "Back to the forum"))} · ${folder} · ${credits}</div><p>${t("虚构职位展示，不接收真实简历、申请或付款。", "A fictional job listing. No real CVs, applications or payments are accepted.")}</p>${warning}</footer>`;
-    return `<footer><p>${t("虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。", "A fictional interactive work. The hotel, role and records are part of the story. No real applications or payments are accepted.")}</p>${storageFailed ? `<p role="status">${t("浏览器无法保存进度，当前标签页仍可继续操作。", "Storage is unavailable; the current tab remains playable.")}</p>` : ""}${a("forum", t("回论坛看看", "Back to the forum"))} · ${a("careers", t("返回招聘页", "Careers"))} · ${a("guestbook", t("住客留言", "Guestbook"))} · ${a("history", t("旅馆历史", "History"))} · ${a("gallery", t("旅馆相册", "Photo gallery"))} · ${a("notices", t("公告栏", "Notices"))} · ${a("staff", t("员工档案", "Staff archive"))} · ${a("notes", t("工作笔记", "Case Notes"))} · <button class="footer-settings" data-case-action="settings">${t("声音与设置", "Sound & settings")}</button> · <button class="footer-settings" data-ad-action="folder">${t("我的广告夹", "My ad folder")}</button> · ${a("credits", t("图片来源", "Image credits"))} · <a href="${zh ? "classic-zh.html" : "classic.html"}">${t("上一版与原存档", "Previous edition & saved stay")}</a></footer>`;
+    return `<footer><p>${t("虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。", "A fictional interactive work. The hotel, role and records are part of the story. No real applications or payments are accepted.")}</p>${storageFailed ? `<p role="status">${t("浏览器无法保存进度，当前标签页仍可继续操作。", "Storage is unavailable; the current tab remains playable.")}</p>` : ""}${a("forum", t("回论坛看看", "Back to the forum"))} · ${a("careers", t("返回招聘页", "Careers"))} · ${a("guestbook", t("住客留言", "Guestbook"))} · ${a("history", t("旅馆历史", "History"))} · ${a("gallery", t("旅馆相册", "Photo gallery"))} · ${a("notices", t("公告栏", "Notices"))} · ${a("staff", t("员工档案", "Staff archive"))} · ${a("notes", t("工作笔记", "Case Notes"))} · <button class="footer-settings" data-case-action="toggle-sound" aria-pressed="${state.preferences.sound}">${state.preferences.sound ? t("声音：开启", "Sound: On") : t("声音：关闭", "Sound: Off")}</button> · <button class="footer-settings" data-case-action="settings">${t("声音与设置", "Sound & settings")}</button> · <button class="footer-settings" data-ad-action="folder">${t("我的广告夹", "My ad folder")}</button> · ${a("credits", t("图片来源", "Image credits"))} · <a href="${zh ? "classic-zh.html" : "classic.html"}">${t("上一版与原存档", "Previous edition & saved stay")}</a></footer>`;
   }
   function endingView() {
     const requested = new URLSearchParams(
@@ -290,6 +335,7 @@
       "ending",
       "cameras",
       "terminal",
+      "service-passage",
     ].includes(route);
     const site =
       route === "forum"
@@ -309,7 +355,8 @@
           : state.night.started
             ? "altered"
             : "normal";
-    void nightAudio.sync();
+    if (phaseTransition.isActive()) nightAudio.stop();
+    else void nightAudio.sync();
     document.body.classList.toggle(
       "reduced-motion",
       state.preferences.reduceMotion ||
@@ -341,7 +388,7 @@
     const placeholder = () =>
       views.heading(
         "STAFF ARCHIVE",
-        t("旧文件目录", "Retained file index"),
+        t("旧档案目录", "Retained file index"),
         t(
           "这里只列出本次已打开的文件。",
           "This index contains read-only material associated with the review.",
@@ -355,6 +402,16 @@
       M.transition(state, "mara");
       save();
     }
+    if (
+      allowed &&
+      ["rooms", "guestbook"].includes(route) &&
+      params.get("copy") !== "original" &&
+      state.night.started &&
+      state.lastEnding !== "released"
+    ) {
+      M.transition(state, "night-observe-public", { page: route });
+      save();
+    }
     const content = allowed
       ? (
           {
@@ -362,6 +419,7 @@
             forum: forum.render,
             ...views,
             ...nightViews,
+            ...spaceViews,
             ending: endingView,
           }[route] || placeholder
         )()
@@ -386,7 +444,7 @@
           t("夜班审计员", "Night Audit Clerk") + " / " + F.temporary;
     }
     document.querySelector("#case-shell").innerHTML =
-      `<header class="site-header"><a class="site-brand" href="#${route === "forum" ? "forum" : route === "careers" ? "careers" : staff ? "staff" : "hotel"}">${route === "forum" ? t('夜猫论坛<span class="bbs-subtitle">NIGHT OWL BBS</span>', 'Night Owl BBS<span class="bbs-subtitle">THE LATE THREAD</span>') : route === "careers" ? "Stillwater Heritage Careers" : staff ? "STILLWATER / STAFF ARCHIVE" : '<span class="hotel-brand-title">The Stillwater Hotel</span><span class="hotel-brand-subtitle">A FAMILIAR PLACE · SINCE 1987</span>'}</a><a data-case-language href="${zh ? "index.html" : "index-zh.html"}${esc(location.hash)}">${zh ? "English" : "简体中文"}</a></header>${
+      `<header class="site-header"><a class="site-brand" href="#${route === "forum" ? "forum" : route === "careers" ? "careers" : staff ? "staff" : "hotel"}">${route === "forum" ? t('夜猫论坛<span class="bbs-subtitle">NIGHT OWL BBS</span>', 'Night Owl BBS<span class="bbs-subtitle">THE LATE THREAD</span>') : route === "careers" ? "Stillwater Heritage Careers" : staff ? "STILLWATER / STAFF ARCHIVE" : '<span class="hotel-brand-title">The Stillwater Hotel</span><span class="hotel-brand-subtitle">A FAMILIAR PLACE · SINCE 1987</span>'}</a><div class="site-utilities"><button data-case-action="save-settings" aria-haspopup="dialog">${t("存档与重置", "Saves & reset")}</button><a data-case-language href="${zh ? "index.html" : "index-zh.html"}${esc(location.hash)}">${zh ? "English" : "简体中文"}</a></div></header>${
         route === "forum"
           ? '<nav class="forum-nav" aria-label="' +
             t("论坛分区", "Forum sections") +
@@ -416,7 +474,31 @@
                 a("reservations", t("预订查询", "Reservations")) +
                 a("contact", t("联系前台", "Contact")) +
                 "</nav>"
-      }<main id="content" tabindex="-1">${content}</main>${siteFooter(site)}`;
+      }<main id="content" tabindex="-1">${allowed && ["cameras", "terminal", "service-passage"].includes(route) ? nightViews.scareChoice() : ""}${content}</main>${siteFooter(site)}`;
+    const walker = document.createTreeWalker(
+      document.querySelector("#content"),
+      NodeFilter.SHOW_TEXT,
+    );
+    const leaves = [];
+    while (walker.nextNode())
+      if (!walker.currentNode.parentElement.closest(".record-id,script,style"))
+        leaves.push(walker.currentNode);
+    for (const node of leaves) {
+      const pattern = /(R-4829|A-06-17|TEMP-015|E-014)/g;
+      if (!pattern.test(node.nodeValue)) continue;
+      const fragment = document.createDocumentFragment();
+      let start = 0;
+      for (const match of node.nodeValue.matchAll(pattern)) {
+        fragment.append(node.nodeValue.slice(start, match.index));
+        const span = document.createElement("span");
+        span.className = "record-id";
+        span.textContent = match[0];
+        fragment.append(span);
+        start = match.index + match[0].length;
+      }
+      fragment.append(node.nodeValue.slice(start));
+      node.replaceWith(fragment);
+    }
     document.querySelectorAll("nav a").forEach((el) => {
       if (el.getAttribute("href") === "#" + route)
         el.setAttribute("aria-current", "page");
@@ -455,12 +537,15 @@
         comfort.open();
         return;
       }
-      const firstFrame = act === "frame" && !state.night.frame;
+
       const payload = {
         cam: Number(nightControl.dataset.cam),
         pan: Number(nightControl.dataset.pan),
         link: Number(nightControl.dataset.link),
         node: Number(nightControl.dataset.node),
+        position: nightControl.dataset.position,
+        target: nightControl.dataset.target,
+        enable: nightControl.dataset.enable === "true",
       };
       const result = M.transition(state, "night-" + act, payload);
       save();
@@ -468,24 +553,71 @@
         const el = document.querySelector("#night-feedback");
         if (el) {
           el.className = "night-feedback-error";
-          el.textContent =
-            result.error === "night-landmark"
+          el.textContent = [
+            "night-cart",
+            "night-cabinet",
+            "night-power",
+          ].includes(result.error)
+            ? {
+                "night-cart": t(
+                  "先把推车挪开，柜门才能打开。",
+                  "Move the cart to reach the cabinet.",
+                ),
+                "night-cabinet": t(
+                  "供电拉杆在维修柜里。",
+                  "The supply lever is inside the cabinet.",
+                ),
+                "night-power": t(
+                  "门锁没通电。沿线路回西侧维修柜看看。",
+                  "The lock has no power. Follow its cable back to the west cabinet.",
+                ),
+              }[result.error]
+            : result.error === "night-landmark"
               ? t(
                   "两路画面的地标对不上。已确认的连接还在。",
                   "The landmarks do not match. Earlier connections are retained.",
                 )
-              : t(
-                  "配置未保存。检查原始录像是否接到右下出口，隔离闸和手动开关是否到位。",
-                  "Not saved. Check the reel path, isolation switch and manual mode.",
-                );
+              : (() => {
+                  const circuit = window.StillwaterNightModel.circuit(
+                    state.night,
+                  );
+                  return !circuit.readable
+                    ? t(
+                        "未保存：录像线路还没接通。A 的左侧输入必须连到 F 的右侧出口。当前接线已保留。",
+                        "Not saved: the reel has no continuous path from the left of A to the right of F. Your wiring is retained.",
+                      )
+                    : !state.night.isolated
+                      ? t(
+                          "未保存：自动回写电源仍然连接。请把 AUTO-WRITE 切到“已隔离”。",
+                          "Not saved: auto-write is still connected. Switch AUTO-WRITE to ISOLATED.",
+                        )
+                      : !state.night.manual
+                        ? t(
+                            "未保存：当前为自动模式。切换到 MANUAL 后才能保存检修配置。",
+                            "Not saved: the panel is in AUTO mode. Select MANUAL to save the service configuration.",
+                          )
+                        : t(
+                            "锁定前请先保存配置，并恢复监控最后一帧。",
+                            "Save the configuration and restore the last camera frame before locking the archive.",
+                          );
+                })();
         }
         return;
       }
       if (act === "door") {
+        location.hash =
+          state.night.passageRequired && !state.night.passage.complete
+            ? "service-passage"
+            : "terminal";
+        return;
+      }
+      if (act === "inspect" && payload.target === "enter") {
         location.hash = "terminal";
         return;
       }
       render();
+      if (act === "comfort") nightEvents.clear();
+      if (result.event) nightEvents.present(result.event);
       const match = [...document.querySelectorAll("[data-night-action]")].find(
         (el) =>
           el.dataset.nightAction === act &&
@@ -493,35 +625,27 @@
             (el.dataset.cam === nightControl.dataset.cam &&
               el.dataset.pan === nightControl.dataset.pan)) &&
           (act !== "rotate" || el.dataset.node === nightControl.dataset.node) &&
-          (act !== "link" || el.dataset.link === nightControl.dataset.link),
+          (act !== "link" || el.dataset.link === nightControl.dataset.link) &&
+          (act !== "inspect" || el.dataset.target === payload.target) &&
+          (act !== "walk" || el.dataset.position === payload.position),
       );
-      match?.focus({ preventScroll: true });
-      if (
-        firstFrame &&
-        !state.preferences.skipScares &&
-        !comfort.reduced() &&
-        !document.hidden
-      ) {
-        nightAudio.stop();
-        const frame = document.querySelector(".terminal-layout .cctv-frame");
-        const face = document.createElement("div");
-        face.className = "frame-face";
-        face.setAttribute("aria-hidden", "true");
-        face.innerHTML = '<img src="assets/night-mask.jpg" alt="">';
-        frame?.append(face);
-        setTimeout(() => {
-          face.remove();
-          if (currentRoute() === "terminal") void nightAudio.sync();
-        }, 900);
-      }
+      (match || document.querySelector("#content"))?.focus({
+        preventScroll: true,
+      });
       return;
     }
     const action = e.target.closest("[data-case-action]")?.dataset.caseAction;
-    if (action === "sync-records" && perform("night-start")) {
-      location.hash = "mirror";
+    if (
+      action === "sync-records" &&
+      !phaseTransition.isActive() &&
+      perform("night-start")
+    ) {
+      phaseTransition.begin();
       return;
     }
     if (action === "settings") comfort.open();
+    if (action === "toggle-sound") void comfort.toggleSound();
+    if (action === "save-settings") comfort.open({ save: true });
     if (action === "photo-version") {
       state.drafts.photoVersion =
         e.target.closest("[data-version]").dataset.version === "revision"
@@ -752,4 +876,5 @@
   );
   window.addEventListener("hashchange", () => render(true));
   render();
+  phaseTransition.resume();
 })();

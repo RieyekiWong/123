@@ -4,8 +4,14 @@ globalThis.StillwaterCaseAudio = {
     let context = null,
       nodes = [],
       timer = null,
-      generation = 0;
+      generation = 0,
+      configuration = "",
+      breathNodes = [],
+      quietUntil = 0,
+      closeUntil = 0,
+      breatheNow = null;
     function stop() {
+      configuration = "";
       generation++;
       clearTimeout(timer);
       timer = null;
@@ -16,20 +22,31 @@ globalThis.StillwaterCaseAudio = {
         } catch {}
       }
       nodes = [];
+      breathNodes = [];
+      breatheNow = null;
       if (context?.state === "running") void context.suspend();
     }
     async function sync() {
-      stop();
-      const token = generation,
-        s = getState(),
+      const s = getState(),
         p = s.preferences;
       if (
         document.hidden ||
         !p.sound ||
         !s.night.started ||
-        s.lastEnding === "released"
-      )
+        s.lastEnding === "released" ||
+        !["cameras", "service-passage", "terminal"].includes(getRoute())
+      ) {
+        stop();
         return;
+      }
+      const deep =
+        s.night.door &&
+        (!s.night.passageRequired || s.night.passage.cabinetOpen);
+      const next = String(p.volume) + ":" + deep;
+      if (configuration === next) return;
+      stop();
+      configuration = next;
+      const token = generation;
       try {
         context ||= new (window.AudioContext || window.webkitAudioContext)();
         await context.resume();
@@ -43,13 +60,8 @@ globalThis.StillwaterCaseAudio = {
         hum.connect(gain).connect(context.destination);
         hum.start();
         nodes.push(hum, gain);
-        const allowed =
-          getRoute() === "terminal" &&
-          p.breathing &&
-          !p.skipScares &&
-          !p.reduceMotion &&
-          !matchMedia("(prefers-reduced-motion:reduce)").matches;
-        if (!allowed) return;
+        // Sound is the only audio opt-in. Breath enters deeper in the passage.
+        if (!deep) return;
         const buffer = context.createBuffer(
             1,
             context.sampleRate * 4,
@@ -60,6 +72,10 @@ globalThis.StillwaterCaseAudio = {
           samples[i] = (Math.random() * 2 - 1) * 0.55;
         function breath() {
           if (token !== generation) return;
+          if (Date.now() < quietUntil) {
+            timer = setTimeout(breath, Math.max(200, quietUntil - Date.now()));
+            return;
+          }
           const source = context.createBufferSource(),
             filter = context.createBiquadFilter(),
             envelope = context.createGain(),
@@ -70,7 +86,7 @@ globalThis.StillwaterCaseAudio = {
           filter.frequency.value = 540;
           envelope.gain.setValueAtTime(0, now);
           envelope.gain.linearRampToValueAtTime(
-            Math.min(0.035, p.volume * 0.08),
+            Math.min(0.045, p.volume * (Date.now() < closeUntil ? 0.12 : 0.06)),
             now + duration * 0.4,
           );
           envelope.gain.exponentialRampToValueAtTime(0.0001, now + duration);
@@ -78,16 +94,24 @@ globalThis.StillwaterCaseAudio = {
           source.start();
           source.stop(now + duration + 0.1);
           nodes.push(source, filter, envelope);
+          breathNodes.push(source, filter, envelope);
           source.onended = () => {
             source.disconnect();
             filter.disconnect();
             envelope.disconnect();
+            breathNodes = breathNodes.filter(
+              (n) => ![source, filter, envelope].includes(n),
+            );
             nodes = nodes.filter(
               (n) => ![source, filter, envelope].includes(n),
             );
           };
           timer = setTimeout(breath, (duration + 2 + Math.random() * 4) * 1000);
         }
+        breatheNow = () => {
+          clearTimeout(timer);
+          breath();
+        };
         timer = setTimeout(breath, 1800);
       } catch {
         stop();
@@ -95,8 +119,26 @@ globalThis.StillwaterCaseAudio = {
     }
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) stop();
+      else void sync();
     });
     window.addEventListener("pagehide", stop);
-    return { sync, stop };
+    function afterScare() {
+      quietUntil = Date.now() + 8000;
+      closeUntil = 0;
+      for (const n of breathNodes) {
+        try {
+          n.stop?.();
+          n.disconnect();
+        } catch {}
+      }
+      nodes = nodes.filter((n) => !breathNodes.includes(n));
+      breathNodes = [];
+    }
+    function approach() {
+      quietUntil = 0;
+      closeUntil = Date.now() + 2500;
+      breatheNow?.();
+    }
+    return { sync, stop, afterScare, approach };
   },
 };

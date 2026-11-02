@@ -1,14 +1,7 @@
 :root {
-  --navy: #17395c;
-  --blue: #214f78;
-  --paper: #f2eee3;
-  --border: #cbd2d9;
-  --ink: #243342;
-  --muted: #5b6774;
-  font-family: Arial, "Microsoft YaHei", sans-serif;
+  font-family: var(--font-modern);
   color: var(--ink);
-  font-size: 15px;
-  line-height: 1.75;
+  line-height: var(--body-leading);
 }
 * {
   box-sizing: border-box;

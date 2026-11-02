@@ -1,0 +1,48 @@
+{
+  "scope": "V2 only, following final user instruction",
+  "baseline": "752665237cfec7d78033de0775f6341712671419",
+  "unit": {
+    "command": "npm test",
+    "passed": 26,
+    "failed": 0
+  },
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0
+  },
+  "browser": {
+    "completedV2Checks": 68,
+    "failedV2Checks": 0,
+    "command": "playwright test --workers=1",
+    "note": "All 68 V2 checks completed before the user asked to stop work on classic. Remaining classic tests were interrupted deliberately; no full-suite success is claimed."
+  },
+  "finalChangedSceneChecks": {
+    "command": "playwright test --project=v2 v2-events.spec.mjs --workers=1",
+    "passed": 6,
+    "failed": 0,
+    "note": "Subset of the 68 V2 scenarios, rerun after final scene-state/CRT refinements."
+  },
+  "visual": {
+    "screenshots": 120,
+    "languages": [
+      "zh-CN",
+      "en"
+    ],
+    "widths": [
+      375,
+      390,
+      768,
+      1280,
+      1440
+    ],
+    "overflows": 0,
+    "scriptErrors": 0
+  },
+  "contrast": {
+    "states": 262,
+    "textRuns": 16396,
+    "issues": 0,
+    "scriptErrors": 0,
+    "note": "Computed text and composited CSS backgrounds; excludes filtered scene imagery."
+  }
+}

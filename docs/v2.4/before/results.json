@@ -1,0 +1,341 @@
+{
+  "records": [
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "forum",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "15px",
+        "color": "rgb(37, 51, 65)",
+        "background": "rgb(227, 232, 237)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "careers",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "15px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(246, 248, 250)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "hotel",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "14px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "rooms",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "14px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "staff",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "13px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(217, 221, 225)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "cameras",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "13px",
+        "color": "rgb(229, 216, 199)",
+        "background": "rgb(19, 14, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "terminal",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "13px",
+        "color": "rgb(229, 216, 199)",
+        "background": "rgb(19, 14, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "forum",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "15px",
+        "color": "rgb(37, 51, 65)",
+        "background": "rgb(227, 232, 237)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "careers",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "15px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(246, 248, 250)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "hotel",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "14px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "rooms",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "14px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "staff",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "13px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(217, 221, 225)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "cameras",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "13px",
+        "color": "rgb(229, 216, 199)",
+        "background": "rgb(19, 14, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "terminal",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "13px",
+        "color": "rgb(229, 216, 199)",
+        "background": "rgb(19, 14, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "forum",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "15px",
+        "color": "rgb(37, 51, 65)",
+        "background": "rgb(227, 232, 237)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "careers",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "15px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(246, 248, 250)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "hotel",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "14px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "rooms",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "14px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "staff",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "13px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(217, 221, 225)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "cameras",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "13px",
+        "color": "rgb(229, 216, 199)",
+        "background": "rgb(19, 14, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "terminal",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "13px",
+        "color": "rgb(229, 216, 199)",
+        "background": "rgb(19, 14, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "forum",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "15px",
+        "color": "rgb(37, 51, 65)",
+        "background": "rgb(227, 232, 237)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "careers",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "15px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(246, 248, 250)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "hotel",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "14px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "rooms",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "14px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "staff",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "13px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(217, 221, 225)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "cameras",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "13px",
+        "color": "rgb(229, 216, 199)",
+        "background": "rgb(19, 14, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "terminal",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Microsoft YaHei\", sans-serif",
+        "size": "13px",
+        "color": "rgb(229, 216, 199)",
+        "background": "rgb(19, 14, 13)"
+      }
+    }
+  ],
+  "errors": []
+}

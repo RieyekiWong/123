@@ -57,6 +57,12 @@ export function createServer(
           "case-night.js",
           "case-audio.js",
           "case-anomaly.css",
+          "design-tokens.css",
+          "visual-v24.css",
+          "case-transition.js",
+          "case-space.js",
+          "case-events.js",
+          "cctv-scenes.js",
           "hotel-2010.css",
         ].some((name) => file === resolve(base, name)) ||
         file === resolve(base, "index.html") ||

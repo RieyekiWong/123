@@ -1,0 +1,74 @@
+/* V2.4: one font/scale/spacing vocabulary. No remote font downloads. */
+:root {
+  --navy: #17395c;
+  --blue: #214f78;
+  --paper: #f2eee3;
+  --border: #cbd2d9;
+  --font-modern:
+    Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC",
+    "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-forum:
+    Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-hotel-body:
+    Tahoma, Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-hotel-heading: Georgia, "Noto Serif SC", "Songti SC", SimSun, serif;
+  --font-terminal:
+    "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono",
+    "Noto Sans SC", "PingFang SC", "Microsoft YaHei", monospace;
+  --text-body: 1rem;
+  --text-sm: 0.875rem;
+  --text-meta: 0.8125rem;
+  --text-tiny: 0.75rem;
+  --text-h1: clamp(1.75rem, 2.6vw, 2.25rem);
+  --text-h2: 1.625rem;
+  --text-h3: 1.25rem;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --surface: #fff;
+  --surface-alt: #eef2f5;
+  --ink: #243342;
+  --muted: #4c5a67;
+  --body-leading: 1.65;
+  font-size: 16px;
+}
+:root:lang(zh-CN) {
+  --body-leading: 1.8;
+}
+:root:lang(en) {
+  --body-leading: 1.65;
+}
+body[data-site="forum"] {
+  --surface: #fff;
+  --surface-alt: #edf2f6;
+  --ink: #273845;
+  --muted: #4d5e6b;
+  --blue: #244f74;
+}
+body[data-site="careers"] {
+  --surface: #fff;
+  --surface-alt: #eef2f6;
+  --ink: #243342;
+  --muted: #4c5a67;
+  --blue: #24577f;
+}
+body[data-site="hotel"] {
+  --navy: #304d49;
+  --paper: #f9f6ee;
+  --surface: #f9f6ee;
+  --surface-alt: #eee6d7;
+  --ink: #3f392f;
+  --muted: #625b50;
+  --blue: #65502f;
+}
+body[data-site="staff"] {
+  --surface: #f4f5f5;
+  --surface-alt: #e5eaee;
+  --ink: #263645;
+  --muted: #4b5b67;
+  --blue: #214f78;
+}

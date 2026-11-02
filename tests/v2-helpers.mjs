@@ -1,7 +1,7 @@
 import { expect } from "@playwright/test";
 export const link = async (page, route, scope = "main") => {
   await page.locator(`${scope} a[href="#${route}"]`).first().click();
-  await expect(page).toHaveURL(url => url.hash === "#" + route);
+  await expect(page).toHaveURL((url) => url.hash === "#" + route);
 };
 export const state = (page) =>
   page.evaluate(() => JSON.parse(localStorage.getItem("stillwater-case:v2")));
@@ -111,36 +111,73 @@ export async function validateFindings(page) {
   await expect(page.locator(".verification-receipt")).toBeVisible();
 }
 
-export async function toNight(page){
- await expect(page.locator('[data-ending]')).toHaveCount(0);
- await page.locator('[data-case-action=sync-records]').click();
- await expect(page.locator('body')).toHaveAttribute('data-anomaly','altered');
- await link(page,'cameras');
- await page.locator('[data-night-action=link][data-link="0"]').click();
- await expect(page.locator('#night-feedback')).not.toBeEmpty();
- for(const [cam,pan]of [[0,2],[1,0]])await page.locator(`[data-night-action=pan][data-cam="${cam}"][data-pan="${pan}"]`).click();
- await page.locator('[data-night-action=link][data-link="0"]').click();
- for(const [cam,pan]of [[1,2],[2,0]])await page.locator(`[data-night-action=pan][data-cam="${cam}"][data-pan="${pan}"]`).click();
- await page.locator('[data-night-action=link][data-link="1"]').click();
- await page.locator('[data-night-action=pan][data-cam="2"][data-pan="2"]').click();
- await page.locator('[data-night-action=door]').click();
- await expect(page.locator('body')).toHaveAttribute('data-anomaly','terminal');
- await page.locator('[data-night-action=frame]').click();
- await page.locator('[data-night-action=rotate][data-node="0"]').click();
+export async function toNight(page) {
+  await expect(page.locator("[data-ending]")).toHaveCount(0);
+  await page.locator("[data-case-action=sync-records]").click();
+  await expect(page.locator("body")).toHaveAttribute("data-anomaly", "altered");
+  await link(page, "rooms");
+  await link(page, "guestbook");
+  await link(page, "cameras");
+  await page.locator('[data-night-action=link][data-link="0"]').click();
+  await expect(page.locator("#night-feedback")).not.toBeEmpty();
+  for (const [cam, pan] of [
+    [0, 2],
+    [1, 0],
+  ])
+    await page
+      .locator(`[data-night-action=pan][data-cam="${cam}"][data-pan="${pan}"]`)
+      .click();
+  await page.locator('[data-night-action=link][data-link="0"]').click();
+  for (const [cam, pan] of [
+    [1, 2],
+    [2, 0],
+  ])
+    await page
+      .locator(`[data-night-action=pan][data-cam="${cam}"][data-pan="${pan}"]`)
+      .click();
+  await page.locator('[data-night-action=link][data-link="1"]').click();
+  await page
+    .locator('[data-night-action=pan][data-cam="2"][data-pan="2"]')
+    .click();
+  await page.locator("[data-night-action=door]").click();
+  await expect(page.locator("body")).toHaveAttribute(
+    "data-anomaly",
+    "terminal",
+  );
+  await expect(page).toHaveURL(/#service-passage$/);
+  await page.locator(".space-actions [data-target=plate]").click();
+  await page.locator("[data-night-action=walk][data-position=west]").click();
+  await page.locator(".space-actions [data-target=cart]").click();
+  await page.locator(".space-actions [data-target=cabinet]").click();
+  await page.locator(".space-actions [data-target=power]").click();
+  await page.locator("[data-night-action=walk][data-position=service]").click();
+  await page.locator(".space-actions [data-target=enter]").click();
+  await expect(page).toHaveURL(/#terminal$/);
+  await page.locator("[data-night-action=frame]").click();
+  await page.locator('[data-night-action=rotate][data-node="0"]').click();
 }
-export async function wireNight(page){
- // Follow the physical A-D-E-B-C-F path, checking the rendered connector angles.
- for(const [node,target]of [[0,2],[3,0],[4,3],[1,1],[2,2],[5,0]]){
-  const button=page.locator(`[data-night-action=rotate][data-node="${node}"]`);
-  for(let turn=0;turn<4;turn++){
-   const transform=await button.locator('path').getAttribute('transform');
-   if(transform===`rotate(${target*90} 50 50)`)break;
-   await button.click();
+export async function wireNight(page) {
+  // Follow the physical A-D-E-B-C-F path, checking the rendered connector angles.
+  for (const [node, target] of [
+    [0, 2],
+    [3, 0],
+    [4, 3],
+    [1, 1],
+    [2, 2],
+    [5, 0],
+  ]) {
+    const button = page.locator(
+      `[data-night-action=rotate][data-node="${node}"]`,
+    );
+    for (let turn = 0; turn < 4; turn++) {
+      const transform = await button.locator("path").getAttribute("transform");
+      if (transform === `rotate(${target * 90} 50 50)`) break;
+      await button.click();
+    }
   }
- }
- await expect(page.locator('.circuit-status')).toContainText('03:17');
- await page.locator('[data-night-action=isolate]').click();
- await page.locator('[data-night-action=manual]').click();
- await page.locator('[data-night-action=save]').click();
- await expect(page.locator('[data-night-action=lock]')).toBeVisible();
+  await expect(page.locator(".circuit-status")).toContainText("03:17");
+  await page.locator("[data-night-action=isolate]").click();
+  await page.locator("[data-night-action=manual]").click();
+  await page.locator("[data-night-action=save]").click();
+  await expect(page.locator("[data-night-action=lock]")).toBeVisible();
 }

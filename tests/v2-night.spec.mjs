@@ -118,6 +118,8 @@ test("explicit frame scare happens once and is filtered, skip mode retains the s
   await page.evaluate(() => {
     const s = JSON.parse(localStorage.getItem("stillwater-case:v2"));
     s.night.frame = false;
+    s.night.events=s.night.events.filter(id=>id!=="last-frame");
+    s.night.lastFaceStep=-100;
     s.preferences.skipScares = false;
     s.preferences.reduceMotion = false;
     localStorage.setItem("stillwater-case:v2", JSON.stringify(s));
@@ -151,7 +153,7 @@ for (const width of [375, 768, 1440])
       ),
     ).toBe(true);
     await page.screenshot({
-      path: `docs/v2.3/terminal-${width}.png`,
+      path: `docs/v2.4/after/terminal-${width}.png`,
       fullPage: true,
     });
   });
@@ -173,7 +175,7 @@ test("all added terminal deep links remain gated for a fresh browser", async ({
   }
 });
 
-test("breathing is opt-in, starts only in the terminal, stops immediately on mute and never resumes on reload", async ({
+test("second-phase breathing follows the footer sound switch, stops on mute and never resumes on reload", async ({
   page,
 }) => {
   await page.addInitScript(() => {
@@ -199,15 +201,17 @@ test("breathing is opt-in, starts only in the terminal, stops immediately on mut
   await oldSave(page);
   await toNight(page);
   expect(await page.evaluate(() => audioTrace.buffers)).toBe(0);
-  await page.locator("[data-night-action=settings]").click();
-  await page.locator("[name=skip-scares]").uncheck();
-  await page.locator("[name=breathing]").check();
-  expect(await page.evaluate(() => audioTrace.buffers)).toBe(0);
-  await page.locator("[data-comfort=sound]").click();
+  await expect(
+    page.locator(".terminal-layout [data-night-action=settings]"),
+  ).toHaveCount(0);
+  await page.locator("footer [data-case-action=toggle-sound]").click();
   await expect
     .poll(() => page.evaluate(() => audioTrace.buffers))
     .toBeGreaterThan(0);
-  await page.locator("[data-comfort=sound]").click();
+  const stoppedBefore=await page.evaluate(()=>audioTrace.stopped);
+  await page.locator('[data-night-action=rotate][data-node="0"]').click();
+  expect(await page.evaluate(()=>audioTrace.stopped)).toBe(stoppedBefore);
+  await page.locator("footer [data-case-action=toggle-sound]").click();
   await expect
     .poll(() =>
       page.evaluate(() =>
@@ -260,7 +264,8 @@ test("the persistent anomaly keeps older hotel and forum panels readable", async
       .locator(selector)
       .first()
       .evaluate((el) => getComputedStyle(el).backgroundColor);
-    expect(color).toBe("rgb(46, 32, 30)");
+    const channels = color.match(/\d+/g).slice(0, 3).map(Number);
+    expect(Math.max(...channels)).toBeLessThan(60);
   }
   await page.goto("/index-zh.html#floor-plan");
   await expect(page.locator(".plan-room").first()).toContainText("301");

@@ -65,3 +65,8 @@ The original forum, advertisements, case sources and classic edition remain. Aft
 All raster images have local low-resolution display copies; originals and licenses are preserved. Shared CCTV treatment covers both editions. The night terminal includes optional soft synthesized breathing, a single explicitly triggered, skippable mask frame and a small pointer-local glass ripple that respects reduced motion and touch input.
 
 See [implementation and route](docs/V2_3-IMPLEMENTATION.zh-CN.md), [complete Chinese copy audit](COPY-AUDIT.zh-CN.md), [verification](docs/V2_3-VERIFICATION.zh-CN.md) and [image derivatives / licenses](assets/RETRO-IMAGES.md).
+
+
+### V2.4 · Connected service space
+
+The preserved case now leads through altered public pages into a connected 317 / B-3 point-and-click passage. Six action-authored, persistent scare events use three distinct existing portraits; sudden effects remain opt-in with complete skip-mode story parity. Camera spaces use a shared, on-demand 320×240 software renderer with separate canonical-date HUDs. Existing deep saves do not require replaying the new passage. See [implementation](docs/V2_4-EXPLORATION.zh-CN.md), [walkthrough](WALKTHROUGH.zh-CN.md), [visual audit](VISUAL-AUDIT.md) and [copy inventory](COPY-AUDIT-V2_4.zh-CN.md).

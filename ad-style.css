@@ -10,7 +10,7 @@
   background: var(--ad-paper);
   color: var(--ad-ink);
   font:
-    13px/1.65 Arial,
+    14px/1.65 Arial,
     "Microsoft YaHei",
     sans-serif;
 }
@@ -68,7 +68,7 @@
   background: var(--ad-ink);
   color: var(--ad-paper);
   padding: 4px 7px;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.5px;
   gap: 6px;
 }
@@ -78,7 +78,7 @@
   gap: 3px;
 }
 .ad-card > header button {
-  font-size: 10px;
+  font-size: 13px;
   min-height: 28px;
   min-width: 28px;
   padding: 3px 7px;
@@ -107,14 +107,14 @@
 }
 .ad-card-body p,
 .ad-inline p {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
   color: var(--ad-ink);
   margin: 6px 0;
 }
 .ad-card-body button,
 .ad-inline button {
-  font-size: 11px;
+  font-size: 14px;
   min-height: 33px;
   padding: 5px 9px;
   border: 1px solid var(--ad-ink);
@@ -122,7 +122,7 @@
   background: #fff9;
 }
 .ad-shop-name {
-  font-size: 10px !important;
+  font-size: 13px !important;
   opacity: 0.8;
 }
 .ad-saved-tab {
@@ -134,17 +134,17 @@
 .ad-saved-tab button {
   min-height: 35px;
   padding: 6px 13px;
-  font-size: 11px;
+  font-size: 14px;
   border: 0;
   background: transparent;
   color: inherit;
 }
 .ad-label {
   font:
-    9px/1.6 Arial,
+    12px/1.6 Arial,
     sans-serif;
   letter-spacing: 1px;
-  color: #677681 !important;
+  color: #4e5c66;
   margin: 0 0 14px;
 }
 .ad-inline {
@@ -239,7 +239,7 @@ body.ad-rail.ad-expanded {
   margin: 0;
 }
 .ad-folder-item p {
-  font-size: 12px;
+  font-size: 14px;
 }
 .ad-folder-item > div {
   display: flex;
@@ -249,7 +249,7 @@ body.ad-rail.ad-expanded {
 .ad-folder-item button,
 .ad-detail-actions button {
   min-height: 34px;
-  font-size: 11px;
+  font-size: 14px;
   padding: 5px 12px;
 }
 .ad-mini-site {
@@ -309,7 +309,7 @@ body.ad-rail.ad-expanded {
   --ad-ink: #9c7b49;
 }
 .ad-fineprint {
-  font-size: 11px !important;
+  font-size: 14px !important;
   border-top: 1px solid var(--ad-edge);
   padding-top: 15px;
   margin-top: 22px;
@@ -375,7 +375,7 @@ body.ad-rail.ad-expanded {
     margin-bottom: 4px;
   }
   .ad-card-body p {
-    font-size: 11px;
+    font-size: 14px;
     margin: 4px 0;
   }
   .ad-shop-name {
@@ -455,10 +455,10 @@ body.ad-rail.ad-expanded {
 }
 .ad-photo-credit {
   font:
-    10px/1.8 Arial,
+    13px/1.8 Arial,
     "Microsoft YaHei",
-    sans-serif !important;
-  color: #6d716e !important;
+    sans-serif;
+  color: #4e5d55;
   margin: 15px 0 5px;
   overflow-wrap: anywhere;
 }
@@ -470,7 +470,7 @@ body.ad-rail.ad-expanded {
   padding-top: 8px;
 }
 .ad-extra-credits summary {
-  font-size: 11px;
+  font-size: 14px;
 }
 .media-credit-grid {
   display: grid;
@@ -535,10 +535,10 @@ body.ad-rail.ad-expanded {
     font-size: 16px;
   }
   .ad-card-body p {
-    font-size: 10px;
+    font-size: 13px;
   }
   .ad-card-body button {
-    font-size: 10px;
+    font-size: 13px;
     min-height: 29px;
   }
 }

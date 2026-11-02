@@ -16,6 +16,8 @@ function ready() {
 }
 function door(s) {
   move(s, "start");
+  move(s, "observe-public", { page: "rooms" });
+  move(s, "observe-public", { page: "guestbook" });
   for (const [cam, pan] of [
     [0, 2],
     [1, 0],
@@ -30,11 +32,18 @@ function door(s) {
   assert.ok(move(s, "link", { link: 1 }).ok);
   move(s, "pan", { cam: 2, pan: 2 });
   assert.ok(move(s, "door").ok);
+  move(s, "walk", { position: "west" });
+  for (const target of ["cart", "cabinet", "power"])
+    assert.ok(move(s, "inspect", { target }).ok);
+  move(s, "walk", { position: "service" });
+  assert.ok(move(s, "inspect", { target: "enter" }).ok);
 }
 test("spatial links require actual shared landmarks; mistakes retain correct links", () => {
   const s = ready();
   assert.equal(move(s, "link", { link: 0 }).ok, false);
   move(s, "start");
+  move(s, "observe-public", { page: "rooms" });
+  move(s, "observe-public", { page: "guestbook" });
   assert.equal(move(s, "door").ok, false);
   move(s, "pan", { cam: 0, pan: 2 });
   move(s, "pan", { cam: 1, pan: 0 });
@@ -111,6 +120,122 @@ test("a malformed new equipment field cannot discard an otherwise valid historic
   assert.equal(s.night.door, false);
 });
 
-test('editing findings gates live equipment but always offers a route back to the review',()=>{
- const s=ready();door(s);M.transition(s,'edit-evidence');assert.equal(M.canOpen(s,'terminal'),false);assert.equal(M.recovery(s,'terminal'),'review');assert.equal(M.canOpen(s,'review'),true);
+test("editing findings gates live equipment but always offers a route back to the review", () => {
+  const s = ready();
+  door(s);
+  M.transition(s, "edit-evidence");
+  assert.equal(M.canOpen(s, "terminal"), false);
+  assert.equal(M.recovery(s, "terminal"), "review");
+  assert.equal(M.canOpen(s, "review"), true);
+});
+
+test("new live chapters require actually revisiting both changed pages and traversing the service space", () => {
+  const s = ready();
+  move(s, "start");
+  assert.equal(M.canOpen(s, "cameras"), false);
+  assert.equal(M.recovery(s), "rooms");
+  move(s, "observe-public", { page: "rooms" });
+  assert.equal(M.canOpen(s, "cameras"), false);
+  assert.equal(M.recovery(s), "guestbook");
+  move(s, "observe-public", { page: "guestbook" });
+  assert.equal(M.canOpen(s, "cameras"), true);
+  for (const [cam, pan] of [
+    [0, 2],
+    [1, 0],
+  ])
+    move(s, "pan", { cam, pan });
+  move(s, "link", { link: 0 });
+  for (const [cam, pan] of [
+    [1, 2],
+    [2, 0],
+  ])
+    move(s, "pan", { cam, pan });
+  move(s, "link", { link: 1 });
+  move(s, "pan", { cam: 2, pan: 2 });
+  move(s, "door");
+  assert.equal(M.canOpen(s, "terminal"), false);
+  assert.equal(M.recovery(s), "service-passage");
+  assert.equal(move(s, "frame").ok, false);
+  assert.equal(move(s, "save").ok, false);
+  move(s, "walk", { position: "service" });
+  assert.equal(move(s, "inspect", { target: "enter" }).error, "night-power");
+  move(s, "walk", { position: "west" });
+  assert.equal(move(s, "inspect", { target: "cabinet" }).error, "night-cart");
+  move(s, "inspect", { target: "cart" });
+  move(s, "inspect", { target: "cabinet" });
+  move(s, "inspect", { target: "power" });
+  move(s, "walk", { position: "service" });
+  move(s, "inspect", { target: "enter" });
+  assert.equal(M.canOpen(M.hydrate(s), "terminal"), true);
+});
+test("six authored events are action-bound, distinct, once per save and faces have action spacing", () => {
+  const s = ready();
+  door(s);
+  const n = s.night;
+  move(s, "walk", { position: "landing" });
+  assert.equal(
+    move(s, "inspect", { target: "plate" }).event,
+    "plate-open-door",
+  );
+  assert.equal(move(s, "inspect", { target: "plate" }).event, undefined);
+  assert.equal(
+    move(s, "inspect", { target: "peephole" }).event,
+    "peephole-empty",
+  );
+  assert.equal(move(s, "inspect", { target: "photo" }).event, "photo-face");
+  assert.equal(move(s, "inspect", { target: "photo" }).event, undefined);
+  move(s, "walk", { position: "west" });
+  assert.equal(
+    move(s, "walk", { position: "landing" }).event,
+    "hall-silhouette",
+  );
+  assert.equal(move(s, "frame").event, "last-frame");
+  assert.deepEqual(
+    new Set(n.events),
+    new Set([
+      "cabinet-face",
+      "plate-open-door",
+      "peephole-empty",
+      "photo-face",
+      "hall-silhouette",
+      "last-frame",
+    ]),
+  );
+  const saved = M.hydrate(s);
+  assert.deepEqual(saved.night.events, n.events);
+  assert.equal(move(saved, "frame").event, undefined);
+  assert.equal(
+    saved.preferences.skipScares,
+    true,
+    "no action silently opts a player into visual scares",
+  );
+});
+test("existing deep saves retain immediate terminal access and malformed additions cannot erase original progress", () => {
+  const s = ready();
+  s.night = {
+    started: true,
+    links: [0, 1],
+    door: true,
+    frame: true,
+    orientations: [2, 1, 2, 0, 3, 0],
+    isolated: true,
+    manual: true,
+    saved: true,
+    locked: true,
+    operations: 9,
+  };
+  const hydrated = M.hydrate(s);
+  assert.equal(M.canOpen(hydrated, "terminal"), true);
+  assert.equal(hydrated.night.saved, true);
+  s.night.passage = {
+    position: "evil",
+    inspected: { bad: true },
+    complete: true,
+  };
+  s.night.events = { bad: true };
+  const safe = M.hydrate(s);
+  assert.equal(safe.night.door, true);
+  assert.equal(safe.evidence.length, 9);
+  assert.deepEqual(safe.night.events, []);
+  assert.equal(safe.night.passage.complete, false);
 });

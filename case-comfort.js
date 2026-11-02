@@ -21,7 +21,7 @@ globalThis.StillwaterCaseComfort = {
       dialog.querySelector("[name=reduce-motion]").checked = reduced();
       dialog.querySelector("[name=reduce-motion]").disabled = media.matches;
       dialog.querySelector("[name=skip-scares]").checked = pref.skipScares;
-      dialog.querySelector("[name=breathing]").checked = pref.breathing;
+
       dialog.querySelector("[name=volume]").value = String(pref.volume * 100);
       dialog.querySelector("#volume-value").textContent =
         Math.round(pref.volume * 100) + "%";
@@ -68,7 +68,10 @@ globalThis.StillwaterCaseComfort = {
           tone();
         } catch {
           pref.sound = false;
-          dialog.querySelector("#comfort-feedback").textContent = t(
+          (
+            dialog.querySelector("#comfort-feedback") ||
+            document.querySelector("#case-status")
+          ).textContent = t(
             "浏览器没能开启声音，静音也能继续。",
             "Audio could not be enabled. All records can be reconciled silently.",
           );
@@ -78,13 +81,16 @@ globalThis.StillwaterCaseComfort = {
       update();
       onPreference();
     }
-    function open() {
+    function open(options = {}) {
       if (dialog.open) return;
       returnFocus = document.activeElement;
-      dialog.innerHTML = `<header class="settings-heading"><h2 id="settings-title">${t("声音与浏览设置", "Sound & viewing settings")}</h2><button data-comfort="close" aria-label="${t("关闭设置", "Close settings")}">×</button></header><div class="settings-content"><p>${t("声音默认关闭。可调整音量、动态效果和监控惊吓。", "Sound is off by default. The night terminal contains one optional camera scare; no scream is played.")}</p><button type="button" data-comfort="sound" aria-pressed="false"></button><label for="case-volume">${t("音量", "Volume")} <output id="volume-value"></output></label><input id="case-volume" type="range" name="volume" min="0" max="50" step="5"><label class="setting-toggle"><input type="checkbox" name="reduce-motion">${t("减少动态效果", "Reduce Motion")}</label>${media.matches ? `<p class="small">${t("正在遵循设备的减少动态设置。", "Following your device’s reduced-motion setting.")}</p>` : ""}<label class="setting-toggle"><input type="checkbox" name="skip-scares">${t("跳过监控突脸与短暂故障", "Skip Scares / brief connection effects")}</label><label class="setting-toggle"><input type="checkbox" name="breathing">${t("夜班终端呼吸声（需开启声音并允许惊吓）", "Night terminal breathing (requires sound and scares enabled)")}</label><p id="comfort-feedback" role="status"></p><details><summary>${t("本地存档与重新开始", "Local save & start again")}</summary><p>${t("进度存在当前浏览器里。重新开始只清除新版进度，上一版存档和广告夹会保留。", "This browser retains the new case, drafts and dispositions. Starting again clears only the new case; the previous edition’s save is preserved.")}</p><button data-comfort="reset-prompt">${t("重新开始这份工作", "Start this review again")}</button><div id="case-reset-confirm" hidden><p>${t("清除新版的全部进度和结局记录？", "Clear this case and its retained dispositions?")}</p><button data-comfort="reset-confirm">${t("确认重开", "Confirm new review")}</button><button data-comfort="reset-cancel">${t("取消，保留进度", "Keep current records")}</button></div></details><p class="small">${t("样本不需要姓名、邮箱、电话、简历或支付信息。", "The sample needs no name, email, phone number, CV or payment information.")}</p></div>`;
+      dialog.innerHTML = `<header class="settings-heading"><h2 id="settings-title">${t("声音与浏览设置", "Sound & viewing settings")}</h2><button data-comfort="close" aria-label="${t("关闭设置", "Close settings")}">×</button></header><div class="settings-content"><p>${t("声音默认关闭。第二阶段开启声音后，先听到机器运转声；进入深处后会自动加入呼吸声，关闭声音即可停止。可单独跳过监控突脸或减少动态效果。", "Sound is off by default. In the second phase it starts with machinery, adding breathing deeper in the passage; switching it off stops both. Visual scares and motion can be adjusted separately.")}</p><button type="button" data-comfort="sound" aria-pressed="false"></button><label for="case-volume">${t("音量", "Volume")} <output id="volume-value"></output></label><input id="case-volume" type="range" name="volume" min="0" max="50" step="5"><label class="setting-toggle"><input type="checkbox" name="reduce-motion">${t("减少动态效果", "Reduce Motion")}</label>${media.matches ? `<p class="small">${t("正在遵循设备的减少动态设置。", "Following your device’s reduced-motion setting.")}</p>` : ""}<label class="setting-toggle"><input type="checkbox" name="skip-scares">${t("跳过监控突脸与短暂故障", "Skip Scares / brief connection effects")}</label><p id="comfort-feedback" role="status"></p><details class="save-section" ${options.save ? "open" : ""}><summary>${t("新版存档与重置", "New edition save & reset")}</summary><p>${t("进度存在当前浏览器里。只重置新版会清除本次调查、第二阶段和结局，从论坛重新开始。上一版存档、广告夹和声音偏好会保留，声音恢复为关闭。", "Resetting this edition clears its investigation, equipment chapters and endings and returns to the forum. Classic saves, saved ads and comfort preferences are preserved; sound returns to off.")}</p><button data-comfort="reset-prompt">${t("只重置新版存档", "Reset this edition only")}</button><div id="case-reset-confirm" hidden><p>${t("清除新版的全部进度和结局记录？", "Clear this case and its retained dispositions?")}</p><button data-comfort="reset-confirm">${t("确认重置新版", "Confirm reset of this edition")}</button><button data-comfort="reset-cancel">${t("取消，保留进度", "Keep current records")}</button></div></details><p class="small">${t("样本不需要姓名、邮箱、电话、简历或支付信息。", "The sample needs no name, email, phone number, CV or payment information.")}</p></div>`;
       dialog.showModal();
       update();
-      dialog.querySelector("[data-comfort=close]").focus();
+      (options.save
+        ? dialog.querySelector(".save-section summary")
+        : dialog.querySelector("[data-comfort=close]")
+      ).focus();
     }
     dialog.addEventListener("click", (event) => {
       const action = event.target.closest("[data-comfort]")?.dataset.comfort;
@@ -105,7 +111,9 @@ globalThis.StillwaterCaseComfort = {
     dialog.addEventListener("close", () => {
       (returnFocus?.isConnected
         ? returnFocus
-        : document.querySelector("[data-case-action=settings]")
+        : document.querySelector(
+            "[data-case-action=settings], [data-case-action=save-settings]",
+          )
       )?.focus({ preventScroll: true });
     });
     dialog.addEventListener("input", (event) => {
@@ -124,8 +132,6 @@ globalThis.StillwaterCaseComfort = {
         getState().preferences.reduceMotion = event.target.checked;
       else if (event.target.name === "skip-scares")
         getState().preferences.skipScares = event.target.checked;
-      else if (event.target.name === "breathing")
-        getState().preferences.breathing = event.target.checked;
       else return;
       save();
       update();
@@ -170,6 +176,6 @@ globalThis.StillwaterCaseComfort = {
         }
       }, 600);
     }
-    return { open, signal, update, tone, reduced };
+    return { open, signal, update, tone, reduced, toggleSound };
   },
 };

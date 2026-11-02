@@ -60,7 +60,7 @@
   z-index: 12 !important;
   pointer-events: none;
   font:
-    clamp(8px, 1.3vw, 12px)/1.5 "Courier New",
+    clamp(8px, 1.3vw, 12px) / 1.5 "Courier New",
     monospace;
   color: #e0eadf;
   text-shadow: 1px 1px #000;
@@ -181,4 +181,97 @@ img[srcset*="lowres"] {
 }
 .cctv-frame[data-signal="readable"]::after {
   box-shadow: inset 0 0 40px 9px #0008;
+}
+/* OSD remains readable; only the optical picture is degraded. */
+.cctv-osd,
+.camera-top,
+.camera-bottom,
+.shift-feed-header,
+.shift-feed-footer {
+  font-family:
+    "IBM Plex Mono", Consolas, "Liberation Mono", "Noto Sans SC",
+    "Microsoft YaHei", monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  flex-wrap: wrap;
+  gap: 4px;
+  letter-spacing: 0;
+}
+.cctv-osd {
+  left: 8px;
+  right: 8px;
+  align-items: start;
+}
+.cctv-osd > span:first-child {
+  min-width: 0;
+  flex: 1;
+}
+.cctv-osd > span:last-child {
+  flex: none;
+}
+.cctv-osd.bottom {
+  font-size: 14px;
+}
+.cctv-frame::after,
+.camera-screen::after,
+.shift-feed::after {
+  background:
+    repeating-linear-gradient(0deg, #00180b18 0 1px, transparent 1px 3px),
+    url("assets/cctv-grain.svg");
+  box-shadow: inset 0 0 36px 10px #0008;
+}
+.cctv-frame[data-cctv-phase="terminal"]::after {
+  background:
+    repeating-linear-gradient(0deg, #00180b25 0 1px, transparent 1px 3px),
+    url("assets/cctv-grain.svg");
+  box-shadow: inset 0 0 44px 12px #0009;
+}
+.cctv-frame[data-cctv-phase="terminal"] .cctv-picture {
+  filter: grayscale(0.8) sepia(0.18) contrast(1.2) brightness(0.83);
+  transform: scaleX(1.012);
+}
+@media (max-width: 480px) {
+  .cctv-osd,
+  .camera-top,
+  .camera-bottom,
+  .shift-feed-header,
+  .shift-feed-footer {
+    font-size: 12px;
+  }
+  .cctv-osd.bottom {
+    font-size: 14px;
+  }
+  .cctv-osd > span:first-child {
+    max-width: 80%;
+  }
+}
+/* Actual 320×240 scene buffer, nearest-neighbour enlarged under the shared CRT. */
+.cctv-picture .psx-scene,
+.shift-scene .psx-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+.cctv-picture .no-signal {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  background: #071009d9;
+}
+.frame-face img,
+.monitor-threat img,
+.intrusion-figure {
+  image-rendering: pixelated;
+}
+/* Keep the warm wood/red lamp palette of the low-poly set under the CRT glass. */
+.cctv-picture:has(.psx-scene) {
+  filter: sepia(0.12) contrast(1.12) brightness(0.88);
+}
+.cctv-frame[data-cctv-phase="terminal"] .cctv-picture:has(.psx-scene) {
+  filter: sepia(0.16) contrast(1.18) brightness(0.8);
 }

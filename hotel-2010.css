@@ -1,10 +1,5 @@
 /* Public hotel skin only. Forum, careers, staff records and classic keep their own styles. */
 body[data-site="hotel"] {
-  --blue: #6f583a;
-  --navy: #304d49;
-  --paper: #f9f6ee;
-  --muted: #746c60;
-  --ink: #3f392f;
   color: var(--ink);
   background: #e7e1d5;
   font:
@@ -80,11 +75,11 @@ body[data-site="hotel"] .hotel-nav a:first-child {
 }
 .hotel-nav a[aria-current="page"] {
   text-decoration: none !important;
-  color: #7b5e32 !important;
+  color: #7b5e32;
   font-weight: 600;
 }
 .hotel-nav a:hover {
-  color: #967644 !important;
+  color: #725631;
   text-decoration: underline;
 }
 body[data-site="hotel"] main {

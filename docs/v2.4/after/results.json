@@ -1,0 +1,1445 @@
+{
+  "records": [
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "forum",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "careers",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(246, 248, 250)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "hotel",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "rooms",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "staff",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(38, 54, 69)",
+        "background": "rgb(217, 221, 225)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "cameras",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "terminal",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "service-passage",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "ad-pet",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "ad-cinema",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "ad-cats",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "settings",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "route": "forum",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "route": "careers",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(246, 248, 250)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "route": "hotel",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "route": "rooms",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "route": "staff",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(38, 54, 69)",
+        "background": "rgb(217, 221, 225)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "route": "cameras",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "route": "terminal",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "route": "service-passage",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "route": "ad-pet",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "route": "ad-cinema",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "route": "ad-cats",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "route": "settings",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "route": "forum",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "route": "careers",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(246, 248, 250)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "route": "hotel",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "route": "rooms",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "route": "staff",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(38, 54, 69)",
+        "background": "rgb(217, 221, 225)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "route": "cameras",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "route": "terminal",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "route": "service-passage",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "route": "ad-pet",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "route": "ad-cinema",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "route": "ad-cats",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "route": "settings",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1280,
+      "route": "forum",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1280,
+      "route": "careers",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(246, 248, 250)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1280,
+      "route": "hotel",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1280,
+      "route": "rooms",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1280,
+      "route": "staff",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(38, 54, 69)",
+        "background": "rgb(217, 221, 225)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1280,
+      "route": "cameras",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1280,
+      "route": "terminal",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1280,
+      "route": "service-passage",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1280,
+      "route": "ad-pet",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1280,
+      "route": "ad-cinema",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1280,
+      "route": "ad-cats",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1280,
+      "route": "settings",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "forum",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "careers",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(246, 248, 250)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "hotel",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "rooms",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "staff",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(38, 54, 69)",
+        "background": "rgb(217, 221, 225)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "cameras",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "terminal",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "service-passage",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "ad-pet",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "ad-cinema",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "ad-cats",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "settings",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "forum",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "careers",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(246, 248, 250)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "hotel",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "rooms",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "staff",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(38, 54, 69)",
+        "background": "rgb(217, 221, 225)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "cameras",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "terminal",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "service-passage",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "ad-pet",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "ad-cinema",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "ad-cats",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "settings",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "route": "forum",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "route": "careers",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(246, 248, 250)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "route": "hotel",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "route": "rooms",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "route": "staff",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(38, 54, 69)",
+        "background": "rgb(217, 221, 225)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "route": "cameras",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "route": "terminal",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "route": "service-passage",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "route": "ad-pet",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "route": "ad-cinema",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "route": "ad-cats",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "route": "settings",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "route": "forum",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "route": "careers",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(246, 248, 250)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "route": "hotel",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "route": "rooms",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "route": "staff",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(38, 54, 69)",
+        "background": "rgb(217, 221, 225)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "route": "cameras",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "route": "terminal",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "route": "service-passage",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "route": "ad-pet",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "route": "ad-cinema",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "route": "ad-cats",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "route": "settings",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1280,
+      "route": "forum",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1280,
+      "route": "careers",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(246, 248, 250)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1280,
+      "route": "hotel",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1280,
+      "route": "rooms",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1280,
+      "route": "staff",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(38, 54, 69)",
+        "background": "rgb(217, 221, 225)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1280,
+      "route": "cameras",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1280,
+      "route": "terminal",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1280,
+      "route": "service-passage",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1280,
+      "route": "ad-pet",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1280,
+      "route": "ad-cinema",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1280,
+      "route": "ad-cats",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1280,
+      "route": "settings",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "forum",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "careers",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(36, 51, 66)",
+        "background": "rgb(246, 248, 250)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "hotel",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "rooms",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "staff",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(38, 54, 69)",
+        "background": "rgb(217, 221, 225)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "cameras",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "terminal",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "service-passage",
+      "overflow": false,
+      "body": {
+        "font": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(223, 209, 199)",
+        "background": "rgb(16, 12, 13)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "ad-pet",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "ad-cinema",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "ad-cats",
+      "overflow": false,
+      "body": {
+        "font": "Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(39, 56, 69)",
+        "background": "rgb(229, 234, 240)"
+      }
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "settings",
+      "overflow": false,
+      "body": {
+        "font": "Tahoma, Arial, \"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "16px",
+        "color": "rgb(63, 57, 47)",
+        "background": "rgb(231, 225, 213)"
+      }
+    }
+  ],
+  "errors": []
+}

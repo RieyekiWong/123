@@ -26,7 +26,8 @@ globalThis.StillwaterCaseState = (() => {
     ending: "historicalEnding",
     mirror: "finalEvidence",
     cameras: "mirrorStarted",
-    terminal: "serviceDoor",
+    "service-passage": "serviceDoor",
+    terminal: "passageComplete",
   };
   const fresh = () => ({
     schema: 2,
@@ -61,8 +62,12 @@ globalThis.StillwaterCaseState = (() => {
     requirement === "public" ||
     has(state, requirement) ||
     state.completed[requirement] === true ||
-    (requirement === "mirrorStarted" && state.night.started) ||
-    (requirement === "serviceDoor" && state.night.door);
+    (requirement === "mirrorStarted" &&
+      state.night.started &&
+      globalThis.StillwaterNightModel.spreadReady(state.night)) ||
+    (requirement === "serviceDoor" && state.night.door) ||
+    (requirement === "passageComplete" &&
+      globalThis.StillwaterNightModel.passageReady(state.night));
   const canRecord = (state, id) =>
     !!D.clues[id] && met(state, D.clues[id].unlockedAt);
   function record(state, id) {
@@ -72,7 +77,7 @@ globalThis.StillwaterCaseState = (() => {
   }
   const canOpen = (state, route) =>
     Object.hasOwn(routes, route) &&
-    (!["mirror", "cameras", "terminal"].includes(route) ||
+    (!["mirror", "cameras", "service-passage", "terminal"].includes(route) ||
       state.completed.finalEvidence) &&
     ((route === "ending" && state.endings.length > 0) ||
       met(state, routes[route]));
@@ -84,6 +89,16 @@ globalThis.StillwaterCaseState = (() => {
       return D.clues[id].route;
     }
     if (!state.completed.finalEvidence) return "review";
+    if (
+      state.night.started &&
+      !globalThis.StillwaterNightModel.spreadReady(state.night)
+    )
+      return !state.night.spread.rooms ? "rooms" : "guestbook";
+    if (
+      state.night.door &&
+      !globalThis.StillwaterNightModel.passageReady(state.night)
+    )
+      return "service-passage";
     return state.night.started
       ? state.night.door
         ? "terminal"
@@ -185,6 +200,15 @@ globalThis.StillwaterCaseState = (() => {
   function transition(state, action, payload = {}) {
     if (action.startsWith("night-") && !state.completed.finalEvidence)
       return fail("evidence-incomplete");
+    const N = globalThis.StillwaterNightModel,
+      n = state.night;
+    if (
+      action.startsWith("night-") &&
+      !["night-start", "night-observe-public", "night-comfort"].includes(action)
+    ) {
+      if (!n.started || !N.spreadReady(n)) return fail("night-spread");
+      n.steps++;
+    }
     switch (action) {
       case "sample":
         record(state, "C1");
@@ -275,8 +299,83 @@ globalThis.StillwaterCaseState = (() => {
         return ok();
       case "night-start":
         if (!state.completed.finalEvidence) return fail("evidence-incomplete");
+        if (!n.started) n.spreadRequired = true;
         state.night.started = true;
         return ok();
+      case "night-observe-public":
+        if (!n.started || !["rooms", "guestbook"].includes(payload.page))
+          return fail("night-access");
+        n.spread[payload.page] = true;
+        return ok();
+      case "night-comfort":
+        if (!n.started || typeof payload.enable !== "boolean")
+          return fail("night-access");
+        state.preferences.skipScares = !payload.enable;
+        n.comfortAcknowledged = true;
+        return ok();
+      case "night-walk":
+        if (
+          !n.door ||
+          !["landing", "west", "service"].includes(payload.position)
+        )
+          return fail("night-access");
+        n.passage.position = payload.position;
+        if (
+          payload.position === "landing" &&
+          n.passage.inspected.includes("photo")
+        )
+          return N.event(n, "hall-silhouette");
+        return ok();
+      case "night-inspect": {
+        const p = n.passage,
+          id = payload.target;
+        if (
+          !n.door ||
+          ![
+            "plate",
+            "peephole",
+            "photo",
+            "notice",
+            "cart",
+            "cabinet",
+            "power",
+            "enter",
+          ].includes(id)
+        )
+          return fail("night-access");
+        if (
+          ["plate", "peephole", "photo"].includes(id) &&
+          p.position !== "landing"
+        )
+          return fail("night-access");
+        if (["cart", "cabinet", "power"].includes(id) && p.position !== "west")
+          return fail("night-access");
+        if (id === "enter" && p.position !== "service")
+          return fail("night-access");
+        if (
+          ["plate", "peephole", "photo", "notice"].includes(id) &&
+          !p.inspected.includes(id)
+        )
+          p.inspected.push(id);
+        if (id === "plate") return N.event(n, "plate-open-door");
+        if (id === "peephole") return N.event(n, "peephole-empty");
+        if (id === "photo") return N.event(n, "photo-face", true);
+        if (id === "cart") p.cartMoved = true;
+        if (id === "cabinet") {
+          if (!p.cartMoved) return fail("night-cart");
+          p.cabinetOpen = true;
+          return N.event(n, "cabinet-face", true);
+        }
+        if (id === "power") {
+          if (!p.cabinetOpen) return fail("night-cabinet");
+          p.servicePower = true;
+        }
+        if (id === "enter") {
+          if (!p.servicePower) return fail("night-power");
+          p.complete = true;
+        }
+        return ok();
+      }
       case "night-pan": {
         if (
           !state.night.started ||
@@ -284,7 +383,15 @@ globalThis.StillwaterCaseState = (() => {
           ![0, 1, 2].includes(payload.pan)
         )
           return fail("night-access");
+        const previous = state.night.pans[payload.cam];
         state.night.pans[payload.cam] = payload.pan;
+        if (
+          payload.cam === 1 &&
+          payload.pan === 1 &&
+          previous !== 1 &&
+          n.links.includes(0)
+        )
+          return N.event(n, "hall-silhouette");
         return ok();
       }
       case "night-link": {
@@ -301,19 +408,21 @@ globalThis.StillwaterCaseState = (() => {
       case "night-door":
         if (state.night.links.length !== 2 || state.night.pans[2] !== 2)
           return fail("night-door");
+        if (!n.door) n.passageRequired = true;
         state.night.door = true;
         return ok();
       case "night-frame":
-        if (!state.night.door) return fail("night-access");
+        if (!N.passageReady(n)) return fail("night-access");
+        const first = !n.frame;
         state.night.frame = true;
-        return ok();
+        return first ? N.event(n, "last-frame", true) : ok();
       case "night-rotate":
       case "night-isolate":
       case "night-manual":
       case "night-reset":
       case "night-undo": {
         const n = state.night;
-        if (!n.door) return fail("night-access");
+        if (!N.passageReady(n)) return fail("night-access");
         if (
           action === "night-rotate" &&
           ![0, 1, 2, 3, 4, 5].includes(payload.node)
@@ -350,7 +459,7 @@ globalThis.StillwaterCaseState = (() => {
       }
       case "night-save":
         if (
-          !state.night.door ||
+          !N.passageReady(n) ||
           !globalThis.StillwaterNightModel.circuit(state.night).valid
         )
           return fail("night-circuit");
@@ -358,6 +467,7 @@ globalThis.StillwaterCaseState = (() => {
         return ok();
       case "night-lock":
         if (
+          !N.passageReady(n) ||
           !state.night.saved ||
           !state.night.frame ||
           !globalThis.StillwaterNightModel.circuit(state.night).valid
@@ -371,7 +481,7 @@ globalThis.StillwaterCaseState = (() => {
           !Object.keys(D.clues).every((id) => has(state, id))
         )
           return fail("evidence-incomplete");
-        if (!state.night.door || !state.night.frame || !state.night.operations)
+        if (!N.passageReady(n) || !state.night.frame || !state.night.operations)
           return fail("night-access");
         if (payload.ending === "released" && !state.night.locked)
           return fail("night-circuit");
