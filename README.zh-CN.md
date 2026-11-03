@@ -114,3 +114,8 @@ npm run test:e2e
 已有完成存档不被撤销，新增章节可以自愿回看；未完成存档保留原件、接线和历史选择。自动结案与拒绝签字仍保留原有较早的选择位置。只更新新版，不改动原版剧情、图片与独立存档。
 
 [交付与验收](docs/V2_6-DELIVERY.zh-CN.md) · [完整通关说明（剧透）](WALKTHROUGH.zh-CN.md) · [聊天头像来源](assets/chat-avatars/SOURCES.md) · [黑色章节素材](assets/void-v26/SOURCES.md) · [各阶段截图](docs/v2.6/visual-results.json)
+
+
+### 新版 V2.6.2 · 黑色章节的门
+
+门增加凹面、把手、合页与门槛；走廊两扇门下方各自延伸的两段线取消，左右差异改由门槛破损呈现。辨路答案、鬼脸与存档沿用。开场说明中指定的那段引导已从中英文页面删除。[改动与验证](docs/V2_6_2-DOORS.zh-CN.md)。

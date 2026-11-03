@@ -106,3 +106,8 @@ The messenger now follows a full-window desktop layout, with licensed, bundled a
 After a valid saved B-3 circuit and restored frame, open **View the unlisted picture**. A separate low-resolution black space offers three physical/observational interactions: a deterministic corridor, draggable fragments and a classification terminal. Two distinct faces appear only on deliberate review/look-back actions and honor all existing comfort preferences. Return to B-3 to lock the original archive and choose an existing ending; no fourth ending is added. Previously completed saves remain complete and may visit voluntarily; incomplete saves retain their case, equipment and choices.
 
 [Delivery and verification](docs/V2_6-DELIVERY.zh-CN.md) · [Walkthrough (spoilers)](WALKTHROUGH.zh-CN.md) · [Avatar attribution](assets/chat-avatars/SOURCES.md) · [Chapter art provenance](assets/void-v26/SOURCES.md) · [Visual records](docs/v2.6/visual-results.json).
+
+
+### V2.6.2 · Doors in the black chapter
+
+Doors now have recessed panels, handles, hinges and thresholds. The four outgoing floor lines beneath the corridor doors are removed; chipped thresholds retain the same left/right clue. Puzzle solutions, scares and saves are preserved. The requested introductory paragraph is removed in both languages. See [changes and verification](docs/V2_6_2-DOORS.zh-CN.md).

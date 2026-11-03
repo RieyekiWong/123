@@ -1,0 +1,56 @@
+{
+  "records": [
+    {
+      "width": 1440,
+      "name": "corridor",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "name": "reference",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "name": "void-fragments",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "name": "void-reviewed",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "name": "void-return",
+      "overflow": false
+    },
+    {
+      "width": 375,
+      "name": "corridor",
+      "overflow": false
+    },
+    {
+      "width": 375,
+      "name": "reference",
+      "overflow": false
+    },
+    {
+      "width": 375,
+      "name": "void-fragments",
+      "overflow": false
+    },
+    {
+      "width": 375,
+      "name": "void-reviewed",
+      "overflow": false
+    },
+    {
+      "width": 375,
+      "name": "void-return",
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "captureMode": "local-preview"
+}

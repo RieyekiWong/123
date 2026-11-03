@@ -9,16 +9,16 @@ globalThis.StillwaterVoid = {
     const reduced=()=>getState().preferences.reduceMotion||matchMedia('(prefers-reduced-motion:reduce)').matches;
     const button=(action,label,attributes='')=>`<button data-void-action="${action}" ${attributes}>${label}</button>`;
     const description=anchors=>t(
-      `光从${anchors[0]==='left'?'左':'右'}边落下；地缝在门${anchors[1]==='left'?'左':'右'}侧断开；门框${anchors[2]==='left'?'左':'右'}上角有缺口。`,
-      `Light from the ${anchors[0]}; a break in the floor seam to the ${anchors[1]}; a notch in the upper-${anchors[2]} corner of the frame.`,
+      `光从${anchors[0]==='left'?'左':'右'}边落下；门槛${anchors[1]==='left'?'左':'右'}侧有破损；门框${anchors[2]==='left'?'左':'右'}上角有缺口。`,
+      `Light from the ${anchors[0]}; damage on the ${anchors[1]} side of the threshold; a notch in the upper-${anchors[2]} corner of the frame.`,
     );
     function feedbackText(v) {
       const scene=V.scenes[Math.min(3,v.step)];
       if(['reference','left','right'].includes(v.observation))return (v.observation==='reference'?t('来时的门框：','The frame behind you: '):v.observation==='left'?t('左侧的门：','Left door: '):t('右侧的门：','Right door: '))+description(scene[v.observation]);
-      if(v.observation==='loop')return t('又回到入口了。脚下的断缝还是原来的位置。','Back at the entrance. The broken seam is in the same place.');
-      if(v.observation==='joined')return t('地缝在另一边接上了。','The floor seam continues on the other side.');
+      if(v.observation==='loop')return t('又回到入口了。门槛还是同一边破了。','Back at the entrance. The threshold is damaged on the same side.');
+      if(v.observation==='joined')return t('门框和门槛都对上了。','The frame and threshold match.');
       if(v.observation==='shadow')return t('照过去时，那里已经空了。','Nothing there when you turn the light toward it.');
-      return t('来时门框的缺口、脚下的地缝和光照方向都还在。','The notch, broken floor seam and direction of the light are still there.');
+      return t('来时门框的缺口、门槛上的破损和光照方向都还在。','The frame notch, threshold damage and direction of the light are still there.');
     }
     function conflict(type) {
       const F=globalThis.StillwaterCaseData.facts;
@@ -42,16 +42,69 @@ globalThis.StillwaterVoid = {
       return `<main id="content" class="void-world" tabindex="-1"><header class="void-heading"><a href="#terminal">B-3 / ${t('返回配线室','Patch room')}</a><h1>${title}</h1><a data-case-language href="${document.documentElement.lang==='zh-CN'?'index.html':'index-zh.html'}${esc(location.search)}#void">${t('English','简体中文')}</a></header><div class="void-frame" data-void-stage="${v.stage}"><canvas class="void-canvas" width="480" height="360" tabindex="0" aria-label="${t('未归档空间；可用下方同名按钮调查，影像片段可拖动或用方向键移动。','Unlisted space. The buttons below offer the same observations. Fragments can be dragged or moved with arrow keys.')}" aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight"></canvas>${elapsed<2400&&!reduced()?`<div class="void-peeling-hud" aria-hidden="true" style="animation-delay:-${Math.max(0,elapsed)}ms"><span>CAM -- / NO INDEX</span><span>2006-10-17 03:17:00</span></div>`:''}${v.reviewed&&fragments?`<span class="void-no-camera">${t('没有对应机位','NO CAMERA')}</span>`:''}</div><section class="void-controls">${controls}<p id="void-feedback" role="status"></p></section><footer class="void-footer"><a href="#terminal">${t('暂时返回配线室','Return to the patch room')}</a><button data-case-action="toggle-sound" aria-pressed="${getState().preferences.sound}">${getState().preferences.sound?t('声音：开启','Sound: On'):t('声音：关闭','Sound: Off')}</button><button data-case-action="settings">${t('声音与设置','Sound & settings')}</button><button data-case-action="save-settings">${t('存档与重置','Saves & reset')}</button></footer></main>`;
     }
     function polygon(ctx,points,color) {ctx.fillStyle=color;ctx.beginPath();points.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();ctx.fill();}
+    function surface(ctx,x,y,w,h,seed,strength=.06) {
+      ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();
+      for(let i=0;i<Math.ceil(w*h/24);i++) {
+        const px=x+(i*37+seed*17)%Math.ceil(w),py=y+(i*71+seed*13)%Math.ceil(h);
+        ctx.fillStyle=i%3===0?`rgba(136,143,132,${strength})`:`rgba(0,0,0,${strength*1.5})`;
+        ctx.fillRect(px,py,i%4===0?3:1,1);
+      }
+      ctx.restore();
+    }
+    function timberDoor(ctx,x,y,w,h,{lit=false,anchors=null,ajar=false}={}) {
+      ctx.save();
+      const trim=lit?'#66695f':'#393e39',edge=lit?'#84877a':'#51584e';
+      // Recess, architrave and reveal: a door set into a wall, not a flat outline.
+      ctx.fillStyle='#030405';ctx.fillRect(x-6,y-5,w+16,h+12);
+      ctx.fillStyle=lit?'#282d28':'#171d19';ctx.fillRect(x-5,y-5,w+10,h+9);
+      ctx.fillStyle=trim;ctx.fillRect(x-3,y-3,w+6,5);ctx.fillRect(x-3,y,5,h);ctx.fillRect(x+w-2,y,5,h);
+      ctx.fillStyle=edge;ctx.fillRect(x-4,y-4,w+8,1);ctx.fillRect(x-4,y-3,1,h+4);
+      ctx.fillStyle='#080b09';ctx.fillRect(x+2,y+2,w-4,h-2);
+      const fx=x+5,fy=y+5,fw=w-10-(ajar?5:0),fh=h-8;
+      const wood=ctx.createLinearGradient(fx,fy,fx+fw,fy+fh*.1);
+      wood.addColorStop(0,lit?'#44463a':'#292e24');wood.addColorStop(.5,lit?'#32372c':'#1e251d');wood.addColorStop(1,lit?'#22281f':'#121b14');
+      ctx.fillStyle=wood;ctx.fillRect(fx,fy,fw,fh);surface(ctx,fx,fy,fw,fh,19,lit?.11:.07);
+      // Two recessed panels, their rails and long, uneven wood grain.
+      for(const [top,height] of [[.07,.38],[.58,.30]]) {
+        const px=fx+fw*.14,py=fy+fh*top,pw=fw*.72,ph=fh*height;
+        ctx.fillStyle=lit?'#262d23':'#141d15';ctx.fillRect(px,py,pw,ph);
+        ctx.strokeStyle=lit?'#555a49':'#333e2e';ctx.lineWidth=1;ctx.strokeRect(Math.round(px)+.5,Math.round(py)+.5,Math.round(pw),Math.round(ph));
+        ctx.fillStyle='#080e0b';ctx.fillRect(Math.round(px)+1,Math.round(py)+1,1,Math.round(ph)-1);
+      }
+      ctx.fillStyle=lit?'#c4b58b14':'#a4b18b0c';
+      for(let i=0;i<9;i++)ctx.fillRect(Math.round(fx+3+i*(fw-6)/9),fy+fh*((i*7)%19)/45,1,fh*(.18+(i%4)*.12));
+      // Dull brass latch, hinges and peephole stay understated at 480×360.
+      const hx=Math.round(fx+fw*.84),hy=Math.round(fy+fh*.51);
+      ctx.fillStyle=lit?'#7b795b':'#555b44';ctx.fillRect(hx,hy,2,Math.max(7,h*.07));ctx.fillRect(hx-4,hy+3,6,2);
+      ctx.fillStyle=lit?'#525b4b':'#323e30';for(const offset of [.18,.75])ctx.fillRect(fx-2,Math.round(fy+fh*offset),2,Math.max(3,h*.035));
+      ctx.fillStyle='#626b55';ctx.fillRect(Math.round(fx+fw*.5),Math.round(fy+fh*.31),2,2);ctx.fillStyle='#0a100b';ctx.fillRect(Math.round(fx+fw*.5),Math.round(fy+fh*.31),1,1);
+      // The frame's missing upper corner remains the original puzzle anchor.
+      if(anchors) {
+        const nx=anchors[2]==='left'?x+2:x+w-12;
+        polygon(ctx,[[nx,y-5],[nx+10,y-5],[nx+10,y+1],[nx+6,y+5],[nx+2,y+1]],'#030405');
+        ctx.strokeStyle=lit?'#a1a08b':'#737d68';ctx.beginPath();ctx.moveTo(nx+3,y+2);ctx.lineTo(nx+6,y+5);ctx.lineTo(nx+10,y+1);ctx.stroke();
+      }
+      polygon(ctx,[[x-4,y+h],[x+w+4,y+h],[x+w+10,y+h+5],[x-9,y+h+5]],lit?'#4b5147':'#2b352c');
+      ctx.fillStyle='#070b08';ctx.fillRect(x+2,y+h-2,w-4,2);
+      if(anchors) {
+        const sx=anchors[1]==='left'?x+6:x+w-16;
+        polygon(ctx,[[sx,y+h],[sx+10,y+h],[sx+6,y+h+5],[sx,y+h+5]],'#030405');
+        ctx.strokeStyle=lit?'#858978':'#4c5847';ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(sx,y+h+5);ctx.lineTo(sx+6,y+h+5);ctx.lineTo(sx+10,y+h);ctx.stroke();
+      }
+      ctx.restore();
+    }
     function door(ctx,x,y,w,h,anchors,lit=false) {
-      ctx.strokeStyle=lit?'#697078':'#34393e';ctx.lineWidth=3;ctx.strokeRect(x,y,w,h);
-      ctx.fillStyle='#020303';ctx.fillRect(x+3,y+3,w-6,h-3);
-      const notch=anchors[2]==='left'?x+5:x+w-15;ctx.fillStyle='#010101';ctx.fillRect(notch,y-3,11,7);
-      polygon(ctx,anchors[0]==='left'?[[x-12,y-16],[x+2,y-16],[x+w+18,y+h],[x+w-15,y+h]]:[[x+w-2,y-16],[x+w+12,y-16],[x+15,y+h],[x-18,y+h]],lit?'#262b30':'#14181c');
-      ctx.strokeStyle=lit?'#7b8288':'#3a4148';ctx.lineWidth=2;
-      const end=x+w/2+(anchors[1]==='left'?-44:44),middle=y+h+26;
-      ctx.beginPath();ctx.moveTo(x+w/2,y+h);ctx.lineTo(end,middle);ctx.moveTo(end+(anchors[1]==='left'?-6:6),middle+7);ctx.lineTo(end+(anchors[1]==='left'?-22:22),360);ctx.stroke();
-      ctx.strokeStyle=lit?'#858b90':'#454b51';ctx.strokeRect(x,y,w,h);
-      ctx.fillStyle='#010101';ctx.fillRect(notch,y-3,11,7);
+      ctx.save();
+      const lampX=anchors[0]==='left'?x-14:x+w+14,lampY=y+h*.24;
+      const glow=ctx.createRadialGradient(lampX,lampY,1,lampX,lampY,w*1.45);
+      glow.addColorStop(0,lit?'#b1baa135':'#879b841c');glow.addColorStop(1,'#7c8c7600');
+      ctx.fillStyle=glow;ctx.fillRect(lampX-w*1.45,lampY-w*1.45,w*2.9,w*2.9);
+      polygon(ctx,[[lampX,lampY],[x+w*.4,y+h+7],[x+w+24,y+h+38],[x-24,y+h+26]],lit?'#737d6010':'#66755908');
+      timberDoor(ctx,x,y,w,h,{lit,anchors});
+      ctx.fillStyle='#29382c';ctx.fillRect(Math.round(lampX)-3,Math.round(lampY)-5,6,11);
+      ctx.fillStyle=lit?'#a3ac90':'#6b7c60';ctx.fillRect(Math.round(lampX)-1,Math.round(lampY)-3,2,6);
+      ctx.restore();
     }
     function corridor(ctx,v) {
       const scene=V.scenes[Math.min(3,v.step)];
@@ -61,11 +114,17 @@ globalThis.StillwaterVoid = {
       if(v.step===1)polygon(ctx,[[20,0],[122,26],[122,329],[20,360]],'#1b1f23');
       if(v.step===2)polygon(ctx,[[395,15],[480,0],[480,360],[395,293]],'#181c20');
       ctx.fillStyle='#0b0d10';ctx.fillRect(164,68,156,186);
+      surface(ctx,0,68,480,290,7,.035);
+      ctx.strokeStyle='#252c29';ctx.lineWidth=2;
+      for(const points of [[[0,306],[148,220]],[[343,216],[480,291]]]){ctx.beginPath();ctx.moveTo(...points[0]);ctx.lineTo(...points[1]);ctx.stroke();}
+      ctx.strokeStyle='#1a211e';ctx.lineWidth=1;
+      for(const y of [268,311,353]){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(480,y);ctx.stroke();}
       door(ctx,154,112,61,135,scene.left,v.observation==='left');
       door(ctx,290,91,52,125,scene.right,v.observation==='right');
       if(v.observation==='reference') {
-        ctx.fillStyle='#060709';ctx.fillRect(18,196,108,141);
-        door(ctx,38,214,58,88,scene.reference,true);
+        ctx.save();ctx.beginPath();ctx.rect(0,156,132,204);ctx.clip();
+        polygon(ctx,[[0,156],[130,186],[130,360],[0,360]],'#121815');surface(ctx,0,156,132,204,11,.05);
+        door(ctx,41,198,47,108,scene.reference,true);ctx.restore();
       }
       if(v.shadow&&!getState().preferences.skipScares) {
         ctx.fillStyle='#2b3034';ctx.beginPath();ctx.ellipse(251,163,7,10,0,0,7);ctx.fill();
@@ -74,11 +133,13 @@ globalThis.StillwaterVoid = {
     }
     function fragmentSource(ctx) {
       ctx.fillStyle='#11171b';ctx.fillRect(20,28,440,296);
-      polygon(ctx,[[20,28],[126,95],[126,244],[20,324]],'#2a3036');
-      polygon(ctx,[[460,28],[354,95],[354,244],[460,324]],'#1a2025');
-      polygon(ctx,[[20,324],[126,228],[354,228],[460,324]],'#30363b');
-      ctx.strokeStyle='#778089';ctx.lineWidth=3;ctx.strokeRect(176,105,127,156);
-      ctx.beginPath();ctx.moveTo(20,110);ctx.lineTo(126,147);ctx.lineTo(354,147);ctx.lineTo(460,110);ctx.moveTo(86,324);ctx.lineTo(205,230);ctx.moveTo(418,324);ctx.lineTo(278,230);ctx.stroke();
+      polygon(ctx,[[20,28],[126,44],[126,274],[20,324]],'#252e2a');
+      polygon(ctx,[[460,28],[354,44],[354,274],[460,324]],'#18231d');
+      polygon(ctx,[[20,324],[126,274],[354,274],[460,324]],'#29342b');
+      surface(ctx,20,28,440,296,23,.065);
+      ctx.strokeStyle='#586455';ctx.lineWidth=2;
+      ctx.beginPath();ctx.moveTo(20,110);ctx.lineTo(126,147);ctx.lineTo(176,147);ctx.moveTo(303,147);ctx.lineTo(354,147);ctx.lineTo(460,110);ctx.moveTo(86,324);ctx.lineTo(205,274);ctx.moveTo(418,324);ctx.lineTo(278,274);ctx.stroke();
+      timberDoor(ctx,176,50,127,222,{lit:true});
     }
     function fragments(ctx,v,positions=v.positions,selected=v.selected) {
       // Fixed registration marks make the absolute picture position observable,
@@ -110,7 +171,11 @@ globalThis.StillwaterVoid = {
       if(v.stage==='corridor')corridor(ctx,v);
       else if(v.stage==='fragments')fragments(ctx,v,preview?.positions,preview?.selected);
       else if(v.stage==='classify')terminal(ctx,v);
-      else {ctx.strokeStyle='#252b30';ctx.lineWidth=2;ctx.strokeRect(220,106,56,132);ctx.strokeStyle='#11171b';ctx.beginPath();ctx.moveTo(0,360);ctx.lineTo(222,238);ctx.moveTo(480,360);ctx.lineTo(276,238);ctx.stroke();}
+      else {
+        const glow=ctx.createRadialGradient(248,183,14,248,183,93);glow.addColorStop(0,'#202c1c20');glow.addColorStop(1,'#00000000');ctx.fillStyle=glow;ctx.fillRect(150,75,196,200);
+        timberDoor(ctx,220,106,56,132,{ajar:true});
+        ctx.strokeStyle='#17231b';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,360);ctx.lineTo(216,243);ctx.moveTo(480,360);ctx.lineTo(284,243);ctx.stroke();
+      }
       if(light&&!reduced()&&v.stage==='corridor'){const g=ctx.createRadialGradient(light.x,light.y,0,light.x,light.y,95);g.addColorStop(0,'#afbcc612');g.addColorStop(1,'#afbcc600');ctx.fillStyle=g;ctx.fillRect(0,0,480,360);}
       // Static, sparse analogue grain; no rapid flashing or hidden moving targets.
       ctx.fillStyle='#cbd3db08';for(let i=0;i<360;i++)ctx.fillRect((i*79+11)%480,(i*53+19)%360,1,1);
