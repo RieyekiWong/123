@@ -2,6 +2,8 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createServer } from "../server.mjs";
 import { resolve } from "node:path";
+import { V2_FILES } from "../site-files.mjs";
+import { existsSync } from "node:fs";
 
 for (const target of [".", "dist"]) {
   test(`${target}: serves application and protects project metadata`, async (t) => {
@@ -12,65 +14,11 @@ for (const target of [".", "dist"]) {
     const index = await fetch(url);
     assert.equal(index.status, 200);
     assert.match(await index.text(), /Stillwater/);
-    for (const path of [
-      "/style.css",
-      "/app.js",
-      "/classic.html",
-      "/classic-zh.html",
-      "/classic-bridge.js",
-      "/case-data.js",
-      "/case-state.js",
-      "/case-pages.js",
-      "/case-comfort.js",
-      "/case-feedback.js",
-      "/forum-data.js",
-      "/forum.js",
-      "/forum-style.css",
-      "/ad-data.js",
-      "/ad-system.js",
-      "/ad-style.css",
-      "/case-app.js",
-      "/case-style.css",
-      "/case-wiring.css",
-      "/haunt-preview.html",
-      "/assets/haunt-v442/corridor.jpg",
-      "/assets/haunt-v442/cabinet.jpg",
-      "/assets/haunt-v442/last-frame.jpg",
-      "/assets/haunt-v442/escape.jpg",
-      "/site-media.js",
-      "/hotel-2010.css",
-      "/assets/web-photo-credits.json",
-      "/assets/web/ad-dog.jpg",
-      "/assets/web/hotel-exterior.jpg",
-      "/exploration.js",
-      "/locale-zh.js",
-      "/career.js",
-      "/career.css",
-      "/branches.js",
-      "/branches.css",
-      "/support-chat.js",
-      "/support-chat.css",
-      "/afterword.js",
-      "/afterword.css",
-      "/instructions.js",
-      "/instructions.css",
-      "/lobby-music.js",
-      "/lobby-music.css",
-      "/heritage.css",
-      "/assets/dylan-help.mp3",
-      "/assets/dylan-room.png",
-      "/index-zh.html",
-      "/story-expansion.js",
-      "/assets/scare-porter.png",
-      "/assets/scare-veil.png",
-      "/assets/scare-reflection.png",
-      "/assets/twin.jpg",
-      "/assets/suite.jpg",
-      "/assets/photo-credits.json",
-      "/assets/hallway.jpg",
-      "/assets/lobby.jpg",
-      "/assets/guestroom.jpg",
-      "/assets/emblem.svg",
+    for (const path of [...V2_FILES.map(file=>"/"+file),
+      "/assets/haunt-v442/corridor.jpg", "/assets/haunt-v442/cabinet.jpg",
+      "/assets/haunt-v442/last-frame.jpg", "/assets/haunt-v442/escape.jpg",
+      "/assets/lobby.jpg", "/assets/hallway.jpg", "/assets/photo-credits.json",
+      "/assets/web-photo-credits.json", "/assets/web/ad-dog.jpg",
     ]) {
       const result = await fetch(url + path);
       assert.equal(result.status, 200, path);
@@ -82,6 +30,8 @@ for (const target of [".", "dist"]) {
       "/package.json",
       "/server.mjs",
       "/not-found",
+      "/classic.html", "/classic-zh.html", "/classic-bridge.js",
+      "/app.js", "/branches.js", "/career.js", "/story-expansion.js",
       "/assets/%2e%2e%2fpackage.json",
       "/%E0%A4%A",
     ]) {
@@ -89,3 +39,8 @@ for (const target of [".", "dist"]) {
     }
   });
 }
+
+test("the new distribution excludes archived pages and runtimes",()=>{
+  for (const file of ['classic.html','classic-zh.html','classic-bridge.js','app.js','style.css','career.js','branches.js','locale-zh.js','story-expansion.js','support-chat.js','lobby-music.js'])
+    assert.equal(existsSync(resolve('dist',file)),false,file);
+});

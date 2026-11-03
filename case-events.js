@@ -4,6 +4,7 @@ globalThis.StillwaterEvents = {
     let timers = [],
       active = null,
       route = "",
+      escapeComplete = null,
       generation = 0;
     const clear = () => {
       generation++;
@@ -12,6 +13,9 @@ globalThis.StillwaterEvents = {
       active?.remove();
       active = null;
       document.body.classList.remove("event-signal-drop");
+      const done = escapeComplete;
+      escapeComplete = null;
+      done?.();
     };
     const allowed = () =>
       !getState().preferences.skipScares &&
@@ -127,11 +131,21 @@ globalThis.StillwaterEvents = {
         timers.push(setTimeout(show, 1700));
       } else show();
     }
-    function escape() {
+    function escape({ onComplete = () => {} } = {}) {
       clear();
-      if (!allowed()) return;
-      route = location.hash.split("?")[0];
+      if (!allowed()) {
+        onComplete();
+        return;
+      }
       const token = generation;
+      escapeComplete = onComplete;
+      const finish = () => {
+        if (token !== generation) return;
+        const done = escapeComplete;
+        escapeComplete = null;
+        done?.();
+      };
+      route = location.hash.split("?")[0];
       const img = document.createElement("img");
       img.src = "assets/haunt-v442/escape.jpg";
       img.alt = "";
@@ -140,15 +154,17 @@ globalThis.StillwaterEvents = {
       // First let the completed escape show. Only this explicit ending action
       // schedules the final surprise; loading/revisiting an ending never does.
       timers.push(
-        setTimeout(async () => {
-          const decoded = await ready;
+        setTimeout(() => {
+          void ready.then((decoded) => {
           if (
             token !== generation ||
             !allowed() ||
             location.hash.split("?")[0] !== route ||
             !decoded
-          )
+          ) {
+            finish();
             return;
+          }
           active = document.createElement("div");
           active.className = "frame-face escape-scare";
           active.dataset.event = "escape-face";
@@ -161,10 +177,14 @@ globalThis.StillwaterEvents = {
             setTimeout(() => {
               active?.remove();
               active = null;
+              finish();
             }, 1100),
           );
+          });
         }, 1800),
       );
+      // An unavailable image must never leave the completed story waiting.
+      timers.push(setTimeout(clear, 6000));
     }
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") clear();

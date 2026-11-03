@@ -1,0 +1,59 @@
+/* Deliberate end cards, separate from the in-fiction records that follow them. */
+.ending-completion[hidden], .ending-exit-status[hidden] { display: none !important; }
+body[data-site] .ending-completion {
+  padding: clamp(24px, 5vw, 56px);
+  margin-bottom: 32px;
+  border: 1px solid var(--line, #796052);
+  background: #191b18;
+  color: #e7e4d8;
+  text-align: center;
+  scroll-margin-top: 16px;
+}
+body[data-site] .ending-completion :is(h1,h2,p) { color: inherit; }
+body[data-site] .ending-completion h1 {
+  margin: 16px 0;
+  font: 500 clamp(28px, 5vw, 48px)/1.35 var(--font-modern, sans-serif);
+}
+body[data-site] .ending-completion h2 {
+  margin: 12px 0 24px;
+  font: 400 clamp(20px, 3vw, 27px)/1.5 var(--font-modern, sans-serif);
+}
+body[data-site] .ending-completion p { max-width: 38em; margin: 12px auto; }
+body[data-site] .ending-completion .ending-number {
+  color: #c9b28b;
+  font: 14px/1.6 var(--font-terminal, monospace);
+  letter-spacing: .12em;
+}
+body[data-site] .ending-completion .ending-saved { color: #bdc3b4; font-size: 14px; }
+body[data-site] .true-completion {
+  min-height: min(620px, 74svh);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #080b09;
+  border-color: #68705a;
+}
+body[data-site] .true-completion h1 {
+  font: 400 clamp(36px, 7.5vw, 84px)/1.2 var(--font-terminal, monospace);
+  letter-spacing: .1em;
+}
+.ending-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 24px; }
+body[data-site] .ending-actions :is(a,button) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid #a1ac91;
+  background: #2b352c;
+  color: #f0eddf;
+  font: 15px/1.5 var(--font-modern, sans-serif);
+  text-decoration: none;
+}
+.ending-actions :is(a,button):focus-visible { outline: 3px solid #e1c790; outline-offset: 3px; }
+.ending-exit-status { padding: 18px; border: 1px solid var(--line); }
+.night-disposition { scroll-margin-top: 20px; }
+@media (max-width: 480px) {
+  .ending-actions { flex-direction: column; }
+  body[data-site] .ending-completion { padding: 28px 16px; }
+}

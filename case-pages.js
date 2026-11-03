@@ -326,18 +326,18 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
         t("Mara 没发出去的备注", "Mara’s unsent note"),
         t("这份草稿没有发送。", "A draft recovered from an old file."),
       ) +
-      `<article class="document mara-draft"><p class="kicker">${date(F.draft)} / ${F.reviewer}</p><blockquote>${t("这里不是客房。", "This is not a guest room.")}<br>${F.service} / UNVERIFIED</blockquote><p>${t("我查过预订、钥匙和客房部那边的记录。现在没办法确定客人到底去了哪里。", "I checked the booking, the keys and the housekeeping records. I still cannot tell where the guest went.")}</p><p>${t("系统一直让我选“已完成”。我没选。", "The system keeps asking for “completed.” I have not selected it.")}</p><p>${t("处理人这一栏是我，住客那一栏不是。别把两栏混在一起。", "My name belongs under reviewer, not guest. Those two fields must stay separate.")}</p><p>${t("这条记录先放着吧。真的查清楚之前，不要替我签字。", "Leave this one open for now. Do not sign it off on my behalf until it has actually been checked.")}</p><p class="signature">— ${F.reviewerName} / ${F.reviewer}</p></article>${reference("review", t("打开最后确认表", "Open the final review"))}`
+      `<article class="document mara-draft"><p class="kicker">${date(F.draft)} / ${F.reviewer}</p><blockquote>${t("这里不是客房。", "This is not a guest room.")}<br>${F.service} / UNVERIFIED</blockquote><p>${t("我查过预订、钥匙和客房部那边的记录。现在没办法确定客人到底去了哪里。", "I checked the booking, the keys and the housekeeping records. I still cannot tell where the guest went.")}</p><p>${t("系统一直让我选“已完成”。我没选。", "The system keeps asking for “completed.” I have not selected it.")}</p><p>${t("处理人这一栏是我，住客那一栏不是。别把两栏混在一起。", "My name belongs under reviewer, not guest. Those two fields must stay separate.")}</p><p>${t("这条记录先放着吧。真的查清楚之前，不要替我签字。", "Leave this one open for now. Do not sign it off on my behalf until it has actually been checked.")}</p><p class="signature">— ${F.reviewerName} / ${F.reviewer}</p></article>${reference("review", t("核对本次调查资料", "Review the source findings"))}`
     );
   }
   function review() {
     const state = getState();
     return (
       heading(
-        "FINAL REVIEW / " + F.reservation,
-        t("最后确认", "Record disposition"),
+        "SOURCE REVIEW / " + F.reservation,
+        t("资料核对", "Source review"),
         t(
           "请选择三项有原始记录支持的说法，核对后同步资料。",
-          "Associate three source-supported findings, then decide how the record should be filed.",
+          "Check three findings against their sources, then synchronize the hotel directory.",
         ),
       ) +
       (state.completed.finalEvidence
@@ -365,7 +365,7 @@ globalThis.StillwaterCaseViews = function ({ t, esc, getState }) {
           ? t("已提交。", "The system has accepted the reconciliation.")
           : t("修改已保存。", "Historical correction accepted."),
       ) +
-      `<article class="document ending-record" data-ending-record="${id}"><table><tr><th>${t("记录状态", "Record status")}</th><td>${auto ? "VERIFIED / CLOSED" : "UNVERIFIED"}</td></tr><tr><th>${t("当前员工编号", "Current identity")}</th><td>${auto ? `${F.temporary} / ${t("永久夜班员工", "PERMANENT NIGHT CLERK")}` : `${F.temporary} / ${t("临时工作已结束", "REVIEW CONCLUDED")}`}</td></tr><tr><th>${t("下一班", "Pending shift")}</th><td>${auto ? "ASSIGNED" : "REMOVED"}</td></tr><tr><th>Check-out</th><td>${auto ? "Not available" : t("无后续班次", "No pending shift associated")}</td></tr></table><p>${auto ? t("岗位：夜班审计员。临时用工期限已取消。", "The temporary role on the sample page has become a night shift. The once-empty owner field now contains your identifier.") : t("原备注没有改动，这条记录仍待核实。", "Mara’s original note is restored. No new guest identity is written into the service position. No successor is needed to confirm it on her behalf.")}</p>${!auto ? `<blockquote>${t("待核实，不得替我自动结案。", "The record remains unverified. Do not close on my behalf.")}<br><span>${F.reviewerName} / ${F.reviewer}</span></blockquote>` : ""}</article><div class="ending-links">${a("terminal", t("返回夜班终端", "Return to the night terminal"), "primary")}${a("notes", t("查看本次原始资料", "Reopen the case records"))}${a("careers", t("返回招聘页", "Return to careers"))}</div>`
+      `<article class="document ending-record" data-ending-record="${id}"><table><tr><th>${t("记录状态", "Record status")}</th><td>${auto ? "VERIFIED / CLOSED" : "UNVERIFIED"}</td></tr><tr><th>${t("当前员工编号", "Current identity")}</th><td>${auto ? `${F.temporary} / ${t("永久夜班员工", "PERMANENT NIGHT CLERK")}` : `${F.temporary} / ${t("临时工作已结束", "REVIEW CONCLUDED")}`}</td></tr><tr><th>${t("下一班", "Pending shift")}</th><td>${auto ? "ASSIGNED" : "REMOVED"}</td></tr><tr><th>Check-out</th><td>${auto ? "Not available" : t("无后续班次", "No pending shift associated")}</td></tr></table><p>${auto ? t("岗位：夜班审计员。临时用工期限已取消。", "The temporary role on the sample page has become a night shift. The once-empty owner field now contains your identifier.") : t("原备注没有改动，这条记录仍待核实。", "Mara’s original note is restored. No new guest identity is written into the service position. No successor is needed to confirm it on her behalf.")}</p>${!auto ? `<blockquote>${t("待核实，不得替我自动结案。", "The record remains unverified. Do not close on my behalf.")}<br><span>${F.reviewerName} / ${F.reviewer}</span></blockquote>` : ""}</article>`
     );
   }
   function photoCompare() {

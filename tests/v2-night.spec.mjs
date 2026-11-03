@@ -66,7 +66,8 @@ test("full unseeded Chinese true ending uses spatial relay, real wiring and expl
   );
   await page.reload();
   await expect(page.locator("[data-ending-record=released]")).toBeVisible();
-  await link(page, "careers");
+  await expect(page.getByRole('heading',{name:'GAME OVER',exact:true})).toBeVisible();
+  await link(page, "careers", "footer");
   await expect(page.locator("main")).toContainText("withdrawn");
 });
 test("old saves keep both dispositions and original copies; false room has a return path", async ({
@@ -159,7 +160,7 @@ for (const width of [375, 768, 1440])
       ),
     ).toBe(true);
     await page.screenshot({
-      path: `docs/v2.4.2/terminal-${width}.png`,
+      path: `docs/v2.4.3/terminal-${width}.png`,
       fullPage: true,
     });
   });
@@ -271,7 +272,7 @@ test("true ending restores saved advertisements without clearing their separate 
   await wireNight(page);
   await page.locator("[data-night-action=lock]").click();
   await page.locator("[data-ending=released]").click();
-  await link(page, "hotel");
+  await link(page, "hotel", "nav");
   await page.locator("footer [data-ad-action=folder]").click();
   await expect(page.locator(".ad-folder-item")).toContainText("旺旺动物门诊");
   expect(

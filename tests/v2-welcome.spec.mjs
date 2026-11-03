@@ -238,6 +238,7 @@ test("a fresh player can accept the preface, solve the complete case and escape 
   await expect(page.locator("[data-ending-record=released]")).toBeVisible();
   await expect(page.locator(".escape-scare")).toBeVisible();
   await expect(page.locator(".escape-scare")).toHaveCount(0);
+  await expect(page.getByRole('heading',{name:'GAME OVER',exact:true})).toBeVisible();
   expect(
     await page.evaluate(
       () =>

@@ -92,7 +92,7 @@ test("new-edition reset is visible from the forum, needs confirmation and preser
   await page.locator("[data-case-action=save-settings]").click();
   await expect(page.locator(".save-section")).toHaveAttribute("open", "");
   await expect(page.locator("[data-comfort=reset-prompt]")).toHaveText(
-    "只重置新版存档",
+    "重新开始游戏",
   );
   await page.locator("[data-comfort=reset-prompt]").click();
   await page.locator("[data-comfort=reset-cancel]").click();

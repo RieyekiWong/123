@@ -2,6 +2,7 @@ import http from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import { resolve, extname, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { V2_FILES } from "./site-files.mjs";
 
 export function createServer(
   root = fileURLToPath(new URL("./", import.meta.url)),
@@ -32,63 +33,15 @@ export function createServer(
         file = resolve(base, "classic.html");
       if (options.legacy && file === resolve(base, "index-zh.html"))
         file = resolve(base, "classic-zh.html");
-      const allowed =
-        [
-          "haunt-preview.html",
-          "classic.html",
-          "classic-zh.html",
-          "classic-bridge.js",
-          "case-data.js",
-          "case-state.js",
-          "case-app.js",
-          "case-pages.js",
-          "case-comfort.js",
-          "case-feedback.js",
-          "forum-data.js",
-          "forum.js",
-          "forum-style.css",
-          "ad-data.js",
-          "ad-system.js",
-          "ad-style.css",
-          "case-style.css",
-          "site-media.js",
-          "retro-media.js",
-          "cctv-filter.css",
-          "case-night-model.js",
-          "case-night.js",
-          "case-audio.js",
-          "case-anomaly.css",
-          "design-tokens.css",
-          "visual-v24.css",
-          "case-wiring.css",
-          "case-transition.js",
-          "case-welcome.js",
-          "case-welcome.css",
-          "case-space.js",
-          "case-events.js",
-          "cctv-scenes.js",
-          "hotel-2010.css",
-        ].some((name) => file === resolve(base, name)) ||
-        file === resolve(base, "index.html") ||
-        file === resolve(base, "index-zh.html") ||
-        file === resolve(base, "locale-zh.js") ||
-        file === resolve(base, "career.js") ||
-        file === resolve(base, "career.css") ||
-        file === resolve(base, "branches.js") ||
-        file === resolve(base, "branches.css") ||
-        file === resolve(base, "support-chat.js") ||
-        file === resolve(base, "support-chat.css") ||
-        file === resolve(base, "afterword.js") ||
-        file === resolve(base, "afterword.css") ||
-        file === resolve(base, "instructions.js") ||
-        file === resolve(base, "instructions.css") ||
-        file === resolve(base, "lobby-music.js") ||
-        file === resolve(base, "lobby-music.css") ||
-        file === resolve(base, "heritage.css") ||
-        file === resolve(base, "style.css") ||
-        file === resolve(base, "app.js") ||
-        file === resolve(base, "exploration.js") ||
-        file === resolve(base, "story-expansion.js") ||
+      const files = options.legacy ? [
+        "classic.html", "classic-zh.html", "classic-bridge.js",
+        "locale-zh.js", "career.js", "career.css", "branches.js", "branches.css",
+        "support-chat.js", "support-chat.css", "afterword.js", "afterword.css",
+        "instructions.js", "instructions.css", "lobby-music.js", "lobby-music.css",
+        "heritage.css", "style.css", "app.js", "exploration.js", "story-expansion.js",
+        "cctv-filter.css", "retro-media.js",
+      ] : V2_FILES;
+      const allowed = files.some(name => file === resolve(base, name)) ||
         file.startsWith(resolve(base, "assets") + sep);
       if (!allowed || !(await stat(file)).isFile()) {
         res.writeHead(404);

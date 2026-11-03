@@ -33,13 +33,13 @@ The V2 save is `stillwater-case:v2`, with a versioned schema. Sources, unfinishe
 
 First visits show a bilingual preface with fiction/content notes, controls, credits and two choices. **Audio defaults off; faces and jump scares default on.** Players can disable them before entering or reopen How to play in the header. Explicit skip choices and device Reduce Motion remain respected.
 
-**Sound & settings** in the footer controls volume, motion and scares. Breathing enters automatically with enabled sound in the deeper chapter. The first successful escape shows a distinct full-screen face after the ending; skip/reduced-motion modes retain the same completion. Reloading or revisiting an ending never replays that effect.
+**Sound & settings** in the footer controls volume, motion and scares. Breathing enters automatically with enabled sound in the deeper chapter. The first successful escape shows its distinct full-screen face, then a clear GAME OVER screen. Skip/reduced-motion modes reach the same completion directly. Reloading or revisiting an ending never replays that effect.
 
 No form collects a name, email, phone, CV, payment information or real application. No answers are submitted to a server. The footer identifies the hotel, recruitment and records as fiction.
 
-## Previous edition
+## Current-edition scope
 
-The full previous story, support conversations, surveillance branch, lobby player and existing saves remain available at [classic-zh.html](https://rieyekiwong.github.io/123/classic-zh.html) / [classic.html](https://rieyekiwong.github.io/123/classic.html). Its original scripts and assets remain in the repository. Resetting V2 does not clear previous-edition storage. Guides: [English](README.classic.md) · [中文](README.classic.zh-CN.md).
+This website, its default development server and the `dist/` release are independent of the archived edition. There are no edition-switch links or redirects. Archived source files and their separate saves remain intact; current development and browser checks target V2 only.
 
 ## Development and release
 
@@ -49,7 +49,7 @@ npm test
 npm run test:e2e
 ```
 
-`build` produces a complete static `dist/`. Node tests cover source/dist delivery and case transitions. Playwright runs separate `v2` and `classic` projects against actual edition-specific servers; use `npx playwright test --project=v2` for the new case. Chromium uses `CHROMIUM_PATH`, `/usr/bin/chromium` when available, or Playwright's installed browser.
+`build` produces a standalone V2 `dist/` using `site-files.mjs`, excluding archived pages and scripts. Node tests cover source/dist delivery, edition separation and case transitions. Playwright runs the V2 browser project only. Chromium uses `CHROMIUM_PATH`, `/usr/bin/chromium` when available, or Playwright's installed browser.
 
 GitHub Pages publishes `main` from `/ (root)`. Relative asset links support the repository path `/123/`. Upload the contents of `dist/` when using another static host. No build-time secrets or environment variables are required.
 
@@ -83,3 +83,7 @@ See [implementation and verification](docs/V2_4_1-WELCOME.zh-CN.md). Sound remai
 The new edition now uses four newly generated scenes with visibly different bodies and actions: looking over a shoulder, crawling from a cabinet, pressing both palms against glass, and leaning inverted from a ceiling beam. Scare images retain their complete composition, use bundled low-resolution copies, and wait for image decoding before their visible duration starts. [Static image preview](https://rieyekiwong.github.io/123/haunt-preview.html) contains spoilers but no automatic scares or sound.
 
 B-3's existing six-junction puzzle gains screw terminals, clamps, shielding, a cable duct and indicators driven by the real circuit state. Ports, solution, undo/reset, story, preferences and schema-two saves remain unchanged. Sources and image hashes: [asset manifest](assets/haunt-v442/manifest.json).
+
+### V2.4.3 · Independent release & explicit endings
+
+All three outcomes now have completion cards. Saving or restoring a missing frame brings the next device control into view; locking the archive focuses the real exit button. The true ending finishes its final scare before showing GAME OVER. Cancelling, skipping or failing to load the image cannot prevent completion, and reloading never repeats the scare. Restart remains a confirmed action and preserves unrelated saves and saved adverts.

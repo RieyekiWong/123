@@ -20,21 +20,11 @@ export default defineConfig({
       testMatch: "**/v2-*.spec.mjs",
       use: { baseURL: "http://127.0.0.1:3110" },
     },
-    {
-      name: "classic",
-      testIgnore: "**/v2-*.spec.mjs",
-      use: { baseURL: "http://127.0.0.1:3111" },
-    },
   ],
   webServer: [
     {
       command: "node server.mjs --port 3110",
       url: "http://127.0.0.1:3110",
-      reuseExistingServer: !process.env.CI,
-    },
-    {
-      command: "node server.mjs --port 3111 --legacy",
-      url: "http://127.0.0.1:3111",
       reuseExistingServer: !process.env.CI,
     },
   ],

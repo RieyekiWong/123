@@ -8,6 +8,7 @@
   const KEY = "stillwater-case:v2";
   let state = M.fresh(),
     pendingEscape = false,
+    finalScenePending = false,
     welcome = null,
     storageFailed = false;
   let existingSave = null;
@@ -132,6 +133,7 @@
     reset: () => {
       phaseTransition.cancel();
       pendingEscape = false;
+      finalScenePending = false;
       welcome?.forget();
       nightEvents.clear();
       nightAudio.stop();
@@ -326,7 +328,7 @@
       return `<footer class="forum-footer"><p class="footer-site-name">NIGHT OWL BBS · ${t("夜猫论坛", "Night Owl BBS")}</p><div class="footer-links">${a("forum", t("论坛首页", "Forum home"))} · ${a("forum?section=work", t("工作信息", "Work notices"))} · ${a("forum?section=web", t("老网站", "Old websites"))} · ${folder} · ${credits}</div><p>${t("虚构社区，帖子与商家均为作品内容，不接受真实交易。", "A fictional community. Posts and shops are part of the work; no real transactions are accepted.")}</p>${warning}</footer>`;
     if (site === "careers")
       return `<footer class="careers-footer"><p class="footer-site-name">STILLWATER HERITAGE RECORDS</p><div class="footer-links">${a("careers", t("招聘信息", "Opportunities"))} · ${a("forum", t("回论坛看看", "Back to the forum"))} · ${folder} · ${credits}</div><p>${t("虚构职位展示，不接收真实简历、申请或付款。", "A fictional job listing. No real CVs, applications or payments are accepted.")}</p>${warning}</footer>`;
-    return `<footer><p>${t("虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。", "A fictional interactive work. The hotel, role and records are part of the story. No real applications or payments are accepted.")}</p>${storageFailed ? `<p role="status">${t("浏览器无法保存进度，当前标签页仍可继续操作。", "Storage is unavailable; the current tab remains playable.")}</p>` : ""}${a("forum", t("回论坛看看", "Back to the forum"))} · ${a("careers", t("返回招聘页", "Careers"))} · ${a("guestbook", t("住客留言", "Guestbook"))} · ${a("history", t("旅馆历史", "History"))} · ${a("gallery", t("旅馆相册", "Photo gallery"))} · ${a("notices", t("公告栏", "Notices"))} · ${a("staff", t("员工档案", "Staff archive"))} · ${a("notes", t("工作笔记", "Case Notes"))} · <button class="footer-settings" data-case-action="toggle-sound" aria-pressed="${state.preferences.sound}">${state.preferences.sound ? t("声音：开启", "Sound: On") : t("声音：关闭", "Sound: Off")}</button> · <button class="footer-settings" data-case-action="settings">${t("声音与设置", "Sound & settings")}</button> · <button class="footer-settings" data-ad-action="folder">${t("我的广告夹", "My ad folder")}</button> · ${a("credits", t("图片来源", "Image credits"))} · <a href="${zh ? "classic-zh.html" : "classic.html"}">${t("上一版与原存档", "Previous edition & saved stay")}</a></footer>`;
+    return `<footer><p>${t("虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。", "A fictional interactive work. The hotel, role and records are part of the story. No real applications or payments are accepted.")}</p>${storageFailed ? `<p role="status">${t("浏览器无法保存进度，当前标签页仍可继续操作。", "Storage is unavailable; the current tab remains playable.")}</p>` : ""}${a("forum", t("回论坛看看", "Back to the forum"))} · ${a("careers", t("返回招聘页", "Careers"))} · ${a("guestbook", t("住客留言", "Guestbook"))} · ${a("history", t("旅馆历史", "History"))} · ${a("gallery", t("旅馆相册", "Photo gallery"))} · ${a("notices", t("公告栏", "Notices"))} · ${a("staff", t("员工档案", "Staff archive"))} · ${a("notes", t("工作笔记", "Case Notes"))} · <button class="footer-settings" data-case-action="toggle-sound" aria-pressed="${state.preferences.sound}">${state.preferences.sound ? t("声音：开启", "Sound: On") : t("声音：关闭", "Sound: Off")}</button> · <button class="footer-settings" data-case-action="settings">${t("声音与设置", "Sound & settings")}</button> · <button class="footer-settings" data-ad-action="folder">${t("我的广告夹", "My ad folder")}</button> · ${a("credits", t("图片来源", "Image credits"))}</footer>`;
   }
   function endingView() {
     const requested = new URLSearchParams(
@@ -335,17 +337,22 @@
     const shown = state.endings.includes(requested)
       ? requested
       : state.lastEnding;
-    return shown === "released" ? nightViews.released() : views.ending();
+    return window.StillwaterEnding.render(shown, {
+      t,
+      pending: shown === "released" && finalScenePending,
+      stored: !storageFailed,
+    }) + (shown === "released" ? nightViews.released() : views.ending());
+  }
+  function finishFinalScene() {
+    finalScenePending = false;
+    if (currentRoute() === "ending")
+      window.StillwaterEnding.reveal({
+        focus: !document.hidden && !document.querySelector("dialog[open]"),
+      });
   }
   function render(moveFocus = false) {
     let route = currentRoute();
     if (route === "home") route = "hotel";
-    if (["below", "surveillance", "employees", "guide"].includes(route)) {
-      location.replace(
-        (zh ? "classic-zh.html" : "classic.html") + location.hash,
-      );
-      return;
-    }
     const staff = [
       "night-audit",
       "staff",
@@ -463,9 +470,10 @@
       if (shown === "auto-close")
         document.title =
           t("夜班审计员", "Night Audit Clerk") + " / " + F.temporary;
+      if (shown === "released") document.title = "GAME OVER · Stillwater Hotel";
     }
     document.querySelector("#case-shell").innerHTML =
-      `<header class="site-header"><a class="site-brand" href="#${route === "forum" ? "forum" : route === "careers" ? "careers" : staff ? "staff" : "hotel"}">${route === "forum" ? t('夜猫论坛<span class="bbs-subtitle">NIGHT OWL BBS</span>', 'Night Owl BBS<span class="bbs-subtitle">THE LATE THREAD</span>') : route === "careers" ? "Stillwater Heritage Careers" : staff ? "STILLWATER / STAFF ARCHIVE" : '<span class="hotel-brand-title">The Stillwater Hotel</span><span class="hotel-brand-subtitle">A FAMILIAR PLACE · SINCE 1987</span>'}</a><div class="site-utilities"><button data-case-action="instructions" aria-haspopup="dialog">${t("游玩说明", "How to play")}</button><button data-case-action="save-settings" aria-haspopup="dialog">${t("存档与重置", "Saves & reset")}</button><a data-case-language href="${zh ? "index.html" : "index-zh.html"}${esc(location.hash)}">${zh ? "English" : "简体中文"}</a></div></header>${
+      `<header class="site-header"><a class="site-brand" href="#${route === "forum" ? "forum" : route === "careers" ? "careers" : staff ? "staff" : "hotel"}">${route === "forum" ? t('夜猫论坛<span class="bbs-subtitle">NIGHT OWL BBS</span>', 'Night Owl BBS<span class="bbs-subtitle">THE LATE THREAD</span>') : route === "careers" ? "Stillwater Heritage Careers" : staff ? "STILLWATER / STAFF ARCHIVE" : '<span class="hotel-brand-title">The Stillwater Hotel</span><span class="hotel-brand-subtitle">A FAMILIAR PLACE · SINCE 1987</span>'}</a><div class="site-utilities"><button data-case-action="instructions" aria-haspopup="dialog">${t("游玩说明", "How to play")}</button><button data-case-action="save-settings" aria-haspopup="dialog">${t("存档与重置", "Saves & reset")}</button><a data-case-language href="${zh ? "index.html" : "index-zh.html"}${esc(location.search)}${esc(location.hash)}">${zh ? "English" : "简体中文"}</a></div></header>${
         route === "forum"
           ? '<nav class="forum-nav" aria-label="' +
             t("论坛分区", "Forum sections") +
@@ -545,7 +553,7 @@
       state.lastEnding === "released"
     ) {
       pendingEscape = false;
-      nightEvents.escape();
+      nightEvents.escape({ onComplete: finishFinalScene });
     }
     if (moveFocus) {
       window.scrollTo(0, 0);
@@ -662,6 +670,16 @@
       (match || document.querySelector("#content"))?.focus({
         preventScroll: true,
       });
+      // A completed device operation hands off to its next real control.
+      const nextControl = act === "lock"
+        ? document.querySelector('[data-ending="released"]')
+        : act === "save" || (act === "frame" && state.night.saved && !state.night.locked)
+          ? document.querySelector(`[data-night-action="${state.night.frame ? "lock" : "frame"}"]`)
+          : null;
+      if (nextControl) {
+        nextControl.scrollIntoView({ block: "center", behavior: "instant" });
+        nextControl.focus({ preventScroll: true });
+      }
       return;
     }
     const action = e.target.closest("[data-case-action]")?.dataset.caseAction;
@@ -736,6 +754,7 @@
         ending === "released" && !state.endings.includes("released");
       if (perform("ending", { ending })) {
         pendingEscape = firstEscape;
+        finalScenePending = firstEscape;
         if (currentRoute() === "ending") render(true);
         else location.hash = "ending";
       }
