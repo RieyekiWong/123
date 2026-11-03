@@ -1,0 +1,315 @@
+{
+  "records": [
+    {
+      "name": "zh-390-corners",
+      "width": 390,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "pet",
+          "slot": "top-left",
+          "effect": "none",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "zh-390-bottom",
+      "width": 390,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "repair",
+          "slot": "bottom-right",
+          "effect": "lights",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "zh-1440-corners",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "pet",
+          "slot": "top-left",
+          "effect": "none",
+          "overlaps": false
+        },
+        {
+          "id": "cinema",
+          "slot": "bottom-right",
+          "effect": "blink",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "zh-1920-corners",
+      "width": 1920,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "cats",
+          "slot": "top-right",
+          "effect": "blink",
+          "overlaps": false
+        },
+        {
+          "id": "print",
+          "slot": "bottom-left",
+          "effect": "none",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "zh-shop-pet",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "pet",
+          "slot": "top-left",
+          "effect": "none",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "zh-shop-cinema",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "cinema",
+          "slot": "top-left",
+          "effect": "blink",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "zh-shop-repair",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "repair",
+          "slot": "top-left",
+          "effect": "lights",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "zh-shop-secondhand",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "secondhand",
+          "slot": "top-left",
+          "effect": "lights",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "zh-shop-print",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "print",
+          "slot": "top-left",
+          "effect": "none",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "zh-shop-cats",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "cats",
+          "slot": "top-left",
+          "effect": "blink",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "zh-shop-weather",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "weather",
+          "slot": "top-left",
+          "effect": "none",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "en-390-corners",
+      "width": 390,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "pet",
+          "slot": "top-left",
+          "effect": "none",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "en-390-bottom",
+      "width": 390,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "repair",
+          "slot": "bottom-right",
+          "effect": "lights",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "en-1440-corners",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "pet",
+          "slot": "top-left",
+          "effect": "none",
+          "overlaps": false
+        },
+        {
+          "id": "cinema",
+          "slot": "bottom-right",
+          "effect": "blink",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "en-1920-corners",
+      "width": 1920,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "cats",
+          "slot": "top-right",
+          "effect": "blink",
+          "overlaps": false
+        },
+        {
+          "id": "print",
+          "slot": "bottom-left",
+          "effect": "none",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "en-shop-pet",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "pet",
+          "slot": "top-left",
+          "effect": "none",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "en-shop-cinema",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "cinema",
+          "slot": "top-left",
+          "effect": "blink",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "en-shop-repair",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "repair",
+          "slot": "top-left",
+          "effect": "lights",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "en-shop-secondhand",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "secondhand",
+          "slot": "top-left",
+          "effect": "lights",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "en-shop-print",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "print",
+          "slot": "top-left",
+          "effect": "none",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "en-shop-cats",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "cats",
+          "slot": "top-left",
+          "effect": "blink",
+          "overlaps": false
+        }
+      ]
+    },
+    {
+      "name": "en-shop-weather",
+      "width": 1440,
+      "overflow": false,
+      "windows": [
+        {
+          "id": "weather",
+          "slot": "top-left",
+          "effect": "none",
+          "overlaps": false
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

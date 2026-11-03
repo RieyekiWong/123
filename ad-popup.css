@@ -1,0 +1,136 @@
+/* Early-web advertising windows. Reserved edges keep the page itself usable. */
+:root { --ad-left: 0px; --ad-right: 0px; --ad-top: 0px; }
+body.ad-rail, body.ad-rail.ad-expanded {
+  padding-left: var(--ad-left);
+  padding-right: var(--ad-right);
+}
+#ad-host .ad-dock {
+  inset: auto;
+  width: 264px;
+  max-height: calc(100dvh - 28px);
+  overflow-y: auto;
+  border: 3px outset #e0ded1;
+  box-shadow: 3px 4px 0 #20253c77, inset 0 0 0 1px #6a6c72;
+  scrollbar-width: thin;
+}
+#ad-host .ad-card { animation: ad-window-open .18s ease-out; }
+#ad-host [data-slot$=left] { left: 14px; }
+#ad-host [data-slot$=right] { right: 14px; }
+#ad-host [data-slot^=top] { top: 14px; }
+#ad-host [data-slot^=bottom] { bottom: 14px; }
+#ad-host .ad-card > header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  flex-wrap: nowrap;
+  gap: 4px;
+  padding: 3px;
+  border-bottom: 2px solid #787985;
+  color: #fff;
+  background: linear-gradient(90deg, #102867, #2b69a5 72%, #6b9bb6);
+  font: 700 12px/1.4 var(--font-forum, sans-serif);
+}
+#ad-host .ad-window-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#ad-host .ad-card > header > div { flex: 0 0 auto; }
+#ad-host .ad-card > header button {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 3px;
+  margin: 0;
+  border: 2px outset #fff;
+  background: #d4d2c9;
+  color: #17233c;
+  font: 13px/1.2 var(--font-forum, sans-serif);
+}
+#ad-host .ad-card > header button:active { border-style: inset; }
+#ad-host .ad-card > header button:disabled { color: #53534b; }
+#ad-host .ad-card-body {
+  display: grid;
+  grid-template-columns: minmax(0,1fr);
+  gap: 7px;
+  padding: 10px;
+  text-align: center;
+  background: repeating-linear-gradient(0deg, #fff0 0 3px, #ffffff20 3px 4px), var(--ad-paper);
+}
+#ad-host .ad-card-body .ad-photo {
+  display: block;
+  width: 100%;
+  height: 92px;
+  margin: 0;
+  border: 2px inset #dedbd0;
+  image-rendering: pixelated;
+}
+#ad-host .ad-card-body h2 {
+  margin: 3px 0 7px;
+  font-size: 20px;
+  line-height: 1.35;
+  color: var(--ad-ink);
+  text-shadow: 1px 1px 0 #fff9;
+}
+#ad-host .ad-card-body p { margin: 4px 0; }
+#ad-host .ad-card-body .ad-teaser {
+  margin: 0;
+  padding: 3px 4px;
+  border: 1px dashed var(--ad-ink);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+#ad-host .ad-card-body button {
+  min-height: 44px;
+  margin: 6px 0 2px;
+  border: 2px outset var(--ad-edge);
+  background: #fff9;
+  color: var(--ad-ink);
+  font-weight: 700;
+}
+#ad-host [data-popup-effect=blink] .ad-teaser {
+  animation: ad-letter-blink 1.8s steps(1,end) infinite;
+}
+#ad-host [data-popup-effect=lights] {
+  animation: ad-window-open .18s ease-out, ad-border-lights 2.4s steps(1,end) infinite;
+}
+#ad-host .ad-saved-tab { width: 220px; background: #d9ddcd; }
+#ad-host [data-folded=true] { overflow: visible; }
+@keyframes ad-window-open {
+  from { opacity: .5; }
+  to { opacity: 1; }
+}
+@keyframes ad-letter-blink {
+  0%, 65%, 100% { opacity: 1; }
+  75%, 90% { opacity: .3; }
+}
+@keyframes ad-border-lights {
+  0%, 100% { border-color: #e0ded1; }
+  35% { border-color: #f0ce67; }
+  70% { border-color: #8db8cc; }
+}
+body.reduced-motion #ad-host :is(.ad-card,.ad-teaser) { animation: none !important; }
+@media(prefers-reduced-motion:reduce) {
+  #ad-host :is(.ad-card,.ad-teaser) { animation: none !important; }
+}
+@media(max-width:1199px) {
+  body.ad-rail, body.ad-rail.ad-expanded { padding: 0; }
+  body.ad-rail #case-shell {
+    margin-top: var(--ad-top);
+    height: calc(100dvh - var(--ad-height));
+  }
+  #ad-host .ad-dock {
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: min(460px,100%);
+    max-height: 28dvh;
+  }
+  #ad-host [data-slot^=top] { top: 0; bottom: auto; }
+  #ad-host [data-slot^=bottom] { bottom: 0; top: auto; }
+  #ad-host .ad-card-body { grid-template-columns: 56px minmax(0,1fr); padding: 8px 10px; gap: 6px 10px; text-align: left; }
+  #ad-host .ad-teaser { grid-column: 1 / -1; text-align: center; }
+  #ad-host .ad-card-body .ad-photo { height: 66px; }
+  #ad-host .ad-card-body h2 { font-size: 18px; }
+}

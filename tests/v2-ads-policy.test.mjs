@@ -3,34 +3,25 @@ import assert from "node:assert/strict";
 import "../ad-data.js";
 import "../ad-system.js";
 const P = globalThis.StillwaterAds.policy;
-test("ads have bounded varied delays, three-card session cap and require navigation between displays", () => {
-  assert.equal(
-    P.delay(true, () => 0),
-    45000,
-  );
-  assert.equal(
-    P.delay(true, () => 1),
-    75000,
-  );
-  assert.equal(
-    P.delay(false, () => 0),
-    90000,
-  );
-  assert.equal(
-    P.delay(false, () => 1),
-    150000,
-  );
-  const s = P.freshSession(() => 0);
-  assert.equal(P.advance(s, 44000), false);
-  assert.equal(P.advance(s, 1000), true);
-  s.shownThisSession = ["pet"];
-  s.remaining = 90000;
-  s.navigatedSinceShow = false;
-  assert.equal(P.advance(s, 90000), false);
-  s.navigatedSinceShow = true;
-  assert.equal(P.advance(s, 0), true);
-  s.shownThisSession = ["pet", "cinema", "cats"];
-  assert.equal(P.advance(s, 200000), false);
+test("popup delays vary, same-page appearances are allowed and seven unique campaigns form the limit", () => {
+  assert.equal(P.delay(true,()=>0),12000);
+  assert.equal(P.delay(true,()=>1),24000);
+  assert.equal(P.delay(false,()=>0),18000);
+  assert.equal(P.delay(false,()=>1),36000);
+  const s=P.freshSession(()=>0);
+  assert.equal(P.advance(s,11000),false);
+  assert.equal(P.advance(s,1000),true);
+  s.shownThisSession=['pet'];s.remaining=18000;s.navigatedSinceShow=false;
+  assert.equal(P.advance(s,18000),true);
+  s.shownThisSession=['pet','cinema','repair','secondhand','print','cats','weather'];
+  assert.equal(P.advance(s,200000),false);
+});
+test("random window slots use all four corners and a second window uses the other side",()=>{
+  assert.equal(new Set([0,.3,.6,.9].map(r=>P.chooseSlot([],()=>r))).size,4);
+  for(const slot of ['top-left','bottom-left','top-right','bottom-right']) {
+    const next=P.chooseSlot([{slot}],()=>0);
+    assert.notEqual(next.split('-')[1],slot.split('-')[1]);
+  }
 });
 test("reading, hidden tabs, forms, dialogs and serious files pause advertisement time", () => {
   for (const options of [
@@ -43,11 +34,11 @@ test("reading, hidden tabs, forms, dialogs and serious files pause advertisement
   ]) {
     const s = P.freshSession(() => 0);
     assert.equal(P.advance(s, 100000, options), false);
-    assert.equal(s.remaining, 45000);
+    assert.equal(s.remaining, 12000);
   }
   const s = P.freshSession(() => 0);
-  assert.equal(P.advance(s, 34000, { forum: true }), false);
-  assert.equal(s.remaining, 45000);
+  assert.equal(P.advance(s, 7000, { forum: true }), false);
+  assert.equal(s.remaining, 12000);
   for (const route of [
     "floor-plan",
     "maintenance",

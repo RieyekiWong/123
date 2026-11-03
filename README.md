@@ -23,7 +23,7 @@ The forum and careers page have their own footers; hotel operations appear on th
 
 New visitors start at Night Owl BBS. Follow the job preview, then review the sample to reach the reservation search. Existing V2 saves continue from a usable record; **Back to the forum** revisits the opening. Explicit hash links and language switches keep their destination.
 
-Local adverts can be closed, kept, folded or opened from **My ad folder**. They appear infrequently on public pages, pause during forms and never appear in the investigation’s serious records. Advertising stops after Mara’s note and during the altered chapters; saved adverts are preserved and return after the true ending. The shops have complete bilingual local pages, existing licensed photographs and no external tracking, media, orders or data collection. They are scenery, not puzzle clues.
+Local adverts appear as early-web popup windows in random screen corners, with bevelled borders, blue title bars and selected blinking labels or border lights. They can be closed, kept, minimized, restored or opened from **My ad folder**. Up to two occupy opposite desktop edges; phones and tablets show one with reserved page space. Popups pause during forms and never appear in the investigation’s serious records. Advertising stops after Mara’s note and during the altered chapters; saved adverts are preserved and return after the true ending. The shops have complete bilingual local pages, existing licensed photographs and no external tracking, media, orders or data collection. They are scenery, not puzzle clues.
 
 Saved adverts use `stillwater-ads:v1`; sessionStorage holds per-tab cooldown and display history. Restarting the main case preserves the folder. Remove saved adverts individually in the folder.
 
@@ -87,3 +87,7 @@ B-3's existing six-junction puzzle gains screw terminals, clamps, shielding, a c
 ### V2.4.3 · Independent release & explicit endings
 
 All three outcomes now have completion cards. Saving or restoring a missing frame brings the next device control into view; locking the archive focuses the real exit button. The true ending finishes its final scare before showing GAME OVER. Cancelling, skipping or failing to load the image cannot prevent completion, and reloading never repeats the scare. Restart remains a confirmed action and preserves unrelated saves and saved adverts.
+
+### V2.4.4 · Millennium popup advertisements
+
+The fixed forum banner and the proposed manual carousel are replaced by randomly appearing ad windows. Initial cooldown is 12–24 seconds, followed by 18–36 seconds of eligible quiet browsing; the forum also has an eight-second opening grace. Seven different campaigns can appear in a tab without requiring navigation. Previously saved shops and session history are retained. Text blinking and border lights stop with Reduce Motion, and all popup activity still stops after Mara's note and during the altered chapters.

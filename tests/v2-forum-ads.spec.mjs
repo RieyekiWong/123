@@ -124,61 +124,40 @@ test("early notices no longer explain the position; progressive errors point bac
     "1",
   );
 });
-test("ads wait, pause for typing and dialogs, keep focus and do not change case evidence", async ({
-  page,
-}) => {
+test("ads wait, pause for typing and dialogs, keep focus and do not change case evidence",async({page})=>{
   await timed(page);
   await expect(page.locator("iframe,audio,video")).toHaveCount(0);
   await page.locator("#job-keyword").focus();
   await page.clock.runFor(180000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
-  expect((await adSession(page)).remaining).toBe(45000);
+  expect((await adSession(page)).remaining).toBe(12000);
   await page.locator("footer [data-ad-action=folder]").click();
   await page.clock.runFor(180000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
   await page.keyboard.press("Escape");
-  await page.clock.runFor(48000);
+  await page.clock.runFor(15000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
-  await page.clock.runFor(2000);
+  await page.clock.runFor(3000);
   await expect(page.locator("[data-active-ad=pet]")).toBeVisible();
   await expect(page.locator("footer [data-ad-action=folder]")).toBeFocused();
-  expect(
-    await page.evaluate(() => localStorage.getItem("stillwater-case:v2")),
-  ).toBeNull();
+  expect(await page.evaluate(()=>localStorage.getItem("stillwater-case:v2"))).toBeNull();
 });
-test("forum has no early floating ad, fixed banner is separate and the session cap requires navigation", async ({
-  page,
-}) => {
-  await timed(page, "");
-  await expect(page.locator(".ad-inline")).toBeVisible();
-  await page.clock.runFor(35000);
-  await expect(page.locator("[data-active-ad]")).toHaveCount(0);
-  await page.locator(".forum-recruit-link").click();
-  await page.clock.runFor(51000);
-  await expect(page.locator("[data-active-ad=pet]")).toBeVisible();
-  await page.locator("#ad-host [data-ad-action=close]").click();
-  await page.clock.runFor(200000);
-  await expect(page.locator("[data-active-ad]")).toHaveCount(0);
-  await page.locator("[data-case-action=sample]").click();
-  await link(page, "history", "footer");
-  await page.clock.runFor(6000);
-  await expect(page.locator("[data-active-ad=cinema]")).toBeVisible();
-  await page.locator("#ad-host [data-ad-action=close]").click();
-  await page.reload();
+test("forum starts quietly, then seven different popup campaigns can appear without navigation",async({page})=>{
+  await timed(page,"");
+  await expect(page.locator('.ad-inline,[data-ad-action=next-inline]')).toHaveCount(0);
   await page.clock.runFor(8000);
-  await expect(page.locator("[data-active-ad]")).toHaveCount(0);
-  await page.clock.runFor(100000);
-  await expect(page.locator("[data-active-ad]")).toHaveCount(0);
-  await page.locator('nav a[href="#hotel"]').click();
-  await page.clock.runFor(6000);
-  await expect(page.locator("[data-active-ad=repair]")).toBeVisible();
-  await page.locator("#ad-host [data-ad-action=close]").click();
-  await page.locator('nav a[href="#rooms"]').click();
-  await page.clock.runFor(300000);
-  await expect(page.locator("[data-active-ad]")).toHaveCount(0);
-  const s = await adSession(page);
-  expect(s.shownThisSession).toEqual(["pet", "cinema", "repair"]);
-  expect(s.dismissedThisSession).toEqual(["pet", "cinema", "repair"]);
+  await expect(page.locator('[data-active-ad]')).toHaveCount(0);
+  await page.clock.runFor(13000);
+  const ids=['pet','cinema','repair','secondhand','print','cats','weather'];
+  for(const id of ids) {
+    await expect(page.locator(`[data-active-ad=${id}]`)).toBeVisible();
+    await page.locator(`[data-active-ad=${id}] [data-ad-action=close]`).click();
+    await page.clock.runFor(24000);
+  }
+  await page.clock.runFor(120000);
+  await expect(page.locator('[data-active-ad]')).toHaveCount(0);
+  expect((await adSession(page)).shownThisSession).toEqual(ids);
+  expect((await adSession(page)).dismissedThisSession).toEqual(ids);
 });
 test("ads pause while hidden and do not catch up in a burst on return", async ({
   page,
@@ -202,14 +181,14 @@ test("ads pause while hidden and do not catch up in a burst on return", async ({
   });
   await page.clock.runFor(5000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
-  await page.clock.runFor(45000);
+  await page.clock.runFor(13000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(1);
 });
 test("keep, fold, reload, reopen, remove and Escape work; main reset leaves the folder intact", async ({
   page,
 }) => {
   await timed(page);
-  await page.clock.runFor(45000);
+  await page.clock.runFor(13000);
   await page.locator("#ad-host [data-ad-action=pin]").click();
   await page.locator("#ad-host [data-ad-action=collapse]").click();
   expect((await savedAds(page)).pinnedIds).toEqual(["pet"]);
@@ -305,33 +284,24 @@ for (const width of [375, 768, 1440])
       ),
     ).toBe(true);
     await page.locator(".forum-recruit-link").click();
-    await page.clock.runFor(51000);
+    await page.clock.runFor(18000);
     await expect(page.locator("[data-active-ad]")).toBeVisible();
     expect(
       await page
         .locator(".ad-card")
         .evaluate((el) => getComputedStyle(el).animationName),
     ).toBe("none");
-    const rects = await page.evaluate(() => {
-      const shell = document
-          .querySelector("#case-shell")
-          .getBoundingClientRect(),
-        ad = document.querySelector(".ad-card").getBoundingClientRect();
-      return {
-        shellBottom: shell.bottom,
-        adTop: ad.top,
-        adLeft: ad.left,
-        contentRight: document.querySelector("main").getBoundingClientRect()
-          .right,
-        height: ad.height,
-        w: document.documentElement.scrollWidth,
-      };
+    const rects=await page.evaluate(()=>{
+      const content=document.querySelector('#case-shell').getBoundingClientRect();
+      const popup=document.querySelector('.ad-card').getBoundingClientRect();
+      return {left:content.left,right:content.right,top:content.top,bottom:content.bottom,
+        adLeft:popup.left,adRight:popup.right,adTop:popup.top,adBottom:popup.bottom,height:popup.height,w:document.documentElement.scrollWidth};
     });
     expect(rects.w).toBe(width);
-    if (width < 1200) {
-      expect(rects.shellBottom).toBeLessThanOrEqual(rects.adTop + 1);
-      expect(rects.height).toBeLessThanOrEqual(900 * 0.28 + 1);
-    } else expect(rects.contentRight).toBeLessThanOrEqual(rects.adLeft);
+    if(width<1200) {
+      expect(rects.bottom<=rects.adTop+1||rects.top>=rects.adBottom-1).toBe(true);
+      expect(rects.height).toBeLessThanOrEqual(900*.28+1);
+    } else expect(rects.right<=rects.adLeft+1||rects.left>=rects.adRight-1).toBe(true);
   });
 test("blocked local and session storage leave forum, shops and the main case usable", async ({
   page,
@@ -348,7 +318,8 @@ test("blocked local and session storage leave forum, shops and the main case usa
   });
   await timed(page, "");
   if(await page.locator("#case-welcome[open]").count())await page.locator("[data-welcome=enter]").click();
-  await page.locator(".ad-inline [data-ad-action=detail]").click();
+  await page.clock.runFor(21000);
+  await page.locator("[data-active-ad=pet] [data-ad-action=detail]").click();
   await page.locator("#ad-dialog [data-ad-action=pin]").click();
   await page.keyboard.press("Escape");
   await page.locator(".forum-recruit-link").click();

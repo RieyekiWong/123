@@ -35,14 +35,18 @@ for (const entry of ["index-zh.html", "index.html"])
 test("all seven advertisements use local existing photographs, with source credits and three cat portraits", async ({
   page,
 }) => {
+  await page.addInitScript(()=>{Math.random=()=>0;});
+  await page.clock.install({time:new Date('2026-11-03T12:00:00Z')});
+  await page.clock.pauseAt(new Date('2026-11-03T12:00:01Z'));
   await page.goto("/index-zh.html");
-  await expect(page.locator(".ad-inline img")).toBeVisible();
+  await page.clock.runFor(21000);
+  await expect(page.locator("[data-active-ad=pet] img")).toBeVisible();
   await expect
     .poll(() =>
-      page.locator(".ad-inline img").evaluate((img) => img.naturalWidth),
+      page.locator("[data-active-ad=pet] img").evaluate((img) => img.naturalWidth),
     )
     .toBeGreaterThan(0);
-  await expect(page.locator(".ad-inline svg")).toHaveCount(0);
+  await expect(page.locator("[data-active-ad=pet] svg")).toHaveCount(0);
   await page.locator("footer [data-ad-action=folder]").click();
   await page.locator(".ad-directory > summary").click();
   for (const id of [
@@ -109,25 +113,22 @@ for (const width of [320, 375, 768, 1440])
     await page.goto("/index-zh.html#hotel");
     // Install the clock before navigation so every interval is controlled.
     await page.clock.runFor(45300);
-    await expect(page.locator("[data-active-ad] img")).toBeVisible();
-    const rect = await page.evaluate(() => {
-      const ad = document
-          .querySelector("[data-active-ad]")
-          .getBoundingClientRect(),
-        main = document.querySelector("main").getBoundingClientRect(),
-        shell = document.querySelector("#case-shell").getBoundingClientRect();
-      return {
-        adTop: ad.top,
-        adLeft: ad.left,
-        adHeight: ad.height,
-        mainRight: main.right,
-        shellBottom: shell.bottom,
-        overflow: document.documentElement.scrollWidth > innerWidth + 1,
-      };
+    await expect(page.locator("[data-active-ad]")).toHaveCount(width<1200?1:2);
+    for(const im of await page.locator("[data-active-ad] img").all()) await expect(im).toBeVisible();
+    const layout=await page.evaluate(()=>{
+      const shell=document.querySelector('#case-shell').getBoundingClientRect();
+      return {shell:{left:shell.left,right:shell.right,top:shell.top,bottom:shell.bottom},
+        overflow:document.documentElement.scrollWidth>innerWidth+1,
+        ads:[...document.querySelectorAll('[data-active-ad]')].map(el=>{
+          const r=el.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,height:r.height};
+        })};
     });
-    expect(rect.overflow).toBe(false);
-    if (width < 1200) {
-      expect(rect.shellBottom).toBeLessThanOrEqual(rect.adTop + 1);
-      expect(rect.adHeight).toBeLessThanOrEqual(900 * 0.28 + 1);
-    } else expect(rect.mainRight).toBeLessThanOrEqual(rect.adLeft);
+    expect(layout.overflow).toBe(false);
+    for(const r of layout.ads) {
+      const s=layout.shell;
+      if(width<1200) {
+        expect(s.bottom<=r.top+1||s.top>=r.bottom-1).toBe(true);
+        expect(r.height).toBeLessThanOrEqual(900*.28+1);
+      } else expect(s.right<=r.left+1||s.left>=r.right-1).toBe(true);
+    }
   });
