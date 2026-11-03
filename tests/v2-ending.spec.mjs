@@ -1,4 +1,5 @@
 import { test, expect } from './v2-fixture.mjs';
+import { solveVoid } from './v2-void-helpers.mjs';
 
 async function terminal(page,{entry='index-zh.html',skip=true,frame=true,locked=false}={}) {
   await page.addInitScript(({skip,frame,locked})=>{
@@ -28,6 +29,9 @@ for (const entry of ['index-zh.html','index.html']) {
     await expect(page.locator('[data-night-action=frame]')).toBeFocused();
     await expect(page.locator('[data-night-action=frame]')).toBeInViewport();
     await page.locator('[data-night-action=frame]').click();
+    await expect(page.locator('[data-unlisted-entry]')).toBeFocused();
+    await page.locator('[data-unlisted-entry]').click();
+    await solveVoid(page);
     await expect(page.locator('[data-night-action=lock]')).toBeFocused();
     await page.locator('[data-night-action=lock]').click();
     await expect(page.locator('[data-ending=released]')).toBeFocused();

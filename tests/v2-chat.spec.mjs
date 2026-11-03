@@ -39,10 +39,10 @@ for(const entry of ['index-zh.html','index.html']) {
   });
 }
 test('a silent player receives the forum card before the conversation ends and messages do not repeat',async({page})=>{
-  await open(page);await page.clock.runFor(210000);
+  await open(page);await page.clock.runFor(115000);
   await expect(page.locator('.chat-share-card')).toHaveCount(1);
   const mid=await saved(page);expect(mid.cursor).toBeLessThan(54);
-  await page.clock.runFor(140000);
+  await page.clock.runFor(125000);
   const complete=await saved(page);expect(complete.cursor).toBe(54);expect(complete.messages).toHaveLength(54);
   await page.clock.runFor(120000);expect((await saved(page)).messages).toHaveLength(54);
   await expect(page.locator('.chat-message-self')).toHaveCount(0);
@@ -72,10 +72,14 @@ test('returning, reloading and switching languages preserve chat and never resta
   await page.goto('/index.html');await expect(page).toHaveURL(/#chat$/);
   await expect(page.locator('.chat-share-card')).toHaveCount(1);
 });
-test('reading history, hidden tabs, dialogs and other routes pause the opening instead of skipping messages',async({page})=>{
-  await open(page);await page.clock.runFor(120000);
+test('reading older messages still receives the forum card; hidden tabs, dialogs and other routes pause time',async({page})=>{
+  await open(page);await page.clock.runFor(30000);
   await page.locator('.chat-messages').evaluate(el=>{el.scrollTop=0;el.dispatchEvent(new Event('scroll'));});
-  const cursor=(await saved(page)).cursor;await page.clock.runFor(30000);expect((await saved(page)).cursor).toBe(cursor);
+  const top=await page.locator('.chat-messages').evaluate(el=>el.scrollTop);
+  await page.clock.runFor(100000);expect((await saved(page)).shared).toBe(true);
+  expect(await page.locator('.chat-messages').evaluate(el=>el.scrollTop)).toBe(top);
+  await expect(page.locator('[data-chat-action=latest]')).toBeVisible();
+  const cursor=(await saved(page)).cursor;
   await page.locator('[data-case-action=instructions]').click();await page.clock.runFor(30000);
   expect((await saved(page)).cursor).toBe(cursor);await page.locator('[data-welcome=enter]').click();
   await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));});
@@ -129,4 +133,18 @@ test('confirmed restart clears chat together with the new case, preserving ad an
   expect((await saved(page)).messages).toHaveLength(1);expect((await saved(page)).shared).toBe(false);
   expect(await page.evaluate(()=>localStorage.getItem('stillwater-hotel:v2'))).toBe('old visitor');
   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('stillwater-ads:v1')).pinnedIds)).toEqual(['pet']);
+});
+test('four sourced offline photo avatars stay with the same speakers and expose author and license credits',async({page})=>{
+ await open(page);
+ const photos=await page.evaluate(()=>StillwaterChatPhotos);
+ expect(photos).toHaveLength(4);
+ for(const photo of photos) {
+  const image=page.locator(`.chat-avatar[src="${photo.file}"]`).first();
+  await expect.poll(()=>image.evaluate(el=>el.naturalWidth)).toBeGreaterThan(0);
+  expect(photo.source).toMatch(/^https:\/\/commons.wikimedia.org\/wiki\/File:/);
+ }
+ await page.locator('.chat-heading [data-chat-action=members]').click();
+ await page.locator('.chat-avatar-credits summary').click();
+ await expect(page.locator('.chat-avatar-credits p')).toHaveCount(4);
+ await expect(page.locator('.chat-avatar-credits')).toContainText('CC BY');
 });

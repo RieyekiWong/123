@@ -11,6 +11,7 @@
     finalScenePending = false,
     welcome = null,
     storageFailed = false;
+  let nextVoidFocus = "", pendingVoidHandover = false;
   let existingSave = null;
   try {
     existingSave = localStorage.getItem(KEY);
@@ -134,11 +135,14 @@
       )
         nightEvents.clear();
       void nightAudio.sync();
+      voidWorld?.refresh();
     },
     reset: () => {
       phaseTransition.cancel();
       pendingEscape = false;
       finalScenePending = false;
+      pendingVoidHandover = false;
+      nextVoidFocus = "";
       welcome?.forget();
       chat.reset();
       nightEvents.clear();
@@ -166,6 +170,25 @@
     audio: nightAudio,
     sting: () => comfort.tone(),
     t,
+  });
+  const voidWorld = window.StillwaterVoid.create({
+    getState: () => state, t, esc,
+    onAction: (action, payload, focusKey) => {
+      const result = M.transition(state, "void", { action, ...payload });
+      save();
+      if (!result.ok) {
+        const target = document.querySelector("#void-feedback");
+        if (target) target.textContent = result.error === "void-alignment"
+          ? t("边缘还没接上。看看门框和地缝在两块画面之间是否连续。", "The edges do not meet yet. Check the frame and floor seams between fragments.")
+          : t("这一步还没完成。当前画面和操作已保留。", "This operation is not ready yet. Your picture and adjustments are retained.");
+        voidWorld.refresh();
+        return;
+      }
+      if (result.route) { pendingVoidHandover = true; location.hash = result.route; return; }
+      nextVoidFocus = focusKey;
+      render();
+      if (result.event) nightEvents.present(result.event);
+    },
   });
   const errors = {
     sample: [
@@ -359,6 +382,7 @@
   function render(moveFocus = false) {
     let route = currentRoute();
     if (route === "home") route = "hotel";
+    const inVoid = route === "void" && M.canOpen(state, "void");
     const staff = [
       "night-audit",
       "staff",
@@ -370,9 +394,10 @@
       "cameras",
       "terminal",
       "service-passage",
+      "void",
     ].includes(route);
     const site =
-      route === "chat"
+      inVoid ? "void" : route === "chat"
         ? "chat"
         : route === "forum"
           ? "forum"
@@ -384,7 +409,7 @@
     rememberRoute(route);
     document.body.dataset.site = site;
     document.body.dataset.anomaly =
-      route === "chat"
+      inVoid ? "void" : route === "chat"
         ? "normal"
         : state.lastEnding === "released"
         ? "resolved"
@@ -401,12 +426,29 @@
         matchMedia("(prefers-reduced-motion: reduce)").matches,
     );
     if (route === "chat") {
+      voidWorld.leave();
       document.title = t("这周一定早睡（4） · 聊天", "Early nights, starting this week (4) · Chat");
       chat.mount(document.querySelector("#case-shell"), { focus: moveFocus });
       ads.navigate();
       return;
     }
     chat.leave();
+    if (inVoid) {
+      M.transition(state, "void", { action: "enter", now: Date.now() });
+      save();
+      document.title = "NO INDEX · Stillwater";
+      document.querySelector("#case-shell").innerHTML = voidWorld.render();
+      voidWorld.mount(document.querySelector("#case-shell"), nextVoidFocus);
+      nextVoidFocus = "";
+      ads.navigate();
+      if (moveFocus) {
+        window.scrollTo(0, 0);
+        document.querySelector("#case-shell").scrollTop = 0;
+        document.querySelector("#content").focus({ preventScroll: true });
+      }
+      return;
+    }
+    voidWorld.leave();
     if (route === "rooms" && !state.notices.shown) {
       state.notices.shown = true;
       save();
@@ -577,6 +619,14 @@
       document.querySelector("#case-shell").scrollTop = 0;
       document.querySelector("#content").focus({ preventScroll: true });
     }
+    if (route === "terminal" && pendingVoidHandover) {
+      pendingVoidHandover = false;
+      const handover = document.querySelector('[data-night-action=lock]:not(:disabled)')
+        || document.querySelector('[data-ending=released]')
+        || document.querySelector('[data-night-action=save]');
+      handover?.scrollIntoView({ block: "center", behavior: "instant" });
+      handover?.focus({ preventScroll: true });
+    }
   }
   document.addEventListener("click", (e) => {
     if (e.target.closest("a.skip")) {
@@ -608,7 +658,9 @@
         const el = document.querySelector("#night-feedback");
         if (el) {
           el.className = "night-feedback-error";
-          el.textContent = [
+          el.textContent = result.error === "void-first"
+            ? t("还有一段未归档画面，先在监控下方打开查看。", "An unlisted picture remains. Open it below the monitor first.")
+            : [
             "night-cart",
             "night-cabinet",
             "night-power",
@@ -691,7 +743,9 @@
       const nextControl = act === "lock"
         ? document.querySelector('[data-ending="released"]')
         : act === "save" || (act === "frame" && state.night.saved && !state.night.locked)
-          ? document.querySelector(`[data-night-action="${state.night.frame ? "lock" : "frame"}"]`)
+          ? state.night.frame && !window.StillwaterVoidModel.finished(state.night)
+            ? document.querySelector('[data-unlisted-entry]')
+            : document.querySelector(`[data-night-action="${state.night.frame ? "lock" : "frame"}"]`)
           : null;
       if (nextControl) {
         nextControl.scrollIntoView({ block: "center", behavior: "instant" });

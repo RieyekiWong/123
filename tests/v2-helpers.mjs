@@ -1,4 +1,5 @@
 import { expect } from "@playwright/test";
+import { solveVoid } from "./v2-void-helpers.mjs";
 export const link = async (page, route, scope = "main") => {
   await page.locator(`${scope} a[href="#${route}"]`).first().click();
   await expect(page).toHaveURL((url) => url.hash === "#" + route);
@@ -167,7 +168,7 @@ export async function toNight(page, visit = async () => {}) {
   await page.locator("[data-night-action=frame]").click();
   await page.locator('[data-night-action=rotate][data-node="0"]').click();
 }
-export async function wireNight(page) {
+export async function wireNight(page, { visitVoid = async () => {} } = {}) {
   // Follow the physical A-D-E-B-C-F path, checking the rendered connector angles.
   for (const [node, target] of [
     [0, 2],
@@ -190,5 +191,9 @@ export async function wireNight(page) {
   await page.locator("[data-night-action=isolate]").click();
   await page.locator("[data-night-action=manual]").click();
   await page.locator("[data-night-action=save]").click();
+  if (await page.locator('[data-unlisted-entry]').count() && !(await page.locator('[data-night-action=lock]').count())) {
+    await page.locator('[data-unlisted-entry]').click();
+    await solveVoid(page, { visit: visitVoid });
+  }
   await expect(page.locator("[data-night-action=lock]")).toBeVisible();
 }

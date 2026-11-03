@@ -4,12 +4,12 @@ import "../ad-data.js";
 import "../ad-system.js";
 const P = globalThis.StillwaterAds.policy;
 test("popup delays vary, same-page appearances are allowed and seven unique campaigns form the limit", () => {
-  assert.equal(P.delay(true,()=>0),12000);
-  assert.equal(P.delay(true,()=>1),24000);
-  assert.equal(P.delay(false,()=>0),18000);
-  assert.equal(P.delay(false,()=>1),36000);
+  assert.equal(P.delay(true,()=>0),6000);
+  assert.equal(P.delay(true,()=>1),12000);
+  assert.equal(P.delay(false,()=>0),9000);
+  assert.equal(P.delay(false,()=>1),18000);
   const s=P.freshSession(()=>0);
-  assert.equal(P.advance(s,11000),false);
+  assert.equal(P.advance(s,5000),false);
   assert.equal(P.advance(s,1000),true);
   s.shownThisSession=['pet'];s.remaining=18000;s.navigatedSinceShow=false;
   assert.equal(P.advance(s,18000),true);
@@ -34,13 +34,14 @@ test("reading, hidden tabs, forms, dialogs and serious files pause advertisement
   ]) {
     const s = P.freshSession(() => 0);
     assert.equal(P.advance(s, 100000, options), false);
-    assert.equal(s.remaining, 12000);
+    assert.equal(s.remaining, 6000);
   }
   const s = P.freshSession(() => 0);
-  assert.equal(P.advance(s, 7000, { forum: true }), false);
-  assert.equal(s.remaining, 12000);
+  assert.equal(P.advance(s, 5000, { forum: true }), false);
+  assert.equal(s.remaining, 6000);
   for (const route of [
     "chat",
+    "void",
     "floor-plan",
     "maintenance",
     "night-audit",

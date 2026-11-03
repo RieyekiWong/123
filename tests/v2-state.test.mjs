@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import "../case-data.js";
+import "../case-void-model.js";
 import "../case-night-model.js";
 import "../case-state.js";
 const D = globalThis.StillwaterCaseData,

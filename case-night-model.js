@@ -2,6 +2,7 @@
 globalThis.StillwaterNightModel = (() => {
   const initial = [0, 0, 0, 2, 2, 2];
   const fresh = () => ({
+    void: globalThis.StillwaterVoidModel.fresh(),
     started: false,
     spreadRequired: false,
     spread: { rooms: false, guestbook: false },
@@ -166,6 +167,7 @@ globalThis.StillwaterNightModel = (() => {
     n.saved = n.door && raw.saved === true && circuit(n).valid;
     n.locked = n.saved && raw.locked === true;
     n.released = raw.released === true || n.locked;
+    n.void = globalThis.StillwaterVoidModel.hydrate(raw.void);
     n.undo = Array.isArray(raw.undo)
       ? raw.undo
           .filter(

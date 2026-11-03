@@ -11,10 +11,10 @@ globalThis.StillwaterChatData = (() => {
     line('lin','昨晚导出来颜色全变了','The colours came out wrong last night.',5800),
     line('zhang','你们到底睡不睡觉','Do either of you actually sleep?',5600),
     line('gg','睡觉和赶作业不冲突吧','Can’t I sleep AND get my homework done?',4200),
-    line('zhang','冲突得很明显','Evidence suggests otherwise.',6000),
+    line('zhang','冲突得很明显','Clearly they do.',6000),
     line('lin','我先去倒杯水','Getting some water.',6800),
     line('gg','我现在只想吃早饭','All I want is breakfast.',5600),
-    line('zhang','你不是刚说你才醒','Didn’t you just wake up?',4100),
+    line('zhang','你不是刚起来吗','Didn’t you just wake up?',4100),
     line('gg','醒了就不能饿吗','Am I supposed to wake up full?',4300),
     line('zhang','行行行','Fine, fine.',7500),
     line('gg','诶说起来','Oh, speaking of which.',3700),
@@ -73,6 +73,15 @@ globalThis.StillwaterChatData = (() => {
     confused: { early: [line('gg','我刚醒 脑子还没转过来','Just woke up. Give my brain a minute.'),line('zhang','你说刚刚哪句','Which bit?')], job: [line('gg','有个整理资料的兼职 我找下链接','A record-sorting job. Finding the link.')], shared: [line('lin','那个帖子 我还没看完','The post. I haven’t finished reading it either.')] },
     other: { early: [line('zhang','等下 我刚在看别的','Hang on, I was looking at something else.'),line('gg','啊？你说哪个','Huh? Which one?'),line('lin','我刚切回来','Just switched back.'),line('zhang','我刚刚没看懂哈哈','I missed that, sorry haha.')], job: [line('gg','我先把帖子找出来','Let me find the post first.'),line('zhang','等他发出来看看','Let’s see what he sends.'),line('lin','我在看岗位介绍','Reading the listing.')], shared: [line('zhang','我刚刚没看懂哈哈','Wait, I didn’t follow that haha.'),line('gg','我吃完再看一下','I’ll take another look after breakfast.'),line('lin','嗯 我还在弄文件','Mm. Still working on my files.'),line('zhang','你继续 我在看','Go on, I’m reading.')] },
   };
+  // New replies keep the older keys above readable in existing chat histories.
+  Object.assign(replies, {
+    job_details:{any:[line('gg','就是在电脑上核对旧酒店的预订单 先做个样本','Checking old hotel bookings on your computer. You try a sample first.'),line('gg','看着是远程 整理以前的订房资料','Looks remote. Sorting older booking records.')]},
+    pay_details:{any:[line('gg','具体多少我还没问 对方让先看样本','Haven’t asked how much yet. They want you to look at the sample first.'),line('gg','工资我还没问清楚 我也没申请呢','Not sure about the pay yet. I haven’t applied either.')]},
+    share_bridge:{any:[line('gg','对了 昨晚看到个整理旧酒店预订单的兼职','Oh, I found a job checking old hotel bookings last night.'),line('gg','帖子找到了 发你们看看','Found the post. Here you go.')]},
+    moving:{early:[line('zhang','你说哪个呀','Which one do you mean?')],job:[line('gg','我把帖子找出来 发你们看看','Let me find the post and send it.')],shared:[line('gg','行 看完群里说一声','All right, let us know what you think.'),line('zhang','行啊 我也点进去看看','Sure, I’ll have a look too.')]},
+    casual_laugh:{any:[line('zhang','哈哈哈哈哈','Hahaha'),line('gg','行 你笑吧','Go on, laugh.'),line('lin','哈哈 我刚看到','Haha, just caught up.')]},
+    clarify:{early:[line('zhang','等下 你说的是哪件事','Wait, which thing do you mean?'),line('gg','啊？刚没看懂','Huh? Didn’t quite get that.'),line('lin','我刚切回来 你再说一遍','Just switched back. Say that again?')],job:[line('gg','你是问那个岗位吗','Do you mean the job listing?'),line('zhang','你说哪一段 我往上翻翻','Which bit? Let me scroll up.')],shared:[line('lin','哪一段？我还在往下看','Which part? I’m still reading.'),line('zhang','我没跟上 你展开说说','You lost me. What do you mean?'),line('gg','是说帖子里那个吗','You mean the thing in the post?')]},
+  });
   const bank = {};
   for (const [topic,phases] of Object.entries(replies))
     for (const [phase,entries] of Object.entries(phases))

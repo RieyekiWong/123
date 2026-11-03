@@ -1,0 +1,50 @@
+[
+  {
+    "id": "gg",
+    "file": "assets/chat-avatars/gg.jpg",
+    "title": "Fawn and white Welsh Corgi puppy standing on rear legs and sticking out the tongue.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Fawn_and_white_Welsh_Corgi_puppy_standing_on_rear_legs_and_sticking_out_the_tongue.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Fawn_and_white_Welsh_Corgi_puppy_standing_on_rear_legs_and_sticking_out_the_tongue.jpg/250px-Fawn_and_white_Welsh_Corgi_puppy_standing_on_rear_legs_and_sticking_out_the_tongue.jpg",
+    "author": "Huoadg5888; minor edits by Subsidiary account",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sha256": "89193b2612e5efa594b67101814c667e13dda24cc34fb26099a5c5b7fc1fbf21",
+    "display": "CSS square crop; downloaded thumbnail bytes unchanged"
+  },
+  {
+    "id": "zhang",
+    "file": "assets/chat-avatars/zhang.jpg",
+    "title": "Domestic Cat Face Shot.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Domestic_Cat_Face_Shot.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_Cat_Face_Shot.jpg/250px-Domestic_Cat_Face_Shot.jpg",
+    "author": "Augustus Binu",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sha256": "6546c04f176e5d7f02fb8e76ba2bf8a5297c12e93c1dbcbd190e855d0501b19b",
+    "display": "CSS square crop; downloaded thumbnail bytes unchanged"
+  },
+  {
+    "id": "lin",
+    "file": "assets/chat-avatars/lin.jpg",
+    "title": "Common Pigeon Portrait crop.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Common_Pigeon_Portrait_crop.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Common_Pigeon_Portrait_crop.jpg/250px-Common_Pigeon_Portrait_crop.jpg",
+    "author": "http://www.birdphotos.com",
+    "license": "CC BY 3.0",
+    "license_url": "https://creativecommons.org/licenses/by/3.0",
+    "sha256": "1764351b527a995e6ff70a84c850d9e96a406c3ba51c0596c42b0d0d18f002d2",
+    "display": "CSS square crop; downloaded thumbnail bytes unchanged"
+  },
+  {
+    "id": "me",
+    "file": "assets/chat-avatars/me.jpg",
+    "title": "Face of a red panda (8087935024).jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Face_of_a_red_panda_(8087935024).jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Face_of_a_red_panda_%288087935024%29.jpg/250px-Face_of_a_red_panda_%288087935024%29.jpg",
+    "author": "flowcomm",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "sha256": "e5ab850847ae1fad2263795b7e96d19be7cb2630963a2a99b756040807a37740",
+    "display": "CSS square crop; downloaded thumbnail bytes unchanged"
+  }
+]

@@ -130,14 +130,14 @@ test("ads wait, pause for typing and dialogs, keep focus and do not change case 
   await page.locator("#job-keyword").focus();
   await page.clock.runFor(180000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
-  expect((await adSession(page)).remaining).toBe(12000);
+  expect((await adSession(page)).remaining).toBe(6000);
   await page.locator("footer [data-ad-action=folder]").click();
   await page.clock.runFor(180000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
   await page.keyboard.press("Escape");
-  await page.clock.runFor(15000);
+  await page.clock.runFor(2000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
-  await page.clock.runFor(3000);
+  await page.clock.runFor(6000);
   await expect(page.locator("[data-active-ad=pet]")).toBeVisible();
   await expect(page.locator("footer [data-ad-action=folder]")).toBeFocused();
   expect(await page.evaluate(()=>localStorage.getItem("stillwater-case:v2"))).toBeNull();
@@ -286,10 +286,10 @@ for (const width of [375, 768, 1440])
     ).toBe(true);
     await page.locator(".forum-recruit-link").click();
     await page.clock.runFor(18000);
-    await expect(page.locator("[data-active-ad]")).toBeVisible();
+    await expect(page.locator("[data-active-ad]").first()).toBeVisible();
     expect(
       await page
-        .locator(".ad-card")
+        .locator(".ad-card").first()
         .evaluate((el) => getComputedStyle(el).animationName),
     ).toBe("none");
     const rects=await page.evaluate(()=>{

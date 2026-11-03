@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import "../case-data.js";
+import "../case-void-model.js";
 import "../case-night-model.js";
 import "../case-state.js";
 const M = globalThis.StillwaterCaseState,
@@ -82,6 +83,14 @@ test("new endings cannot skip equipment, true ending needs saved isolation and e
   assert.ok(move(s, "save").ok);
   s = M.hydrate(s);
   assert.equal(s.night.saved, true);
+  assert.equal(move(s, "lock").error, "void-first");
+  M.transition(s, "void", { action: "enter", now: 1000 });
+  const V = globalThis.StillwaterVoidModel, v = s.night.void;
+  for (let i = 0; i < 4; i++) V.transition(v, "walk", { direction: V.correct(i) });
+  for (let id = 0; id < 3; id++) V.transition(v, "move", { id, dx: -v.positions[id][0], dy: -v.positions[id][1] });
+  V.transition(v, "review"); V.transition(v, "terminal");
+  for (const type of ["ROOM", "GUEST", "EMPLOYEE", "UNVERIFIED"]) V.transition(v, "classify", { type });
+  V.transition(v, "leave");
   assert.ok(move(s, "lock").ok);
   assert.ok(M.transition(s, "ending", { ending: "released" }).ok);
   assert.ok(M.hydrate(s).endings.includes("released"));

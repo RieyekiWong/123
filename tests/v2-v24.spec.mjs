@@ -1,5 +1,6 @@
 import { test, expect } from "./v2-fixture.mjs";
 import "../case-data.js";
+import "../case-void-model.js";
 import "../case-night-model.js";
 import "../case-state.js";
 const M = globalThis.StillwaterCaseState;

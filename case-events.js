@@ -26,6 +26,8 @@ globalThis.StillwaterEvents = {
       "cabinet-face": "assets/haunt-v442/cabinet.jpg",
       "photo-face": "assets/haunt-v442/corridor.jpg",
       "last-frame": "assets/haunt-v442/last-frame.jpg",
+      "void-fragment-face": "assets/void-v26/fragment-face.png",
+      "void-lookback": "assets/void-v26/lookback.png",
     };
     const captions = {
       "plate-open-door": ["隔壁的门开着。", "The neighbouring door is open."],
@@ -71,7 +73,7 @@ globalThis.StillwaterEvents = {
         return; // Environment changes are rendered by the persistent scene state.
       }
       const frame = document.querySelector(
-        ".passage-frame,.terminal-layout .cctv-frame",
+        ".passage-frame,.terminal-layout .cctv-frame,.void-frame",
       );
       if (!frame) return;
       const token = generation;
@@ -94,7 +96,7 @@ globalThis.StillwaterEvents = {
         document.body.classList.remove("event-signal-drop");
         if (!decoded) return;
         const currentFrame = document.querySelector(
-          ".passage-frame,.terminal-layout .cctv-frame",
+          ".passage-frame,.terminal-layout .cctv-frame,.void-frame",
         );
         if (!currentFrame) return;
         active = document.createElement("div");
@@ -121,7 +123,7 @@ globalThis.StillwaterEvents = {
               active?.remove();
               active = null;
             },
-            id === "photo-face" ? 2400 : id === "last-frame" ? 850 : 550,
+            id === "photo-face" ? 2400 : id === "last-frame" ? 850 : id.startsWith("void-") ? 700 : 550,
           ),
         );
       };

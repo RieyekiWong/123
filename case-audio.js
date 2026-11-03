@@ -33,16 +33,16 @@ globalThis.StillwaterCaseAudio = {
         document.hidden ||
         !p.sound ||
         !s.night.started ||
-        s.lastEnding === "released" ||
-        !["cameras", "service-passage", "terminal"].includes(getRoute())
+        (s.lastEnding === "released" && getRoute() !== "void") ||
+        !["cameras", "service-passage", "terminal", "void"].includes(getRoute())
       ) {
         stop();
         return;
       }
       const deep =
-        s.night.door &&
+        (getRoute() !== "void" || s.night.void.stage !== "corridor") && s.night.door &&
         (!s.night.passageRequired || s.night.passage.cabinetOpen);
-      const next = String(p.volume) + ":" + deep;
+      const next = String(p.volume) + ":" + deep + ":" + (getRoute()==="void"?"unlisted":"hotel");
       if (configuration === next) return;
       stop();
       configuration = next;

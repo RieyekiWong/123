@@ -9,7 +9,7 @@ globalThis.StillwaterAds = (() => {
     "history",
   ]);
   const delay = (first, rng = Math.random) =>
-    Math.round((first ? 12000 : 18000) + rng() * (first ? 12000 : 18000));
+    Math.round((first ? 6000 : 9000) + rng() * (first ? 6000 : 9000));
   const slots = ["top-left", "bottom-right", "bottom-left", "top-right"];
   const chooseSlot = (windows, rng = Math.random) => {
     const occupied = new Set(windows.map(window => window.slot.split("-")[1]));
@@ -48,7 +48,7 @@ globalThis.StillwaterAds = (() => {
       typing ||
       dialog ||
       s.shownThisSession.length >= 7 ||
-      (forum && s.forumReadMs < 8000)
+      (forum && s.forumReadMs < 6000)
     )
       return false;
     s.remaining = Math.max(0, s.remaining - ms);
@@ -82,7 +82,7 @@ globalThis.StillwaterAds = (() => {
           shownThisSession: validIds(v.shownThisSession),
           dismissedThisSession: validIds(v.dismissedThisSession),
           remaining: Number.isFinite(v.remaining)
-            ? Math.max(0, Math.min(v.shownThisSession?.length ? 36000 : 24000, v.remaining))
+            ? Math.max(0, Math.min(v.shownThisSession?.length ? 18000 : 12000, v.remaining))
             : delay(true),
           lastShownAt: Number.isFinite(v.lastShownAt) ? v.lastShownAt : 0,
           navigatedSinceShow: v.navigatedSinceShow === true,
@@ -291,7 +291,7 @@ globalThis.StillwaterAds = (() => {
       )?.focus({ preventScroll: true });
     });
     const interact = () => {
-      quietUntil = Date.now() + 5000;
+      quietUntil = Date.now() + 2500;
     };
     document.addEventListener("pointerdown", interact, { passive: true });
     document.addEventListener("keydown", interact);

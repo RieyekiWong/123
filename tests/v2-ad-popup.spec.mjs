@@ -136,7 +136,7 @@ test('an existing three-ad session resumes the new campaign without losing histo
     sessionStorage.setItem('stillwater-ads-session:v1',JSON.stringify({schema:1,shownThisSession:['pet','cinema','repair'],dismissedThisSession:['pet'],remaining:150000,navigatedSinceShow:false,lastRoute:'forum',forumReadMs:35000}));
   });
   await start(page);
-  await page.clock.runFor(45000);
+  await page.clock.runFor(28000);
   await expect(card(page,'secondhand')).toBeVisible();
   expect(await page.evaluate(()=>JSON.parse(sessionStorage.getItem('stillwater-ads-session:v1')).shownThisSession)).toEqual(['pet','cinema','repair','secondhand']);
   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('stillwater-ads:v1')).pinnedIds)).toEqual(['cats']);

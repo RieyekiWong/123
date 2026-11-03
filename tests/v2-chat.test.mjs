@@ -10,11 +10,11 @@ test('54 fictional group messages include one real forum card and never speak fo
   assert.ok(D.script.every(m=>m.person!=='me'));
   assert.doesNotMatch(JSON.stringify(D.script),/317|Mara|Continuity|TEMP-015|R-4829|2007|关闭酒店/i);
 });
-test('an unattended visible conversation reaches the forum and finishes a finite 4–6 minute conversation',()=>{
+test('an unattended visible conversation shares automatically and finishes in roughly three minutes',()=>{
   const s=M.fresh();let finishedAt=0;
   for(let i=0;i<360;i++){M.advance(s,1000);if(s.cursor===54){finishedAt=s.elapsed;break;}}
   assert.equal(s.shared,true);assert.equal(s.messages.length,54);
-  assert.ok(finishedAt>=240000&&finishedAt<=360000,finishedAt);
+  assert.ok(finishedAt>=150000&&finishedAt<=240000,finishedAt);
   run(s,60000);assert.equal(s.messages.length,54);assert.ok(s.messages.every(m=>m.kind==='script'));
 });
 test('free replies respect the current subject and asking for a link publishes it early exactly once',()=>{
@@ -58,14 +58,31 @@ test('reading older messages pauses the scripted conversation while pending answ
 });
 test('unknown replies rotate and malformed storage cannot invent speakers or message types',()=>{
   const s=M.fresh(),keys=[];
-  for(let i=0;i<4;i++){M.send(s,'咕咕咕','group',()=>.6);run(s,3000,{story:false});keys.push(s.messages.at(-1).key);}
-  assert.equal(new Set(keys).size,4);
+  for(let i=0;i<3;i++){M.send(s,'咕咕咕','group',()=>.6);run(s,3000,{story:false});keys.push(s.messages.at(-1).key);}
+  assert.equal(new Set(keys).size,3);
   const bad=M.hydrate({schema:1,cursor:-100,messages:[{kind:'evil',text:'no'},{kind:'reply',key:'constructor'},{kind:'script',key:'s1',at:M.base}],pending:[{key:'missing'}],ui:{conversation:'evil'}});
   assert.equal(bad.messages.length,1);assert.equal(bad.ui.conversation,'group');assert.deepEqual(bad.pending,[]);
 });
 test('English homework stays in everyday chat instead of matching the word work inside it',()=>{
   const s=M.fresh();assert.equal(M.topic('Still have homework to finish.'),'homework');
-  assert.equal(M.topic('Any part-time work?'),'work');assert.equal(M.topic('How much does it pay?'),'work');
+  assert.equal(M.topic('Any part-time work?'),'work');assert.equal(M.topic('How much does it pay?'),'pay');
   M.send(s,'Still have homework to finish.','group',()=>0);run(s,4000);
   assert.equal(M.phase(s),'early');assert.equal(s.shared,false);
+});
+test('job and pay replies belong to GGbond, and the conversation does not ask the same question again',()=>{
+ const s=M.fresh();M.send(s,'什么工作','group',()=>0);run(s,2000,{story:false});
+ assert.equal(D.bank[s.messages.at(-1).key].person,'gg');assert.equal(s.cursor,25);
+ M.send(s,'工资多少','group',()=>0);run(s,2000,{story:false});assert.equal(D.bank[s.messages.at(-1).key].person,'gg');assert.equal(s.cursor,27);
+ M.send(s,'发链接','group',()=>0);run(s,2000,{story:false});M.send(s,'我去看看','group',()=>0);run(s,180000);
+ assert.ok(s.shared);assert.equal(s.context.reading,true);
+ assert.ok(!s.messages.some(m=>m.kind==='script'&&['s43','s44','s45','s46','s49','s50'].includes(m.key)));
+});
+test('the forum arrives without keywords even when player input keeps delaying the ordinary script',()=>{
+ const s=M.fresh();for(let i=0;i<121;i++){if(i%4===0)M.send(s,'嗯嗯','group',()=>0);M.advance(s,1000,{story:false});}
+ assert.equal(s.shared,true);assert.equal(s.messages.filter(m=>m.key==='s31').length,1);
+});
+test('old pacing migrates once while messages, drafts and reading position stay intact',()=>{
+ const raw=M.fresh();delete raw.pacing;raw.remaining=6000;raw.ui.drafts.group='还没发';raw.ui.scroll.group={top:80,bottom:false};
+ const migrated=M.hydrate(raw);assert.equal(migrated.remaining,3900);assert.equal(migrated.ui.drafts.group,'还没发');assert.equal(migrated.ui.scroll.group.top,80);
+ assert.equal(M.hydrate(migrated).remaining,3900);
 });
