@@ -1,0 +1,161 @@
+{
+  "records": [
+    {
+      "entry": "index-zh.html",
+      "width": 390,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "width": 390,
+      "route": "careers",
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "width": 390,
+      "route": "hotel",
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "width": 768,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "width": 768,
+      "route": "careers",
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "width": 768,
+      "route": "hotel",
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "width": 1280,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "width": 1280,
+      "route": "careers",
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "width": 1280,
+      "route": "hotel",
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "width": 1440,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "width": 1440,
+      "route": "careers",
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "width": 1440,
+      "route": "hotel",
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "width": 390,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "width": 390,
+      "route": "careers",
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "width": 390,
+      "route": "hotel",
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "width": 768,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "width": 768,
+      "route": "careers",
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "width": 768,
+      "route": "hotel",
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "width": 1280,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "width": 1280,
+      "route": "careers",
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "width": 1280,
+      "route": "hotel",
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "width": 1440,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "width": 1440,
+      "route": "careers",
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "width": 1440,
+      "route": "hotel",
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "width": 390,
+      "route": "chat",
+      "ad": "bottom-right"
+    },
+    {
+      "entry": "index-zh.html",
+      "width": 1440,
+      "route": "chat",
+      "ad": "bottom-right"
+    }
+  ],
+  "errors": []
+}

@@ -116,9 +116,9 @@ test("blocked storage still lets the player read and enter", async ({
   await page.goto("/index-zh.html");
   await expect(page.locator("#case-welcome")).toBeVisible();
   await page.locator("[data-welcome=enter]").click();
-  await page.goto("/index-zh.html#forum");
+  await page.goto("/index-zh.html#forum?topic=job");
   await page.locator(".forum-recruit-link").click();
-  await expect(page.locator(".job-card")).toBeVisible();
+  await expect(page.locator("#archive-job")).toBeVisible();
   expect(errors).toEqual([]);
 });
 async function readyEnding(page, { skip = false, reduced = false } = {}) {

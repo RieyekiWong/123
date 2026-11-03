@@ -1,13 +1,13 @@
 {
   "name": "stillwater-hotel",
-  "version": "4.8.0",
+  "version": "4.9.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "node server.mjs",
     "start": "node server.mjs",
     "build": "node build.mjs",
-    "test": "node --test tests/server.test.mjs tests/v2-state.test.mjs tests/v2-audio-policy.test.mjs tests/v2-ads-policy.test.mjs tests/v2-chat.test.mjs tests/v2-media.test.mjs tests/v2-night.test.mjs tests/v2-void.test.mjs",
+    "test": "node --test tests/server.test.mjs tests/v2-state.test.mjs tests/v2-front-copy.test.mjs tests/v2-audio-policy.test.mjs tests/v2-ads-policy.test.mjs tests/v2-chat.test.mjs tests/v2-media.test.mjs tests/v2-night.test.mjs tests/v2-void.test.mjs",
     "test:e2e": "playwright test"
   },
   "engines": {

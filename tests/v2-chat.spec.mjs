@@ -34,7 +34,7 @@ for(const entry of ['index-zh.html','index.html']) {
     await card.click();await expect(page).toHaveURL(/#forum\?topic=job$/);
     await expect(page.locator('.bbs-post h1')).toHaveText(metadata.title[entry.includes('zh')?0:1]);
     expect((await saved(page)).openedForum).toBe(true);
-    await page.locator('.forum-recruit-link').click();await expect(page.locator('.job-card')).toContainText('R-4829');
+    await page.locator('.forum-recruit-link').click();await expect(page.locator('#archive-job')).toContainText('R-4829');
     await page.locator('[data-case-action=sample]').click();await expect(page.locator('#reservation-search')).toBeVisible();
     expect(external).toEqual([]);
   });

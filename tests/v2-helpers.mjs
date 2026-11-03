@@ -15,6 +15,8 @@ export async function toAudit(page, entry = "index-zh.html") {
     await page.locator(".chat-composer button[type=submit]").click();
     await page.locator(".chat-share-card").click();
   }
+  if (await page.locator('.bbs-topic-link[href="#forum?topic=job"]').count())
+    await page.locator('.bbs-topic-link[href="#forum?topic=job"]').click();
   await page.locator(".forum-recruit-link").click();
   const reference = await page.locator(".job-card .reference").innerText();
   await page.locator("[data-case-action=sample]").click();

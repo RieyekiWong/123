@@ -44,6 +44,7 @@ for (const [entry, ending] of [
     await expect(page.locator(`[data-ending-record="${other}"]`)).toBeVisible();
     expect((await state(page)).endings).toHaveLength(2);
     await link(page, "forum", "footer");
+    await page.locator('.bbs-topic-link[href="#forum?topic=job"]').click();
     await expect(page.locator(".bbs-update")).toBeVisible();
     await expect(
       page.locator(".ad-inline,[data-active-ad],.ad-saved-tab"),

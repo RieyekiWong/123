@@ -15,17 +15,18 @@ test("role filters, restrained hotel home and reopenable non-modal notice", asyn
   page,
 }) => {
   await page.goto("/index-zh.html#careers");
-  await expect(page.locator(".job-card")).toHaveCount(1);
+  await expect(page.locator(".job-card")).toHaveCount(4);
   await page.locator("[name=work]").selectOption("onsite");
-  await page.locator("#job-search button").click();
-  await expect(page.locator(".job-card")).toBeHidden();
+  await page.locator("#job-search button[type=submit]").click();
+  await expect(page.locator("#archive-job")).toBeHidden();
+  await expect(page.locator("#scan-assistant")).toBeVisible();
   await page.locator("[name=work]").selectOption("remote");
   await page.locator("#job-keyword").fill("不存在的职位");
-  await page.locator("#job-search button").click();
-  await expect(page.locator(".job-card")).toBeHidden();
+  await page.locator("#job-search button[type=submit]").click();
+  await expect(page.locator("#archive-job")).toBeHidden();
   await page.locator("#job-keyword").fill("预订");
-  await page.locator("#job-search button").click();
-  await expect(page.locator(".job-card")).toBeVisible();
+  await page.locator("#job-search button[type=submit]").click();
+  await expect(page.locator("#archive-job")).toBeVisible();
   await page.locator("[data-case-action=sample]").click();
   await page.locator('nav a[href="#hotel"]').click();
   await expect(page.locator(".hotel-nav a")).toHaveCount(4);
@@ -54,7 +55,7 @@ test("unavailable deep links return to a usable source; skip link keeps the rout
     "#careers",
   );
   await page.locator("main .source-link a").click();
-  await expect(page.locator(".job-card")).toBeVisible();
+  await expect(page.locator("#archive-job")).toBeVisible();
   await page.keyboard.press("Tab");
   // Explicit focus also checks the skip control after the route changed.
   await page.locator("a.skip").focus();
@@ -251,7 +252,7 @@ test("the built static V2 distribution loads the case with bundled resources", a
     await page.locator(".chat-composer button[type=submit]").click();
     await page.locator(".chat-share-card").click();
     await page.locator(".forum-recruit-link").click();
-    await expect(page.locator(".job-card")).toBeVisible();
+    await expect(page.locator("#archive-job")).toBeVisible();
     await page.locator("[data-case-action=sample]").click();
     await page.locator('nav a[href="#hotel"]').click();
     await expect(page.locator(".hotel-hero img")).toBeVisible();

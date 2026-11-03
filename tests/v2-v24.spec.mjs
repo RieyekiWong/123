@@ -188,7 +188,7 @@ for (const width of [375, 390, 768, 1280, 1440])
             ).toBeGreaterThanOrEqual(16);
         }
       }
-      await page.goto("/" + entry + "#forum");
+      await page.goto("/" + entry + "#forum?topic=job");
       expect(
         await page
           .locator(".bbs-post-text>p")

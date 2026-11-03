@@ -1,7 +1,7 @@
 import {defineConfig} from '@playwright/test';
 export default defineConfig({
  testDir:'./tests',
- testMatch:['**/v2-audio.spec.mjs','**/v2-ads-v28.spec.mjs'],
+ testMatch:['**/v2-audio.spec.mjs','**/v2-ads-v28.spec.mjs','**/v2-front-sites.spec.mjs'],
  workers:1,
  reporter:'list',
  use:{browserName:'webkit',baseURL:'http://127.0.0.1:3112',launchOptions:{executablePath:process.env.WEBKIT_PATH||undefined},trace:'retain-on-failure'},

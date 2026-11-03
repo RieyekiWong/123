@@ -16,17 +16,18 @@ for (const entry of ["index-zh.html", "index.html"])
   test(`${entry}: explicit forum entry opens the existing thread without answers, then reaches the sample`, async ({
     page,
   }) => {
-    await page.goto("/" + entry + "#forum");
-    await expect(page).toHaveURL(/#forum$/);
+    await page.goto("/" + entry + "#forum?topic=job");
+    await expect(page).toHaveURL(/#forum\?topic=job$/);
     await expect(page.locator(".bbs-post")).toBeVisible();
     await expect(page.locator(".bbs-reply")).toHaveCount(5);
     await expect(page.locator("main")).not.toContainText(
       /R-4829|317|E-014|Mara|2007|停业|closed lakeside|诅咒|任务列表/,
     );
     await expect(page.locator(".forum-recruit-link")).toHaveCount(1);
+    if (await page.locator('.bbs-topic-link[href="#forum?topic=job"]').count()) await page.locator('.bbs-topic-link[href="#forum?topic=job"]').click();
     await page.locator(".forum-recruit-link").click();
     await expect(page).toHaveURL(/#careers$/);
-    await expect(page.locator(".job-card")).not.toContainText(
+    await expect(page.locator("#archive-job")).not.toContainText(
       /停业|closed lakeside|2007|Mara/,
     );
     await page.locator("[data-case-action=sample]").click();
@@ -67,7 +68,7 @@ test("ordinary threads and all forum sections lead to real local content", async
 }) => {
   await page.goto("/index-zh.html#forum");
   for (const topic of ["cv", "printer", "save-page", "dinner", "excuses"]) {
-    await page.locator(`.bbs-sidebar a[href="#forum?topic=${topic}"]`).click();
+    await page.locator(`.bbs-topic-link[href="#forum?topic=${topic}"]`).click();
     await expect(page.locator(".bbs-post-text")).not.toBeEmpty();
     await expect(page.locator(".bbs-reply")).not.toHaveCount(0);
     await page.locator('footer a[href="#forum"]').click();
@@ -285,6 +286,7 @@ for (const width of [375, 768, 1440])
         () => document.documentElement.scrollWidth <= innerWidth,
       ),
     ).toBe(true);
+    if (await page.locator('.bbs-topic-link[href="#forum?topic=job"]').count()) await page.locator('.bbs-topic-link[href="#forum?topic=job"]').click();
     await page.locator(".forum-recruit-link").click();
     await page.clock.runFor(18000);
     await expect(page.locator("[data-active-ad]").first()).toBeVisible();
@@ -322,6 +324,7 @@ test("blocked local and session storage leave forum, shops and the main case usa
   await page.locator("[data-active-ad=pet] [data-ad-action=detail]").click();
   await page.locator("#ad-dialog [data-ad-action=pin]").click();
   await page.keyboard.press("Escape");
+  if (await page.locator('.bbs-topic-link[href="#forum?topic=job"]').count()) await page.locator('.bbs-topic-link[href="#forum?topic=job"]').click();
   await page.locator(".forum-recruit-link").click();
   await page.locator("[data-case-action=sample]").click();
   await page.locator("#reservation-reference").fill("R-4829");

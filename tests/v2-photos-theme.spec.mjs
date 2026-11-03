@@ -7,7 +7,7 @@ for (const entry of ["index-zh.html", "index.html"])
     page.on("pageerror", (e) => errors.push(e.message));
     await page.goto("/" + entry + "#forum");
     for (const site of ["forum", "careers"]) {
-      if (site === "careers") await page.locator(".forum-recruit-link").click();
+      if (site === "careers") { await page.locator('.bbs-topic-link[href="#forum?topic=job"]').click(); await page.locator(".forum-recruit-link").click(); }
       await expect(
         page.locator(
           'footer a[href="#staff"],footer a[href="#notes"],footer a[href="#history"],footer a[href="#guestbook"],footer a[href="#notices"],footer a[href="#gallery"],footer [data-case-action=settings],footer a[href*="classic"]',

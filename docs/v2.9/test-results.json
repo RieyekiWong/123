@@ -1,0 +1,36 @@
+{
+  "release": "4.9.0",
+  "unit": {
+    "passed": 58
+  },
+  "chromium": {
+    "passed": 153,
+    "expected": 153,
+    "batches": [
+      {
+        "log": "final-browser",
+        "passed": 57
+      },
+      {
+        "log": "final-96",
+        "passed": 81
+      },
+      {
+        "log": "final-last20",
+        "passed": 20
+      }
+    ],
+    "missing": []
+  },
+  "webkit": {
+    "passed": 25,
+    "engine": "WebKit 27.2 on Linux",
+    "scope": "audio, advertisements, front sites"
+  },
+  "visual": {
+    "layouts": 26,
+    "screenshots": 56,
+    "errors": []
+  },
+  "supplied_manuscript_sha256": "4daefa7f69162dd03566f9270193dae83f6172ca8b65cd9aa929548a51897dd3"
+}

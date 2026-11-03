@@ -1,30 +1,45 @@
-globalThis.StillwaterForum = ({ t, esc, getState }) => {
-  const posts = globalThis.StillwaterForumData;
-  function render() {
-    const params = new URLSearchParams(location.hash.split("?")[1] || "");
-    const section = params.get("section");
-    const list = section
-      ? posts.filter((p) => p.sections.includes(section))
-      : posts;
-    const post =
-      posts.find((p) => p.id === params.get("topic")) || list[0] || posts[0];
-    const avatar = (name, text) =>
-      `<span class="bbs-avatar" aria-hidden="true">${esc(text)}</span><strong>${esc(t(...name))}</strong>`;
-    const replies = post.replies
-      .map(
-        ([user, text], i) =>
-          `<article class="bbs-reply"><header>${avatar(user, t(...user).slice(0, 2))}<span>${i + 1}${t(" 楼", " / reply")}</span></header><p>${esc(t(...text))}</p></article>`,
-      )
-      .join("");
-    return `<div class="bbs-breadcrumb">${t("夜猫论坛", "Night Owl BBS")} / ${post.sections.includes("work") ? t("工作信息", "Work notices") : post.sections.includes("web") ? t("老网站", "Old websites") : t("闲聊与求助", "Chat & help")}</div><div class="bbs-layout"><div><article class="bbs-post"><header><p class="bbs-tag">${t("网友发帖", "Community post")}</p><h1>${esc(t(...post.title))}</h1><div class="bbs-author">${avatar(post.user, post.avatar)}<time datetime="${post.at.replace(" ", "T")}">${post.at}</time><span>${post.views} ${t("次浏览", "views")}</span></div></header><div class="bbs-post-text">${post.paragraphs.map((text) => `<p>${esc(t(...text))}</p>`).join("")}${post.illustration ? `<figure class="bbs-dinner"><svg viewBox="0 0 240 125" role="img" aria-label="${t("楼主补画的煎蛋盖饭", "A community drawing of egg over rice")}"><ellipse cx="120" cy="80" rx="90" ry="32" fill="#cbd9df"/><ellipse cx="120" cy="72" rx="76" ry="29" fill="#fff9e6"/><path d="M65 67Q75 33 100 52Q125 30 145 47Q183 44 176 75Q145 100 106 86Q60 90 65 67" fill="#fff"/><ellipse cx="121" cy="64" rx="21" ry="17" fill="#e5b849"/></svg><figcaption>${t("图片：楼主的手绘补图。饭已经吃完了。", "Illustration added by the OP. Dinner has already been eaten.")}</figcaption></figure>` : ""}${post.id === "job" ? `<p class="bbs-entry-label">${t("贴一下入口：", "Here’s the link:")}</p><section class="bbs-link-preview"><span class="bbs-preview-monogram" aria-hidden="true">SH</span><div><h2>Stillwater Heritage Records</h2><p>${t("预订档案整理员 / 远程 / 合同制", "Reservation records assistant / remote / contract")}</p><a class="forum-recruit-link" href="#careers">${t("查看招聘页面", "View the job listing")} →</a></div></section>` : ""}</div></article><section class="bbs-replies" aria-label="${t("帖子回复", "Replies")}"><h2>${t("回复", "Replies")} · ${post.replies.length}</h2>${replies}${post.id === "job" && getState().endings.length ? `<article class="bbs-reply bbs-update"><header>${avatar(post.user, post.avatar)}<span>${t("楼主更新", "OP update")}</span></header><p>${t("更新：没搜到这家公司别的消息。你们有谁做完样本了？", "Update: I couldn’t find anything else about that company. Has anyone finished the sample?")}</p></article>` : ""}</section></div><aside class="bbs-sidebar"><section><h2>${t("今日热门", "Popular today")}</h2><ul>${list
-      .filter((p) => p.id !== post.id)
-      .map(
-        (p) =>
-          `<li><a href="#forum?topic=${p.id}">${esc(t(...p.title))}</a></li>`,
-      )
-      .join(
-        "",
-      )}</ul>${section ? `<a href="#forum">${t("查看全部话题", "All topics")}</a>` : ""}</section><section class="bbs-about"><h2>${t("关于这里", "Around here")}</h2><p>${t("夜猫子们聊工作，也聊不工作的事。无需登录，随便看看。", "Night owls talk about work and everything else. No sign-in needed to browse.")}</p><p>${t("当前只开放浏览，暂不接收新回复。", "Read-only at the moment. New replies are closed.")}</p></section></aside></div>`;
-  }
-  return { render };
+/* Read-only community pages. Thread browsing never changes investigation progress. */
+globalThis.StillwaterForum = ({t,esc,getState}) => {
+ const posts=globalThis.StillwaterForumData;
+ const boards={chat:['闲聊','Chat'],work:['工作信息','Work notices'],web:['老网站','Old websites'],help:['求助','Help']};
+ const descriptions={chat:['聊什么都行，别刷屏','Talk about anything. Don’t flood the page.'],work:['经验交流，不保证招聘真伪','Share experiences; listings are not verified.'],web:['还开得动的页面都算','If it still opens, it counts.'],help:['先描述问题，再说你试过什么','Describe the problem, then tell us what you tried.']};
+ const threadLink=p=>`#forum?topic=${p.id}`;
+ const cleanName=name=>name.replace('（楼主）','').replace(' (OP)','');
+ function avatar(user,initial='') {
+  const name=cleanName(user[0]);let art=esc(initial||name.slice(0,1)),kind='letter';
+  if(name==='饼干碎'){kind='cookie';art='<i></i><i></i><i></i><i></i>';}
+  if(name==='冰箱里有可乐'){kind='cola';art='<i></i><b>COLA</b>';}
+  if(name==='夜猫值班员'){kind='moon';art='☾';}
+  const color=[...name].reduce((sum,c)=>sum+c.codePointAt(0),0)%5;
+  return `<span class="bbs-avatar bbs-avatar-${kind} bbs-avatar-tone-${color}" aria-hidden="true">${art}</span><strong>${esc(t(...user))}</strong>`;
+ }
+ const isUpdate=p=>p.id==='job'&&getState().endings.length>0;
+ const count=p=>p.replies.length+(isUpdate(p)?1:0);
+ function replyTime(p,index) {
+  return new Date(Date.parse(p.at.replace(' ','T')+'Z')+(index+1)*8*60000).toISOString().slice(0,16).replace('T',' ');
+ }
+ function row(p) {
+  const last=isUpdate(p)?p.user:(p.replies.at(-1)?.[0]||p.user),time=isUpdate(p)?t('后续更新','Later update'):p.replies.length?replyTime(p,p.replies.length-1):p.at;
+  return `<tr class="${p.id==='job'||p.pinned?'bbs-pinned-row':''}" data-forum-topic="${p.id}"><td><span class="bbs-topic-icon" aria-hidden="true">${p.id==='job'?'▤':p.pinned?'☾':'▱'}</span><a class="bbs-topic-link" href="${threadLink(p)}">${esc(t(...p.title))}</a>${p.pinned?` <span class="bbs-pin-label">${t('置顶','PINNED')}</span>`:''}<span class="bbs-mobile-meta">${esc(t(...p.user))} · ${p.at}<br>${t('最后回复','Last reply')}: ${esc(t(...last))} · ${time}</span></td><td>${p.sections.map(id=>`<a class="bbs-section-tag" href="#forum?section=${id}">${t(...boards[id])}</a>`).join(' ')}</td><td><strong>${esc(t(...p.user))}</strong><time>${p.at}</time></td><td>${esc(t(...last))}<time>${time}</time></td><td class="bbs-thread-count"><b>${count(p)}</b><span>${p.views} ${t('浏览','views')}</span></td></tr>`;
+ }
+ function sidebar(post) {
+  const related=posts.filter(p=>p.id!==post?.id).sort((a,b)=>b.views-a.views).slice(0,6);
+  return `<aside class="bbs-sidebar"><section><h2>${post?t('相关讨论','More discussions'):t('今日热门','Popular today')}</h2><ul>${related.map(p=>`<li><a href="${threadLink(p)}">${esc(t(...p.title))}</a></li>`).join('')}</ul><a class="bbs-directory-link" href="#forum?view=topics">${t('查看全部主题','All topics')} →</a></section><section class="bbs-night-clock"><h2>☾ ${t('夜猫时间','Night owl hours')}</h2><p>${t('白天可能没人回，半夜也不保证有人在。','Might be quiet by day. No promises anyone’s around at night, either.')}</p><a href="#forum?topic=welcome-rules">${t('新来的看一下','New here? Read this')}</a></section><section class="bbs-about"><h2>${t('关于这里','Around here')}</h2><p>${t('夜猫子们聊工作，也聊不工作的事。无需登录，随便看看。','Night owls talk about work and everything else. No sign-in needed to browse.')}</p><p>${t('当前只开放浏览，暂不接收新回复。','Read-only at the moment. New replies are closed.')}</p></section></aside>`;
+ }
+ function illustration(post) {
+  if(post.extraIllustration==='monitor')return `<figure class="bbs-attachment"><div class="bbs-monitor-diagram" role="img" aria-label="${t('黑色显示器右下角有一片明显漏光','A dark monitor with a bright patch in the lower-right corner')}"><div></div></div><figcaption>${t('楼主补的示意图','The OP’s diagram')}</figcaption></figure>`;
+  if(post.extraIllustration==='brochure')return `<figure class="bbs-attachment"><div class="bbs-brochure-diagram" role="img" aria-label="${t('一份普通的三折旅行小册子示意图','An illustrated three-panel travel leaflet')}"><span>LAKESIDE<br>WEEKEND<small>ROOMS · WALKS · BREAKFAST</small></span><span aria-hidden="true">⌂<i></i></span><span>HOW TO<br>FIND US<small>→ → →</small></span></div><figcaption>${t('按楼主描述画的示意图','Illustration based on the OP’s description')}</figcaption></figure>`;
+  if(post.illustration)return `<figure class="bbs-dinner"><svg viewBox="0 0 240 125" role="img" aria-label="${t('楼主补画的煎蛋盖饭','A community drawing of egg over rice')}"><ellipse cx="120" cy="80" rx="90" ry="32" fill="#cbd9df"/><ellipse cx="120" cy="72" rx="76" ry="29" fill="#fff9e6"/><path d="M65 67Q75 33 100 52Q125 30 145 47Q183 44 176 75Q145 100 106 86Q60 90 65 67" fill="#fff"/><ellipse cx="121" cy="64" rx="21" ry="17" fill="#e5b849"/></svg><figcaption>${t('图片：楼主的手绘补图。饭已经吃完了。','Illustration added by the OP. Dinner has already been eaten.')}</figcaption></figure>`;
+  return '';
+ }
+ function render() {
+  const params=new URLSearchParams(location.hash.split('?')[1]||''),section=params.get('section'),id=params.get('topic');
+  const list=(section?posts.filter(p=>p.sections.includes(section)):posts).slice().sort((a,b)=>(b.id==='job'?2:b.pinned?1:0)-(a.id==='job'?2:a.pinned?1:0)||b.at.localeCompare(a.at));
+  const post=posts.find(p=>p.id===id);
+  if(!id)return `<div class="bbs-breadcrumb">${t('夜猫论坛','Night Owl BBS')} / ${section&&boards[section]?t(...boards[section]):t('主题目录','Topic index')}</div><div class="bbs-layout"><article class="bbs-post bbs-directory"><header><p class="bbs-tag">NIGHT OWL BBS · ${t('只读社区','READ-ONLY COMMUNITY')}</p><h1>${section&&boards[section]?t(...boards[section]):t('所有话题','All topics')}</h1><p class="bbs-section-description">${section&&descriptions[section]?t(...descriptions[section]):t('工作、电脑、老网站，还有一点生活里的小事。','Work, computers, old websites and the little things in between.')}</p><div class="bbs-directory-tools"><span>${list.length} ${t('个主题','topics')}</span><a href="#forum?topic=welcome-rules">${t('置顶：论坛小规矩','Pinned: Forum rules')}</a></div></header><div class="bbs-topic-scroll"><table class="bbs-topic-table"><thead><tr><th>${t('主题','Topic')}</th><th>${t('分区','Board')}</th><th>${t('发帖人 / 时间','Author / posted')}</th><th>${t('最后回复','Last reply')}</th><th>${t('回复 / 浏览','Replies / views')}</th></tr></thead><tbody>${list.map(row).join('')}</tbody></table>${!list.length?`<p class="bbs-empty">${t('这里暂时没有主题。','No topics in this board yet.')} <a href="#forum?view=topics">${t('查看全部','View all')}</a></p>`:''}</div></article>${sidebar()}</div>`;
+  if(!post)return `<article class="bbs-post"><h1>${t('没有找到这篇帖子','Thread not found')}</h1><p><a href="#forum?view=topics">${t('返回主题目录','Back to all topics')}</a></p></article>`;
+  const replies=post.replies.map(([user,text],i)=>`<article class="bbs-reply" data-reply-number="${i+1}"><header>${avatar(user)}<span>${i+1}${t(' 楼',' / reply')}</span><time>${replyTime(post,i)}</time></header><p>${esc(t(...text))}</p></article>`).join('');
+  return `<div class="bbs-breadcrumb"><a href="#forum?view=topics">${t('夜猫论坛','Night Owl BBS')}</a> / ${post.sections.map(board=>`<a href="#forum?section=${board}">${t(...boards[board])}</a>`).join(' / ')}</div><div class="bbs-layout"><div><article class="bbs-post" data-thread="${post.id}"><header><p class="bbs-tag">${post.pinned?t('置顶 / 公告','PINNED / NOTICE'):t('网友发帖','Community post')}</p><h1>${esc(t(...post.title))}</h1><div class="bbs-author">${avatar(post.user,post.avatar)}<time datetime="${post.at.replace(' ','T')}">${post.at}</time><span>${post.views} ${t('次浏览','views')}</span></div></header><div class="bbs-post-text">${post.paragraphs.map(text=>`<p>${esc(t(...text))}</p>`).join('')}${illustration(post)}${post.id==='job'?`<p class="bbs-entry-label">${t('贴一下入口：','Here’s the link:')}</p><section class="bbs-link-preview"><span class="bbs-preview-monogram" aria-hidden="true">SH</span><div><h2>Stillwater Heritage Records</h2><p>${t('预订档案整理员 / 远程 / 合同制','Reservation records assistant / remote / contract')}</p><a class="forum-recruit-link" href="#careers">${t('查看招聘页面','View the job listing')} →</a></div></section>`:''}</div></article><section class="bbs-replies" aria-label="${t('帖子回复','Replies')}"><h2>${post.closed?t('本帖关闭回复','Replies are closed'):t('回复','Replies')+' · '+count(post)}</h2>${replies}${isUpdate(post)?`<article class="bbs-reply bbs-update"><header>${avatar(post.user,post.avatar)}<span>${t('楼主更新','OP update')}</span></header><p>${t('更新：没搜到这家公司别的消息。你们有谁做完样本了？','Update: I couldn’t find anything else about that company. Has anyone finished the sample?')}</p></article>`:''}</section><p class="bbs-back-link"><a href="#forum?view=topics">← ${t('返回主题目录','Back to all topics')}</a></p></div>${sidebar(post)}</div>`;
+ }
+ return {render};
 };
