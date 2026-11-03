@@ -34,6 +34,7 @@ export function createServer(
         file = resolve(base, "classic-zh.html");
       const allowed =
         [
+          "haunt-preview.html",
           "classic.html",
           "classic-zh.html",
           "classic-bridge.js",
@@ -59,6 +60,7 @@ export function createServer(
           "case-anomaly.css",
           "design-tokens.css",
           "visual-v24.css",
+          "case-wiring.css",
           "case-transition.js",
           "case-welcome.js",
           "case-welcome.css",

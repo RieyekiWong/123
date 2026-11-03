@@ -44,6 +44,8 @@ for (const entry of ["index-zh.html", "index.html"]) {
       page.locator(".frame-face[data-event=photo-face]"),
     ).toBeVisible();
     const first = await page.locator(".frame-face img").getAttribute("src");
+    expect(first).toBe("assets/haunt-v442/corridor.jpg");
+    await expect(page.locator(".frame-face img")).toHaveAttribute("data-cctv-scene", "true");
     await expect(page.locator(".frame-face")).toHaveCount(0);
     await walk(page, "west");
     await walk(page, "landing");
@@ -62,6 +64,7 @@ for (const entry of ["index-zh.html", "index.html"]) {
     expect(await page.locator(".frame-face img").getAttribute("src")).not.toBe(
       first,
     );
+    await expect(page.locator(".frame-face img")).toHaveAttribute("src", "assets/haunt-v442/cabinet.jpg");
     await expect(page.locator(".frame-face")).toHaveCount(0);
     await action(page, "power");
     await page.reload();
@@ -76,6 +79,7 @@ for (const entry of ["index-zh.html", "index.html"]) {
     await expect(
       page.locator(".frame-face[data-event=last-frame]"),
     ).toBeVisible();
+    await expect(page.locator(".frame-face img")).toHaveAttribute("src", "assets/haunt-v442/last-frame.jpg");
     await expect(page.locator(".frame-face")).toHaveCount(0);
     await expect(page.locator(".cctv-osd.bottom")).toContainText("2006-10-17");
     expect(

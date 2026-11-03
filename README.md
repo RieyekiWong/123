@@ -77,3 +77,9 @@ The preserved case now leads through altered public pages into a connected 317 /
 ### V2.4.1 · Preface & final escape scare
 
 See [implementation and verification](docs/V2_4_1-WELCOME.zh-CN.md). Sound remains gesture-enabled; past automatic skip defaults migrate without resetting the case.
+
+### V2.4.2 · Distinct scare actions & physical wiring
+
+The new edition now uses four newly generated scenes with visibly different bodies and actions: looking over a shoulder, crawling from a cabinet, pressing both palms against glass, and leaning inverted from a ceiling beam. Scare images retain their complete composition, use bundled low-resolution copies, and wait for image decoding before their visible duration starts. [Static image preview](https://rieyekiwong.github.io/123/haunt-preview.html) contains spoilers but no automatic scares or sound.
+
+B-3's existing six-junction puzzle gains screw terminals, clamps, shielding, a cable duct and indicators driven by the real circuit state. Ports, solution, undo/reset, story, preferences and schema-two saves remain unchanged. Sources and image hashes: [asset manifest](assets/haunt-v442/manifest.json).

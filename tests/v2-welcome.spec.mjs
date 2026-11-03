@@ -36,7 +36,7 @@ for (const entry of ["index-zh.html", "index.html"]) {
       ),
     ).toBe(true);
     expect(await page.evaluate(() => window.openedAudio)).toBeGreaterThan(0);
-    expect(requests.some((v) => /scare-|night-mask|youtube/.test(v))).toBe(
+    expect(requests.some((v) => /scare-|night-mask|haunt-v442|youtube/.test(v))).toBe(
       false,
     );
     await page.reload();
@@ -170,7 +170,7 @@ test("true escape shows one large distinct face after the ending, then preserves
   await expect(page.locator(".escape-scare")).toBeInViewport({ ratio: 0.95 });
   await expect(page.locator(".escape-scare img")).toHaveAttribute(
     "src",
-    "assets/lowres/scare-porter.jpg",
+    "assets/haunt-v442/escape.jpg",
   );
   await page.clock.runFor(1100);
   await expect(page.locator(".escape-scare")).toHaveCount(0);
@@ -201,7 +201,7 @@ for (const mode of ["skip", "reduced"])
     await page.clock.runFor(5000);
     await expect(page.locator(".escape-scare")).toHaveCount(0);
     await expect(page.locator("[data-ending-record=released]")).toBeVisible();
-    expect(requests.some((v) => v.includes("scare-porter"))).toBe(false);
+    expect(requests.some((v) => v.includes("haunt-v442/escape"))).toBe(false);
   });
 test("opening the guide during the escape delay cancels the scare", async ({
   page,

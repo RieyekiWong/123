@@ -140,6 +140,8 @@ for (const width of [375, 768, 1440])
   test(`equipment at ${width}px fits and retains 4:3 screens`, async ({
     page,
   }) => {
+    // This includes the entire camera/passage route, wiring, and a full-page capture.
+    test.setTimeout(60000);
     await page.setViewportSize({ width, height: 900 });
     await oldSave(page);
     await toNight(page);
@@ -157,10 +159,40 @@ for (const width of [375, 768, 1440])
       ),
     ).toBe(true);
     await page.screenshot({
-      path: `docs/v2.4.1/terminal-${width}.png`,
+      path: `docs/v2.4.2/terminal-${width}.png`,
       fullPage: true,
     });
   });
+test("physical terminals match their live ports, rotate with the wires, and indicators follow actual equipment state", async ({page}) => {
+  test.setTimeout(60000);
+  await oldSave(page);
+  await toNight(page);
+  await expect(page.locator(".junction-hardware")).toHaveCount(6);
+  await expect(page.locator(".mount-screw")).toHaveCount(24);
+  await expect(page.locator(".terminal-contact")).toHaveCount(24);
+  async function verifyPorts() {
+    const mismatches = await page.locator(".circuit-node").evaluateAll(nodes => nodes.filter(node => {
+      const index=Number(node.dataset.node),s=JSON.parse(localStorage.getItem("stillwater-case:v2"));
+      const ports=StillwaterNightModel.ports(s.night.orientations[index]);
+      const used=[...node.querySelectorAll('[data-connected=true]')].map(el=>Number(el.dataset.port));
+      return ports.slice().sort().join()!==used.sort().join();
+    }).length);
+    expect(mismatches).toBe(0);
+  }
+  await verifyPorts();
+  await page.locator('[data-night-action=rotate][data-node="2"]').click();
+  await verifyPorts();
+  await expect(page.locator('[data-feed=write]')).toHaveAttribute('data-on','true');
+  await expect(page.locator('[data-feed=mode]')).toHaveAttribute('data-on','false');
+  await wireNight(page);
+  await verifyPorts();
+  await expect(page.locator('[data-feed=reel]')).toHaveAttribute('data-on','true');
+  await expect(page.locator('[data-feed=write]')).toHaveAttribute('data-on','false');
+  await expect(page.locator('[data-feed=mode]')).toHaveAttribute('data-on','true');
+  await page.reload();
+  await verifyPorts();
+  await expect(page.locator('[data-feed=reel]')).toHaveAttribute('data-on','true');
+});
 test("all added terminal deep links remain gated for a fresh browser", async ({
   page,
 }) => {

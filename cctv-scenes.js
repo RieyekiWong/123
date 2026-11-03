@@ -463,6 +463,7 @@ globalThis.StillwaterScenes = (() => {
   }
   const portraitCache = new Map();
   async function portrait(im) {
+    if (im.dataset.cctvScene === "true") return;
     const src = im.getAttribute("src");
     if (!src || im.dataset.psxSource === src) return;
     im.dataset.psxSource = src;

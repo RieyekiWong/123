@@ -1,0 +1,50 @@
+[
+  {
+    "id": "corridor",
+    "pose": "Full-body figure facing the wall, looking back over one shoulder.",
+    "original": "haunt-v442/sources/corridor.png",
+    "display": "haunt-v442/corridor.jpg",
+    "width": 320,
+    "height": 240,
+    "bytes": 7874,
+    "sha256": "aac91e5e5fb6a2a3e6ffbb437f8748511b913aaca506b4c46d81a9d90c5891d0",
+    "sourceSha256": "618318e3503765d1702f6236d2529a145d96b1d2e3d0ba00e8ff5ac55498471f",
+    "provenance": "Generated fictional artwork, using the user-supplied green uncanny-human reference for atmosphere. Distinct actions and silhouettes, similar-sized vacant eyes, low-poly textures and authored static distortion. Not a photograph of a real person or incident. Originals retained; display copy resized and JPEG-compressed at 0.58."
+  },
+  {
+    "id": "cabinet",
+    "pose": "Crouched adult crawling out of a floor-level service cabinet, palms on the floor.",
+    "original": "haunt-v442/sources/cabinet.png",
+    "display": "haunt-v442/cabinet.jpg",
+    "width": 480,
+    "height": 360,
+    "bytes": 18320,
+    "sha256": "9c10edd9713c12c130e4907fcf66de25e882d45bc7766d55e5a2b0ebcf5ee91b",
+    "sourceSha256": "55ce0581609d2a4d8c53b5223969a76022c309f5a094bdc707aee3e344dfffc5",
+    "provenance": "Generated fictional artwork, using the user-supplied green uncanny-human reference for atmosphere. Distinct actions and silhouettes, similar-sized vacant eyes, low-poly textures and authored static distortion. Not a photograph of a real person or incident. Originals retained; display copy resized and JPEG-compressed at 0.58."
+  },
+  {
+    "id": "last-frame",
+    "pose": "Standing adult at reception with both hands pressed against glass.",
+    "original": "haunt-v442/sources/last-frame.png",
+    "display": "haunt-v442/last-frame.jpg",
+    "width": 480,
+    "height": 360,
+    "bytes": 16945,
+    "sha256": "54397cfc05f202612445d945facaf32dcb5029a0f459566f77a184d477725b9a",
+    "sourceSha256": "f162e1dd2efd478e9fa8a0c354ec2920e2d400f24644d81b023bca750907b8a1",
+    "provenance": "Generated fictional artwork, using the user-supplied green uncanny-human reference for atmosphere. Distinct actions and silhouettes, similar-sized vacant eyes, low-poly textures and authored static distortion. Not a photograph of a real person or incident. Originals retained; display copy resized and JPEG-compressed at 0.58."
+  },
+  {
+    "id": "escape",
+    "pose": "Inverted adult leaning down from a ceiling beam, hanging hair and braced hands.",
+    "original": "haunt-v442/sources/escape.png",
+    "display": "haunt-v442/escape.jpg",
+    "width": 480,
+    "height": 360,
+    "bytes": 16597,
+    "sha256": "580d61c1d6bdc320f203b14d72ba1dccef6270e563ac9f933305058793549b98",
+    "sourceSha256": "945419f912a26898112a044b1b38af8dcbeb8e2dec74b801f35f9d521ff33456",
+    "provenance": "Generated fictional artwork, using the user-supplied green uncanny-human reference for atmosphere. Distinct actions and silhouettes, similar-sized vacant eyes, low-poly textures and authored static distortion. Not a photograph of a real person or incident. Originals retained; display copy resized and JPEG-compressed at 0.58."
+  }
+]

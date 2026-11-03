@@ -19,9 +19,9 @@ globalThis.StillwaterEvents = {
       !document.hidden &&
       !document.querySelector("dialog[open]");
     const assets = {
-      "cabinet-face": "assets/lowres/scare-reflection.jpg",
-      "photo-face": "assets/lowres/scare-veil.jpg",
-      "last-frame": "assets/lowres/night-mask.jpg",
+      "cabinet-face": "assets/haunt-v442/cabinet.jpg",
+      "photo-face": "assets/haunt-v442/corridor.jpg",
+      "last-frame": "assets/haunt-v442/last-frame.jpg",
     };
     const captions = {
       "plate-open-door": ["隔壁的门开着。", "The neighbouring door is open."],
@@ -34,12 +34,12 @@ globalThis.StillwaterEvents = {
         "A shape at the end of the hall.",
       ],
       "cabinet-face": [
-        "柜门内侧有一张旧照片。门锁供电拉杆在它下面。",
-        "An old photograph inside the cabinet. The door supply lever is below it.",
+        "柜门已经打开。门锁供电拉杆在柜子下方。",
+        "The cabinet is open. The door supply lever is below it.",
       ],
       "photo-face": [
-        "合照上的脸被刮花了，背面留着 E-014。",
-        "Scratched faces in the photograph. E-014 on the back.",
+        "合照上的脸被刮花了，背面留着 E-014。监控里，门边站着一个人。",
+        "Scratched faces in the photograph. E-014 on the back. Someone stands beside a door in the feed.",
       ],
       "last-frame": [
         "录像停在 03:17，317 的门还没有关上。",
@@ -71,7 +71,16 @@ globalThis.StillwaterEvents = {
       );
       if (!frame) return;
       const token = generation;
-      const show = () => {
+      const img = document.createElement("img");
+      img.src = assets[id];
+      img.alt = "";
+      // These scenes already have authored low-resolution display copies.
+      // Preserve their bodies/actions instead of reducing them as old portraits.
+      img.dataset.cctvScene = "true";
+      const ready = img.decode().then(() => true, () => false);
+      const show = async () => {
+        // Count the visible duration after decode, including on a slow connection.
+        const decoded = await ready;
         if (
           token !== generation ||
           !allowed() ||
@@ -79,17 +88,16 @@ globalThis.StillwaterEvents = {
         )
           return;
         document.body.classList.remove("event-signal-drop");
+        if (!decoded) return;
         const currentFrame = document.querySelector(
           ".passage-frame,.terminal-layout .cctv-frame",
         );
         if (!currentFrame) return;
         active = document.createElement("div");
         active.className = "frame-face authored-face";
+        if (id === "photo-face") active.classList.add("scene-appearance");
         active.dataset.event = id;
         active.setAttribute("aria-hidden", "true");
-        const img = document.createElement("img");
-        img.src = assets[id];
-        img.alt = "";
         active.append(img);
         const bounds = currentFrame.getBoundingClientRect();
         // Phone controls can sit below the monitor. Keep a triggered face visible
@@ -109,7 +117,7 @@ globalThis.StillwaterEvents = {
               active?.remove();
               active = null;
             },
-            id === "last-frame" ? 850 : 550,
+            id === "photo-face" ? 2400 : id === "last-frame" ? 850 : 550,
           ),
         );
       };
@@ -125,18 +133,20 @@ globalThis.StillwaterEvents = {
       route = location.hash.split("?")[0];
       const token = generation;
       const img = document.createElement("img");
-      img.src = "assets/lowres/scare-porter.jpg";
+      img.src = "assets/haunt-v442/escape.jpg";
       img.alt = "";
-      const ready = img.decode().catch(() => {});
+      img.dataset.cctvScene = "true";
+      const ready = img.decode().then(() => true, () => false);
       // First let the completed escape show. Only this explicit ending action
       // schedules the final surprise; loading/revisiting an ending never does.
       timers.push(
         setTimeout(async () => {
-          await ready;
+          const decoded = await ready;
           if (
             token !== generation ||
             !allowed() ||
-            location.hash.split("?")[0] !== route
+            location.hash.split("?")[0] !== route ||
+            !decoded
           )
             return;
           active = document.createElement("div");

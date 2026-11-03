@@ -4,6 +4,7 @@ await mkdir("dist", { recursive: true });
 for (const path of [
   "index.html",
   "index-zh.html",
+  "haunt-preview.html",
   "classic.html",
   "classic-zh.html",
   "classic-bridge.js",
@@ -29,6 +30,7 @@ for (const path of [
   "case-anomaly.css",
   "design-tokens.css",
   "visual-v24.css",
+  "case-wiring.css",
   "case-transition.js",
   "case-welcome.js",
   "case-welcome.css",

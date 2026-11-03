@@ -1,0 +1,164 @@
+/* B-3's physical fittings are scenery; the six junctions keep their original ports. */
+.wiring-chassis {
+  position: relative;
+  padding: 12px;
+  border: 2px solid #695f4f;
+  background: repeating-linear-gradient(0deg, #0000 0 3px, #00000012 3px 4px), #191c1b;
+  box-shadow: inset 0 0 0 3px #0b0e0e, 0 3px 8px #0006;
+}
+.cabinet-nameplate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-bottom: 9px;
+  padding: 5px 8px;
+  border: 1px solid #7c796d;
+  background: #363a36;
+  color: #e2d7c9;
+  font: 12px/1.6 var(--font-terminal);
+  letter-spacing: .04em;
+}
+.cabinet-nameplate strong { font-weight: 400; }
+.cable-duct {
+  display: flex;
+  height: 19px;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 9px;
+  padding: 2px 0;
+  border-block: 2px solid #4a4b43;
+  background: repeating-linear-gradient(90deg, #101515 0 4px, #44483e 4px 7px);
+  box-shadow: inset 0 2px 4px #000;
+}
+.cable-duct i {
+  width: 8%;
+  height: 5px;
+  border-block: 1px solid #aca384;
+  background: #696958;
+  transform: skew(-17deg);
+}
+.cable-duct i:nth-child(3n) { border-color: #b89778; background: #675447; }
+body[data-site] .wiring-chassis .circuit-grid { gap: 6px; }
+body[data-site] .wiring-chassis .circuit-node {
+  display: block;
+  padding: 3px !important;
+  border: 1px solid #727365;
+  box-shadow: inset 0 0 0 1px #080b09;
+}
+body[data-site] .wiring-chassis .circuit-node span {
+  display: block;
+  min-height: 2.8em;
+  padding: 3px 1px;
+  font: 12px/1.4 var(--font-terminal);
+  white-space: normal;
+}
+body[data-site] .circuit-node .junction-hardware .socket-plate {
+  fill: #393e36;
+  stroke: #777c69;
+  stroke-width: 1;
+}
+body[data-site] .circuit-node .junction-hardware .phenolic-board {
+  fill: #272c24;
+  stroke: #535c42;
+  stroke-width: 1;
+}
+body[data-site] .circuit-node .junction-hardware .fixed-ground {
+  fill: none;
+  stroke: #555d42;
+  stroke-width: 1;
+}
+body[data-site] .circuit-node .junction-hardware .mount-screw circle {
+  fill: #858578;
+  stroke: #171b17;
+  stroke-width: 1;
+}
+body[data-site] .circuit-node .junction-hardware .mount-screw line {
+  stroke: #222820;
+  stroke-width: 1.5;
+}
+body[data-site] .circuit-node .junction-hardware .terminal-contact rect {
+  fill: #1a201b;
+  stroke: #747a67;
+  stroke-width: 1;
+}
+body[data-site] .circuit-node .junction-hardware .terminal-contact .contact-collar {
+  fill: #78735c;
+  stroke: #151b14;
+}
+body[data-site] .circuit-node .junction-hardware .terminal-contact circle { fill: #383e2c; }
+body[data-site] .circuit-node .junction-hardware .contact-used circle {
+  fill: #d4c79f;
+  stroke: #f1e1ae;
+  stroke-width: .6;
+}
+body[data-site] .circuit-node .junction-hardware .resistor-body { fill: #a48a59; }
+body[data-site] .circuit-node .junction-hardware .resistor-bands { stroke: #38201c; stroke-width: 1; }
+body[data-site] .circuit-node .junction-hardware .wire-shadow { stroke: #090c08; stroke-width: 13; }
+body[data-site] .circuit-node .junction-hardware .wire-jacket { stroke: #897c5e; stroke-width: 9; }
+body[data-site] .circuit-node .junction-hardware .wire-core { stroke: #c6b894; stroke-width: 4; }
+body[data-site] .circuit-node .junction-hardware .wire-ribbing {
+  stroke: #272e24;
+  stroke-width: 1.5;
+  stroke-dasharray: 1 4;
+  stroke-linecap: butt;
+}
+body[data-site] .circuit-node .junction-hardware .strain-relief {
+  fill: #8a8877;
+  stroke: #232b21;
+  stroke-width: 1;
+}
+body[data-site] .circuit-node .junction-hardware .junction-nut {
+  fill: #8a8875;
+  stroke: #1c2319;
+  stroke-width: 2;
+}
+body[data-site] .circuit-node .junction-hardware .junction-slot { stroke: #283022; stroke-width: 2; }
+body[data-site] .circuit-node .junction-hardware .node-lamp { fill: #434f3d; stroke: #101b11; stroke-width: 1; }
+body[data-site] .circuit-node .junction-hardware .board-stamp { fill: #adb798; font: 7px monospace; }
+body[data-site] .circuit-node.energized .junction-hardware .wire-core { stroke: #dceac2; }
+body[data-site] .circuit-node.energized .junction-hardware .node-lamp { fill: #adc897; }
+body[data-site] .circuit-node.write-live .junction-hardware .wire-core { stroke: #e2ab72; }
+body[data-site] .circuit-node.write-live .junction-hardware .node-lamp { fill: #cf9868; }
+.ground-strap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-block: 11px;
+  font: 11px/1.6 var(--font-terminal);
+}
+.ground-strap i {
+  flex: 1;
+  height: 5px;
+  border-block: 1px solid #78856a;
+  background: repeating-linear-gradient(35deg, #38402e 0 3px, #6a7053 3px 5px);
+}
+.cabinet-diagnostics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 13px;
+  padding: 8px 6px;
+  border-top: 1px solid #535b49;
+}
+.cabinet-diagnostics span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font: 11px/1.5 var(--font-terminal);
+}
+.cabinet-diagnostics i {
+  flex: 0 0 7px;
+  height: 7px;
+  border: 1px solid #829077;
+  border-radius: 50%;
+  background: #263025;
+}
+.cabinet-diagnostics [data-on=true] i { background: #b8ce9d; box-shadow: 0 0 4px #a2bc7155; }
+.cabinet-diagnostics [data-feed=write][data-on=true] i { background: #d9aa76; box-shadow: 0 0 4px #ce965255; }
+@media (max-width: 480px) {
+  .wiring-chassis { padding: 8px; }
+  .cabinet-nameplate { padding: 4px; font-size: 11px; }
+  body[data-site] .wiring-chassis .circuit-grid { gap: 4px; }
+  body[data-site] .wiring-chassis .circuit-node span { font-size: 11px; }
+}

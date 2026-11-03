@@ -48,6 +48,12 @@ These are photographs of real hotels, used as illustrative settings for a fictio
 
 scare-porter.png, scare-veil.png and scare-reflection.png are generated fictional creature illustrations. They are separate from the real hotel photography and do not depict hotel employees or guests.
 
+### V2.4.2 / 新版四张动作场景
+
+`haunt-v442/corridor.jpg`, `cabinet.jpg`, `last-frame.jpg` and `escape.jpg` are newly generated fictional uncanny-human scenes, informed by the user's green horror reference. They use four different actions: looking over a shoulder in a corridor, crawling from a cabinet, pressing both palms against glass, and leaning inverted from a ceiling beam. They are not photographs of real people, hotel staff or incidents. They replace the new edition's four scare images only.
+
+四张图为新版虚构人物插图，分别用于走廊、维修柜、录像恢复和逃离后的惊吓。原始 PNG 保存在 `haunt-v442/sources/`，游戏使用 320 × 240 或 480 × 360 的低清 JPEG 副本；尺寸、动作与哈希见 [素材清单](haunt-v442/manifest.json)。原酒店摄影及旧版素材继续保留，各自署名与许可不变。
+
 ## Dylan’s sealed-room scene
 
 `dylan-room.png` is an original generated illustration for the fictional Dylan Harker story. It depicts a respectfully covered figure in an abandoned room. It is not a photograph of a real death or hotel incident.

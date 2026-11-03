@@ -172,7 +172,7 @@ export async function wireNight(page) {
       `[data-night-action=rotate][data-node="${node}"]`,
     );
     for (let turn = 0; turn < 4; turn++) {
-      const transform = await button.locator("path").getAttribute("transform");
+      const transform = await button.locator("[data-circuit-wire]").getAttribute("transform");
       if (transform === `rotate(${target * 90} 50 50)`) break;
       await button.click();
     }

@@ -1,0 +1,115 @@
+{
+  "records": [
+    {
+      "width": 390,
+      "name": "corridor",
+      "overflow": false,
+      "image": {
+        "src": "assets/haunt-v442/corridor.jpg",
+        "width": 320,
+        "height": 240,
+        "fit": "contain"
+      }
+    },
+    {
+      "width": 390,
+      "name": "cabinet",
+      "overflow": false,
+      "image": {
+        "src": "assets/haunt-v442/cabinet.jpg",
+        "width": 480,
+        "height": 360,
+        "fit": "contain"
+      }
+    },
+    {
+      "width": 390,
+      "name": "last-frame",
+      "overflow": false,
+      "image": {
+        "src": "assets/haunt-v442/last-frame.jpg",
+        "width": 480,
+        "height": 360,
+        "fit": "contain"
+      }
+    },
+    {
+      "width": 390,
+      "name": "wiring",
+      "overflow": false,
+      "image": null
+    },
+    {
+      "width": 390,
+      "name": "escape",
+      "overflow": false,
+      "image": {
+        "src": "assets/haunt-v442/escape.jpg",
+        "width": 480,
+        "height": 360,
+        "fit": "contain"
+      }
+    },
+    {
+      "width": 390,
+      "name": "preview",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "name": "corridor",
+      "overflow": false,
+      "image": {
+        "src": "assets/haunt-v442/corridor.jpg",
+        "width": 320,
+        "height": 240,
+        "fit": "contain"
+      }
+    },
+    {
+      "width": 1440,
+      "name": "cabinet",
+      "overflow": false,
+      "image": {
+        "src": "assets/haunt-v442/cabinet.jpg",
+        "width": 480,
+        "height": 360,
+        "fit": "contain"
+      }
+    },
+    {
+      "width": 1440,
+      "name": "last-frame",
+      "overflow": false,
+      "image": {
+        "src": "assets/haunt-v442/last-frame.jpg",
+        "width": 480,
+        "height": 360,
+        "fit": "contain"
+      }
+    },
+    {
+      "width": 1440,
+      "name": "wiring",
+      "overflow": false,
+      "image": null
+    },
+    {
+      "width": 1440,
+      "name": "escape",
+      "overflow": false,
+      "image": {
+        "src": "assets/haunt-v442/escape.jpg",
+        "width": 480,
+        "height": 360,
+        "fit": "contain"
+      }
+    },
+    {
+      "width": 1440,
+      "name": "preview",
+      "overflow": false
+    }
+  ],
+  "errors": []
+}
