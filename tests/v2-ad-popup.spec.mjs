@@ -44,9 +44,9 @@ for(const entry of ['index-zh.html','index.html']) {
     await start(page,entry);
     const before=await pageLayout(page);
     await expect(page.locator('.ad-inline,[data-ad-action=next-inline]')).toHaveCount(0);
-    await page.clock.runFor(8000);
+    await page.clock.runFor(4000);
     await expect(page.locator('[data-active-ad]')).toHaveCount(0);
-    await page.clock.runFor(32000);
+    await page.clock.runFor(18000);
     await expect(page.locator('[data-active-ad]')).toHaveCount(2);
     await expect(card(page,'pet')).toHaveAttribute('data-slot','top-left');
     await expect(card(page,'cinema')).toHaveAttribute('data-slot','bottom-right');
@@ -85,7 +85,7 @@ for(const entry of ['index-zh.html','index.html']) {
 test('selective blinking and border lights follow reduced-motion settings',async({page})=>{
   await page.setViewportSize({width:1440,height:900});
   await start(page);
-  await page.clock.runFor(40000);
+  await page.clock.runFor(18000);
   expect(await card(page,'cinema').locator('.ad-teaser').evaluate(el=>getComputedStyle(el).animationName)).toBe('ad-letter-blink');
   await card(page,'pet').locator('[data-ad-action=close]').click();
   await page.clock.runFor(24000);
@@ -136,8 +136,45 @@ test('an existing three-ad session resumes the new campaign without losing histo
     sessionStorage.setItem('stillwater-ads-session:v1',JSON.stringify({schema:1,shownThisSession:['pet','cinema','repair'],dismissedThisSession:['pet'],remaining:150000,navigatedSinceShow:false,lastRoute:'forum',forumReadMs:35000}));
   });
   await start(page);
-  await page.clock.runFor(28000);
+  await page.clock.runFor(18000);
   await expect(card(page,'secondhand')).toBeVisible();
   expect(await page.evaluate(()=>JSON.parse(sessionStorage.getItem('stillwater-ads-session:v1')).shownThisSession)).toEqual(['pet','cinema','repair','secondhand']);
   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('stillwater-ads:v1')).pinnedIds)).toEqual(['cats']);
+});
+
+test('a previously exhausted seven-ad session resumes without clearing history or the saved folder',async({page})=>{
+  await page.addInitScript(()=>{
+    const ids=['pet','cinema','repair','secondhand','print','cats','weather'];
+    sessionStorage.setItem('stillwater-ads-session:v1',JSON.stringify({schema:1,shownThisSession:ids,dismissedThisSession:ids,remaining:0,forumReadMs:35000}));
+    localStorage.setItem('stillwater-ads:v1',JSON.stringify({schema:1,pinnedIds:['cats'],collapsedPinnedIds:[]}));
+  });
+  await start(page);await page.clock.runFor(6000);
+  await expect(card(page,'pet')).toBeVisible();
+  const session=await page.evaluate(()=>JSON.parse(sessionStorage.getItem('stillwater-ads-session:v1')));
+  expect(session.shownThisSession).toHaveLength(7);expect(session.dismissedThisSession).toHaveLength(7);expect(session.appearances).toBeGreaterThan(7);
+  await card(page,'pet').locator('[data-ad-action=close]').click();await page.clock.runFor(20000);
+  await expect(card(page,'pet')).toHaveCount(0);
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('stillwater-ads:v1')).pinnedIds)).toEqual(['cats']);
+});
+
+test('passive windows rotate while the card being read or keyboard-focused stays in place',async({page})=>{
+  await page.setViewportSize({width:1440,height:900});await start(page);await page.clock.runFor(22000);
+  const keep=card(page,'pet').locator('[data-ad-action=detail]');await keep.focus();await page.mouse.move(750,800);
+  await page.clock.runFor(65000);await expect(keep).toBeFocused();await expect(card(page,'pet')).toBeVisible();
+  expect(await page.evaluate(()=>JSON.parse(sessionStorage.getItem('stillwater-ads-session:v1')).appearances)).toBeGreaterThan(2);
+  await page.locator('#content').focus();await page.clock.runFor(15000);await expect(card(page,'pet')).toHaveCount(0);
+  await expect(page.locator('[data-active-ad]')).toHaveCount(2);
+});
+
+test('the original adverts and new themed campaigns both open the same existing shops',async({page})=>{
+  await start(page);await page.clock.runFor(8000);
+  await expect(card(page,'pet')).toHaveAttribute('data-layout','classic');
+  await expect(card(page,'pet').locator('h2')).toContainText('狗狗最近怎么老叹气');
+  await card(page,'pet').locator('[data-ad-action=close]').click();await page.evaluate(()=>{Math.random=()=>.5;});
+  await page.clock.runFor(10000);
+  const promotion=page.locator('[data-active-ad]:not([data-layout=classic])').first();await expect(promotion).toBeVisible();
+  const id=await promotion.getAttribute('data-active-ad');
+  const name=await page.evaluate(id=>StillwaterAdData.find(ad=>ad.id===id).name[0],id);
+  await promotion.locator('[data-ad-action=detail]').click();await expect(page.locator('#ad-dialog-title')).toHaveText(name);
+  await expect(page.locator('#ad-dialog input,#ad-dialog iframe')).toHaveCount(0);
 });

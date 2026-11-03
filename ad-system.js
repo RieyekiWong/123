@@ -9,8 +9,8 @@ globalThis.StillwaterAds = (() => {
     "history",
   ]);
   const delay = (first, rng = Math.random) =>
-    Math.round((first ? 6000 : 9000) + rng() * (first ? 6000 : 9000));
-  const slots = ["top-left", "bottom-right", "bottom-left", "top-right"];
+    Math.round((first ? 4000 : 6000) + rng() * (first ? 3000 : 5000));
+  const slots = ["top-left", "bottom-right", "bottom-right", "bottom-left", "top-right"];
   const chooseSlot = (windows, rng = Math.random) => {
     const occupied = new Set(windows.map(window => window.slot.split("-")[1]));
     const free = slots.filter(slot => !occupied.has(slot.split("-")[1]));
@@ -25,7 +25,21 @@ globalThis.StillwaterAds = (() => {
     navigatedSinceShow: true,
     lastRoute: "",
     forumReadMs: 0,
+    lastShownById: {},
+    blockedUntil: {},
+    lastAdId: "",
+    appearances: 0,
   });
+  function chooseCampaign(s, data, {activeIds=[],pinnedIds=[],now=Date.now(),rng=Math.random}={}) {
+    const free=data.filter(ad=>!activeIds.includes(ad.id)&&!pinnedIds.includes(ad.id)&&!(s.blockedUntil?.[ad.id]>now));
+    const unseen=free.filter(ad=>!s.shownThisSession.includes(ad.id));
+    let pool=unseen.length?unseen:free.filter(ad=>ad.id!==s.lastAdId);
+    if(!pool.length)pool=free;
+    if(!pool.length)return null;
+    const oldest=Math.min(...pool.map(ad=>s.lastShownById?.[ad.id]||0));
+    pool=pool.filter(ad=>(s.lastShownById?.[ad.id]||0)===oldest);
+    return pool[Math.min(pool.length-1,Math.floor(rng()*pool.length))];
+  }
   function advance(
     s,
     ms,
@@ -47,8 +61,7 @@ globalThis.StillwaterAds = (() => {
       active ||
       typing ||
       dialog ||
-      s.shownThisSession.length >= 7 ||
-      (forum && s.forumReadMs < 6000)
+      (forum && s.forumReadMs < 3000)
     )
       return false;
     s.remaining = Math.max(0, s.remaining - ms);
@@ -82,7 +95,7 @@ globalThis.StillwaterAds = (() => {
           shownThisSession: validIds(v.shownThisSession),
           dismissedThisSession: validIds(v.dismissedThisSession),
           remaining: Number.isFinite(v.remaining)
-            ? Math.max(0, Math.min(v.shownThisSession?.length ? 18000 : 12000, v.remaining))
+            ? Math.max(0, Math.min(v.shownThisSession?.length ? 11000 : 7000, v.remaining))
             : delay(true),
           lastShownAt: Number.isFinite(v.lastShownAt) ? v.lastShownAt : 0,
           navigatedSinceShow: v.navigatedSinceShow === true,
@@ -91,6 +104,10 @@ globalThis.StillwaterAds = (() => {
           forumReadMs: Number.isFinite(v.forumReadMs)
             ? Math.max(0, v.forumReadMs)
             : 0,
+          lastShownById:Object.fromEntries([...ids].filter(id=>Number.isFinite(v.lastShownById?.[id])).map(id=>[id,Math.max(0,v.lastShownById[id])])),
+          blockedUntil:Object.fromEntries([...ids].filter(id=>Number.isFinite(v.blockedUntil?.[id])).map(id=>[id,Math.max(0,Math.min(Date.now()+45000,v.blockedUntil[id]))])),
+          lastAdId:ids.has(v.lastAdId)?v.lastAdId:"",
+          appearances:Number.isInteger(v.appearances)?Math.max(0,Math.min(100000,v.appearances)):validIds(v.shownThisSession).length,
         };
       }
     } catch {}
@@ -105,7 +122,7 @@ globalThis.StillwaterAds = (() => {
       route = "",
       lastTick = Date.now(),
       quietUntil = 0,
-      grace = loadedSession ? 8000 : 0,
+      grace = loadedSession ? 4000 : 0,
       returnFocus = null,
       flushMs = 0;
     const small = matchMedia("(max-width:1199px)");
@@ -132,16 +149,29 @@ globalThis.StillwaterAds = (() => {
       return `<p class="ad-photo-credit"><span class="ad-photo-title">${esc(p.title)}</span><br>${t("摄影", "Photo")}: ${esc(p.author)} · <a href="${esc(p.source)}" target="_blank" rel="noopener noreferrer">${t("来源", "Source")}</a> · <a href="${esc(p.license_url)}" target="_blank" rel="noopener noreferrer">${esc(p.license)}</a></p>`;
     };
     const capacity = () => small.matches ? 1 : 2;
+    const campaigns=globalThis.StillwaterAdCampaigns.create({t,esc,photo});
     function renderOverlay() {
       if (!allowed()) {
         host.replaceChildren();
         return;
       }
-      host.innerHTML = active.map(window => {
-        const ad = item(window.id), pinned = persistent.pinnedIds.includes(ad.id);
-        const effect = ["cinema", "cats"].includes(ad.id) ? "blink" : ["repair", "secondhand"].includes(ad.id) ? "lights" : "none";
-        return `<aside class="ad-dock ad-card ad-${ad.kind}" data-slot="${window.slot}" data-folded="${window.folded}" data-popup-effect="${effect}" aria-label="${t("广告", "Advertisement")}: ${esc(t(...ad.name))}" data-active-ad="${ad.id}"><header><span class="ad-window-title"><span aria-hidden="true">▣</span> AD · ${t("本地推荐", "Local picks")}</span><div><button data-ad-action="pin" data-ad-id="${ad.id}" ${pinned ? "disabled" : ""}>${pinned ? t("已留着", "Saved") : t("留着", "Keep")}</button><button data-ad-action="collapse" data-ad-id="${ad.id}" aria-label="${window.folded ? t("展开广告", "Expand advertisement") : t("收起广告", "Minimize advertisement")}">${window.folded ? "□" : "−"}</button><button data-ad-action="close" data-ad-id="${ad.id}" aria-label="${t("关闭广告", "Close advertisement")}">×</button></div></header>${window.folded ? "" : `<div class="ad-card-body"><p class="ad-teaser">✦ ${esc(t(...ad.tag))} ✦</p>${photo(ad.imageId)}<div><h2>${esc(t(...ad.headline))}</h2><p>${esc(t(...ad.copy))}</p><p class="ad-shop-name">${esc(t(...ad.name))}</p><button data-ad-action="detail" data-ad-id="${ad.id}">${esc(t(...ad.cta))} →</button></div></div>`}</aside>`;
-      }).join("") || (persistent.pinnedIds.length ? `<aside class="ad-dock ad-saved-tab" data-slot="bottom-right"><button data-ad-action="folder">${t("我留下的广告", "Saved ads")} · ${persistent.pinnedIds.length}</button></aside>` : "");
+      const focus=document.activeElement;
+      const focused=focus?.closest('[data-active-ad]')?{id:focus.dataset.adId,action:focus.dataset.adAction}:null;
+      const fragments=active.map(window => {
+        const ad = item(window.id), pinned = persistent.pinnedIds.includes(ad.id), classic=window.variant==="classic";
+        const key=`${ad.id}:${window.slot}:${window.folded}:${pinned}:${classic}`;
+        return {id:ad.id,key,html:`<aside class="ad-dock ad-card ad-${ad.kind}" data-layout="${campaigns.layout(ad,classic)}" data-slot="${window.slot}" data-folded="${window.folded}" data-popup-effect="${campaigns.effect(ad,classic)}" aria-label="${t("广告", "Advertisement")}: ${esc(t(...ad.name))}" data-active-ad="${ad.id}"><header><span class="ad-window-title"><span aria-hidden="true">▣</span> ${esc(campaigns.title(ad,classic))}</span><div><button data-ad-action="pin" data-ad-id="${ad.id}" ${pinned ? "disabled" : ""}>${pinned ? t("已留着", "Saved") : t("留着", "Keep")}</button><button data-ad-action="collapse" data-ad-id="${ad.id}" aria-label="${window.folded ? t("展开广告", "Expand advertisement") : t("收起广告", "Minimize advertisement")}">${window.folded ? "□" : "−"}</button><button data-ad-action="close" data-ad-id="${ad.id}" aria-label="${t("关闭广告", "Close advertisement")}">×</button></div></header>${window.folded ? "" : campaigns.body(ad,classic)}</aside>`};
+      });
+      for(const node of [...host.children])if(!fragments.some(f=>f.id===node.dataset.activeAd))node.remove();
+      for(const fragment of fragments) {
+        const old=host.querySelector(`[data-active-ad="${fragment.id}"]`);
+        if(old?.dataset.renderKey===fragment.key)continue;
+        const template=document.createElement('template');template.innerHTML=fragment.html;
+        const node=template.content.firstElementChild;node.dataset.renderKey=fragment.key;
+        if(old)old.replaceWith(node);else host.append(node);
+      }
+      if(!active.length&&persistent.pinnedIds.length)host.innerHTML=`<aside class="ad-dock ad-saved-tab" data-slot="bottom-right"><button data-ad-action="folder">${t("我留下的广告", "Saved ads")} · ${persistent.pinnedIds.length}</button></aside>`;
+      if(focused)host.querySelector(`[data-active-ad="${focused.id}"] [data-ad-action="${focused.action}"]`)?.focus({preventScroll:true});
     }
     function frame(title, body) {
       return `<header class="ad-dialog-heading"><h2 id="ad-dialog-title">${esc(title)}</h2><button data-ad-action="dialog-close" aria-label="${t("关闭广告详情", "Close ad details")}">×</button></header><div class="ad-dialog-content">${body}</div>`;
@@ -247,6 +277,7 @@ globalThis.StillwaterAds = (() => {
         if (action === "close") {
           if (!session.dismissedThisSession.includes(id)) session.dismissedThisSession.push(id);
           active = active.filter(window => window.id !== id);
+          session.blockedUntil[id]=Date.now()+45000;
         }
         if (persistent.pinnedIds.includes(id)) {
           persistent.collapsedPinnedIds = persistent.collapsedPinnedIds.filter(value => value !== id);
@@ -271,7 +302,7 @@ globalThis.StillwaterAds = (() => {
         if (window) window.folded = false;
         else {
           if (active.length >= capacity()) active.shift();
-          active.push({id, slot: chooseSlot(active), folded:false});
+          active.push({id, slot: chooseSlot(active), folded:false,variant:Math.random()<.25?"classic":"campaign",openedAt:Date.now(),lifetime:40000+Math.round(Math.random()*12000)});
         }
         persistent.collapsedPinnedIds = persistent.collapsedPinnedIds.filter(
           (v) => v !== id,
@@ -291,7 +322,7 @@ globalThis.StillwaterAds = (() => {
       )?.focus({ preventScroll: true });
     });
     const interact = () => {
-      quietUntil = Date.now() + 2500;
+      quietUntil = Date.now() + 1500;
     };
     document.addEventListener("pointerdown", interact, { passive: true });
     document.addEventListener("keydown", interact);
@@ -315,28 +346,24 @@ globalThis.StillwaterAds = (() => {
         return;
       }
       const focus = document.activeElement;
+      const replacement=active.find(window=>!window.folded&&!persistent.pinnedIds.includes(window.id)&&now-window.openedAt>=window.lifetime&&!host.querySelector(`[data-active-ad="${window.id}"]`)?.matches(':hover')&&!host.querySelector(`[data-active-ad="${window.id}"]`)?.contains(focus));
       const due = advance(session, elapsed, {
         eligible: allowed(),
         forum: getRoute() === "forum",
         visible: !document.hidden,
         quiet: now >= quietUntil,
-        active: active.length >= capacity(),
+        active: active.length >= capacity()&&!replacement,
         typing:
           focus?.matches("input,textarea,select") || focus?.isContentEditable,
         dialog: !!document.querySelector("dialog[open]"),
       });
       if (due) {
-        const choices = data.filter(
-          (ad) =>
-            !session.shownThisSession.includes(ad.id) &&
-            !session.dismissedThisSession.includes(ad.id) &&
-            !persistent.pinnedIds.includes(ad.id) &&
-            !active.some(window => window.id === ad.id),
-        );
-        if (choices.length) {
-          const ad = choices[Math.floor(Math.random() * choices.length)];
-          active.push({id:ad.id, slot:chooseSlot(active), folded:false});
-          session.shownThisSession.push(ad.id);
+        const ad=chooseCampaign(session,data,{activeIds:active.map(window=>window.id),pinnedIds:persistent.pinnedIds,now});
+        if (ad) {
+          if(active.length>=capacity())active=active.filter(window=>window!==replacement);
+          active.push({id:ad.id, slot:chooseSlot(active), folded:false,variant:Math.random()<.25?"classic":"campaign",openedAt:now,lifetime:40000+Math.round(Math.random()*12000)});
+          if(!session.shownThisSession.includes(ad.id))session.shownThisSession.push(ad.id);
+          session.lastShownById[ad.id]=now;session.lastAdId=ad.id;session.appearances++;
           session.lastShownAt = now;
           session.remaining = delay(false);
           session.navigatedSinceShow = false;
@@ -352,5 +379,5 @@ globalThis.StillwaterAds = (() => {
     }, 1000);
     return { navigate, openFolder };
   }
-  return { create, policy: { delay, freshSession, advance, eligibleRoutes, chooseSlot } };
+  return { create, policy: { delay, freshSession, advance, eligibleRoutes, chooseSlot,chooseCampaign } };
 })();

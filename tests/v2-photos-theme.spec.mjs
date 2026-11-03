@@ -129,6 +129,6 @@ for (const width of [320, 375, 768, 1440])
     for(const r of layout.ads) {
       const s=layout.shell;
       expect(s.left<r.right&&s.right>r.left&&s.top<r.bottom&&s.bottom>r.top).toBe(true);
-      if(width<1200)expect(r.height).toBeLessThanOrEqual(900*.28+1);
+      if(width<1200)expect(r.height).toBeLessThanOrEqual(900*.38+1);
     }
   });

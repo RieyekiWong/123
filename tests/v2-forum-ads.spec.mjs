@@ -130,7 +130,7 @@ test("ads wait, pause for typing and dialogs, keep focus and do not change case 
   await page.locator("#job-keyword").focus();
   await page.clock.runFor(180000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
-  expect((await adSession(page)).remaining).toBe(6000);
+  expect((await adSession(page)).remaining).toBe(4000);
   await page.locator("footer [data-ad-action=folder]").click();
   await page.clock.runFor(180000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
@@ -145,17 +145,17 @@ test("ads wait, pause for typing and dialogs, keep focus and do not change case 
 test("forum starts quietly, then seven different popup campaigns can appear without navigation",async({page})=>{
   await timed(page,"");
   await expect(page.locator('.ad-inline,[data-ad-action=next-inline]')).toHaveCount(0);
-  await page.clock.runFor(8000);
+  await page.clock.runFor(4000);
   await expect(page.locator('[data-active-ad]')).toHaveCount(0);
-  await page.clock.runFor(13000);
+  await page.clock.runFor(8000);
   const ids=['pet','cinema','repair','secondhand','print','cats','weather'];
   for(const id of ids) {
     await expect(page.locator(`[data-active-ad=${id}]`)).toBeVisible();
     await page.locator(`[data-active-ad=${id}] [data-ad-action=close]`).click();
-    await page.clock.runFor(24000);
+    await page.clock.runFor(8000);
   }
   await page.clock.runFor(120000);
-  await expect(page.locator('[data-active-ad]')).toHaveCount(0);
+  await expect(page.locator('[data-active-ad]').first()).toBeVisible();
   expect((await adSession(page)).shownThisSession).toEqual(ids);
   expect((await adSession(page)).dismissedThisSession).toEqual(ids);
 });
@@ -181,14 +181,14 @@ test("ads pause while hidden and do not catch up in a burst on return", async ({
   });
   await page.clock.runFor(5000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
-  await page.clock.runFor(13000);
+  await page.clock.runFor(5000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(1);
 });
 test("keep, fold, reload, reopen, remove and Escape work; main reset leaves the folder intact", async ({
   page,
 }) => {
   await timed(page);
-  await page.clock.runFor(13000);
+  await page.clock.runFor(7000);
   await page.locator("#ad-host [data-ad-action=pin]").click();
   await page.locator("#ad-host [data-ad-action=collapse]").click();
   expect((await savedAds(page)).pinnedIds).toEqual(["pet"]);
@@ -300,7 +300,7 @@ for (const width of [375, 768, 1440])
     });
     expect(rects.w).toBe(width);
     expect(rects.left<rects.adRight&&rects.right>rects.adLeft&&rects.top<rects.adBottom&&rects.bottom>rects.adTop).toBe(true);
-    if(width<1200)expect(rects.height).toBeLessThanOrEqual(900*.28+1);
+    if(width<1200)expect(rects.height).toBeLessThanOrEqual(900*.38+1);
   });
 test("blocked local and session storage leave forum, shops and the main case usable", async ({
   page,

@@ -111,3 +111,8 @@ After a valid saved B-3 circuit and restored frame, open **View the unlisted pic
 ### V2.6.2 · Doors in the black chapter
 
 Doors now have recessed panels, handles, hinges and thresholds. The four outgoing floor lines beneath the corridor doors are removed; chipped thresholds retain the same left/right clue. Puzzle solutions, scares and saves are preserved. The requested introductory paragraph is removed in both languages. See [changes and verification](docs/V2_6_2-DOORS.zh-CN.md).
+
+
+### V2.7 · Mixed early-web popup campaigns
+
+The original seven adverts remain alongside seven new layouts: visitor prizes, cinema posters, PC utilities, clearance grids, coupons, message invitations and weather widgets. Eligible browsing cooldowns are now 4–7 seconds initially and 6–11 seconds thereafter. Ads continue after the first seven distinct shops, with a 45-second cooldown after closing a shop. Bottom-right placements are more frequent, including on phones. Existing saved adverts, story progress, motion preferences and serious-page exclusions remain supported. [Changes and verification](docs/V2_7-ADS.zh-CN.md).

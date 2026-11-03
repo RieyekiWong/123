@@ -3,18 +3,18 @@ import assert from "node:assert/strict";
 import "../ad-data.js";
 import "../ad-system.js";
 const P = globalThis.StillwaterAds.policy;
-test("popup delays vary, same-page appearances are allowed and seven unique campaigns form the limit", () => {
-  assert.equal(P.delay(true,()=>0),6000);
-  assert.equal(P.delay(true,()=>1),12000);
-  assert.equal(P.delay(false,()=>0),9000);
-  assert.equal(P.delay(false,()=>1),18000);
+test("shorter random delays keep advertisements circulating after the first seven campaigns", () => {
+  assert.equal(P.delay(true,()=>0),4000);
+  assert.equal(P.delay(true,()=>1),7000);
+  assert.equal(P.delay(false,()=>0),6000);
+  assert.equal(P.delay(false,()=>1),11000);
   const s=P.freshSession(()=>0);
-  assert.equal(P.advance(s,5000),false);
+  assert.equal(P.advance(s,3000),false);
   assert.equal(P.advance(s,1000),true);
   s.shownThisSession=['pet'];s.remaining=18000;s.navigatedSinceShow=false;
   assert.equal(P.advance(s,18000),true);
   s.shownThisSession=['pet','cinema','repair','secondhand','print','cats','weather'];
-  assert.equal(P.advance(s,200000),false);
+  assert.equal(P.advance(s,200000),true);
 });
 test("random window slots use all four corners and a second window uses the other side",()=>{
   assert.equal(new Set([0,.3,.6,.9].map(r=>P.chooseSlot([],()=>r))).size,4);
@@ -34,11 +34,11 @@ test("reading, hidden tabs, forms, dialogs and serious files pause advertisement
   ]) {
     const s = P.freshSession(() => 0);
     assert.equal(P.advance(s, 100000, options), false);
-    assert.equal(s.remaining, 6000);
+    assert.equal(s.remaining, 4000);
   }
   const s = P.freshSession(() => 0);
-  assert.equal(P.advance(s, 5000, { forum: true }), false);
-  assert.equal(s.remaining, 6000);
+  assert.equal(P.advance(s, 2000, { forum: true }), false);
+  assert.equal(s.remaining, 4000);
   for (const route of [
     "chat",
     "void",
@@ -54,6 +54,17 @@ test("reading, hidden tabs, forms, dialogs and serious files pause advertisement
     "reservations",
   ])
     assert.equal(P.eligibleRoutes.has(route), false);
+});
+test('old seven-ad histories resume fairly; recent closes, active cards and saved ads are respected',()=>{
+  const data=globalThis.StillwaterAdData,s=P.freshSession(()=>0),rng=()=>0;
+  s.shownThisSession=data.map(ad=>ad.id);s.lastShownById={pet:100,cinema:200};s.lastAdId='cinema';
+  assert.equal(P.chooseCampaign(s,data,{now:1000,rng}).id,'repair');
+  s.blockedUntil.repair=5000;
+  assert.equal(P.chooseCampaign(s,data,{now:1000,rng,pinnedIds:['secondhand'],activeIds:['print','cats']}).id,'weather');
+  assert.equal(P.chooseCampaign(s,data,{now:6000,rng}).id,'repair');
+  assert.equal(P.chooseCampaign(s,data,{now:1000,rng,pinnedIds:data.map(ad=>ad.id)}),null);
+  s.shownThisSession=['pet'];s.blockedUntil={};s.lastShownById={};s.lastAdId='';
+  assert.equal(P.chooseCampaign(s,data,{now:1000,rng}).id,'cinema');
 });
 test("all seven ads have complete bilingual local content and no case clues or external contact mechanisms", () => {
   const ads = globalThis.StillwaterAdData;
