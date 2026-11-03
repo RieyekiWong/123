@@ -81,7 +81,7 @@ test('the black chapter keeps audio opt-in, adds distant breath deeper in and st
   window.voidAudio={contexts:[],buffers:0};const Audio=window.AudioContext;
   window.AudioContext=class extends Audio {
    constructor(...args){super(...args);voidAudio.contexts.push(this);}
-   createBufferSource(){voidAudio.buffers++;return super.createBufferSource();}
+   createBufferSource(){const source=super.createBufferSource(),start=source.start.bind(source);source.start=(...args)=>{if(source.stillwaterRole==='breath')voidAudio.buffers++;return start(...args);};return source;}
   };
  });
  await setup(page);await page.locator('[data-unlisted-entry]').click();

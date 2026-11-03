@@ -8,8 +8,9 @@ async function open(page,entry='index-zh.html',width=1440) {
 }
 async function send(page,text) {
   await page.locator('#chat-input').fill(text);
-  await page.locator('.chat-composer button[type=submit]').click();
+  await page.locator('#chat-input').press('Enter');
   await page.clock.runFor(4000);
+  for(const close of await page.locator('[data-active-ad] [data-ad-action=close]').all())await close.click();
 }
 for(const entry of ['index-zh.html','index.html']) {
   test(`${entry}: fresh chat accepts free input and its canonical share opens the existing forum`,async({page})=>{

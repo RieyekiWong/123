@@ -1,12 +1,11 @@
 /* Viewing preferences and explicitly enabled audio. */
 globalThis.StillwaterCaseComfort = {
-  create({ getState, save, onPreference, reset }) {
+  create({ getState, save, onPreference, reset, audio }) {
     const zh = document.documentElement.lang === "zh-CN",
       t = (a, b) => (zh ? a : b);
     const dialog = document.querySelector("#case-settings");
     const media = matchMedia("(prefers-reduced-motion: reduce)");
-    let context = null,
-      timer = null,
+    let timer = null,
       returnFocus = null;
     const reduced = () => media.matches || getState().preferences.reduceMotion;
     function update() {
@@ -23,48 +22,22 @@ globalThis.StillwaterCaseComfort = {
       dialog.querySelector("[name=skip-scares]").checked = pref.skipScares;
 
       dialog.querySelector("[name=volume]").value = String(pref.volume * 100);
-      dialog.querySelector("#volume-value").textContent =
-        Math.round(pref.volume * 100) + "%";
+      dialog.querySelector("#volume-value").textContent = Math.round(pref.volume * 100) + "%";
+      const mix = audio.getMix();
+      for (const [name, channel] of [["music-volume", "music"], ["sfx-volume", "effects"]]) {
+        dialog.querySelector(`[name=${name}]`).value = String(Math.round(mix[channel] * 100));
+        dialog.querySelector(`#${name}-value`).textContent = Math.round(mix[channel] * 100) + "%";
+      }
     }
-    function tone() {
-      if (
-        !getState().preferences.sound ||
-        !context ||
-        context.state !== "running"
-      )
-        return;
-      const now = context.currentTime,
-        osc = context.createOscillator(),
-        gain = context.createGain();
-      osc.type = "sine";
-      osc.frequency.value = 210;
-      gain.gain.setValueAtTime(0, now);
-      gain.gain.linearRampToValueAtTime(
-        getState().preferences.volume * 0.04,
-        now + 0.04,
-      );
-      gain.gain.linearRampToValueAtTime(0, now + 0.22);
-      osc.connect(gain);
-      gain.connect(context.destination);
-      osc.start(now);
-      osc.stop(now + 0.24);
-      osc.onended = () => {
-        osc.disconnect();
-        gain.disconnect();
-      };
-    }
+    function tone() { audio.effect("ui"); }
     async function toggleSound() {
       const pref = getState().preferences;
       if (pref.sound) {
         pref.sound = false;
-        await context?.suspend();
+        audio.stop();
       } else {
         try {
-          const Audio = window.AudioContext || window.webkitAudioContext;
-          if (!Audio) throw Error("audio");
-          context ||= new Audio();
-          await context.resume();
-          pref.sound = context.state === "running";
+          pref.sound = await audio.unlock();
           tone();
         } catch {
           pref.sound = false;
@@ -84,7 +57,7 @@ globalThis.StillwaterCaseComfort = {
     function open(options = {}) {
       if (dialog.open) return;
       returnFocus = document.activeElement;
-      dialog.innerHTML = `<header class="settings-heading"><h2 id="settings-title">${t("声音与浏览设置", "Sound & viewing settings")}</h2><button data-comfort="close" aria-label="${t("关闭设置", "Close settings")}">×</button></header><div class="settings-content"><p>${t("声音默认关闭。第二阶段开启声音后，先听到机器运转声；进入深处后会自动加入呼吸声，关闭声音即可停止。鬼脸和突脸默认开启，可勾选下方的“跳过监控突脸与短暂故障”关闭。", "Sound is off by default. In the second phase it starts with machinery, adding breathing deeper in the passage; switching it off stops both. Faces and jump scares are on by default. Select Skip Scares below to turn them off; motion is controlled separately.")}</p><button type="button" data-comfort="sound" aria-pressed="false"></button><label for="case-volume">${t("音量", "Volume")} <output id="volume-value"></output></label><input id="case-volume" type="range" name="volume" min="0" max="50" step="5"><label class="setting-toggle"><input type="checkbox" name="reduce-motion">${t("减少动态效果", "Reduce Motion")}</label>${media.matches ? `<p class="small">${t("正在遵循设备的减少动态设置。", "Following your device’s reduced-motion setting.")}</p>` : ""}<label class="setting-toggle"><input type="checkbox" name="skip-scares">${t("跳过监控突脸与短暂故障", "Skip Scares / brief connection effects")}</label><p id="comfort-feedback" role="status"></p><details class="save-section" ${options.save ? "open" : ""}><summary>${t("存档与重新开始", "Saves & restart")}</summary><p>${t("进度保存在当前浏览器。重新开始会清除聊天、本次调查、监控和结局记录，从群聊重新开始。收藏的广告和显示偏好保留，声音恢复为关闭。", "Starting again clears the chat, investigation, equipment chapters and endings, and returns to the group chat. Saved ads and viewing preferences are kept; sound returns to off.")}</p><button data-comfort="reset-prompt">${t("重新开始游戏", "Start the game again")}</button><div id="case-reset-confirm" hidden><p>${t("清除聊天记录、本次调查进度和结局，重新开始？", "Clear the chat, investigation and ending history, and start again?")}</p><button data-comfort="reset-confirm">${t("确认重新开始", "Confirm restart")}</button><button data-comfort="reset-cancel">${t("取消，保留进度", "Keep current records")}</button></div></details><p class="small">${t("样本不需要姓名、邮箱、电话、简历或支付信息。", "The sample needs no name, email, phone number, CV or payment information.")}</p></div>`;
+      dialog.innerHTML = `<header class="settings-heading"><h2 id="settings-title">${t("声音与浏览设置", "Sound & viewing settings")}</h2><button data-comfort="close" aria-label="${t("关闭设置", "Close settings")}">×</button></header><div class="settings-content"><p>${t("声音默认关闭。开启后，群聊会有轻提示音；酒店调查、档案和监控各有背景音，深处还会听到呼吸声。论坛和招聘页保持安静。鬼脸默认开启，可在下方关闭。", "Sound is off by default. Chat has quiet notifications; investigation, archives and cameras have their own ambience, with breathing deeper inside. The forum and careers pages stay silent. Faces are on by default; disable them below.")}</p><button type="button" data-comfort="sound" aria-pressed="false"></button><label for="case-volume">${t("总音量", "Master volume")} <output id="volume-value"></output></label><input id="case-volume" type="range" name="volume" min="0" max="50" step="5"><label for="music-volume">${t("背景音乐", "Background music")} <output id="music-volume-value"></output></label><input id="music-volume" type="range" name="music-volume" min="0" max="100" step="5"><label for="sfx-volume">${t("提示音与环境音效", "Notifications & environmental effects")} <output id="sfx-volume-value"></output></label><input id="sfx-volume" type="range" name="sfx-volume" min="0" max="100" step="5"><label class="setting-toggle"><input type="checkbox" name="reduce-motion">${t("减少动态效果", "Reduce Motion")}</label>${media.matches ? `<p class="small">${t("正在遵循设备的减少动态设置。", "Following your device’s reduced-motion setting.")}</p>` : ""}<label class="setting-toggle"><input type="checkbox" name="skip-scares">${t("跳过监控突脸与短暂故障", "Skip Scares / brief connection effects")}</label><p id="comfort-feedback" role="status"></p><details class="save-section" ${options.save ? "open" : ""}><summary>${t("存档与重新开始", "Saves & restart")}</summary><p>${t("进度保存在当前浏览器。重新开始会清除聊天、本次调查、监控和结局记录，从群聊重新开始。收藏的广告和显示偏好保留，声音恢复为关闭。", "Starting again clears the chat, investigation, equipment chapters and endings, and returns to the group chat. Saved ads and viewing preferences are kept; sound returns to off.")}</p><button data-comfort="reset-prompt">${t("重新开始游戏", "Start the game again")}</button><div id="case-reset-confirm" hidden><p>${t("清除聊天记录、本次调查进度和结局，重新开始？", "Clear the chat, investigation and ending history, and start again?")}</p><button data-comfort="reset-confirm">${t("确认重新开始", "Confirm restart")}</button><button data-comfort="reset-cancel">${t("取消，保留进度", "Keep current records")}</button></div></details><p class="small">${t("样本不需要姓名、邮箱、电话、简历或支付信息。", "The sample needs no name, email, phone number, CV or payment information.")}</p></div>`;
       dialog.showModal();
       update();
       (options.save
@@ -102,7 +75,7 @@ globalThis.StillwaterCaseComfort = {
         dialog.querySelector("#case-reset-confirm").hidden = true;
       if (action === "reset-confirm") {
         getState().preferences.sound = false;
-        void context?.suspend();
+        audio.stop();
         clearTimeout(timer);
         dialog.close();
         reset();
@@ -117,6 +90,10 @@ globalThis.StillwaterCaseComfort = {
       )?.focus({ preventScroll: true });
     });
     dialog.addEventListener("input", (event) => {
+      if (["music-volume", "sfx-volume"].includes(event.target.name)) {
+        audio.setMix(event.target.name === "music-volume" ? "music" : "effects", Number(event.target.value) / 100);
+        update();
+      }
       if (event.target.name === "volume") {
         getState().preferences.volume = Math.min(
           0.5,
@@ -145,9 +122,10 @@ globalThis.StillwaterCaseComfort = {
     document.addEventListener("visibilitychange", () => {
       if (document.hidden && getState().preferences.sound) {
         getState().preferences.sound = false;
-        void context?.suspend();
+        audio.stop();
         save();
         update();
+        onPreference();
       }
     });
     function signal() {

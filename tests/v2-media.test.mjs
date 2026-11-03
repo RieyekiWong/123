@@ -54,8 +54,9 @@ test("every ad photo and cat portfolio resolves to a credited local photograph",
   for (const ad of globalThis.StillwaterAdData) {
     for (const id of [ad.imageId, ...(ad.galleryIds || [])]) {
       const photo = globalThis.StillwaterMedia.find(id);
-      assert.equal(photo.group, "ad");
-      assert.match(photo.file, /^web\/ad-[a-z-]+\.jpg$/);
+      assert.ok(["ad", "hotel"].includes(photo.group));
+      assert.ok(ledger.some(entry => entry.id === id && entry.sha256 === photo.sha256));
+      assert.match(photo.file, /^web\/(?:ad|hotel)-[a-z-]+\.jpg$/);
     }
   }
   assert.equal(ledger.filter((p) => p.group === "hotel").length, 6);

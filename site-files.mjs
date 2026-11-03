@@ -8,7 +8,7 @@ export const V2_FILES = [
   "case-void-model.js", "case-void.js", "case-void.css",
   "ad-data.js", "ad-campaigns.js", "ad-system.js", "ad-style.css", "ad-popup.css", "case-style.css",
   "site-media.js", "retro-media.js", "cctv-filter.css", "cctv-scenes.js",
-  "case-night-model.js", "case-night.js", "case-audio.js", "case-anomaly.css",
+  "case-night-model.js", "case-night.js", "case-audio-tracks.js", "case-audio-policy.js", "case-audio.js", "case-anomaly.css",
   "design-tokens.css", "visual-v24.css", "case-wiring.css",
   "case-transition.js", "case-welcome.js", "case-welcome.css", "case-space.js",
   "case-events.js", "hotel-2010.css",

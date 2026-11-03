@@ -1,6 +1,7 @@
 /* Independent scenery state. Never calls or modifies the case progression model. */
 globalThis.StillwaterAds = (() => {
   const eligibleRoutes = new Set([
+    "chat",
     "forum",
     "careers",
     "hotel",
@@ -9,7 +10,7 @@ globalThis.StillwaterAds = (() => {
     "history",
   ]);
   const delay = (first, rng = Math.random) =>
-    Math.round((first ? 4000 : 6000) + rng() * (first ? 3000 : 5000));
+    Math.round((first ? 3000 : 4000) + rng() * (first ? 2000 : 3000));
   const slots = ["top-left", "bottom-right", "bottom-right", "bottom-left", "top-right"];
   const chooseSlot = (windows, rng = Math.random) => {
     const occupied = new Set(windows.map(window => window.slot.split("-")[1]));
@@ -95,7 +96,7 @@ globalThis.StillwaterAds = (() => {
           shownThisSession: validIds(v.shownThisSession),
           dismissedThisSession: validIds(v.dismissedThisSession),
           remaining: Number.isFinite(v.remaining)
-            ? Math.max(0, Math.min(v.shownThisSession?.length ? 11000 : 7000, v.remaining))
+            ? Math.max(0, Math.min(v.shownThisSession?.length ? 7000 : 5000, v.remaining))
             : delay(true),
           lastShownAt: Number.isFinite(v.lastShownAt) ? v.lastShownAt : 0,
           navigatedSinceShow: v.navigatedSinceShow === true,
@@ -127,7 +128,7 @@ globalThis.StillwaterAds = (() => {
       flushMs = 0;
     const small = matchMedia("(max-width:1199px)");
     const allowed = () =>
-      eligibleRoutes.has(getRoute()) && (!getState().evidence.includes("C9") || getState().lastEnding === "released");
+      eligibleRoutes.has(getRoute()) && (getRoute() === "chat" || !getState().evidence.includes("C9") || getState().lastEnding === "released");
     const save = () => {
       try {
         localStorage.setItem("stillwater-ads:v1", JSON.stringify(persistent));
@@ -148,7 +149,9 @@ globalThis.StillwaterAds = (() => {
       const p = globalThis.StillwaterMedia.find(id);
       return `<p class="ad-photo-credit"><span class="ad-photo-title">${esc(p.title)}</span><br>${t("摄影", "Photo")}: ${esc(p.author)} · <a href="${esc(p.source)}" target="_blank" rel="noopener noreferrer">${t("来源", "Source")}</a> · <a href="${esc(p.license_url)}" target="_blank" rel="noopener noreferrer">${esc(p.license)}</a></p>`;
     };
-    const capacity = () => small.matches ? 1 : 2;
+    const capacity = () => getRoute() === "chat" || small.matches ? 1 : 2;
+    const position = () => getRoute() === "chat" ? "bottom-right" : chooseSlot(active);
+    const variant = id => data.findIndex(ad => ad.id === id) < 7 && Math.random() < .25 ? "classic" : "campaign";
     const campaigns=globalThis.StillwaterAdCampaigns.create({t,esc,photo});
     function renderOverlay() {
       if (!allowed()) {
@@ -215,9 +218,8 @@ globalThis.StillwaterAds = (() => {
       );
     }
     function openCredits(trigger) {
-      const photos = globalThis.StillwaterMedia.photos.filter(
-        (p) => p.group === "ad",
-      );
+      const used = new Set(data.flatMap(ad => [ad.imageId, ...(ad.galleryIds || [])]));
+      const photos = globalThis.StillwaterMedia.photos.filter(p => used.has(p.id));
       openDialog(
         frame(
           t("图片鸣谢", "Photo acknowledgements"),
@@ -227,6 +229,7 @@ globalThis.StillwaterAds = (() => {
       );
     }
     function navigate() {
+      const fromChat = route.split("?")[0] === "chat";
       const next = location.hash.slice(1) || getRoute(),
         changed = route !== next;
       if (changed) {
@@ -236,6 +239,8 @@ globalThis.StillwaterAds = (() => {
         session.lastRoute = next;
       }
       if (!allowed()) active = [];
+      else if (getRoute() === "chat") active = active.slice(-1).map(window => ({...window, slot:"bottom-right"}));
+      else if (fromChat) active = active.map(window => ({...window, slot:chooseSlot([])}));
       renderOverlay();
       save();
       lastTick = Date.now();
@@ -264,8 +269,8 @@ globalThis.StillwaterAds = (() => {
             ?.replaceChildren(
               document.createTextNode(
                 t(
-                  "下次可以从页脚的广告夹再打开。",
-                  "Reopen it later from the footer’s ad folder.",
+                  "已收藏，下次可以从“我的广告夹”再打开。",
+                  "Saved. Reopen it later from My ad folder.",
                 ),
               ),
             );
@@ -285,7 +290,7 @@ globalThis.StillwaterAds = (() => {
         }
         save();
         renderOverlay();
-        (action === "collapse" ? host.querySelector(`[data-active-ad="${id}"] [data-ad-action=collapse]`) : document.querySelector("footer [data-ad-action=folder]"))?.focus({preventScroll:true});
+        (action === "collapse" ? host.querySelector(`[data-active-ad="${id}"] [data-ad-action=collapse]`) : document.querySelector(getRoute() === "chat" ? "#chat-input" : "footer [data-ad-action=folder]"))?.focus({preventScroll:true});
       }
       if (action === "remove") {
         persistent.pinnedIds = persistent.pinnedIds.filter((v) => v !== id);
@@ -302,7 +307,7 @@ globalThis.StillwaterAds = (() => {
         if (window) window.folded = false;
         else {
           if (active.length >= capacity()) active.shift();
-          active.push({id, slot: chooseSlot(active), folded:false,variant:Math.random()<.25?"classic":"campaign",openedAt:Date.now(),lifetime:40000+Math.round(Math.random()*12000)});
+          active.push({id, slot: position(), folded:false,variant:variant(id),openedAt:Date.now(),lifetime:30000+Math.round(Math.random()*10000)});
         }
         persistent.collapsedPinnedIds = persistent.collapsedPinnedIds.filter(
           (v) => v !== id,
@@ -318,7 +323,7 @@ globalThis.StillwaterAds = (() => {
     dialog.addEventListener("close", () => {
       (returnFocus?.isConnected
         ? returnFocus
-        : document.querySelector("footer [data-ad-action=folder]")
+        : document.querySelector(getRoute() === "chat" ? "#chat-input" : "footer [data-ad-action=folder]")
       )?.focus({ preventScroll: true });
     });
     const interact = () => {
@@ -353,15 +358,15 @@ globalThis.StillwaterAds = (() => {
         visible: !document.hidden,
         quiet: now >= quietUntil,
         active: active.length >= capacity()&&!replacement,
-        typing:
-          focus?.matches("input,textarea,select") || focus?.isContentEditable,
+        typing: getRoute() !== "chat" &&
+          (focus?.matches("input,textarea,select") || focus?.isContentEditable),
         dialog: !!document.querySelector("dialog[open]"),
       });
       if (due) {
         const ad=chooseCampaign(session,data,{activeIds:active.map(window=>window.id),pinnedIds:persistent.pinnedIds,now});
         if (ad) {
           if(active.length>=capacity())active=active.filter(window=>window!==replacement);
-          active.push({id:ad.id, slot:chooseSlot(active), folded:false,variant:Math.random()<.25?"classic":"campaign",openedAt:now,lifetime:40000+Math.round(Math.random()*12000)});
+          active.push({id:ad.id, slot:position(), folded:false,variant:variant(ad.id),openedAt:now,lifetime:30000+Math.round(Math.random()*10000)});
           if(!session.shownThisSession.includes(ad.id))session.shownThisSession.push(ad.id);
           session.lastShownById[ad.id]=now;session.lastAdId=ad.id;session.appearances++;
           session.lastShownAt = now;

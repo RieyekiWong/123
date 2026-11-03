@@ -130,7 +130,7 @@ test("ads wait, pause for typing and dialogs, keep focus and do not change case 
   await page.locator("#job-keyword").focus();
   await page.clock.runFor(180000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
-  expect((await adSession(page)).remaining).toBe(4000);
+  expect((await adSession(page)).remaining).toBe(3000);
   await page.locator("footer [data-ad-action=folder]").click();
   await page.clock.runFor(180000);
   await expect(page.locator("[data-active-ad]")).toHaveCount(0);
@@ -156,7 +156,8 @@ test("forum starts quietly, then seven different popup campaigns can appear with
   }
   await page.clock.runFor(120000);
   await expect(page.locator('[data-active-ad]').first()).toBeVisible();
-  expect((await adSession(page)).shownThisSession).toEqual(ids);
+  expect((await adSession(page)).shownThisSession.slice(0,7)).toEqual(ids)
+  expect((await adSession(page)).shownThisSession.length).toBeGreaterThan(7);
   expect((await adSession(page)).dismissedThisSession).toEqual(ids);
 });
 test("ads pause while hidden and do not catch up in a burst on return", async ({
@@ -189,8 +190,8 @@ test("keep, fold, reload, reopen, remove and Escape work; main reset leaves the 
 }) => {
   await timed(page);
   await page.clock.runFor(7000);
-  await page.locator("#ad-host [data-ad-action=pin]").click();
-  await page.locator("#ad-host [data-ad-action=collapse]").click();
+  await page.locator("#ad-host [data-active-ad=pet] [data-ad-action=pin]").click();
+  await page.locator("#ad-host [data-active-ad=pet] [data-ad-action=collapse]").click();
   expect((await savedAds(page)).pinnedIds).toEqual(["pet"]);
   expect((await savedAds(page)).collapsedPinnedIds).toEqual(["pet"]);
   await page.reload();

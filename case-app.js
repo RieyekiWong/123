@@ -57,9 +57,19 @@
   const nightAudio = window.StillwaterCaseAudio.create({
     getState: () => state,
     getRoute: currentRoute,
+    canOpen: (route) => M.canOpen(state, route),
+    getPresentation: () => ({
+      blocked: !!welcome?.isOpen(),
+      transition: phaseTransition.isActive(),
+      endingPending: finalScenePending,
+      ending: (() => {
+        const requested = new URLSearchParams(location.hash.split("?")[1] || "").get("view");
+        return state.endings.includes(requested) ? requested : state.lastEnding;
+      })(),
+    }),
   });
   const forum = window.StillwaterForum({ t, esc, getState: () => state });
-  const chat = window.StillwaterChat.create({ t, esc, getRoute: currentRoute });
+  const chat = window.StillwaterChat.create({ t, esc, getRoute: currentRoute, audio: nightAudio });
   const PROLOGUE = "stillwater-prologue:v1";
   let prologue = { schema: 1, entered: false, lastRoute: "" };
   try {
@@ -105,7 +115,7 @@
   const phaseTransition = window.StillwaterCaseTransition.create({
     getState: () => state,
     t,
-    onBegin: () => nightAudio.stop(),
+    onBegin: () => void nightAudio.sync(),
     complete: () => {
       history.replaceState(
         null,
@@ -117,6 +127,7 @@
   });
   const comfort = window.StillwaterCaseComfort.create({
     getState: () => state,
+    audio: nightAudio,
     save,
     onPreference: () => {
       document.body.classList.toggle("reduced-motion", comfort.reduced());
@@ -174,6 +185,7 @@
   const voidWorld = window.StillwaterVoid.create({
     getState: () => state, t, esc,
     onAction: (action, payload, focusKey) => {
+      const previousEvents = state.night.void.events.length;
       const result = M.transition(state, "void", { action, ...payload });
       save();
       if (!result.ok) {
@@ -184,9 +196,11 @@
         voidWorld.refresh();
         return;
       }
+      nightAudio.effect(action === "walk" ? "door" : "ui");
       if (result.route) { pendingVoidHandover = true; location.hash = result.route; return; }
       nextVoidFocus = focusKey;
       render();
+      if (state.night.void.events.length > previousEvents) nightAudio.silence();
       if (result.event) nightEvents.present(result.event);
     },
   });
@@ -300,7 +314,7 @@
     t,
     onOpen: () => {
       nightEvents.clear();
-      nightAudio.stop();
+      nightAudio.pause();
     },
     onContinue: () => {
       render();
@@ -378,6 +392,7 @@
       window.StillwaterEnding.reveal({
         focus: !document.hidden && !document.querySelector("dialog[open]"),
       });
+    void nightAudio.sync();
   }
   function render(moveFocus = false) {
     let route = currentRoute();
@@ -418,7 +433,7 @@
           : state.night.started
             ? "altered"
             : "normal";
-    if (phaseTransition.isActive() || welcome?.isOpen()) nightAudio.stop();
+    if (welcome?.isOpen()) nightAudio.pause();
     else void nightAudio.sync();
     document.body.classList.toggle(
       "reduced-motion",
@@ -711,6 +726,7 @@
         }
         return;
       }
+      nightAudio.effect(["camera", "pan"].includes(act) ? "camera" : ["door", "walk", "inspect"].includes(act) ? "door" : "ui");
       if (act === "door") {
         location.hash =
           state.night.passageRequired && !state.night.passage.complete
@@ -724,7 +740,7 @@
       }
       render();
       if (act === "comfort") nightEvents.clear();
-      if (result.event) nightEvents.present(result.event);
+      if (result.event) { nightAudio.silence(); nightEvents.present(result.event); }
       const match = [...document.querySelectorAll("[data-night-action]")].find(
         (el) =>
           el.dataset.nightAction === act &&

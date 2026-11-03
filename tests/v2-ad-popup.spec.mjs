@@ -88,7 +88,7 @@ test('selective blinking and border lights follow reduced-motion settings',async
   await page.clock.runFor(18000);
   expect(await card(page,'cinema').locator('.ad-teaser').evaluate(el=>getComputedStyle(el).animationName)).toBe('ad-letter-blink');
   await card(page,'pet').locator('[data-ad-action=close]').click();
-  await page.clock.runFor(24000);
+  await page.clock.runFor(8000);
   await expect(card(page,'repair')).toBeVisible();
   expect(await card(page,'repair').evaluate(el=>getComputedStyle(el).animationName)).toContain('ad-border-lights');
   await page.emulateMedia({reducedMotion:'reduce'});
@@ -102,7 +102,7 @@ for(const width of [320,390,768]) {
     await start(page);
     await page.evaluate(()=>window.scrollTo(0,320));
     const before=await pageLayout(page);
-    await page.clock.runFor(40000);
+    await page.clock.runFor(18000);
     await expect(page.locator('[data-active-ad]')).toHaveCount(1);
     await fits(page,before);
     for(const button of await card(page,'pet').locator('header button').all()) {
@@ -122,7 +122,7 @@ for(const width of [320,390,768]) {
 test('shrinking two windows to a phone keeps one and preserves both saved ads',async({page})=>{
   await page.setViewportSize({width:1440,height:900});
   await start(page);
-  await page.clock.runFor(40000);
+  await page.clock.runFor(18000);
   for(const id of ['pet','cinema']) await card(page,id).locator('[data-ad-action=pin]').click();
   await page.setViewportSize({width:390,height:900});
   await expect(page.locator('[data-active-ad]')).toHaveCount(1);
@@ -138,7 +138,7 @@ test('an existing three-ad session resumes the new campaign without losing histo
   await start(page);
   await page.clock.runFor(18000);
   await expect(card(page,'secondhand')).toBeVisible();
-  expect(await page.evaluate(()=>JSON.parse(sessionStorage.getItem('stillwater-ads-session:v1')).shownThisSession)).toEqual(['pet','cinema','repair','secondhand']);
+  expect(await page.evaluate(()=>JSON.parse(sessionStorage.getItem('stillwater-ads-session:v1')).shownThisSession.slice(0,4))).toEqual(['pet','cinema','repair','secondhand']);
   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('stillwater-ads:v1')).pinnedIds)).toEqual(['cats']);
 });
 
@@ -149,11 +149,11 @@ test('a previously exhausted seven-ad session resumes without clearing history o
     localStorage.setItem('stillwater-ads:v1',JSON.stringify({schema:1,pinnedIds:['cats'],collapsedPinnedIds:[]}));
   });
   await start(page);await page.clock.runFor(6000);
-  await expect(card(page,'pet')).toBeVisible();
+  await expect(card(page,'arcade')).toBeVisible();
   const session=await page.evaluate(()=>JSON.parse(sessionStorage.getItem('stillwater-ads-session:v1')));
-  expect(session.shownThisSession).toHaveLength(7);expect(session.dismissedThisSession).toHaveLength(7);expect(session.appearances).toBeGreaterThan(7);
-  await card(page,'pet').locator('[data-ad-action=close]').click();await page.clock.runFor(20000);
-  await expect(card(page,'pet')).toHaveCount(0);
+  expect(session.shownThisSession).toHaveLength(8);expect(session.dismissedThisSession).toHaveLength(7);expect(session.appearances).toBeGreaterThan(7);
+  await card(page,'arcade').locator('[data-ad-action=close]').click();await page.clock.runFor(20000);
+  await expect(card(page,'arcade')).toHaveCount(0);
   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('stillwater-ads:v1')).pinnedIds)).toEqual(['cats']);
 });
 

@@ -1,0 +1,218 @@
+[
+  {
+    "id": "investigation",
+    "title": "Unsolved Investigation",
+    "author": "isaiah658",
+    "source": "https://opengameart.org/content/unsolved-investigation",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "download": "https://opengameart.org/sites/default/files/Unsolved-Investigation-isaiah658_0.ogg",
+    "source_sha256": "2877e423ff90cb99b3082840e66cf79d69a809708466c6f27c750c0e1ce2a912",
+    "source_bytes": 2200350,
+    "source_duration": 48.0,
+    "duration": 48.048,
+    "processing": "Complete original loop; mono 24 kHz, loudness target -20 LUFS / -6 dBTP.",
+    "reviewed_page_sha256": "b5a038e04f5fdf69595f92a54adcca12d14554952a1c908328b982c618d3191c",
+    "files": {
+      "mp3": {
+        "file": "assets/audio-v28/investigation.mp3",
+        "bytes": 288524,
+        "sha256": "4067e5e05afb48d9e33a0d046500d71c1d82964fe3ba1adab95d0784736a6f9d"
+      },
+      "ogg": {
+        "file": "assets/audio-v28/investigation.ogg",
+        "bytes": 104869,
+        "sha256": "3a7924b3296bc7e93bdd8cd9879d7ae011f38d96867c015aac4574323e7d5aab"
+      }
+    }
+  },
+  {
+    "id": "archive",
+    "title": "Echoes of the Past",
+    "author": "isaiah658",
+    "source": "https://opengameart.org/content/echoes-of-the-past",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "download": "https://opengameart.org/sites/default/files/echoes_of_the_past.wav",
+    "source_sha256": "ec149d7daceb8d0d5f20816ae401d8e04ea8e5960fc558d378c2c27139835292",
+    "source_bytes": 8466476,
+    "source_duration": 47.996,
+    "duration": 48.048,
+    "processing": "Complete original loop; mono 24 kHz, loudness target -20 LUFS / -6 dBTP.",
+    "reviewed_page_sha256": "82c2b91fa1395d6341cb2f006b2ffe406ee67e70fb771d1e6990ae859f3ad17f",
+    "files": {
+      "mp3": {
+        "file": "assets/audio-v28/archive.mp3",
+        "bytes": 288524,
+        "sha256": "738381d34d9f3a98315c0925679636a54c3cd1e148ced63db60b483f2b0f9088"
+      },
+      "ogg": {
+        "file": "assets/audio-v28/archive.ogg",
+        "bytes": 145178,
+        "sha256": "3c1175569c2f25673ba0f50eb8752581c2089ec509ea4dcea6e9ff8e6afd4146"
+      }
+    }
+  },
+  {
+    "id": "rewrite",
+    "title": "Horror Atmosphere / Post Apocalyptic Wastelands",
+    "author": "Juhani Junkala / SubspaceAudio",
+    "source": "https://opengameart.org/content/horror-atmosphere",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "download": "https://opengameart.org/sites/default/files/Juhani%20Junkala%20-%20Post%20Apocalyptic%20Wastelands%20%5BLoop%20Ready%5D.ogg",
+    "source_sha256": "4145080f1a0ba45c3d1b6988c1d26ec3529ee8d8196eb3fa0045b49c86dd20ad",
+    "source_bytes": 14246543,
+    "source_duration": 323.851,
+    "duration": 93.048,
+    "processing": "First 96 seconds; 3-second tail/head crossfade rotated into a 93-second loop; mono 24 kHz, loudness target -20 LUFS / -6 dBTP.",
+    "reviewed_page_sha256": "cb3d6172c550f7dfc9f9652e6f82233deaebb18885fb667eb95a698f7fe57c7e",
+    "files": {
+      "mp3": {
+        "file": "assets/audio-v28/rewrite.mp3",
+        "bytes": 558524,
+        "sha256": "328336f361db78ed23ae0cd8b4909bef2b875f7069217faee8778c4f4d6f19c6"
+      },
+      "ogg": {
+        "file": "assets/audio-v28/rewrite.ogg",
+        "bytes": 298121,
+        "sha256": "5367c9629609d8e3ab566dc9c69f953fcceef93e1f11e5e2e22afe0d98abdaf4"
+      }
+    }
+  },
+  {
+    "id": "cctv",
+    "title": "Infestation in the Control Room",
+    "author": "Joth",
+    "source": "https://opengameart.org/content/ambience-pack-1-sci-fi-horror",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "download": "https://opengameart.org/sites/default/files/Infestation%20in%20the%20Control%20Room.mp3",
+    "source_sha256": "a5626bf6295dc29581db9a68e1eb33e5f8ecdad5fe188314f15251abdbb66bfc",
+    "source_bytes": 957043,
+    "source_duration": 47.647,
+    "duration": 47.712,
+    "processing": "Complete original loop; mono 24 kHz, loudness target -20 LUFS / -6 dBTP.",
+    "reviewed_page_sha256": "874ffbad0dd752fb9f5dae2ca8eb4e2748fbafe34157e29d5923c4fae3e12b49",
+    "files": {
+      "mp3": {
+        "file": "assets/audio-v28/cctv.mp3",
+        "bytes": 286508,
+        "sha256": "6a1c0937018d867463b1332d6f1179972e59be8c781a9fac0952325b8e168c5e"
+      },
+      "ogg": {
+        "file": "assets/audio-v28/cctv.ogg",
+        "bytes": 217524,
+        "sha256": "ddb8916b6ce2ce12b063b5f5ad8e16768eeedbf2c3bae64f411efc8e175cffe1"
+      }
+    }
+  },
+  {
+    "id": "passage",
+    "title": "Abandoned Passages",
+    "author": "congusbongus",
+    "source": "https://opengameart.org/content/abandoned-passages-horror-ambience-loop",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "download": "https://opengameart.org/sites/default/files/freezer_0.ogg",
+    "source_sha256": "b6ac629aafaee43415840153bf3aaaf276735bd5281ff29e09e6fd41e5989cd9",
+    "source_bytes": 409138,
+    "source_duration": 31.318,
+    "duration": 31.368,
+    "processing": "Complete original loop; mono 24 kHz, loudness target -20 LUFS / -6 dBTP.",
+    "reviewed_page_sha256": "2060bb06aef6b91e550564c8001ff4d634b80d5aebb400bae88e8cdcd1e5ef9d",
+    "files": {
+      "mp3": {
+        "file": "assets/audio-v28/passage.mp3",
+        "bytes": 188444,
+        "sha256": "efd131c4d9d4e0125ead509f50c954f507f9d5973ae521cd09147a2877186426"
+      },
+      "ogg": {
+        "file": "assets/audio-v28/passage.ogg",
+        "bytes": 101659,
+        "sha256": "4b7567cddee2536d9930108991e21ecd98bb2d10f7090aecc3d3f9d070042027"
+      }
+    }
+  },
+  {
+    "id": "unlisted",
+    "title": "Lost in a Bad Place",
+    "author": "congusbongus",
+    "source": "https://opengameart.org/content/lost-in-a-bad-place-horror-ambience-loop",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "download": "https://opengameart.org/sites/default/files/lost_2.ogg",
+    "source_sha256": "ad9a9f39240ef5862d3a6dc5220893926c6873aa0e08a641dadf3f1c0acc2cd4",
+    "source_bytes": 2785640,
+    "source_duration": 134.722,
+    "duration": 93.048,
+    "processing": "First 96 seconds; 3-second tail/head crossfade rotated into a 93-second loop; mono 24 kHz, loudness target -20 LUFS / -6 dBTP.",
+    "reviewed_page_sha256": "0549ac1310848a2802ccd30a4a0e77765d151f0429397ae550417c3e9cfdb877",
+    "files": {
+      "mp3": {
+        "file": "assets/audio-v28/unlisted.mp3",
+        "bytes": 558524,
+        "sha256": "ba227613532dfd04088ece0b06bca4e3760ccfade4f1f7dabe7e4d953f6b1bd8"
+      },
+      "ogg": {
+        "file": "assets/audio-v28/unlisted.ogg",
+        "bytes": 269986,
+        "sha256": "7b34f22b91bbb5f98e104fb1dd821ee432dae5f4ca6d340f776a955a3a35789d"
+      }
+    }
+  },
+  {
+    "id": "deep",
+    "title": "Ancient Caverns",
+    "author": "congusbongus",
+    "source": "https://opengameart.org/content/ancient-caverns-horror-ambient-loop",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "download": "https://opengameart.org/sites/default/files/caverns_0.ogg",
+    "source_sha256": "5c841ef1a7bacd2a038801ecee0741e200d1cf1cd08f36a6a89cce95bcfb6a8a",
+    "source_bytes": 3328494,
+    "source_duration": 136.294,
+    "duration": 93.048,
+    "processing": "First 96 seconds; 3-second tail/head crossfade rotated into a 93-second loop; mono 24 kHz, loudness target -20 LUFS / -6 dBTP.",
+    "reviewed_page_sha256": "8a377543c10565390bd7a1cffaf2f0e99aa9b3c130f8274b249970b3be1aad4c",
+    "files": {
+      "mp3": {
+        "file": "assets/audio-v28/deep.mp3",
+        "bytes": 558524,
+        "sha256": "e8efa0072d4097d20f10d1b1222bacebc03583d7f674e2d716a782cffe6f39dc"
+      },
+      "ogg": {
+        "file": "assets/audio-v28/deep.ogg",
+        "bytes": 318319,
+        "sha256": "84415789906e3e2ae7acda215508db79856fb10da27a021262f45e9a1dc732a7"
+      }
+    }
+  },
+  {
+    "id": "safe",
+    "title": "Safe Space",
+    "author": "Tsorthan Grove",
+    "source": "https://opengameart.org/content/safe-space-0",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "download": "https://opengameart.org/sites/default/files/safe_space_loop.flac",
+    "source_sha256": "159a2bb84cfdbdbd6a519699d7a76bb1d4305a1afcaccf941fbea5d09b063e66",
+    "source_bytes": 14604660,
+    "source_duration": 148.314,
+    "duration": 93.048,
+    "processing": "First 96 seconds; 3-second tail/head crossfade rotated into a 93-second loop; mono 24 kHz, loudness target -20 LUFS / -6 dBTP.",
+    "reviewed_page_sha256": "e18345192970c71d6539218a7ae008bb0fdecdf0e0ea5e72f01d65efd2eaf4bc",
+    "files": {
+      "mp3": {
+        "file": "assets/audio-v28/safe.mp3",
+        "bytes": 558524,
+        "sha256": "46a96326f51570eb425fde9c32ba5bdd2357cfee2ad9da2036ef6072bb761231"
+      },
+      "ogg": {
+        "file": "assets/audio-v28/safe.ogg",
+        "bytes": 221480,
+        "sha256": "50631a8bcbc2b06184d10d36c74414692d3c56d234a5bb2bf2c2a3866f61e147"
+      }
+    }
+  }
+]

@@ -126,3 +126,5 @@ body[data-site=chat] .chat-sr-only {position:absolute;width:1px;height:1px;paddi
   body[data-site=chat] #case-shell {padding:0;}
   body[data-site=chat] .chat-composer textarea {min-height:45px!important;max-height:60px!important;}
 }
+
+.chat-unread{display:inline-block;margin-left:6px;min-width:17px;padding:0 4px;border-radius:10px;background:#c43b35;color:#fff;font:11px/17px Arial,sans-serif;text-align:center;}

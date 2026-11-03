@@ -17,7 +17,7 @@ for (const entry of ["index-zh.html", "index.html"])
         page.locator(".hotel-nav,.hotel-brand-subtitle"),
       ).toHaveCount(0);
       await page.locator("footer [data-ad-action=credits]").click();
-      await expect(page.locator(".media-credit-grid article")).toHaveCount(9);
+      await expect(page.locator(".media-credit-grid article")).toHaveCount(15);
       await expect(page).toHaveURL(new RegExp("#" + site + "$"));
       await page.keyboard.press("Escape");
       await expect(

@@ -1,8 +1,8 @@
 /* Local desktop-messenger opening. No input is sent over the network. */
 globalThis.StillwaterChat = {
-  create({t,esc,getRoute}) {
+  create({t,esc,getRoute,audio}) {
     const D=globalThis.StillwaterChatData,M=globalThis.StillwaterChatModel;
-    let state=M.fresh(),root=null,lastTick=Date.now(),lastInput=0,lastFlush=0,saveTimer=null,unread=0;
+    let state=M.fresh(),root=null,lastTick=Date.now(),lastInput=0,lastFlush=0,saveTimer=null,unread=0,groupUnread=0;
     try {state=M.hydrate(JSON.parse(localStorage.getItem(M.KEY)));} catch {}
     const localized=value=>Array.isArray(value)?t(...value):value;
     const icons={
@@ -79,7 +79,7 @@ globalThis.StillwaterChat = {
         const last=messagesFor(id).at(-1),entry=last?.entry||(last&&resolved(last));
         const preview=entry?.kind==='card'?t('[链接] 夜猫论坛','[Link] Night Owl BBS'):entry?localized(entry.text):'';
         const time=last?new Date(last.at).toISOString().slice(11,16):'';
-        return `<button class="chat-contact ${state.ui.conversation===id?'is-current':''}" data-chat-room="${id}" aria-pressed="${state.ui.conversation===id}">${id==='group'?`<span class="chat-group-avatar" aria-hidden="true">${avatar('gg')}${avatar('zhang')}${avatar('lin')}${avatar('me')}</span>`:id==='notes'?`<span class="chat-file-avatar">${icon('folder')}</span>`:avatar(D.sideChats[id].avatar)}<span class="chat-contact-copy"><span class="chat-contact-heading"><strong>${esc(conversationName(id))}</strong><time>${time}</time></span><small>${esc(preview)}</small></span></button>`;
+        return `<button class="chat-contact ${state.ui.conversation===id?'is-current':''}" data-chat-room="${id}" aria-pressed="${state.ui.conversation===id}">${id==='group'?`<span class="chat-group-avatar" aria-hidden="true">${avatar('gg')}${avatar('zhang')}${avatar('lin')}${avatar('me')}</span>`:id==='notes'?`<span class="chat-file-avatar">${icon('folder')}</span>`:avatar(D.sideChats[id].avatar)}<span class="chat-contact-copy"><span class="chat-contact-heading"><strong>${esc(conversationName(id))}${id==='group'&&groupUnread?`<span class="chat-unread" aria-label="${t('新消息','Unread')}">${groupUnread}</span>`:''}</strong><time>${time}</time></span><small>${esc(preview)}</small></span></button>`;
       }).join('')||`<p class="chat-search-empty">${t('没有找到会话','No conversations found')}</p>`;
     }
     function renderConversation() {
@@ -90,6 +90,7 @@ globalThis.StillwaterChat = {
       input.value=state.ui.drafts[state.ui.conversation]||'';
       root.querySelector('.chat-member-list').hidden=state.ui.conversation!=='group';
       root.querySelector('.chat-members').hidden=true;
+      if(state.ui.conversation==='group')groupUnread=0;
       unread=0;renderContacts();renderMessages();resizeInput();
     }
     function resizeInput() {
@@ -108,6 +109,7 @@ globalThis.StillwaterChat = {
     function send() {
       const input=root.querySelector('#chat-input');
       if(!M.send(state,input.value,state.ui.conversation))return;
+      audio.effect('chat-send');
       state.ui.scroll[state.ui.conversation]={top:0,bottom:true};
       lastInput=Date.now();input.value='';renderMessages();renderContacts();resizeInput();persist();input.focus({preventScroll:true});
     }
@@ -154,7 +156,7 @@ globalThis.StillwaterChat = {
         <nav class="chat-rail" aria-label="${t('聊天工具','Chat tools')}"><div class="chat-window-lights" aria-hidden="true"><i></i><i></i><i></i></div><span class="chat-own-avatar" title="Rieyeki">${avatar('me')}</span><button class="chat-rail-current" data-chat-action="list" aria-label="${t('会话列表','Conversations')}" title="${t('会话列表','Conversations')}">${icon('chat')}</button><button data-chat-action="people" aria-label="${t('查看群成员','View group members')}" title="${t('查看群成员','View group members')}">${icon('people')}</button><button data-chat-action="notes" aria-label="${t('已存消息','Saved messages')}" title="${t('已存消息','Saved messages')}">${icon('folder')}</button><button data-case-action="instructions" aria-label="${t('游玩说明','How to play')}" title="${t('游玩说明','How to play')}">${icon('info')}</button><button class="chat-rail-settings" data-case-action="save-settings" aria-label="${t('存档与重置','Saves & reset')}" title="${t('存档与重置','Saves & reset')}">${icon('settings')}</button></nav>
         <aside class="chat-contact-pane" aria-label="${t('会话列表','Conversations')}"><div class="chat-search"><label class="chat-sr-only" for="chat-search">${t('搜索会话','Search conversations')}</label><input id="chat-search" type="search" placeholder="${t('搜索','Search')}" autocomplete="off"><span aria-hidden="true">${icon('search')}</span></div><div class="chat-contact-list"></div><p class="chat-local-label">${t('聊天记录','Chats')}</p></aside>
         <main class="chat-conversation" id="content" tabindex="-1"><header class="chat-heading"><button class="chat-mobile-back" data-chat-action="list" aria-label="${t('返回会话列表','Back to conversations')}">‹</button><h1 id="chat-title">${esc(groupName())}</h1><a data-case-language href="${english?'index-zh.html':'index.html'}${esc(location.search)}#chat">${t('English','简体中文')}</a><button data-chat-action="members" aria-label="${t('群聊信息','Group information')}">···</button></header>
-        <aside class="chat-members" hidden><div class="chat-member-list"><h2>${t('群成员','Group members')}（4）</h2>${Object.entries(D.members).map(([id,member])=>`<div>${avatar(id)}<span>${esc(member.name)}</span></div>`).join('')}</div><div class="chat-menu-actions"><button data-chat-action="instructions">${t('游玩说明','How to play')}</button><button data-chat-action="settings">${t('存档与重置','Saves & reset')}</button></div><details class="chat-avatar-credits"><summary>${t('头像来源','Avatar credits')}</summary>${globalThis.StillwaterChatPhotos.map(photo=>`<p>${esc(D.members[photo.id].name)} · <a href="${esc(photo.source)}" target="_blank" rel="noopener noreferrer">${esc(photo.author)}</a> · <a href="${esc(photo.license_url)}" target="_blank" rel="noopener noreferrer">${esc(photo.license)}</a></p>`).join('')}</details><p>${t('这是本地模拟聊天，不连接微信账号。','A local fictional chat. No messaging account is connected.')}</p></aside>
+        <aside class="chat-members" hidden><div class="chat-member-list"><h2>${t('群成员','Group members')}（4）</h2>${Object.entries(D.members).map(([id,member])=>`<div>${avatar(id)}<span>${esc(member.name)}</span></div>`).join('')}</div><div class="chat-menu-actions"><button data-chat-action="instructions">${t('游玩说明','How to play')}</button><button data-case-action="settings">${t('声音与设置','Sound & settings')}</button><button data-chat-action="settings">${t('存档与重置','Saves & reset')}</button><button data-ad-action="folder">${t('我的广告夹','My ad folder')}</button></div><details class="chat-avatar-credits"><summary>${t('头像来源','Avatar credits')}</summary>${globalThis.StillwaterChatPhotos.map(photo=>`<p>${esc(D.members[photo.id].name)} · <a href="${esc(photo.source)}" target="_blank" rel="noopener noreferrer">${esc(photo.author)}</a> · <a href="${esc(photo.license_url)}" target="_blank" rel="noopener noreferrer">${esc(photo.license)}</a></p>`).join('')}</details><p>${t('这是本地模拟聊天，不连接微信账号。','A local fictional chat. No messaging account is connected.')}</p></aside>
         <div class="chat-messages" role="log" aria-label="${t('聊天记录','Chat history')}" aria-live="off" tabindex="0"></div><button class="chat-new-messages" data-chat-action="latest" hidden></button><p class="chat-typing" role="status" aria-live="polite"></p>
         <form class="chat-composer"><div class="chat-compose-tools"><button type="button" data-chat-action="emoji" aria-label="${t('表情','Emoji')}">${icon('smile')}</button><button type="button" data-chat-action="notes" aria-label="${t('已存消息','Saved messages')}" title="${t('已存消息','Saved messages')}">${icon('folder')}</button><button type="button" data-chat-action="history" aria-label="${t('查看较早消息','Earlier messages')}" title="${t('查看较早消息','Earlier messages')}">${icon('history')}</button><span data-chat-storage>${t('消息仅保存在本机','Messages stay on this device')}</span></div><div class="chat-emoji-panel" hidden>${['🙂','😂','👍','🙃','🍜','☕','👀','晚点看'].map(emoji=>`<button type="button" data-chat-emoji="${emoji==='晚点看'?t('晚点看','Will look later'):emoji}">${emoji==='晚点看'?t('晚点看','Later'):emoji}</button>`).join('')}</div><label class="chat-sr-only" for="chat-input">${t('发送消息','Message')}</label><textarea id="chat-input" maxlength="600" rows="2" spellcheck="false" aria-describedby="chat-send-help"></textarea><div class="chat-send-row"><span id="chat-send-help">${t('Enter 发送，Shift + Enter 换行','Enter to send · Shift + Enter for a new line')}</span><button type="submit">${t('发送','Send')}</button></div></form></main></div>`;
       root.addEventListener('click',click);root.addEventListener('input',input);root.addEventListener('keydown',keydown);root.addEventListener('submit',submit);
@@ -165,8 +167,13 @@ globalThis.StillwaterChat = {
       const now=Date.now(),elapsed=Math.max(0,Math.min(2000,now-lastTick));lastTick=now;
       if(!root||getRoute()!=='chat'||document.hidden||document.querySelector('dialog[open]'))return;
       const listHidden=state.ui.list&&matchMedia('(max-width:720px)').matches;
+      const before=state.messages.length;
       const changed=M.advance(state,elapsed,{story:state.ui.conversation==='group'&&!listHidden&&now-lastInput>2100});
-      if(changed) {rememberScroll();renderMessages(true);renderContacts();persist();}
+      if(changed) {
+        const incoming=state.messages.slice(before).filter(message=>message.kind!=='user').length;
+        if(incoming) { audio.effect('chat-receive'); if(state.ui.conversation!=='group'||listHidden)groupUnread+=incoming; }
+        rememberScroll();renderMessages(true);renderContacts();persist();
+      }
       else if(now-lastFlush>5000)persist();
       const pending=state.pending[0],typing=root.querySelector('.chat-typing');
       typing.textContent=pending&&state.ui.conversation==='group'?t(D.members[D.bank[pending.key].person].name+' 正在输入…',D.members[D.bank[pending.key].person].name+' is typing…'):'';

@@ -4,12 +4,12 @@ import "../ad-data.js";
 import "../ad-system.js";
 const P = globalThis.StillwaterAds.policy;
 test("shorter random delays keep advertisements circulating after the first seven campaigns", () => {
-  assert.equal(P.delay(true,()=>0),4000);
-  assert.equal(P.delay(true,()=>1),7000);
-  assert.equal(P.delay(false,()=>0),6000);
-  assert.equal(P.delay(false,()=>1),11000);
+  assert.equal(P.delay(true,()=>0),3000);
+  assert.equal(P.delay(true,()=>1),5000);
+  assert.equal(P.delay(false,()=>0),4000);
+  assert.equal(P.delay(false,()=>1),7000);
   const s=P.freshSession(()=>0);
-  assert.equal(P.advance(s,3000),false);
+  assert.equal(P.advance(s,2000),false);
   assert.equal(P.advance(s,1000),true);
   s.shownThisSession=['pet'];s.remaining=18000;s.navigatedSinceShow=false;
   assert.equal(P.advance(s,18000),true);
@@ -34,13 +34,12 @@ test("reading, hidden tabs, forms, dialogs and serious files pause advertisement
   ]) {
     const s = P.freshSession(() => 0);
     assert.equal(P.advance(s, 100000, options), false);
-    assert.equal(s.remaining, 4000);
+    assert.equal(s.remaining, 3000);
   }
   const s = P.freshSession(() => 0);
   assert.equal(P.advance(s, 2000, { forum: true }), false);
-  assert.equal(s.remaining, 4000);
+  assert.equal(s.remaining, 3000);
   for (const route of [
-    "chat",
     "void",
     "floor-plan",
     "maintenance",
@@ -66,10 +65,10 @@ test('old seven-ad histories resume fairly; recent closes, active cards and save
   s.shownThisSession=['pet'];s.blockedUntil={};s.lastShownById={};s.lastAdId='';
   assert.equal(P.chooseCampaign(s,data,{now:1000,rng}).id,'cinema');
 });
-test("all seven ads have complete bilingual local content and no case clues or external contact mechanisms", () => {
+test("all seventeen ads have complete bilingual local content and no case clues or external contact mechanisms", () => {
   const ads = globalThis.StillwaterAdData;
-  assert.equal(ads.length, 7);
-  assert.equal(new Set(ads.map((a) => a.id)).size, 7);
+  assert.equal(ads.length, 17);
+  assert.equal(new Set(ads.map((a) => a.id)).size, 17);
   for (const ad of ads) {
     for (const key of ["name", "headline", "copy", "cta", "intro", "note"])
       assert.ok(
@@ -83,4 +82,13 @@ test("all seven ads have complete bilingual local content and no case clues or e
       /R-4829|A-06-17|E-014|TEMP-015|317|Mara|https?:|mailto:|tel:|<iframe/,
     );
   }
+});
+
+test('the original seven saved IDs are retained and old sessions discover ten new campaigns before repeats',()=>{
+ const data=globalThis.StillwaterAdData,original=['pet','cinema','repair','secondhand','print','cats','weather'];
+ assert.deepEqual(data.slice(0,7).map(ad=>ad.id),original);
+ assert.equal(P.eligibleRoutes.has('chat'),true);
+ const s=P.freshSession(()=>0);s.shownThisSession=[...original];
+ const found=[];for(let i=0;i<10;i++){const next=P.chooseCampaign(s,data,{rng:()=>0});found.push(next.id);s.shownThisSession.push(next.id);}
+ assert.deepEqual(found,data.slice(7).map(ad=>ad.id));
 });

@@ -1,0 +1,1015 @@
+{
+  "records": [
+    {
+      "entry": "index-zh.html",
+      "id": "pet",
+      "layout": "prize",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 79,
+        "y": 577.828125,
+        "width": 288,
+        "height": 314.171875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "cinema",
+      "layout": "poster",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 115,
+        "y": 578.265625,
+        "width": 252,
+        "height": 313.734375
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "repair",
+      "layout": "utility",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 49,
+        "y": 572.671875,
+        "width": 318,
+        "height": 319.328125
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "secondhand",
+      "layout": "market",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 11,
+        "y": 550,
+        "width": 356,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "print",
+      "layout": "coupon",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 95,
+        "y": 550,
+        "width": 272,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "cats",
+      "layout": "message",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 59,
+        "y": 556.609375,
+        "width": 308,
+        "height": 335.390625
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "weather",
+      "layout": "widget",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 31,
+        "y": 562.015625,
+        "width": 336,
+        "height": 329.984375
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "arcade",
+      "layout": "arcade",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 91,
+        "y": 550,
+        "width": 276,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "travel",
+      "layout": "travel",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 43,
+        "y": 550.671875,
+        "width": 324,
+        "height": 341.328125
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "broadband",
+      "layout": "broadband",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 71,
+        "y": 560.9375,
+        "width": 296,
+        "height": 331.0625
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "snacks",
+      "layout": "snacks",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 113,
+        "y": 555.015625,
+        "width": 254,
+        "height": 336.984375
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "teahouse",
+      "layout": "teahouse",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 87,
+        "y": 614.203125,
+        "width": 280,
+        "height": 277.796875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "vinyl",
+      "layout": "vinyl",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 115,
+        "y": 555.515625,
+        "width": 252,
+        "height": 336.484375
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "fortune",
+      "layout": "fortune",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 131,
+        "y": 550,
+        "width": 236,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "ringtone",
+      "layout": "ringtone",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 67,
+        "y": 557.234375,
+        "width": 300,
+        "height": 334.765625
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "courses",
+      "layout": "courses",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 61,
+        "y": 550,
+        "width": 306,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "sleep",
+      "layout": "sleep",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 37,
+        "y": 561.828125,
+        "width": 330,
+        "height": 330.171875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "pet",
+      "layout": "prize",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1138,
+        "y": 498.328125,
+        "width": 288,
+        "height": 387.671875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "cinema",
+      "layout": "poster",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1174,
+        "y": 479.484375,
+        "width": 252,
+        "height": 406.515625
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "repair",
+      "layout": "utility",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1108,
+        "y": 519.171875,
+        "width": 318,
+        "height": 366.828125
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "secondhand",
+      "layout": "market",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1070,
+        "y": 472.125,
+        "width": 356,
+        "height": 413.875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "print",
+      "layout": "coupon",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1154,
+        "y": 478.515625,
+        "width": 272,
+        "height": 407.484375
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "cats",
+      "layout": "message",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1118,
+        "y": 477.109375,
+        "width": 308,
+        "height": 408.890625
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "weather",
+      "layout": "widget",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1090,
+        "y": 482.515625,
+        "width": 336,
+        "height": 403.484375
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "arcade",
+      "layout": "arcade",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1150,
+        "y": 491.984375,
+        "width": 276,
+        "height": 394.015625
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "travel",
+      "layout": "travel",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1102,
+        "y": 471.171875,
+        "width": 324,
+        "height": 414.828125
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "broadband",
+      "layout": "broadband",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1130,
+        "y": 533.4375,
+        "width": 296,
+        "height": 352.5625
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "snacks",
+      "layout": "snacks",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1172,
+        "y": 498.71875,
+        "width": 254,
+        "height": 387.28125
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "teahouse",
+      "layout": "teahouse",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1146,
+        "y": 515.703125,
+        "width": 280,
+        "height": 370.296875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "vinyl",
+      "layout": "vinyl",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1174,
+        "y": 498.015625,
+        "width": 252,
+        "height": 387.984375
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "fortune",
+      "layout": "fortune",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1190,
+        "y": 491.84375,
+        "width": 236,
+        "height": 394.15625
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "ringtone",
+      "layout": "ringtone",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1126,
+        "y": 499.734375,
+        "width": 300,
+        "height": 386.265625
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "courses",
+      "layout": "courses",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1120,
+        "y": 521.484375,
+        "width": 306,
+        "height": 364.515625
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "id": "sleep",
+      "layout": "sleep",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1096,
+        "y": 471.328125,
+        "width": 330,
+        "height": 414.671875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "pet",
+      "layout": "prize",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 79,
+        "y": 550,
+        "width": 288,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "cinema",
+      "layout": "poster",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 115,
+        "y": 550,
+        "width": 252,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "repair",
+      "layout": "utility",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 49,
+        "y": 550,
+        "width": 318,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "secondhand",
+      "layout": "market",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 11,
+        "y": 550,
+        "width": 356,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "print",
+      "layout": "coupon",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 95,
+        "y": 550,
+        "width": 272,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "cats",
+      "layout": "message",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 59,
+        "y": 550,
+        "width": 308,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "weather",
+      "layout": "widget",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 31,
+        "y": 565.3125,
+        "width": 336,
+        "height": 326.6875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "arcade",
+      "layout": "arcade",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 91,
+        "y": 550,
+        "width": 276,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "travel",
+      "layout": "travel",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 43,
+        "y": 552.171875,
+        "width": 324,
+        "height": 339.828125
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "broadband",
+      "layout": "broadband",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 71,
+        "y": 550,
+        "width": 296,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "snacks",
+      "layout": "snacks",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 113,
+        "y": 550,
+        "width": 254,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "teahouse",
+      "layout": "teahouse",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 87,
+        "y": 608.859375,
+        "width": 280,
+        "height": 283.140625
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "vinyl",
+      "layout": "vinyl",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 115,
+        "y": 550,
+        "width": 252,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "fortune",
+      "layout": "fortune",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 131,
+        "y": 550,
+        "width": 236,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "ringtone",
+      "layout": "ringtone",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 67,
+        "y": 564.28125,
+        "width": 300,
+        "height": 327.71875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "courses",
+      "layout": "courses",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 61,
+        "y": 550,
+        "width": 306,
+        "height": 342
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "sleep",
+      "layout": "sleep",
+      "slot": "bottom-right",
+      "width": 375,
+      "box": {
+        "x": 37,
+        "y": 565.578125,
+        "width": 330,
+        "height": 326.421875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "pet",
+      "layout": "prize",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1138,
+        "y": 469.828125,
+        "width": 288,
+        "height": 416.171875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "cinema",
+      "layout": "poster",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1174,
+        "y": 466.5,
+        "width": 252,
+        "height": 419.5
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "repair",
+      "layout": "utility",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1108,
+        "y": 475.796875,
+        "width": 318,
+        "height": 410.203125
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "secondhand",
+      "layout": "market",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1070,
+        "y": 443.046875,
+        "width": 356,
+        "height": 442.953125
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "print",
+      "layout": "coupon",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1154,
+        "y": 469.890625,
+        "width": 272,
+        "height": 416.109375
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "cats",
+      "layout": "message",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1118,
+        "y": 456.21875,
+        "width": 308,
+        "height": 429.78125
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "weather",
+      "layout": "widget",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1090,
+        "y": 458.8125,
+        "width": 336,
+        "height": 427.1875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "arcade",
+      "layout": "arcade",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1150,
+        "y": 495.875,
+        "width": 276,
+        "height": 390.125
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "travel",
+      "layout": "travel",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1102,
+        "y": 472.671875,
+        "width": 324,
+        "height": 413.328125
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "broadband",
+      "layout": "broadband",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1130,
+        "y": 508.09375,
+        "width": 296,
+        "height": 377.90625
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "snacks",
+      "layout": "snacks",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1172,
+        "y": 485.8125,
+        "width": 254,
+        "height": 400.1875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "teahouse",
+      "layout": "teahouse",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1146,
+        "y": 516.359375,
+        "width": 280,
+        "height": 369.640625
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "vinyl",
+      "layout": "vinyl",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1174,
+        "y": 446.21875,
+        "width": 252,
+        "height": 439.78125
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "fortune",
+      "layout": "fortune",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1190,
+        "y": 478.28125,
+        "width": 236,
+        "height": 407.71875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "ringtone",
+      "layout": "ringtone",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1126,
+        "y": 476.828125,
+        "width": 300,
+        "height": 409.171875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "courses",
+      "layout": "courses",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1120,
+        "y": 488.328125,
+        "width": 306,
+        "height": 397.671875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index.html",
+      "id": "sleep",
+      "layout": "sleep",
+      "slot": "bottom-right",
+      "width": 1440,
+      "box": {
+        "x": 1096,
+        "y": 475.078125,
+        "width": 330,
+        "height": 410.921875
+      },
+      "overflow": false
+    },
+    {
+      "entry": "index-zh.html",
+      "width": 375,
+      "id": "automatic",
+      "windows": [
+        {
+          "id": "cats",
+          "layout": "message",
+          "slot": "bottom-right"
+        }
+      ]
+    },
+    {
+      "entry": "index-zh.html",
+      "width": 1440,
+      "id": "automatic",
+      "windows": [
+        {
+          "id": "pet",
+          "layout": "classic",
+          "slot": "top-left"
+        },
+        {
+          "id": "cats",
+          "layout": "message",
+          "slot": "bottom-right"
+        }
+      ]
+    },
+    {
+      "entry": "index.html",
+      "width": 375,
+      "id": "automatic",
+      "windows": [
+        {
+          "id": "cats",
+          "layout": "message",
+          "slot": "bottom-right"
+        }
+      ]
+    },
+    {
+      "entry": "index.html",
+      "width": 1440,
+      "id": "automatic",
+      "windows": [
+        {
+          "id": "pet",
+          "layout": "classic",
+          "slot": "top-left"
+        },
+        {
+          "id": "cats",
+          "layout": "message",
+          "slot": "bottom-right"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

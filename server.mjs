@@ -19,6 +19,7 @@ export function createServer(
     ".webp": "image/webp",
     ".ico": "image/x-icon",
     ".mp3": "audio/mpeg",
+    ".ogg": "audio/ogg",
   };
   return http.createServer(async (req, res) => {
     try {

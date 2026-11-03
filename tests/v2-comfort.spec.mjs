@@ -27,6 +27,7 @@ test("sound is opt-in, settings are keyboard-accessible and reset preserves the 
   await expect(page.locator("body")).toHaveClass(/reduced-motion/);
   await page.keyboard.press("Escape");
   await expect(page.locator("[data-case-action=settings]")).toBeFocused();
+  expect(requests.some((url) => /youtube|\.(?:mp3|ogg)|scare-/.test(url))).toBe(false);
   await link(page, "careers", "footer");
   await page.locator("[data-case-action=sample]").click();
   await page.reload();
@@ -44,7 +45,7 @@ test("sound is opt-in, settings are keyboard-accessible and reset preserves the 
       () => JSON.parse(localStorage.getItem("stillwater-hotel:v2")).name,
     ),
   ).toBe("Classic visitor");
-  expect(requests.some((url) => /youtube|\.mp3|scare-/.test(url))).toBe(false);
+  expect(requests.some((url) => /youtube|scare-/.test(url))).toBe(false);
 });
 test("one optional, non-obstructing signal and manually refreshed current queue", async ({
   page,
