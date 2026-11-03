@@ -1,0 +1,206 @@
+[
+  {
+    "file": "case-comfort.js",
+    "before": "进度存在当前浏览器里。重新开始会清除本次调查、监控与结局记录，从论坛开始。收藏的广告和显示偏好会保留，声音恢复为关闭。",
+    "after": "进度保存在当前浏览器。重新开始会清除聊天、本次调查、监控和结局记录，从群聊重新开始。收藏的广告和显示偏好保留，声音恢复为关闭。",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-comfort.js",
+    "before": "Starting again clears this investigation, equipment chapters and endings, and returns to the forum. Saved ads and viewing preferences are kept; sound returns to off.",
+    "after": "Starting again clears the chat, investigation, equipment chapters and endings, and returns to the group chat. Saved ads and viewing preferences are kept; sound returns to off.",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-comfort.js",
+    "before": "清除新版的全部进度和结局记录？",
+    "after": "清除聊天记录、本次调查进度和结局，重新开始？",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-comfort.js",
+    "before": "Clear this case and its retained dispositions?",
+    "after": "Clear the chat, investigation and ending history, and start again?",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-comfort.js",
+    "before": "Audio could not be enabled. All records can be reconciled silently.",
+    "after": "Audio could not start. You can complete the game without sound.",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-app.js",
+    "before": "日期顺序有误。请检查每条记录的时间。",
+    "after": "时间顺序不对，请对照每条记录的日期和时间。",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-app.js",
+    "before": "A careful eye for the historical record.",
+    "after": "Part-time reservation records work",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-app.js",
+    "before": "Remote opportunities in archive reconciliation.",
+    "after": "Remote work reviewing tables and scanned records.",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-app.js",
+    "before": "Night Archive Reconciliation Assistant",
+    "after": "Reservation Records Assistant",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-app.js",
+    "before": "Review sources, reconcile timestamps, compare revisions and retain unresolved entries. No CV, account or contact information is needed for the sample.",
+    "after": "Compare old bookings with room records and later changes. The sample needs no account or CV.",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-app.js",
+    "before": "This original is not yet associated with the current review. Identify its source record first.",
+    "after": "This file is not available yet. Open it through the related record.",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-app.js",
+    "before": "Return to the role sample and check its original reference.",
+    "after": "Check the reference on the job sample.",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-app.js",
+    "before": "A source remains unreconciled. A closing decision cannot be submitted yet. Reopen originals from Case Notes.",
+    "after": "Some records are still missing. Reopen the sources in Case Notes before submitting.",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-pages.js",
+    "before": "Read-only access associated with the reconciled night audit.",
+    "after": "The retained record for the employee on duty.",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-pages.js",
+    "before": "The personnel index retains her staff identity. A revision of the same transaction changes the record ownership. Both versions retain the same original booking reference.",
+    "after": "Two copies have the same booking reference, but different entries in the reviewer field.",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-pages.js",
+    "before": "当前待办 / OPEN RECORDS",
+    "after": "Continuity / 当前待办",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-pages.js",
+    "before": "Reading the file does not refresh its queue. Request the current assignment for this record.",
+    "after": "Refresh to see who is handling this record now.",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-pages.js",
+    "before": "这条记录还没有结案，需保留一名经手人。",
+    "after": "记录尚未结案，必须指定处理人。",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-pages.js",
+    "before": "Every unresolved record must have an owner.",
+    "after": "A reviewer must remain assigned until the record is closed.",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-pages.js",
+    "before": "酒店关门后，旧系统没有完全停下。它还在批量修改以前的记录。表格里写着“已完成”，不代表真的有人确认过。",
+    "after": "停业后仅保留历史资料查询。批量处理生成的“已完成”标记未经人工复核。",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "chat-data.js",
+    "before": "Surely sleep and deadlines can coexist.",
+    "after": "Can’t I sleep AND get my homework done?",
+    "scope": "新增聊天草稿复查"
+  },
+  {
+    "file": "chat-data.js",
+    "before": "Sounds like a lifetime subscription to spreadsheets.",
+    "after": "So, spreadsheets forever.",
+    "scope": "新增聊天草稿复查"
+  },
+  {
+    "file": "chat-data.js",
+    "before": "This website has seen things.",
+    "after": "This site is ancient.",
+    "scope": "新增聊天草稿复查"
+  },
+  {
+    "file": "case-pages.js",
+    "before": "The batch-revision process continued to operate on retained data. A file marked completed does not establish renewed operation or verify its underlying events.",
+    "after": "After closure, access is limited to historical records. Completion flags created by batch processing have not been reviewed by staff.",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-pages.js",
+    "before": "原备注没有改动，这条记录仍待核实。",
+    "after": "原备注已保留，记录仍待核实。退出交接：未提交。",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "case-pages.js",
+    "before": "Mara’s original note is restored. No new guest identity is written into the service position. No successor is needed to confirm it on her behalf.",
+    "after": "Mara’s note is retained and the record remains unverified. Exit handover: not submitted.",
+    "scope": "既有界面文案"
+  },
+  {
+    "file": "chat-data.js",
+    "before": "有写 但得先看样本",
+    "after": "说是有 得先看样本",
+    "scope": "新增聊天草稿复查"
+  },
+  {
+    "file": "chat-data.js",
+    "before": "There’s a rate listed. You try a sample first.",
+    "after": "It says it’s paid. You try a sample first.",
+    "scope": "新增聊天草稿复查"
+  },
+  {
+    "file": "chat-data.js",
+    "before": "工资写在岗位里 我也还没试",
+    "after": "具体工资我还没问 先看看他让干什么",
+    "scope": "新增聊天草稿复查"
+  },
+  {
+    "file": "chat-data.js",
+    "before": "The listing mentions pay. Haven’t tried it yet.",
+    "after": "Haven’t asked about the pay. Let’s see what the work is first.",
+    "scope": "新增聊天草稿复查"
+  },
+  {
+    "file": "case-welcome.js",
+    "scope": "既有界面文案",
+    "before": "从一条求职帖子开始，像平时上网一样浏览和调查。",
+    "after": "从朋友的群聊开始，像平时上网一样浏览和调查。"
+  },
+  {
+    "file": "case-welcome.js",
+    "scope": "既有界面文案",
+    "before": "Begin with a job-search thread, then browse and investigate as you would on the web.",
+    "after": "Begin in a group chat with friends, then browse and investigate as you would on the web."
+  },
+  {
+    "file": "case-welcome.js",
+    "scope": "既有界面文案",
+    "before": "电脑用鼠标点击，手机直接点按。链接、留言和档案中的引用都可以继续调查；",
+    "after": "电脑用鼠标点击，手机直接点按。群聊可自由输入，Enter 发送，Shift + Enter 换行；朋友发的论坛卡片可以直接打开。链接、留言和档案中的引用都可以继续调查；"
+  },
+  {
+    "file": "case-welcome.js",
+    "scope": "既有界面文案",
+    "before": "Click on a computer or tap on a phone. Follow links, reviews and document references.",
+    "after": "Click on a computer or tap on a phone. Type freely in chat: Enter sends, Shift + Enter adds a line. Your friend’s forum card opens the post. Follow links, reviews and document references."
+  }
+]

@@ -107,8 +107,7 @@ globalThis.StillwaterAds = (() => {
       quietUntil = 0,
       grace = loadedSession ? 8000 : 0,
       returnFocus = null,
-      flushMs = 0,
-      scrollChanged = false;
+      flushMs = 0;
     const small = matchMedia("(max-width:1199px)");
     const allowed = () =>
       eligibleRoutes.has(getRoute()) && (!getState().evidence.includes("C9") || getState().lastEnding === "released");
@@ -133,40 +132,9 @@ globalThis.StillwaterAds = (() => {
       return `<p class="ad-photo-credit"><span class="ad-photo-title">${esc(p.title)}</span><br>${t("摄影", "Photo")}: ${esc(p.author)} · <a href="${esc(p.source)}" target="_blank" rel="noopener noreferrer">${t("来源", "Source")}</a> · <a href="${esc(p.license_url)}" target="_blank" rel="noopener noreferrer">${esc(p.license)}</a></p>`;
     };
     const capacity = () => small.matches ? 1 : 2;
-    function adjustLayout() {
-      const docks = [...host.querySelectorAll(".ad-dock")];
-      const visible = docks.length > 0;
-      const shell = document.querySelector("#case-shell");
-      if (!shell) return;
-      if (small.matches && visible && !scrollChanged) {
-        const y = window.scrollY;
-        document.body.classList.add("ad-rail");
-        shell.scrollTop = y;
-        window.scrollTo(0, 0);
-        scrollChanged = true;
-      } else if ((!visible || !small.matches) && scrollChanged) {
-        const y = shell.scrollTop;
-        document.body.classList.remove("ad-rail");
-        scrollChanged = false;
-        window.scrollTo(0, y);
-      }
-      document.body.classList.toggle("ad-rail", visible);
-      document.body.classList.toggle("ad-expanded", active.length > 0 && allowed());
-      for (const side of ["left", "right"]) {
-        const widths = docks.filter(dock => dock.dataset.slot.endsWith(side))
-          .map(dock => Math.ceil(dock.getBoundingClientRect().width) + 28);
-        document.body.style.setProperty("--ad-" + side, Math.max(0, ...widths) + "px");
-      }
-      const height = small.matches && docks[0] ? Math.ceil(docks[0].getBoundingClientRect().height) : 0;
-      document.body.style.setProperty("--ad-height", height + "px");
-      document.body.style.setProperty("--ad-top", height && docks[0].dataset.slot.startsWith("top") ? height + "px" : "0px");
-    }
-    const observer = new ResizeObserver(adjustLayout);
     function renderOverlay() {
-      observer.disconnect();
       if (!allowed()) {
         host.replaceChildren();
-        adjustLayout();
         return;
       }
       host.innerHTML = active.map(window => {
@@ -174,8 +142,6 @@ globalThis.StillwaterAds = (() => {
         const effect = ["cinema", "cats"].includes(ad.id) ? "blink" : ["repair", "secondhand"].includes(ad.id) ? "lights" : "none";
         return `<aside class="ad-dock ad-card ad-${ad.kind}" data-slot="${window.slot}" data-folded="${window.folded}" data-popup-effect="${effect}" aria-label="${t("广告", "Advertisement")}: ${esc(t(...ad.name))}" data-active-ad="${ad.id}"><header><span class="ad-window-title"><span aria-hidden="true">▣</span> AD · ${t("本地推荐", "Local picks")}</span><div><button data-ad-action="pin" data-ad-id="${ad.id}" ${pinned ? "disabled" : ""}>${pinned ? t("已留着", "Saved") : t("留着", "Keep")}</button><button data-ad-action="collapse" data-ad-id="${ad.id}" aria-label="${window.folded ? t("展开广告", "Expand advertisement") : t("收起广告", "Minimize advertisement")}">${window.folded ? "□" : "−"}</button><button data-ad-action="close" data-ad-id="${ad.id}" aria-label="${t("关闭广告", "Close advertisement")}">×</button></div></header>${window.folded ? "" : `<div class="ad-card-body"><p class="ad-teaser">✦ ${esc(t(...ad.tag))} ✦</p>${photo(ad.imageId)}<div><h2>${esc(t(...ad.headline))}</h2><p>${esc(t(...ad.copy))}</p><p class="ad-shop-name">${esc(t(...ad.name))}</p><button data-ad-action="detail" data-ad-id="${ad.id}">${esc(t(...ad.cta))} →</button></div></div>`}</aside>`;
       }).join("") || (persistent.pinnedIds.length ? `<aside class="ad-dock ad-saved-tab" data-slot="bottom-right"><button data-ad-action="folder">${t("我留下的广告", "Saved ads")} · ${persistent.pinnedIds.length}</button></aside>` : "");
-      host.querySelectorAll(".ad-dock").forEach(dock => observer.observe(dock));
-      adjustLayout();
     }
     function frame(title, body) {
       return `<header class="ad-dialog-heading"><h2 id="ad-dialog-title">${esc(title)}</h2><button data-ad-action="dialog-close" aria-label="${t("关闭广告详情", "Close ad details")}">×</button></header><div class="ad-dialog-content">${body}</div>`;
@@ -243,8 +209,6 @@ globalThis.StillwaterAds = (() => {
       renderOverlay();
       save();
       lastTick = Date.now();
-      if (changed && scrollChanged)
-        document.querySelector("#case-shell").scrollTop = 0;
     }
     document.addEventListener("click", (event) => {
       const button = event.target.closest("[data-ad-action]");

@@ -57,3 +57,10 @@ body[data-site] .ending-actions :is(a,button) {
   .ending-actions { flex-direction: column; }
   body[data-site] .ending-completion { padding: 28px 16px; }
 }
+/* The rejected closure keeps the ordinary assignment; automatic closure issues a staff card. */
+.ending-staff-card {display:flex;align-items:center;gap:20px;padding:18px;margin:0 0 22px;background:#191919;color:#dfd1c7;border:1px solid #806351;}
+.ending-staff-card img,.ending-staff-placeholder {flex:none;width:128px;height:96px;object-fit:cover;image-rendering:pixelated;filter:sepia(.2) contrast(1.15);border:1px solid #776b5a;}
+.ending-staff-placeholder {display:grid;place-items:center;font:28px/1 Georgia,serif;background:#3a3a32;}
+.ending-staff-card p {margin:3px 0!important;color:inherit!important;font-size:13px;}
+.ending-staff-card strong {font-family:var(--font-terminal);font-size:16px;}
+@media(max-width:520px) {.ending-staff-card {gap:12px;padding:12px;align-items:flex-start;}.ending-staff-card img,.ending-staff-placeholder {width:88px;height:80px;}.ending-staff-card strong {font-size:14px;overflow-wrap:anywhere;}}

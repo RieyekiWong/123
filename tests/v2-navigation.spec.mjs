@@ -246,6 +246,10 @@ test("the built static V2 distribution loads the case with bundled resources", a
   page.on("pageerror", (e) => errors.push(e.message));
   try {
     await page.goto(`http://127.0.0.1:${server.address().port}/index-zh.html`);
+    await expect(page.locator(".chat-app")).toBeVisible();
+    await page.locator("#chat-input").fill("发链接我看看");
+    await page.locator(".chat-composer button[type=submit]").click();
+    await page.locator(".chat-share-card").click();
     await page.locator(".forum-recruit-link").click();
     await expect(page.locator(".job-card")).toBeVisible();
     await page.locator("[data-case-action=sample]").click();

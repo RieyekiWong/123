@@ -105,6 +105,8 @@ test('other outcomes are explicitly complete and starting again still requires c
   await terminal(page,{locked:true});
   await page.locator('[data-ending=auto-close]').click();
   await expect(page.locator('[data-ending-complete=auto-close]')).toContainText('结局已达成');
+  await expect(page.locator('.ending-staff-placeholder')).toHaveCount(1);
+  await expect(page.locator('.ending-staff-card img')).toHaveCount(0);
   await page.locator('main a[href="#terminal"]').click();
   await page.locator('[data-ending=unverified]').click();
   await expect(page.locator('[data-ending-complete=unverified]')).toContainText('结局已达成');

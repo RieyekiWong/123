@@ -4,6 +4,7 @@ export const V2_FILES = [
   "case-data.js", "case-state.js", "case-app.js", "case-pages.js",
   "case-comfort.js", "case-feedback.js", "case-ending.js", "case-ending.css",
   "forum-data.js", "forum.js", "forum-style.css",
+  "chat-data.js", "chat-model.js", "chat-view.js", "chat-style.css",
   "ad-data.js", "ad-system.js", "ad-style.css", "ad-popup.css", "case-style.css",
   "site-media.js", "retro-media.js", "cctv-filter.css", "cctv-scenes.js",
   "case-night-model.js", "case-night.js", "case-audio.js", "case-anomaly.css",

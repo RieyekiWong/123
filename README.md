@@ -1,6 +1,6 @@
-# The Stillwater Hotel — V2.3
+# The Stillwater Hotel — V2.5
 
-A bilingual browser ARG that begins with an ordinary forum post: someone wants help checking a part-time job. A modern careers page leads to a hotel website and its retained 2006 records, night-audit records and two evidence-based dispositions. V2.3 preserves Night Owl BBS, the seven fictional shops and the original case, then adds a mirrored hotel, spatial camera relay, operable circuit graph and a third disposition.
+A bilingual browser ARG that begins in a local group chat with friends. GGbond shares a forum post about a part-time job, which opens the existing Night Owl BBS thread. A modern careers page leads to a hotel website and its retained 2006 records, night-audit records and two evidence-based dispositions. V2.3 preserves Night Owl BBS, the seven fictional shops and the original case, then adds a mirrored hotel, spatial camera relay, operable circuit graph and a third disposition.
 
 **Play:** [简体中文](https://rieyekiwong.github.io/123/index-zh.html) · [English](https://rieyekiwong.github.io/123/index.html)
 
@@ -21,11 +21,11 @@ Open `http://localhost:3000/index-zh.html`. Node.js 20 or newer is required for 
 
 The forum and careers page have their own footers; hotel operations appear on the hotel site. The public hotel now uses an early-2010s cream-and-bronze layout and a ten-photo album. Fifteen existing photographs were sourced from Wikimedia Commons and bundled locally, with no newly generated logos or images. See [photo sources and licenses](assets/WEB-PHOTOS.md).
 
-New visitors start at Night Owl BBS. Follow the job preview, then review the sample to reach the reservation search. Existing V2 saves continue from a usable record; **Back to the forum** revisits the opening. Explicit hash links and language switches keep their destination.
+New visitors begin at `#chat` after the content/settings preface. The 54-message opening offers roughly five minutes of everyday conversation, free text and local replies. Asking for the link can bring the share forward; it opens `#forum?topic=job` immediately. Follow the job preview, then review the sample to reach the reservation search. Existing V2 saves continue from a usable record; **Back to the forum** revisits the opening. Explicit hash links and language switches keep their destination.
 
-Local adverts appear as early-web popup windows in random screen corners, with bevelled borders, blue title bars and selected blinking labels or border lights. They can be closed, kept, minimized, restored or opened from **My ad folder**. Up to two occupy opposite desktop edges; phones and tablets show one with reserved page space. Popups pause during forms and never appear in the investigation’s serious records. Advertising stops after Mara’s note and during the altered chapters; saved adverts are preserved and return after the true ending. The shops have complete bilingual local pages, existing licensed photographs and no external tracking, media, orders or data collection. They are scenery, not puzzle clues.
+Local adverts appear as early-web popup windows in random screen corners, with bevelled borders, blue title bars and selected blinking labels or border lights. They can be closed, kept, minimized, restored or opened from **My ad folder**. Up to two occupy opposite desktop edges; phones and tablets show one. Windows cover the page directly without resizing it or taking over scrolling. Popups pause during forms and never appear in the investigation’s serious records. Advertising stops after Mara’s note and during the altered chapters; saved adverts are preserved and return after the true ending. The shops have complete bilingual local pages, existing licensed photographs and no external tracking, media, orders or data collection. They are scenery, not puzzle clues.
 
-Saved adverts use `stillwater-ads:v1`; sessionStorage holds per-tab cooldown and display history. Restarting the main case preserves the folder. Remove saved adverts individually in the folder.
+Saved adverts use `stillwater-ads:v1`; sessionStorage holds per-tab cooldown and display history. Chat uses a separate `stillwater-chat:v1` record for messages, drafts and reading position. Refreshing or switching languages preserves it; a confirmed game restart clears the chat and current case together. Restarting the main case preserves the ad folder. Remove saved adverts individually in the folder.
 
 ## Saves and settings
 
@@ -91,3 +91,9 @@ All three outcomes now have completion cards. Saving or restoring a missing fram
 ### V2.4.4 · Millennium popup advertisements
 
 The fixed forum banner and the proposed manual carousel are replaced by randomly appearing ad windows. Initial cooldown is 12–24 seconds, followed by 18–36 seconds of eligible quiet browsing; the forum also has an eight-second opening grace. Seven different campaigns can appear in a tab without requiring navigation. Previously saved shops and session history are retained. Text blinking and border lights stop with Reduce Motion, and all popup activity still stops after Mara's note and during the altered chapters.
+
+### V2.5 · Friends, the forum and the night shift
+
+The new messenger opening joins the existing case without replacing its clues, equipment or endings. Its local response bank distinguishes everyday topics, job questions, link requests and unknown story terms, and never writes messages as the player. No chat account or online AI service is connected. Existing case saves and explicit deep links retain their destinations; the forum footer provides Back to chat. Automatic closure now issues Rieyeki’s staff card, while the true ending still locks the originals, ends the assignment and shows GAME OVER.
+
+[Implementation and verification](docs/V2_5-DELIVERY.zh-CN.md) · [Copy review](docs/V2_5-COPY.zh-CN.md) · [Screenshots](docs/v2.5/visual-results.json).

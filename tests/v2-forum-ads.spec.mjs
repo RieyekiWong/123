@@ -10,13 +10,13 @@ async function timed(page, entry = "#careers") {
   await page.addInitScript(() => (Math.random = () => 0));
   await page.clock.install({ time: new Date("2026-11-02T15:20:00Z") });
   await page.clock.pauseAt(new Date("2026-11-02T15:20:01Z"));
-  await page.goto("/index-zh.html" + entry);
+  await page.goto("/index-zh.html" + (entry || "#forum"));
 }
 for (const entry of ["index-zh.html", "index.html"])
-  test(`${entry}: new reader starts in a normal forum without answers, then reaches the sample`, async ({
+  test(`${entry}: explicit forum entry opens the existing thread without answers, then reaches the sample`, async ({
     page,
   }) => {
-    await page.goto("/" + entry);
+    await page.goto("/" + entry + "#forum");
     await expect(page).toHaveURL(/#forum$/);
     await expect(page.locator(".bbs-post")).toBeVisible();
     await expect(page.locator(".bbs-reply")).toHaveCount(5);
@@ -65,7 +65,7 @@ test("valid deep links, language switches and pre-existing schema 2 saves skip t
 test("ordinary threads and all forum sections lead to real local content", async ({
   page,
 }) => {
-  await page.goto("/index-zh.html");
+  await page.goto("/index-zh.html#forum");
   for (const topic of ["cv", "printer", "save-page", "dinner", "excuses"]) {
     await page.locator(`.bbs-sidebar a[href="#forum?topic=${topic}"]`).click();
     await expect(page.locator(".bbs-post-text")).not.toBeEmpty();
@@ -209,6 +209,7 @@ test("keep, fold, reload, reopen, remove and Escape work; main reset leaves the 
   await page.locator("[data-comfort=reset-confirm]").click();
   await page.locator("[data-welcome=enter]").click();
   expect((await savedAds(page)).pinnedIds).toEqual(["pet"]);
+  await page.goto("/index-zh.html#forum");
   await page.locator("footer [data-ad-action=folder]").click();
   await page.locator("#ad-dialog [data-ad-action=reopen]").first().click();
   await expect(page.locator("[data-active-ad=pet]")).toBeVisible();
@@ -224,7 +225,7 @@ test("all seven internal shops have content and no remote navigation, media or c
   page.on("request", (r) => {
     if (!r.url().startsWith("http://127.0.0.1:3110/")) external.push(r.url());
   });
-  await page.goto("/index-zh.html");
+  await page.goto("/index-zh.html#forum");
   await page.locator("footer [data-ad-action=folder]").click();
   await page.locator(".ad-directory > summary").click();
   for (const id of [
@@ -272,7 +273,7 @@ test("the investigation stays free of active ads and all advertising stops after
   ).toHaveCount(0);
 });
 for (const width of [375, 768, 1440])
-  test(`forum and floating card fit ${width}px with reserved content space and reduced motion`, async ({
+  test(`forum and floating card fit ${width}px as overlapping windows with reduced motion`, async ({
     page,
   }) => {
     await page.setViewportSize({ width, height: 900 });
@@ -298,10 +299,8 @@ for (const width of [375, 768, 1440])
         adLeft:popup.left,adRight:popup.right,adTop:popup.top,adBottom:popup.bottom,height:popup.height,w:document.documentElement.scrollWidth};
     });
     expect(rects.w).toBe(width);
-    if(width<1200) {
-      expect(rects.bottom<=rects.adTop+1||rects.top>=rects.adBottom-1).toBe(true);
-      expect(rects.height).toBeLessThanOrEqual(900*.28+1);
-    } else expect(rects.right<=rects.adLeft+1||rects.left>=rects.adRight-1).toBe(true);
+    expect(rects.left<rects.adRight&&rects.right>rects.adLeft&&rects.top<rects.adBottom&&rects.bottom>rects.adTop).toBe(true);
+    if(width<1200)expect(rects.height).toBeLessThanOrEqual(900*.28+1);
   });
 test("blocked local and session storage leave forum, shops and the main case usable", async ({
   page,

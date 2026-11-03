@@ -104,7 +104,7 @@ test("new-edition reset is visible from the forum, needs confirmation and preser
   ).toBe(true);
   await page.locator("[data-comfort=reset-prompt]").click();
   await page.locator("[data-comfort=reset-confirm]").click();
-  await expect(page).toHaveURL(/#forum$/);
+  await expect(page).toHaveURL(/#chat$/);
   await expect(page.locator("body")).toHaveAttribute("data-anomaly", "normal");
   const saved = await page.evaluate(() => ({
     case: JSON.parse(localStorage.getItem("stillwater-case:v2")),
@@ -120,7 +120,7 @@ test("new-edition reset is visible from the forum, needs confirmation and preser
   expect(saved.intro.entered).toBe(false);
   expect(saved.transition).toBeNull();
   await page.reload();
-  await expect(page).toHaveURL(/#forum$/);
+  await expect(page).toHaveURL(/#chat$/);
 });
 for (const entry of ["index-zh.html", "index.html"])
   test(`${entry}: clear physical wiring labels, integrated landmarks and footer audio`, async ({

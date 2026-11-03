@@ -9,6 +9,11 @@ export async function toAudit(page, entry = "index-zh.html") {
   await page.goto("/" + entry);
   if (await page.locator("#case-welcome[open]").count())
     await page.locator("[data-welcome=enter]").click();
+  if (await page.locator(".chat-app").count()) {
+    await page.locator("#chat-input").fill(entry.includes("zh") ? "发链接我看看" : "Send me the link");
+    await page.locator(".chat-composer button[type=submit]").click();
+    await page.locator(".chat-share-card").click();
+  }
   await page.locator(".forum-recruit-link").click();
   const reference = await page.locator(".job-card .reference").innerText();
   await page.locator("[data-case-action=sample]").click();
@@ -113,13 +118,14 @@ export async function validateFindings(page) {
   await expect(page.locator(".verification-receipt")).toBeVisible();
 }
 
-export async function toNight(page) {
+export async function toNight(page, visit = async () => {}) {
   await expect(page.locator("[data-ending]")).toHaveCount(0);
   await page.locator("[data-case-action=sync-records]").click();
   await expect(page.locator("body")).toHaveAttribute("data-anomaly", "altered");
   await link(page, "rooms");
   await link(page, "guestbook");
   await link(page, "cameras");
+  await visit("cameras");
   await page.locator('[data-night-action=link][data-link="0"]').click();
   await expect(page.locator("#night-feedback")).not.toBeEmpty();
   for (const [cam, pan] of [
@@ -147,14 +153,17 @@ export async function toNight(page) {
     "terminal",
   );
   await expect(page).toHaveURL(/#service-passage$/);
+  await visit("corridor");
   await page.locator(".space-actions [data-target=plate]").click();
   await page.locator("[data-night-action=walk][data-position=west]").click();
   await page.locator(".space-actions [data-target=cart]").click();
   await page.locator(".space-actions [data-target=cabinet]").click();
+  await visit("cabinet");
   await page.locator(".space-actions [data-target=power]").click();
   await page.locator("[data-night-action=walk][data-position=service]").click();
   await page.locator(".space-actions [data-target=enter]").click();
   await expect(page).toHaveURL(/#terminal$/);
+  await visit("terminal");
   await page.locator("[data-night-action=frame]").click();
   await page.locator('[data-night-action=rotate][data-node="0"]').click();
 }

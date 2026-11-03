@@ -5,7 +5,7 @@ for (const entry of ["index-zh.html", "index.html"])
   }) => {
     const errors = [];
     page.on("pageerror", (e) => errors.push(e.message));
-    await page.goto("/" + entry);
+    await page.goto("/" + entry + "#forum");
     for (const site of ["forum", "careers"]) {
       if (site === "careers") await page.locator(".forum-recruit-link").click();
       await expect(
@@ -38,7 +38,7 @@ test("all seven advertisements use local existing photographs, with source credi
   await page.addInitScript(()=>{Math.random=()=>0;});
   await page.clock.install({time:new Date('2026-11-03T12:00:00Z')});
   await page.clock.pauseAt(new Date('2026-11-03T12:00:01Z'));
-  await page.goto("/index-zh.html");
+  await page.goto("/index-zh.html#forum");
   await page.clock.runFor(21000);
   await expect(page.locator("[data-active-ad=pet] img")).toBeVisible();
   await expect
@@ -92,7 +92,7 @@ test("hotel album has ten photographs and a reachable credit for each new source
   await expect(page.locator(".credit-list")).toContainText("Basile Morin");
 });
 for (const width of [320, 375, 768, 1440])
-  test(`hotel pages and photographed ads fit ${width}px without covering page content`, async ({
+  test(`hotel pages retain their layout while photographed ads overlay the page at ${width}px`, async ({
     page,
   }) => {
     await page.setViewportSize({ width, height: 900 });
@@ -111,6 +111,7 @@ for (const width of [320, 375, 768, 1440])
       await expect(page.locator(".hotel-brand-subtitle")).toBeVisible();
     }
     await page.goto("/index-zh.html#hotel");
+    const original=await page.locator('#case-shell').boundingBox();
     // Install the clock before navigation so every interval is controlled.
     await page.clock.runFor(45300);
     await expect(page.locator("[data-active-ad]")).toHaveCount(width<1200?1:2);
@@ -124,11 +125,10 @@ for (const width of [320, 375, 768, 1440])
         })};
     });
     expect(layout.overflow).toBe(false);
+    expect(await page.locator('#case-shell').boundingBox()).toEqual(original);
     for(const r of layout.ads) {
       const s=layout.shell;
-      if(width<1200) {
-        expect(s.bottom<=r.top+1||s.top>=r.bottom-1).toBe(true);
-        expect(r.height).toBeLessThanOrEqual(900*.28+1);
-      } else expect(s.right<=r.left+1||s.left>=r.right-1).toBe(true);
+      expect(s.left<r.right&&s.right>r.left&&s.top<r.bottom&&s.bottom>r.top).toBe(true);
+      if(width<1200)expect(r.height).toBeLessThanOrEqual(900*.28+1);
     }
   });

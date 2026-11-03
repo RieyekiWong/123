@@ -1,9 +1,4 @@
-/* Early-web advertising windows. Reserved edges keep the page itself usable. */
-:root { --ad-left: 0px; --ad-right: 0px; --ad-top: 0px; }
-body.ad-rail, body.ad-rail.ad-expanded {
-  padding-left: var(--ad-left);
-  padding-right: var(--ad-right);
-}
+/* Early-web windows float over the page without reserving layout space. */
 #ad-host .ad-dock {
   inset: auto;
   width: 264px;
@@ -115,11 +110,6 @@ body.reduced-motion #ad-host :is(.ad-card,.ad-teaser) { animation: none !importa
   #ad-host :is(.ad-card,.ad-teaser) { animation: none !important; }
 }
 @media(max-width:1199px) {
-  body.ad-rail, body.ad-rail.ad-expanded { padding: 0; }
-  body.ad-rail #case-shell {
-    margin-top: var(--ad-top);
-    height: calc(100dvh - var(--ad-height));
-  }
   #ad-host .ad-dock {
     left: 0;
     right: 0;

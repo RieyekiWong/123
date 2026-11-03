@@ -27,7 +27,7 @@ for (const entry of ["index-zh.html", "index.html"]) {
     expect(await page.evaluate(() => window.openedAudio)).toBe(0);
     await page.locator("[data-welcome=enter]").click();
     await expect(page.locator("#case-welcome")).toHaveCount(0);
-    await expect(page.locator(".bbs-post")).toBeVisible();
+    await expect(page.locator(".chat-app")).toBeVisible();
     expect(
       await page.evaluate(
         () =>
@@ -116,6 +116,7 @@ test("blocked storage still lets the player read and enter", async ({
   await page.goto("/index-zh.html");
   await expect(page.locator("#case-welcome")).toBeVisible();
   await page.locator("[data-welcome=enter]").click();
+  await page.goto("/index-zh.html#forum");
   await page.locator(".forum-recruit-link").click();
   await expect(page.locator(".job-card")).toBeVisible();
   expect(errors).toEqual([]);

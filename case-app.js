@@ -58,6 +58,7 @@
     getRoute: currentRoute,
   });
   const forum = window.StillwaterForum({ t, esc, getState: () => state });
+  const chat = window.StillwaterChat.create({ t, esc, getRoute: currentRoute });
   const PROLOGUE = "stillwater-prologue:v1";
   let prologue = { schema: 1, entered: false, lastRoute: "" };
   try {
@@ -72,7 +73,7 @@
   } catch {}
   function rememberRoute(route) {
     if (!Object.hasOwn(M.routes, route)) return;
-    if (route !== "forum") prologue.entered = true;
+    if (!["forum", "chat"].includes(route)) prologue.entered = true;
     prologue.lastRoute = location.hash.slice(1) || route;
     try {
       localStorage.setItem(PROLOGUE, JSON.stringify(prologue));
@@ -87,9 +88,13 @@
         : state.lastEnding
           ? "ending"
           : M.recovery(state)
-      : prologue.entered
-        ? "careers"
-        : "forum";
+      : savedRoute && M.canOpen(state, savedRoute)
+        ? prologue.lastRoute
+        : prologue.entered
+          ? "careers"
+          : existingSave
+            ? "forum"
+            : "chat";
     history.replaceState(
       null,
       "",
@@ -135,20 +140,21 @@
       pendingEscape = false;
       finalScenePending = false;
       welcome?.forget();
+      chat.reset();
       nightEvents.clear();
       nightAudio.stop();
       const preferences = { ...state.preferences, sound: false };
       state = M.fresh();
       state.preferences = preferences;
       save();
-      prologue = { schema: 1, entered: false, lastRoute: "forum" };
+      prologue = { schema: 1, entered: false, lastRoute: "chat" };
       try {
         localStorage.setItem(PROLOGUE, JSON.stringify(prologue));
       } catch {}
       history.replaceState(
         null,
         "",
-        location.pathname + location.search + "#forum",
+        location.pathname + location.search + "#chat",
       );
       render(true);
       welcome?.open({ mandatory: true });
@@ -164,7 +170,7 @@
   const errors = {
     sample: [
       "缺少样本编号。可返回招聘页查看。",
-      "Return to the role sample and check its original reference.",
+      "Check the reference on the job sample.",
     ],
     reservation: [
       "未找到预订，请检查编号。",
@@ -204,7 +210,7 @@
       "The source records are not yet associated with this booking. Check its maintenance docket.",
     ],
     "audit-order": [
-      "日期顺序有误。请检查每条记录的时间。",
+      "时间顺序不对，请对照每条记录的日期和时间。",
       "The source timestamps do not match this sequence. Check each original timestamp.",
     ],
     "audit-assessment": [
@@ -233,7 +239,7 @@
     ],
     "evidence-incomplete": [
       "资料不全，暂时无法提交。",
-      "A source remains unreconciled. A closing decision cannot be submitted yet. Reopen originals from Case Notes.",
+      "Some records are still missing. Reopen the sources in Case Notes before submitting.",
     ],
     "evidence-occupancy": [
       "没有记录能确认住客实际入住。",
@@ -300,7 +306,7 @@
           t("目前没有可申请的岗位。", "No roles are currently available."),
         ) + views.reference("forum", t("返回论坛", "Back to the forum"))
       );
-    return `<section class="career-heading"><p class="kicker">STILLWATER HERITAGE RECORDS</p><h1>${t("旧预订资料整理兼职", "A careful eye for the historical record.")}</h1><p>${t("远程工作，需能使用电脑查看表格和扫描件。", "Remote opportunities in archive reconciliation.")}</p></section><form id="job-search" class="job-search"><label for="job-keyword">${t("搜索岗位", "Search roles")}</label><div><input id="job-keyword" name="keyword" type="search" placeholder="${t("职位名称或工作内容", "Role or area of work")}"><select name="work" aria-label="${t("工作方式", "Work arrangement")}"><option value="remote">${t("远程", "Remote")}</option><option value="onsite">${t("现场", "On site")}</option></select><button type="submit">${t("搜索", "Search")}</button></div></form><p id="job-result" role="status"></p><article class="job-card" id="archive-job"><p class="kicker">${t("合同制 · 远程", "CONTRACT · REMOTE")}</p><h2>${t("预订档案整理员", "Night Archive Reconciliation Assistant")}</h2><p>${t("帮一家湖畔旅馆整理以前的预订单。", "Help a lakeside hotel sort its older reservation records.")}</p><p>${t("申请前可先做一份工作样本，无需注册。", "Start with a short record-matching sample.")}</p><p>${t("样本档案", "Sample case")}: <span class="reference">${F.reservation}</span></p><button class="primary" data-case-action="sample">${t("查看工作样本", "Review sample record")} →</button><details><summary>${t("工作内容", "Role details & company information")}</summary><p>${t("对照旧预订单、客房记录和修改记录，看看有没有对不上的地方。这份样本不用注册，也不用上传简历。", "Review sources, reconcile timestamps, compare revisions and retain unresolved entries. No CV, account or contact information is needed for the sample.")}</p><p>Stillwater Heritage Records · ${F.recruitment}</p></details></article>`;
+    return `<section class="career-heading"><p class="kicker">STILLWATER HERITAGE RECORDS</p><h1>${t("旧预订资料整理兼职", "Part-time reservation records work")}</h1><p>${t("远程工作，需能使用电脑查看表格和扫描件。", "Remote work reviewing tables and scanned records.")}</p></section><form id="job-search" class="job-search"><label for="job-keyword">${t("搜索岗位", "Search roles")}</label><div><input id="job-keyword" name="keyword" type="search" placeholder="${t("职位名称或工作内容", "Role or area of work")}"><select name="work" aria-label="${t("工作方式", "Work arrangement")}"><option value="remote">${t("远程", "Remote")}</option><option value="onsite">${t("现场", "On site")}</option></select><button type="submit">${t("搜索", "Search")}</button></div></form><p id="job-result" role="status"></p><article class="job-card" id="archive-job"><p class="kicker">${t("合同制 · 远程", "CONTRACT · REMOTE")}</p><h2>${t("预订档案整理员", "Reservation Records Assistant")}</h2><p>${t("帮一家湖畔旅馆整理以前的预订单。", "Help a lakeside hotel sort its older reservation records.")}</p><p>${t("申请前可先做一份工作样本，无需注册。", "Start with a short record-matching sample.")}</p><p>${t("样本档案", "Sample case")}: <span class="reference">${F.reservation}</span></p><button class="primary" data-case-action="sample">${t("查看工作样本", "Review sample record")} →</button><details><summary>${t("工作内容", "Role details & company information")}</summary><p>${t("对照旧预订单、客房记录和修改记录，看看有没有对不上的地方。这份样本不用注册，也不用上传简历。", "Compare old bookings with room records and later changes. The sample needs no account or CV.")}</p><p>Stillwater Heritage Records · ${F.recruitment}</p></details></article>`;
   }
   function guarded(route) {
     const recovery = M.recovery(state, route);
@@ -310,13 +316,13 @@
         t("文件暂时打不开", "Record not currently available"),
         t(
           "暂时没有这份文件的访问权限。请从相关资料打开。",
-          "This original is not yet associated with the current review. Identify its source record first.",
+          "This file is not available yet. Open it through the related record.",
         ),
       ) + views.reference(recovery, t("查看相关文件", "Open the source record"))
     );
   }
   function currentRoute() {
-    return location.hash.slice(1).split("?")[0] || "forum";
+    return location.hash.slice(1).split("?")[0] || "chat";
   }
   function siteFooter(site) {
     const warning = storageFailed
@@ -325,7 +331,7 @@
     const credits = `<button class="footer-settings" data-ad-action="credits">${t("图片鸣谢", "Photo acknowledgements")}</button>`;
     const folder = `<button class="footer-settings" data-ad-action="folder">${t("我的广告夹", "My ad folder")}</button>`;
     if (site === "forum")
-      return `<footer class="forum-footer"><p class="footer-site-name">NIGHT OWL BBS · ${t("夜猫论坛", "Night Owl BBS")}</p><div class="footer-links">${a("forum", t("论坛首页", "Forum home"))} · ${a("forum?section=work", t("工作信息", "Work notices"))} · ${a("forum?section=web", t("老网站", "Old websites"))} · ${folder} · ${credits}</div><p>${t("虚构社区，帖子与商家均为作品内容，不接受真实交易。", "A fictional community. Posts and shops are part of the work; no real transactions are accepted.")}</p>${warning}</footer>`;
+      return `<footer class="forum-footer"><p class="footer-site-name">NIGHT OWL BBS · ${t("夜猫论坛", "Night Owl BBS")}</p><div class="footer-links">${a("chat", t("回到聊天", "Back to chat"))} · ${a("forum", t("论坛首页", "Forum home"))} · ${a("forum?section=work", t("工作信息", "Work notices"))} · ${a("forum?section=web", t("老网站", "Old websites"))} · ${folder} · ${credits}</div><p>${t("虚构社区，帖子与商家均为作品内容，不接受真实交易。", "A fictional community. Posts and shops are part of the work; no real transactions are accepted.")}</p>${warning}</footer>`;
     if (site === "careers")
       return `<footer class="careers-footer"><p class="footer-site-name">STILLWATER HERITAGE RECORDS</p><div class="footer-links">${a("careers", t("招聘信息", "Opportunities"))} · ${a("forum", t("回论坛看看", "Back to the forum"))} · ${folder} · ${credits}</div><p>${t("虚构职位展示，不接收真实简历、申请或付款。", "A fictional job listing. No real CVs, applications or payments are accepted.")}</p>${warning}</footer>`;
     return `<footer><p>${t("虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。", "A fictional interactive work. The hotel, role and records are part of the story. No real applications or payments are accepted.")}</p>${storageFailed ? `<p role="status">${t("浏览器无法保存进度，当前标签页仍可继续操作。", "Storage is unavailable; the current tab remains playable.")}</p>` : ""}${a("forum", t("回论坛看看", "Back to the forum"))} · ${a("careers", t("返回招聘页", "Careers"))} · ${a("guestbook", t("住客留言", "Guestbook"))} · ${a("history", t("旅馆历史", "History"))} · ${a("gallery", t("旅馆相册", "Photo gallery"))} · ${a("notices", t("公告栏", "Notices"))} · ${a("staff", t("员工档案", "Staff archive"))} · ${a("notes", t("工作笔记", "Case Notes"))} · <button class="footer-settings" data-case-action="toggle-sound" aria-pressed="${state.preferences.sound}">${state.preferences.sound ? t("声音：开启", "Sound: On") : t("声音：关闭", "Sound: Off")}</button> · <button class="footer-settings" data-case-action="settings">${t("声音与设置", "Sound & settings")}</button> · <button class="footer-settings" data-ad-action="folder">${t("我的广告夹", "My ad folder")}</button> · ${a("credits", t("图片来源", "Image credits"))}</footer>`;
@@ -366,8 +372,10 @@
       "service-passage",
     ].includes(route);
     const site =
-      route === "forum"
-        ? "forum"
+      route === "chat"
+        ? "chat"
+        : route === "forum"
+          ? "forum"
         : route === "careers"
           ? "careers"
           : staff
@@ -376,7 +384,9 @@
     rememberRoute(route);
     document.body.dataset.site = site;
     document.body.dataset.anomaly =
-      state.lastEnding === "released"
+      route === "chat"
+        ? "normal"
+        : state.lastEnding === "released"
         ? "resolved"
         : state.night.door
           ? "terminal"
@@ -390,6 +400,13 @@
       state.preferences.reduceMotion ||
         matchMedia("(prefers-reduced-motion: reduce)").matches,
     );
+    if (route === "chat") {
+      document.title = t("这周一定早睡（4） · 聊天", "Early nights, starting this week (4) · Chat");
+      chat.mount(document.querySelector("#case-shell"), { focus: moveFocus });
+      ads.navigate();
+      return;
+    }
+    chat.leave();
     if (route === "rooms" && !state.notices.shown) {
       state.notices.shown = true;
       save();

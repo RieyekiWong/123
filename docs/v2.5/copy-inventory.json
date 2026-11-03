@@ -1,0 +1,4817 @@
+[
+  {
+    "file": "case-data.js",
+    "line": 32,
+    "text": "样本预订编号"
+  },
+  {
+    "file": "case-data.js",
+    "line": 39,
+    "text": "原预订单与登记房号"
+  },
+  {
+    "file": "case-data.js",
+    "line": 46,
+    "text": "三楼客房目录"
+  },
+  {
+    "file": "case-data.js",
+    "line": 53,
+    "text": "钥匙套上的房号"
+  },
+  {
+    "file": "case-data.js",
+    "line": 60,
+    "text": "服务区域的登记用途"
+  },
+  {
+    "file": "case-data.js",
+    "line": 67,
+    "text": "夜审移交处理人"
+  },
+  {
+    "file": "case-data.js",
+    "line": 74,
+    "text": "原稿与修订的差异"
+  },
+  {
+    "file": "case-data.js",
+    "line": 81,
+    "text": "停止营业的日期"
+  },
+  {
+    "file": "case-data.js",
+    "line": 88,
+    "text": "Mara 留存的原备注"
+  },
+  {
+    "file": "case-data.js",
+    "line": 96,
+    "text": "钥匙留言"
+  },
+  {
+    "file": "case-data.js",
+    "line": 98,
+    "text": " 留言：前台说是 "
+  },
+  {
+    "file": "case-data.js",
+    "line": 98,
+    "text": "，钥匙套却写着 "
+  },
+  {
+    "file": "case-data.js",
+    "line": 106,
+    "text": "客房部记录"
+  },
+  {
+    "file": "case-data.js",
+    "line": 108,
+    "text": "查房："
+  },
+  {
+    "file": "case-data.js",
+    "line": 108,
+    "text": " 空置，床品未使用。这里只记了这间房的情况。"
+  },
+  {
+    "file": "case-data.js",
+    "line": 116,
+    "text": "系统移交"
+  },
+  {
+    "file": "case-data.js",
+    "line": 118,
+    "text": " 将 "
+  },
+  {
+    "file": "case-data.js",
+    "line": 118,
+    "text": " 转到 "
+  },
+  {
+    "file": "case-data.js",
+    "line": 118,
+    "text": "（服务暂存区），交给 "
+  },
+  {
+    "file": "case-data.js",
+    "line": 118,
+    "text": " 处理。"
+  },
+  {
+    "file": "case-data.js",
+    "line": 126,
+    "text": "夜审备注"
+  },
+  {
+    "file": "case-data.js",
+    "line": 128,
+    "text": " 备注："
+  },
+  {
+    "file": "case-data.js",
+    "line": 128,
+    "text": " 是否住过人，目前查不清，保留待核实。"
+  },
+  {
+    "file": "case-data.js",
+    "line": 142,
+    "text": "处理人及人员类别"
+  },
+  {
+    "file": "case-data.js",
+    "line": 144,
+    "text": "（员工，处理人）"
+  },
+  {
+    "file": "case-data.js",
+    "line": 148,
+    "text": "SYSTEM（处理人） / "
+  },
+  {
+    "file": "case-data.js",
+    "line": 148,
+    "text": "（住客）"
+  },
+  {
+    "file": "case-data.js",
+    "line": 155,
+    "text": "区域用途"
+  },
+  {
+    "file": "case-data.js",
+    "line": 157,
+    "text": " / 服务暂存区"
+  },
+  {
+    "file": "case-data.js",
+    "line": 160,
+    "text": " / 客房"
+  },
+  {
+    "file": "case-data.js",
+    "line": 165,
+    "text": "核实状态"
+  },
+  {
+    "file": "case-data.js",
+    "line": 166,
+    "text": "UNVERIFIED / 待核实"
+  },
+  {
+    "file": "case-data.js",
+    "line": 167,
+    "text": "VERIFIED / CLOSED / 已完成"
+  },
+  {
+    "file": "case-data.js",
+    "line": 172,
+    "text": "原预订编号"
+  },
+  {
+    "file": "case-data.js",
+    "line": 179,
+    "text": "原登记房号"
+  },
+  {
+    "file": "case-data.js",
+    "line": 191,
+    "text": "登记卡写明："
+  },
+  {
+    "file": "case-data.js",
+    "line": 191,
+    "text": " 是服务暂存区，不是客房。"
+  },
+  {
+    "file": "case-data.js",
+    "line": 200,
+    "text": " 负责处理这条夜审记录。"
+  },
+  {
+    "file": "case-data.js",
+    "line": 209,
+    "text": "2007 年的修改把“待核实”改成了“已完成”。"
+  },
+  {
+    "file": "case-data.js",
+    "line": 218,
+    "text": "有钥匙套，就能确定 "
+  },
+  {
+    "file": "case-data.js",
+    "line": 218,
+    "text": " 住进了 "
+  },
+  {
+    "file": "case-data.js",
+    "line": 227,
+    "text": "2026 年还在招人，所以酒店仍在接待住客。"
+  },
+  {
+    "file": "case-data.js",
+    "line": 236,
+    "text": " 允许下一任替她直接结案。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 126,
+    "text": "声音：开启"
+  },
+  {
+    "file": "case-app.js",
+    "line": 127,
+    "text": "声音：关闭"
+  },
+  {
+    "file": "case-app.js",
+    "line": 172,
+    "text": "缺少样本编号。可返回招聘页查看。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 176,
+    "text": "未找到预订，请检查编号。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 179,
+    "text": "还没找到对应的预订单。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 181,
+    "text": "房号与预订单不符。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 185,
+    "text": "尚未确认预订单上的房号。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 189,
+    "text": "尚未打开对应的住客留言。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 193,
+    "text": "尚未打开服务区域登记卡。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 197,
+    "text": "所选用途与登记卡不符。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 201,
+    "text": "服务区域用途尚未确认。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 205,
+    "text": "未找到维修单，请检查公告编号。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 209,
+    "text": "尚未查到对应的维修单。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 213,
+    "text": "时间顺序不对，请对照每条记录的日期和时间。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 217,
+    "text": "现有记录不能支持这一判断。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 221,
+    "text": "当晚记录尚未核对。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 225,
+    "text": "选中了未修改的项目。请对照两栏内容。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 229,
+    "text": "有修改项尚未选中。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 233,
+    "text": "修改记录尚未核对。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 237,
+    "text": "请从停业通知的附件打开这份草稿。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 241,
+    "text": "资料不全，暂时无法提交。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 245,
+    "text": "没有记录能确认住客实际入住。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 249,
+    "text": "该说法与停业通知不符。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 253,
+    "text": "该说法与 Mara 的原备注不符。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 257,
+    "text": "请选择三项有原始记录支持的说法。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 261,
+    "text": "操作未完成，已保存的资料不受影响。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 305,
+    "text": "该岗位已撤下"
+  },
+  {
+    "file": "case-app.js",
+    "line": 306,
+    "text": "目前没有可申请的岗位。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 307,
+    "text": "返回论坛"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "旧预订资料整理兼职"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "远程工作，需能使用电脑查看表格和扫描件。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "搜索岗位"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "职位名称或工作内容"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "工作方式"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "远程"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "现场"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "搜索"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "合同制 · 远程"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "预订档案整理员"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "帮一家湖畔旅馆整理以前的预订单。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "申请前可先做一份工作样本，无需注册。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "样本档案"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "查看工作样本"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "工作内容"
+  },
+  {
+    "file": "case-app.js",
+    "line": 309,
+    "text": "对照旧预订单、客房记录和修改记录，看看有没有对不上的地方。这份样本不用注册，也不用上传简历。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 316,
+    "text": "文件暂时打不开"
+  },
+  {
+    "file": "case-app.js",
+    "line": 318,
+    "text": "暂时没有这份文件的访问权限。请从相关资料打开。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 321,
+    "text": "查看相关文件"
+  },
+  {
+    "file": "case-app.js",
+    "line": 329,
+    "text": "浏览器无法保存进度，当前标签页仍可继续操作。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 331,
+    "text": "图片鸣谢"
+  },
+  {
+    "file": "case-app.js",
+    "line": 332,
+    "text": "我的广告夹"
+  },
+  {
+    "file": "case-app.js",
+    "line": 334,
+    "text": "夜猫论坛"
+  },
+  {
+    "file": "case-app.js",
+    "line": 334,
+    "text": "回到聊天"
+  },
+  {
+    "file": "case-app.js",
+    "line": 334,
+    "text": "论坛首页"
+  },
+  {
+    "file": "case-app.js",
+    "line": 334,
+    "text": "工作信息"
+  },
+  {
+    "file": "case-app.js",
+    "line": 334,
+    "text": "老网站"
+  },
+  {
+    "file": "case-app.js",
+    "line": 334,
+    "text": "虚构社区，帖子与商家均为作品内容，不接受真实交易。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 336,
+    "text": "招聘信息"
+  },
+  {
+    "file": "case-app.js",
+    "line": 336,
+    "text": "回论坛看看"
+  },
+  {
+    "file": "case-app.js",
+    "line": 336,
+    "text": "虚构职位展示，不接收真实简历、申请或付款。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 337,
+    "text": "虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 337,
+    "text": "浏览器无法保存进度，当前标签页仍可继续操作。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 337,
+    "text": "回论坛看看"
+  },
+  {
+    "file": "case-app.js",
+    "line": 337,
+    "text": "返回招聘页"
+  },
+  {
+    "file": "case-app.js",
+    "line": 337,
+    "text": "住客留言"
+  },
+  {
+    "file": "case-app.js",
+    "line": 337,
+    "text": "旅馆历史"
+  },
+  {
+    "file": "case-app.js",
+    "line": 337,
+    "text": "旅馆相册"
+  },
+  {
+    "file": "case-app.js",
+    "line": 337,
+    "text": "公告栏"
+  },
+  {
+    "file": "case-app.js",
+    "line": 337,
+    "text": "员工档案"
+  },
+  {
+    "file": "case-app.js",
+    "line": 337,
+    "text": "工作笔记"
+  },
+  {
+    "file": "case-app.js",
+    "line": 337,
+    "text": "声音：开启"
+  },
+  {
+    "file": "case-app.js",
+    "line": 337,
+    "text": "声音：关闭"
+  },
+  {
+    "file": "case-app.js",
+    "line": 337,
+    "text": "声音与设置"
+  },
+  {
+    "file": "case-app.js",
+    "line": 337,
+    "text": "我的广告夹"
+  },
+  {
+    "file": "case-app.js",
+    "line": 337,
+    "text": "图片来源"
+  },
+  {
+    "file": "case-app.js",
+    "line": 404,
+    "text": "这周一定早睡（4） · 聊天"
+  },
+  {
+    "file": "case-app.js",
+    "line": 436,
+    "text": "旧档案目录"
+  },
+  {
+    "file": "case-app.js",
+    "line": 438,
+    "text": "这里只列出本次已打开的文件。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 441,
+    "text": "工作笔记"
+  },
+  {
+    "file": "case-app.js",
+    "line": 474,
+    "text": "夜猫论坛 · 工作信息"
+  },
+  {
+    "file": "case-app.js",
+    "line": 489,
+    "text": "夜班审计员"
+  },
+  {
+    "file": "case-app.js",
+    "line": 493,
+    "text": "夜猫论坛<span class=\"bbs-subtitle\">NIGHT OWL BBS</span>"
+  },
+  {
+    "file": "case-app.js",
+    "line": 493,
+    "text": "游玩说明"
+  },
+  {
+    "file": "case-app.js",
+    "line": 493,
+    "text": "存档与重置"
+  },
+  {
+    "file": "case-app.js",
+    "line": 493,
+    "text": "简体中文"
+  },
+  {
+    "file": "case-app.js",
+    "line": 496,
+    "text": "论坛分区"
+  },
+  {
+    "file": "case-app.js",
+    "line": 499,
+    "text": "闲聊"
+  },
+  {
+    "file": "case-app.js",
+    "line": 500,
+    "text": "工作信息"
+  },
+  {
+    "file": "case-app.js",
+    "line": 501,
+    "text": "老网站"
+  },
+  {
+    "file": "case-app.js",
+    "line": 502,
+    "text": "求助"
+  },
+  {
+    "file": "case-app.js",
+    "line": 509,
+    "text": "招聘信息"
+  },
+  {
+    "file": "case-app.js",
+    "line": 513,
+    "text": "酒店目录"
+  },
+  {
+    "file": "case-app.js",
+    "line": 514,
+    "text": "工作笔记"
+  },
+  {
+    "file": "case-app.js",
+    "line": 515,
+    "text": "员工档案"
+  },
+  {
+    "file": "case-app.js",
+    "line": 518,
+    "text": "首页"
+  },
+  {
+    "file": "case-app.js",
+    "line": 519,
+    "text": "客房"
+  },
+  {
+    "file": "case-app.js",
+    "line": 520,
+    "text": "预订查询"
+  },
+  {
+    "file": "case-app.js",
+    "line": 521,
+    "text": "联系前台"
+  },
+  {
+    "file": "case-app.js",
+    "line": 562,
+    "text": "客房目录已更新 · 查看当前页面"
+  },
+  {
+    "file": "case-app.js",
+    "line": 618,
+    "text": "先把推车挪开，柜门才能打开。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 622,
+    "text": "供电拉杆在维修柜里。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 626,
+    "text": "门锁没通电。沿线路回西侧维修柜看看。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 632,
+    "text": "两路画面的地标对不上。已确认的连接还在。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 641,
+    "text": "未保存：录像线路还没接通。A 的左侧输入必须连到 F 的右侧出口。当前接线已保留。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 646,
+    "text": "未保存：自动回写电源仍然连接。请把 AUTO-WRITE 切到“已隔离”。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 651,
+    "text": "未保存：当前为自动模式。切换到 MANUAL 后才能保存检修配置。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 655,
+    "text": "锁定前请先保存配置，并恢复监控最后一帧。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 761,
+    "text": "排列已保存。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 827,
+    "text": "找到 1 个岗位。"
+  },
+  {
+    "file": "case-app.js",
+    "line": 829,
+    "text": "没有匹配岗位，请调整筛选。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 19,
+    "text": "前台说是 {booked}，但钥匙套上印着 {service}。是印错了吗？"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 32,
+    "text": "历史通行公告"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 32,
+    "text": "关闭通行公告"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 32,
+    "text": "三楼西侧通道维修中"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 32,
+    "text": "维修期间请走东侧楼梯。旧房卡如有问题，请找前台核对。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 32,
+    "text": "查看完整公告"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 35,
+    "text": "酒店大堂与木质楼梯"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 35,
+    "text": "来静水镇住一晚吧。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 35,
+    "text": "预订查询"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 35,
+    "text": "前台通知：早餐 7:00–9:00；晚到住客请先在前台领取房卡。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 35,
+    "text": "我们有双人房、双床房和长住套间。房里有独立浴室，前台晚上也有人。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 35,
+    "text": "浏览客房与设施"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 35,
+    "text": "住在这里"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 35,
+    "text": "查看旅馆相册"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 41,
+    "text": "预订查询"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 43,
+    "text": "输入预订编号，查看以前的订房记录。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 47,
+    "text": "预订编号"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 47,
+    "text": "查看预订"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 47,
+    "text": "不知道编号？工作样本上有。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 47,
+    "text": "岗位样本"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 51,
+    "text": "旧预订单"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 51,
+    "text": "预订编号"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 51,
+    "text": "住客姓名缩写"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 51,
+    "text": "登记房号"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 51,
+    "text": "登记时间"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 51,
+    "text": "状态"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 51,
+    "text": "待处理"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 51,
+    "text": "这里是原来的订房资料，实际入住情况还要看前台记录。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 51,
+    "text": "查看客房目录"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 57,
+    "text": "客房与设施"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 59,
+    "text": "双人房、双床房与长住套间，均提供独立卫浴与每日客房清洁。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 66,
+    "text": "标准双人房"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 67,
+    "text": "24 平方米 · 双人床 · 书桌"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 71,
+    "text": "庭院双床房"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 73,
+    "text": "28 平方米 · 两张床 · 茶饮设施"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 79,
+    "text": "长住套间"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 81,
+    "text": "38 平方米 · 休息区 · 独立入口"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "查看历史房间目录"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "查看同日住客留言"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "三楼房间列表"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "以下是三楼开放预订的房间。个别位置不对外开放。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "官方房号"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "预订单上写的房号"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "选择房号"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "核对房号"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "查看同日住客留言"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "查询旧预订单"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "入住服务"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "早餐在一层餐厅供应，时间为 7:00–9:00。可向前台申请额外床品。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "前台服务卡"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "以前的通行通知可在公告栏查看。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "公告栏"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 92,
+    "text": "更多客房与环境照片"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 99,
+    "text": "住客留言"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 100,
+    "text": "看看住客们的入住感受。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 102,
+    "text": "早餐挺不错。我们到得很晚，前台还在，挺方便的。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 102,
+    "text": "已正常入住。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 102,
+    "text": "查看历史留言副本"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 102,
+    "text": "前台附注：维修通道监控已恢复"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 102,
+    "text": "看前台回复"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 102,
+    "text": "收到。预订单上的房号没变，钥匙套的情况还在查。麻烦看一下当天的楼层图。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 102,
+    "text": "三楼平面图"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 102,
+    "text": "查找旧留言时，请用预订单上的房号。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 102,
+    "text": "按预订检索"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 102,
+    "text": "双床房还可以。早上坐在院子里很舒服。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 110,
+    "text": "三楼平面图"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 112,
+    "text": "三楼房间和走廊位置图。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 116,
+    "text": "三楼平面图"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 116,
+    "text": "主走廊 · 通往前台楼梯"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 122,
+    "text": "检查 316 与 318 之间的灰色服务区域"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 122,
+    "text": "服务区域"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 122,
+    "text": "维修通行"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 123,
+    "text": "客房"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 127,
+    "text": "区域登记卡"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 127,
+    "text": "内部标识"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 127,
+    "text": "登记用途"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 127,
+    "text": "服务暂存区"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 127,
+    "text": "公告编号"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 127,
+    "text": "用于暂存待处理的服务记录，不作客房使用。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 127,
+    "text": "登记卡上的位置属于哪一类？"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 128,
+    "text": "住客已入住的客房"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 131,
+    "text": "非客房 / 服务暂存区"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 136,
+    "text": "只是门牌印错，不用再查"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 147,
+    "text": "保存选择"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 147,
+    "text": "查询对应维修单"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 156,
+    "text": "公告栏"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 158,
+    "text": "前台历年公告。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 162,
+    "text": "三楼西侧通道正在维修，部分区域暂时不能进入。旧门牌与前台资料可能不同，请以登记卡为准。如发现房号不一致，交给当班人员处理。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 162,
+    "text": "详情见同号维修单。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 162,
+    "text": "查询维修单"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 162,
+    "text": "查看相关登记资料"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 162,
+    "text": "重新打开公告窗"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 169,
+    "text": "维修档案查询"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 171,
+    "text": "输入公告上的编号。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 175,
+    "text": "公告或维修单编号"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 175,
+    "text": "打开维修单"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 175,
+    "text": "夜审移交"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 175,
+    "text": "时间"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 175,
+    "text": "预订编号"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 175,
+    "text": "区域用途"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 175,
+    "text": "处理人"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 175,
+    "text": "夜审将待处理的预订单交给当班人员继续核查。入住情况一栏为空。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 175,
+    "text": "附件：客房部巡查记录"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 175,
+    "text": "酒店走廊及服务区域标注示意"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 175,
+    "text": "登记区域"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 175,
+    "text": "查看当晚记录"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 182,
+    "text": "旅馆沿革"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 184,
+    "text": "湖边的一家家庭旅馆，保留木质楼梯和老式家具。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 188,
+    "text": "1987 年开业，后来增设庭院和东翼客房。档案中保留了历次房型与通行安排。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 188,
+    "text": "后来补入的通知"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 188,
+    "text": "前台留存公告"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 195,
+    "text": "前台服务"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 197,
+    "text": "前台全天有人。需要客房用品，请到柜台询问。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 201,
+    "text": "前台"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 201,
+    "text": "全天值班"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 201,
+    "text": "早餐"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 201,
+    "text": "客房用品"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 201,
+    "text": "可提供额外毛毯与毛巾"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 201,
+    "text": "晚到请先到前台。额外的毛毯、毛巾也请在这里领取。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 201,
+    "text": "查询旧预订单"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 201,
+    "text": "住客留言"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 208,
+    "text": "工作笔记"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 210,
+    "text": "这次工作中看过的文件。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 216,
+    "text": "已保存的处理结果"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 234,
+    "text": "来源"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 234,
+    "text": "重新打开"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 237,
+    "text": "还没看过文件。招聘页上有一份工作样本。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 237,
+    "text": "查看岗位样本"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 246,
+    "text": "核对当晚记录"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 248,
+    "text": "用“上移”和“下移”按日期、时间从早到晚排列，再选择下面的核对结果。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 255,
+    "text": "上移"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 255,
+    "text": "上移"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 255,
+    "text": "下移"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 255,
+    "text": "下移"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 255,
+    "text": "原始来源"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 259,
+    "text": "这些记录能确定住客住进了 {service} 吗？"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 260,
+    "text": "能确定"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 263,
+    "text": "目前还不能确定"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 268,
+    "text": "能确定住客住在另一间房"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 279,
+    "text": "提交核对结果"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 279,
+    "text": "打开当班员工档案"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 286,
+    "text": "人员档案"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 288,
+    "text": "当班人员登记资料。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "原岗位"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "夜班审计员"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "职责"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "核对房态、钥匙发放与预订记录。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "经手记录"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "移交时间"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "同一预订编号下有两份文件，处理人一栏不一样。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "比较原稿与修订副本"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "Continuity / 当前待办"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "刷新后显示当前经手人。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "刷新待办"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "预订编号"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "当前处理人"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "生成批次"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "状态"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 292,
+    "text": "记录尚未结案，必须指定处理人。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 300,
+    "text": "记录修改对照"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 302,
+    "text": "左边是原稿，右边是修改稿。逐行对照，只勾选内容不一样的行。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 306,
+    "text": "修订对照表"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 306,
+    "text": "有修改"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 306,
+    "text": "字段"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 306,
+    "text": "原预订单的住客是 {guest}。两份表里的人员栏请分别核对。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 306,
+    "text": "保存对比"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 306,
+    "text": "对比已保存。这里还附了一张同一天的通知。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 306,
+    "text": "查看所附通知"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 306,
+    "text": "查询当前队列"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 306,
+    "text": "员工资料和当前待办"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 313,
+    "text": "停业通知"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 315,
+    "text": "后附通知，日期以通知原件为准。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 319,
+    "text": "静水旅馆自 {date} 起停止接待住客，不再安排新的入住或夜间宾客服务。原始预订资料保留供后续核对。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 319,
+    "text": "停业后仅保留历史资料查询。批量处理生成的“已完成”标记未经人工复核。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 319,
+    "text": "附件：Mara 的备注草稿"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 326,
+    "text": "Mara 没发出去的备注"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 327,
+    "text": "这份草稿没有发送。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 329,
+    "text": "这里不是客房。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 329,
+    "text": "我查过预订、钥匙和客房部那边的记录。现在没办法确定客人到底去了哪里。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 329,
+    "text": "系统一直让我选“已完成”。我没选。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 329,
+    "text": "处理人这一栏是我，住客那一栏不是。别把两栏混在一起。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 329,
+    "text": "这条记录先放着吧。真的查清楚之前，不要替我签字。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 329,
+    "text": "核对本次调查资料"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 337,
+    "text": "资料核对"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 339,
+    "text": "请选择三项有原始记录支持的说法，核对后同步资料。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 344,
+    "text": "已确认的三条记录"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 349,
+    "text": "本次工作编号"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 349,
+    "text": "两份房间目录不一致。当前页面不是最新版本。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 349,
+    "text": "同步资料，返回酒店查看"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 349,
+    "text": "返回修改"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 350,
+    "text": "选择记录"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 350,
+    "text": "核对这三条"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 362,
+    "text": "当前员工证"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 362,
+    "text": "系统留存的员工照片"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 362,
+    "text": "岗位：夜班审计员 · 长期排班"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 368,
+    "text": "已提交。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 369,
+    "text": "修改已保存。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 371,
+    "text": "记录状态"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 371,
+    "text": "当前员工编号"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 371,
+    "text": "永久夜班员工"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 371,
+    "text": "临时工作已结束"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 371,
+    "text": "下一班"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 371,
+    "text": "无后续班次"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 371,
+    "text": "岗位：夜班审计员。临时用工期限已取消。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 371,
+    "text": "原备注已保留，记录仍待核实。退出交接：未提交。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 371,
+    "text": "待核实，不得替我自动结案。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 377,
+    "text": "照片登记标注"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 377,
+    "text": "两版使用同一张走廊照片，但登记用途不同。可切换查看。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 377,
+    "text": "选择版本"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 377,
+    "text": "同一走廊照片，叠加两版位置标注"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 383,
+    "text": "旅馆相册"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 385,
+    "text": "看看客房、庭院和公共区域。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 396,
+    "text": "大堂"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 397,
+    "text": "标准双人房"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 398,
+    "text": "庭院双床房"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 399,
+    "text": "长住套间"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 407,
+    "text": "查看客房与设施"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 407,
+    "text": "前台服务"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 414,
+    "text": "图片来源"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 416,
+    "text": "以下现成照片用于虚构酒店与商家展示，实拍场所、人物和摄影师不参与或代言剧情。原图保留，显示副本已降低分辨率并增加 JPEG 压缩；档案中的服务区文字是另加的示意标注。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 420,
+    "text": "新版惊吓场景为虚构人物的生成插图，包含走廊人影、柜中爬出的身影、玻璃后的面孔和天花板上的倒悬身影，并非真实人物或事件照片。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 420,
+    "text": "素材记录"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 420,
+    "text": "保留素材的来源"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 420,
+    "text": "民俗面具摄影"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 420,
+    "text": "原图与低清副本继续保留，并沿用原许可。"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 420,
+    "text": "原始来源"
+  },
+  {
+    "file": "case-pages.js",
+    "line": 420,
+    "text": "监控空间由本地程序绘制，使用 320 × 240 画布；门牌、时间和机位由场景与网页分别显示。酒店页面借鉴 2010 年代官网布局，未复制真实品牌标识。"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 18,
+    "text": "声音：开启"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 19,
+    "text": "声音：关闭"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 75,
+    "text": "浏览器没能开启声音，静音也能继续。"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 87,
+    "text": "声音与浏览设置"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 87,
+    "text": "关闭设置"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 87,
+    "text": "声音默认关闭。第二阶段开启声音后，先听到机器运转声；进入深处后会自动加入呼吸声，关闭声音即可停止。鬼脸和突脸默认开启，可勾选下方的“跳过监控突脸与短暂故障”关闭。"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 87,
+    "text": "音量"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 87,
+    "text": "减少动态效果"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 87,
+    "text": "正在遵循设备的减少动态设置。"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 87,
+    "text": "跳过监控突脸与短暂故障"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 87,
+    "text": "存档与重新开始"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 87,
+    "text": "进度保存在当前浏览器。重新开始会清除聊天、本次调查、监控和结局记录，从群聊重新开始。收藏的广告和显示偏好保留，声音恢复为关闭。"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 87,
+    "text": "重新开始游戏"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 87,
+    "text": "清除聊天记录、本次调查进度和结局，重新开始？"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 87,
+    "text": "确认重新开始"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 87,
+    "text": "取消，保留进度"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 87,
+    "text": "样本不需要姓名、邮箱、电话、简历或支付信息。"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 165,
+    "text": "连接中断，正在读取备份。"
+  },
+  {
+    "file": "case-comfort.js",
+    "line": 173,
+    "text": "已恢复备份，原始时间未变。"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 31,
+    "text": "编号要和招聘页的样本一致，包括前面的字母。"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 35,
+    "text": "看预订单的“登记房号”一栏。"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 39,
+    "text": "区域登记卡的“登记用途”一栏写明了用途。"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 43,
+    "text": "完整公告和位置登记卡上都有维修单编号。"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 47,
+    "text": "按每张卡的完整日期和时间，从早到晚排列。"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 51,
+    "text": "客房部只查了这间房，记录没有说明客人的去向。"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 55,
+    "text": "每一行左右各读一次；内容相同的不用勾。"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 59,
+    "text": "检查人员栏、位置栏和状态栏，别漏看换行的内容。"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 63,
+    "text": "区分“钥匙上写了什么”和“人实际去了哪里”。"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 67,
+    "text": "把通知日期和招聘日期放在一起看。"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 71,
+    "text": "草稿的最后一句说了能不能代签。"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 75,
+    "text": "已打开的原始文件中应有对应依据。"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 97,
+    "text": "看一下相关文件的编号、日期和备注。"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 103,
+    "text": "查找帮助"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 106,
+    "text": "回到相关文件"
+  },
+  {
+    "file": "case-feedback.js",
+    "line": 114,
+    "text": "相关资料："
+  },
+  {
+    "file": "case-ending.js",
+    "line": 5,
+    "text": "夜班留任"
+  },
+  {
+    "file": "case-ending.js",
+    "line": 6,
+    "text": "拒绝结案"
+  },
+  {
+    "file": "case-ending.js",
+    "line": 7,
+    "text": "保留原件并离开"
+  },
+  {
+    "file": "case-ending.js",
+    "line": 12,
+    "text": "正在退出值班系统…"
+  },
+  {
+    "file": "case-ending.js",
+    "line": 12,
+    "text": "结局已达成"
+  },
+  {
+    "file": "case-ending.js",
+    "line": 12,
+    "text": "真结局 · "
+  },
+  {
+    "file": "case-ending.js",
+    "line": 12,
+    "text": "你已退出值班系统，原始资料已锁定。本次故事到此结束。"
+  },
+  {
+    "file": "case-ending.js",
+    "line": 12,
+    "text": "本次选择已生效，下面是最终处理记录。"
+  },
+  {
+    "file": "case-ending.js",
+    "line": 12,
+    "text": "进度已保存在当前浏览器，可以关闭网页。"
+  },
+  {
+    "file": "case-ending.js",
+    "line": 12,
+    "text": "浏览器无法保存记录。本次故事已结束，可以关闭网页。"
+  },
+  {
+    "file": "case-ending.js",
+    "line": 12,
+    "text": "回看调查记录"
+  },
+  {
+    "file": "case-ending.js",
+    "line": 12,
+    "text": "重新开始"
+  },
+  {
+    "file": "case-ending.js",
+    "line": 12,
+    "text": "返回终端，尝试其他处理方式"
+  },
+  {
+    "file": "case-ending.js",
+    "line": 12,
+    "text": "回看调查记录"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 7,
+    "text": "有人做过网上整理旧资料的兼职吗？"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 16,
+    "text": "最近在找能在电脑上做的兼职，看到一家招人整理旧酒店的资料。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 20,
+    "text": "说是核对以前的预订单。招聘页还挺新，酒店那个页面就老多了，不知道多久没更新过。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 24,
+    "text": "我还没弄明白那个工作样本是干什么的。有人愿意帮忙看看吗？"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 30,
+    "text": "冰箱里有可乐"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 32,
+    "text": "整理旧资料听着还行。至少不用天天开会。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 37,
+    "text": "周五不加班"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 39,
+    "text": "我点开看了，好像先做一份样本就行。还不用填简历。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 44,
+    "text": "散装芝麻"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 46,
+    "text": "这个页面也太老了，我还以为点进了我小学的电脑课作业。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 53,
+    "text": "我卡在样本那儿了，还没试明白。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 58,
+    "text": "路过的三明治"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 60,
+    "text": "像是校对吧。我上班摸鱼只能看两眼，楼主试完说说。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 70,
+    "text": "为什么公司都要我把简历填三遍"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 73,
+    "text": "周五不加班"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 79,
+    "text": "上传了 PDF，填了一遍网页，面试前又发来一张表。我现在可以闭着眼睛背自己的实习经历了。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 85,
+    "text": "冰箱里有可乐"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 87,
+    "text": "第四遍可以考虑印在衣服上。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 92,
+    "text": "路过的三明治"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 94,
+    "text": "我上次还被要求把网页上的内容再贴回邮件里。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 104,
+    "text": "求推荐一个不会突然坏掉的二手打印机"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 107,
+    "text": "折角纸"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 113,
+    "text": "要求不高。能把字印在纸上，别把纸留在里面。现在这台一看见要交的东西就卡纸。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 119,
+    "text": "散装芝麻"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 121,
+    "text": "我家的没有坏，只是每次都需要劝一会儿。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 126,
+    "text": "慢半拍"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 128,
+    "text": "买之前记得问墨盒还能不能买到。真的。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 138,
+    "text": "有人知道老网站怎么保存整页吗"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 141,
+    "text": "饼干碎"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 147,
+    "text": "想留住一个常看的菜谱页面，光存书签不放心。有没有不需要注册的办法？"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 153,
+    "text": "折角纸"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 155,
+    "text": "浏览器的保存页面可以试试，图片记得一起放着。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 160,
+    "text": "饼干碎"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 161,
+    "text": "试了，能看。谢谢！"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 169,
+    "text": "今天的晚饭就吃这个了（附图）"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 172,
+    "text": "冰箱里有可乐"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 178,
+    "text": "煎蛋盖饭。照片里看不到的那面有一点焦，但我选择不翻过来。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 184,
+    "text": "周五不加班"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 186,
+    "text": "加点酱油，看起来就很专业。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 197,
+    "text": "来投票：上班迟到最好的借口是什么"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 200,
+    "text": "慢半拍"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 206,
+    "text": "我今天说地铁坐过站了。其实是出门下楼才发现电脑没拿，又回去了一趟。你们还有什么招？"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 212,
+    "text": "路过的三明治"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 213,
+    "text": "公交车到了，但我没到。"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 216,
+    "text": "折角纸"
+  },
+  {
+    "file": "forum-data.js",
+    "line": 217,
+    "text": "我说电梯坏了。老板问我不是住二楼吗。"
+  },
+  {
+    "file": "forum.js",
+    "line": 16,
+    "text": " 楼"
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "夜猫论坛"
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "工作信息"
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "老网站"
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "闲聊与求助"
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "网友发帖"
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "次浏览"
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "楼主补画的煎蛋盖饭"
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "图片：楼主的手绘补图。饭已经吃完了。"
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "贴一下入口："
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "预订档案整理员 / 远程 / 合同制"
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "查看招聘页面"
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "帖子回复"
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "回复"
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "楼主更新"
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "更新：没搜到这家公司别的消息。你们有谁做完样本了？"
+  },
+  {
+    "file": "forum.js",
+    "line": 19,
+    "text": "今日热门"
+  },
+  {
+    "file": "forum.js",
+    "line": 27,
+    "text": "查看全部话题"
+  },
+  {
+    "file": "forum.js",
+    "line": 27,
+    "text": "关于这里"
+  },
+  {
+    "file": "forum.js",
+    "line": 27,
+    "text": "夜猫子们聊工作，也聊不工作的事。无需登录，随便看看。"
+  },
+  {
+    "file": "forum.js",
+    "line": 27,
+    "text": "当前只开放浏览，暂不接收新回复。"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 5,
+    "text": "起了吗"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 6,
+    "text": "你猜"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 7,
+    "text": "我看你正在输入"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 8,
+    "text": "那你还问"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 9,
+    "text": "我在导文件"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 10,
+    "text": "还在弄？"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 11,
+    "text": "昨晚导出来颜色全变了"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 12,
+    "text": "你们到底睡不睡觉"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 13,
+    "text": "睡觉和赶作业不冲突吧"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 14,
+    "text": "冲突得很明显"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 15,
+    "text": "我先去倒杯水"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 16,
+    "text": "我现在只想吃早饭"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 17,
+    "text": "你不是刚说你才醒"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 18,
+    "text": "醒了就不能饿吗"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 19,
+    "text": "行行行"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 20,
+    "text": "诶说起来"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 21,
+    "text": "你们最近有谁想接点兼职"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 22,
+    "text": "你又发现什么了"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 23,
+    "text": "不是 这次很正常"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 24,
+    "text": "你上次也是这么说的"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 25,
+    "text": "什么兼职"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 26,
+    "text": "网上整理资料的"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 27,
+    "text": "好像不用出门"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 28,
+    "text": "听起来就像要我帮他整理一辈子表格"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 29,
+    "text": "它写的是旧酒店的预订单"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 30,
+    "text": "有工资吗"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 31,
+    "text": "说是有 得先看样本"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 32,
+    "text": "你能不能先发我们看看"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 33,
+    "text": "等下 我找下刚刚那个帖子"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 34,
+    "text": "找到了"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 36,
+    "text": "现在还有这种论坛啊"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 37,
+    "text": "对吧 我也是第一次点进去"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 38,
+    "text": "帖子昨晚发的"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 39,
+    "text": "你动作好快"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 40,
+    "text": "这网站也太老了"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 41,
+    "text": "楼主说招聘网页和酒店网页不是一个年代的"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 42,
+    "text": "我就是觉得这个很好笑"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 43,
+    "text": "你这人到底为什么会刷到这个"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 44,
+    "text": "兼职啊 我没开玩笑"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 45,
+    "text": "看样本好像不用填个人资料"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 46,
+    "text": "那倒还行"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 47,
+    "text": "你们有人要试试吗"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 48,
+    "text": "你自己怎么不试"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 49,
+    "text": "我现在在外面"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 50,
+    "text": "又是这种借口"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 51,
+    "text": "我想看看这个酒店之前的网页"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 52,
+    "text": "帖子里有入口"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 53,
+    "text": "有空的人点一下呗"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 54,
+    "text": "别给我说你们都看了还没人点"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 55,
+    "text": "我再去把那个导出弄完"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 56,
+    "text": "好了 你自己去吃早饭吧"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 57,
+    "text": "我真去了"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 58,
+    "text": "看完跟我说说 这个网站做得像十年前的"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 61,
+    "text": "你也才醒啊"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 61,
+    "text": "先吃点东西 我脑子还没开机"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 61,
+    "text": "昨晚也没睡好"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 62,
+    "text": "我这边还差个导出"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 62,
+    "text": "你们先弄 我晚点再看"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 62,
+    "text": "今天这个作业能不能自己交一下"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 63,
+    "text": "我在想吃包子还是面"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 63,
+    "text": "别想了 再想就该吃午饭了"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 63,
+    "text": "先吃饭吧"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 64,
+    "text": "醒了就好 我还以为只有我起来了"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 64,
+    "text": "早啊 虽然也不早了"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 64,
+    "text": "我们在看个兼职 你往上翻一下"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 64,
+    "text": "刚发了个帖子 在上面"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 65,
+    "text": "整理酒店以前的预订单 好像是远程"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 65,
+    "text": "得先看样本 具体要求在招聘页"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 65,
+    "text": "具体工资我还没问 先看看他让干什么"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 66,
+    "text": "等我翻一下 找到就发这儿"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 66,
+    "text": "找到了 发你们看看"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 66,
+    "text": "就在上面那张夜猫论坛的卡片里"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 66,
+    "text": "点卡片的标题就能打开"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 67,
+    "text": "我也不知道 先看看再说"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 67,
+    "text": "先别填个人信息呗"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 67,
+    "text": "我只看了帖子 还没申请"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 68,
+    "text": "你在看啥网页"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 68,
+    "text": "楼主也这么说 我还没仔细看"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 68,
+    "text": "一眼十几年前"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 68,
+    "text": "可能一直没更新过"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 68,
+    "text": "我就说这个页面有年头吧"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 69,
+    "text": "就是那个酒店的资料 我也没细看"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 69,
+    "text": "我只看了岗位介绍"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 70,
+    "text": "你在说什么"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 70,
+    "text": "啊？我没看见你说的那个"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 70,
+    "text": "你是不是发错群了"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 71,
+    "text": "我真饿了 没开玩笑"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 71,
+    "text": "你们俩真的"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 71,
+    "text": "先别笑 看看他找了个啥"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 71,
+    "text": "你先看看"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 71,
+    "text": "这个确实有点离谱"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 71,
+    "text": "你真的闲"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 71,
+    "text": "我还在看"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 72,
+    "text": "行 你先忙"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 72,
+    "text": "没事 我找到帖子先丢群里"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 72,
+    "text": "行啊 反正帖子在那儿"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 72,
+    "text": "不急 又不是现在交作业"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 73,
+    "text": "我刚醒 脑子还没转过来"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 73,
+    "text": "你说刚刚哪句"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 73,
+    "text": "有个整理资料的兼职 我找下链接"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 73,
+    "text": "那个帖子 我还没看完"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 74,
+    "text": "等下 我刚在看别的"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 74,
+    "text": "啊？你说哪个"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 74,
+    "text": "我刚切回来"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 74,
+    "text": "我刚刚没看懂哈哈"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 74,
+    "text": "我先把帖子找出来"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 74,
+    "text": "等他发出来看看"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 74,
+    "text": "我在看岗位介绍"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 74,
+    "text": "我刚刚没看懂哈哈"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 74,
+    "text": "我吃完再看一下"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 74,
+    "text": "嗯 我还在弄文件"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 74,
+    "text": "你继续 我在看"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 81,
+    "text": "这周一定早睡"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 82,
+    "text": "张靓颖666"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 82,
+    "text": "小林鸽子"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 85,
+    "text": "午饭互助组"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 85,
+    "text": "中午老地方？"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 85,
+    "text": "可以 我晚十分钟"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 86,
+    "text": "文件传输助手"
+  },
+  {
+    "file": "chat-data.js",
+    "line": 86,
+    "text": "周四前交作业，导出后再检查一次颜色。"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 22,
+    "text": "消息仅保存在本机"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 25,
+    "text": "无法保存聊天记录，当前页面仍可聊天"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 41,
+    "text": "夜猫论坛"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 66,
+    "text": "有新消息 · 回到底部"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 75,
+    "text": "[链接] 夜猫论坛"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 77,
+    "text": "没有找到会话"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 147,
+    "text": "聊天工具"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 147,
+    "text": "会话列表"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 147,
+    "text": "会话列表"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 147,
+    "text": "游玩说明"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 147,
+    "text": "游玩说明"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 147,
+    "text": "存档与重置"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 147,
+    "text": "存档与重置"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 148,
+    "text": "会话列表"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 148,
+    "text": "搜索会话"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 148,
+    "text": "搜索"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 148,
+    "text": "聊天记录"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 149,
+    "text": "返回会话列表"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 149,
+    "text": "简体中文"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 149,
+    "text": "群聊信息"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 150,
+    "text": "群成员"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 150,
+    "text": "游玩说明"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 150,
+    "text": "存档与重置"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 150,
+    "text": "这是本地模拟聊天，不连接微信账号。"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 151,
+    "text": "聊天记录"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 152,
+    "text": "表情"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 152,
+    "text": "查看较早消息"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 152,
+    "text": "查看较早消息"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 152,
+    "text": "消息仅保存在本机"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 152,
+    "text": "晚点看"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 152,
+    "text": "晚点看"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 152,
+    "text": "晚点看"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 152,
+    "text": "晚点看"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 152,
+    "text": "晚点看"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 152,
+    "text": "发送消息"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 152,
+    "text": "Enter 发送，Shift + Enter 换行"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 152,
+    "text": "发送"
+  },
+  {
+    "file": "chat-view.js",
+    "line": 166,
+    "text": " 正在输入…"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 7,
+    "text": "旺旺动物门诊"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 8,
+    "text": "狗狗最近怎么老叹气？"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 9,
+    "text": "先别猜，带来给医生看看。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 10,
+    "text": "社区宠物护理"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 11,
+    "text": "看看诊所"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 13,
+    "text": "社区宠物门诊。候诊区备有饮水和毛巾，带宠物来时记得牵绳或用航空箱。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 18,
+    "text": "今日值班"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 20,
+    "text": "今天陈医生值班，前台小周负责接待。小周的字不好看，但很喜欢狗。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 25,
+    "text": "前台小纸条"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 27,
+    "text": "我们不负责教狗狗坐下。它要是愿意，也可以站着。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 33,
+    "text": "虚构店铺展示，不提供医疗建议、诊断或预约。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 41,
+    "text": "红沙发电影屋"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 42,
+    "text": "今晚看什么？"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 44,
+    "text": "《遥控器去哪了》：全片 96 分钟，一家人找了 95 分钟遥控器。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 47,
+    "text": "一张沙发，几部好片"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 48,
+    "text": "看看片单"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 50,
+    "text": "不需要排队。沙发上的位置，谁先坐下算谁的。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 55,
+    "text": "遥控器去哪了"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 57,
+    "text": "★★★★☆ 家庭喜剧。最后一分钟换了台。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 62,
+    "text": "最后一块饼干"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 64,
+    "text": "★★★☆☆ 悬疑短片。嫌疑人都有饼干屑。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 69,
+    "text": "阳台上的星期天"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 71,
+    "text": "★★★★☆ 生活片。两盆花，一下午。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 77,
+    "text": "虚构片单展示，不播放影片。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 85,
+    "text": "老何电脑维修"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 86,
+    "text": "电脑又卡了？"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 88,
+    "text": "开机慢、网页慢、老板回消息更慢。前两项可以修。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 91,
+    "text": "少点灰，多点耐心"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 92,
+    "text": "查看服务"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 94,
+    "text": "送来之前请先试试重启。不是敷衍，真的。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 99,
+    "text": "清灰"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 101,
+    "text": "风扇下面的灰可以清，工作积压不在服务范围内。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 106,
+    "text": "整理文件"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 108,
+    "text": "把“新建文件夹”排成一排，至少能看清有几个。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 113,
+    "text": "键盘清洁"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 115,
+    "text": "能清出饼干屑，不保证找回消失的回车键。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 121,
+    "text": "周日不营业，老板要睡觉。本页不接单、不提供远程控制。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 129,
+    "text": "小镇二手货"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 130,
+    "text": "还能用，就别扔！"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 132,
+    "text": "旧台灯、二手唱片、少了一只轮子的办公椅，都有人要。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 135,
+    "text": "旧物上新，便宜转让"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 136,
+    "text": "逛一逛"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 138,
+    "text": "只陈列，不成交。店主还没想好怎么把这些东西搬下楼。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 143,
+    "text": "旧台灯"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 145,
+    "text": "标价：一杯热茶。灯还能亮，灯罩有点歪。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 150,
+    "text": "一箱唱片"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 152,
+    "text": "标价：帮忙搬一次。封套比唱片多一张。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 157,
+    "text": "办公椅"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 159,
+    "text": "只有三个轮子，第四个找不到了。介意的别买。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 165,
+    "text": "虚构橱窗，不接受支付或交易。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 173,
+    "text": "明天再印复印店"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 174,
+    "text": "论文今晚交？"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 175,
+    "text": "我们明早开门。祝你好运。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 176,
+    "text": "复印 · 装订 · 打印"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 177,
+    "text": "店铺公告"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 179,
+    "text": "文件请先排好版。老板只会替人翻页，不会替人写结论。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 184,
+    "text": "复印"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 186,
+    "text": "黑白和彩色都有。原件背面如果有字，记得提醒。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 191,
+    "text": "装订"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 193,
+    "text": "装订前数一遍页数。装订后再数，也不是不行。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 198,
+    "text": "打印"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 200,
+    "text": "明早开门后再说。请不要对卷帘门喊话。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 206,
+    "text": "虚构店铺公告，不上传或接收文件。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 215,
+    "text": "咕咕猫咪照相馆"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 216,
+    "text": "把猫拍得像猫。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 218,
+    "text": "至少我们保证照片里会有一只猫。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 221,
+    "text": "猫的想法，优先考虑"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 222,
+    "text": "看看作品"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 224,
+    "text": "看看猫的不同表情。至于肯不肯配合，要看它当时的心情。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 229,
+    "text": "不想上班"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 231,
+    "text": "叫了半天都不看镜头，就这张最清楚。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 236,
+    "text": "看见罐头了"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 238,
+    "text": "唯一一次认真看镜头。因为罐头在镜头后面。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 243,
+    "text": "耳朵先到"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 245,
+    "text": "刚按快门它就跑了，勉强拍到半张脸。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 251,
+    "text": "实拍照片用于虚构店铺展示，不索取照片或个人文件。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 259,
+    "text": "一周天气小报"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 260,
+    "text": "明天可能会下雨。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 262,
+    "text": "也可能不会。我们明天再确认。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 265,
+    "text": "编辑部仍在看窗外"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 266,
+    "text": "翻翻小报"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 268,
+    "text": "出门带不带伞，编辑部也在犹豫。"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 273,
+    "text": "本周来信"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 275,
+    "text": "读者问：“晴天为什么也带伞？”编辑答：“昨天忘了放回家。”"
+  },
+  {
+    "file": "ad-data.js",
+    "line": 281,
+    "text": "幽默小报，不提供实时天气预报。"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 132,
+    "text": "摄影"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 132,
+    "text": "来源"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 143,
+    "text": "广告"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 143,
+    "text": "本地推荐"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 143,
+    "text": "已留着"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 143,
+    "text": "留着"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 143,
+    "text": "展开广告"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 143,
+    "text": "收起广告"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 143,
+    "text": "关闭广告"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 144,
+    "text": "我留下的广告"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 147,
+    "text": "关闭广告详情"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 162,
+    "text": "虚构店铺"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 162,
+    "text": "作品照片署名"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 162,
+    "text": "已放进广告夹"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 162,
+    "text": "收藏到广告夹"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 162,
+    "text": "返回广告夹"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 176,
+    "text": "查看详情"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 176,
+    "text": "重新打开"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 176,
+    "text": "移除"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 181,
+    "text": "我的广告夹"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 182,
+    "text": "收藏的广告保存在当前浏览器，游戏进度不受影响。"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 182,
+    "text": "我留下的广告"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 182,
+    "text": "还没留下广告。看到喜欢的，点“留着”就行。"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 182,
+    "text": "最近看过"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 182,
+    "text": "小镇店铺目录"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 193,
+    "text": "图片鸣谢"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 194,
+    "text": "以下实拍照片来自 Wikimedia Commons，用于虚构商家展示。照片中的场所、动物及摄影师不代言这些商家。原图保留，显示副本已降低分辨率并增加 JPEG 压缩。"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 231,
+    "text": "已放进广告夹"
+  },
+  {
+    "file": "ad-system.js",
+    "line": 237,
+    "text": "下次可以从页脚的广告夹再打开。"
+  },
+  {
+    "file": "site-media.js",
+    "line": 22,
+    "text": "草地上休息的小狗"
+  },
+  {
+    "file": "site-media.js",
+    "line": 23,
+    "text": "草地上休息的小狗"
+  },
+  {
+    "file": "site-media.js",
+    "line": 46,
+    "text": "空影院里的红色座椅"
+  },
+  {
+    "file": "site-media.js",
+    "line": 47,
+    "text": "空影院里的红色座椅"
+  },
+  {
+    "file": "site-media.js",
+    "line": 68,
+    "text": "电脑键盘特写"
+  },
+  {
+    "file": "site-media.js",
+    "line": 69,
+    "text": "电脑键盘特写"
+  },
+  {
+    "file": "site-media.js",
+    "line": 91,
+    "text": "唱片店里的旧唱片"
+  },
+  {
+    "file": "site-media.js",
+    "line": 92,
+    "text": "唱片店里的旧唱片"
+  },
+  {
+    "file": "site-media.js",
+    "line": 115,
+    "text": "打印设备中的纸张"
+  },
+  {
+    "file": "site-media.js",
+    "line": 116,
+    "text": "打印设备中的纸张"
+  },
+  {
+    "file": "site-media.js",
+    "line": 139,
+    "text": "蓝眼睛的猫"
+  },
+  {
+    "file": "site-media.js",
+    "line": 140,
+    "text": "蓝眼睛的猫"
+  },
+  {
+    "file": "site-media.js",
+    "line": 162,
+    "text": "雪地里的虎斑猫"
+  },
+  {
+    "file": "site-media.js",
+    "line": 163,
+    "text": "雪地里的虎斑猫"
+  },
+  {
+    "file": "site-media.js",
+    "line": 185,
+    "text": "坐在窗边的虎斑猫"
+  },
+  {
+    "file": "site-media.js",
+    "line": 186,
+    "text": "坐在窗边的虎斑猫"
+  },
+  {
+    "file": "site-media.js",
+    "line": 208,
+    "text": "蓝天下的积云"
+  },
+  {
+    "file": "site-media.js",
+    "line": 209,
+    "text": "蓝天下的积云"
+  },
+  {
+    "file": "site-media.js",
+    "line": 231,
+    "text": "旅馆外观"
+  },
+  {
+    "file": "site-media.js",
+    "line": 232,
+    "text": "旅馆外观"
+  },
+  {
+    "file": "site-media.js",
+    "line": 255,
+    "text": "前厅与公共休息区"
+  },
+  {
+    "file": "site-media.js",
+    "line": 256,
+    "text": "前厅与公共休息区"
+  },
+  {
+    "file": "site-media.js",
+    "line": 279,
+    "text": "临窗活动室"
+  },
+  {
+    "file": "site-media.js",
+    "line": 280,
+    "text": "临窗活动室"
+  },
+  {
+    "file": "site-media.js",
+    "line": 304,
+    "text": "餐厅"
+  },
+  {
+    "file": "site-media.js",
+    "line": 305,
+    "text": "餐厅"
+  },
+  {
+    "file": "site-media.js",
+    "line": 328,
+    "text": "庭院花园"
+  },
+  {
+    "file": "site-media.js",
+    "line": 329,
+    "text": "庭院花园"
+  },
+  {
+    "file": "site-media.js",
+    "line": 351,
+    "text": "咖啡与早餐糕点"
+  },
+  {
+    "file": "site-media.js",
+    "line": 352,
+    "text": "咖啡与早餐糕点"
+  },
+  {
+    "file": "case-night.js",
+    "line": 5,
+    "text": "大堂楼梯"
+  },
+  {
+    "file": "case-night.js",
+    "line": 6,
+    "text": "三楼西走廊"
+  },
+  {
+    "file": "case-night.js",
+    "line": 7,
+    "text": "员工通道"
+  },
+  {
+    "file": "case-night.js",
+    "line": 17,
+    "text": "清洁推车，扶手缠着黄色胶带。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 21,
+    "text": "维修告示，右下角缺了一块。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 24,
+    "text": "告示旁是一扇维修门。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 26,
+    "text": "这个角度看不到通道标志。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 44,
+    "text": "恐怖章节显示设置"
+  },
+  {
+    "file": "case-night.js",
+    "line": 44,
+    "text": "接下来的监控和通道可能出现突然靠近的面孔与画面故障。鬼脸和突脸默认开启，也可以关闭；关闭后仍能体验全部剧情和操作。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 44,
+    "text": "鬼脸与突脸：已关闭"
+  },
+  {
+    "file": "case-night.js",
+    "line": 44,
+    "text": "鬼脸与突脸：已开启"
+  },
+  {
+    "file": "case-night.js",
+    "line": 44,
+    "text": "开启鬼脸与突脸"
+  },
+  {
+    "file": "case-night.js",
+    "line": 44,
+    "text": "保持开启，继续浏览"
+  },
+  {
+    "file": "case-night.js",
+    "line": 44,
+    "text": "保持跳过，继续浏览"
+  },
+  {
+    "file": "case-night.js",
+    "line": 44,
+    "text": "关闭鬼脸与突脸"
+  },
+  {
+    "file": "case-night.js",
+    "line": 44,
+    "text": "声音仍由底部菜单单独控制，可随时在设置里更改。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 49,
+    "text": "目录已恢复"
+  },
+  {
+    "file": "case-night.js",
+    "line": 50,
+    "text": "查看客房目录"
+  },
+  {
+    "file": "case-night.js",
+    "line": 55,
+    "text": "酒店目录已更新"
+  },
+  {
+    "file": "case-night.js",
+    "line": 57,
+    "text": "以下为当前页面，原来的资料保存在历史副本中。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 62,
+    "text": "三楼客房"
+  },
+  {
+    "file": "case-night.js",
+    "line": 62,
+    "text": "客房照片"
+  },
+  {
+    "file": "case-night.js",
+    "line": 62,
+    "text": "可入住 · 独立卫浴"
+  },
+  {
+    "file": "case-night.js",
+    "line": 62,
+    "text": "查看客房"
+  },
+  {
+    "file": "case-night.js",
+    "line": 62,
+    "text": "房卡正在制作，请不要离开本页。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 62,
+    "text": "返回房间目录"
+  },
+  {
+    "file": "case-night.js",
+    "line": 62,
+    "text": "前台留言"
+  },
+  {
+    "file": "case-night.js",
+    "line": 62,
+    "text": "已正常入住。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 62,
+    "text": "本班值守"
+  },
+  {
+    "file": "case-night.js",
+    "line": 62,
+    "text": "历史房间目录"
+  },
+  {
+    "file": "case-night.js",
+    "line": 62,
+    "text": "历史留言副本"
+  },
+  {
+    "file": "case-night.js",
+    "line": 62,
+    "text": "通道监控 · 查看维修入口"
+  },
+  {
+    "file": "case-night.js",
+    "line": 62,
+    "text": "查看当前客房目录"
+  },
+  {
+    "file": "case-night.js",
+    "line": 62,
+    "text": "查看当前住客留言"
+  },
+  {
+    "file": "case-night.js",
+    "line": 70,
+    "text": "通道监控"
+  },
+  {
+    "file": "case-night.js",
+    "line": 72,
+    "text": "维修说明：转动镜头，找到交接处的同一件物品后，接通相邻机位。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 76,
+    "text": "调整镜头方向"
+  },
+  {
+    "file": "case-night.js",
+    "line": 76,
+    "text": "左移"
+  },
+  {
+    "file": "case-night.js",
+    "line": 76,
+    "text": "居中"
+  },
+  {
+    "file": "case-night.js",
+    "line": 76,
+    "text": "右移"
+  },
+  {
+    "file": "case-night.js",
+    "line": 76,
+    "text": "通道连接图"
+  },
+  {
+    "file": "case-night.js",
+    "line": 76,
+    "text": "连接已确认"
+  },
+  {
+    "file": "case-night.js",
+    "line": 76,
+    "text": "确认连接"
+  },
+  {
+    "file": "case-night.js",
+    "line": 76,
+    "text": "打开员工维修门"
+  },
+  {
+    "file": "case-night.js",
+    "line": 76,
+    "text": "返回酒店目录"
+  },
+  {
+    "file": "case-night.js",
+    "line": 80,
+    "text": "上"
+  },
+  {
+    "file": "case-night.js",
+    "line": 81,
+    "text": "右"
+  },
+  {
+    "file": "case-night.js",
+    "line": 82,
+    "text": "下"
+  },
+  {
+    "file": "case-night.js",
+    "line": 83,
+    "text": "左"
+  },
+  {
+    "file": "case-night.js",
+    "line": 94,
+    "text": "原件已锁定。下方“保留原件并退出夜班”可结束本次工作。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 98,
+    "text": "配置已保存。还需锁定原始备份，才能安全退出夜班。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 99,
+    "text": "配置已保存。请先点击监控下方“恢复缓存的最后一帧”，再锁定原始备份。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 100,
+    "text": "线路已就绪。保存当前配置后，再锁定原始备份。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 109,
+    "text": "夜班控制室"
+  },
+  {
+    "file": "case-night.js",
+    "line": 112,
+    "text": "原始录像已接通 · 03:17"
+  },
+  {
+    "file": "case-night.js",
+    "line": 112,
+    "text": "CAM 02 无信号"
+  },
+  {
+    "file": "case-night.js",
+    "line": 112,
+    "text": "恢复缓存的最后一帧"
+  },
+  {
+    "file": "case-night.js",
+    "line": 112,
+    "text": "最后一帧：317 / SERVICE HOLDING。经手人 E-014。自动登记仍在运行。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 112,
+    "text": "录像信号配线板"
+  },
+  {
+    "file": "case-night.js",
+    "line": 112,
+    "text": "接线与检修说明"
+  },
+  {
+    "file": "case-night.js",
+    "line": 112,
+    "text": "按一下接头，会顺时针转 90°。相邻线头要对齐，才能传送信号。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 112,
+    "text": "录像从 A 左侧输入，接到 F 右侧的只读存储。接通后，监控会恢复 03:17 的画面。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 112,
+    "text": "AUTO-WRITE 是另一条电源，会把资料写入员工名册。检修时切到“已隔离”；再把 AUTO 切到 MANUAL，才能保存配置。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 112,
+    "text": "原始录像 → A 左侧"
+  },
+  {
+    "file": "case-night.js",
+    "line": 115,
+    "text": "接头"
+  },
+  {
+    "file": "case-night.js",
+    "line": 121,
+    "text": "旋转90度"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "固定屏蔽线"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "设备指示灯"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "已接通"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "无信号"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "已隔离"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "有电"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "F 右侧 → 只读存储"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "已隔离"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "接通"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "手动"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "自动"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "回写电源接在 D 上方，员工名册共用 F 的出口。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "撤销一步"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "恢复接线初始位置"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "保存当前配置"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "原件已锁定"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "锁定原始备份，停止后续改写"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "录像通路"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "相关旧资料"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "Mara 的原备注"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "交接完成，可以离开"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "结束本次夜班"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "原件已锁定，自动回写已隔离。点击“保留原件并退出夜班”，即可完成离开手续。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "直接结案或离开会保留当前处理结果。要保护原件，请先保存配线配置并锁定备份。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "同意自动结案"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "拒绝签字，离开终端"
+  },
+  {
+    "file": "case-night.js",
+    "line": 129,
+    "text": "保留原件并退出夜班"
+  },
+  {
+    "file": "case-night.js",
+    "line": 136,
+    "text": "保留的结局记录"
+  },
+  {
+    "file": "case-night.js",
+    "line": 138,
+    "text": "原始资料已锁定，只能查看。"
+  },
+  {
+    "file": "case-night.js",
+    "line": 142,
+    "text": "后续排班已取消。Mara 的备注与原始预订已保留，不再接受自动改写。"
+  },
+  {
+    "file": "case-transition.js",
+    "line": 35,
+    "text": "正在连接酒店页面。"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 52,
+    "text": "浏览器未能开启音效。可在页面底部再次开启，静音也能通关。"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "游玩前说明"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "简体中文"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "这是一款虚构的网页恐怖解谜游戏。论坛、招聘、酒店、人物、聊天和网站故障都是剧情，不是真实服务。"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "从朋友的群聊开始，像平时上网一样浏览和调查。所有必要线索都在游戏里，不用查看源代码，也不需要联系现实中的酒店或任何人。"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "内容注意事项"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "含突然出现的鬼脸、异常人影、画面扭曲、呼吸声，以及涉及失踪与死亡的剧情。建议先调低音量；感到不适时，可随时暂停或关闭网页。"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "可以关闭鬼脸和音效，仍能完成全部剧情与解谜。游戏不使用快速频闪；系统的“减少动态效果”设置也会生效。"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "选择游玩设置"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "开启音效"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "默认关闭。勾选后，点击进入游戏才会启用；之后可在底部菜单调整。"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "显示鬼脸与 Jump Scare"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "默认开启。取消勾选会跳过突脸，不影响剧情和通关。"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "当前正在减少动态效果：即使勾选鬼脸，突脸仍会跳过。可在浏览设置中查看；设备设置始终优先。"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "基础操作与存档"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "电脑用鼠标点击，手机直接点按。群聊可自由输入，Enter 发送，Shift + Enter 换行；朋友发的论坛卡片可以直接打开。链接、留言和档案中的引用都可以继续调查；设备页面可点击场景或旁边的同名按钮。"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "进度自动保存在当前浏览器。换设备、换浏览器或清除网站数据后，存档不会自动转移。"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "重新开始：顶部“存档与重置”→“重新开始游戏”→确认。声音和鬼脸设置可在“声音与设置”里随时修改。"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "图片来源与素材说明"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "酒店与广告使用现成实拍照片；现实场所、人物和摄影师不参与或代言剧情。显示副本经过低清处理，原图与许可保留。监控空间由程序绘制，部分恐怖人像为已有的生成插图，环境音由浏览器本地合成。"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "无需真实姓名、电话、简历或支付信息。页面中的预订、应聘和留言均为本地模拟。"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "阅读后即可进入。之后可从顶部“游玩说明”重新打开本页。"
+  },
+  {
+    "file": "case-welcome.js",
+    "line": 65,
+    "text": "我已了解，进入游戏"
+  },
+  {
+    "file": "case-space.js",
+    "line": 12,
+    "text": "三楼 · 317 门外"
+  },
+  {
+    "file": "case-space.js",
+    "line": 13,
+    "text": "西侧维修柜"
+  },
+  {
+    "file": "case-space.js",
+    "line": 14,
+    "text": "B-3 配线室门外"
+  },
+  {
+    "file": "case-space.js",
+    "line": 21,
+    "text": "317 的门牌下面还有一层旧胶。隔壁的门刚才关着。"
+  },
+  {
+    "file": "case-space.js",
+    "line": 28,
+    "text": "猫眼里只有一盏灯。没有人。"
+  },
+  {
+    "file": "case-space.js",
+    "line": 35,
+    "text": "合照背面：2006.10.17 夜班。E-014 那一栏被刮掉了。"
+  },
+  {
+    "file": "case-space.js",
+    "line": 43,
+    "text": "推车靠在墙边，维修柜现在能打开了。"
+  },
+  {
+    "file": "case-space.js",
+    "line": 47,
+    "text": "黄色胶带的推车挡在维修柜前。"
+  },
+  {
+    "file": "case-space.js",
+    "line": 54,
+    "text": "柜门内侧：B-3 门锁供电。合上拉杆即可解锁。"
+  },
+  {
+    "file": "case-space.js",
+    "line": 61,
+    "text": "拉杆已合上。通道另一头的灯变绿了。"
+  },
+  {
+    "file": "case-space.js",
+    "line": 69,
+    "text": "门锁已经松开。里面是录像配线板。"
+  },
+  {
+    "file": "case-space.js",
+    "line": 73,
+    "text": "门上红灯亮着。墙上的线路沿原路接回维修柜。"
+  },
+  {
+    "file": "case-space.js",
+    "line": 80,
+    "text": "维修告示：门禁电源在西侧柜内。录像信号在 B-3 内另行检修。"
+  },
+  {
+    "file": "case-space.js",
+    "line": 85,
+    "text": "查看 317 门牌"
+  },
+  {
+    "file": "case-space.js",
+    "line": 86,
+    "text": "看猫眼"
+  },
+  {
+    "file": "case-space.js",
+    "line": 87,
+    "text": "翻看员工合照"
+  },
+  {
+    "file": "case-space.js",
+    "line": 92,
+    "text": "查看推车"
+  },
+  {
+    "file": "case-space.js",
+    "line": 93,
+    "text": "把推车挪到墙边"
+  },
+  {
+    "file": "case-space.js",
+    "line": 95,
+    "text": "打开维修柜"
+  },
+  {
+    "file": "case-space.js",
+    "line": 99,
+    "text": "门锁电源已接通"
+  },
+  {
+    "file": "case-space.js",
+    "line": 100,
+    "text": "合上门锁供电拉杆"
+  },
+  {
+    "file": "case-space.js",
+    "line": 102,
+    "text": "推开 B-3 的门"
+  },
+  {
+    "file": "case-space.js",
+    "line": 103,
+    "text": "查看 317 门牌"
+  },
+  {
+    "file": "case-space.js",
+    "line": 103,
+    "text": "看猫眼"
+  },
+  {
+    "file": "case-space.js",
+    "line": 103,
+    "text": "翻看员工合照"
+  },
+  {
+    "file": "case-space.js",
+    "line": 103,
+    "text": "合照"
+  },
+  {
+    "file": "case-space.js",
+    "line": 103,
+    "text": "挪开推车"
+  },
+  {
+    "file": "case-space.js",
+    "line": 103,
+    "text": "推车"
+  },
+  {
+    "file": "case-space.js",
+    "line": 103,
+    "text": "打开维修柜"
+  },
+  {
+    "file": "case-space.js",
+    "line": 103,
+    "text": "维修柜"
+  },
+  {
+    "file": "case-space.js",
+    "line": 103,
+    "text": "推开 B-3 的门"
+  },
+  {
+    "file": "case-space.js",
+    "line": 103,
+    "text": "附近"
+  },
+  {
+    "file": "case-space.js",
+    "line": 103,
+    "text": "查看维修告示"
+  },
+  {
+    "file": "case-space.js",
+    "line": 103,
+    "text": "通道方向"
+  },
+  {
+    "file": "case-space.js",
+    "line": 111,
+    "text": "回头看 317"
+  },
+  {
+    "file": "case-space.js",
+    "line": 111,
+    "text": "走向西侧维修柜"
+  },
+  {
+    "file": "case-space.js",
+    "line": 111,
+    "text": "走到 B-3 门口"
+  },
+  {
+    "file": "case-space.js",
+    "line": 115,
+    "text": "返回监控台"
+  },
+  {
+    "file": "case-space.js",
+    "line": 115,
+    "text": "进入配线室"
+  },
+  {
+    "file": "case-events.js",
+    "line": 31,
+    "text": "隔壁的门开着。"
+  },
+  {
+    "file": "case-events.js",
+    "line": 33,
+    "text": "灯闪了一下。猫眼里没有人。"
+  },
+  {
+    "file": "case-events.js",
+    "line": 37,
+    "text": "走廊尽头多了一个影子。"
+  },
+  {
+    "file": "case-events.js",
+    "line": 41,
+    "text": "柜门已经打开。门锁供电拉杆在柜子下方。"
+  },
+  {
+    "file": "case-events.js",
+    "line": 45,
+    "text": "合照上的脸被刮花了，背面留着 E-014。监控里，门边站着一个人。"
+  },
+  {
+    "file": "case-events.js",
+    "line": 49,
+    "text": "录像停在 03:17，317 的门还没有关上。"
+  }
+]

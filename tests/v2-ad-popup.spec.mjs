@@ -4,13 +4,23 @@ async function start(page,entry='index-zh.html') {
   await page.addInitScript(()=>{Math.random=()=>0;});
   await page.clock.install({time:new Date('2026-11-03T12:00:00Z')});
   await page.clock.pauseAt(new Date('2026-11-03T12:00:01Z'));
-  await page.goto('/'+entry);
+  await page.goto('/'+entry+'#forum');
 }
 const card=(page,id)=>page.locator(`[data-active-ad="${id}"]`);
-async function fits(page) {
+const pageLayout=page=>page.evaluate(()=>{
+  const body=getComputedStyle(document.body);
+  return {
+    boxes:['#case-shell','#content'].map(selector=>document.querySelector(selector).getBoundingClientRect().toJSON()),
+    pageHeight:document.documentElement.scrollHeight,
+    scrollY, shellScroll:document.querySelector('#case-shell').scrollTop,
+    padding:[body.paddingTop,body.paddingRight,body.paddingBottom,body.paddingLeft],
+    overflow:body.overflow,
+  };
+});
+async function fits(page,before) {
   const geometry=await page.evaluate(()=>{
     const shell=document.querySelector('#case-shell').getBoundingClientRect();
-    return {small:innerWidth<1200,overflow:document.documentElement.scrollWidth>innerWidth,
+    return {width:innerWidth,height:innerHeight,overflow:document.documentElement.scrollWidth>innerWidth,
       shell:{left:shell.left,right:shell.right,top:shell.top,bottom:shell.bottom},
       windows:[...document.querySelectorAll('[data-active-ad]')].map(el=>{
         const r=el.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom};
@@ -19,15 +29,20 @@ async function fits(page) {
   expect(geometry.overflow).toBe(false);
   for(const r of geometry.windows) {
     expect(r.left).toBeGreaterThanOrEqual(-1);
+    expect(r.top).toBeGreaterThanOrEqual(-1);
+    expect(r.right).toBeLessThanOrEqual(geometry.width+1);
+    expect(r.bottom).toBeLessThanOrEqual(geometry.height+1);
     const s=geometry.shell;
-    expect(geometry.small?s.bottom<=r.top+1||s.top>=r.bottom-1:s.right<=r.left+1||s.left>=r.right-1).toBe(true);
+    expect(s.left<r.right&&s.right>r.left&&s.top<r.bottom&&s.bottom>r.top).toBe(true);
   }
+  if(before)expect(await pageLayout(page)).toEqual(before);
 }
 
 for(const entry of ['index-zh.html','index.html']) {
   test(`${entry}: two independent retro windows appear around the page, with no manual carousel`,async({page})=>{
     await page.setViewportSize({width:1440,height:900});
     await start(page,entry);
+    const before=await pageLayout(page);
     await expect(page.locator('.ad-inline,[data-ad-action=next-inline]')).toHaveCount(0);
     await page.clock.runFor(8000);
     await expect(page.locator('[data-active-ad]')).toHaveCount(0);
@@ -35,7 +50,20 @@ for(const entry of ['index-zh.html','index.html']) {
     await expect(page.locator('[data-active-ad]')).toHaveCount(2);
     await expect(card(page,'pet')).toHaveAttribute('data-slot','top-left');
     await expect(card(page,'cinema')).toHaveAttribute('data-slot','bottom-right');
-    await fits(page);
+    await fits(page,before);
+    const coversPost=await card(page,'pet').evaluate(el=>{
+      const a=el.getBoundingClientRect(),p=document.querySelector('.bbs-post').getBoundingClientRect();
+      const left=Math.max(a.left,p.left),right=Math.min(a.right,p.right);
+      const top=Math.max(a.top,p.top),bottom=Math.min(a.bottom,p.bottom);
+      if(right<=left||bottom<=top)return false;
+      const x=(left+right)/2,y=(top+bottom)/2;
+      const front=el.contains(document.elementFromPoint(x,y));
+      el.style.visibility='hidden';
+      const behind=document.elementFromPoint(x,y)?.closest('.bbs-post');
+      el.style.visibility='';
+      return front&&!!behind;
+    });
+    expect(coversPost).toBe(true);
     await card(page,'cinema').locator('[data-ad-action=detail]').click();
     await expect(page.locator('#ad-dialog-title')).toHaveText(entry.includes('zh')?'红沙发电影屋':'Red Sofa Picture House');
     await page.keyboard.press('Escape');
@@ -43,11 +71,13 @@ for(const entry of ['index-zh.html','index.html']) {
     await expect(card(page,'pet')).toHaveAttribute('data-folded','true');
     await expect(card(page,'pet').locator('.ad-card-body')).toHaveCount(0);
     await expect(card(page,'cinema').locator('.ad-card-body')).toBeVisible();
+    expect(await pageLayout(page)).toEqual(before);
     await card(page,'pet').locator('[data-ad-action=collapse]').click();
     await expect(card(page,'pet').locator('.ad-card-body')).toBeVisible();
     await card(page,'pet').locator('[data-ad-action=close]').click();
     await expect(card(page,'pet')).toHaveCount(0);
     await expect(card(page,'cinema')).toBeVisible();
+    expect(await pageLayout(page)).toEqual(before);
     expect(await page.evaluate(()=>localStorage.getItem('stillwater-case:v2'))).toBeNull();
   });
 }
@@ -67,12 +97,14 @@ test('selective blinking and border lights follow reduced-motion settings',async
 });
 
 for(const width of [320,390,768]) {
-  test(`${width}px: one window reserves space, with top and bottom placement and working dismissal`,async({page})=>{
+  test(`${width}px: top and bottom windows overlay the page without changing its layout or scroll position`,async({page})=>{
     await page.setViewportSize({width,height:900});
     await start(page);
+    await page.evaluate(()=>window.scrollTo(0,320));
+    const before=await pageLayout(page);
     await page.clock.runFor(40000);
     await expect(page.locator('[data-active-ad]')).toHaveCount(1);
-    await fits(page);
+    await fits(page,before);
     for(const button of await card(page,'pet').locator('header button').all()) {
       expect((await button.boundingBox()).height).toBeGreaterThanOrEqual(44);
     }
@@ -81,9 +113,9 @@ for(const width of [320,390,768]) {
     await page.clock.runFor(24000);
     await expect(page.locator('[data-active-ad]')).toHaveCount(1);
     await expect(page.locator('[data-active-ad]')).toHaveAttribute('data-slot',/^bottom/);
-    await fits(page);
+    await fits(page,before);
     await page.locator('#ad-host [data-ad-action=close]').click();
-    await expect(page.locator('body')).not.toHaveClass(/ad-rail/);
+    expect(await pageLayout(page)).toEqual(before);
   });
 }
 

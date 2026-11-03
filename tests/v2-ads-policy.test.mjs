@@ -40,6 +40,7 @@ test("reading, hidden tabs, forms, dialogs and serious files pause advertisement
   assert.equal(P.advance(s, 7000, { forum: true }), false);
   assert.equal(s.remaining, 12000);
   for (const route of [
+    "chat",
     "floor-plan",
     "maintenance",
     "night-audit",

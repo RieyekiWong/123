@@ -1,0 +1,70 @@
+{
+  "baseline": "238b2ae111b5b58472f5ad103136d6f5bcfee232",
+  "version": "4.5.0",
+  "build": "passed",
+  "unit": {
+    "passed": 40,
+    "failed": 0,
+    "command": "npm test"
+  },
+  "browser": {
+    "full_command": "npm run test:e2e -- --project=v2 --workers=1",
+    "first_full": {
+      "total": 113,
+      "passed": 112,
+      "failed": 1,
+      "failure": "Static-distribution test still expected the previous forum-first entry."
+    },
+    "resolved_failure": "The static-distribution check now enters the actual chat and clicks the real forum card.",
+    "focused_retest": {
+      "passed": 3,
+      "failed": 0,
+      "covers": [
+        "static distribution",
+        "all ending choices and confirmed restart",
+        "unseeded preface/chat/C1–C9/space/circuit/three endings/GAME OVER"
+      ]
+    },
+    "final_chat_retest": {
+      "passed": 11,
+      "failed": 0,
+      "additional_case": "Software-keyboard visual viewport sizing. Also covers English homework matching, XSS literal display, IME and complete no-input conversation."
+    },
+    "distinct_current_cases_covered": 114,
+    "unresolved_failures": 0
+  },
+  "visual": {
+    "records": "visual-results.json",
+    "screenshots": 76,
+    "widths": [
+      375,
+      1440
+    ],
+    "languages": [
+      "zh-CN",
+      "en"
+    ],
+    "scriptErrors": 0,
+    "overflow": 0,
+    "invalidCameraDates": 0,
+    "legacyLinks": 0
+  },
+  "copy": {
+    "runtimeFiles": 18,
+    "cjkCandidates": 963,
+    "actualStringReplacements": 34,
+    "inventory": "copy-inventory.json",
+    "changes": "copy-changes.json"
+  },
+  "saveCompatibility": {
+    "caseSchema": 2,
+    "newChatKey": "stillwater-chat:v1",
+    "preserves": [
+      "existing case facts and ending IDs",
+      "ad folder and session history",
+      "classic sources and saves"
+    ],
+    "reset": "Only confirmed new-game restart clears current chat and current case."
+  },
+  "timingLimitation": "The ordinary chat has about five minutes of finite content; total first-player duration has not been blind-tested."
+}
