@@ -60,6 +60,8 @@ export function createServer(
           "design-tokens.css",
           "visual-v24.css",
           "case-transition.js",
+          "case-welcome.js",
+          "case-welcome.css",
           "case-space.js",
           "case-events.js",
           "cctv-scenes.js",

@@ -1,7 +1,7 @@
 {
   "baseline": "752665237cfec7d78033de0775f6341712671419",
-  "candidates": 758,
-  "files": 15,
+  "candidates": 786,
+  "files": 16,
   "rows": [
     {
       "id": 1,
@@ -1260,7 +1260,7 @@
     {
       "id": 115,
       "file": "case-app.js",
-      "line": 118,
+      "line": 120,
       "kind": "literal",
       "text": "声音：开启",
       "voice": "招聘／导航／系统提示",
@@ -1271,7 +1271,7 @@
     {
       "id": 116,
       "file": "case-app.js",
-      "line": 119,
+      "line": 121,
       "kind": "literal",
       "text": "声音：关闭",
       "voice": "招聘／导航／系统提示",
@@ -1282,7 +1282,7 @@
     {
       "id": 117,
       "file": "case-app.js",
-      "line": 158,
+      "line": 164,
       "kind": "literal",
       "text": "缺少样本编号。可返回招聘页查看。",
       "voice": "招聘／导航／系统提示",
@@ -1293,7 +1293,7 @@
     {
       "id": 118,
       "file": "case-app.js",
-      "line": 162,
+      "line": 168,
       "kind": "literal",
       "text": "未找到预订，请检查编号。",
       "voice": "招聘／导航／系统提示",
@@ -1304,7 +1304,7 @@
     {
       "id": 119,
       "file": "case-app.js",
-      "line": 165,
+      "line": 171,
       "kind": "literal",
       "text": "还没找到对应的预订单。",
       "voice": "招聘／导航／系统提示",
@@ -1315,7 +1315,7 @@
     {
       "id": 120,
       "file": "case-app.js",
-      "line": 167,
+      "line": 173,
       "kind": "literal",
       "text": "房号与预订单不符。",
       "voice": "招聘／导航／系统提示",
@@ -1326,7 +1326,7 @@
     {
       "id": 121,
       "file": "case-app.js",
-      "line": 171,
+      "line": 177,
       "kind": "literal",
       "text": "尚未确认预订单上的房号。",
       "voice": "招聘／导航／系统提示",
@@ -1337,7 +1337,7 @@
     {
       "id": 122,
       "file": "case-app.js",
-      "line": 175,
+      "line": 181,
       "kind": "literal",
       "text": "尚未打开对应的住客留言。",
       "voice": "招聘／导航／系统提示",
@@ -1348,7 +1348,7 @@
     {
       "id": 123,
       "file": "case-app.js",
-      "line": 179,
+      "line": 185,
       "kind": "literal",
       "text": "尚未打开服务区域登记卡。",
       "voice": "招聘／导航／系统提示",
@@ -1359,7 +1359,7 @@
     {
       "id": 124,
       "file": "case-app.js",
-      "line": 183,
+      "line": 189,
       "kind": "literal",
       "text": "所选用途与登记卡不符。",
       "voice": "招聘／导航／系统提示",
@@ -1370,7 +1370,7 @@
     {
       "id": 125,
       "file": "case-app.js",
-      "line": 187,
+      "line": 193,
       "kind": "literal",
       "text": "服务区域用途尚未确认。",
       "voice": "招聘／导航／系统提示",
@@ -1381,7 +1381,7 @@
     {
       "id": 126,
       "file": "case-app.js",
-      "line": 191,
+      "line": 197,
       "kind": "literal",
       "text": "未找到维修单，请检查公告编号。",
       "voice": "招聘／导航／系统提示",
@@ -1392,7 +1392,7 @@
     {
       "id": 127,
       "file": "case-app.js",
-      "line": 195,
+      "line": 201,
       "kind": "literal",
       "text": "尚未查到对应的维修单。",
       "voice": "招聘／导航／系统提示",
@@ -1403,7 +1403,7 @@
     {
       "id": 128,
       "file": "case-app.js",
-      "line": 199,
+      "line": 205,
       "kind": "literal",
       "text": "日期顺序有误。请检查每条记录的时间。",
       "voice": "招聘／导航／系统提示",
@@ -1414,7 +1414,7 @@
     {
       "id": 129,
       "file": "case-app.js",
-      "line": 203,
+      "line": 209,
       "kind": "literal",
       "text": "现有记录不能支持这一判断。",
       "voice": "招聘／导航／系统提示",
@@ -1425,7 +1425,7 @@
     {
       "id": 130,
       "file": "case-app.js",
-      "line": 207,
+      "line": 213,
       "kind": "literal",
       "text": "当晚记录尚未核对。",
       "voice": "招聘／导航／系统提示",
@@ -1436,7 +1436,7 @@
     {
       "id": 131,
       "file": "case-app.js",
-      "line": 211,
+      "line": 217,
       "kind": "literal",
       "text": "选中了未修改的项目。请对照两栏内容。",
       "voice": "招聘／导航／系统提示",
@@ -1447,7 +1447,7 @@
     {
       "id": 132,
       "file": "case-app.js",
-      "line": 215,
+      "line": 221,
       "kind": "literal",
       "text": "有修改项尚未选中。",
       "voice": "招聘／导航／系统提示",
@@ -1458,7 +1458,7 @@
     {
       "id": 133,
       "file": "case-app.js",
-      "line": 219,
+      "line": 225,
       "kind": "literal",
       "text": "修改记录尚未核对。",
       "voice": "招聘／导航／系统提示",
@@ -1469,7 +1469,7 @@
     {
       "id": 134,
       "file": "case-app.js",
-      "line": 223,
+      "line": 229,
       "kind": "literal",
       "text": "请从停业通知的附件打开这份草稿。",
       "voice": "招聘／导航／系统提示",
@@ -1480,7 +1480,7 @@
     {
       "id": 135,
       "file": "case-app.js",
-      "line": 227,
+      "line": 233,
       "kind": "literal",
       "text": "资料不全，暂时无法提交。",
       "voice": "招聘／导航／系统提示",
@@ -1491,7 +1491,7 @@
     {
       "id": 136,
       "file": "case-app.js",
-      "line": 231,
+      "line": 237,
       "kind": "literal",
       "text": "没有记录能确认住客实际入住。",
       "voice": "招聘／导航／系统提示",
@@ -1502,7 +1502,7 @@
     {
       "id": 137,
       "file": "case-app.js",
-      "line": 235,
+      "line": 241,
       "kind": "literal",
       "text": "该说法与停业通知不符。",
       "voice": "招聘／导航／系统提示",
@@ -1513,7 +1513,7 @@
     {
       "id": 138,
       "file": "case-app.js",
-      "line": 239,
+      "line": 245,
       "kind": "literal",
       "text": "该说法与 Mara 的原备注不符。",
       "voice": "招聘／导航／系统提示",
@@ -1524,7 +1524,7 @@
     {
       "id": 139,
       "file": "case-app.js",
-      "line": 243,
+      "line": 249,
       "kind": "literal",
       "text": "请选择三项有原始记录支持的说法。",
       "voice": "招聘／导航／系统提示",
@@ -1535,7 +1535,7 @@
     {
       "id": 140,
       "file": "case-app.js",
-      "line": 247,
+      "line": 253,
       "kind": "literal",
       "text": "操作未完成，已保存的资料不受影响。",
       "voice": "招聘／导航／系统提示",
@@ -1546,7 +1546,7 @@
     {
       "id": 141,
       "file": "case-app.js",
-      "line": 276,
+      "line": 297,
       "kind": "literal",
       "text": "该岗位已撤下",
       "voice": "招聘／导航／系统提示",
@@ -1557,7 +1557,7 @@
     {
       "id": 142,
       "file": "case-app.js",
-      "line": 277,
+      "line": 298,
       "kind": "literal",
       "text": "目前没有可申请的岗位。",
       "voice": "招聘／导航／系统提示",
@@ -1568,7 +1568,7 @@
     {
       "id": 143,
       "file": "case-app.js",
-      "line": 278,
+      "line": 299,
       "kind": "literal",
       "text": "返回论坛",
       "voice": "招聘／导航／系统提示",
@@ -1579,7 +1579,7 @@
     {
       "id": 144,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "旧预订资料整理兼职",
       "voice": "招聘／导航／系统提示",
@@ -1590,7 +1590,7 @@
     {
       "id": 145,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "远程工作，需能使用电脑查看表格和扫描件。",
       "voice": "招聘／导航／系统提示",
@@ -1601,7 +1601,7 @@
     {
       "id": 146,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "搜索岗位",
       "voice": "招聘／导航／系统提示",
@@ -1612,7 +1612,7 @@
     {
       "id": 147,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "职位名称或工作内容",
       "voice": "招聘／导航／系统提示",
@@ -1623,7 +1623,7 @@
     {
       "id": 148,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "工作方式",
       "voice": "招聘／导航／系统提示",
@@ -1634,7 +1634,7 @@
     {
       "id": 149,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "远程",
       "voice": "招聘／导航／系统提示",
@@ -1645,7 +1645,7 @@
     {
       "id": 150,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "现场",
       "voice": "招聘／导航／系统提示",
@@ -1656,7 +1656,7 @@
     {
       "id": 151,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "搜索",
       "voice": "招聘／导航／系统提示",
@@ -1667,7 +1667,7 @@
     {
       "id": 152,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "合同制 · 远程",
       "voice": "招聘／导航／系统提示",
@@ -1678,7 +1678,7 @@
     {
       "id": 153,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "预订档案整理员",
       "voice": "招聘／导航／系统提示",
@@ -1689,7 +1689,7 @@
     {
       "id": 154,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "帮一家湖畔旅馆整理以前的预订单。",
       "voice": "招聘／导航／系统提示",
@@ -1700,7 +1700,7 @@
     {
       "id": 155,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "申请前可先做一份工作样本，无需注册。",
       "voice": "招聘／导航／系统提示",
@@ -1711,7 +1711,7 @@
     {
       "id": 156,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "样本档案",
       "voice": "招聘／导航／系统提示",
@@ -1722,7 +1722,7 @@
     {
       "id": 157,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "查看工作样本",
       "voice": "招聘／导航／系统提示",
@@ -1733,7 +1733,7 @@
     {
       "id": 158,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "工作内容",
       "voice": "招聘／导航／系统提示",
@@ -1744,7 +1744,7 @@
     {
       "id": 159,
       "file": "case-app.js",
-      "line": 280,
+      "line": 301,
       "kind": "literal",
       "text": "对照旧预订单、客房记录和修改记录，看看有没有对不上的地方。这份样本不用注册，也不用上传简历。",
       "voice": "招聘／导航／系统提示",
@@ -1755,7 +1755,7 @@
     {
       "id": 160,
       "file": "case-app.js",
-      "line": 287,
+      "line": 308,
       "kind": "literal",
       "text": "文件暂时打不开",
       "voice": "招聘／导航／系统提示",
@@ -1766,7 +1766,7 @@
     {
       "id": 161,
       "file": "case-app.js",
-      "line": 289,
+      "line": 310,
       "kind": "literal",
       "text": "暂时没有这份文件的访问权限。请从相关资料打开。",
       "voice": "招聘／导航／系统提示",
@@ -1777,7 +1777,7 @@
     {
       "id": 162,
       "file": "case-app.js",
-      "line": 292,
+      "line": 313,
       "kind": "literal",
       "text": "查看相关文件",
       "voice": "招聘／导航／系统提示",
@@ -1788,7 +1788,7 @@
     {
       "id": 163,
       "file": "case-app.js",
-      "line": 300,
+      "line": 321,
       "kind": "literal",
       "text": "浏览器无法保存进度，当前标签页仍可继续操作。",
       "voice": "招聘／导航／系统提示",
@@ -1799,7 +1799,7 @@
     {
       "id": 164,
       "file": "case-app.js",
-      "line": 302,
+      "line": 323,
       "kind": "literal",
       "text": "图片鸣谢",
       "voice": "招聘／导航／系统提示",
@@ -1810,7 +1810,7 @@
     {
       "id": 165,
       "file": "case-app.js",
-      "line": 303,
+      "line": 324,
       "kind": "literal",
       "text": "我的广告夹",
       "voice": "招聘／导航／系统提示",
@@ -1821,7 +1821,7 @@
     {
       "id": 166,
       "file": "case-app.js",
-      "line": 305,
+      "line": 326,
       "kind": "literal",
       "text": "夜猫论坛",
       "voice": "招聘／导航／系统提示",
@@ -1832,7 +1832,7 @@
     {
       "id": 167,
       "file": "case-app.js",
-      "line": 305,
+      "line": 326,
       "kind": "literal",
       "text": "论坛首页",
       "voice": "招聘／导航／系统提示",
@@ -1843,7 +1843,7 @@
     {
       "id": 168,
       "file": "case-app.js",
-      "line": 305,
+      "line": 326,
       "kind": "literal",
       "text": "工作信息",
       "voice": "招聘／导航／系统提示",
@@ -1854,7 +1854,7 @@
     {
       "id": 169,
       "file": "case-app.js",
-      "line": 305,
+      "line": 326,
       "kind": "literal",
       "text": "老网站",
       "voice": "招聘／导航／系统提示",
@@ -1865,7 +1865,7 @@
     {
       "id": 170,
       "file": "case-app.js",
-      "line": 305,
+      "line": 326,
       "kind": "literal",
       "text": "虚构社区，帖子与商家均为作品内容，不接受真实交易。",
       "voice": "招聘／导航／系统提示",
@@ -1876,7 +1876,7 @@
     {
       "id": 171,
       "file": "case-app.js",
-      "line": 307,
+      "line": 328,
       "kind": "literal",
       "text": "招聘信息",
       "voice": "招聘／导航／系统提示",
@@ -1887,7 +1887,7 @@
     {
       "id": 172,
       "file": "case-app.js",
-      "line": 307,
+      "line": 328,
       "kind": "literal",
       "text": "回论坛看看",
       "voice": "招聘／导航／系统提示",
@@ -1898,7 +1898,7 @@
     {
       "id": 173,
       "file": "case-app.js",
-      "line": 307,
+      "line": 328,
       "kind": "literal",
       "text": "虚构职位展示，不接收真实简历、申请或付款。",
       "voice": "招聘／导航／系统提示",
@@ -1909,7 +1909,7 @@
     {
       "id": 174,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。",
       "voice": "招聘／导航／系统提示",
@@ -1920,7 +1920,7 @@
     {
       "id": 175,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "浏览器无法保存进度，当前标签页仍可继续操作。",
       "voice": "招聘／导航／系统提示",
@@ -1931,7 +1931,7 @@
     {
       "id": 176,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "回论坛看看",
       "voice": "招聘／导航／系统提示",
@@ -1942,7 +1942,7 @@
     {
       "id": 177,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "返回招聘页",
       "voice": "招聘／导航／系统提示",
@@ -1953,7 +1953,7 @@
     {
       "id": 178,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "住客留言",
       "voice": "招聘／导航／系统提示",
@@ -1964,7 +1964,7 @@
     {
       "id": 179,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "旅馆历史",
       "voice": "招聘／导航／系统提示",
@@ -1975,7 +1975,7 @@
     {
       "id": 180,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "旅馆相册",
       "voice": "招聘／导航／系统提示",
@@ -1986,7 +1986,7 @@
     {
       "id": 181,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "公告栏",
       "voice": "招聘／导航／系统提示",
@@ -1997,7 +1997,7 @@
     {
       "id": 182,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "员工档案",
       "voice": "招聘／导航／系统提示",
@@ -2008,7 +2008,7 @@
     {
       "id": 183,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "工作笔记",
       "voice": "招聘／导航／系统提示",
@@ -2019,7 +2019,7 @@
     {
       "id": 184,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "声音：开启",
       "voice": "招聘／导航／系统提示",
@@ -2030,7 +2030,7 @@
     {
       "id": 185,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "声音：关闭",
       "voice": "招聘／导航／系统提示",
@@ -2041,7 +2041,7 @@
     {
       "id": 186,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "声音与设置",
       "voice": "招聘／导航／系统提示",
@@ -2052,7 +2052,7 @@
     {
       "id": 187,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "我的广告夹",
       "voice": "招聘／导航／系统提示",
@@ -2063,7 +2063,7 @@
     {
       "id": 188,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "图片来源",
       "voice": "招聘／导航／系统提示",
@@ -2074,7 +2074,7 @@
     {
       "id": 189,
       "file": "case-app.js",
-      "line": 308,
+      "line": 329,
       "kind": "literal",
       "text": "上一版与原存档",
       "voice": "招聘／导航／系统提示",
@@ -2085,7 +2085,7 @@
     {
       "id": 190,
       "file": "case-app.js",
-      "line": 391,
+      "line": 412,
       "kind": "literal",
       "text": "旧档案目录",
       "voice": "招聘／导航／系统提示",
@@ -2096,7 +2096,7 @@
     {
       "id": 191,
       "file": "case-app.js",
-      "line": 393,
+      "line": 414,
       "kind": "literal",
       "text": "这里只列出本次已打开的文件。",
       "voice": "招聘／导航／系统提示",
@@ -2107,7 +2107,7 @@
     {
       "id": 192,
       "file": "case-app.js",
-      "line": 396,
+      "line": 417,
       "kind": "literal",
       "text": "工作笔记",
       "voice": "招聘／导航／系统提示",
@@ -2118,7 +2118,7 @@
     {
       "id": 193,
       "file": "case-app.js",
-      "line": 429,
+      "line": 450,
       "kind": "literal",
       "text": "夜猫论坛 · 工作信息",
       "voice": "招聘／导航／系统提示",
@@ -2129,7 +2129,7 @@
     {
       "id": 194,
       "file": "case-app.js",
-      "line": 444,
+      "line": 465,
       "kind": "literal",
       "text": "夜班审计员",
       "voice": "招聘／导航／系统提示",
@@ -2140,7 +2140,7 @@
     {
       "id": 195,
       "file": "case-app.js",
-      "line": 447,
+      "line": 468,
       "kind": "literal",
       "text": "夜猫论坛",
       "voice": "招聘／导航／系统提示",
@@ -2151,9 +2151,9 @@
     {
       "id": 196,
       "file": "case-app.js",
-      "line": 447,
+      "line": 468,
       "kind": "literal",
-      "text": "存档与重置",
+      "text": "游玩说明",
       "voice": "招聘／导航／系统提示",
       "status": "新增／结构调整",
       "before": "",
@@ -2162,7 +2162,18 @@
     {
       "id": 197,
       "file": "case-app.js",
-      "line": 447,
+      "line": 468,
+      "kind": "literal",
+      "text": "存档与重置",
+      "voice": "招聘／导航／系统提示",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 198,
+      "file": "case-app.js",
+      "line": 468,
       "kind": "literal",
       "text": "简体中文",
       "voice": "招聘／导航／系统提示",
@@ -2171,9 +2182,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 198,
+      "id": 199,
       "file": "case-app.js",
-      "line": 450,
+      "line": 471,
       "kind": "literal",
       "text": "论坛分区",
       "voice": "招聘／导航／系统提示",
@@ -2182,9 +2193,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 199,
+      "id": 200,
       "file": "case-app.js",
-      "line": 453,
+      "line": 474,
       "kind": "literal",
       "text": "闲聊",
       "voice": "招聘／导航／系统提示",
@@ -2193,9 +2204,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 200,
+      "id": 201,
       "file": "case-app.js",
-      "line": 454,
+      "line": 475,
       "kind": "literal",
       "text": "工作信息",
       "voice": "招聘／导航／系统提示",
@@ -2204,9 +2215,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 201,
+      "id": 202,
       "file": "case-app.js",
-      "line": 455,
+      "line": 476,
       "kind": "literal",
       "text": "老网站",
       "voice": "招聘／导航／系统提示",
@@ -2215,9 +2226,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 202,
+      "id": 203,
       "file": "case-app.js",
-      "line": 456,
+      "line": 477,
       "kind": "literal",
       "text": "求助",
       "voice": "招聘／导航／系统提示",
@@ -2226,9 +2237,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 203,
+      "id": 204,
       "file": "case-app.js",
-      "line": 463,
+      "line": 484,
       "kind": "literal",
       "text": "招聘信息",
       "voice": "招聘／导航／系统提示",
@@ -2237,9 +2248,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 204,
+      "id": 205,
       "file": "case-app.js",
-      "line": 467,
+      "line": 488,
       "kind": "literal",
       "text": "酒店目录",
       "voice": "招聘／导航／系统提示",
@@ -2248,9 +2259,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 205,
+      "id": 206,
       "file": "case-app.js",
-      "line": 468,
+      "line": 489,
       "kind": "literal",
       "text": "工作笔记",
       "voice": "招聘／导航／系统提示",
@@ -2259,9 +2270,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 206,
+      "id": 207,
       "file": "case-app.js",
-      "line": 469,
+      "line": 490,
       "kind": "literal",
       "text": "员工档案",
       "voice": "招聘／导航／系统提示",
@@ -2270,9 +2281,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 207,
+      "id": 208,
       "file": "case-app.js",
-      "line": 472,
+      "line": 493,
       "kind": "literal",
       "text": "首页",
       "voice": "招聘／导航／系统提示",
@@ -2281,9 +2292,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 208,
+      "id": 209,
       "file": "case-app.js",
-      "line": 473,
+      "line": 494,
       "kind": "literal",
       "text": "客房",
       "voice": "招聘／导航／系统提示",
@@ -2292,9 +2303,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 209,
+      "id": 210,
       "file": "case-app.js",
-      "line": 474,
+      "line": 495,
       "kind": "literal",
       "text": "预订查询",
       "voice": "招聘／导航／系统提示",
@@ -2303,9 +2314,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 210,
+      "id": 211,
       "file": "case-app.js",
-      "line": 475,
+      "line": 496,
       "kind": "literal",
       "text": "联系前台",
       "voice": "招聘／导航／系统提示",
@@ -2314,9 +2325,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 211,
+      "id": 212,
       "file": "case-app.js",
-      "line": 516,
+      "line": 537,
       "kind": "literal",
       "text": "客房目录已更新 · 查看当前页面",
       "voice": "招聘／导航／系统提示",
@@ -2325,9 +2336,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 212,
+      "id": 213,
       "file": "case-app.js",
-      "line": 563,
+      "line": 593,
       "kind": "literal",
       "text": "先把推车挪开，柜门才能打开。",
       "voice": "招聘／导航／系统提示",
@@ -2336,9 +2347,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 213,
+      "id": 214,
       "file": "case-app.js",
-      "line": 567,
+      "line": 597,
       "kind": "literal",
       "text": "供电拉杆在维修柜里。",
       "voice": "招聘／导航／系统提示",
@@ -2347,9 +2358,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 214,
+      "id": 215,
       "file": "case-app.js",
-      "line": 571,
+      "line": 601,
       "kind": "literal",
       "text": "门锁没通电。沿线路回西侧维修柜看看。",
       "voice": "招聘／导航／系统提示",
@@ -2358,9 +2369,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 215,
+      "id": 216,
       "file": "case-app.js",
-      "line": 577,
+      "line": 607,
       "kind": "literal",
       "text": "两路画面的地标对不上。已确认的连接还在。",
       "voice": "招聘／导航／系统提示",
@@ -2369,9 +2380,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 216,
+      "id": 217,
       "file": "case-app.js",
-      "line": 586,
+      "line": 616,
       "kind": "literal",
       "text": "未保存：录像线路还没接通。A 的左侧输入必须连到 F 的右侧出口。当前接线已保留。",
       "voice": "招聘／导航／系统提示",
@@ -2380,9 +2391,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 217,
+      "id": 218,
       "file": "case-app.js",
-      "line": 591,
+      "line": 621,
       "kind": "literal",
       "text": "未保存：自动回写电源仍然连接。请把 AUTO-WRITE 切到“已隔离”。",
       "voice": "招聘／导航／系统提示",
@@ -2391,9 +2402,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 218,
+      "id": 219,
       "file": "case-app.js",
-      "line": 596,
+      "line": 626,
       "kind": "literal",
       "text": "未保存：当前为自动模式。切换到 MANUAL 后才能保存检修配置。",
       "voice": "招聘／导航／系统提示",
@@ -2402,9 +2413,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 219,
+      "id": 220,
       "file": "case-app.js",
-      "line": 600,
+      "line": 630,
       "kind": "literal",
       "text": "锁定前请先保存配置，并恢复监控最后一帧。",
       "voice": "招聘／导航／系统提示",
@@ -2413,9 +2424,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 220,
+      "id": 221,
       "file": "case-app.js",
-      "line": 689,
+      "line": 726,
       "kind": "literal",
       "text": "排列已保存。",
       "voice": "招聘／导航／系统提示",
@@ -2424,9 +2435,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 221,
+      "id": 222,
       "file": "case-app.js",
-      "line": 751,
+      "line": 791,
       "kind": "literal",
       "text": "找到 1 个岗位。",
       "voice": "招聘／导航／系统提示",
@@ -2435,9 +2446,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 222,
+      "id": 223,
       "file": "case-app.js",
-      "line": 753,
+      "line": 793,
       "kind": "literal",
       "text": "没有匹配岗位，请调整筛选。",
       "voice": "招聘／导航／系统提示",
@@ -2446,7 +2457,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 223,
+      "id": 224,
       "file": "case-comfort.js",
       "line": 18,
       "kind": "literal",
@@ -2457,7 +2468,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 224,
+      "id": 225,
       "file": "case-comfort.js",
       "line": 19,
       "kind": "literal",
@@ -2468,7 +2479,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 225,
+      "id": 226,
       "file": "case-comfort.js",
       "line": 75,
       "kind": "literal",
@@ -2479,7 +2490,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 226,
+      "id": 227,
       "file": "case-comfort.js",
       "line": 87,
       "kind": "literal",
@@ -2490,7 +2501,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 227,
+      "id": 228,
       "file": "case-comfort.js",
       "line": 87,
       "kind": "literal",
@@ -2501,18 +2512,18 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 228,
+      "id": 229,
       "file": "case-comfort.js",
       "line": 87,
       "kind": "literal",
-      "text": "声音默认关闭。第二阶段开启声音后，先听到机器运转声；进入深处后会自动加入呼吸声，关闭声音即可停止。可单独跳过监控突脸或减少动态效果。",
+      "text": "声音默认关闭。第二阶段开启声音后，先听到机器运转声；进入深处后会自动加入呼吸声，关闭声音即可停止。鬼脸和突脸默认开启，可勾选下方的“跳过监控突脸与短暂故障”关闭。",
       "voice": "浏览设置",
       "status": "改写",
       "before": "第二阶段开启声音后会自动播放呼吸声",
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 229,
+      "id": 230,
       "file": "case-comfort.js",
       "line": 87,
       "kind": "literal",
@@ -2523,7 +2534,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 230,
+      "id": 231,
       "file": "case-comfort.js",
       "line": 87,
       "kind": "literal",
@@ -2534,7 +2545,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 231,
+      "id": 232,
       "file": "case-comfort.js",
       "line": 87,
       "kind": "literal",
@@ -2545,7 +2556,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 232,
+      "id": 233,
       "file": "case-comfort.js",
       "line": 87,
       "kind": "literal",
@@ -2556,7 +2567,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 233,
+      "id": 234,
       "file": "case-comfort.js",
       "line": 87,
       "kind": "literal",
@@ -2567,7 +2578,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 234,
+      "id": 235,
       "file": "case-comfort.js",
       "line": 87,
       "kind": "literal",
@@ -2578,7 +2589,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 235,
+      "id": 236,
       "file": "case-comfort.js",
       "line": 87,
       "kind": "literal",
@@ -2589,7 +2600,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 236,
+      "id": 237,
       "file": "case-comfort.js",
       "line": 87,
       "kind": "literal",
@@ -2600,7 +2611,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 237,
+      "id": 238,
       "file": "case-comfort.js",
       "line": 87,
       "kind": "literal",
@@ -2611,7 +2622,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 238,
+      "id": 239,
       "file": "case-comfort.js",
       "line": 87,
       "kind": "literal",
@@ -2622,7 +2633,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 239,
+      "id": 240,
       "file": "case-comfort.js",
       "line": 87,
       "kind": "literal",
@@ -2633,9 +2644,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 240,
+      "id": 241,
       "file": "case-comfort.js",
-      "line": 164,
+      "line": 165,
       "kind": "literal",
       "text": "连接中断，正在读取备份。",
       "voice": "浏览设置",
@@ -2644,9 +2655,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 241,
+      "id": 242,
       "file": "case-comfort.js",
-      "line": 172,
+      "line": 173,
       "kind": "literal",
       "text": "已恢复备份，原始时间未变。",
       "voice": "浏览设置",
@@ -2655,7 +2666,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 242,
+      "id": 243,
       "file": "case-data.js",
       "line": 32,
       "kind": "literal",
@@ -2666,7 +2677,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 243,
+      "id": 244,
       "file": "case-data.js",
       "line": 39,
       "kind": "literal",
@@ -2677,7 +2688,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 244,
+      "id": 245,
       "file": "case-data.js",
       "line": 46,
       "kind": "literal",
@@ -2688,7 +2699,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 245,
+      "id": 246,
       "file": "case-data.js",
       "line": 53,
       "kind": "literal",
@@ -2699,7 +2710,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 246,
+      "id": 247,
       "file": "case-data.js",
       "line": 60,
       "kind": "literal",
@@ -2710,7 +2721,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 247,
+      "id": 248,
       "file": "case-data.js",
       "line": 67,
       "kind": "literal",
@@ -2721,7 +2732,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 248,
+      "id": 249,
       "file": "case-data.js",
       "line": 74,
       "kind": "literal",
@@ -2732,7 +2743,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 249,
+      "id": 250,
       "file": "case-data.js",
       "line": 81,
       "kind": "literal",
@@ -2743,7 +2754,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 250,
+      "id": 251,
       "file": "case-data.js",
       "line": 88,
       "kind": "literal",
@@ -2754,7 +2765,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 251,
+      "id": 252,
       "file": "case-data.js",
       "line": 96,
       "kind": "literal",
@@ -2765,7 +2776,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 252,
+      "id": 253,
       "file": "case-data.js",
       "line": 98,
       "kind": "template",
@@ -2776,7 +2787,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 253,
+      "id": 254,
       "file": "case-data.js",
       "line": 98,
       "kind": "template",
@@ -2787,7 +2798,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 254,
+      "id": 255,
       "file": "case-data.js",
       "line": 106,
       "kind": "literal",
@@ -2798,7 +2809,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 255,
+      "id": 256,
       "file": "case-data.js",
       "line": 108,
       "kind": "template",
@@ -2809,7 +2820,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 256,
+      "id": 257,
       "file": "case-data.js",
       "line": 108,
       "kind": "template",
@@ -2820,7 +2831,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 257,
+      "id": 258,
       "file": "case-data.js",
       "line": 116,
       "kind": "literal",
@@ -2831,7 +2842,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 258,
+      "id": 259,
       "file": "case-data.js",
       "line": 118,
       "kind": "template",
@@ -2842,7 +2853,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 259,
+      "id": 260,
       "file": "case-data.js",
       "line": 118,
       "kind": "template",
@@ -2853,7 +2864,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 260,
+      "id": 261,
       "file": "case-data.js",
       "line": 118,
       "kind": "template",
@@ -2864,7 +2875,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 261,
+      "id": 262,
       "file": "case-data.js",
       "line": 118,
       "kind": "template",
@@ -2875,7 +2886,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 262,
+      "id": 263,
       "file": "case-data.js",
       "line": 126,
       "kind": "literal",
@@ -2886,7 +2897,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 263,
+      "id": 264,
       "file": "case-data.js",
       "line": 128,
       "kind": "template",
@@ -2897,7 +2908,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 264,
+      "id": 265,
       "file": "case-data.js",
       "line": 128,
       "kind": "template",
@@ -2908,7 +2919,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 265,
+      "id": 266,
       "file": "case-data.js",
       "line": 142,
       "kind": "literal",
@@ -2919,7 +2930,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 266,
+      "id": 267,
       "file": "case-data.js",
       "line": 144,
       "kind": "template",
@@ -2930,7 +2941,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 267,
+      "id": 268,
       "file": "case-data.js",
       "line": 148,
       "kind": "template",
@@ -2941,7 +2952,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 268,
+      "id": 269,
       "file": "case-data.js",
       "line": 148,
       "kind": "template",
@@ -2952,7 +2963,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 269,
+      "id": 270,
       "file": "case-data.js",
       "line": 155,
       "kind": "literal",
@@ -2963,7 +2974,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 270,
+      "id": 271,
       "file": "case-data.js",
       "line": 157,
       "kind": "template",
@@ -2974,7 +2985,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 271,
+      "id": 272,
       "file": "case-data.js",
       "line": 160,
       "kind": "template",
@@ -2985,7 +2996,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 272,
+      "id": 273,
       "file": "case-data.js",
       "line": 165,
       "kind": "literal",
@@ -2996,7 +3007,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 273,
+      "id": 274,
       "file": "case-data.js",
       "line": 166,
       "kind": "literal",
@@ -3007,7 +3018,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 274,
+      "id": 275,
       "file": "case-data.js",
       "line": 167,
       "kind": "literal",
@@ -3018,7 +3029,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 275,
+      "id": 276,
       "file": "case-data.js",
       "line": 172,
       "kind": "literal",
@@ -3029,7 +3040,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 276,
+      "id": 277,
       "file": "case-data.js",
       "line": 179,
       "kind": "literal",
@@ -3040,7 +3051,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 277,
+      "id": 278,
       "file": "case-data.js",
       "line": 191,
       "kind": "template",
@@ -3051,7 +3062,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 278,
+      "id": 279,
       "file": "case-data.js",
       "line": 191,
       "kind": "template",
@@ -3062,7 +3073,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 279,
+      "id": 280,
       "file": "case-data.js",
       "line": 200,
       "kind": "template",
@@ -3073,7 +3084,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 280,
+      "id": 281,
       "file": "case-data.js",
       "line": 209,
       "kind": "template",
@@ -3084,7 +3095,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 281,
+      "id": 282,
       "file": "case-data.js",
       "line": 218,
       "kind": "template",
@@ -3095,7 +3106,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 282,
+      "id": 283,
       "file": "case-data.js",
       "line": 218,
       "kind": "template",
@@ -3106,7 +3117,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 283,
+      "id": 284,
       "file": "case-data.js",
       "line": 227,
       "kind": "template",
@@ -3117,7 +3128,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 284,
+      "id": 285,
       "file": "case-data.js",
       "line": 236,
       "kind": "template",
@@ -3128,9 +3139,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 285,
+      "id": 286,
       "file": "case-events.js",
-      "line": 22,
+      "line": 27,
       "kind": "literal",
       "text": "隔壁的门开着。",
       "voice": "现场观察／设备状态",
@@ -3139,9 +3150,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 286,
+      "id": 287,
       "file": "case-events.js",
-      "line": 24,
+      "line": 29,
       "kind": "literal",
       "text": "灯闪了一下。猫眼里没有人。",
       "voice": "现场观察／设备状态",
@@ -3150,9 +3161,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 287,
+      "id": 288,
       "file": "case-events.js",
-      "line": 28,
+      "line": 33,
       "kind": "literal",
       "text": "走廊尽头多了一个影子。",
       "voice": "现场观察／设备状态",
@@ -3161,9 +3172,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 288,
+      "id": 289,
       "file": "case-events.js",
-      "line": 32,
+      "line": 37,
       "kind": "literal",
       "text": "柜门内侧有一张旧照片。门锁供电拉杆在它下面。",
       "voice": "现场观察／设备状态",
@@ -3172,9 +3183,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 289,
+      "id": 290,
       "file": "case-events.js",
-      "line": 36,
+      "line": 41,
       "kind": "literal",
       "text": "合照上的脸被刮花了，背面留着 E-014。",
       "voice": "现场观察／设备状态",
@@ -3183,9 +3194,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 290,
+      "id": 291,
       "file": "case-events.js",
-      "line": 40,
+      "line": 45,
       "kind": "literal",
       "text": "录像停在 03:17，317 的门还没有关上。",
       "voice": "现场观察／设备状态",
@@ -3194,7 +3205,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 291,
+      "id": 292,
       "file": "case-feedback.js",
       "line": 31,
       "kind": "literal",
@@ -3205,7 +3216,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 292,
+      "id": 293,
       "file": "case-feedback.js",
       "line": 35,
       "kind": "literal",
@@ -3216,7 +3227,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 293,
+      "id": 294,
       "file": "case-feedback.js",
       "line": 39,
       "kind": "literal",
@@ -3227,7 +3238,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 294,
+      "id": 295,
       "file": "case-feedback.js",
       "line": 43,
       "kind": "literal",
@@ -3238,7 +3249,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 295,
+      "id": 296,
       "file": "case-feedback.js",
       "line": 47,
       "kind": "literal",
@@ -3249,7 +3260,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 296,
+      "id": 297,
       "file": "case-feedback.js",
       "line": 51,
       "kind": "literal",
@@ -3260,7 +3271,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 297,
+      "id": 298,
       "file": "case-feedback.js",
       "line": 55,
       "kind": "literal",
@@ -3271,7 +3282,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 298,
+      "id": 299,
       "file": "case-feedback.js",
       "line": 59,
       "kind": "literal",
@@ -3282,7 +3293,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 299,
+      "id": 300,
       "file": "case-feedback.js",
       "line": 63,
       "kind": "literal",
@@ -3293,7 +3304,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 300,
+      "id": 301,
       "file": "case-feedback.js",
       "line": 67,
       "kind": "literal",
@@ -3304,7 +3315,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 301,
+      "id": 302,
       "file": "case-feedback.js",
       "line": 71,
       "kind": "literal",
@@ -3315,7 +3326,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 302,
+      "id": 303,
       "file": "case-feedback.js",
       "line": 75,
       "kind": "literal",
@@ -3326,7 +3337,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 303,
+      "id": 304,
       "file": "case-feedback.js",
       "line": 97,
       "kind": "literal",
@@ -3337,7 +3348,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 304,
+      "id": 305,
       "file": "case-feedback.js",
       "line": 103,
       "kind": "literal",
@@ -3348,7 +3359,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 305,
+      "id": 306,
       "file": "case-feedback.js",
       "line": 106,
       "kind": "literal",
@@ -3359,7 +3370,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 306,
+      "id": 307,
       "file": "case-feedback.js",
       "line": 114,
       "kind": "literal",
@@ -3370,7 +3381,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 307,
+      "id": 308,
       "file": "case-night.js",
       "line": 5,
       "kind": "literal",
@@ -3381,7 +3392,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 308,
+      "id": 309,
       "file": "case-night.js",
       "line": 6,
       "kind": "literal",
@@ -3392,7 +3403,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 309,
+      "id": 310,
       "file": "case-night.js",
       "line": 7,
       "kind": "literal",
@@ -3403,7 +3414,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 310,
+      "id": 311,
       "file": "case-night.js",
       "line": 17,
       "kind": "literal",
@@ -3414,7 +3425,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 311,
+      "id": 312,
       "file": "case-night.js",
       "line": 21,
       "kind": "literal",
@@ -3425,7 +3436,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 312,
+      "id": 313,
       "file": "case-night.js",
       "line": 24,
       "kind": "literal",
@@ -3436,7 +3447,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 313,
+      "id": 314,
       "file": "case-night.js",
       "line": 26,
       "kind": "literal",
@@ -3447,9 +3458,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 314,
+      "id": 315,
       "file": "case-night.js",
-      "line": 39,
+      "line": 44,
       "kind": "literal",
       "text": "恐怖章节显示设置",
       "voice": "监控与配线设备",
@@ -3458,22 +3469,11 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 315,
-      "file": "case-night.js",
-      "line": 39,
-      "kind": "literal",
-      "text": "接下来的监控和通道可能出现突然靠近的面孔与画面故障。可选择开启；保持跳过也能体验全部剧情和操作。",
-      "voice": "监控与配线设备",
-      "status": "新增／结构调整",
-      "before": "",
-      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
-    },
-    {
       "id": 316,
       "file": "case-night.js",
-      "line": 39,
+      "line": 44,
       "kind": "literal",
-      "text": "开启突发画面",
+      "text": "接下来的监控和通道可能出现突然靠近的面孔与画面故障。鬼脸和突脸默认开启，也可以关闭；关闭后仍能体验全部剧情和操作。",
       "voice": "监控与配线设备",
       "status": "新增／结构调整",
       "before": "",
@@ -3482,9 +3482,9 @@
     {
       "id": 317,
       "file": "case-night.js",
-      "line": 39,
+      "line": 44,
       "kind": "literal",
-      "text": "保持跳过，继续浏览",
+      "text": "鬼脸与突脸：已关闭",
       "voice": "监控与配线设备",
       "status": "新增／结构调整",
       "before": "",
@@ -3493,9 +3493,9 @@
     {
       "id": 318,
       "file": "case-night.js",
-      "line": 39,
+      "line": 44,
       "kind": "literal",
-      "text": "声音仍由底部菜单单独控制，可随时在设置里更改。",
+      "text": "鬼脸与突脸：已开启",
       "voice": "监控与配线设备",
       "status": "新增／结构调整",
       "before": "",
@@ -3506,6 +3506,61 @@
       "file": "case-night.js",
       "line": 44,
       "kind": "literal",
+      "text": "开启鬼脸与突脸",
+      "voice": "监控与配线设备",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 320,
+      "file": "case-night.js",
+      "line": 44,
+      "kind": "literal",
+      "text": "保持开启，继续浏览",
+      "voice": "监控与配线设备",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 321,
+      "file": "case-night.js",
+      "line": 44,
+      "kind": "literal",
+      "text": "保持跳过，继续浏览",
+      "voice": "监控与配线设备",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 322,
+      "file": "case-night.js",
+      "line": 44,
+      "kind": "literal",
+      "text": "关闭鬼脸与突脸",
+      "voice": "监控与配线设备",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 323,
+      "file": "case-night.js",
+      "line": 44,
+      "kind": "literal",
+      "text": "声音仍由底部菜单单独控制，可随时在设置里更改。",
+      "voice": "监控与配线设备",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 324,
+      "file": "case-night.js",
+      "line": 49,
+      "kind": "literal",
       "text": "目录已恢复",
       "voice": "监控与配线设备",
       "status": "保留",
@@ -3513,9 +3568,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 320,
+      "id": 325,
       "file": "case-night.js",
-      "line": 45,
+      "line": 50,
       "kind": "literal",
       "text": "查看客房目录",
       "voice": "监控与配线设备",
@@ -3524,9 +3579,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 321,
+      "id": 326,
       "file": "case-night.js",
-      "line": 50,
+      "line": 55,
       "kind": "literal",
       "text": "酒店目录已更新",
       "voice": "监控与配线设备",
@@ -3535,9 +3590,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 322,
+      "id": 327,
       "file": "case-night.js",
-      "line": 52,
+      "line": 57,
       "kind": "literal",
       "text": "以下为当前页面，原来的资料保存在历史副本中。",
       "voice": "监控与配线设备",
@@ -3546,9 +3601,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 323,
+      "id": 328,
       "file": "case-night.js",
-      "line": 57,
+      "line": 62,
       "kind": "literal",
       "text": "三楼客房",
       "voice": "监控与配线设备",
@@ -3557,9 +3612,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 324,
+      "id": 329,
       "file": "case-night.js",
-      "line": 57,
+      "line": 62,
       "kind": "literal",
       "text": "客房照片",
       "voice": "监控与配线设备",
@@ -3568,9 +3623,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 325,
+      "id": 330,
       "file": "case-night.js",
-      "line": 57,
+      "line": 62,
       "kind": "literal",
       "text": "可入住 · 独立卫浴",
       "voice": "监控与配线设备",
@@ -3579,9 +3634,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 326,
+      "id": 331,
       "file": "case-night.js",
-      "line": 57,
+      "line": 62,
       "kind": "literal",
       "text": "查看客房",
       "voice": "监控与配线设备",
@@ -3590,9 +3645,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 327,
+      "id": 332,
       "file": "case-night.js",
-      "line": 57,
+      "line": 62,
       "kind": "literal",
       "text": "房卡正在制作，请不要离开本页。",
       "voice": "监控与配线设备",
@@ -3601,9 +3656,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 328,
+      "id": 333,
       "file": "case-night.js",
-      "line": 57,
+      "line": 62,
       "kind": "literal",
       "text": "返回房间目录",
       "voice": "监控与配线设备",
@@ -3612,9 +3667,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 329,
+      "id": 334,
       "file": "case-night.js",
-      "line": 57,
+      "line": 62,
       "kind": "literal",
       "text": "前台留言",
       "voice": "监控与配线设备",
@@ -3623,9 +3678,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 330,
+      "id": 335,
       "file": "case-night.js",
-      "line": 57,
+      "line": 62,
       "kind": "literal",
       "text": "已正常入住。",
       "voice": "监控与配线设备",
@@ -3634,9 +3689,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 331,
+      "id": 336,
       "file": "case-night.js",
-      "line": 57,
+      "line": 62,
       "kind": "literal",
       "text": "本班值守",
       "voice": "监控与配线设备",
@@ -3645,9 +3700,9 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 332,
+      "id": 337,
       "file": "case-night.js",
-      "line": 57,
+      "line": 62,
       "kind": "literal",
       "text": "历史房间目录",
       "voice": "监控与配线设备",
@@ -3656,9 +3711,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 333,
+      "id": 338,
       "file": "case-night.js",
-      "line": 57,
+      "line": 62,
       "kind": "literal",
       "text": "历史留言副本",
       "voice": "监控与配线设备",
@@ -3667,9 +3722,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 334,
+      "id": 339,
       "file": "case-night.js",
-      "line": 57,
+      "line": 62,
       "kind": "literal",
       "text": "通道监控 · 查看维修入口",
       "voice": "监控与配线设备",
@@ -3678,9 +3733,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 335,
+      "id": 340,
       "file": "case-night.js",
-      "line": 57,
+      "line": 62,
       "kind": "literal",
       "text": "查看当前客房目录",
       "voice": "监控与配线设备",
@@ -3689,9 +3744,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 336,
+      "id": 341,
       "file": "case-night.js",
-      "line": 57,
+      "line": 62,
       "kind": "literal",
       "text": "查看当前住客留言",
       "voice": "监控与配线设备",
@@ -3700,9 +3755,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 337,
+      "id": 342,
       "file": "case-night.js",
-      "line": 65,
+      "line": 70,
       "kind": "literal",
       "text": "通道监控",
       "voice": "监控与配线设备",
@@ -3711,9 +3766,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 338,
+      "id": 343,
       "file": "case-night.js",
-      "line": 67,
+      "line": 72,
       "kind": "literal",
       "text": "维修说明：转动镜头，找到交接处的同一件物品后，接通相邻机位。",
       "voice": "监控与配线设备",
@@ -3722,9 +3777,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 339,
+      "id": 344,
       "file": "case-night.js",
-      "line": 71,
+      "line": 76,
       "kind": "literal",
       "text": "调整镜头方向",
       "voice": "监控与配线设备",
@@ -3733,9 +3788,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 340,
+      "id": 345,
       "file": "case-night.js",
-      "line": 71,
+      "line": 76,
       "kind": "literal",
       "text": "左移",
       "voice": "监控与配线设备",
@@ -3744,9 +3799,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 341,
+      "id": 346,
       "file": "case-night.js",
-      "line": 71,
+      "line": 76,
       "kind": "literal",
       "text": "居中",
       "voice": "监控与配线设备",
@@ -3755,9 +3810,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 342,
+      "id": 347,
       "file": "case-night.js",
-      "line": 71,
+      "line": 76,
       "kind": "literal",
       "text": "右移",
       "voice": "监控与配线设备",
@@ -3766,9 +3821,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 343,
+      "id": 348,
       "file": "case-night.js",
-      "line": 71,
+      "line": 76,
       "kind": "literal",
       "text": "通道连接图",
       "voice": "监控与配线设备",
@@ -3777,9 +3832,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 344,
+      "id": 349,
       "file": "case-night.js",
-      "line": 71,
+      "line": 76,
       "kind": "literal",
       "text": "连接已确认",
       "voice": "监控与配线设备",
@@ -3788,9 +3843,9 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 345,
+      "id": 350,
       "file": "case-night.js",
-      "line": 71,
+      "line": 76,
       "kind": "literal",
       "text": "确认连接",
       "voice": "监控与配线设备",
@@ -3799,9 +3854,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 346,
+      "id": 351,
       "file": "case-night.js",
-      "line": 71,
+      "line": 76,
       "kind": "literal",
       "text": "打开员工维修门",
       "voice": "监控与配线设备",
@@ -3810,9 +3865,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 347,
+      "id": 352,
       "file": "case-night.js",
-      "line": 71,
+      "line": 76,
       "kind": "literal",
       "text": "返回酒店目录",
       "voice": "监控与配线设备",
@@ -3821,9 +3876,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 348,
+      "id": 353,
       "file": "case-night.js",
-      "line": 75,
+      "line": 80,
       "kind": "literal",
       "text": "上",
       "voice": "监控与配线设备",
@@ -3832,9 +3887,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 349,
+      "id": 354,
       "file": "case-night.js",
-      "line": 76,
+      "line": 81,
       "kind": "literal",
       "text": "右",
       "voice": "监控与配线设备",
@@ -3843,9 +3898,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 350,
+      "id": 355,
       "file": "case-night.js",
-      "line": 77,
+      "line": 82,
       "kind": "literal",
       "text": "下",
       "voice": "监控与配线设备",
@@ -3854,9 +3909,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 351,
+      "id": 356,
       "file": "case-night.js",
-      "line": 78,
+      "line": 83,
       "kind": "literal",
       "text": "左",
       "voice": "监控与配线设备",
@@ -3865,9 +3920,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 352,
+      "id": 357,
       "file": "case-night.js",
-      "line": 86,
+      "line": 91,
       "kind": "literal",
       "text": "夜班控制室",
       "voice": "监控与配线设备",
@@ -3876,9 +3931,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 353,
+      "id": 358,
       "file": "case-night.js",
-      "line": 89,
+      "line": 94,
       "kind": "literal",
       "text": "原始录像已接通 · 03:17",
       "voice": "监控与配线设备",
@@ -3887,9 +3942,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 354,
+      "id": 359,
       "file": "case-night.js",
-      "line": 89,
+      "line": 94,
       "kind": "literal",
       "text": "CAM 02 无信号",
       "voice": "监控与配线设备",
@@ -3898,9 +3953,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 355,
+      "id": 360,
       "file": "case-night.js",
-      "line": 89,
+      "line": 94,
       "kind": "literal",
       "text": "恢复缓存的最后一帧",
       "voice": "监控与配线设备",
@@ -3909,9 +3964,9 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 356,
+      "id": 361,
       "file": "case-night.js",
-      "line": 89,
+      "line": 94,
       "kind": "literal",
       "text": "最后一帧：317 / SERVICE HOLDING。经手人 E-014。自动登记仍在运行。",
       "voice": "监控与配线设备",
@@ -3920,9 +3975,9 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 357,
+      "id": 362,
       "file": "case-night.js",
-      "line": 89,
+      "line": 94,
       "kind": "literal",
       "text": "录像信号配线板",
       "voice": "监控与配线设备",
@@ -3931,9 +3986,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 358,
+      "id": 363,
       "file": "case-night.js",
-      "line": 89,
+      "line": 94,
       "kind": "literal",
       "text": "接线与检修说明",
       "voice": "监控与配线设备",
@@ -3942,9 +3997,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 359,
+      "id": 364,
       "file": "case-night.js",
-      "line": 89,
+      "line": 94,
       "kind": "literal",
       "text": "按一下接头，会顺时针转 90°。相邻线头要对齐，才能传送信号。",
       "voice": "监控与配线设备",
@@ -3953,9 +4008,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 360,
+      "id": 365,
       "file": "case-night.js",
-      "line": 89,
+      "line": 94,
       "kind": "literal",
       "text": "录像从 A 左侧输入，接到 F 右侧的只读存储。接通后，监控会恢复 03:17 的画面。",
       "voice": "监控与配线设备",
@@ -3964,9 +4019,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 361,
+      "id": 366,
       "file": "case-night.js",
-      "line": 89,
+      "line": 94,
       "kind": "literal",
       "text": "AUTO-WRITE 是另一条电源，会把资料写入员工名册。检修时切到“已隔离”；再把 AUTO 切到 MANUAL，才能保存配置。",
       "voice": "监控与配线设备",
@@ -3975,9 +4030,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 362,
+      "id": 367,
       "file": "case-night.js",
-      "line": 89,
+      "line": 94,
       "kind": "literal",
       "text": "原始录像 → A 左侧",
       "voice": "监控与配线设备",
@@ -3986,9 +4041,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 363,
+      "id": 368,
       "file": "case-night.js",
-      "line": 92,
+      "line": 97,
       "kind": "literal",
       "text": "接头",
       "voice": "监控与配线设备",
@@ -3997,9 +4052,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 364,
+      "id": 369,
       "file": "case-night.js",
-      "line": 98,
+      "line": 103,
       "kind": "literal",
       "text": "旋转90度",
       "voice": "监控与配线设备",
@@ -4008,9 +4063,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 365,
+      "id": 370,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "F 右侧 → 只读存储",
       "voice": "监控与配线设备",
@@ -4019,9 +4074,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 366,
+      "id": 371,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "已隔离",
       "voice": "监控与配线设备",
@@ -4030,9 +4085,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 367,
+      "id": 372,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "接通",
       "voice": "监控与配线设备",
@@ -4041,9 +4096,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 368,
+      "id": 373,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "手动",
       "voice": "监控与配线设备",
@@ -4052,9 +4107,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 369,
+      "id": 374,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "自动",
       "voice": "监控与配线设备",
@@ -4063,9 +4118,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 370,
+      "id": 375,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "回写电源接在 D 上方，员工名册共用 F 的出口。",
       "voice": "监控与配线设备",
@@ -4074,9 +4129,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 371,
+      "id": 376,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "撤销一步",
       "voice": "监控与配线设备",
@@ -4085,9 +4140,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 372,
+      "id": 377,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "恢复接线初始位置",
       "voice": "监控与配线设备",
@@ -4096,9 +4151,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 373,
+      "id": 378,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "保存当前配置",
       "voice": "监控与配线设备",
@@ -4107,9 +4162,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 374,
+      "id": 379,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "配置已保存。再锁定原始备份，可防止后续改写。",
       "voice": "监控与配线设备",
@@ -4118,9 +4173,9 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 375,
+      "id": 380,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "原件已锁定",
       "voice": "监控与配线设备",
@@ -4129,9 +4184,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 376,
+      "id": 381,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "锁定原始备份，停止后续改写",
       "voice": "监控与配线设备",
@@ -4140,9 +4195,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 377,
+      "id": 382,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "录像通路",
       "voice": "监控与配线设备",
@@ -4151,9 +4206,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 378,
+      "id": 383,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "相关旧资料",
       "voice": "监控与配线设备",
@@ -4162,9 +4217,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 379,
+      "id": 384,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "Mara 的原备注",
       "voice": "监控与配线设备",
@@ -4173,9 +4228,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 380,
+      "id": 385,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "结束夜班",
       "voice": "监控与配线设备",
@@ -4184,9 +4239,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 381,
+      "id": 386,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "尚未锁定的备份仍可被自动程序改写。",
       "voice": "监控与配线设备",
@@ -4195,9 +4250,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 382,
+      "id": 387,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "同意自动结案",
       "voice": "监控与配线设备",
@@ -4206,9 +4261,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 383,
+      "id": 388,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "拒绝签字，离开终端",
       "voice": "监控与配线设备",
@@ -4217,9 +4272,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 384,
+      "id": 389,
       "file": "case-night.js",
-      "line": 106,
+      "line": 111,
       "kind": "literal",
       "text": "保留原件并退出夜班",
       "voice": "监控与配线设备",
@@ -4228,9 +4283,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 385,
+      "id": 390,
       "file": "case-night.js",
-      "line": 113,
+      "line": 118,
       "kind": "literal",
       "text": "工作已结束",
       "voice": "监控与配线设备",
@@ -4239,9 +4294,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 386,
+      "id": 391,
       "file": "case-night.js",
-      "line": 115,
+      "line": 120,
       "kind": "literal",
       "text": "原始资料已锁定，只能查看。",
       "voice": "监控与配线设备",
@@ -4250,9 +4305,9 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 387,
+      "id": 392,
       "file": "case-night.js",
-      "line": 119,
+      "line": 124,
       "kind": "literal",
       "text": "没有新的值班安排。Mara 的备注未改动；这份预订仍待核实。",
       "voice": "监控与配线设备",
@@ -4261,9 +4316,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 388,
+      "id": 393,
       "file": "case-night.js",
-      "line": 119,
+      "line": 124,
       "kind": "literal",
       "text": "查看岗位",
       "voice": "监控与配线设备",
@@ -4272,9 +4327,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 389,
+      "id": 394,
       "file": "case-night.js",
-      "line": 119,
+      "line": 124,
       "kind": "literal",
       "text": "返回酒店",
       "voice": "监控与配线设备",
@@ -4283,9 +4338,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 390,
+      "id": 395,
       "file": "case-night.js",
-      "line": 119,
+      "line": 124,
       "kind": "literal",
       "text": "查看保留的资料",
       "voice": "监控与配线设备",
@@ -4294,7 +4349,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 391,
+      "id": 396,
       "file": "case-pages.js",
       "line": 19,
       "kind": "literal",
@@ -4305,7 +4360,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 392,
+      "id": 397,
       "file": "case-pages.js",
       "line": 32,
       "kind": "literal",
@@ -4316,7 +4371,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 393,
+      "id": 398,
       "file": "case-pages.js",
       "line": 32,
       "kind": "literal",
@@ -4327,7 +4382,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 394,
+      "id": 399,
       "file": "case-pages.js",
       "line": 32,
       "kind": "literal",
@@ -4338,7 +4393,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 395,
+      "id": 400,
       "file": "case-pages.js",
       "line": 32,
       "kind": "literal",
@@ -4349,7 +4404,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 396,
+      "id": 401,
       "file": "case-pages.js",
       "line": 32,
       "kind": "literal",
@@ -4360,7 +4415,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 397,
+      "id": 402,
       "file": "case-pages.js",
       "line": 35,
       "kind": "literal",
@@ -4371,7 +4426,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 398,
+      "id": 403,
       "file": "case-pages.js",
       "line": 35,
       "kind": "literal",
@@ -4382,7 +4437,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 399,
+      "id": 404,
       "file": "case-pages.js",
       "line": 35,
       "kind": "literal",
@@ -4393,7 +4448,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 400,
+      "id": 405,
       "file": "case-pages.js",
       "line": 35,
       "kind": "literal",
@@ -4404,7 +4459,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 401,
+      "id": 406,
       "file": "case-pages.js",
       "line": 35,
       "kind": "literal",
@@ -4415,7 +4470,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 402,
+      "id": 407,
       "file": "case-pages.js",
       "line": 35,
       "kind": "literal",
@@ -4426,7 +4481,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 403,
+      "id": 408,
       "file": "case-pages.js",
       "line": 35,
       "kind": "literal",
@@ -4437,7 +4492,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 404,
+      "id": 409,
       "file": "case-pages.js",
       "line": 35,
       "kind": "literal",
@@ -4448,7 +4503,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 405,
+      "id": 410,
       "file": "case-pages.js",
       "line": 41,
       "kind": "literal",
@@ -4459,7 +4514,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 406,
+      "id": 411,
       "file": "case-pages.js",
       "line": 43,
       "kind": "literal",
@@ -4470,64 +4525,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 407,
-      "file": "case-pages.js",
-      "line": 47,
-      "kind": "literal",
-      "text": "预订编号",
-      "voice": "酒店前台／员工档案／Mara",
-      "status": "保留",
-      "before": "预订编号",
-      "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
-    },
-    {
-      "id": 408,
-      "file": "case-pages.js",
-      "line": 47,
-      "kind": "literal",
-      "text": "查看预订",
-      "voice": "酒店前台／员工档案／Mara",
-      "status": "保留",
-      "before": "查看预订",
-      "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
-    },
-    {
-      "id": 409,
-      "file": "case-pages.js",
-      "line": 47,
-      "kind": "literal",
-      "text": "不知道编号？工作样本上有。",
-      "voice": "酒店前台／员工档案／Mara",
-      "status": "保留",
-      "before": "不知道编号？工作样本上有。",
-      "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
-    },
-    {
-      "id": 410,
-      "file": "case-pages.js",
-      "line": 47,
-      "kind": "literal",
-      "text": "岗位样本",
-      "voice": "酒店前台／员工档案／Mara",
-      "status": "保留",
-      "before": "岗位样本",
-      "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
-    },
-    {
-      "id": 411,
-      "file": "case-pages.js",
-      "line": 51,
-      "kind": "literal",
-      "text": "旧预订单",
-      "voice": "酒店前台／员工档案／Mara",
-      "status": "保留",
-      "before": "旧预订单",
-      "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
-    },
-    {
       "id": 412,
       "file": "case-pages.js",
-      "line": 51,
+      "line": 47,
       "kind": "literal",
       "text": "预订编号",
       "voice": "酒店前台／员工档案／Mara",
@@ -4538,6 +4538,61 @@
     {
       "id": 413,
       "file": "case-pages.js",
+      "line": 47,
+      "kind": "literal",
+      "text": "查看预订",
+      "voice": "酒店前台／员工档案／Mara",
+      "status": "保留",
+      "before": "查看预订",
+      "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
+    },
+    {
+      "id": 414,
+      "file": "case-pages.js",
+      "line": 47,
+      "kind": "literal",
+      "text": "不知道编号？工作样本上有。",
+      "voice": "酒店前台／员工档案／Mara",
+      "status": "保留",
+      "before": "不知道编号？工作样本上有。",
+      "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
+    },
+    {
+      "id": 415,
+      "file": "case-pages.js",
+      "line": 47,
+      "kind": "literal",
+      "text": "岗位样本",
+      "voice": "酒店前台／员工档案／Mara",
+      "status": "保留",
+      "before": "岗位样本",
+      "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
+    },
+    {
+      "id": 416,
+      "file": "case-pages.js",
+      "line": 51,
+      "kind": "literal",
+      "text": "旧预订单",
+      "voice": "酒店前台／员工档案／Mara",
+      "status": "保留",
+      "before": "旧预订单",
+      "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
+    },
+    {
+      "id": 417,
+      "file": "case-pages.js",
+      "line": 51,
+      "kind": "literal",
+      "text": "预订编号",
+      "voice": "酒店前台／员工档案／Mara",
+      "status": "保留",
+      "before": "预订编号",
+      "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
+    },
+    {
+      "id": 418,
+      "file": "case-pages.js",
       "line": 51,
       "kind": "literal",
       "text": "住客姓名缩写",
@@ -4547,7 +4602,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 414,
+      "id": 419,
       "file": "case-pages.js",
       "line": 51,
       "kind": "literal",
@@ -4558,7 +4613,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 415,
+      "id": 420,
       "file": "case-pages.js",
       "line": 51,
       "kind": "literal",
@@ -4569,7 +4624,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 416,
+      "id": 421,
       "file": "case-pages.js",
       "line": 51,
       "kind": "literal",
@@ -4580,7 +4635,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 417,
+      "id": 422,
       "file": "case-pages.js",
       "line": 51,
       "kind": "literal",
@@ -4591,7 +4646,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 418,
+      "id": 423,
       "file": "case-pages.js",
       "line": 51,
       "kind": "literal",
@@ -4602,7 +4657,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 419,
+      "id": 424,
       "file": "case-pages.js",
       "line": 51,
       "kind": "literal",
@@ -4613,7 +4668,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 420,
+      "id": 425,
       "file": "case-pages.js",
       "line": 57,
       "kind": "literal",
@@ -4624,7 +4679,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 421,
+      "id": 426,
       "file": "case-pages.js",
       "line": 59,
       "kind": "literal",
@@ -4635,7 +4690,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 422,
+      "id": 427,
       "file": "case-pages.js",
       "line": 66,
       "kind": "literal",
@@ -4646,7 +4701,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 423,
+      "id": 428,
       "file": "case-pages.js",
       "line": 67,
       "kind": "literal",
@@ -4657,7 +4712,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 424,
+      "id": 429,
       "file": "case-pages.js",
       "line": 71,
       "kind": "literal",
@@ -4668,7 +4723,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 425,
+      "id": 430,
       "file": "case-pages.js",
       "line": 73,
       "kind": "literal",
@@ -4679,7 +4734,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 426,
+      "id": 431,
       "file": "case-pages.js",
       "line": 79,
       "kind": "literal",
@@ -4690,7 +4745,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 427,
+      "id": 432,
       "file": "case-pages.js",
       "line": 81,
       "kind": "literal",
@@ -4701,7 +4756,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 428,
+      "id": 433,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4712,7 +4767,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 429,
+      "id": 434,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4723,7 +4778,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 430,
+      "id": 435,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4734,7 +4789,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 431,
+      "id": 436,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4745,7 +4800,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 432,
+      "id": 437,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4756,7 +4811,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 433,
+      "id": 438,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4767,7 +4822,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 434,
+      "id": 439,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4778,7 +4833,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 435,
+      "id": 440,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4789,7 +4844,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 436,
+      "id": 441,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4800,7 +4855,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 437,
+      "id": 442,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4811,7 +4866,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 438,
+      "id": 443,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4822,7 +4877,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 439,
+      "id": 444,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4833,7 +4888,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 440,
+      "id": 445,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4844,7 +4899,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 441,
+      "id": 446,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4855,7 +4910,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 442,
+      "id": 447,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4866,7 +4921,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 443,
+      "id": 448,
       "file": "case-pages.js",
       "line": 92,
       "kind": "literal",
@@ -4877,7 +4932,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 444,
+      "id": 449,
       "file": "case-pages.js",
       "line": 99,
       "kind": "literal",
@@ -4888,7 +4943,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 445,
+      "id": 450,
       "file": "case-pages.js",
       "line": 100,
       "kind": "literal",
@@ -4899,7 +4954,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 446,
+      "id": 451,
       "file": "case-pages.js",
       "line": 102,
       "kind": "literal",
@@ -4910,7 +4965,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 447,
+      "id": 452,
       "file": "case-pages.js",
       "line": 102,
       "kind": "literal",
@@ -4921,7 +4976,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 448,
+      "id": 453,
       "file": "case-pages.js",
       "line": 102,
       "kind": "literal",
@@ -4932,7 +4987,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 449,
+      "id": 454,
       "file": "case-pages.js",
       "line": 102,
       "kind": "literal",
@@ -4943,7 +4998,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 450,
+      "id": 455,
       "file": "case-pages.js",
       "line": 102,
       "kind": "literal",
@@ -4954,7 +5009,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 451,
+      "id": 456,
       "file": "case-pages.js",
       "line": 102,
       "kind": "literal",
@@ -4965,7 +5020,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 452,
+      "id": 457,
       "file": "case-pages.js",
       "line": 102,
       "kind": "literal",
@@ -4976,7 +5031,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 453,
+      "id": 458,
       "file": "case-pages.js",
       "line": 102,
       "kind": "literal",
@@ -4987,7 +5042,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 454,
+      "id": 459,
       "file": "case-pages.js",
       "line": 102,
       "kind": "literal",
@@ -4998,7 +5053,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 455,
+      "id": 460,
       "file": "case-pages.js",
       "line": 102,
       "kind": "literal",
@@ -5009,7 +5064,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 456,
+      "id": 461,
       "file": "case-pages.js",
       "line": 110,
       "kind": "literal",
@@ -5020,7 +5075,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 457,
+      "id": 462,
       "file": "case-pages.js",
       "line": 112,
       "kind": "literal",
@@ -5031,7 +5086,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 458,
+      "id": 463,
       "file": "case-pages.js",
       "line": 116,
       "kind": "literal",
@@ -5042,7 +5097,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 459,
+      "id": 464,
       "file": "case-pages.js",
       "line": 116,
       "kind": "literal",
@@ -5053,7 +5108,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 460,
+      "id": 465,
       "file": "case-pages.js",
       "line": 122,
       "kind": "literal",
@@ -5064,7 +5119,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 461,
+      "id": 466,
       "file": "case-pages.js",
       "line": 122,
       "kind": "literal",
@@ -5075,7 +5130,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 462,
+      "id": 467,
       "file": "case-pages.js",
       "line": 122,
       "kind": "literal",
@@ -5086,7 +5141,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 463,
+      "id": 468,
       "file": "case-pages.js",
       "line": 123,
       "kind": "literal",
@@ -5097,7 +5152,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 464,
+      "id": 469,
       "file": "case-pages.js",
       "line": 127,
       "kind": "literal",
@@ -5108,7 +5163,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 465,
+      "id": 470,
       "file": "case-pages.js",
       "line": 127,
       "kind": "literal",
@@ -5119,7 +5174,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 466,
+      "id": 471,
       "file": "case-pages.js",
       "line": 127,
       "kind": "literal",
@@ -5130,7 +5185,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 467,
+      "id": 472,
       "file": "case-pages.js",
       "line": 127,
       "kind": "literal",
@@ -5141,7 +5196,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 468,
+      "id": 473,
       "file": "case-pages.js",
       "line": 127,
       "kind": "literal",
@@ -5152,7 +5207,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 469,
+      "id": 474,
       "file": "case-pages.js",
       "line": 127,
       "kind": "literal",
@@ -5163,7 +5218,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 470,
+      "id": 475,
       "file": "case-pages.js",
       "line": 127,
       "kind": "literal",
@@ -5174,7 +5229,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 471,
+      "id": 476,
       "file": "case-pages.js",
       "line": 128,
       "kind": "literal",
@@ -5185,7 +5240,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 472,
+      "id": 477,
       "file": "case-pages.js",
       "line": 131,
       "kind": "literal",
@@ -5196,7 +5251,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 473,
+      "id": 478,
       "file": "case-pages.js",
       "line": 136,
       "kind": "literal",
@@ -5207,7 +5262,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 474,
+      "id": 479,
       "file": "case-pages.js",
       "line": 147,
       "kind": "literal",
@@ -5218,7 +5273,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 475,
+      "id": 480,
       "file": "case-pages.js",
       "line": 147,
       "kind": "literal",
@@ -5229,7 +5284,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 476,
+      "id": 481,
       "file": "case-pages.js",
       "line": 156,
       "kind": "literal",
@@ -5240,7 +5295,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 477,
+      "id": 482,
       "file": "case-pages.js",
       "line": 158,
       "kind": "literal",
@@ -5251,7 +5306,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 478,
+      "id": 483,
       "file": "case-pages.js",
       "line": 162,
       "kind": "literal",
@@ -5262,7 +5317,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 479,
+      "id": 484,
       "file": "case-pages.js",
       "line": 162,
       "kind": "literal",
@@ -5273,7 +5328,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 480,
+      "id": 485,
       "file": "case-pages.js",
       "line": 162,
       "kind": "literal",
@@ -5284,7 +5339,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 481,
+      "id": 486,
       "file": "case-pages.js",
       "line": 162,
       "kind": "literal",
@@ -5295,7 +5350,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 482,
+      "id": 487,
       "file": "case-pages.js",
       "line": 162,
       "kind": "literal",
@@ -5306,7 +5361,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 483,
+      "id": 488,
       "file": "case-pages.js",
       "line": 169,
       "kind": "literal",
@@ -5317,7 +5372,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 484,
+      "id": 489,
       "file": "case-pages.js",
       "line": 171,
       "kind": "literal",
@@ -5328,7 +5383,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 485,
+      "id": 490,
       "file": "case-pages.js",
       "line": 175,
       "kind": "literal",
@@ -5339,7 +5394,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 486,
+      "id": 491,
       "file": "case-pages.js",
       "line": 175,
       "kind": "literal",
@@ -5350,7 +5405,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 487,
+      "id": 492,
       "file": "case-pages.js",
       "line": 175,
       "kind": "literal",
@@ -5361,7 +5416,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 488,
+      "id": 493,
       "file": "case-pages.js",
       "line": 175,
       "kind": "literal",
@@ -5372,7 +5427,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 489,
+      "id": 494,
       "file": "case-pages.js",
       "line": 175,
       "kind": "literal",
@@ -5383,7 +5438,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 490,
+      "id": 495,
       "file": "case-pages.js",
       "line": 175,
       "kind": "literal",
@@ -5394,7 +5449,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 491,
+      "id": 496,
       "file": "case-pages.js",
       "line": 175,
       "kind": "literal",
@@ -5405,7 +5460,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 492,
+      "id": 497,
       "file": "case-pages.js",
       "line": 175,
       "kind": "literal",
@@ -5416,7 +5471,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 493,
+      "id": 498,
       "file": "case-pages.js",
       "line": 175,
       "kind": "literal",
@@ -5427,7 +5482,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 494,
+      "id": 499,
       "file": "case-pages.js",
       "line": 175,
       "kind": "literal",
@@ -5438,7 +5493,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 495,
+      "id": 500,
       "file": "case-pages.js",
       "line": 175,
       "kind": "literal",
@@ -5449,7 +5504,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 496,
+      "id": 501,
       "file": "case-pages.js",
       "line": 175,
       "kind": "literal",
@@ -5460,7 +5515,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 497,
+      "id": 502,
       "file": "case-pages.js",
       "line": 182,
       "kind": "literal",
@@ -5471,7 +5526,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 498,
+      "id": 503,
       "file": "case-pages.js",
       "line": 184,
       "kind": "literal",
@@ -5482,7 +5537,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 499,
+      "id": 504,
       "file": "case-pages.js",
       "line": 188,
       "kind": "literal",
@@ -5493,7 +5548,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 500,
+      "id": 505,
       "file": "case-pages.js",
       "line": 188,
       "kind": "literal",
@@ -5504,7 +5559,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 501,
+      "id": 506,
       "file": "case-pages.js",
       "line": 188,
       "kind": "literal",
@@ -5515,7 +5570,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 502,
+      "id": 507,
       "file": "case-pages.js",
       "line": 195,
       "kind": "literal",
@@ -5526,7 +5581,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 503,
+      "id": 508,
       "file": "case-pages.js",
       "line": 197,
       "kind": "literal",
@@ -5537,7 +5592,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 504,
+      "id": 509,
       "file": "case-pages.js",
       "line": 201,
       "kind": "literal",
@@ -5548,7 +5603,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 505,
+      "id": 510,
       "file": "case-pages.js",
       "line": 201,
       "kind": "literal",
@@ -5559,7 +5614,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 506,
+      "id": 511,
       "file": "case-pages.js",
       "line": 201,
       "kind": "literal",
@@ -5570,7 +5625,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 507,
+      "id": 512,
       "file": "case-pages.js",
       "line": 201,
       "kind": "literal",
@@ -5581,7 +5636,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 508,
+      "id": 513,
       "file": "case-pages.js",
       "line": 201,
       "kind": "literal",
@@ -5592,7 +5647,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 509,
+      "id": 514,
       "file": "case-pages.js",
       "line": 201,
       "kind": "literal",
@@ -5603,7 +5658,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 510,
+      "id": 515,
       "file": "case-pages.js",
       "line": 201,
       "kind": "literal",
@@ -5614,7 +5669,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 511,
+      "id": 516,
       "file": "case-pages.js",
       "line": 201,
       "kind": "literal",
@@ -5625,7 +5680,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 512,
+      "id": 517,
       "file": "case-pages.js",
       "line": 208,
       "kind": "literal",
@@ -5636,7 +5691,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 513,
+      "id": 518,
       "file": "case-pages.js",
       "line": 210,
       "kind": "literal",
@@ -5647,7 +5702,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 514,
+      "id": 519,
       "file": "case-pages.js",
       "line": 216,
       "kind": "literal",
@@ -5658,7 +5713,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 515,
+      "id": 520,
       "file": "case-pages.js",
       "line": 234,
       "kind": "literal",
@@ -5669,7 +5724,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 516,
+      "id": 521,
       "file": "case-pages.js",
       "line": 234,
       "kind": "literal",
@@ -5680,7 +5735,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 517,
+      "id": 522,
       "file": "case-pages.js",
       "line": 237,
       "kind": "literal",
@@ -5691,7 +5746,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 518,
+      "id": 523,
       "file": "case-pages.js",
       "line": 237,
       "kind": "literal",
@@ -5702,7 +5757,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 519,
+      "id": 524,
       "file": "case-pages.js",
       "line": 246,
       "kind": "literal",
@@ -5713,7 +5768,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 520,
+      "id": 525,
       "file": "case-pages.js",
       "line": 248,
       "kind": "literal",
@@ -5724,7 +5779,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 521,
+      "id": 526,
       "file": "case-pages.js",
       "line": 255,
       "kind": "literal",
@@ -5735,7 +5790,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 522,
+      "id": 527,
       "file": "case-pages.js",
       "line": 255,
       "kind": "literal",
@@ -5746,7 +5801,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 523,
+      "id": 528,
       "file": "case-pages.js",
       "line": 255,
       "kind": "literal",
@@ -5757,7 +5812,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 524,
+      "id": 529,
       "file": "case-pages.js",
       "line": 255,
       "kind": "literal",
@@ -5768,7 +5823,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 525,
+      "id": 530,
       "file": "case-pages.js",
       "line": 255,
       "kind": "literal",
@@ -5779,7 +5834,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 526,
+      "id": 531,
       "file": "case-pages.js",
       "line": 259,
       "kind": "literal",
@@ -5790,7 +5845,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 527,
+      "id": 532,
       "file": "case-pages.js",
       "line": 260,
       "kind": "literal",
@@ -5801,7 +5856,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 528,
+      "id": 533,
       "file": "case-pages.js",
       "line": 263,
       "kind": "literal",
@@ -5812,7 +5867,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 529,
+      "id": 534,
       "file": "case-pages.js",
       "line": 268,
       "kind": "literal",
@@ -5823,7 +5878,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 530,
+      "id": 535,
       "file": "case-pages.js",
       "line": 279,
       "kind": "literal",
@@ -5834,7 +5889,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 531,
+      "id": 536,
       "file": "case-pages.js",
       "line": 279,
       "kind": "literal",
@@ -5845,7 +5900,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 532,
+      "id": 537,
       "file": "case-pages.js",
       "line": 286,
       "kind": "literal",
@@ -5856,7 +5911,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 533,
+      "id": 538,
       "file": "case-pages.js",
       "line": 288,
       "kind": "literal",
@@ -5867,7 +5922,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 534,
+      "id": 539,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -5878,7 +5933,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 535,
+      "id": 540,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -5889,7 +5944,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 536,
+      "id": 541,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -5900,7 +5955,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 537,
+      "id": 542,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -5911,7 +5966,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 538,
+      "id": 543,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -5922,7 +5977,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 539,
+      "id": 544,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -5933,7 +5988,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 540,
+      "id": 545,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -5944,7 +5999,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 541,
+      "id": 546,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -5955,7 +6010,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 542,
+      "id": 547,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -5966,7 +6021,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 543,
+      "id": 548,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -5977,7 +6032,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 544,
+      "id": 549,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -5988,7 +6043,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 545,
+      "id": 550,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -5999,7 +6054,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 546,
+      "id": 551,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -6010,7 +6065,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 547,
+      "id": 552,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -6021,7 +6076,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 548,
+      "id": 553,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -6032,7 +6087,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 549,
+      "id": 554,
       "file": "case-pages.js",
       "line": 292,
       "kind": "literal",
@@ -6043,7 +6098,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 550,
+      "id": 555,
       "file": "case-pages.js",
       "line": 300,
       "kind": "literal",
@@ -6054,7 +6109,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 551,
+      "id": 556,
       "file": "case-pages.js",
       "line": 302,
       "kind": "literal",
@@ -6065,7 +6120,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 552,
+      "id": 557,
       "file": "case-pages.js",
       "line": 306,
       "kind": "literal",
@@ -6076,7 +6131,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 553,
+      "id": 558,
       "file": "case-pages.js",
       "line": 306,
       "kind": "literal",
@@ -6087,7 +6142,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 554,
+      "id": 559,
       "file": "case-pages.js",
       "line": 306,
       "kind": "literal",
@@ -6098,7 +6153,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 555,
+      "id": 560,
       "file": "case-pages.js",
       "line": 306,
       "kind": "literal",
@@ -6109,7 +6164,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 556,
+      "id": 561,
       "file": "case-pages.js",
       "line": 306,
       "kind": "literal",
@@ -6120,7 +6175,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 557,
+      "id": 562,
       "file": "case-pages.js",
       "line": 306,
       "kind": "literal",
@@ -6131,7 +6186,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 558,
+      "id": 563,
       "file": "case-pages.js",
       "line": 306,
       "kind": "literal",
@@ -6142,7 +6197,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 559,
+      "id": 564,
       "file": "case-pages.js",
       "line": 306,
       "kind": "literal",
@@ -6153,7 +6208,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 560,
+      "id": 565,
       "file": "case-pages.js",
       "line": 306,
       "kind": "literal",
@@ -6164,7 +6219,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 561,
+      "id": 566,
       "file": "case-pages.js",
       "line": 313,
       "kind": "literal",
@@ -6175,7 +6230,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 562,
+      "id": 567,
       "file": "case-pages.js",
       "line": 315,
       "kind": "literal",
@@ -6186,7 +6241,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 563,
+      "id": 568,
       "file": "case-pages.js",
       "line": 319,
       "kind": "literal",
@@ -6197,7 +6252,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 564,
+      "id": 569,
       "file": "case-pages.js",
       "line": 319,
       "kind": "literal",
@@ -6208,7 +6263,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 565,
+      "id": 570,
       "file": "case-pages.js",
       "line": 319,
       "kind": "literal",
@@ -6219,7 +6274,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 566,
+      "id": 571,
       "file": "case-pages.js",
       "line": 326,
       "kind": "literal",
@@ -6230,7 +6285,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 567,
+      "id": 572,
       "file": "case-pages.js",
       "line": 327,
       "kind": "literal",
@@ -6241,7 +6296,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 568,
+      "id": 573,
       "file": "case-pages.js",
       "line": 329,
       "kind": "literal",
@@ -6252,7 +6307,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 569,
+      "id": 574,
       "file": "case-pages.js",
       "line": 329,
       "kind": "literal",
@@ -6263,7 +6318,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 570,
+      "id": 575,
       "file": "case-pages.js",
       "line": 329,
       "kind": "literal",
@@ -6274,7 +6329,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 571,
+      "id": 576,
       "file": "case-pages.js",
       "line": 329,
       "kind": "literal",
@@ -6285,7 +6340,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 572,
+      "id": 577,
       "file": "case-pages.js",
       "line": 329,
       "kind": "literal",
@@ -6296,7 +6351,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 573,
+      "id": 578,
       "file": "case-pages.js",
       "line": 329,
       "kind": "literal",
@@ -6307,7 +6362,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 574,
+      "id": 579,
       "file": "case-pages.js",
       "line": 337,
       "kind": "literal",
@@ -6318,7 +6373,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 575,
+      "id": 580,
       "file": "case-pages.js",
       "line": 339,
       "kind": "literal",
@@ -6329,7 +6384,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 576,
+      "id": 581,
       "file": "case-pages.js",
       "line": 344,
       "kind": "literal",
@@ -6340,7 +6395,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 577,
+      "id": 582,
       "file": "case-pages.js",
       "line": 349,
       "kind": "literal",
@@ -6351,7 +6406,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 578,
+      "id": 583,
       "file": "case-pages.js",
       "line": 349,
       "kind": "literal",
@@ -6362,7 +6417,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 579,
+      "id": 584,
       "file": "case-pages.js",
       "line": 349,
       "kind": "literal",
@@ -6373,7 +6428,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 580,
+      "id": 585,
       "file": "case-pages.js",
       "line": 349,
       "kind": "literal",
@@ -6384,7 +6439,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 581,
+      "id": 586,
       "file": "case-pages.js",
       "line": 350,
       "kind": "literal",
@@ -6395,7 +6450,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 582,
+      "id": 587,
       "file": "case-pages.js",
       "line": 350,
       "kind": "literal",
@@ -6406,7 +6461,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 583,
+      "id": 588,
       "file": "case-pages.js",
       "line": 365,
       "kind": "literal",
@@ -6417,7 +6472,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 584,
+      "id": 589,
       "file": "case-pages.js",
       "line": 366,
       "kind": "literal",
@@ -6428,7 +6483,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 585,
+      "id": 590,
       "file": "case-pages.js",
       "line": 368,
       "kind": "literal",
@@ -6439,7 +6494,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 586,
+      "id": 591,
       "file": "case-pages.js",
       "line": 368,
       "kind": "literal",
@@ -6450,7 +6505,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 587,
+      "id": 592,
       "file": "case-pages.js",
       "line": 368,
       "kind": "literal",
@@ -6461,7 +6516,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 588,
+      "id": 593,
       "file": "case-pages.js",
       "line": 368,
       "kind": "literal",
@@ -6472,7 +6527,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 589,
+      "id": 594,
       "file": "case-pages.js",
       "line": 368,
       "kind": "literal",
@@ -6483,7 +6538,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 590,
+      "id": 595,
       "file": "case-pages.js",
       "line": 368,
       "kind": "literal",
@@ -6494,7 +6549,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 591,
+      "id": 596,
       "file": "case-pages.js",
       "line": 368,
       "kind": "literal",
@@ -6505,7 +6560,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 592,
+      "id": 597,
       "file": "case-pages.js",
       "line": 368,
       "kind": "literal",
@@ -6516,7 +6571,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 593,
+      "id": 598,
       "file": "case-pages.js",
       "line": 368,
       "kind": "literal",
@@ -6527,7 +6582,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 594,
+      "id": 599,
       "file": "case-pages.js",
       "line": 368,
       "kind": "literal",
@@ -6538,7 +6593,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 595,
+      "id": 600,
       "file": "case-pages.js",
       "line": 368,
       "kind": "literal",
@@ -6549,7 +6604,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 596,
+      "id": 601,
       "file": "case-pages.js",
       "line": 368,
       "kind": "literal",
@@ -6560,7 +6615,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 597,
+      "id": 602,
       "file": "case-pages.js",
       "line": 374,
       "kind": "literal",
@@ -6571,7 +6626,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 598,
+      "id": 603,
       "file": "case-pages.js",
       "line": 374,
       "kind": "literal",
@@ -6582,7 +6637,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 599,
+      "id": 604,
       "file": "case-pages.js",
       "line": 374,
       "kind": "literal",
@@ -6593,7 +6648,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 600,
+      "id": 605,
       "file": "case-pages.js",
       "line": 374,
       "kind": "literal",
@@ -6604,7 +6659,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 601,
+      "id": 606,
       "file": "case-pages.js",
       "line": 380,
       "kind": "literal",
@@ -6615,7 +6670,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 602,
+      "id": 607,
       "file": "case-pages.js",
       "line": 382,
       "kind": "literal",
@@ -6626,7 +6681,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 603,
+      "id": 608,
       "file": "case-pages.js",
       "line": 393,
       "kind": "literal",
@@ -6637,7 +6692,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 604,
+      "id": 609,
       "file": "case-pages.js",
       "line": 394,
       "kind": "literal",
@@ -6648,7 +6703,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 605,
+      "id": 610,
       "file": "case-pages.js",
       "line": 395,
       "kind": "literal",
@@ -6659,7 +6714,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 606,
+      "id": 611,
       "file": "case-pages.js",
       "line": 396,
       "kind": "literal",
@@ -6670,7 +6725,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 607,
+      "id": 612,
       "file": "case-pages.js",
       "line": 404,
       "kind": "literal",
@@ -6681,7 +6736,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 608,
+      "id": 613,
       "file": "case-pages.js",
       "line": 404,
       "kind": "literal",
@@ -6692,7 +6747,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 609,
+      "id": 614,
       "file": "case-pages.js",
       "line": 411,
       "kind": "literal",
@@ -6703,7 +6758,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 610,
+      "id": 615,
       "file": "case-pages.js",
       "line": 413,
       "kind": "literal",
@@ -6714,7 +6769,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 611,
+      "id": 616,
       "file": "case-pages.js",
       "line": 417,
       "kind": "literal",
@@ -6725,7 +6780,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 612,
+      "id": 617,
       "file": "case-pages.js",
       "line": 417,
       "kind": "literal",
@@ -6736,7 +6791,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 613,
+      "id": 618,
       "file": "case-pages.js",
       "line": 417,
       "kind": "literal",
@@ -6747,7 +6802,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 614,
+      "id": 619,
       "file": "case-pages.js",
       "line": 417,
       "kind": "literal",
@@ -6758,7 +6813,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 615,
+      "id": 620,
       "file": "case-space.js",
       "line": 12,
       "kind": "literal",
@@ -6769,7 +6824,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 616,
+      "id": 621,
       "file": "case-space.js",
       "line": 13,
       "kind": "literal",
@@ -6780,7 +6835,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 617,
+      "id": 622,
       "file": "case-space.js",
       "line": 14,
       "kind": "literal",
@@ -6791,7 +6846,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 618,
+      "id": 623,
       "file": "case-space.js",
       "line": 21,
       "kind": "literal",
@@ -6802,7 +6857,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 619,
+      "id": 624,
       "file": "case-space.js",
       "line": 28,
       "kind": "literal",
@@ -6813,7 +6868,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 620,
+      "id": 625,
       "file": "case-space.js",
       "line": 35,
       "kind": "literal",
@@ -6824,7 +6879,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 621,
+      "id": 626,
       "file": "case-space.js",
       "line": 43,
       "kind": "literal",
@@ -6835,7 +6890,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 622,
+      "id": 627,
       "file": "case-space.js",
       "line": 47,
       "kind": "literal",
@@ -6846,7 +6901,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 623,
+      "id": 628,
       "file": "case-space.js",
       "line": 54,
       "kind": "literal",
@@ -6857,7 +6912,7 @@
       "reason": "删去重复、翻译式搭配或含混指代；按页面角色改为日常中文，编号、时间与答案值保持不变。"
     },
     {
-      "id": 624,
+      "id": 629,
       "file": "case-space.js",
       "line": 61,
       "kind": "literal",
@@ -6868,7 +6923,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 625,
+      "id": 630,
       "file": "case-space.js",
       "line": 69,
       "kind": "literal",
@@ -6879,7 +6934,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 626,
+      "id": 631,
       "file": "case-space.js",
       "line": 73,
       "kind": "literal",
@@ -6890,7 +6945,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 627,
+      "id": 632,
       "file": "case-space.js",
       "line": 80,
       "kind": "literal",
@@ -6901,7 +6956,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 628,
+      "id": 633,
       "file": "case-space.js",
       "line": 85,
       "kind": "literal",
@@ -6912,7 +6967,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 629,
+      "id": 634,
       "file": "case-space.js",
       "line": 86,
       "kind": "literal",
@@ -6923,7 +6978,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 630,
+      "id": 635,
       "file": "case-space.js",
       "line": 87,
       "kind": "literal",
@@ -6934,7 +6989,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 631,
+      "id": 636,
       "file": "case-space.js",
       "line": 92,
       "kind": "literal",
@@ -6945,7 +7000,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 632,
+      "id": 637,
       "file": "case-space.js",
       "line": 93,
       "kind": "literal",
@@ -6956,7 +7011,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 633,
+      "id": 638,
       "file": "case-space.js",
       "line": 95,
       "kind": "literal",
@@ -6967,7 +7022,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 634,
+      "id": 639,
       "file": "case-space.js",
       "line": 99,
       "kind": "literal",
@@ -6978,7 +7033,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 635,
+      "id": 640,
       "file": "case-space.js",
       "line": 100,
       "kind": "literal",
@@ -6989,7 +7044,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 636,
+      "id": 641,
       "file": "case-space.js",
       "line": 102,
       "kind": "literal",
@@ -7000,7 +7055,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 637,
+      "id": 642,
       "file": "case-space.js",
       "line": 103,
       "kind": "literal",
@@ -7011,7 +7066,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 638,
+      "id": 643,
       "file": "case-space.js",
       "line": 103,
       "kind": "literal",
@@ -7022,7 +7077,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 639,
+      "id": 644,
       "file": "case-space.js",
       "line": 103,
       "kind": "literal",
@@ -7033,7 +7088,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 640,
+      "id": 645,
       "file": "case-space.js",
       "line": 103,
       "kind": "literal",
@@ -7044,7 +7099,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 641,
+      "id": 646,
       "file": "case-space.js",
       "line": 103,
       "kind": "literal",
@@ -7055,7 +7110,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 642,
+      "id": 647,
       "file": "case-space.js",
       "line": 103,
       "kind": "literal",
@@ -7066,7 +7121,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 643,
+      "id": 648,
       "file": "case-space.js",
       "line": 103,
       "kind": "literal",
@@ -7077,7 +7132,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 644,
+      "id": 649,
       "file": "case-space.js",
       "line": 103,
       "kind": "literal",
@@ -7088,7 +7143,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 645,
+      "id": 650,
       "file": "case-space.js",
       "line": 103,
       "kind": "literal",
@@ -7099,7 +7154,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 646,
+      "id": 651,
       "file": "case-space.js",
       "line": 103,
       "kind": "literal",
@@ -7110,7 +7165,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 647,
+      "id": 652,
       "file": "case-space.js",
       "line": 103,
       "kind": "literal",
@@ -7121,7 +7176,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 648,
+      "id": 653,
       "file": "case-space.js",
       "line": 103,
       "kind": "literal",
@@ -7132,7 +7187,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 649,
+      "id": 654,
       "file": "case-space.js",
       "line": 111,
       "kind": "literal",
@@ -7143,7 +7198,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 650,
+      "id": 655,
       "file": "case-space.js",
       "line": 111,
       "kind": "literal",
@@ -7154,7 +7209,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 651,
+      "id": 656,
       "file": "case-space.js",
       "line": 111,
       "kind": "literal",
@@ -7165,7 +7220,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 652,
+      "id": 657,
       "file": "case-space.js",
       "line": 115,
       "kind": "literal",
@@ -7176,7 +7231,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 653,
+      "id": 658,
       "file": "case-space.js",
       "line": 115,
       "kind": "literal",
@@ -7187,7 +7242,7 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 654,
+      "id": 659,
       "file": "case-transition.js",
       "line": 35,
       "kind": "literal",
@@ -7198,7 +7253,260 @@
       "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
     },
     {
-      "id": 655,
+      "id": 660,
+      "file": "case-welcome.js",
+      "line": 52,
+      "kind": "literal",
+      "text": "浏览器未能开启音效。可在页面底部再次开启，静音也能通关。",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 661,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "游玩前说明",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 662,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "简体中文",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 663,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "这是一款虚构的网页恐怖解谜游戏。论坛、招聘、酒店、人物、聊天和网站故障都是剧情，不是真实服务。",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 664,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "从一条求职帖子开始，像平时上网一样浏览和调查。所有必要线索都在游戏里，不用查看源代码，也不需要联系现实中的酒店或任何人。",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 665,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "内容注意事项",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 666,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "含突然出现的鬼脸、异常人影、画面扭曲、呼吸声，以及涉及死亡与自杀的剧情。建议先调低音量；感到不适时，可随时暂停或关闭网页。",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 667,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "可以关闭鬼脸和音效，仍能完成全部剧情与解谜。游戏不使用快速频闪；系统的“减少动态效果”设置也会生效。",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 668,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "选择游玩设置",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 669,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "开启音效",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 670,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "默认关闭。勾选后，点击进入游戏才会启用；之后可在底部菜单调整。",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 671,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "显示鬼脸与 Jump Scare",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 672,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "默认开启。取消勾选会跳过突脸，不影响剧情和通关。",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 673,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "当前正在减少动态效果：即使勾选鬼脸，突脸仍会跳过。可在浏览设置中查看；设备设置始终优先。",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 674,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "基础操作与存档",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 675,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "电脑用鼠标点击，手机直接点按。链接、留言和档案中的引用都可以继续调查；设备页面可点击场景或旁边的同名按钮。",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 676,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "进度自动保存在当前浏览器。换设备、换浏览器或清除网站数据后，存档不会自动转移。",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 677,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "重新开始：顶部“存档与重置”→“只重置新版存档”→确认。声音和鬼脸设置可在“声音与设置”里随时修改。",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 678,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "图片来源与素材说明",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 679,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "酒店与广告使用现成实拍照片；现实场所、人物和摄影师不参与或代言剧情。显示副本经过低清处理，原图与许可保留。监控空间由程序绘制，部分恐怖人像为已有的生成插图，环境音由浏览器本地合成。",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 680,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "无需真实姓名、电话、简历或支付信息。页面中的预订、应聘和留言均为本地模拟。",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 681,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "阅读后即可进入。之后可从顶部“游玩说明”重新打开本页。",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 682,
+      "file": "case-welcome.js",
+      "line": 65,
+      "kind": "literal",
+      "text": "我已了解，进入游戏",
+      "voice": "游玩声明／偏好设置",
+      "status": "新增／结构调整",
+      "before": "",
+      "reason": "本轮新增交互或改为分层显示；简短描述眼前状态及能操作的设备，不增加密码答案。"
+    },
+    {
+      "id": 683,
       "file": "forum-data.js",
       "line": 7,
       "kind": "literal",
@@ -7209,7 +7517,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 656,
+      "id": 684,
       "file": "forum-data.js",
       "line": 16,
       "kind": "literal",
@@ -7220,7 +7528,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 657,
+      "id": 685,
       "file": "forum-data.js",
       "line": 20,
       "kind": "literal",
@@ -7231,7 +7539,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 658,
+      "id": 686,
       "file": "forum-data.js",
       "line": 24,
       "kind": "literal",
@@ -7242,7 +7550,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 659,
+      "id": 687,
       "file": "forum-data.js",
       "line": 30,
       "kind": "literal",
@@ -7253,7 +7561,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 660,
+      "id": 688,
       "file": "forum-data.js",
       "line": 32,
       "kind": "literal",
@@ -7264,7 +7572,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 661,
+      "id": 689,
       "file": "forum-data.js",
       "line": 37,
       "kind": "literal",
@@ -7275,7 +7583,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 662,
+      "id": 690,
       "file": "forum-data.js",
       "line": 39,
       "kind": "literal",
@@ -7286,7 +7594,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 663,
+      "id": 691,
       "file": "forum-data.js",
       "line": 44,
       "kind": "literal",
@@ -7297,7 +7605,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 664,
+      "id": 692,
       "file": "forum-data.js",
       "line": 46,
       "kind": "literal",
@@ -7308,7 +7616,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 665,
+      "id": 693,
       "file": "forum-data.js",
       "line": 53,
       "kind": "literal",
@@ -7319,7 +7627,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 666,
+      "id": 694,
       "file": "forum-data.js",
       "line": 58,
       "kind": "literal",
@@ -7330,7 +7638,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 667,
+      "id": 695,
       "file": "forum-data.js",
       "line": 60,
       "kind": "literal",
@@ -7341,7 +7649,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 668,
+      "id": 696,
       "file": "forum-data.js",
       "line": 70,
       "kind": "literal",
@@ -7352,7 +7660,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 669,
+      "id": 697,
       "file": "forum-data.js",
       "line": 73,
       "kind": "literal",
@@ -7363,7 +7671,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 670,
+      "id": 698,
       "file": "forum-data.js",
       "line": 79,
       "kind": "literal",
@@ -7374,7 +7682,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 671,
+      "id": 699,
       "file": "forum-data.js",
       "line": 85,
       "kind": "literal",
@@ -7385,7 +7693,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 672,
+      "id": 700,
       "file": "forum-data.js",
       "line": 87,
       "kind": "literal",
@@ -7396,7 +7704,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 673,
+      "id": 701,
       "file": "forum-data.js",
       "line": 92,
       "kind": "literal",
@@ -7407,7 +7715,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 674,
+      "id": 702,
       "file": "forum-data.js",
       "line": 94,
       "kind": "literal",
@@ -7418,7 +7726,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 675,
+      "id": 703,
       "file": "forum-data.js",
       "line": 104,
       "kind": "literal",
@@ -7429,7 +7737,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 676,
+      "id": 704,
       "file": "forum-data.js",
       "line": 107,
       "kind": "literal",
@@ -7440,7 +7748,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 677,
+      "id": 705,
       "file": "forum-data.js",
       "line": 113,
       "kind": "literal",
@@ -7451,7 +7759,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 678,
+      "id": 706,
       "file": "forum-data.js",
       "line": 119,
       "kind": "literal",
@@ -7462,7 +7770,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 679,
+      "id": 707,
       "file": "forum-data.js",
       "line": 121,
       "kind": "literal",
@@ -7473,7 +7781,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 680,
+      "id": 708,
       "file": "forum-data.js",
       "line": 126,
       "kind": "literal",
@@ -7484,7 +7792,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 681,
+      "id": 709,
       "file": "forum-data.js",
       "line": 128,
       "kind": "literal",
@@ -7495,7 +7803,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 682,
+      "id": 710,
       "file": "forum-data.js",
       "line": 138,
       "kind": "literal",
@@ -7506,7 +7814,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 683,
+      "id": 711,
       "file": "forum-data.js",
       "line": 141,
       "kind": "literal",
@@ -7517,7 +7825,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 684,
+      "id": 712,
       "file": "forum-data.js",
       "line": 147,
       "kind": "literal",
@@ -7528,7 +7836,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 685,
+      "id": 713,
       "file": "forum-data.js",
       "line": 153,
       "kind": "literal",
@@ -7539,7 +7847,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 686,
+      "id": 714,
       "file": "forum-data.js",
       "line": 155,
       "kind": "literal",
@@ -7550,7 +7858,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 687,
+      "id": 715,
       "file": "forum-data.js",
       "line": 160,
       "kind": "literal",
@@ -7561,7 +7869,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 688,
+      "id": 716,
       "file": "forum-data.js",
       "line": 161,
       "kind": "literal",
@@ -7572,7 +7880,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 689,
+      "id": 717,
       "file": "forum-data.js",
       "line": 169,
       "kind": "literal",
@@ -7583,7 +7891,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 690,
+      "id": 718,
       "file": "forum-data.js",
       "line": 172,
       "kind": "literal",
@@ -7594,7 +7902,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 691,
+      "id": 719,
       "file": "forum-data.js",
       "line": 178,
       "kind": "literal",
@@ -7605,7 +7913,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 692,
+      "id": 720,
       "file": "forum-data.js",
       "line": 184,
       "kind": "literal",
@@ -7616,7 +7924,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 693,
+      "id": 721,
       "file": "forum-data.js",
       "line": 186,
       "kind": "literal",
@@ -7627,7 +7935,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 694,
+      "id": 722,
       "file": "forum-data.js",
       "line": 197,
       "kind": "literal",
@@ -7638,7 +7946,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 695,
+      "id": 723,
       "file": "forum-data.js",
       "line": 200,
       "kind": "literal",
@@ -7649,7 +7957,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 696,
+      "id": 724,
       "file": "forum-data.js",
       "line": 206,
       "kind": "literal",
@@ -7660,7 +7968,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 697,
+      "id": 725,
       "file": "forum-data.js",
       "line": 212,
       "kind": "literal",
@@ -7671,7 +7979,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 698,
+      "id": 726,
       "file": "forum-data.js",
       "line": 213,
       "kind": "literal",
@@ -7682,7 +7990,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 699,
+      "id": 727,
       "file": "forum-data.js",
       "line": 216,
       "kind": "literal",
@@ -7693,7 +8001,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 700,
+      "id": 728,
       "file": "forum-data.js",
       "line": 217,
       "kind": "literal",
@@ -7704,7 +8012,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 701,
+      "id": 729,
       "file": "forum.js",
       "line": 16,
       "kind": "literal",
@@ -7715,7 +8023,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 702,
+      "id": 730,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7726,7 +8034,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 703,
+      "id": 731,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7737,7 +8045,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 704,
+      "id": 732,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7748,7 +8056,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 705,
+      "id": 733,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7759,7 +8067,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 706,
+      "id": 734,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7770,7 +8078,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 707,
+      "id": 735,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7781,7 +8089,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 708,
+      "id": 736,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7792,7 +8100,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 709,
+      "id": 737,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7803,7 +8111,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 710,
+      "id": 738,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7814,7 +8122,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 711,
+      "id": 739,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7825,7 +8133,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 712,
+      "id": 740,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7836,7 +8144,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 713,
+      "id": 741,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7847,7 +8155,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 714,
+      "id": 742,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7858,7 +8166,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 715,
+      "id": 743,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7869,7 +8177,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 716,
+      "id": 744,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7880,7 +8188,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 717,
+      "id": 745,
       "file": "forum.js",
       "line": 19,
       "kind": "literal",
@@ -7891,7 +8199,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 718,
+      "id": 746,
       "file": "forum.js",
       "line": 27,
       "kind": "literal",
@@ -7902,7 +8210,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 719,
+      "id": 747,
       "file": "forum.js",
       "line": 27,
       "kind": "literal",
@@ -7913,7 +8221,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 720,
+      "id": 748,
       "file": "forum.js",
       "line": 27,
       "kind": "literal",
@@ -7924,7 +8232,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 721,
+      "id": 749,
       "file": "forum.js",
       "line": 27,
       "kind": "literal",
@@ -7935,7 +8243,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 722,
+      "id": 750,
       "file": "index-zh.html",
       "line": 9,
       "kind": "attribute",
@@ -7946,7 +8254,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 723,
+      "id": 751,
       "file": "index-zh.html",
       "line": 9,
       "kind": "html",
@@ -7957,7 +8265,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 724,
+      "id": 752,
       "file": "index-zh.html",
       "line": 11,
       "kind": "html",
@@ -7968,9 +8276,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 725,
+      "id": 753,
       "file": "index-zh.html",
-      "line": 42,
+      "line": 44,
       "kind": "html",
       "text": "跳至正文",
       "voice": "原版档案／网站控件",
@@ -7979,9 +8287,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 726,
+      "id": 754,
       "file": "index-zh.html",
-      "line": 45,
+      "line": 47,
       "kind": "html",
       "text": "夜猫论坛",
       "voice": "原版档案／网站控件",
@@ -7990,9 +8298,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 727,
+      "id": 755,
       "file": "index-zh.html",
-      "line": 46,
+      "line": 48,
       "kind": "html",
       "text": "工作信息与闲聊",
       "voice": "原版档案／网站控件",
@@ -8001,9 +8309,9 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 728,
+      "id": 756,
       "file": "index-zh.html",
-      "line": 47,
+      "line": 49,
       "kind": "html",
       "text": "请启用 JavaScript 查看本地交互资料。",
       "voice": "原版档案／网站控件",
@@ -8012,7 +8320,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 729,
+      "id": 757,
       "file": "site-media.js",
       "line": 22,
       "kind": "literal",
@@ -8023,7 +8331,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 730,
+      "id": 758,
       "file": "site-media.js",
       "line": 23,
       "kind": "literal",
@@ -8034,7 +8342,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 731,
+      "id": 759,
       "file": "site-media.js",
       "line": 46,
       "kind": "literal",
@@ -8045,7 +8353,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 732,
+      "id": 760,
       "file": "site-media.js",
       "line": 47,
       "kind": "literal",
@@ -8056,7 +8364,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 733,
+      "id": 761,
       "file": "site-media.js",
       "line": 68,
       "kind": "literal",
@@ -8067,7 +8375,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 734,
+      "id": 762,
       "file": "site-media.js",
       "line": 69,
       "kind": "literal",
@@ -8078,7 +8386,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 735,
+      "id": 763,
       "file": "site-media.js",
       "line": 91,
       "kind": "literal",
@@ -8089,7 +8397,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 736,
+      "id": 764,
       "file": "site-media.js",
       "line": 92,
       "kind": "literal",
@@ -8100,7 +8408,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 737,
+      "id": 765,
       "file": "site-media.js",
       "line": 115,
       "kind": "literal",
@@ -8111,7 +8419,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 738,
+      "id": 766,
       "file": "site-media.js",
       "line": 116,
       "kind": "literal",
@@ -8122,7 +8430,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 739,
+      "id": 767,
       "file": "site-media.js",
       "line": 139,
       "kind": "literal",
@@ -8133,7 +8441,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 740,
+      "id": 768,
       "file": "site-media.js",
       "line": 140,
       "kind": "literal",
@@ -8144,7 +8452,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 741,
+      "id": 769,
       "file": "site-media.js",
       "line": 162,
       "kind": "literal",
@@ -8155,7 +8463,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 742,
+      "id": 770,
       "file": "site-media.js",
       "line": 163,
       "kind": "literal",
@@ -8166,7 +8474,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 743,
+      "id": 771,
       "file": "site-media.js",
       "line": 185,
       "kind": "literal",
@@ -8177,7 +8485,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 744,
+      "id": 772,
       "file": "site-media.js",
       "line": 186,
       "kind": "literal",
@@ -8188,7 +8496,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 745,
+      "id": 773,
       "file": "site-media.js",
       "line": 208,
       "kind": "literal",
@@ -8199,7 +8507,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 746,
+      "id": 774,
       "file": "site-media.js",
       "line": 209,
       "kind": "literal",
@@ -8210,7 +8518,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 747,
+      "id": 775,
       "file": "site-media.js",
       "line": 231,
       "kind": "literal",
@@ -8221,7 +8529,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 748,
+      "id": 776,
       "file": "site-media.js",
       "line": 232,
       "kind": "literal",
@@ -8232,7 +8540,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 749,
+      "id": 777,
       "file": "site-media.js",
       "line": 255,
       "kind": "literal",
@@ -8243,7 +8551,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 750,
+      "id": 778,
       "file": "site-media.js",
       "line": 256,
       "kind": "literal",
@@ -8254,7 +8562,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 751,
+      "id": 779,
       "file": "site-media.js",
       "line": 279,
       "kind": "literal",
@@ -8265,7 +8573,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 752,
+      "id": 780,
       "file": "site-media.js",
       "line": 280,
       "kind": "literal",
@@ -8276,7 +8584,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 753,
+      "id": 781,
       "file": "site-media.js",
       "line": 304,
       "kind": "literal",
@@ -8287,7 +8595,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 754,
+      "id": 782,
       "file": "site-media.js",
       "line": 305,
       "kind": "literal",
@@ -8298,7 +8606,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 755,
+      "id": 783,
       "file": "site-media.js",
       "line": 328,
       "kind": "literal",
@@ -8309,7 +8617,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 756,
+      "id": 784,
       "file": "site-media.js",
       "line": 329,
       "kind": "literal",
@@ -8320,7 +8628,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 757,
+      "id": 785,
       "file": "site-media.js",
       "line": 351,
       "kind": "literal",
@@ -8331,7 +8639,7 @@
       "reason": "保留现有用语；未以润色为由改动角色陈述、编号、时间或解谜指令。"
     },
     {
-      "id": 758,
+      "id": 786,
       "file": "site-media.js",
       "line": 352,
       "kind": "literal",

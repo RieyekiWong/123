@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./v2-fixture.mjs";
 for (const entry of ["index-zh.html", "index.html"])
   test(`${entry}: forum and careers expose only their own footer; hotel operations appear on the hotel site`, async ({
     page,

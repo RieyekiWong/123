@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./v2-fixture.mjs";
 import {
   toAudit,
   toRevisions,

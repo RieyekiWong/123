@@ -206,8 +206,8 @@ test("six authored events are action-bound, distinct, once per save and faces ha
   assert.equal(move(saved, "frame").event, undefined);
   assert.equal(
     saved.preferences.skipScares,
-    true,
-    "no action silently opts a player into visual scares",
+    false,
+    "story actions retain the enabled default without changing player preferences",
   );
 });
 test("existing deep saves retain immediate terminal access and malformed additions cannot erase original progress", () => {
@@ -238,4 +238,27 @@ test("existing deep saves retain immediate terminal access and malformed additio
   assert.equal(safe.evidence.length, 9);
   assert.deepEqual(safe.night.events, []);
   assert.equal(safe.night.passage.complete, false);
+});
+
+test("migrating the former automatic skip re-arms unseen faces without resetting story or equipment", () => {
+  const s = ready();
+  door(s);
+  move(s, "frame");
+  move(s, "rotate", { node: 0 });
+  s.preferences = { skipScares: true };
+  s.night.events = [
+    "plate-open-door",
+    "photo-face",
+    "cabinet-face",
+    "last-frame",
+  ];
+  const upgraded = M.hydrate(s);
+  assert.equal(upgraded.preferences.skipScares, false);
+  assert.deepEqual(upgraded.night.events, ["plate-open-door"]);
+  assert.equal(upgraded.night.frame, true);
+  assert.equal(upgraded.night.passage.complete, true);
+  assert.deepEqual(upgraded.evidence, s.evidence);
+  assert.deepEqual(upgraded.night.orientations, s.night.orientations);
+  assert.equal(move(upgraded, "frame").event, "last-frame");
+  assert.equal(move(upgraded, "frame").event, undefined);
 });

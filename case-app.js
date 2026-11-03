@@ -7,6 +7,8 @@
     t = (a, b) => (zh ? a : b);
   const KEY = "stillwater-case:v2";
   let state = M.fresh(),
+    pendingEscape = false,
+    welcome = null,
     storageFailed = false;
   let existingSave = null;
   try {
@@ -129,6 +131,8 @@
     },
     reset: () => {
       phaseTransition.cancel();
+      pendingEscape = false;
+      welcome?.forget();
       nightEvents.clear();
       nightAudio.stop();
       const preferences = { ...state.preferences, sound: false };
@@ -145,12 +149,14 @@
         location.pathname + location.search + "#forum",
       );
       render(true);
+      welcome?.open({ mandatory: true });
     },
   });
   const nightEvents = window.StillwaterEvents.create({
     getState: () => state,
     reduced: () => comfort.reduced(),
     audio: nightAudio,
+    sting: () => comfort.tone(),
     t,
   });
   const errors = {
@@ -255,6 +261,21 @@
     t,
     esc,
   });
+  welcome = window.StillwaterWelcome.create({
+    getState: () => state,
+    save,
+    comfort,
+    getCredits: () => views.credits(),
+    t,
+    onOpen: () => {
+      nightEvents.clear();
+      nightAudio.stop();
+    },
+    onContinue: () => {
+      render();
+      void nightAudio.sync();
+    },
+  });
   function perform(action, payload = {}, errorId = "case-status") {
     const result = M.transition(state, action, payload);
     save();
@@ -355,7 +376,7 @@
           : state.night.started
             ? "altered"
             : "normal";
-    if (phaseTransition.isActive()) nightAudio.stop();
+    if (phaseTransition.isActive() || welcome?.isOpen()) nightAudio.stop();
     else void nightAudio.sync();
     document.body.classList.toggle(
       "reduced-motion",
@@ -444,7 +465,7 @@
           t("夜班审计员", "Night Audit Clerk") + " / " + F.temporary;
     }
     document.querySelector("#case-shell").innerHTML =
-      `<header class="site-header"><a class="site-brand" href="#${route === "forum" ? "forum" : route === "careers" ? "careers" : staff ? "staff" : "hotel"}">${route === "forum" ? t('夜猫论坛<span class="bbs-subtitle">NIGHT OWL BBS</span>', 'Night Owl BBS<span class="bbs-subtitle">THE LATE THREAD</span>') : route === "careers" ? "Stillwater Heritage Careers" : staff ? "STILLWATER / STAFF ARCHIVE" : '<span class="hotel-brand-title">The Stillwater Hotel</span><span class="hotel-brand-subtitle">A FAMILIAR PLACE · SINCE 1987</span>'}</a><div class="site-utilities"><button data-case-action="save-settings" aria-haspopup="dialog">${t("存档与重置", "Saves & reset")}</button><a data-case-language href="${zh ? "index.html" : "index-zh.html"}${esc(location.hash)}">${zh ? "English" : "简体中文"}</a></div></header>${
+      `<header class="site-header"><a class="site-brand" href="#${route === "forum" ? "forum" : route === "careers" ? "careers" : staff ? "staff" : "hotel"}">${route === "forum" ? t('夜猫论坛<span class="bbs-subtitle">NIGHT OWL BBS</span>', 'Night Owl BBS<span class="bbs-subtitle">THE LATE THREAD</span>') : route === "careers" ? "Stillwater Heritage Careers" : staff ? "STILLWATER / STAFF ARCHIVE" : '<span class="hotel-brand-title">The Stillwater Hotel</span><span class="hotel-brand-subtitle">A FAMILIAR PLACE · SINCE 1987</span>'}</a><div class="site-utilities"><button data-case-action="instructions" aria-haspopup="dialog">${t("游玩说明", "How to play")}</button><button data-case-action="save-settings" aria-haspopup="dialog">${t("存档与重置", "Saves & reset")}</button><a data-case-language href="${zh ? "index.html" : "index-zh.html"}${esc(location.hash)}">${zh ? "English" : "简体中文"}</a></div></header>${
         route === "forum"
           ? '<nav class="forum-nav" aria-label="' +
             t("论坛分区", "Forum sections") +
@@ -517,6 +538,15 @@
         );
     }
     ads.navigate();
+    if (
+      pendingEscape &&
+      route === "ending" &&
+      allowed &&
+      state.lastEnding === "released"
+    ) {
+      pendingEscape = false;
+      nightEvents.escape();
+    }
     if (moveFocus) {
       window.scrollTo(0, 0);
       document.querySelector("#case-shell").scrollTop = 0;
@@ -643,9 +673,16 @@
       phaseTransition.begin();
       return;
     }
-    if (action === "settings") comfort.open();
+    if (action === "instructions") welcome.open();
+    if (action === "settings") {
+      nightEvents.clear();
+      comfort.open();
+    }
     if (action === "toggle-sound") void comfort.toggleSound();
-    if (action === "save-settings") comfort.open({ save: true });
+    if (action === "save-settings") {
+      nightEvents.clear();
+      comfort.open({ save: true });
+    }
     if (action === "photo-version") {
       state.drafts.photoVersion =
         e.target.closest("[data-version]").dataset.version === "revision"
@@ -695,9 +732,12 @@
     if (action === "edit-evidence" && perform("edit-evidence")) render();
     if (action === "close-case") {
       const ending = e.target.closest("[data-ending]").dataset.ending;
+      const firstEscape =
+        ending === "released" && !state.endings.includes("released");
       if (perform("ending", { ending })) {
-        location.hash = "ending";
-        if (currentRoute() === "ending") render();
+        pendingEscape = firstEscape;
+        if (currentRoute() === "ending") render(true);
+        else location.hash = "ending";
       }
     }
     if (action === "dismiss-notice") {
@@ -877,4 +917,5 @@
   window.addEventListener("hashchange", () => render(true));
   render();
   phaseTransition.resume();
+  welcome.start();
 })();

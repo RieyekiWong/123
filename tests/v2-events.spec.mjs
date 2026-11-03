@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./v2-fixture.mjs";
 async function seed(page, entry) {
   await page.addInitScript(() => {
     const key = "event-test-seeded";
@@ -11,7 +11,7 @@ async function seed(page, entry) {
         evidence: ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9"],
         completed: { audit: true, finalEvidence: true },
         night: { started: true, links: [0, 1], door: true, pans: [2, 1, 2] },
-        preferences: { skipScares: true },
+        preferences: {},
       }),
     );
     sessionStorage.setItem(key, "yes");
@@ -28,13 +28,9 @@ for (const entry of ["index-zh.html", "index.html"]) {
   }) => {
     await seed(page, entry);
     await expect(page.locator(".chapter-comfort")).toBeVisible();
-    expect(
-      await page.evaluate(
-        () =>
-          JSON.parse(localStorage.getItem("stillwater-case:v2")).preferences
-            .skipScares,
-      ),
-    ).toBe(true);
+    await expect(page.locator(".chapter-scare-status")).toContainText(
+      entry.includes("zh") ? "已开启" : "On",
+    );
     await page.locator("[data-night-action=comfort][data-enable=true]").click();
     await action(page, "plate");
     await expect(page.locator(".cctv-picture")).toHaveAttribute(
@@ -150,5 +146,58 @@ test("operating another junction during recovery keeps the authored climax on th
   await expect(
     page.locator(".frame-face[data-event=last-frame]"),
   ).toBeVisible();
+  await expect(page.locator(".frame-face")).toHaveCount(0);
+});
+
+for (const entry of ["index-zh.html", "index.html"])
+  test(`${entry}: faces are on without an enable click; disabling is explicit and persists`, async ({
+    page,
+  }) => {
+    await seed(page, entry);
+    await expect(page.locator(".chapter-scare-status")).toContainText(
+      entry.includes("zh") ? "已开启" : "On",
+    );
+    await action(page, "photo");
+    await expect(
+      page.locator(".frame-face[data-event=photo-face]"),
+    ).toBeVisible();
+    await expect(page.locator(".frame-face")).toHaveCount(0);
+    await page
+      .locator("[data-night-action=comfort][data-enable=false]")
+      .click();
+    await page.reload();
+    expect(
+      await page.evaluate(
+        () =>
+          JSON.parse(localStorage.getItem("stillwater-case:v2")).preferences
+            .skipScares,
+      ),
+    ).toBe(true);
+    await walk(page, "west");
+    await action(page, "cart");
+    await action(page, "cabinet");
+    await expect(page.locator(".frame-face")).toHaveCount(0);
+  });
+
+test("skipping from general settings is retained before the chapter begins", async ({
+  page,
+}) => {
+  await page.goto("/index-zh.html#hotel");
+  await page.locator("[data-case-action=settings]").click();
+  await expect(page.locator("[name=skip-scares]")).not.toBeChecked();
+  await page.locator("[name=skip-scares]").check();
+  await page.reload();
+  await page.locator("[data-case-action=settings]").click();
+  await expect(page.locator("[name=skip-scares]")).toBeChecked();
+});
+
+test("phone buttons below the feed still show the triggered face inside the current viewport", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await seed(page, "index-zh.html");
+  await action(page, "photo");
+  await expect(page.locator(".frame-face")).toBeVisible();
+  await expect(page.locator(".frame-face")).toBeInViewport({ ratio: 0.8 });
   await expect(page.locator(".frame-face")).toHaveCount(0);
 });

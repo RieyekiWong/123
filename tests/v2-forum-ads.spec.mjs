@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./v2-fixture.mjs";
 import { toAudit, toRevisions, toReview, state, link } from "./v2-helpers.mjs";
 const savedAds = (page) =>
   page.evaluate(() => JSON.parse(localStorage.getItem("stillwater-ads:v1")));
@@ -228,6 +228,7 @@ test("keep, fold, reload, reopen, remove and Escape work; main reset leaves the 
   await page.locator("#case-settings details summary").click();
   await page.locator("[data-comfort=reset-prompt]").click();
   await page.locator("[data-comfort=reset-confirm]").click();
+  await page.locator("[data-welcome=enter]").click();
   expect((await savedAds(page)).pinnedIds).toEqual(["pet"]);
   await page.locator("footer [data-ad-action=folder]").click();
   await page.locator("#ad-dialog [data-ad-action=reopen]").first().click();
@@ -346,6 +347,7 @@ test("blocked local and session storage leave forum, shops and the main case usa
       });
   });
   await timed(page, "");
+  if(await page.locator("#case-welcome[open]").count())await page.locator("[data-welcome=enter]").click();
   await page.locator(".ad-inline [data-ad-action=detail]").click();
   await page.locator("#ad-dialog [data-ad-action=pin]").click();
   await page.keyboard.press("Escape");

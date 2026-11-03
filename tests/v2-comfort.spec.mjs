@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./v2-fixture.mjs";
 import { toAudit, toRevisions, state, link } from "./v2-helpers.mjs";
 test("sound is opt-in, settings are keyboard-accessible and reset preserves the classic save", async ({
   page,
@@ -51,7 +51,7 @@ test("one optional, non-obstructing signal and manually refreshed current queue"
 }) => {
   test.setTimeout(90_000);
   await toAudit(page);
-  await expect(page.locator(".connection-notice")).toHaveCount(0);
+  await expect(page.locator(".connection-notice")).toBeVisible();
   await page.locator("[data-case-action=settings]").click();
   await page.locator("[name=skip-scares]").uncheck();
   await page.keyboard.press("Escape");
@@ -60,7 +60,7 @@ test("one optional, non-obstructing signal and manually refreshed current queue"
   await expect(page).toHaveURL(/#staff$/);
   // The personnel gate refers back to the unresolved night audit.
   await page.locator("main .source-link a").click();
-  await expect(page.locator(".connection-notice")).toBeVisible();
+  await expect(page.locator(".connection-notice")).toHaveCount(0);
   await expect(page.locator("#night-audit-form")).toBeVisible();
   await page.reload();
   await expect(page.locator(".connection-notice")).toHaveCount(0);

@@ -52,7 +52,7 @@ try {
           reducedMotion: "reduce",
         });
         await context.addInitScript(
-          (s) => localStorage.setItem("stillwater-case:v2", JSON.stringify(s)),
+          (s) => {localStorage.setItem("stillwater-case:v2", JSON.stringify(s));localStorage.setItem("stillwater-case-intro:v1", JSON.stringify({schema:1,read:true}));},
           s,
         );
         const page = await context.newPage();

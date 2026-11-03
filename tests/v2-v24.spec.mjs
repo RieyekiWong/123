@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./v2-fixture.mjs";
 import "../case-data.js";
 import "../case-night-model.js";
 import "../case-state.js";

@@ -7,6 +7,8 @@ export const state = (page) =>
   page.evaluate(() => JSON.parse(localStorage.getItem("stillwater-case:v2")));
 export async function toAudit(page, entry = "index-zh.html") {
   await page.goto("/" + entry);
+  if (await page.locator("#case-welcome[open]").count())
+    await page.locator("[data-welcome=enter]").click();
   await page.locator(".forum-recruit-link").click();
   const reference = await page.locator(".job-card .reference").innerText();
   await page.locator("[data-case-action=sample]").click();

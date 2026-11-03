@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./v2-fixture.mjs";
 import {
   toAudit,
   toRevisions,
@@ -18,6 +18,10 @@ async function oldSave(page, extra = {}) {
     delete s.night;
     s.endings = ["auto-close", "unverified"];
     s.lastEnding = "unverified";
+    // These equipment/migration tests inspect static story state. Test visual
+    // default-on behavior separately in v2-events.spec.mjs.
+    s.preferences.skipScares=true;
+    s.preferences.scareChoiceMade=true;
     return Object.assign(s, extra);
   }, extra);
   // Seed before the new document runs. The old ad instance saves on pagehide.
@@ -153,7 +157,7 @@ for (const width of [375, 768, 1440])
       ),
     ).toBe(true);
     await page.screenshot({
-      path: `docs/v2.4/after/terminal-${width}.png`,
+      path: `docs/v2.4.1/terminal-${width}.png`,
       fullPage: true,
     });
   });

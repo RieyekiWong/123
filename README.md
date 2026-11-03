@@ -31,7 +31,9 @@ Saved adverts use `stillwater-ads:v1`; sessionStorage holds per-tab cooldown and
 
 The V2 save is `stillwater-case:v2`, with a versioned schema. Sources, unfinished sorting and selections, camera directions and connections, circuit rotations and switches, undo history, dispositions and viewing preferences survive refreshes and language changes on the same origin. **Case Notes** reopens sources already observed. Unavailable deep links offer a usable source link. If storage is blocked, the current tab remains playable and the footer explains that progress cannot be retained.
 
-**Sound & settings** in the footer controls optional audio, separate night-terminal breathing, Reduce Motion, Skip Scares and a confirmed restart. Sound starts off on every load and scares are skipped by default. A single optional mask frame is triggered explicitly by restoring the final camera frame; it has no scream. Every puzzle is solvable silently and with reduced motion.
+First visits show a bilingual preface with fiction/content notes, controls, credits and two choices. **Audio defaults off; faces and jump scares default on.** Players can disable them before entering or reopen How to play in the header. Explicit skip choices and device Reduce Motion remain respected.
+
+**Sound & settings** in the footer controls volume, motion and scares. Breathing enters automatically with enabled sound in the deeper chapter. The first successful escape shows a distinct full-screen face after the ending; skip/reduced-motion modes retain the same completion. Reloading or revisiting an ending never replays that effect.
 
 No form collects a name, email, phone, CV, payment information or real application. No answers are submitted to a server. The footer identifies the hotel, recruitment and records as fiction.
 
@@ -69,4 +71,9 @@ See [implementation and route](docs/V2_3-IMPLEMENTATION.zh-CN.md), [complete Chi
 
 ### V2.4 · Connected service space
 
-The preserved case now leads through altered public pages into a connected 317 / B-3 point-and-click passage. Six action-authored, persistent scare events use three distinct existing portraits; sudden effects remain opt-in with complete skip-mode story parity. Camera spaces use a shared, on-demand 320×240 software renderer with separate canonical-date HUDs. Existing deep saves do not require replaying the new passage. See [implementation](docs/V2_4-EXPLORATION.zh-CN.md), [walkthrough](WALKTHROUGH.zh-CN.md), [visual audit](VISUAL-AUDIT.md) and [copy inventory](COPY-AUDIT-V2_4.zh-CN.md).
+The preserved case now leads through altered public pages into a connected 317 / B-3 point-and-click passage. Six action-authored, persistent scare events use three distinct existing portraits; sudden effects default on with a clear preface choice and complete skip-mode story parity. Camera spaces use a shared, on-demand 320×240 software renderer with separate canonical-date HUDs. Existing deep saves do not require replaying the new passage. See [implementation](docs/V2_4-EXPLORATION.zh-CN.md), [walkthrough](WALKTHROUGH.zh-CN.md), [visual audit](VISUAL-AUDIT.md) and [copy inventory](COPY-AUDIT-V2_4.zh-CN.md).
+
+
+### V2.4.1 · Preface & final escape scare
+
+See [implementation and verification](docs/V2_4_1-WELCOME.zh-CN.md). Sound remains gesture-enabled; past automatic skip defaults migrate without resetting the case.

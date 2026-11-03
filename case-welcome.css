@@ -1,0 +1,221 @@
+/* Game preface sits outside the five in-story website identities. */
+body.welcome-open {
+  overflow: hidden;
+}
+#case-welcome {
+  width: min(780px, calc(100% - 28px));
+  max-height: calc(100dvh - 28px);
+  padding: 0;
+  border: 1px solid #a89b84;
+  border-radius: 2px;
+  background: #f6f2e8;
+  color: #302e29;
+  font: 16px/1.8 var(--font-modern);
+  box-shadow: 0 12px 65px #0008;
+}
+#case-welcome::backdrop {
+  background: #17201f;
+}
+#case-welcome :is(h1, h2, p, small, summary, li, a, strong) {
+  color: inherit;
+}
+#case-welcome .welcome-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: start;
+  padding: 24px 30px;
+  border-bottom: 2px solid #a28a61;
+  background: #ebe5d8;
+}
+#case-welcome .welcome-eyebrow {
+  font:
+    13px/1.5 Georgia,
+    serif;
+  letter-spacing: 0.14em;
+  color: #67563a;
+  margin: 0 0 8px;
+}
+#case-welcome h1 {
+  font-size: 30px;
+  line-height: 1.3;
+  margin: 0;
+  font-weight: 500;
+  outline: none;
+}
+#case-welcome h2 {
+  font-size: 19px;
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+#case-welcome .welcome-heading a {
+  flex: none;
+  white-space: nowrap;
+  min-height: 44px;
+  padding: 5px 0;
+  text-underline-offset: 4px;
+}
+#case-welcome .welcome-content {
+  padding: 22px 30px;
+}
+#case-welcome section {
+  margin-top: 26px;
+}
+#case-welcome p {
+  margin: 0 0 14px;
+}
+#case-welcome .welcome-fiction {
+  font-weight: 600;
+}
+#case-welcome .welcome-notice {
+  border-left: 3px solid #85604d;
+  padding: 14px 18px;
+  background: #e9e0d3;
+}
+#case-welcome .welcome-notice p:last-child {
+  margin-bottom: 0;
+}
+#case-welcome .welcome-options label {
+  display: flex;
+  gap: 14px;
+  align-items: start;
+  padding: 14px;
+  border: 1px solid #b8ad98;
+  background: #fffdf6;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+#case-welcome .welcome-options input {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  margin: 4px 0 0;
+  accent-color: #304f49;
+}
+#case-welcome .welcome-options strong {
+  display: block;
+  font-size: 17px;
+}
+#case-welcome small {
+  display: block;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-top: 5px;
+  color: #5e594e;
+}
+#case-welcome ul {
+  padding-left: 1.5em;
+  margin: 0;
+}
+#case-welcome li + li {
+  margin-top: 10px;
+}
+#case-welcome .welcome-motion-note {
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid #987452;
+}
+#case-welcome .welcome-sources {
+  border-top: 1px solid #b8ad98;
+  border-bottom: 1px solid #b8ad98;
+  padding: 14px 0;
+  margin-top: 26px;
+}
+#case-welcome summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+#case-welcome .credit-list {
+  display: block;
+  overflow-wrap: anywhere;
+}
+#case-welcome .credit-list article {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #b8ad98;
+  padding: 14px 0;
+  color: #302e29;
+}
+#case-welcome .credit-list h2 {
+  font-size: 16px;
+  font-weight: 600;
+}
+#case-welcome .page-heading {
+  border: 0;
+  margin: 16px 0;
+  padding: 0;
+}
+#case-welcome .page-heading h1 {
+  font-size: 22px;
+}
+#case-welcome .welcome-privacy {
+  font-size: 14px;
+  color: #5e594e;
+  margin: 20px 0 0;
+}
+#case-welcome .welcome-footer {
+  position: static;
+  padding: 18px 30px;
+  background: #e7e0d3;
+  border: 0;
+  border-top: 1px solid #b8ad98;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  color: #302e29;
+}
+#case-welcome .welcome-footer p {
+  margin: 0;
+  font-size: 14px;
+  max-width: 35ch;
+}
+#case-welcome button[type="submit"] {
+  min-height: 48px;
+  background: #304f49;
+  color: #fff;
+  border: 1px solid #304f49;
+  padding: 10px 18px;
+  flex: none;
+  font: 16px/1.6 var(--font-modern);
+  cursor: pointer;
+}
+#case-welcome :focus-visible {
+  outline: 3px solid #587c8a;
+  outline-offset: 3px;
+}
+#case-welcome button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+@media (max-width: 600px) {
+  #case-welcome {
+    width: calc(100% - 16px);
+    max-height: calc(100dvh - 16px);
+  }
+  #case-welcome .welcome-heading,
+  #case-welcome .welcome-content,
+  #case-welcome .welcome-footer {
+    padding: 18px;
+  }
+  #case-welcome h1 {
+    font-size: 26px;
+  }
+  #case-welcome .welcome-footer {
+    display: block;
+  }
+  #case-welcome button[type="submit"] {
+    width: 100%;
+    margin-top: 14px;
+  }
+  #case-welcome .welcome-notice {
+    padding: 12px;
+  }
+}
+
+#case-welcome #welcome-title{outline:none}

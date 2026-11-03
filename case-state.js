@@ -53,7 +53,8 @@ globalThis.StillwaterCaseState = (() => {
       breathing: false,
       volume: 0.2,
       reduceMotion: false,
-      skipScares: true,
+      skipScares: false,
+      scareChoiceMade: false,
     },
   });
   const has = (state, id) => state.evidence.includes(id);
@@ -184,6 +185,18 @@ globalThis.StillwaterCaseState = (() => {
     state.queueRefreshed = raw.queueRefreshed === true && has(state, "C7");
     state.effectSeen = raw.effectSeen === true;
     const pref = raw.preferences || {};
+    // Earlier releases saved "skip" automatically. Only an actual player
+    // choice should override the new default; keep Reduce Motion independent.
+    const scareChoiceMade =
+      pref.scareChoiceMade === true || raw.night?.comfortAcknowledged === true;
+    // Effects skipped by the former automatic default were never seen. Re-arm
+    // only their visual triggers; preserve every clue, mechanism and ending.
+    if (pref.skipScares === true && !scareChoiceMade) {
+      state.night.events = state.night.events.filter(
+        (id) => !["photo-face", "cabinet-face", "last-frame"].includes(id),
+      );
+      state.night.lastFaceStep = -100;
+    }
     state.preferences = {
       sound: false,
       breathing: pref.breathing === true,
@@ -191,7 +204,8 @@ globalThis.StillwaterCaseState = (() => {
         ? Math.max(0, Math.min(0.5, pref.volume))
         : 0.2,
       reduceMotion: pref.reduceMotion === true,
-      skipScares: pref.skipScares !== false,
+      skipScares: scareChoiceMade && pref.skipScares === true,
+      scareChoiceMade,
     };
     return state;
   }
@@ -311,6 +325,7 @@ globalThis.StillwaterCaseState = (() => {
         if (!n.started || typeof payload.enable !== "boolean")
           return fail("night-access");
         state.preferences.skipScares = !payload.enable;
+        state.preferences.scareChoiceMade = true;
         n.comfortAcknowledged = true;
         return ok();
       case "night-walk":
@@ -413,9 +428,8 @@ globalThis.StillwaterCaseState = (() => {
         return ok();
       case "night-frame":
         if (!N.passageReady(n)) return fail("night-access");
-        const first = !n.frame;
         state.night.frame = true;
-        return first ? N.event(n, "last-frame", true) : ok();
+        return N.event(n, "last-frame", true);
       case "night-rotate":
       case "night-isolate":
       case "night-manual":

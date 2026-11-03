@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./v2-fixture.mjs";
 import { resolve } from "node:path";
 import { createServer } from "../server.mjs";
 import {
@@ -190,6 +190,7 @@ test("corrupt and unavailable storage keep navigation usable without false save 
     const errors = [];
     page.on("pageerror", (e) => errors.push(e.message));
     await page.goto("http://127.0.0.1:3110/index-zh.html#staff");
+    if(await page.locator("#case-welcome[open]").count())await page.locator("[data-welcome=enter]").click();
     await page.locator("main .source-link a").click();
     await page.locator("[data-case-action=sample]").click();
     await expect(page.locator("#reservation-search")).toBeVisible();

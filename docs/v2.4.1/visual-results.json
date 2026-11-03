@@ -1,0 +1,129 @@
+{
+  "records": [
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "welcome",
+      "overflow": false,
+      "facesChecked": true,
+      "soundChecked": false
+    },
+    {
+      "lang": "zh",
+      "width": 375,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "route": "welcome",
+      "overflow": false,
+      "facesChecked": true,
+      "soundChecked": false
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "route": "welcome",
+      "overflow": false,
+      "facesChecked": true,
+      "soundChecked": false
+    },
+    {
+      "lang": "zh",
+      "width": 768,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "welcome",
+      "overflow": false,
+      "facesChecked": true,
+      "soundChecked": false
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "welcome",
+      "overflow": false,
+      "facesChecked": true,
+      "soundChecked": false
+    },
+    {
+      "lang": "en",
+      "width": 375,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "route": "welcome",
+      "overflow": false,
+      "facesChecked": true,
+      "soundChecked": false
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "route": "welcome",
+      "overflow": false,
+      "facesChecked": true,
+      "soundChecked": false
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "welcome",
+      "overflow": false,
+      "facesChecked": true,
+      "soundChecked": false
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "route": "forum",
+      "overflow": false
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "route": "escape",
+      "overflow": false
+    },
+    {
+      "lang": "zh",
+      "width": 1440,
+      "route": "escape",
+      "overflow": false
+    }
+  ],
+  "errors": []
+}

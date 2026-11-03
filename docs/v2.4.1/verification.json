@@ -1,0 +1,29 @@
+{
+  "version": "4.4.1",
+  "baseline": "a75aa7b16122787c08d16d7609edb67fe39c17f8",
+  "scope": "new edition only",
+  "unit": {
+    "passed": 28,
+    "failed": 0,
+    "command": "npm test"
+  },
+  "browser": {
+    "passed": 81,
+    "failed": 0,
+    "command": "playwright test --project=v2 --workers=1"
+  },
+  "build": {
+    "exitCode": 0,
+    "command": "npm run build"
+  },
+  "visual": {
+    "screenshots": 18,
+    "overflows": 0,
+    "scriptErrors": 0
+  },
+  "preferences": {
+    "sound": "off until user gesture",
+    "faces": "on by default; manual skip and Reduce Motion retained"
+  },
+  "ending": "first actual C completion only; no replay on reload or historical viewing"
+}

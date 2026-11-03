@@ -100,24 +100,24 @@ test("the same verified evidence supports two replayable endings and survives re
       { selection: D.finalClaims.filter((r) => r.correct).map((r) => r.id) },
     ],
     ["night-start", {}],
-    ["night-observe-public",{page:"rooms"}],
-    ["night-observe-public",{page:"guestbook"}],
-    ["night-pan", {cam:0,pan:2}],
-    ["night-pan", {cam:1,pan:0}],
-    ["night-link", {link:0}],
-    ["night-pan", {cam:1,pan:2}],
-    ["night-pan", {cam:2,pan:0}],
-    ["night-link", {link:1}],
-    ["night-pan", {cam:2,pan:2}],
+    ["night-observe-public", { page: "rooms" }],
+    ["night-observe-public", { page: "guestbook" }],
+    ["night-pan", { cam: 0, pan: 2 }],
+    ["night-pan", { cam: 1, pan: 0 }],
+    ["night-link", { link: 0 }],
+    ["night-pan", { cam: 1, pan: 2 }],
+    ["night-pan", { cam: 2, pan: 0 }],
+    ["night-link", { link: 1 }],
+    ["night-pan", { cam: 2, pan: 2 }],
     ["night-door", {}],
-    ["night-walk",{position:"west"}],
-    ["night-inspect",{target:"cart"}],
-    ["night-inspect",{target:"cabinet"}],
-    ["night-inspect",{target:"power"}],
-    ["night-walk",{position:"service"}],
-    ["night-inspect",{target:"enter"}],
+    ["night-walk", { position: "west" }],
+    ["night-inspect", { target: "cart" }],
+    ["night-inspect", { target: "cabinet" }],
+    ["night-inspect", { target: "power" }],
+    ["night-walk", { position: "service" }],
+    ["night-inspect", { target: "enter" }],
     ["night-frame", {}],
-    ["night-rotate", {node:0}],
+    ["night-rotate", { node: 0 }],
     ["ending", { ending: "auto-close" }],
     ["ending", { ending: "unverified" }],
   ])
@@ -157,7 +157,8 @@ test("editing a current conclusion invalidates new sign-off without erasing hist
     selection: ["service", "reviewer", "revision"],
   });
   // A pre-4.3 saved disposition remains viewable after current findings change.
-  s.endings=["unverified"];s.lastEnding="unverified";
+  s.endings = ["unverified"];
+  s.lastEnding = "unverified";
   M.transition(s, "edit-evidence");
   assert.equal(M.transition(s, "ending", { ending: "auto-close" }).ok, false);
   const restored = M.hydrate(JSON.parse(JSON.stringify(s)));
@@ -209,4 +210,27 @@ test("all early wrong classifications reject without advancing evidence and rema
     }).ok,
     true,
   );
+});
+
+test("faces default to on; explicit player skip and reduced-motion preferences survive hydration", () => {
+  assert.equal(M.fresh().preferences.skipScares, false);
+  assert.equal(M.hydrate({ schema: 2 }).preferences.skipScares, false);
+  const oldAutomatic = M.hydrate({
+    schema: 2,
+    preferences: { skipScares: true, reduceMotion: true },
+  });
+  assert.equal(oldAutomatic.preferences.skipScares, false);
+  assert.equal(oldAutomatic.preferences.reduceMotion, true);
+  const explicit = M.hydrate({
+    schema: 2,
+    preferences: { skipScares: true, scareChoiceMade: true },
+  });
+  assert.equal(explicit.preferences.skipScares, true);
+  assert.equal(explicit.preferences.scareChoiceMade, true);
+  const legacyChoice = M.hydrate({
+    schema: 2,
+    night: { comfortAcknowledged: true },
+    preferences: { skipScares: true },
+  });
+  assert.equal(legacyChoice.preferences.skipScares, true);
 });
