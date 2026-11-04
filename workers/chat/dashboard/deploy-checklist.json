@@ -3,10 +3,19 @@
   "url": "https://damp-rain-a5a6.ywang254.workers.dev",
   "pasteWholeFile": "workers/chat/dashboard/worker.js",
   "runSQLOnce": "workers/chat/dashboard/schema.sql",
-  "binding": {"type": "D1", "name": "CHAT_DB", "databaseSuggestedName": "stillwater-chat-quota"},
+  "binding": {
+    "type": "D1",
+    "name": "CHAT_DB",
+    "databaseSuggestedName": "stillwater-chat-quota"
+  },
   "keepExistingSecret": "OPENAI_API_KEY",
   "newSecret": "SESSION_SECRET",
-  "textVariables": {"CHAT_MODE": "live", "ALLOWED_ORIGINS": "https://rieyekiwong.github.io"},
+  "textVariables": {
+    "CHAT_MODE": "live",
+    "ALLOWED_ORIGINS": "https://rieyekiwong.github.io"
+  },
   "health": "/api/health",
-  "realAIConfirmed": false
+  "realAIConfirmed": true,
+  "verifiedOn": "2026-11-04",
+  "frontendURL": "https://rieyekiwong.github.io/123/index-zh.html?v=4.10.0#chat"
 }

@@ -8,6 +8,7 @@
 - 用户已通过 Cloudflare 网页手动部署，公网 health 为 `mode: ai`、`storage: d1`、`configured: true`，GitHub Pages origin 的 CORS 预检通过。
 - 2026-11-04 已通过公网 Worker **实际取得 OpenAI 回复**：妈妈的两轮中文、阿哲英文、GGbond 的中英混合群聊。实际响应约 1.6–2.2 秒，返回 `mode: ai`；记录见 [公网后端验收](v2.10/live-backend.json)。
 - 测试中普通短连接经过代理出口变化时触发了 IP 绑定保护；稳定 HTTPS 连接下会话正常。未读取、索取或公开用户 Secret。
+- GitHub Pages 微信前端已发布，正式浏览器实际收到七位私人联系人及群聊的九次 AI 回复；刷新、语言切换、独立上下文、论坛卡片、手机布局和受控断网备援已验证。详见 [正式网页验收](v2.10/live-frontend.json)。
 
 ## 推荐：Cloudflare 网页 Edit code 部署
 

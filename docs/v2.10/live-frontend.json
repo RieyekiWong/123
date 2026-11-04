@@ -1,0 +1,157 @@
+{
+  "frontendURL": "https://rieyekiwong.github.io/123/index-zh.html?v=4.10.0#chat",
+  "worker": "https://damp-rain-a5a6.ywang254.workers.dev",
+  "startedAt": "2026-11-04T16:42:04.451Z",
+  "finishedAt": "2026-11-04T16:53:28.742Z",
+  "passed": true,
+  "realAIReplies": [
+    {
+      "room": "mom",
+      "input": "今天好累。",
+      "status": 200,
+      "mode": "ai",
+      "replies": [
+        {
+          "person": "mom",
+          "text": "怎么啦，今天是事情太多，还是遇到什么不顺心的事了？先歇一会儿也行。",
+          "source": "ai"
+        }
+      ]
+    },
+    {
+      "room": "mom",
+      "input": "赶作业赶了一晚上，刚交上去。题目是银杏街区报告，终于能歇会儿了。",
+      "status": 200,
+      "mode": "ai",
+      "replies": [
+        {
+          "person": "mom",
+          "text": "辛苦了，赶了一晚上总算交上去了，先喘口气吧。这个报告写得还顺利吗？",
+          "source": "ai"
+        }
+      ]
+    },
+    {
+      "room": "gg",
+      "input": "你那袋烧烤薯片到底好不好吃啊，我正在犹豫买哪个味道",
+      "status": 200,
+      "mode": "ai",
+      "replies": [
+        {
+          "person": "gg",
+          "text": "说实话还没想明白，应该算能吃，但不至于让我专门安利。你想稳一点就买熟悉的口味吧。",
+          "source": "ai"
+        }
+      ]
+    },
+    {
+      "room": "zhang",
+      "input": "笑死，我刚才也只拿了充电线就出门，手机还在床上，你昨天那个事轮到我了哈哈",
+      "status": 200,
+      "mode": "ai",
+      "replies": [
+        {
+          "person": "zhang",
+          "text": "报应来得这么快哈哈哈哈，你最后走到哪儿才发现的？",
+          "source": "ai"
+        }
+      ]
+    },
+    {
+      "room": "lin",
+      "input": "我导出 PDF 的颜色又比 preview 暗了一点，原文件还留着，怎么先查一下比较好？",
+      "status": 200,
+      "mode": "ai",
+      "replies": [
+        {
+          "person": "lin",
+          "text": "先拿刚才那一页对比吧，检查一下导出时的色彩配置和预览是不是一致；别覆盖原文件，确认原因前先留着两版。",
+          "source": "ai"
+        }
+      ]
+    },
+    {
+      "room": "dad",
+      "input": "I finished the coursework project and backed up both files this time. Is your old mouse still working?",
+      "status": 200,
+      "mode": "ai",
+      "replies": [
+        {
+          "person": "dad",
+          "text": "Good, glad you backed up both files. The mouse is still working so far—turns out it just needed a fresh battery.",
+          "source": "ai"
+        }
+      ]
+    },
+    {
+      "room": "milk",
+      "input": "我今天实在不想排队了，你那杯奶茶最后好喝吗，想听个实话哈哈",
+      "status": 200,
+      "mode": "ai",
+      "replies": [
+        {
+          "person": "milk",
+          "text": "实话说还不错，至少没白排那么久，茶味挺顺的。不过还是平时那个最稳，我果然很难有新意哈哈",
+          "source": "ai"
+        }
+      ]
+    },
+    {
+      "room": "zhe",
+      "input": "I played a game yesterday, finally had some free time. Did your update finish?",
+      "status": 200,
+      "mode": "ai",
+      "replies": [
+        {
+          "person": "zhe",
+          "text": "Yep, finished overnight for once. Nice, what game did you play yesterday?",
+          "source": "ai"
+        }
+      ]
+    },
+    {
+      "room": "group",
+      "input": "说真的，那个兼职的工资还没问清楚就发出来，是不是有点 sus 啊",
+      "status": 200,
+      "mode": "ai",
+      "replies": [
+        {
+          "person": "gg",
+          "text": "是有点 sus，我也没问清楚。就论坛上看到个整理旧酒店预订记录的通知，还没申请，雇主和工资都没核实，先别急着信。",
+          "source": "ai"
+        }
+      ]
+    }
+  ],
+  "testedRooms": [
+    "dad",
+    "gg",
+    "group",
+    "lin",
+    "milk",
+    "mom",
+    "zhang",
+    "zhe"
+  ],
+  "tests": [
+    "No external chat request before explicit consent; real signed AI session enabled through UI.",
+    "Mom/GG payloads isolated; independent draft and scroll survive switch, reload and language change.",
+    "Hidden-name probe produced no spoiler; app used its local safe fallback.",
+    "Canonical share opens the original forum thread.",
+    "A new private draft survives going to the forum and returning.",
+    "Controlled browser outage uses local role reply and separate status.",
+    "390px private chat and input stay usable."
+  ],
+  "protectedProbe": {
+    "status": 502,
+    "reply": "这个我不知道，你是在哪儿看到的？",
+    "source": "local"
+  },
+  "controlledOutage": {
+    "controlled": true,
+    "source": "local"
+  },
+  "pageErrors": [],
+  "payloadIsolationChecked": true,
+  "verificationHelperNote": "A Playwright response.body read stalled on the deliberately refused 502 probe; it was stopped. The remaining assertions were completed against the same real browser page and saved separately. Ordinary AI responses and browser app behavior passed."
+}

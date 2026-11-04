@@ -1,4 +1,4 @@
-新版微信在线聊天的 Cloudflare 网页部署请看 **[单文件后端与逐步操作](workers/chat/dashboard/README.zh-CN.md)**；完整技术与隐私说明见 [V2.10](docs/V2_10-AI-CHAT.zh-CN.md)。后端未部署并取得真实 `mode: ai` 回复前，不视为 AI 上线。
+新版微信已接通真实 AI：打开[中文版](https://rieyekiwong.github.io/123/index-zh.html?v=4.10.0#chat)，点右上角「AI 聊天」并同意启用。默认仍可使用本地回复。部署说明见 **[Cloudflare 网页单文件步骤](workers/chat/dashboard/README.zh-CN.md)**；[V2.10 说明](docs/V2_10-AI-CHAT.zh-CN.md)及[正式网页验收](docs/v2.10/live-frontend.json)记录了真实接口、各角色和存档检查。
 
 # 静水旅馆 V2.6：最后一条夜班记录与未归档画面
 

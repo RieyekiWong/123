@@ -1,4 +1,4 @@
-The optional AI chat backend has a **[Cloudflare Edit code deployment guide](workers/chat/dashboard/README.zh-CN.md)** and a [complete integration report](docs/V2_10-AI-CHAT.zh-CN.md). A local mock test does not confirm live OpenAI inference.
+AI chat is live in the [current edition](https://rieyekiwong.github.io/123/index.html?v=4.10.0#chat). Choose **AI chat → Agree and enable** to opt in; local replies remain available. See the [Cloudflare Edit code guide](workers/chat/dashboard/README.zh-CN.md), [integration report](docs/V2_10-AI-CHAT.zh-CN.md), and [real production browser checks](docs/v2.10/live-frontend.json).
 
 # The Stillwater Hotel — V2.5
 
