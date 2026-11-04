@@ -1,0 +1,51 @@
+{
+  "version": "4.15.0",
+  "testedAt": "2026-11-04T22:38:01.276Z",
+  "origin": "https://rieyekiwong.github.io/123/",
+  "matchedFiles": 18,
+  "checks": [
+    {
+      "entry": "index-zh.html",
+      "width": 390,
+      "noticeOpens": "mom",
+      "exactBrowserReturn": true,
+      "unsubmittedInputRetained": true,
+      "warningContacts": 7,
+      "warningDurationMs": 6000,
+      "realChatUnchanged": true,
+      "publicityPuzzle": true,
+      "compactBlackReview": true,
+      "ending": "released",
+      "gameOver": true,
+      "pageErrors": 0,
+      "paidChatRequests": 0
+    },
+    {
+      "entry": "index.html",
+      "width": 1440,
+      "noticeOpens": "mom",
+      "exactBrowserReturn": true,
+      "unsubmittedInputRetained": true,
+      "warningContacts": 7,
+      "warningDurationMs": 6000,
+      "realChatUnchanged": true,
+      "publicityPuzzle": true,
+      "compactBlackReview": true,
+      "ending": "released",
+      "gameOver": true,
+      "pageErrors": 0,
+      "paidChatRequests": 0
+    }
+  ],
+  "limitations": [
+    "Chromium at desktop and phone sizes; physical WeChat in-app browser not tested.",
+    "Online AI service and Worker unchanged; no paid AI chat requests made.",
+    "Production checks seed a case before C9 and a separate B-3-ready case, then operate real UI; the unseeded chat-to-ending route was verified locally in the browser regression suite."
+  ],
+  "runtimeCommit": "fabc90b011882c7e90d0962e6ec18562fd1240e8",
+  "aiServiceHealth": {
+    "mode": "ai",
+    "storage": "d1",
+    "configured": true
+  }
+}
