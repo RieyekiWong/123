@@ -1,0 +1,12 @@
+{
+  "release": "4.12.1",
+  "accounts": 15,
+  "downloadedImages": 13,
+  "reusedLicensedImages": 2,
+  "unitTestsPassed": 94,
+  "existingBrowserChecksPassed": 7,
+  "renderedReview": "verification.json",
+  "postsAndRepliesChanged": false,
+  "gameplayChanged": false,
+  "publicDeploymentVerified": false
+}

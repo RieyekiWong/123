@@ -1,0 +1,25 @@
+{
+  "pages": [
+    {
+      "entry": "index-zh.html",
+      "width": 1440,
+      "accounts": 15,
+      "threadsChecked": 15,
+      "imagesDecoded": 15,
+      "sourceEntries": 15,
+      "pageErrors": [],
+      "externalImageRequests": []
+    },
+    {
+      "entry": "index.html",
+      "width": 390,
+      "accounts": 15,
+      "threadsChecked": 15,
+      "imagesDecoded": 15,
+      "sourceEntries": 15,
+      "pageErrors": [],
+      "externalImageRequests": []
+    }
+  ],
+  "failedImageFallback": "passed"
+}

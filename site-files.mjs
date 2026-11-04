@@ -3,7 +3,7 @@ export const V2_FILES = [
   "index.html", "index-zh.html", "haunt-preview.html",
   "case-data.js", "case-state.js", "case-app.js", "case-pages.js",
   "case-comfort.js", "case-feedback.js", "case-ending.js", "case-ending.css",
-  "forum-data.js", "forum-extra-data.js", "forum.js", "forum-style.css", "careers.js", "hotel-extras.js", "front-sites.css",
+  "forum-data.js", "forum-extra-data.js", "forum-avatars.js", "forum.js", "forum-style.css", "careers.js", "hotel-extras.js", "front-sites.css",
   "chat-data.js", "chat-personas.js", "chat-protocol.js", "chat-fallback.js", "chat-model.js",
   "chat-config.js", "chat-transport.js", "chat-view.js", "chat-style.css", "chat-photos.js",
   "case-void-model.js", "case-void.js", "case-void.css",

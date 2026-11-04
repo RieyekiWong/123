@@ -1,17 +1,22 @@
 /* Read-only community pages. Thread browsing never changes investigation progress. */
 globalThis.StillwaterForum = ({t,esc,getState}) => {
  const posts=globalThis.StillwaterForumData;
+ const photos=globalThis.StillwaterForumAvatars||[];
+ const photoByUser=new Map(photos.map(photo=>[photo.id,photo]));
  const boards={chat:['闲聊','Chat'],work:['工作信息','Work notices'],web:['老网站','Old websites'],help:['求助','Help']};
  const descriptions={chat:['聊什么都行，别刷屏','Talk about anything. Don’t flood the page.'],work:["交流找工作的事，招聘信息请自己核实","Talk about looking for work. Check any listing before you trust it."],web:["还能打开的老网页，发来看看","Found an old site that still opens? Post it here."],help:["哪里出问题了、试过什么，尽量说清楚","Say what went wrong and what you’ve tried."]};
  const threadLink=p=>`#forum?topic=${p.id}`;
  const cleanName=name=>name.replace('（楼主）','').replace(' (OP)','');
  function avatar(user,initial='') {
-  const name=cleanName(user[0]);let art=esc(initial||name.slice(0,1)),kind='letter';
-  if(name==='饼干碎'){kind='cookie';art='<i></i><i></i><i></i><i></i>';}
-  if(name==='冰箱里有可乐'){kind='cola';art='<i></i><b>COLA</b>';}
-  if(name==='夜猫值班员'){kind='moon';art='☾';}
+  const name=cleanName(user[0]),photo=photoByUser.get(cleanName(user[1]));
+  const fallback=esc(initial||name.slice(0,1));
+  const art=photo?`<span class="bbs-avatar-fallback">${fallback}</span><img class="bbs-avatar-image" src="${esc(photo.file)}" style="object-position:${esc(photo.position)}" width="29" height="29" alt="" loading="lazy" decoding="async">`:fallback;
   const color=[...name].reduce((sum,c)=>sum+c.codePointAt(0),0)%5;
-  return `<span class="bbs-avatar bbs-avatar-${kind} bbs-avatar-tone-${color}" aria-hidden="true">${art}</span><strong>${esc(t(...user))}</strong>`;
+  return `<span class="bbs-avatar bbs-avatar-${photo?'photo':'letter'} bbs-avatar-tone-${color}" aria-hidden="true">${art}</span><strong>${esc(t(...user))}</strong>`;
+ }
+ function avatarCredits() {
+  if(!photos.length)return '';
+  return `<details class="bbs-avatar-credits"><summary>${t('头像来源','Avatar credits')}</summary><p>${t('图片仅作虚构网友头像，与照片中的人物及作者无关。','These images represent fictional accounts. The pictured people and artists aren’t connected with the posts.')}</p><ul>${photos.map(photo=>`<li>${esc(t(photo.name,photo.id))} · <a href="${esc(photo.source)}" target="_blank" rel="noopener noreferrer">${esc(photo.title)}</a> · ${esc(photo.author)} · <a href="${esc(photo.license_url)}" target="_blank" rel="noopener noreferrer">${esc(photo.license)}</a></li>`).join('')}</ul><a href="assets/forum-avatars/credits.json" target="_blank" rel="noopener">${t('全部头像素材记录','Full avatar asset record')}</a></details>`;
  }
  const isUpdate=p=>p.id==='job'&&getState().endings.length>0;
  const count=p=>p.replies.length+(isUpdate(p)?1:0);
@@ -20,7 +25,7 @@ globalThis.StillwaterForum = ({t,esc,getState}) => {
  }
  function row(p) {
   const last=isUpdate(p)?p.user:(p.replies.at(-1)?.[0]||p.user),time=isUpdate(p)?t('后续更新','Later update'):p.replies.length?replyTime(p,p.replies.length-1):p.at;
-  return `<tr class="${p.id==='job'||p.pinned?'bbs-pinned-row':''}" data-forum-topic="${p.id}"><td><span class="bbs-topic-icon" aria-hidden="true">${p.id==='job'?'▤':p.pinned?'☾':'▱'}</span><a class="bbs-topic-link" href="${threadLink(p)}">${esc(t(...p.title))}</a>${p.pinned?` <span class="bbs-pin-label">${t('置顶','PINNED')}</span>`:''}<span class="bbs-mobile-meta">${esc(t(...p.user))} · ${p.at}<br>${t('最后回复','Last reply')}: ${esc(t(...last))} · ${time}</span></td><td>${p.sections.map(id=>`<a class="bbs-section-tag" href="#forum?section=${id}">${t(...boards[id])}</a>`).join(' ')}</td><td><strong>${esc(t(...p.user))}</strong><time>${p.at}</time></td><td>${esc(t(...last))}<time>${time}</time></td><td class="bbs-thread-count"><b>${count(p)}</b><span>${p.views} ${t('浏览','views')}</span></td></tr>`;
+  return `<tr class="${p.id==='job'||p.pinned?'bbs-pinned-row':''}" data-forum-topic="${p.id}"><td><span class="bbs-topic-icon" aria-hidden="true">${p.id==='job'?'▤':p.pinned?'☾':'▱'}</span><a class="bbs-topic-link" href="${threadLink(p)}">${esc(t(...p.title))}</a>${p.pinned?` <span class="bbs-pin-label">${t('置顶','PINNED')}</span>`:''}<span class="bbs-mobile-meta">${esc(t(...p.user))} · ${p.at}<br>${t('最后回复','Last reply')}: ${esc(t(...last))} · ${time}</span></td><td>${p.sections.map(id=>`<a class="bbs-section-tag" href="#forum?section=${id}">${t(...boards[id])}</a>`).join(' ')}</td><td><div class="bbs-index-author">${avatar(p.user,p.avatar)}</div><time>${p.at}</time></td><td>${esc(t(...last))}<time>${time}</time></td><td class="bbs-thread-count"><b>${count(p)}</b><span>${p.views} ${t('浏览','views')}</span></td></tr>`;
  }
  function sidebar(post) {
   const related=posts.filter(p=>p.id!==post?.id).sort((a,b)=>b.views-a.views).slice(0,6);
@@ -32,7 +37,7 @@ globalThis.StillwaterForum = ({t,esc,getState}) => {
   if(post.illustration)return `<figure class="bbs-dinner"><svg viewBox="0 0 240 125" role="img" aria-label="${t('楼主补画的煎蛋盖饭','A community drawing of egg over rice')}"><ellipse cx="120" cy="80" rx="90" ry="32" fill="#cbd9df"/><ellipse cx="120" cy="72" rx="76" ry="29" fill="#fff9e6"/><path d="M65 67Q75 33 100 52Q125 30 145 47Q183 44 176 75Q145 100 106 86Q60 90 65 67" fill="#fff"/><ellipse cx="121" cy="64" rx="21" ry="17" fill="#e5b849"/></svg><figcaption>${t('图片：楼主的手绘补图。饭已经吃完了。','Illustration added by the OP. Dinner has already been eaten.')}</figcaption></figure>`;
   return '';
  }
- function render() {
+ function renderPage() {
   const params=new URLSearchParams(location.hash.split('?')[1]||''),section=params.get('section'),id=params.get('topic');
   const list=(section?posts.filter(p=>p.sections.includes(section)):posts).slice().sort((a,b)=>(b.id==='job'?2:b.pinned?1:0)-(a.id==='job'?2:a.pinned?1:0)||b.at.localeCompare(a.at));
   const post=posts.find(p=>p.id===id);
@@ -41,5 +46,5 @@ globalThis.StillwaterForum = ({t,esc,getState}) => {
   const replies=post.replies.map(([user,text],i)=>`<article class="bbs-reply" data-reply-number="${i+1}"><header>${avatar(user)}<span>${i+1}${t(' 楼',' / reply')}</span><time>${replyTime(post,i)}</time></header><p>${esc(t(...text))}</p></article>`).join('');
   return `<div class="bbs-breadcrumb"><a href="#forum?view=topics">${t('夜猫论坛','Night Owl BBS')}</a> / ${post.sections.map(board=>`<a href="#forum?section=${board}">${t(...boards[board])}</a>`).join(' / ')}</div><div class="bbs-layout"><div><article class="bbs-post" data-thread="${post.id}"><header><p class="bbs-tag">${post.pinned?t('置顶 / 公告','PINNED / NOTICE'):t('网友发帖','Community post')}</p><h1>${esc(t(...post.title))}</h1><div class="bbs-author">${avatar(post.user,post.avatar)}<time datetime="${post.at.replace(' ','T')}">${post.at}</time><span>${post.views} ${t('次浏览','views')}</span></div></header><div class="bbs-post-text">${post.paragraphs.map(text=>`<p>${esc(t(...text))}</p>`).join('')}${illustration(post)}${post.id==='job'?`<p class="bbs-entry-label">${t('贴一下入口：','Here’s the link:')}</p><section class="bbs-link-preview"><span class="bbs-preview-monogram" aria-hidden="true">SH</span><div><h2>Stillwater Heritage Records</h2><p>${t('预订档案整理员 / 远程 / 合同制','Reservation records assistant / remote / contract')}</p><a class="forum-recruit-link" href="#careers">${t('查看招聘页面','View the job listing')} →</a></div></section>`:''}</div></article><section class="bbs-replies" aria-label="${t('帖子回复','Replies')}"><h2>${post.closed?t('本帖关闭回复','Replies are closed'):t('回复','Replies')+' · '+count(post)}</h2>${replies}${isUpdate(post)?`<article class="bbs-reply bbs-update"><header>${avatar(post.user,post.avatar)}<span>${t('楼主更新','OP update')}</span></header><p>${t('更新：没搜到这家公司别的消息。你们有谁做完样本了？','Update: I couldn’t find anything else about that company. Has anyone finished the sample?')}</p></article>`:''}</section><p class="bbs-back-link"><a href="#forum?view=topics">← ${t('返回主题目录','Back to all topics')}</a></p></div>${sidebar(post)}</div>`;
  }
- return {render};
+ return {render:()=>renderPage()+avatarCredits()};
 };
