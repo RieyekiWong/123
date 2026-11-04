@@ -39,7 +39,7 @@ for (const entry of ['index-zh.html','index.html']) {
     await expect(page.locator('#night-feedback')).not.toContainText(entry.includes('zh')?'还需锁定':'before ending');
     await page.locator('[data-ending=released]').click();
     await expect(page.getByRole('heading',{name:'GAME OVER',exact:true})).toBeVisible();
-    await expect(page.locator('[data-ending-complete=released]')).toContainText(entry.includes('zh')?'故事到此结束':'story ends here');
+    await expect(page.locator('[data-ending-complete=released]')).toContainText(entry.includes('zh')?'故事到这里结束':'story ends here');
     await page.reload();
     await expect(page.getByRole('heading',{name:'GAME OVER',exact:true})).toBeVisible();
     expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('stillwater-case:v2')).endings)).toContain('released');

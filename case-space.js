@@ -18,21 +18,21 @@ globalThis.StillwaterSpaceViews = ({ t, getState }) => {
         if (p.inspected.includes("plate"))
           info.push(
             t(
-              "317 的门牌下面还有一层旧胶。隔壁的门刚才关着。",
+              "317 门牌底下留着一层旧胶。隔壁那扇门，刚才还是关着的。",
               "Old adhesive under the 317 plate. The door next to it was closed a moment ago.",
             ),
           );
         if (p.inspected.includes("peephole"))
           info.push(
             t(
-              "猫眼里只有一盏灯。没有人。",
+              "猫眼里只看得见一盏灯，没有人。",
               "Only a light through the peephole. No one there.",
             ),
           );
         if (p.inspected.includes("photo"))
           info.push(
             t(
-              "合照背面：2006.10.17 夜班。E-014 那一栏被刮掉了。",
+              "合照背面写着“2006.10.17 夜班”。E-014 那一栏被刮掉了。",
               "Written on the back: Night shift, 2006.10.17. The E-014 caption has been scratched out.",
             ),
           );
@@ -40,25 +40,25 @@ globalThis.StillwaterSpaceViews = ({ t, getState }) => {
         info.push(
           p.cartMoved
             ? t(
-                "推车靠在墙边，维修柜现在能打开了。",
+                "推车已挪到墙边，柜门前空出来了。",
                 "The cart is against the wall. You can reach the cabinet.",
               )
             : t(
-                "黄色胶带的推车挡在维修柜前。",
+                "扶手缠着黄色胶带的推车挡住了维修柜。",
                 "The cart with yellow tape blocks the cabinet.",
               ),
         );
         if (p.cabinetOpen)
           info.push(
             t(
-              "柜门内侧：B-3 门锁供电。合上拉杆即可解锁。",
+              "柜门内贴着标签：“B-3 门锁供电”。合上拉杆即可解锁。",
               "Inside the cabinet: B-3 door supply. Raise the lever to release the lock.",
             ),
           );
         if (p.servicePower)
           info.push(
             t(
-              "拉杆已合上。通道另一头的灯变绿了。",
+              "拉杆合上了。通道另一头的灯由红变绿。",
               "Lever raised. The lamp down the passage is green.",
             ),
           );
@@ -66,18 +66,18 @@ globalThis.StillwaterSpaceViews = ({ t, getState }) => {
         info.push(
           p.servicePower
             ? t(
-                "门锁已经松开。里面是录像配线板。",
+                "门锁松开了，里面是一块录像信号配线板。",
                 "The latch is loose. The reel patch panel is inside.",
               )
             : t(
-                "门上红灯亮着。墙上的线路沿原路接回维修柜。",
+                "门上的红灯还亮着。沿墙上的电线看回去，另一头接在维修柜里。",
                 "Red lock lamp. The cable runs back to the service cabinet.",
               ),
         );
       if (p.inspected.includes("notice"))
         info.push(
           t(
-            "维修告示：门禁电源在西侧柜内。录像信号在 B-3 内另行检修。",
+            "维修告示：门禁电源在西侧维修柜；录像信号请到 B-3 配线室检修。",
             "Service notice: Door supply in the west cabinet. Reel signal serviced separately inside B-3.",
           ),
         );

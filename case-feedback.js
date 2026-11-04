@@ -28,7 +28,7 @@ globalThis.StillwaterCaseFeedback = ({ t }) => {
   };
   const fields = {
     reservation: [
-      "编号要和招聘页的样本一致，包括前面的字母。",
+      "请照招聘页样本上的编号填写，字母前缀也要保留。",
       "Match the sample’s reference, including its letter prefix.",
     ],
     inventory: [
@@ -36,11 +36,11 @@ globalThis.StillwaterCaseFeedback = ({ t }) => {
       "Look at the booking’s assigned-room field.",
     ],
     classification: [
-      "区域登记卡的“登记用途”一栏写明了用途。",
+      "查看区域登记卡上的“登记用途”。",
       "The position card has a registered-use field.",
     ],
     maintenance: [
-      "完整公告和位置登记卡上都有维修单编号。",
+      "完整公告和区域登记卡上都能找到维修单编号。",
       "The full notice and position card both carry the docket reference.",
     ],
     "audit-order": [
@@ -52,15 +52,15 @@ globalThis.StillwaterCaseFeedback = ({ t }) => {
       "Housekeeping checked a room. Look for a record that establishes where the guest went.",
     ],
     "revision-unchanged": [
-      "每一行左右各读一次；内容相同的不用勾。",
+      "逐行比较左右两栏，相同的项目不用勾选。",
       "Compare each row across both columns; leave identical rows unchecked.",
     ],
     "revision-missing": [
-      "检查人员栏、位置栏和状态栏，别漏看换行的内容。",
+      "再看一下人员、区域用途和状态三栏，换行的内容也要读完。",
       "Check the people, position and status fields, including wrapped text.",
     ],
     "evidence-occupancy": [
-      "区分“钥匙上写了什么”和“人实际去了哪里”。",
+      "钥匙套上的房号，能否说明人实际去了那里？",
       "Distinguish what a key says from where a person actually went.",
     ],
     "evidence-operating": [
@@ -68,11 +68,11 @@ globalThis.StillwaterCaseFeedback = ({ t }) => {
       "Compare the date of the notice with the job advert.",
     ],
     "evidence-consent": [
-      "草稿的最后一句说了能不能代签。",
+      "看草稿最后一句，确认能不能替她签字。",
       "The last sentence of the draft addresses signing on someone’s behalf.",
     ],
     "evidence-missing": [
-      "已打开的原始文件中应有对应依据。",
+      "每项说法都要能在已查看的原始文件里找到依据。",
       "Find a supporting entry for each selected finding.",
     ],
   };
@@ -94,7 +94,7 @@ globalThis.StillwaterCaseFeedback = ({ t }) => {
       route =
         "maintenance?record=" + globalThis.StillwaterCaseData.facts.notice;
     const direction = fields[result.error] || [
-      "看一下相关文件的编号、日期和备注。",
+      "回看相关文件，核对编号、日期和备注。",
       "Check the reference, date and notes in the related file.",
     ];
     const help = document.createElement("details");

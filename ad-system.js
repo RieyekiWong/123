@@ -192,7 +192,7 @@ globalThis.StillwaterAds = (() => {
       openDialog(
         frame(
           t(...ad.name),
-          `<article class="ad-mini-site ad-${ad.kind}"><p class="ad-label">AD · ${t("虚构店铺", "FICTIONAL SHOP")}</p><div class="ad-shop-intro">${photo(ad.imageId, "detail")}<div><h3>${esc(t(...ad.headline))}</h3><p>${esc(t(...ad.intro))}</p></div></div><div class="ad-shop-items">${ad.items.map(([title, text], index) => `<section class="ad-shop-item">${ad.galleryIds ? photo(ad.galleryIds[index], "gallery") : ""}<h4>${esc(t(...title))}</h4><p>${esc(t(...text))}</p></section>`).join("")}</div>${credit(ad.imageId)}${ad.galleryIds ? `<details class="ad-extra-credits"><summary>${t("作品照片署名", "Portrait photo credits")}</summary>${ad.galleryIds.map(credit).join("")}</details>` : ""}<p class="ad-fineprint">${esc(t(...ad.note))}</p><div class="ad-detail-actions"><button data-ad-action="pin" data-ad-id="${id}" ${persistent.pinnedIds.includes(id) ? "disabled" : ""}>${persistent.pinnedIds.includes(id) ? t("已放进广告夹", "Saved") : t("收藏到广告夹", "Keep this ad")}</button><button data-ad-action="folder">${t("返回广告夹", "Back to the ad folder")}</button></div><p class="ad-feedback" role="status"></p></article>`,
+          `<article class="ad-mini-site ad-${ad.kind}"><p class="ad-label">AD · ${t("虚构店铺", "FICTIONAL SHOP")}</p><div class="ad-shop-intro">${photo(ad.imageId, "detail")}<div><h3>${esc(t(...ad.headline))}</h3><p>${esc(t(...ad.intro))}</p></div></div><div class="ad-shop-items">${ad.items.map(([title, text], index) => `<section class="ad-shop-item">${ad.galleryIds ? photo(ad.galleryIds[index], "gallery") : ""}<h4>${esc(t(...title))}</h4><p>${esc(t(...text))}</p></section>`).join("")}</div>${credit(ad.imageId)}${ad.galleryIds ? `<details class="ad-extra-credits"><summary>${t("照片来源与许可", "Photo credits & licences")}</summary>${ad.galleryIds.map(credit).join("")}</details>` : ""}<p class="ad-fineprint">${esc(t(...ad.note))}</p><div class="ad-detail-actions"><button data-ad-action="pin" data-ad-id="${id}" ${persistent.pinnedIds.includes(id) ? "disabled" : ""}>${persistent.pinnedIds.includes(id) ? t("已放进广告夹", "Saved") : t("收藏到广告夹", "Keep this ad")}</button><button data-ad-action="folder">${t("返回广告夹", "Back to the ad folder")}</button></div><p class="ad-feedback" role="status"></p></article>`,
         ),
         trigger,
       );
@@ -212,7 +212,7 @@ globalThis.StillwaterAds = (() => {
       openDialog(
         frame(
           t("我的广告夹", "My ad folder"),
-          `<p>${t("收藏的广告保存在当前浏览器，游戏进度不受影响。", "Saved ads stay in this browser, separately from the records.")}</p><h3>${t("我留下的广告", "Saved ads")}</h3>${list.length ? cards(list, true) : `<p>${t("还没留下广告。看到喜欢的，点“留着”就行。", "Nothing saved yet. Choose Keep on an ad to put it here.")}</p>`}${recent.length ? `<h3>${t("最近看过", "Recently seen")}</h3>${cards(recent, false)}` : ""}<details class="ad-directory"><summary>${t("小镇店铺目录", "Local shop directory")}</summary>${data.map((ad) => `<p><button data-ad-action="detail" data-ad-id="${ad.id}">${esc(t(...ad.name))}</button></p>`).join("")}</details>`,
+          `<p>${t("广告收藏保存在当前浏览器，与游戏进度分开保存。", "Saved ads stay in this browser, separately from the records.")}</p><h3>${t("我留下的广告", "Saved ads")}</h3>${list.length ? cards(list, true) : `<p>${t("这里还没有收藏。看到想再看的广告，点“留着”即可。", "Nothing saved yet. Choose Keep on an ad to put it here.")}</p>`}${recent.length ? `<h3>${t("最近看过", "Recently seen")}</h3>${cards(recent, false)}` : ""}<details class="ad-directory"><summary>${t("小镇店铺目录", "Local shop directory")}</summary>${data.map((ad) => `<p><button data-ad-action="detail" data-ad-id="${ad.id}">${esc(t(...ad.name))}</button></p>`).join("")}</details>`,
         ),
         trigger,
       );
@@ -223,7 +223,7 @@ globalThis.StillwaterAds = (() => {
       openDialog(
         frame(
           t("图片鸣谢", "Photo acknowledgements"),
-          `<p>${t("以下实拍照片来自 Wikimedia Commons，用于虚构商家展示。照片中的场所、动物及摄影师不代言这些商家。原图保留，显示副本已降低分辨率并增加 JPEG 压缩。", "Existing photographs from Wikimedia Commons illustrate fictional shops. The depicted places, animals and photographers do not endorse them. Originals are retained; display copies are downsampled and JPEG-compressed.")}</p><div class="media-credit-grid">${photos.map((p) => `<article><img src="assets/${esc(p.file)}" alt="${esc(t(...p.alt))}" width="140" height="95" loading="lazy"><h3>${esc(t(...p.caption))}</h3>${credit(p.id)}</article>`).join("")}</div>`,
+          `<p>${t("广告中的实拍照片来自 Wikimedia Commons。店铺是虚构的，与照片中的场所、动物及摄影师无关。页面使用低清压缩副本，原图和许可保留。", "Existing photographs from Wikimedia Commons illustrate fictional shops. The depicted places, animals and photographers do not endorse them. Originals are retained; display copies are downsampled and JPEG-compressed.")}</p><div class="media-credit-grid">${photos.map((p) => `<article><img src="assets/${esc(p.file)}" alt="${esc(t(...p.alt))}" width="140" height="95" loading="lazy"><h3>${esc(t(...p.caption))}</h3>${credit(p.id)}</article>`).join("")}</div>`,
         ),
         trigger,
       );
@@ -269,7 +269,7 @@ globalThis.StillwaterAds = (() => {
             ?.replaceChildren(
               document.createTextNode(
                 t(
-                  "已收藏，下次可以从“我的广告夹”再打开。",
+                  "已收藏，可随时从“我的广告夹”重新打开。",
                   "Saved. Reopen it later from My ad folder.",
                 ),
               ),

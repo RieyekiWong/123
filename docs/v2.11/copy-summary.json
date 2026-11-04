@@ -1,0 +1,31 @@
+{
+  "baseline": "d76d6857092e1758d3dbd605ade321854e182f21",
+  "reviewedChineseOccurrences": 1204,
+  "reviewedFiles": 29,
+  "nonCopyASTFilesVerified": 27,
+  "changedOccurrences": 469,
+  "changedChineseOccurrences": 323,
+  "changedEnglishOccurrences": 146,
+  "changedFiles": [
+    "case-app.js",
+    "case-pages.js",
+    "case-comfort.js",
+    "case-feedback.js",
+    "case-ending.js",
+    "forum.js",
+    "careers.js",
+    "hotel-extras.js",
+    "case-void.js",
+    "ad-data.js",
+    "ad-campaigns.js",
+    "ad-system.js",
+    "case-night.js",
+    "case-welcome.js",
+    "case-space.js"
+  ],
+  "protectedFilesVerified": 35,
+  "authoredHotelGuestEntriesPreserved": 4,
+  "jobIdentitiesPreserved": true,
+  "forumThreadsAndRepliesPreserved": true,
+  "chatAndBackendPreserved": true
+}

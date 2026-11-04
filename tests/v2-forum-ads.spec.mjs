@@ -200,7 +200,7 @@ test("keep, fold, reload, reopen, remove and Escape work; main reset leaves the 
   await page.locator("footer [data-ad-action=folder]").click();
   await page.locator("#ad-dialog [data-ad-action=detail]").first().click();
   await expect(page.locator("#ad-dialog")).toContainText(
-    "我们不负责教狗狗坐下",
+    "来看病不用表演",
   );
   await page.keyboard.press("Escape");
   await expect(page.locator("footer [data-ad-action=folder]")).toBeFocused();

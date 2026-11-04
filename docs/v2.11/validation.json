@@ -1,0 +1,20 @@
+{
+  "release": "4.11.0",
+  "baseline": "d76d6857092e1758d3dbd605ade321854e182f21",
+  "build": "passed",
+  "unitTestsPassed": 87,
+  "browserRegression": {
+    "total": 160,
+    "firstRunPassed": 156,
+    "oldWordingAssertionsUpdatedAndRechecked": 4,
+    "functionalFailuresRemaining": 0
+  },
+  "renderedCopySnapshots": 71,
+  "renderedCopyErrors": [],
+  "protectedFilesByteIdentical": 35,
+  "nonCopyASTFilesVerified": 27,
+  "changedChineseOccurrences": 323,
+  "changedEnglishOccurrences": 146,
+  "paidChatRequestsForThisCopyReview": 0,
+  "publicDeploymentVerified": false
+}

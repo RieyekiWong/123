@@ -5,32 +5,32 @@ globalThis.StillwaterAdData = Object.freeze([
     imageId: "ad-dog",
     kind: "paw",
     name: ["旺旺动物门诊", "Wag & Sigh Pet Clinic"],
-    headline: ["狗狗最近怎么老叹气？", "Has your dog been sighing lately?"],
-    copy: ["先别猜，带来给医生看看。", "Don’t guess. Let the vet take a look."],
+    headline: ["狗狗最近总没精神？", "Your dog not quite itself?"],
+    copy: ["先别乱猜，带来让医生看看。", "Not sure what’s wrong? Let the vet take a look."],
     tag: ["社区宠物护理", "Neighbourhood pet care"],
     cta: ["看看诊所", "Meet the clinic"],
     intro: [
-      "社区宠物门诊。候诊区备有饮水和毛巾，带宠物来时记得牵绳或用航空箱。",
-      "A little neighbourhood clinic for pets. Water and old towels in the waiting area; the pen at reception is always tied to a string.",
+      "候诊区有饮水和毛巾。带狗请牵好绳，带猫或小动物请用航空箱。",
+      "Water and towels are available in the waiting area. Keep dogs on a lead and bring cats or small animals in a carrier.",
     ],
     items: [
       [
         ["今日值班", "On duty today"],
         [
-          "今天陈医生值班，前台小周负责接待。小周的字不好看，但很喜欢狗。",
-          "Reception, cleaning and water for waiting dogs. The receptionist put the duty sticker on crooked.",
+          "今天陈医生坐诊。挂号、候诊的事，找前台小周就行。",
+          "Dr Chen is on duty today. Ask Zhou at the desk about registration and waiting.",
         ],
       ],
       [
         ["前台小纸条", "A note at the desk"],
         [
-          "我们不负责教狗狗坐下。它要是愿意，也可以站着。",
-          "We do not teach dogs to sit. They are welcome to stand.",
+          "来看病不用表演“坐下”。牵好绳，慢慢等就行。",
+          "No need to show us a perfect “sit.” Keep the lead on and take your time.",
         ],
       ],
     ],
     note: [
-      "虚构店铺展示，不提供医疗建议、诊断或预约。",
+      "虚构门诊展示，不提供医疗建议、诊断或预约。",
       "Fictional shop display. No medical advice, diagnosis or appointments.",
     ],
   },
@@ -41,35 +41,35 @@ globalThis.StillwaterAdData = Object.freeze([
     name: ["红沙发电影屋", "Red Sofa Picture House"],
     headline: ["今晚看什么？", "What’s on tonight?"],
     copy: [
-      "《遥控器去哪了》：全片 96 分钟，一家人找了 95 分钟遥控器。",
-      "The Missing Remote: 96 minutes. A family spends 95 of them looking for the remote.",
+      "《遥控器去哪了》：片长 96 分钟，有 95 分钟都在找遥控器。",
+      "The Missing Remote: 96 minutes long. They spend 95 looking for the remote.",
     ],
     tag: ["一张沙发，几部好片", "One sofa. A few good films."],
     cta: ["看看片单", "Browse the films"],
     intro: [
-      "不需要排队。沙发上的位置，谁先坐下算谁的。",
-      "No queue. Whoever sits down first gets the seat.",
+      "不用排队，沙发先到先坐。今晚放什么，往下看看片单。",
+      "No queue. Sofa seats are first come, first served. Tonight’s films are listed below.",
     ],
     items: [
       [
         ["遥控器去哪了", "The Missing Remote"],
         [
-          "★★★★☆ 家庭喜剧。最后一分钟换了台。",
-          "★★★★☆ Family comedy. They change the channel in the last minute.",
+          "★★★★☆ 家庭喜剧，直到最后一分钟才换了台。",
+          "★★★★☆ Family comedy. They finally change the channel in the last minute.",
         ],
       ],
       [
         ["最后一块饼干", "The Last Biscuit"],
         [
-          "★★★☆☆ 悬疑短片。嫌疑人都有饼干屑。",
-          "★★★☆☆ Short mystery. Every suspect has crumbs.",
+          "★★★☆☆ 悬疑短片。每个嫌疑人身上都有饼干屑。",
+          "★★★☆☆ Mystery short. Every suspect is covered in crumbs.",
         ],
       ],
       [
         ["阳台上的星期天", "Sunday on the Balcony"],
         [
-          "★★★★☆ 生活片。两盆花，一下午。",
-          "★★★★☆ Slice of life. Two plants, one afternoon.",
+          "★★★★☆ 生活片。一个下午，陪两盆花晒晒太阳。",
+          "★★★★☆ A quiet afternoon, two plants and a little sunshine.",
         ],
       ],
     ],
@@ -85,41 +85,41 @@ globalThis.StillwaterAdData = Object.freeze([
     name: ["老何电脑维修", "Mr Ho’s Computer Repairs"],
     headline: ["电脑又卡了？", "Computer stuck again?"],
     copy: [
-      "开机慢、网页慢、老板回消息更慢。前两项可以修。",
-      "Slow startup, slow websites, even slower replies from the boss. We can fix the first two.",
+      "开机慢、网页卡，先让老何看看。老板回消息慢，这个真修不了。",
+      "Slow startup? Pages freezing? Ask Ho. A boss who won’t reply is beyond repair.",
     ],
-    tag: ["少点灰，多点耐心", "Less dust. More patience."],
+    tag: ["清灰、排查，慢慢修", "Cleaning, checks and patient repairs"],
     cta: ["查看服务", "See the services"],
     intro: [
-      "送来之前请先试试重启。不是敷衍，真的。",
-      "Try restarting before bringing it in. We mean it.",
+      "送来前先重启一次。要是还卡，记一下卡在哪一步，方便老何检查。",
+      "Try restarting before you bring it in. If it still freezes, note which step it gets stuck on.",
     ],
     items: [
       [
         ["清灰", "Dust removal"],
         [
-          "风扇下面的灰可以清，工作积压不在服务范围内。",
-          "We remove dust under the fan. Your backlog is outside our remit.",
+          "风扇和散热口一并清理。最近转得特别响，送来时说一声。",
+          "Fans and vents cleaned. If it’s been unusually noisy, mention that when you bring it in.",
         ],
       ],
       [
         ["整理文件", "File tidying"],
         [
-          "把“新建文件夹”排成一排，至少能看清有几个。",
-          "We line up the folders named New Folder. At least then you can count them.",
+          "几个“新建文件夹”分不清？先理清名字，原文件不删。",
+          "Can’t tell your “New Folder”s apart? We’ll sort out the names and keep the originals.",
         ],
       ],
       [
         ["键盘清洁", "Keyboard cleaning"],
         [
-          "能清出饼干屑，不保证找回消失的回车键。",
-          "Crumbs removed. Missing Enter keys are another matter.",
+          "饼干屑可以清。哪颗键不好使，请先告诉老何。",
+          "We can clear the crumbs. Tell Ho which keys aren’t working.",
         ],
       ],
     ],
     note: [
-      "周日不营业，老板要睡觉。本页不接单、不提供远程控制。",
-      "Closed Sundays. The owner needs sleep. No orders or remote access here.",
+      "周日休息。本页为虚构店铺展示，不接单，也不提供远程控制。",
+      "Closed Sundays. This is a fictional shop page; no orders or remote-access services are offered.",
     ],
   },
   {
@@ -129,35 +129,35 @@ globalThis.StillwaterAdData = Object.freeze([
     name: ["小镇二手货", "Smalltown Secondhand"],
     headline: ["还能用，就别扔！", "Still works? Keep it going!"],
     copy: [
-      "旧台灯、二手唱片、少了一只轮子的办公椅，都有人要。",
-      "Old lamps, used records, office chairs missing a wheel. Someone will want them.",
+      "旧台灯、一箱唱片，还有少了一只轮子的办公椅。东西都在，先看清楚再挑。",
+      "A lamp, a crate of records and an office chair missing a wheel. Have a proper look before choosing.",
     ],
     tag: ["旧物上新，便宜转让", "Pre-owned. Well acquainted."],
     cta: ["逛一逛", "Have a browse"],
     intro: [
-      "只陈列，不成交。店主还没想好怎么把这些东西搬下楼。",
-      "Display only. The owner hasn’t worked out how to get any of it downstairs.",
+      "先在这儿摆着看看。店主还在琢磨怎么搬下楼，本页暂不交易。",
+      "For display while the owner works out how to get everything downstairs. No transactions on this page.",
     ],
     items: [
       [
         ["旧台灯", "Desk lamp"],
         [
-          "标价：一杯热茶。灯还能亮，灯罩有点歪。",
-          "Price: a hot cup of tea. The bulb works; the shade has a mind of its own.",
+          "换一杯热茶。灯还能亮，就是灯罩有点歪。",
+          "Yours for a cup of tea. It still lights up; the shade sits a bit crooked.",
         ],
       ],
       [
         ["一箱唱片", "Box of records"],
         [
-          "标价：帮忙搬一次。封套比唱片多一张。",
-          "Price: help carry the box. One more sleeve than record.",
+          "帮忙搬一次就行。封套多了一张，哪张配哪张得自己翻翻。",
+          "Help with one move. There’s an extra sleeve in the crate, so you’ll need to sort through it.",
         ],
       ],
       [
         ["办公椅", "Office chair"],
         [
-          "只有三个轮子，第四个找不到了。介意的别买。",
-          "Includes: a fourth wheel we cannot find. Not for downhill travel.",
+          "只剩三个轮子，另一个没找着。介意这个就别挑它。",
+          "Three wheels left. Never found the fourth. Leave this one if that bothers you.",
         ],
       ],
     ],
@@ -176,29 +176,29 @@ globalThis.StillwaterAdData = Object.freeze([
     tag: ["复印 · 装订 · 打印", "Copying · Binding · Printing"],
     cta: ["店铺公告", "Read the shop notice"],
     intro: [
-      "文件请先排好版。老板只会替人翻页，不会替人写结论。",
-      "Please finish your layout first. We turn pages, not write conclusions.",
+      "排版和结论请先写好，我们只管打印、复印和装订。",
+      "Finish your layout and conclusion first. We handle printing, copying and binding.",
     ],
     items: [
       [
         ["复印", "Copying"],
         [
-          "黑白和彩色都有。原件背面如果有字，记得提醒。",
-          "Black-and-white or colour. Tell us if there is something on the back.",
+          "黑白、彩色都能印。原件背面也有字的话，请提前说一声。",
+          "Black-and-white and colour copies. Let us know if there’s writing on the back too.",
         ],
       ],
       [
         ["装订", "Binding"],
         [
-          "装订前数一遍页数。装订后再数，也不是不行。",
-          "Count the pages before binding. Afterwards also works, technically.",
+          "装订前请确认页数和顺序，别把缺页一起订进去了。",
+          "Check the page count and order before binding. Easier to spot a gap now.",
         ],
       ],
       [
         ["打印", "Printing"],
         [
-          "明早开门后再说。请不要对卷帘门喊话。",
-          "Ask again when we open tomorrow. Please do not shout through the shutter.",
+          "明早开门后再印。今晚卷帘门已经拉下了，喊老板也听不见。",
+          "Printing starts when we open tomorrow. The shutter’s down for tonight; calling through it won’t help.",
         ],
       ],
     ],
@@ -215,35 +215,35 @@ globalThis.StillwaterAdData = Object.freeze([
     name: ["咕咕猫咪照相馆", "Purr & Pose Studio"],
     headline: ["把猫拍得像猫。", "Cats, looking like cats."],
     copy: [
-      "至少我们保证照片里会有一只猫。",
-      "We can at least promise there will be a cat in the picture.",
+      "拍得好不好，先看看这几张。猫倒是肯定有。",
+      "See what you think of the pictures. There’s definitely a cat in them.",
     ],
-    tag: ["猫的想法，优先考虑", "The cat has final approval."],
+    tag: ["猫肯配合，再拍", "When the cat feels like it"],
     cta: ["看看作品", "View the portraits"],
     intro: [
-      "看看猫的不同表情。至于肯不肯配合，要看它当时的心情。",
-      "A few feline expressions. Cooperation depends entirely on the cat’s mood.",
+      "猫不看镜头的时候，我们就等一会儿。下面几张，是它们肯给面子的瞬间。",
+      "If the cat won’t look, we wait. These are the moments when they cooperated.",
     ],
     items: [
       [
         ["不想上班", "Not today"],
         [
-          "叫了半天都不看镜头，就这张最清楚。",
-          "The cat chose the expression. Nothing to do with how the artist feels.",
+          "喊了半天没理人，挑来挑去，还是这张最清楚。",
+          "Ignored us for ages. This was still the clearest shot.",
         ],
       ],
       [
         ["看见罐头了", "Dinner spotted"],
         [
-          "唯一一次认真看镜头。因为罐头在镜头后面。",
-          "The one time it faced the camera. The food was behind it.",
+          "终于肯看镜头了。罐头就放在后面，没白准备。",
+          "Finally looked at the camera. The tin of food behind it did its job.",
         ],
       ],
       [
         ["耳朵先到", "Ears first"],
         [
-          "刚按快门它就跑了，勉强拍到半张脸。",
-          "The face wasn’t ready. The ears arrived first.",
+          "快门刚按下去就跑，能留下半张脸已经不错了。",
+          "Ran off as the shutter clicked. Half a face is better than nothing.",
         ],
       ],
     ],
@@ -257,16 +257,16 @@ globalThis.StillwaterAdData = Object.freeze([
     imageId: "ad-clouds",
     kind: "cloud",
     name: ["一周天气小报", "The Weekly Maybe"],
-    headline: ["明天可能会下雨。", "It might rain tomorrow."],
+    headline: ["明天要不要带伞？", "Umbrella tomorrow?"],
     copy: [
-      "也可能不会。我们明天再确认。",
-      "Or it might not. We’ll check tomorrow.",
+      "还没等到准信，先把伞放包里吧。",
+      "No firm answer yet. Might as well put an umbrella in your bag.",
     ],
-    tag: ["编辑部仍在看窗外", "The editor is still looking out the window."],
+    tag: ["编辑部今日也在等雨", "Still watching for rain"],
     cta: ["翻翻小报", "Read the bulletin"],
     intro: [
-      "出门带不带伞，编辑部也在犹豫。",
-      "The editorial team is also deciding whether to bring an umbrella.",
+      "编辑部看了一早上窗外，也没拿准会不会下雨。带伞的人记得回来报个信。",
+      "We’ve watched the window all morning and still can’t decide. Let us know how it goes if you take an umbrella.",
     ],
     items: [
       [
@@ -295,8 +295,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "Your bonus pack has arrived!"
   ],
   "copy": [
-    "不用安装，先看看今天送什么。",
-    "No installation. See what’s in today’s pack."
+    "礼包内容在这里，不用安装东西。",
+    "The pack details are here. Nothing to install."
   ],
   "tag": [
     "限量体验卡",
@@ -307,8 +307,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "Open the pack"
   ],
   "intro": [
-    "老板买了一箱游戏卡，发现全是同一个游戏。决定今天来的人一人一张。",
-    "The owner bought a box of game cards. Every card was for the same game. One for each visitor today."
+    "一箱游戏卡拆开，发现全是同一个游戏。老板说今天来的人一人拿一张。",
+    "Opened a box of game cards and found they were all the same game. The owner says everyone who comes in today can take one."
   ],
   "items": [
     [
@@ -317,8 +317,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Starter pack"
       ],
       [
-        "一张体验卡，两颗薄荷糖。薄荷糖已经被老板吃了一颗。",
-        "One play pass and two mints. The owner has eaten one mint."
+        "一张体验卡，原配两颗薄荷糖。老板没忍住吃了一颗，还剩一颗。",
+        "One trial card, originally with two mints. The owner ate one. One left."
       ]
     ],
     [
@@ -327,8 +327,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "High scores"
       ],
       [
-        "第一名：阿杰。第二名也是阿杰，他换了个名字。",
-        "First: Jay. Second: also Jay, under a different name."
+        "第一名阿杰，第二名还是他。第二次登记换了个名字。",
+        "Jay is first. Also second—he signed up again under another name."
       ]
     ]
   ],
@@ -351,8 +351,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "Two travel. One goes free?"
   ],
   "copy": [
-    "小字写着：另一位请负责看行李。",
-    "The small print says: the other person minds the bags."
+    "先别高兴，小字还有一句：“另一位负责看行李。”",
+    "Read the small print before you celebrate: “The other person minds the bags.”"
   ],
   "tag": [
     "周末特惠",
@@ -363,8 +363,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "View the itinerary"
   ],
   "intro": [
-    "周六出发，周日回来。车上有空调，领队会带一袋橘子。",
-    "Leave Saturday, home Sunday. The coach has air conditioning. Your guide brings a bag of oranges."
+    "周末湖边一日游，当天往返。车上有空调，领队会带一袋橘子。",
+    "A weekend day trip to the lake, returning the same day. An air-conditioned coach, and a bag of oranges from the guide."
   ],
   "items": [
     [
@@ -373,8 +373,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Day by the lake"
       ],
       [
-        "上午散步，下午自由活动。走不动的人可以坐在长椅上等。",
-        "Walk in the morning, free time afterwards. There is a bench for anyone who has had enough."
+        "上午沿湖散步，下午自由活动。想歇脚的，可以在长椅上等大家。",
+        "Walk by the lake in the morning, then a free afternoon. Take a seat on a bench if you’d rather rest."
       ]
     ],
     [
@@ -383,8 +383,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Departure note"
       ],
       [
-        "请自备水杯。领队的橘子可以分，水杯不行。",
-        "Bring a water bottle. The guide shares oranges, not cups."
+        "领队会分橘子，喝水的杯子得自己带。",
+        "Bring your own cup. The guide will share the oranges, not the cups."
       ]
     ]
   ],
@@ -406,8 +406,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "Leave dial-up behind!"
   ],
   "copy": [
-    "图片不用等半天，电话也不用一直占着。",
-    "Pictures load sooner. The phone line gets a break."
+    "看图不再等半天，上网时也能接电话。",
+    "Less waiting for pictures. You can take calls while you’re online."
   ],
   "tag": [
     "小区开通登记中",
@@ -418,8 +418,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "Compare plans"
   ],
   "intro": [
-    "师傅周三来小区装线。提前把桌子后面的插座腾出来。",
-    "The installer is visiting on Wednesday. Clear the socket behind your desk first."
+    "周三到小区装线。请提前腾出电脑桌后面的插座，省得师傅到了再搬。",
+    "Installation visits on Wednesday. Clear the sockets behind your desk before the installer arrives."
   ],
   "items": [
     [
@@ -428,8 +428,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Home surfer"
       ],
       [
-        "适合看网页、收邮件，晚上轮流用电脑。",
-        "For browsing, email and taking turns on the family computer."
+        "看网页、收邮件够用。家里只有一台电脑的话，晚上还是得轮着用。",
+        "For browsing and email. If you only have one computer, you’ll still have to take turns."
       ]
     ],
     [
@@ -438,8 +438,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Installation note"
       ],
       [
-        "不帮忙整理电脑桌。师傅说上次差点被书砸到。",
-        "Desk tidying is not included. Last time, a pile of books fell on the installer."
+        "桌子上的书请先收一下，上回师傅挪插座时差点砸到脚。",
+        "Put the books away first. Last time a pile nearly landed on the installer’s foot."
       ]
     ]
   ],
@@ -473,8 +473,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "See today’s breakfast"
   ],
   "intro": [
-    "小区门口的早餐铺。阿姨只记得住常客吃什么，记不住叫什么。",
-    "A little breakfast stall. Auntie remembers your order better than your name."
+    "小区门口那家，早上六点开门。常来的不用多说，阿姨记得你吃什么。",
+    "The place by the neighbourhood entrance, open at six. If you’re a regular, Auntie remembers your order."
   ],
   "items": [
     [
@@ -483,8 +483,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Today’s recommendation"
       ],
       [
-        "热豆浆配油条。想要甜的，点单时说一声。",
-        "Hot soy milk and dough sticks. Ask if you like it sweet."
+        "豆浆配刚出锅的油条。豆浆要甜的，点的时候记得说。",
+        "Soy milk with fresh dough sticks. Say when you order if you want it sweet."
       ]
     ],
     [
@@ -493,8 +493,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "For late risers"
       ],
       [
-        "卖完就收摊，阿姨要去接孩子。",
-        "We close when we sell out. Auntie has a school pickup."
+        "卖完就收摊，还得去接孩子。晚起的别磨蹭啦。",
+        "We close when it’s sold out—there’s a child to pick up. Don’t leave it too late."
       ]
     ]
   ],
@@ -516,8 +516,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "One pot. The whole afternoon."
   ],
   "copy": [
-    "老板不催客，只催自己烧水。",
-    "The owner rushes the kettle, never the guests."
+    "热水喝完再添，慢慢坐，不催你走。",
+    "More hot water when you need it. Sit as long as you like."
   ],
   "tag": [
     "茶水续杯不另收费",
@@ -528,8 +528,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "Take a seat"
   ],
   "intro": [
-    "门口有两棵树，靠窗那桌能看见。桌子有点晃，下面垫着一张旧报纸。",
-    "Two trees outside the window. The table wobbles a little; there is an old newspaper under one leg."
+    "靠窗那桌能看见门口的两棵树。桌脚不太平，底下垫了张旧报纸。",
+    "The window table looks out at the two trees by the door. An old newspaper keeps the uneven leg steady."
   ],
   "items": [
     [
@@ -538,8 +538,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Jasmine tea"
       ],
       [
-        "茶叶放在蓝色铁罐里，别和老板的饼干拿混了。",
-        "In the blue tin. Please do not confuse it with the owner’s biscuit tin."
+        "茉莉花茶放在蓝色铁罐里。旁边那罐是老板的饼干，别拿错。",
+        "The jasmine tea is in the blue tin. The other tin holds the owner’s biscuits."
       ]
     ],
     [
@@ -548,8 +548,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Afternoons"
       ],
       [
-        "可以下棋，输赢自行商量。老板一般不当裁判。",
-        "Chess is welcome. Settle disputes yourselves; the owner usually declines to referee."
+        "想下棋可以坐这儿，谁输谁赢你们自己商量，老板不判。",
+        "Stay for a game if you like. Settle the result yourselves; the owner isn’t refereeing."
       ]
     ]
   ],
@@ -571,8 +571,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "Old favourites! Last box!"
   ],
   "copy": [
-    "上周也是最后一箱，老板又从床底翻出一箱。",
-    "It was the last box last week, too. The owner found another under the bed."
+    "上周也说最后一箱。后来收拾床底，又翻出来了。",
+    "It was the last crate last week too. Then the owner cleaned under the bed."
   ],
   "tag": [
     "旧唱片 · 慢慢挑",
@@ -583,8 +583,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "Browse the crates"
   ],
   "intro": [
-    "唱片按歌手姓氏排。老板记错的那几张，按他记得的姓氏排。",
-    "Filed by the singer’s surname. A few are filed under the surname the owner remembers."
+    "大体按歌手的姓排。找不着就问老板，他自己也经常放错。",
+    "Mostly sorted by the singer’s surname. Ask if you can’t find one; the owner misfiles them too."
   ],
   "items": [
     [
@@ -593,8 +593,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Staff pick"
       ],
       [
-        "封套有点旧，唱片还能听。内页上写着上一任主人的名字。",
-        "Worn sleeve, playable record. A former owner wrote their name on the insert."
+        "封套旧了点，唱片还能听。内页上还留着前一位主人的名字。",
+        "Worn sleeve, playable record. The previous owner’s name is still written inside."
       ]
     ],
     [
@@ -603,8 +603,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Listening note"
       ],
       [
-        "试听台的右声道接触不好，转一下旋钮就好了。",
-        "The right channel is a little loose. Give the knob a gentle turn."
+        "试听台右声道有点接触不良，转一下旋钮再听。",
+        "The listening deck’s right channel has a loose contact. Try turning the knob."
       ]
     ]
   ],
@@ -626,8 +626,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "What’s your lucky break today?"
   ],
   "copy": [
-    "不问生辰，不收钱。准不准先别急着说。",
-    "No birthday. No fee. Give it a chance."
+    "不用填生辰，也不收钱。翻一张，图个乐。",
+    "No birth date and no fee. Turn one over for a bit of fun."
   ],
   "tag": [
     "每日一签",
@@ -638,8 +638,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "Read today’s slip"
   ],
   "intro": [
-    "便利店门口的纸签机。大叔说自己写了好多张，抽出来总是那几句。",
-    "A paper-slip machine outside the corner shop. The owner claims he wrote dozens. We keep getting the same few."
+    "便利店门口摆着台纸签机。大叔说里面写了很多张，可大家翻来翻去，总碰上那几句。",
+    "A paper-slip machine outside the corner shop. The man says he wrote plenty; everyone seems to get the same few lines."
   ],
   "items": [
     [
@@ -648,8 +648,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Today’s slip"
       ],
       [
-        "上上签：能赶上的车就别跑了，先看看是不是你要坐的。",
-        "Good fortune: before you chase the bus, check it is yours."
+        "上上签：车来了先看线路，别追了半天才发现上错车。",
+        "Good fortune: check the route before you run for the bus."
       ]
     ],
     [
@@ -658,8 +658,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Lucky object"
       ],
       [
-        "一把能找到的钥匙。",
-        "A key you can actually find."
+        "家里的那把钥匙。",
+        "Your house key."
       ]
     ]
   ],
@@ -681,8 +681,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "Time for a new ringback tone!"
   ],
   "copy": [
-    "每次打电话都听同一句，同事已经会唱了。",
-    "Your colleagues know every word of the old one."
+    "这首彩铃用了多久？同事都能跟着唱了。",
+    "How long have you had that ringback tune? Your colleagues can sing it now."
   ],
   "tag": [
     "本周热门榜",
@@ -693,8 +693,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "Open the chart"
   ],
   "intro": [
-    "店主把所有曲目都听过一遍。现在只要电话一响，他就条件反射地跟着哼。",
-    "The owner has heard the entire catalogue. Any ringing phone now makes him hum along."
+    "店主把榜单从头听到了尾。现在电话一来，开口就想跟着哼。",
+    "The owner listened through the whole chart. Now he hums along whenever a call comes in."
   ],
   "items": [
     [
@@ -703,8 +703,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "No. 1: Be Right There"
       ],
       [
-        "一段很短的前奏，播完了人还没找到手机。",
-        "A short intro. By the end, they still have not found the phone."
+        "前奏很短。常常播完了，人还在找手机。",
+        "A very short intro. Often over before anyone’s found their phone."
       ]
     ],
     [
@@ -713,8 +713,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "No. 2: Day Off"
       ],
       [
-        "适合周末。店主建议不要在周一上班前忘了换。",
-        "For weekends. Remember to change it before Monday morning."
+        "周末用正合适。周一记得换回来，别让老板听见。",
+        "Good for the weekend. Change it back on Monday before the boss hears it."
       ]
     ]
   ],
@@ -736,8 +736,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "Learn in three days!"
   ],
   "copy": [
-    "怎么准时下班。第一课：先把电脑关了。",
-    "How to leave work on time. Lesson one: shut the computer down."
+    "学的是怎么准时下班。老师说，第一课先从关电脑开始。",
+    "The subject is leaving on time. The teacher starts with switching the computer off."
   ],
   "tag": [
     "新班开课",
@@ -748,8 +748,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "Read the timetable"
   ],
   "intro": [
-    "借了活动室开小课堂。白板笔只有黑色，老师说重点用圈画就行。",
-    "A borrowed activity room and a single black whiteboard pen. The teacher circles the important bits."
+    "课在借来的活动室上。白板笔只剩黑色，老师把重点全圈了起来。",
+    "Classes are in a borrowed activity room. Only black markers left, so the teacher circles the important bits."
   ],
   "items": [
     [
@@ -758,8 +758,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Tuesday: Spreadsheet basics"
       ],
       [
-        "先教怎么把弄丢的那一列找回来。",
-        "First, find the column you accidentally hid."
+        "先讲怎么把藏起来的那一列找回来。",
+        "First, find the column that’s gone into hiding."
       ]
     ],
     [
@@ -768,8 +768,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Thursday: Get to the point"
       ],
       [
-        "原定两小时，老师准备压到半小时。",
-        "Originally two hours. The teacher hopes to make it thirty minutes."
+        "原定两小时，老师正琢磨能不能半小时讲完。",
+        "Booked for two hours. The teacher is trying to get it down to thirty minutes."
       ]
     ]
   ],
@@ -791,8 +791,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "Free test sit! Try again!"
   ],
   "copy": [
-    "坐着坐着睡着了，店员会帮你把包放好。",
-    "Doze off and the assistant will keep your bag safe."
+    "要是坐着睡着了，店员会帮你把包放好。",
+    "If you nod off, the staff will keep your bag out of the way."
   ],
   "tag": [
     "仓库清场 · 样品展出",
@@ -803,8 +803,8 @@ globalThis.StillwaterAdData = Object.freeze([
     "See the floor models"
   ],
   "intro": [
-    "门口的沙发最软，老板自己每天中午都坐。午休时请轻声叫他。",
-    "The softest sofa is by the door. The owner naps there at lunch; wake him gently."
+    "门口那张最软，老板每天中午都坐着歇。赶上午休，轻声叫他就行。",
+    "The softest one is by the door. The owner rests there at lunchtime; a quiet word will wake him."
   ],
   "items": [
     [
@@ -813,8 +813,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Two-seat sofa"
       ],
       [
-        "能坐两个人和一只坚持挤在中间的猫。",
-        "Seats two people and a cat determined to sit between them."
+        "两个人坐正好，猫还非要往中间挤。",
+        "Room for two. The cat insists on squeezing into the middle."
       ]
     ],
     [
@@ -823,8 +823,8 @@ globalThis.StillwaterAdData = Object.freeze([
         "Armchair"
       ],
       [
-        "扶手宽，可以放遥控器。店员已经试过了。",
-        "Wide arms for the remote. The assistant has tested them."
+        "扶手挺宽，遥控器放得下，店员已经替你试过。",
+        "Wide armrests, with room for a remote. The staff have checked."
       ]
     ]
   ],

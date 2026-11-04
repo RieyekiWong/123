@@ -1,4 +1,6 @@
-AI chat is live in the [current edition](https://rieyekiwong.github.io/123/index.html?v=4.10.0#chat). Choose **AI chat → Agree and enable** to opt in; local replies remain available. See the [Cloudflare Edit code guide](workers/chat/dashboard/README.zh-CN.md), [integration report](docs/V2_10-AI-CHAT.zh-CN.md), and [real production browser checks](docs/v2.10/live-frontend.json).
+V2.11 revises shop, forum-interface, recruitment, hotel and later-chapter copy. Chat and authored forum threads and replies are preserved. See the [release notes](docs/v2.11/DELIVERY.zh-CN.md) and [full copy review](docs/V2_11-COPY-REVIEW.zh-CN.md).
+
+AI chat is live in the [current edition](https://rieyekiwong.github.io/123/index.html?v=4.11.0#chat). Choose **AI chat → Agree and enable** to opt in; local replies remain available. See the [Cloudflare Edit code guide](workers/chat/dashboard/README.zh-CN.md), [integration report](docs/V2_10-AI-CHAT.zh-CN.md), and [real production browser checks](docs/v2.10/live-frontend.json).
 
 # The Stillwater Hotel — V2.5
 

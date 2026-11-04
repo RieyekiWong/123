@@ -1,0 +1,4223 @@
+[
+  {
+    "file": "case-app.js",
+    "lineBefore": 194,
+    "lineAfter": 194,
+    "kind": "literal",
+    "language": "zh",
+    "before": "边缘还没接上。看看门框和地缝在两块画面之间是否连续。",
+    "after": "画面还没拼齐。检查相邻边缘的门框和地缝，看看哪里断开了。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 195,
+    "lineAfter": 195,
+    "kind": "literal",
+    "language": "zh",
+    "before": "这一步还没完成。当前画面和操作已保留。",
+    "after": "这一步还未完成，刚才的操作已保留。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 209,
+    "lineAfter": 209,
+    "kind": "literal",
+    "language": "zh",
+    "before": "缺少样本编号。可返回招聘页查看。",
+    "after": "请先到招聘页查看样本编号。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 213,
+    "lineAfter": 213,
+    "kind": "literal",
+    "language": "zh",
+    "before": "未找到预订，请检查编号。",
+    "after": "查不到这笔预订，请检查编号是否完整。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 216,
+    "lineAfter": 216,
+    "kind": "literal",
+    "language": "zh",
+    "before": "还没找到对应的预订单。",
+    "after": "请先查到对应的预订单。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 218,
+    "lineAfter": 218,
+    "kind": "literal",
+    "language": "zh",
+    "before": "房号与预订单不符。",
+    "after": "这个房号与预订单不一致，请再看一下登记房号。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 222,
+    "lineAfter": 222,
+    "kind": "literal",
+    "language": "zh",
+    "before": "尚未确认预订单上的房号。",
+    "after": "请先核对预订单上的房号。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 226,
+    "lineAfter": 226,
+    "kind": "literal",
+    "language": "zh",
+    "before": "尚未打开对应的住客留言。",
+    "after": "请先查看这笔预订对应的住客留言。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 230,
+    "lineAfter": 230,
+    "kind": "literal",
+    "language": "zh",
+    "before": "尚未打开服务区域登记卡。",
+    "after": "请先打开服务区域的登记卡。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 234,
+    "lineAfter": 234,
+    "kind": "literal",
+    "language": "zh",
+    "before": "所选用途与登记卡不符。",
+    "after": "所选用途与登记卡上的内容不一致。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 238,
+    "lineAfter": 238,
+    "kind": "literal",
+    "language": "zh",
+    "before": "服务区域用途尚未确认。",
+    "after": "请先核对服务区域的登记用途。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 242,
+    "lineAfter": 242,
+    "kind": "literal",
+    "language": "zh",
+    "before": "未找到维修单，请检查公告编号。",
+    "after": "查不到这张维修单，请核对公告编号。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 246,
+    "lineAfter": 246,
+    "kind": "literal",
+    "language": "zh",
+    "before": "尚未查到对应的维修单。",
+    "after": "请先查询对应的维修单。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 250,
+    "lineAfter": 250,
+    "kind": "literal",
+    "language": "zh",
+    "before": "时间顺序不对，请对照每条记录的日期和时间。",
+    "after": "顺序不对。请按记录上的日期和时间，从早到晚排列。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 254,
+    "lineAfter": 254,
+    "kind": "literal",
+    "language": "zh",
+    "before": "现有记录不能支持这一判断。",
+    "after": "现有记录还不足以得出这个结论。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 258,
+    "lineAfter": 258,
+    "kind": "literal",
+    "language": "zh",
+    "before": "当晚记录尚未核对。",
+    "after": "请先核对当晚的记录。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 262,
+    "lineAfter": 262,
+    "kind": "literal",
+    "language": "zh",
+    "before": "选中了未修改的项目。请对照两栏内容。",
+    "after": "有一项两栏内容相同，不需要勾选。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 266,
+    "lineAfter": 266,
+    "kind": "literal",
+    "language": "zh",
+    "before": "有修改项尚未选中。",
+    "after": "还有改动没有选出来，请再对照一次。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 270,
+    "lineAfter": 270,
+    "kind": "literal",
+    "language": "zh",
+    "before": "修改记录尚未核对。",
+    "after": "请先比较原稿与修改稿。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 274,
+    "lineAfter": 274,
+    "kind": "literal",
+    "language": "zh",
+    "before": "请从停业通知的附件打开这份草稿。",
+    "after": "这份草稿附在停业通知后，请从附件进入。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 278,
+    "lineAfter": 278,
+    "kind": "literal",
+    "language": "zh",
+    "before": "资料不全，暂时无法提交。",
+    "after": "还有资料未查看，暂时无法提交。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 282,
+    "lineAfter": 282,
+    "kind": "literal",
+    "language": "zh",
+    "before": "没有记录能确认住客实际入住。",
+    "after": "目前没有记录能证实住客实际入住。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 286,
+    "lineAfter": 286,
+    "kind": "literal",
+    "language": "zh",
+    "before": "该说法与停业通知不符。",
+    "after": "这项说法与停业通知的内容不符。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 290,
+    "lineAfter": 290,
+    "kind": "literal",
+    "language": "zh",
+    "before": "该说法与 Mara 的原备注不符。",
+    "after": "这项说法与 Mara 留下的原备注不符。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 294,
+    "lineAfter": 294,
+    "kind": "literal",
+    "language": "zh",
+    "before": "请选择三项有原始记录支持的说法。",
+    "after": "请选择三项能在原始记录中找到依据的说法。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 298,
+    "lineAfter": 298,
+    "kind": "literal",
+    "language": "zh",
+    "before": "操作未完成，已保存的资料不受影响。",
+    "after": "操作未完成，之前保存的资料还在。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 347,
+    "lineAfter": 347,
+    "kind": "literal",
+    "language": "zh",
+    "before": "暂时没有这份文件的访问权限。请从相关资料打开。",
+    "after": "这份文件暂时无法直接打开，请从相关资料中的链接进入。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 358,
+    "lineAfter": 358,
+    "kind": "literal",
+    "language": "zh",
+    "before": "浏览器无法保存进度，当前标签页仍可继续操作。",
+    "after": "浏览器暂时无法保存进度。这个标签页仍可继续，关闭后可能丢失记录。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 358,
+    "lineAfter": 358,
+    "kind": "literal",
+    "language": "en",
+    "before": "Storage is unavailable; the current tab remains playable.",
+    "after": "Your browser can’t save progress right now. You can keep going in this tab, but closing it may lose your work."
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 363,
+    "lineAfter": 363,
+    "kind": "literal",
+    "language": "zh",
+    "before": "本站没有自动刷新功能。你看到的只是最后一次保存的帖子。",
+    "after": "页面不会自动刷新，帖子内容以本次打开时显示的为准。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 363,
+    "lineAfter": 363,
+    "kind": "literal",
+    "language": "en",
+    "before": "This forum does not refresh automatically. You are reading the last saved copy of each thread.",
+    "after": "This page does not refresh automatically. You’re reading the version loaded when you opened it."
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 363,
+    "lineAfter": 363,
+    "kind": "literal",
+    "language": "zh",
+    "before": "虚构社区，帖子与商家均为作品内容，不接受真实交易。",
+    "after": "本论坛及商家均为虚构，不接受真实交易。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 365,
+    "lineAfter": 365,
+    "kind": "literal",
+    "language": "zh",
+    "before": "虚构职位展示，不接收真实简历、申请或付款。",
+    "after": "职位均为虚构，不接收简历、真实申请或付款。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 366,
+    "lineAfter": 366,
+    "kind": "literal",
+    "language": "zh",
+    "before": "网页资料存档：2006 年版本。房型与服务信息仅供历史查阅。",
+    "after": "网页存档 · 2006 年版本。房型和服务信息仅供查阅。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 366,
+    "lineAfter": 366,
+    "kind": "literal",
+    "language": "zh",
+    "before": "虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。",
+    "after": "本作是虚构互动作品，酒店、招聘及档案均属剧情内容。不接受真实申请或付款。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 366,
+    "lineAfter": 366,
+    "kind": "literal",
+    "language": "zh",
+    "before": "浏览器无法保存进度，当前标签页仍可继续操作。",
+    "after": "浏览器暂时无法保存进度。这个标签页仍可继续，关闭后可能丢失记录。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 366,
+    "lineAfter": 366,
+    "kind": "literal",
+    "language": "en",
+    "before": "Storage is unavailable; the current tab remains playable.",
+    "after": "Your browser can’t save progress right now. You can keep going in this tab, but closing it may lose your work."
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 487,
+    "lineAfter": 487,
+    "kind": "literal",
+    "language": "zh",
+    "before": "这里只列出本次已打开的文件。",
+    "after": "本次查看过的文件列在这里。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 611,
+    "lineAfter": 611,
+    "kind": "literal",
+    "language": "zh",
+    "before": "客房目录已更新 · 查看当前页面",
+    "after": "客房目录有更新 · 查看"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 669,
+    "lineAfter": 669,
+    "kind": "literal",
+    "language": "zh",
+    "before": "还有一段未归档画面，先在监控下方打开查看。",
+    "after": "还有一段画面未查看，入口在监控下方。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 677,
+    "lineAfter": 677,
+    "kind": "literal",
+    "language": "zh",
+    "before": "先把推车挪开，柜门才能打开。",
+    "after": "推车挡住了柜门，先把它挪开。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 681,
+    "lineAfter": 681,
+    "kind": "literal",
+    "language": "zh",
+    "before": "供电拉杆在维修柜里。",
+    "after": "门锁的供电拉杆在维修柜内。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 685,
+    "lineAfter": 685,
+    "kind": "literal",
+    "language": "zh",
+    "before": "门锁没通电。沿线路回西侧维修柜看看。",
+    "after": "门锁没有通电。沿墙上的线回西侧维修柜检查。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 691,
+    "lineAfter": 691,
+    "kind": "literal",
+    "language": "zh",
+    "before": "两路画面的地标对不上。已确认的连接还在。",
+    "after": "这两个机位的地标对不上。之前确认的连接已保留。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 700,
+    "lineAfter": 700,
+    "kind": "literal",
+    "language": "zh",
+    "before": "未保存：录像线路还没接通。A 的左侧输入必须连到 F 的右侧出口。当前接线已保留。",
+    "after": "未保存：录像线路没有接通。请检查 A 左侧到 F 右侧是否连成通路；当前接线不会丢失。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 705,
+    "lineAfter": 705,
+    "kind": "literal",
+    "language": "zh",
+    "before": "未保存：自动回写电源仍然连接。请把 AUTO-WRITE 切到“已隔离”。",
+    "after": "未保存：AUTO-WRITE 仍接着电源，请先切到“已隔离”。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 710,
+    "lineAfter": 710,
+    "kind": "literal",
+    "language": "zh",
+    "before": "未保存：当前为自动模式。切换到 MANUAL 后才能保存检修配置。",
+    "after": "未保存：当前是 AUTO 模式，请切换为 MANUAL 后再保存。"
+  },
+  {
+    "file": "case-app.js",
+    "lineBefore": 714,
+    "lineAfter": 714,
+    "kind": "literal",
+    "language": "zh",
+    "before": "锁定前请先保存配置，并恢复监控最后一帧。",
+    "after": "请先保存接线配置、恢复监控最后一帧，再锁定原始备份。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 35,
+    "lineAfter": 35,
+    "kind": "literal",
+    "language": "zh",
+    "before": "湖边的小旅馆。白天散步，晚上好好休息。",
+    "after": "湖畔客房，安静舒适，适合短住或长住。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 35,
+    "lineAfter": 35,
+    "kind": "literal",
+    "language": "en",
+    "before": "A small hotel by the lake. Walk by day, rest well at night.",
+    "after": "Quiet rooms by the lake, for a night or a longer stay."
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 35,
+    "lineAfter": 35,
+    "kind": "literal",
+    "language": "zh",
+    "before": "前台小提醒：早餐时间为早上 7:00–9:00。晚上抵达的住客，请先到前台领取房卡。如果需要多一条毛毯，也可以向值班人员说明。",
+    "after": "早餐于 7:00–9:00 在一层餐厅供应。晚到的住客请先到前台领取房卡；需要加领毛毯，也可向值班人员询问。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 35,
+    "lineAfter": 35,
+    "kind": "literal",
+    "language": "zh",
+    "before": "我们的旅馆不大，但从大厅到客房都尽量保留了原来的样子。天气好的时候可以到庭院坐坐，湖边早晚风比较大，出门记得带件外套。",
+    "after": "旅馆保留了木质楼梯和老式家具。天气好时，欢迎到庭院坐坐。湖边早晚风大，出门不妨带件外套。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 35,
+    "lineAfter": 35,
+    "kind": "literal",
+    "language": "en",
+    "before": "We are a small hotel, and have kept the lobby and rooms much as they were. Sit in the courtyard on a fine day. Bring a jacket for mornings and evenings by the lake.",
+    "after": "The lobby and rooms retain the wooden stairs and older furnishings. Enjoy the courtyard in good weather, and bring an extra layer for breezy mornings and evenings by the lake."
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 35,
+    "lineAfter": 35,
+    "kind": "literal",
+    "language": "zh",
+    "before": "房间有双人房、双床房和适合多住几天的套间。如果不确定选哪一种，可以先看看客房照片和设施说明。",
+    "after": "提供双人房、双床房及长住套间。客房页附有照片和设施说明，可按入住需要选择。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 43,
+    "lineAfter": 43,
+    "kind": "literal",
+    "language": "zh",
+    "before": "输入预订编号，查看以前的订房记录。",
+    "after": "输入预订编号，查询历史订房记录。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 47,
+    "lineAfter": 47,
+    "kind": "literal",
+    "language": "zh",
+    "before": "不知道编号？工作样本上有。",
+    "after": "工作样本中附有预订编号。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 51,
+    "lineAfter": 51,
+    "kind": "literal",
+    "language": "zh",
+    "before": "这里是原来的订房资料，实际入住情况还要看前台记录。",
+    "after": "这是原始订房记录。是否实际入住，须另查前台记录。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 59,
+    "lineAfter": 59,
+    "kind": "literal",
+    "language": "zh",
+    "before": "双人房、双床房与长住套间，均提供独立卫浴与每日客房清洁。",
+    "after": "双人房、双床房和长住套间均配独立卫浴，提供每日客房清洁。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 92,
+    "lineAfter": 92,
+    "kind": "literal",
+    "language": "zh",
+    "before": "以下是三楼开放预订的房间。个别位置不对外开放。",
+    "after": "以下为三楼可预订的客房。未开放区域不列入预订。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 92,
+    "lineAfter": 92,
+    "kind": "literal",
+    "language": "zh",
+    "before": "早餐在一层餐厅供应，时间为 7:00–9:00。可向前台申请额外床品。",
+    "after": "早餐时间为 7:00–9:00，地点在一层餐厅。如需额外床品，请联系前台。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 92,
+    "lineAfter": 92,
+    "kind": "literal",
+    "language": "zh",
+    "before": "以前的通行通知可在公告栏查看。",
+    "after": "往年的通行安排可在公告栏查阅。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 100,
+    "lineAfter": 100,
+    "kind": "literal",
+    "language": "zh",
+    "before": "看看住客们的入住感受。",
+    "after": "感谢各位住客留下入住感受。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 100,
+    "lineAfter": 100,
+    "kind": "literal",
+    "language": "en",
+    "before": "Guest entries retained by reception.",
+    "after": "Thank you to our guests for sharing their stays."
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 102,
+    "lineAfter": 102,
+    "kind": "literal",
+    "language": "zh",
+    "before": "收到。预订单上的房号没变，钥匙套的情况还在查。麻烦看一下当天的楼层图。",
+    "after": "已收到。预订单上的房号没有改动，钥匙套仍在核查。请先查看当天的楼层图。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 102,
+    "lineAfter": 102,
+    "kind": "literal",
+    "language": "zh",
+    "before": "查找旧留言时，请用预订单上的房号。",
+    "after": "查询旧留言，请填写预订单上的房号。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 112,
+    "lineAfter": 112,
+    "kind": "literal",
+    "language": "zh",
+    "before": "三楼房间和走廊位置图。",
+    "after": "三楼客房、走廊及服务区域的位置。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 127,
+    "lineAfter": 127,
+    "kind": "literal",
+    "language": "zh",
+    "before": "用于暂存待处理的服务记录，不作客房使用。",
+    "after": "暂存待处理的服务记录，不对外作为客房使用。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 127,
+    "lineAfter": 127,
+    "kind": "literal",
+    "language": "zh",
+    "before": "登记卡上的位置属于哪一类？",
+    "after": "根据登记卡，这个区域属于哪一类？"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 136,
+    "lineAfter": 136,
+    "kind": "literal",
+    "language": "zh",
+    "before": "只是门牌印错，不用再查",
+    "after": "仅为门牌印刷错误，无需核查"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 158,
+    "lineAfter": 158,
+    "kind": "literal",
+    "language": "zh",
+    "before": "前台历年公告。",
+    "after": "前台留存的历年通知。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 162,
+    "lineAfter": 162,
+    "kind": "literal",
+    "language": "zh",
+    "before": "三楼西侧通道正在维修，部分区域暂时不能进入。旧门牌与前台资料可能不同，请以登记卡为准。如发现房号不一致，交给当班人员处理。",
+    "after": "三楼西侧通道维修期间，部分区域暂停通行。旧门牌可能与前台资料不一致，请以登记卡为准；遇到房号不符，请交当班人员核对。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 162,
+    "lineAfter": 162,
+    "kind": "literal",
+    "language": "zh",
+    "before": "详情见同号维修单。",
+    "after": "详细记录见同编号维修单。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 171,
+    "lineAfter": 171,
+    "kind": "literal",
+    "language": "zh",
+    "before": "输入公告上的编号。",
+    "after": "请填写公告所列编号。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 175,
+    "lineAfter": 175,
+    "kind": "literal",
+    "language": "zh",
+    "before": "夜审将待处理的预订单交给当班人员继续核查。入住情况一栏为空。",
+    "after": "夜审把待核查的预订单移交给当班人员。入住情况一栏未填写。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 184,
+    "lineAfter": 184,
+    "kind": "literal",
+    "language": "zh",
+    "before": "湖边的一家家庭旅馆，保留木质楼梯和老式家具。",
+    "after": "一间湖边的家庭旅馆，木质楼梯和老式家具一直保留至今。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 188,
+    "lineAfter": 188,
+    "kind": "literal",
+    "language": "zh",
+    "before": "1987 年开业，后来增设庭院和东翼客房。档案中保留了历次房型与通行安排。",
+    "after": "旅馆于 1987 年开业，后增设庭院和东翼客房。历次房型调整和通行安排均留有档案。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 197,
+    "lineAfter": 197,
+    "kind": "literal",
+    "language": "zh",
+    "before": "前台全天有人。需要客房用品，请到柜台询问。",
+    "after": "前台全天值班。如需客房用品，请到柜台领取或询问。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 201,
+    "lineAfter": 201,
+    "kind": "literal",
+    "language": "zh",
+    "before": "晚到请先到前台。额外的毛毯、毛巾也请在这里领取。",
+    "after": "晚到的住客请先到前台办理入住。需要加领毛毯或毛巾，也请到这里询问。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 210,
+    "lineAfter": 210,
+    "kind": "literal",
+    "language": "zh",
+    "before": "这次工作中看过的文件。",
+    "after": "本次查看过的文件及出处。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 237,
+    "lineAfter": 237,
+    "kind": "literal",
+    "language": "zh",
+    "before": "还没看过文件。招聘页上有一份工作样本。",
+    "after": "还没有查看记录。可以先打开招聘页的工作样本。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 248,
+    "lineAfter": 248,
+    "kind": "literal",
+    "language": "zh",
+    "before": "用“上移”和“下移”按日期、时间从早到晚排列，再选择下面的核对结果。",
+    "after": "用“上移”“下移”调整顺序，按日期和时间由早到晚排列。排好后，选择下方的核对结果。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 259,
+    "lineAfter": 259,
+    "kind": "literal",
+    "language": "zh",
+    "before": "这些记录能确定住客住进了 {service} 吗？",
+    "after": "根据这些记录，能否确定住客实际住进了 {service}？"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 292,
+    "lineAfter": 292,
+    "kind": "literal",
+    "language": "zh",
+    "before": "同一预订编号下有两份文件，处理人一栏不一样。",
+    "after": "这笔预订有两份文件，两份的处理人一栏不同。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 292,
+    "lineAfter": 292,
+    "kind": "literal",
+    "language": "zh",
+    "before": "刷新后显示当前经手人。",
+    "after": "手动刷新可查看当前经手人。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 292,
+    "lineAfter": 292,
+    "kind": "literal",
+    "language": "zh",
+    "before": "记录尚未结案，必须指定处理人。",
+    "after": "记录未结案，须指定处理人。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 302,
+    "lineAfter": 302,
+    "kind": "literal",
+    "language": "zh",
+    "before": "左边是原稿，右边是修改稿。逐行对照，只勾选内容不一样的行。",
+    "after": "左侧为原稿，右侧为修改稿。请逐行比较，只勾选有改动的项目。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 306,
+    "lineAfter": 306,
+    "kind": "literal",
+    "language": "zh",
+    "before": "原预订单的住客是 {guest}。两份表里的人员栏请分别核对。",
+    "after": "原预订单的住客为 {guest}。请分别核对两份表中的人员栏。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 306,
+    "lineAfter": 306,
+    "kind": "literal",
+    "language": "zh",
+    "before": "对比已保存。这里还附了一张同一天的通知。",
+    "after": "对比结果已保存，附有同日通知。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 315,
+    "lineAfter": 315,
+    "kind": "literal",
+    "language": "zh",
+    "before": "后附通知，日期以通知原件为准。",
+    "after": "补入存档的通知，发布日期见原件。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 319,
+    "lineAfter": 319,
+    "kind": "literal",
+    "language": "zh",
+    "before": "静水旅馆自 {date} 起停止接待住客，不再安排新的入住或夜间宾客服务。原始预订资料保留供后续核对。",
+    "after": "静水旅馆自 {date} 起停止接待住客，不再办理新入住或提供夜间宾客服务。原始预订资料留存备查。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 319,
+    "lineAfter": 319,
+    "kind": "literal",
+    "language": "zh",
+    "before": "停业后仅保留历史资料查询。批量处理生成的“已完成”标记未经人工复核。",
+    "after": "停业后仅开放历史资料查询。批量生成的“已完成”标记尚未经人工复核。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 326,
+    "lineAfter": 326,
+    "kind": "literal",
+    "language": "zh",
+    "before": "Mara 没发出去的备注",
+    "after": "Mara 的备注草稿"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 326,
+    "lineAfter": 326,
+    "kind": "literal",
+    "language": "en",
+    "before": "Mara’s unsent note",
+    "after": "Mara’s draft note"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 327,
+    "lineAfter": 327,
+    "kind": "literal",
+    "language": "zh",
+    "before": "这份草稿没有发送。",
+    "after": "未发送的草稿。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 329,
+    "lineAfter": 329,
+    "kind": "literal",
+    "language": "zh",
+    "before": "我查过预订、钥匙和客房部那边的记录。现在没办法确定客人到底去了哪里。",
+    "after": "预订单、钥匙和客房部的记录，我都查过了。还是不知道客人到底去了哪儿。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 329,
+    "lineAfter": 329,
+    "kind": "literal",
+    "language": "zh",
+    "before": "系统一直让我选“已完成”。我没选。",
+    "after": "系统还在催我选“已完成”。我没选。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 329,
+    "lineAfter": 329,
+    "kind": "literal",
+    "language": "zh",
+    "before": "处理人这一栏是我，住客那一栏不是。别把两栏混在一起。",
+    "after": "我在处理人那栏，不在住客栏。别把两栏混在一起。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 329,
+    "lineAfter": 329,
+    "kind": "literal",
+    "language": "zh",
+    "before": "这条记录先放着吧。真的查清楚之前，不要替我签字。",
+    "after": "这条先记待核实。没查清楚之前，别替我签字。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 339,
+    "lineAfter": 339,
+    "kind": "literal",
+    "language": "zh",
+    "before": "请选择三项有原始记录支持的说法，核对后同步资料。",
+    "after": "请选择三项能在原始记录中找到依据的说法，再提交核对。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 344,
+    "lineAfter": 344,
+    "kind": "literal",
+    "language": "zh",
+    "before": "已确认的三条记录",
+    "after": "已核对的三项记录"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 349,
+    "lineAfter": 349,
+    "kind": "literal",
+    "language": "zh",
+    "before": "两份房间目录不一致。当前页面不是最新版本。",
+    "after": "两份客房目录不一致，当前显示的仍是旧版。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 371,
+    "lineAfter": 371,
+    "kind": "literal",
+    "language": "zh",
+    "before": "原备注已保留，记录仍待核实。退出交接：未提交。",
+    "after": "原备注已保留，记录状态仍为待核实。退出交接尚未提交。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 371,
+    "lineAfter": 371,
+    "kind": "literal",
+    "language": "zh",
+    "before": "待核实，不得替我自动结案。",
+    "after": "这条还没查清，别替我自动结案。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 377,
+    "lineAfter": 377,
+    "kind": "literal",
+    "language": "zh",
+    "before": "两版使用同一张走廊照片，但登记用途不同。可切换查看。",
+    "after": "两版是同一张走廊照片，登记用途却不同。切换版本可查看标注。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 385,
+    "lineAfter": 385,
+    "kind": "literal",
+    "language": "zh",
+    "before": "看看客房、庭院和公共区域。",
+    "after": "客房、庭院与公共区域照片。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 416,
+    "lineAfter": 416,
+    "kind": "literal",
+    "language": "zh",
+    "before": "以下现成照片用于虚构酒店与商家展示，实拍场所、人物和摄影师不参与或代言剧情。原图保留，显示副本已降低分辨率并增加 JPEG 压缩；档案中的服务区文字是另加的示意标注。",
+    "after": "酒店和店铺使用的实拍照片列于下方。真实场所、人物及摄影师与本作剧情无关。页面使用低清、JPEG 压缩副本，原图和许可保留；档案中的服务区标注为后加的示意内容。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 420,
+    "lineAfter": 420,
+    "kind": "literal",
+    "language": "zh",
+    "before": "新版惊吓场景为虚构人物的生成插图，包含走廊人影、柜中爬出的身影、玻璃后的面孔和天花板上的倒悬身影，并非真实人物或事件照片。",
+    "after": "走廊人影、柜中爬出的身影、玻璃后的面孔和倒悬身影均为生成插图，人物是虚构的，并非真实事件照片。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 420,
+    "lineAfter": 420,
+    "kind": "literal",
+    "language": "zh",
+    "before": "未归档画面中的两幅人像取自本项目提供的第三阶段概念文档，保留原始 PNG。",
+    "after": "未归档画面中的两幅人像来自本项目的第三阶段概念文档，保留原始 PNG 文件。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 420,
+    "lineAfter": 420,
+    "kind": "literal",
+    "language": "zh",
+    "before": "群聊头像使用已授权的网络动物照片，未使用参考截图中的私人头像或联系人资料。",
+    "after": "聊天头像使用有许可的网络照片。参考截图里的私人头像和联系人资料未用于本作。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 420,
+    "lineAfter": 420,
+    "kind": "literal",
+    "language": "en",
+    "before": "Chat avatars use licensed animal photographs from the web. No private avatars or contact details from the reference screenshot are used.",
+    "after": "Chat avatars use licensed photographs from the web. Private avatars and contact details from the reference screenshot are not used."
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 420,
+    "lineAfter": 420,
+    "kind": "literal",
+    "language": "zh",
+    "before": "背景音乐均为 CC0 音源，压缩后在本地按需播放。提示音、机位切换和呼吸声由浏览器合成，未使用微信官方音效。",
+    "after": "背景音乐使用 CC0 音源，压缩后按需加载。提示音、机位切换声和呼吸声由浏览器合成，没有使用微信官方音效。"
+  },
+  {
+    "file": "case-pages.js",
+    "lineBefore": 420,
+    "lineAfter": 420,
+    "kind": "literal",
+    "language": "zh",
+    "before": "监控空间由本地程序绘制，使用 320 × 240 画布；第三阶段使用 480 × 360 画布。门牌、时间和机位由场景与网页分别显示。酒店页面借鉴 2010 年代官网布局，未复制真实品牌标识。",
+    "after": "监控场景由程序绘制，分辨率为 320 × 240；第三阶段为 480 × 360。门牌、时间和机位编号分别绘制。酒店页面参考了 2010 年代官网的版式，未使用真实品牌标识。"
+  },
+  {
+    "file": "case-comfort.js",
+    "lineBefore": 48,
+    "lineAfter": 48,
+    "kind": "literal",
+    "language": "zh",
+    "before": "浏览器没能开启声音，静音也能继续。",
+    "after": "声音暂时没能开启，静音仍可继续游玩。"
+  },
+  {
+    "file": "case-comfort.js",
+    "lineBefore": 60,
+    "lineAfter": 60,
+    "kind": "literal",
+    "language": "zh",
+    "before": "声音默认关闭。开启后，群聊会有轻提示音；酒店调查、档案和监控各有背景音，深处还会听到呼吸声。论坛和招聘页保持安静。鬼脸默认开启，可在下方关闭。",
+    "after": "声音默认关闭。开启后会播放聊天提示音、酒店和监控的背景音，以及后半段的呼吸声；论坛和招聘页没有背景音。鬼脸默认开启，可在下方关闭。"
+  },
+  {
+    "file": "case-comfort.js",
+    "lineBefore": 60,
+    "lineAfter": 60,
+    "kind": "literal",
+    "language": "zh",
+    "before": "正在遵循设备的减少动态设置。",
+    "after": "已按设备设置减少动态效果。"
+  },
+  {
+    "file": "case-comfort.js",
+    "lineBefore": 60,
+    "lineAfter": 60,
+    "kind": "literal",
+    "language": "zh",
+    "before": "进度保存在当前浏览器。重新开始会清除聊天、本次调查、监控和结局记录，从群聊重新开始。收藏的广告和显示偏好保留，声音恢复为关闭。",
+    "after": "进度保存在当前浏览器。重新开始后，会清除聊天、调查、监控和结局记录，回到开场群聊。收藏的广告和显示设置保留，声音会恢复关闭。"
+  },
+  {
+    "file": "case-comfort.js",
+    "lineBefore": 60,
+    "lineAfter": 60,
+    "kind": "literal",
+    "language": "zh",
+    "before": "样本不需要姓名、邮箱、电话、简历或支付信息。",
+    "after": "查看样本无需填写姓名、邮箱、电话、简历或支付信息。"
+  },
+  {
+    "file": "case-comfort.js",
+    "lineBefore": 143,
+    "lineAfter": 143,
+    "kind": "literal",
+    "language": "zh",
+    "before": "连接中断，正在读取备份。",
+    "after": "连接已中断，正在载入备份。"
+  },
+  {
+    "file": "case-comfort.js",
+    "lineBefore": 151,
+    "lineAfter": 151,
+    "kind": "literal",
+    "language": "zh",
+    "before": "已恢复备份，原始时间未变。",
+    "after": "备份已载入，原始时间保持不变。"
+  },
+  {
+    "file": "case-feedback.js",
+    "lineBefore": 31,
+    "lineAfter": 31,
+    "kind": "literal",
+    "language": "zh",
+    "before": "编号要和招聘页的样本一致，包括前面的字母。",
+    "after": "请照招聘页样本上的编号填写，字母前缀也要保留。"
+  },
+  {
+    "file": "case-feedback.js",
+    "lineBefore": 39,
+    "lineAfter": 39,
+    "kind": "literal",
+    "language": "zh",
+    "before": "区域登记卡的“登记用途”一栏写明了用途。",
+    "after": "查看区域登记卡上的“登记用途”。"
+  },
+  {
+    "file": "case-feedback.js",
+    "lineBefore": 43,
+    "lineAfter": 43,
+    "kind": "literal",
+    "language": "zh",
+    "before": "完整公告和位置登记卡上都有维修单编号。",
+    "after": "完整公告和区域登记卡上都能找到维修单编号。"
+  },
+  {
+    "file": "case-feedback.js",
+    "lineBefore": 55,
+    "lineAfter": 55,
+    "kind": "literal",
+    "language": "zh",
+    "before": "每一行左右各读一次；内容相同的不用勾。",
+    "after": "逐行比较左右两栏，相同的项目不用勾选。"
+  },
+  {
+    "file": "case-feedback.js",
+    "lineBefore": 59,
+    "lineAfter": 59,
+    "kind": "literal",
+    "language": "zh",
+    "before": "检查人员栏、位置栏和状态栏，别漏看换行的内容。",
+    "after": "再看一下人员、区域用途和状态三栏，换行的内容也要读完。"
+  },
+  {
+    "file": "case-feedback.js",
+    "lineBefore": 63,
+    "lineAfter": 63,
+    "kind": "literal",
+    "language": "zh",
+    "before": "区分“钥匙上写了什么”和“人实际去了哪里”。",
+    "after": "钥匙套上的房号，能否说明人实际去了那里？"
+  },
+  {
+    "file": "case-feedback.js",
+    "lineBefore": 71,
+    "lineAfter": 71,
+    "kind": "literal",
+    "language": "zh",
+    "before": "草稿的最后一句说了能不能代签。",
+    "after": "看草稿最后一句，确认能不能替她签字。"
+  },
+  {
+    "file": "case-feedback.js",
+    "lineBefore": 75,
+    "lineAfter": 75,
+    "kind": "literal",
+    "language": "zh",
+    "before": "已打开的原始文件中应有对应依据。",
+    "after": "每项说法都要能在已查看的原始文件里找到依据。"
+  },
+  {
+    "file": "case-feedback.js",
+    "lineBefore": 97,
+    "lineAfter": 97,
+    "kind": "literal",
+    "language": "zh",
+    "before": "看一下相关文件的编号、日期和备注。",
+    "after": "回看相关文件，核对编号、日期和备注。"
+  },
+  {
+    "file": "case-ending.js",
+    "lineBefore": 12,
+    "lineAfter": 12,
+    "kind": "literal",
+    "language": "zh",
+    "before": "你已退出值班系统，原始资料已锁定。本次故事到此结束。",
+    "after": "你已退出值班系统，原始资料已锁定。故事到这里结束。"
+  },
+  {
+    "file": "case-ending.js",
+    "lineBefore": 12,
+    "lineAfter": 12,
+    "kind": "literal",
+    "language": "zh",
+    "before": "本次选择已生效，下面是最终处理记录。",
+    "after": "本次处理已完成，最终记录如下。"
+  },
+  {
+    "file": "case-ending.js",
+    "lineBefore": 12,
+    "lineAfter": 12,
+    "kind": "literal",
+    "language": "zh",
+    "before": "进度已保存在当前浏览器，可以关闭网页。",
+    "after": "进度已保存在当前浏览器，现在可以关闭网页。"
+  },
+  {
+    "file": "case-ending.js",
+    "lineBefore": 12,
+    "lineAfter": 12,
+    "kind": "literal",
+    "language": "zh",
+    "before": "浏览器无法保存记录。本次故事已结束，可以关闭网页。",
+    "after": "本次故事已经结束，可以关闭网页；当前浏览器未能保存记录。"
+  },
+  {
+    "file": "case-ending.js",
+    "lineBefore": 12,
+    "lineAfter": 12,
+    "kind": "literal",
+    "language": "zh",
+    "before": "返回终端，尝试其他处理方式",
+    "after": "返回终端，选择其他处理方式"
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 5,
+    "lineAfter": 5,
+    "kind": "literal",
+    "language": "zh",
+    "before": "经验交流，不保证招聘真伪",
+    "after": "交流找工作的事，招聘信息请自己核实"
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 5,
+    "lineAfter": 5,
+    "kind": "literal",
+    "language": "en",
+    "before": "Share experiences; listings are not verified.",
+    "after": "Talk about looking for work. Check any listing before you trust it."
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 5,
+    "lineAfter": 5,
+    "kind": "literal",
+    "language": "zh",
+    "before": "还开得动的页面都算",
+    "after": "还能打开的老网页，发来看看"
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 5,
+    "lineAfter": 5,
+    "kind": "literal",
+    "language": "en",
+    "before": "If it still opens, it counts.",
+    "after": "Found an old site that still opens? Post it here."
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 5,
+    "lineAfter": 5,
+    "kind": "literal",
+    "language": "zh",
+    "before": "先描述问题，再说你试过什么",
+    "after": "哪里出问题了、试过什么，尽量说清楚"
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 5,
+    "lineAfter": 5,
+    "kind": "literal",
+    "language": "en",
+    "before": "Describe the problem, then tell us what you tried.",
+    "after": "Say what went wrong and what you’ve tried."
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 27,
+    "lineAfter": 27,
+    "kind": "literal",
+    "language": "zh",
+    "before": "白天可能没人回，半夜也不保证有人在。",
+    "after": "白天忙，晚上才有空刷会儿帖子。"
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 27,
+    "lineAfter": 27,
+    "kind": "literal",
+    "language": "en",
+    "before": "Might be quiet by day. No promises anyone’s around at night, either.",
+    "after": "A few threads to catch up on after a busy day."
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 27,
+    "lineAfter": 27,
+    "kind": "literal",
+    "language": "zh",
+    "before": "夜猫子们聊工作，也聊不工作的事。无需登录，随便看看。",
+    "after": "找工作、折腾电脑，或者随便聊两句。看帖不用登录。"
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 27,
+    "lineAfter": 27,
+    "kind": "literal",
+    "language": "en",
+    "before": "Night owls talk about work and everything else. No sign-in needed to browse.",
+    "after": "Jobs, computer trouble, or just a chat. You don’t need to sign in to read."
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 27,
+    "lineAfter": 27,
+    "kind": "literal",
+    "language": "zh",
+    "before": "当前只开放浏览，暂不接收新回复。",
+    "after": "目前只能看帖，回复暂时关了。"
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 27,
+    "lineAfter": 27,
+    "kind": "literal",
+    "language": "en",
+    "before": "Read-only at the moment. New replies are closed.",
+    "after": "You can read the threads, but replies are closed for now."
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 39,
+    "lineAfter": 39,
+    "kind": "literal",
+    "language": "zh",
+    "before": "工作、电脑、老网站，还有一点生活里的小事。",
+    "after": "聊工作，聊电脑，也聊今天碰上的小事。"
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 39,
+    "lineAfter": 39,
+    "kind": "literal",
+    "language": "en",
+    "before": "Work, computers, old websites and the little things in between.",
+    "after": "Work, computers, and whatever happened today."
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 39,
+    "lineAfter": 39,
+    "kind": "literal",
+    "language": "zh",
+    "before": "这里暂时没有主题。",
+    "after": "这个分区还没有帖子。"
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 39,
+    "lineAfter": 39,
+    "kind": "literal",
+    "language": "en",
+    "before": "No topics in this board yet.",
+    "after": "No threads in this board yet."
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 40,
+    "lineAfter": 40,
+    "kind": "literal",
+    "language": "zh",
+    "before": "没有找到这篇帖子",
+    "after": "这篇帖子找不到了"
+  },
+  {
+    "file": "forum.js",
+    "lineBefore": 40,
+    "lineAfter": 40,
+    "kind": "literal",
+    "language": "en",
+    "before": "Thread not found",
+    "after": "This thread couldn’t be found"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 4,
+    "lineAfter": 4,
+    "kind": "literal",
+    "language": "zh",
+    "before": "Stillwater Heritage Records 负责为小型机构整理和数字化旧纸质资料。我们的工作包括扫描文件、校对编号、建立检索目录，以及检查不同版本之间的差异。",
+    "after": "Stillwater Heritage Records 为小型机构整理旧档案。我们负责扫描纸质文件、校对编号、编制检索目录，并核查不同版本的改动。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 4,
+    "lineAfter": 4,
+    "kind": "literal",
+    "language": "en",
+    "before": "Stillwater Heritage Records helps small organisations organise and digitise old paper records. We scan documents, check reference numbers, build searchable indexes and compare different versions.",
+    "after": "Stillwater Heritage Records organises old files for small organisations. We scan paper documents, check reference numbers, prepare indexes and review changes between versions."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 5,
+    "lineAfter": 5,
+    "kind": "literal",
+    "language": "zh",
+    "before": "有些项目只需要把文件扫描清楚，有些则需要回到原始记录，确认修改发生在什么时候。我们希望整理后的资料能被下一位工作人员看懂，也能找到来源。",
+    "after": "有的项目只做扫描，有的还要查清一处改动是什么时候加上的。交付时，我们会留下原件出处和核查记录，方便下一位接手。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 5,
+    "lineAfter": 5,
+    "kind": "literal",
+    "language": "en",
+    "before": "Some projects need clear scans. Others require going back to the originals to establish when a change was made. The next person working with the records should be able to understand them and trace their sources.",
+    "after": "Some projects only need scans; others need us to establish when a change was added. We leave source references and checking notes for the next person who takes over."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 6,
+    "lineAfter": 6,
+    "kind": "literal",
+    "language": "zh",
+    "before": "目前招聘以短期项目和合同岗位为主。不同项目的工作方式会在职位页面单独注明。",
+    "after": "目前以短期项目和合同岗位为主。是否远程、具体做什么，请看各岗位说明。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 6,
+    "lineAfter": 6,
+    "kind": "literal",
+    "language": "en",
+    "before": "Most current vacancies are for short projects or contract work. Each listing explains where and how the work is carried out.",
+    "after": "Most roles are short-term or contract-based. Each listing explains the work and whether it can be done remotely."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 9,
+    "lineAfter": 9,
+    "kind": "literal",
+    "language": "zh",
+    "before": "对照一批旧旅馆预订记录，检查房间编号、日期和修改记录是否一致。",
+    "after": "核对旧旅馆预订单上的房号、日期及后续改动。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 9,
+    "lineAfter": 9,
+    "kind": "literal",
+    "language": "en",
+    "before": "Compare a set of old hotel bookings, checking room numbers, dates and changes for consistency.",
+    "after": "Check room numbers, dates and later changes on old hotel bookings."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 10,
+    "lineAfter": 10,
+    "kind": "literal",
+    "language": "zh",
+    "before": "需要使用电脑阅读扫描文件和电子表格，对照预订编号、房号、登记时间与后续修改内容。发现无法直接确认的地方，保留原始信息并备注，不要自行猜测或补全。",
+    "after": "使用电脑查看扫描件和表格，逐项核对预订编号、房号、登记时间及后续修改。无法确认的内容请保留原样，加注说明，不要猜填。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 10,
+    "lineAfter": 10,
+    "kind": "literal",
+    "language": "en",
+    "before": "Use a computer to read scanned files and spreadsheets, comparing booking references, room numbers, registration times and later changes. Where something cannot be confirmed, keep the original information and add a note. Do not guess or fill in gaps.",
+    "after": "Read scans and spreadsheets on a computer, checking booking references, room numbers, registration times and later edits. Leave uncertain entries as they are and add a note. Do not guess."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 11,
+    "lineAfter": 11,
+    "kind": "literal",
+    "language": "zh",
+    "before": "正式开始前可以先看一份不需要注册的工作样本。样本用于展示这类资料的整理方式，不收集真实简历或个人信息。",
+    "after": "可以先查看工作样本，了解具体要核对什么。无需注册，也不收取简历或个人资料。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 11,
+    "lineAfter": 11,
+    "kind": "literal",
+    "language": "en",
+    "before": "A sample is available before starting, with no registration required. It demonstrates how these records are reviewed and does not collect real CVs or personal information.",
+    "after": "Look through the sample to see what the checking involves. No registration, CV or personal details are needed."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 14,
+    "lineAfter": 14,
+    "kind": "literal",
+    "language": "zh",
+    "before": "适合做事细心、愿意处理重复性工作的申请者。工作地点与具体时间以该项目通知为准。",
+    "after": "需要细心，能耐心完成逐页检查。地点和时间以项目通知为准。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 14,
+    "lineAfter": 14,
+    "kind": "literal",
+    "language": "en",
+    "before": "Suited to someone careful and comfortable with repetitive work. The project notice specifies the location and schedule.",
+    "after": "You’ll need patience and attention to detail for page-by-page checks. The project notice gives the location and schedule."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 17,
+    "lineAfter": 17,
+    "kind": "literal",
+    "language": "zh",
+    "before": "需能够使用常见表格工具，按要求保留原始文件名和校对记录。",
+    "after": "会使用常见表格工具，能按要求保留原文件名及校对记录。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 17,
+    "lineAfter": 17,
+    "kind": "literal",
+    "language": "en",
+    "before": "You should be comfortable with common spreadsheet tools and able to retain original filenames and proofreading records as instructed.",
+    "after": "You should be able to use a spreadsheet and keep original filenames and checking notes as instructed."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 20,
+    "lineAfter": 20,
+    "kind": "literal",
+    "language": "zh",
+    "before": "本岗位已归档，页面仅保留职位说明，不接受申请。",
+    "after": "此岗位已结束招募，职位说明留作查阅。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 20,
+    "lineAfter": 20,
+    "kind": "literal",
+    "language": "en",
+    "before": "This vacancy is archived. The description remains available, but applications are closed.",
+    "after": "Applications are closed. The description is kept here for reference."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 23,
+    "lineAfter": 23,
+    "kind": "literal",
+    "language": "zh",
+    "before": "新项目开放：旧预订资料整理。申请者可以先查看一份公开样本，了解工作内容。",
+    "after": "旧预订资料整理项目开始招募。工作样本已开放，可先查看。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 23,
+    "lineAfter": 23,
+    "kind": "literal",
+    "language": "en",
+    "before": "New project: old booking records. A public sample is available to show prospective applicants what the work involves.",
+    "after": "Recruitment is open for the old booking-records project. The sample is now available to view."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 24,
+    "lineAfter": 24,
+    "kind": "literal",
+    "language": "zh",
+    "before": "纸质档案扫描项目的人员已经确认，相关岗位停止接受申请。",
+    "after": "纸质档案扫描项目已招满，不再接受申请。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 24,
+    "lineAfter": 24,
+    "kind": "literal",
+    "language": "en",
+    "before": "Staffing for the document scanning project is confirmed. Applications for the role are now closed.",
+    "after": "The document scanning project is fully staffed. Applications are closed."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 25,
+    "lineAfter": 25,
+    "kind": "literal",
+    "language": "zh",
+    "before": "照片说明校对项目结束招募，页面暂时保留供查看。",
+    "after": "照片说明校对项目招募结束，职位说明仍可查看。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 25,
+    "lineAfter": 25,
+    "kind": "literal",
+    "language": "en",
+    "before": "Recruitment for the photo caption project has ended. The listing remains available for reference.",
+    "after": "Recruitment for photo caption proofreading has ended. The description is still available."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 28,
+    "lineAfter": 28,
+    "kind": "literal",
+    "language": "zh",
+    "before": "查看工作样本不需要注册或上传简历。页面仅用于了解任务内容。",
+    "after": "不用。直接打开样本就能查看，不需要注册或上传简历。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 28,
+    "lineAfter": 28,
+    "kind": "literal",
+    "language": "en",
+    "before": "No registration or CV is needed to view the sample. It is there to explain the work.",
+    "after": "No. You can open the sample without registering or uploading a CV."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 29,
+    "lineAfter": 29,
+    "kind": "literal",
+    "language": "zh",
+    "before": "不一定。需要接触纸质文件的岗位通常在现场进行，具体以职位说明为准。",
+    "after": "不是。扫描等需要接触原件的工作通常要到现场，请看岗位里的工作方式。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 29,
+    "lineAfter": 29,
+    "kind": "literal",
+    "language": "en",
+    "before": "Not always. Work involving physical papers is usually on site. Check the individual listing.",
+    "after": "No. Scanning and other work with physical originals usually require you to be on site. Check the work arrangement in the listing."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 30,
+    "lineAfter": 30,
+    "kind": "literal",
+    "language": "zh",
+    "before": "保留原始内容，并把无法确认的位置标出来。不要自行补写。",
+    "after": "原样保留，把看不清的地方标出来，不要猜着补上。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 30,
+    "lineAfter": 30,
+    "kind": "literal",
+    "language": "en",
+    "before": "Keep the original and mark what you cannot confirm. Do not fill it in yourself.",
+    "after": "Leave it as it is and mark the part you can’t read. Don’t fill it in from a guess."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 31,
+    "lineAfter": 31,
+    "kind": "literal",
+    "language": "zh",
+    "before": "已经结束的项目会保留职位说明，方便查看以前的工作内容。",
+    "after": "项目结束后，职位说明会留档，方便查阅当时的工作要求。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 31,
+    "lineAfter": 31,
+    "kind": "literal",
+    "language": "en",
+    "before": "Descriptions remain available after recruitment ends so that past work can still be reviewed.",
+    "after": "We keep descriptions after a project closes so its requirements can still be checked."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 38,
+    "lineAfter": 38,
+    "kind": "literal",
+    "language": "zh",
+    "before": "该岗位已撤下，目前不再提供工作样本。",
+    "after": "该岗位已撤下，工作样本也已关闭。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 38,
+    "lineAfter": 38,
+    "kind": "literal",
+    "language": "en",
+    "before": "This vacancy has been withdrawn. The sample is no longer offered.",
+    "after": "This vacancy has been withdrawn and the sample is closed."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 40,
+    "lineAfter": 40,
+    "kind": "literal",
+    "language": "zh",
+    "before": "让旧资料重新变得好找",
+    "after": "把旧资料整理清楚"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 40,
+    "lineAfter": 40,
+    "kind": "literal",
+    "language": "en",
+    "before": "Make old records easy to find again",
+    "after": "Old records, put in order"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 40,
+    "lineAfter": 40,
+    "kind": "literal",
+    "language": "zh",
+    "before": "关于我们的工作",
+    "after": "我们做什么"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 40,
+    "lineAfter": 40,
+    "kind": "literal",
+    "language": "en",
+    "before": "About our work",
+    "after": "What we do"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 40,
+    "lineAfter": 40,
+    "kind": "literal",
+    "language": "zh",
+    "before": "确认文件清单、来源与交付格式。",
+    "after": "核对文件清单，确认来源和交付格式。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 40,
+    "lineAfter": 40,
+    "kind": "literal",
+    "language": "zh",
+    "before": "扫描、命名、对照原件，记录发现的问题。",
+    "after": "扫描、命名，再对照原件检查；发现问题就做备注。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 40,
+    "lineAfter": 40,
+    "kind": "literal",
+    "language": "zh",
+    "before": "保留版本和检查记录，方便以后查找。",
+    "after": "交付整理后的文件，同时保留版本和核查记录。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 40,
+    "lineAfter": 40,
+    "kind": "literal",
+    "language": "zh",
+    "before": "当前及已归档的项目岗位。",
+    "after": "正在招募和已经结束的岗位都列在这里。"
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 40,
+    "lineAfter": 40,
+    "kind": "literal",
+    "language": "en",
+    "before": "Current vacancies and archived project roles.",
+    "after": "Open and closed project roles are listed below."
+  },
+  {
+    "file": "careers.js",
+    "lineBefore": 47,
+    "lineAfter": 47,
+    "kind": "literal",
+    "language": "zh",
+    "before": "没有匹配岗位，请调整筛选。",
+    "after": "没有找到符合条件的岗位，换个关键词试试。"
+  },
+  {
+    "file": "hotel-extras.js",
+    "lineBefore": 10,
+    "lineAfter": 10,
+    "kind": "literal",
+    "language": "zh",
+    "before": "旧木楼梯旁边就是前台。进门后往左走。",
+    "after": "进门左转，前台就在木楼梯旁。"
+  },
+  {
+    "file": "hotel-extras.js",
+    "lineBefore": 15,
+    "lineAfter": 15,
+    "kind": "literal",
+    "language": "zh",
+    "before": "两张单人床，窗外靠近庭院。",
+    "after": "配有两张单人床，房间靠庭院一侧。"
+  },
+  {
+    "file": "hotel-extras.js",
+    "lineBefore": 15,
+    "lineAfter": 15,
+    "kind": "literal",
+    "language": "en",
+    "before": "Two single beds, with windows near the courtyard.",
+    "after": "Two single beds, on the courtyard side of the hotel."
+  },
+  {
+    "file": "hotel-extras.js",
+    "lineBefore": 16,
+    "lineAfter": 16,
+    "kind": "literal",
+    "language": "zh",
+    "before": "带休息区，适合计划多住几晚的客人。",
+    "after": "设有独立休息区，适合住上几晚。"
+  },
+  {
+    "file": "hotel-extras.js",
+    "lineBefore": 19,
+    "lineAfter": 19,
+    "kind": "literal",
+    "language": "zh",
+    "before": "早上出门前如果需要寄存行李，请先和当班人员确认。贵重物品请随身携带。",
+    "after": "出门前需要寄存行李，请先到前台问一下。贵重物品请随身带好。"
+  },
+  {
+    "file": "hotel-extras.js",
+    "lineBefore": 20,
+    "lineAfter": 20,
+    "kind": "literal",
+    "language": "zh",
+    "before": "需要额外毛巾可找前台。",
+    "after": "需要加一条毛巾，请到前台领取。"
+  },
+  {
+    "file": "hotel-extras.js",
+    "lineBefore": 20,
+    "lineAfter": 20,
+    "kind": "literal",
+    "language": "zh",
+    "before": "夜间请轻声关门，避免打扰其他住客。",
+    "after": "夜间请轻声关门，以免打扰其他住客。"
+  },
+  {
+    "file": "hotel-extras.js",
+    "lineBefore": 23,
+    "lineAfter": 23,
+    "kind": "literal",
+    "language": "zh",
+    "before": "早餐、毛巾和晚到入住的说明。",
+    "after": "早餐时间、加领毛巾和晚到入住。"
+  },
+  {
+    "file": "hotel-extras.js",
+    "lineBefore": 23,
+    "lineAfter": 23,
+    "kind": "literal",
+    "language": "zh",
+    "before": "愿你在湖边有个好天气。",
+    "after": "希望您来的时候，湖边正是好天气。"
+  },
+  {
+    "file": "case-void.js",
+    "lineBefore": 18,
+    "lineAfter": 18,
+    "kind": "literal",
+    "language": "zh",
+    "before": "又回到入口了。门槛还是同一边破了。",
+    "after": "又回到了入口。门槛上的破损还在同一侧。"
+  },
+  {
+    "file": "case-void.js",
+    "lineBefore": 20,
+    "lineAfter": 20,
+    "kind": "literal",
+    "language": "zh",
+    "before": "照过去时，那里已经空了。",
+    "after": "再照过去，那里已经空了。"
+  },
+  {
+    "file": "case-void.js",
+    "lineBefore": 35,
+    "lineAfter": 35,
+    "kind": "literal",
+    "language": "zh",
+    "before": "点画面左侧回看入口，点两扇门照亮门框。下面的按钮也能查看。",
+    "after": "点击画面左侧可以回看入口；点击门，可照亮门框。也可使用下方按钮查看。"
+  },
+  {
+    "file": "case-void.js",
+    "lineBefore": 36,
+    "lineAfter": 36,
+    "kind": "literal",
+    "language": "zh",
+    "before": "把三块画面放进淡色四角标记内，让门框、墙角和地缝在边缘接上。可以拖动，也可以选中片段后用方向键或下面的按钮移动。",
+    "after": "把三块影像拖入四角标记围出的区域，沿边缘对齐门框、墙角和地缝。也可先选中一块，再用方向键或下方按钮微调。"
+  },
+  {
+    "file": "case-void.js",
+    "lineBefore": 36,
+    "lineAfter": 36,
+    "kind": "literal",
+    "language": "zh",
+    "before": "中央黑区没有对应机位。它不是丢失的第四块画面。",
+    "after": "中央的黑区没有对应摄像头，并不是少了一块影像。"
+  },
+  {
+    "file": "case-void.js",
+    "lineBefore": 39,
+    "lineAfter": 39,
+    "kind": "literal",
+    "language": "zh",
+    "before": "无法识别此处。请选择记录类别。",
+    "after": "无法识别此处，请选择记录类别。"
+  },
+  {
+    "file": "case-void.js",
+    "lineBefore": 40,
+    "lineAfter": 40,
+    "kind": "literal",
+    "language": "zh",
+    "before": "没有给这段画面分配房间、住客或员工身份。原来的夜班终端仍在等候交接。",
+    "after": "这段画面仍未分配房间、住客或员工身份。返回 B-3 后，还需完成夜班交接。"
+  },
+  {
+    "file": "case-void.js",
+    "lineBefore": 40,
+    "lineAfter": 40,
+    "kind": "literal",
+    "language": "en",
+    "before": "No room, guest or employee identity has been assigned to this picture. The night terminal is still awaiting handover.",
+    "after": "This picture is still unassigned to any room, guest or employee. Return to B-3 to finish the shift handover."
+  },
+  {
+    "file": "case-void.js",
+    "lineBefore": 42,
+    "lineAfter": 42,
+    "kind": "literal",
+    "language": "zh",
+    "before": "未归档空间；可用下方同名按钮调查，影像片段可拖动或用方向键移动。",
+    "after": "未归档空间。下方按钮可查看场景；影像片段可拖动，也可用方向键移动。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 8,
+    "lineAfter": 8,
+    "kind": "literal",
+    "language": "zh",
+    "before": "狗狗最近怎么老叹气？",
+    "after": "狗狗最近总没精神？"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 8,
+    "lineAfter": 8,
+    "kind": "literal",
+    "language": "en",
+    "before": "Has your dog been sighing lately?",
+    "after": "Your dog not quite itself?"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 9,
+    "lineAfter": 9,
+    "kind": "literal",
+    "language": "zh",
+    "before": "先别猜，带来给医生看看。",
+    "after": "先别乱猜，带来让医生看看。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 9,
+    "lineAfter": 9,
+    "kind": "literal",
+    "language": "en",
+    "before": "Don’t guess. Let the vet take a look.",
+    "after": "Not sure what’s wrong? Let the vet take a look."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 13,
+    "lineAfter": 13,
+    "kind": "literal",
+    "language": "zh",
+    "before": "社区宠物门诊。候诊区备有饮水和毛巾，带宠物来时记得牵绳或用航空箱。",
+    "after": "候诊区有饮水和毛巾。带狗请牵好绳，带猫或小动物请用航空箱。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 14,
+    "lineAfter": 14,
+    "kind": "literal",
+    "language": "en",
+    "before": "A little neighbourhood clinic for pets. Water and old towels in the waiting area; the pen at reception is always tied to a string.",
+    "after": "Water and towels are available in the waiting area. Keep dogs on a lead and bring cats or small animals in a carrier."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 20,
+    "lineAfter": 20,
+    "kind": "literal",
+    "language": "zh",
+    "before": "今天陈医生值班，前台小周负责接待。小周的字不好看，但很喜欢狗。",
+    "after": "今天陈医生坐诊。挂号、候诊的事，找前台小周就行。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 21,
+    "lineAfter": 21,
+    "kind": "literal",
+    "language": "en",
+    "before": "Reception, cleaning and water for waiting dogs. The receptionist put the duty sticker on crooked.",
+    "after": "Dr Chen is on duty today. Ask Zhou at the desk about registration and waiting."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 27,
+    "lineAfter": 27,
+    "kind": "literal",
+    "language": "zh",
+    "before": "我们不负责教狗狗坐下。它要是愿意，也可以站着。",
+    "after": "来看病不用表演“坐下”。牵好绳，慢慢等就行。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 28,
+    "lineAfter": 28,
+    "kind": "literal",
+    "language": "en",
+    "before": "We do not teach dogs to sit. They are welcome to stand.",
+    "after": "No need to show us a perfect “sit.” Keep the lead on and take your time."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 33,
+    "lineAfter": 33,
+    "kind": "literal",
+    "language": "zh",
+    "before": "虚构店铺展示，不提供医疗建议、诊断或预约。",
+    "after": "虚构门诊展示，不提供医疗建议、诊断或预约。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 44,
+    "lineAfter": 44,
+    "kind": "literal",
+    "language": "zh",
+    "before": "《遥控器去哪了》：全片 96 分钟，一家人找了 95 分钟遥控器。",
+    "after": "《遥控器去哪了》：片长 96 分钟，有 95 分钟都在找遥控器。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 45,
+    "lineAfter": 45,
+    "kind": "literal",
+    "language": "en",
+    "before": "The Missing Remote: 96 minutes. A family spends 95 of them looking for the remote.",
+    "after": "The Missing Remote: 96 minutes long. They spend 95 looking for the remote."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 50,
+    "lineAfter": 50,
+    "kind": "literal",
+    "language": "zh",
+    "before": "不需要排队。沙发上的位置，谁先坐下算谁的。",
+    "after": "不用排队，沙发先到先坐。今晚放什么，往下看看片单。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 51,
+    "lineAfter": 51,
+    "kind": "literal",
+    "language": "en",
+    "before": "No queue. Whoever sits down first gets the seat.",
+    "after": "No queue. Sofa seats are first come, first served. Tonight’s films are listed below."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 57,
+    "lineAfter": 57,
+    "kind": "literal",
+    "language": "zh",
+    "before": "★★★★☆ 家庭喜剧。最后一分钟换了台。",
+    "after": "★★★★☆ 家庭喜剧，直到最后一分钟才换了台。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 58,
+    "lineAfter": 58,
+    "kind": "literal",
+    "language": "en",
+    "before": "★★★★☆ Family comedy. They change the channel in the last minute.",
+    "after": "★★★★☆ Family comedy. They finally change the channel in the last minute."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 64,
+    "lineAfter": 64,
+    "kind": "literal",
+    "language": "zh",
+    "before": "★★★☆☆ 悬疑短片。嫌疑人都有饼干屑。",
+    "after": "★★★☆☆ 悬疑短片。每个嫌疑人身上都有饼干屑。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "en",
+    "before": "★★★☆☆ Short mystery. Every suspect has crumbs.",
+    "after": "★★★☆☆ Mystery short. Every suspect is covered in crumbs."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 71,
+    "lineAfter": 71,
+    "kind": "literal",
+    "language": "zh",
+    "before": "★★★★☆ 生活片。两盆花，一下午。",
+    "after": "★★★★☆ 生活片。一个下午，陪两盆花晒晒太阳。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 72,
+    "lineAfter": 72,
+    "kind": "literal",
+    "language": "en",
+    "before": "★★★★☆ Slice of life. Two plants, one afternoon.",
+    "after": "★★★★☆ A quiet afternoon, two plants and a little sunshine."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 88,
+    "lineAfter": 88,
+    "kind": "literal",
+    "language": "zh",
+    "before": "开机慢、网页慢、老板回消息更慢。前两项可以修。",
+    "after": "开机慢、网页卡，先让老何看看。老板回消息慢，这个真修不了。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 89,
+    "lineAfter": 89,
+    "kind": "literal",
+    "language": "en",
+    "before": "Slow startup, slow websites, even slower replies from the boss. We can fix the first two.",
+    "after": "Slow startup? Pages freezing? Ask Ho. A boss who won’t reply is beyond repair."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 91,
+    "lineAfter": 91,
+    "kind": "literal",
+    "language": "zh",
+    "before": "少点灰，多点耐心",
+    "after": "清灰、排查，慢慢修"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 91,
+    "lineAfter": 91,
+    "kind": "literal",
+    "language": "en",
+    "before": "Less dust. More patience.",
+    "after": "Cleaning, checks and patient repairs"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 94,
+    "lineAfter": 94,
+    "kind": "literal",
+    "language": "zh",
+    "before": "送来之前请先试试重启。不是敷衍，真的。",
+    "after": "送来前先重启一次。要是还卡，记一下卡在哪一步，方便老何检查。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 95,
+    "lineAfter": 95,
+    "kind": "literal",
+    "language": "en",
+    "before": "Try restarting before bringing it in. We mean it.",
+    "after": "Try restarting before you bring it in. If it still freezes, note which step it gets stuck on."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 101,
+    "lineAfter": 101,
+    "kind": "literal",
+    "language": "zh",
+    "before": "风扇下面的灰可以清，工作积压不在服务范围内。",
+    "after": "风扇和散热口一并清理。最近转得特别响，送来时说一声。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 102,
+    "lineAfter": 102,
+    "kind": "literal",
+    "language": "en",
+    "before": "We remove dust under the fan. Your backlog is outside our remit.",
+    "after": "Fans and vents cleaned. If it’s been unusually noisy, mention that when you bring it in."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 108,
+    "lineAfter": 108,
+    "kind": "literal",
+    "language": "zh",
+    "before": "把“新建文件夹”排成一排，至少能看清有几个。",
+    "after": "几个“新建文件夹”分不清？先理清名字，原文件不删。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 109,
+    "lineAfter": 109,
+    "kind": "literal",
+    "language": "en",
+    "before": "We line up the folders named New Folder. At least then you can count them.",
+    "after": "Can’t tell your “New Folder”s apart? We’ll sort out the names and keep the originals."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 115,
+    "lineAfter": 115,
+    "kind": "literal",
+    "language": "zh",
+    "before": "能清出饼干屑，不保证找回消失的回车键。",
+    "after": "饼干屑可以清。哪颗键不好使，请先告诉老何。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 116,
+    "lineAfter": 116,
+    "kind": "literal",
+    "language": "en",
+    "before": "Crumbs removed. Missing Enter keys are another matter.",
+    "after": "We can clear the crumbs. Tell Ho which keys aren’t working."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 121,
+    "lineAfter": 121,
+    "kind": "literal",
+    "language": "zh",
+    "before": "周日不营业，老板要睡觉。本页不接单、不提供远程控制。",
+    "after": "周日休息。本页为虚构店铺展示，不接单，也不提供远程控制。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 122,
+    "lineAfter": 122,
+    "kind": "literal",
+    "language": "en",
+    "before": "Closed Sundays. The owner needs sleep. No orders or remote access here.",
+    "after": "Closed Sundays. This is a fictional shop page; no orders or remote-access services are offered."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 132,
+    "lineAfter": 132,
+    "kind": "literal",
+    "language": "zh",
+    "before": "旧台灯、二手唱片、少了一只轮子的办公椅，都有人要。",
+    "after": "旧台灯、一箱唱片，还有少了一只轮子的办公椅。东西都在，先看清楚再挑。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 133,
+    "lineAfter": 133,
+    "kind": "literal",
+    "language": "en",
+    "before": "Old lamps, used records, office chairs missing a wheel. Someone will want them.",
+    "after": "A lamp, a crate of records and an office chair missing a wheel. Have a proper look before choosing."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 138,
+    "lineAfter": 138,
+    "kind": "literal",
+    "language": "zh",
+    "before": "只陈列，不成交。店主还没想好怎么把这些东西搬下楼。",
+    "after": "先在这儿摆着看看。店主还在琢磨怎么搬下楼，本页暂不交易。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 139,
+    "lineAfter": 139,
+    "kind": "literal",
+    "language": "en",
+    "before": "Display only. The owner hasn’t worked out how to get any of it downstairs.",
+    "after": "For display while the owner works out how to get everything downstairs. No transactions on this page."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 145,
+    "lineAfter": 145,
+    "kind": "literal",
+    "language": "zh",
+    "before": "标价：一杯热茶。灯还能亮，灯罩有点歪。",
+    "after": "换一杯热茶。灯还能亮，就是灯罩有点歪。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 146,
+    "lineAfter": 146,
+    "kind": "literal",
+    "language": "en",
+    "before": "Price: a hot cup of tea. The bulb works; the shade has a mind of its own.",
+    "after": "Yours for a cup of tea. It still lights up; the shade sits a bit crooked."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 152,
+    "lineAfter": 152,
+    "kind": "literal",
+    "language": "zh",
+    "before": "标价：帮忙搬一次。封套比唱片多一张。",
+    "after": "帮忙搬一次就行。封套多了一张，哪张配哪张得自己翻翻。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 153,
+    "lineAfter": 153,
+    "kind": "literal",
+    "language": "en",
+    "before": "Price: help carry the box. One more sleeve than record.",
+    "after": "Help with one move. There’s an extra sleeve in the crate, so you’ll need to sort through it."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 159,
+    "lineAfter": 159,
+    "kind": "literal",
+    "language": "zh",
+    "before": "只有三个轮子，第四个找不到了。介意的别买。",
+    "after": "只剩三个轮子，另一个没找着。介意这个就别挑它。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 160,
+    "lineAfter": 160,
+    "kind": "literal",
+    "language": "en",
+    "before": "Includes: a fourth wheel we cannot find. Not for downhill travel.",
+    "after": "Three wheels left. Never found the fourth. Leave this one if that bothers you."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 179,
+    "lineAfter": 179,
+    "kind": "literal",
+    "language": "zh",
+    "before": "文件请先排好版。老板只会替人翻页，不会替人写结论。",
+    "after": "排版和结论请先写好，我们只管打印、复印和装订。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 180,
+    "lineAfter": 180,
+    "kind": "literal",
+    "language": "en",
+    "before": "Please finish your layout first. We turn pages, not write conclusions.",
+    "after": "Finish your layout and conclusion first. We handle printing, copying and binding."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 186,
+    "lineAfter": 186,
+    "kind": "literal",
+    "language": "zh",
+    "before": "黑白和彩色都有。原件背面如果有字，记得提醒。",
+    "after": "黑白、彩色都能印。原件背面也有字的话，请提前说一声。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 187,
+    "lineAfter": 187,
+    "kind": "literal",
+    "language": "en",
+    "before": "Black-and-white or colour. Tell us if there is something on the back.",
+    "after": "Black-and-white and colour copies. Let us know if there’s writing on the back too."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 193,
+    "lineAfter": 193,
+    "kind": "literal",
+    "language": "zh",
+    "before": "装订前数一遍页数。装订后再数，也不是不行。",
+    "after": "装订前请确认页数和顺序，别把缺页一起订进去了。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 194,
+    "lineAfter": 194,
+    "kind": "literal",
+    "language": "en",
+    "before": "Count the pages before binding. Afterwards also works, technically.",
+    "after": "Check the page count and order before binding. Easier to spot a gap now."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 200,
+    "lineAfter": 200,
+    "kind": "literal",
+    "language": "zh",
+    "before": "明早开门后再说。请不要对卷帘门喊话。",
+    "after": "明早开门后再印。今晚卷帘门已经拉下了，喊老板也听不见。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 201,
+    "lineAfter": 201,
+    "kind": "literal",
+    "language": "en",
+    "before": "Ask again when we open tomorrow. Please do not shout through the shutter.",
+    "after": "Printing starts when we open tomorrow. The shutter’s down for tonight; calling through it won’t help."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 218,
+    "lineAfter": 218,
+    "kind": "literal",
+    "language": "zh",
+    "before": "至少我们保证照片里会有一只猫。",
+    "after": "拍得好不好，先看看这几张。猫倒是肯定有。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 219,
+    "lineAfter": 219,
+    "kind": "literal",
+    "language": "en",
+    "before": "We can at least promise there will be a cat in the picture.",
+    "after": "See what you think of the pictures. There’s definitely a cat in them."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 221,
+    "lineAfter": 221,
+    "kind": "literal",
+    "language": "zh",
+    "before": "猫的想法，优先考虑",
+    "after": "猫肯配合，再拍"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 221,
+    "lineAfter": 221,
+    "kind": "literal",
+    "language": "en",
+    "before": "The cat has final approval.",
+    "after": "When the cat feels like it"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 224,
+    "lineAfter": 224,
+    "kind": "literal",
+    "language": "zh",
+    "before": "看看猫的不同表情。至于肯不肯配合，要看它当时的心情。",
+    "after": "猫不看镜头的时候，我们就等一会儿。下面几张，是它们肯给面子的瞬间。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 225,
+    "lineAfter": 225,
+    "kind": "literal",
+    "language": "en",
+    "before": "A few feline expressions. Cooperation depends entirely on the cat’s mood.",
+    "after": "If the cat won’t look, we wait. These are the moments when they cooperated."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 231,
+    "lineAfter": 231,
+    "kind": "literal",
+    "language": "zh",
+    "before": "叫了半天都不看镜头，就这张最清楚。",
+    "after": "喊了半天没理人，挑来挑去，还是这张最清楚。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 232,
+    "lineAfter": 232,
+    "kind": "literal",
+    "language": "en",
+    "before": "The cat chose the expression. Nothing to do with how the artist feels.",
+    "after": "Ignored us for ages. This was still the clearest shot."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 238,
+    "lineAfter": 238,
+    "kind": "literal",
+    "language": "zh",
+    "before": "唯一一次认真看镜头。因为罐头在镜头后面。",
+    "after": "终于肯看镜头了。罐头就放在后面，没白准备。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 239,
+    "lineAfter": 239,
+    "kind": "literal",
+    "language": "en",
+    "before": "The one time it faced the camera. The food was behind it.",
+    "after": "Finally looked at the camera. The tin of food behind it did its job."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 245,
+    "lineAfter": 245,
+    "kind": "literal",
+    "language": "zh",
+    "before": "刚按快门它就跑了，勉强拍到半张脸。",
+    "after": "快门刚按下去就跑，能留下半张脸已经不错了。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 246,
+    "lineAfter": 246,
+    "kind": "literal",
+    "language": "en",
+    "before": "The face wasn’t ready. The ears arrived first.",
+    "after": "Ran off as the shutter clicked. Half a face is better than nothing."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 260,
+    "lineAfter": 260,
+    "kind": "literal",
+    "language": "zh",
+    "before": "明天可能会下雨。",
+    "after": "明天要不要带伞？"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 260,
+    "lineAfter": 260,
+    "kind": "literal",
+    "language": "en",
+    "before": "It might rain tomorrow.",
+    "after": "Umbrella tomorrow?"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 262,
+    "lineAfter": 262,
+    "kind": "literal",
+    "language": "zh",
+    "before": "也可能不会。我们明天再确认。",
+    "after": "还没等到准信，先把伞放包里吧。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 263,
+    "lineAfter": 263,
+    "kind": "literal",
+    "language": "en",
+    "before": "Or it might not. We’ll check tomorrow.",
+    "after": "No firm answer yet. Might as well put an umbrella in your bag."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 265,
+    "lineAfter": 265,
+    "kind": "literal",
+    "language": "zh",
+    "before": "编辑部仍在看窗外",
+    "after": "编辑部今日也在等雨"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 265,
+    "lineAfter": 265,
+    "kind": "literal",
+    "language": "en",
+    "before": "The editor is still looking out the window.",
+    "after": "Still watching for rain"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 268,
+    "lineAfter": 268,
+    "kind": "literal",
+    "language": "zh",
+    "before": "出门带不带伞，编辑部也在犹豫。",
+    "after": "编辑部看了一早上窗外，也没拿准会不会下雨。带伞的人记得回来报个信。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 269,
+    "lineAfter": 269,
+    "kind": "literal",
+    "language": "en",
+    "before": "The editorial team is also deciding whether to bring an umbrella.",
+    "after": "We’ve watched the window all morning and still can’t decide. Let us know how it goes if you take an umbrella."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 298,
+    "lineAfter": 298,
+    "kind": "literal",
+    "language": "zh",
+    "before": "不用安装，先看看今天送什么。",
+    "after": "礼包内容在这里，不用安装东西。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 299,
+    "lineAfter": 299,
+    "kind": "literal",
+    "language": "en",
+    "before": "No installation. See what’s in today’s pack.",
+    "after": "The pack details are here. Nothing to install."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 310,
+    "lineAfter": 310,
+    "kind": "literal",
+    "language": "zh",
+    "before": "老板买了一箱游戏卡，发现全是同一个游戏。决定今天来的人一人一张。",
+    "after": "一箱游戏卡拆开，发现全是同一个游戏。老板说今天来的人一人拿一张。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 311,
+    "lineAfter": 311,
+    "kind": "literal",
+    "language": "en",
+    "before": "The owner bought a box of game cards. Every card was for the same game. One for each visitor today.",
+    "after": "Opened a box of game cards and found they were all the same game. The owner says everyone who comes in today can take one."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 320,
+    "lineAfter": 320,
+    "kind": "literal",
+    "language": "zh",
+    "before": "一张体验卡，两颗薄荷糖。薄荷糖已经被老板吃了一颗。",
+    "after": "一张体验卡，原配两颗薄荷糖。老板没忍住吃了一颗，还剩一颗。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 321,
+    "lineAfter": 321,
+    "kind": "literal",
+    "language": "en",
+    "before": "One play pass and two mints. The owner has eaten one mint.",
+    "after": "One trial card, originally with two mints. The owner ate one. One left."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 330,
+    "lineAfter": 330,
+    "kind": "literal",
+    "language": "zh",
+    "before": "第一名：阿杰。第二名也是阿杰，他换了个名字。",
+    "after": "第一名阿杰，第二名还是他。第二次登记换了个名字。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 331,
+    "lineAfter": 331,
+    "kind": "literal",
+    "language": "en",
+    "before": "First: Jay. Second: also Jay, under a different name.",
+    "after": "Jay is first. Also second—he signed up again under another name."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 354,
+    "lineAfter": 354,
+    "kind": "literal",
+    "language": "zh",
+    "before": "小字写着：另一位请负责看行李。",
+    "after": "先别高兴，小字还有一句：“另一位负责看行李。”"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 355,
+    "lineAfter": 355,
+    "kind": "literal",
+    "language": "en",
+    "before": "The small print says: the other person minds the bags.",
+    "after": "Read the small print before you celebrate: “The other person minds the bags.”"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 366,
+    "lineAfter": 366,
+    "kind": "literal",
+    "language": "zh",
+    "before": "周六出发，周日回来。车上有空调，领队会带一袋橘子。",
+    "after": "周末湖边一日游，当天往返。车上有空调，领队会带一袋橘子。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 367,
+    "lineAfter": 367,
+    "kind": "literal",
+    "language": "en",
+    "before": "Leave Saturday, home Sunday. The coach has air conditioning. Your guide brings a bag of oranges.",
+    "after": "A weekend day trip to the lake, returning the same day. An air-conditioned coach, and a bag of oranges from the guide."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 376,
+    "lineAfter": 376,
+    "kind": "literal",
+    "language": "zh",
+    "before": "上午散步，下午自由活动。走不动的人可以坐在长椅上等。",
+    "after": "上午沿湖散步，下午自由活动。想歇脚的，可以在长椅上等大家。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 377,
+    "lineAfter": 377,
+    "kind": "literal",
+    "language": "en",
+    "before": "Walk in the morning, free time afterwards. There is a bench for anyone who has had enough.",
+    "after": "Walk by the lake in the morning, then a free afternoon. Take a seat on a bench if you’d rather rest."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 386,
+    "lineAfter": 386,
+    "kind": "literal",
+    "language": "zh",
+    "before": "请自备水杯。领队的橘子可以分，水杯不行。",
+    "after": "领队会分橘子，喝水的杯子得自己带。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 387,
+    "lineAfter": 387,
+    "kind": "literal",
+    "language": "en",
+    "before": "Bring a water bottle. The guide shares oranges, not cups.",
+    "after": "Bring your own cup. The guide will share the oranges, not the cups."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 409,
+    "lineAfter": 409,
+    "kind": "literal",
+    "language": "zh",
+    "before": "图片不用等半天，电话也不用一直占着。",
+    "after": "看图不再等半天，上网时也能接电话。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 410,
+    "lineAfter": 410,
+    "kind": "literal",
+    "language": "en",
+    "before": "Pictures load sooner. The phone line gets a break.",
+    "after": "Less waiting for pictures. You can take calls while you’re online."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 421,
+    "lineAfter": 421,
+    "kind": "literal",
+    "language": "zh",
+    "before": "师傅周三来小区装线。提前把桌子后面的插座腾出来。",
+    "after": "周三到小区装线。请提前腾出电脑桌后面的插座，省得师傅到了再搬。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 422,
+    "lineAfter": 422,
+    "kind": "literal",
+    "language": "en",
+    "before": "The installer is visiting on Wednesday. Clear the socket behind your desk first.",
+    "after": "Installation visits on Wednesday. Clear the sockets behind your desk before the installer arrives."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 431,
+    "lineAfter": 431,
+    "kind": "literal",
+    "language": "zh",
+    "before": "适合看网页、收邮件，晚上轮流用电脑。",
+    "after": "看网页、收邮件够用。家里只有一台电脑的话，晚上还是得轮着用。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 432,
+    "lineAfter": 432,
+    "kind": "literal",
+    "language": "en",
+    "before": "For browsing, email and taking turns on the family computer.",
+    "after": "For browsing and email. If you only have one computer, you’ll still have to take turns."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 441,
+    "lineAfter": 441,
+    "kind": "literal",
+    "language": "zh",
+    "before": "不帮忙整理电脑桌。师傅说上次差点被书砸到。",
+    "after": "桌子上的书请先收一下，上回师傅挪插座时差点砸到脚。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 442,
+    "lineAfter": 442,
+    "kind": "literal",
+    "language": "en",
+    "before": "Desk tidying is not included. Last time, a pile of books fell on the installer.",
+    "after": "Put the books away first. Last time a pile nearly landed on the installer’s foot."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 476,
+    "lineAfter": 476,
+    "kind": "literal",
+    "language": "zh",
+    "before": "小区门口的早餐铺。阿姨只记得住常客吃什么，记不住叫什么。",
+    "after": "小区门口那家，早上六点开门。常来的不用多说，阿姨记得你吃什么。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 477,
+    "lineAfter": 477,
+    "kind": "literal",
+    "language": "en",
+    "before": "A little breakfast stall. Auntie remembers your order better than your name.",
+    "after": "The place by the neighbourhood entrance, open at six. If you’re a regular, Auntie remembers your order."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 486,
+    "lineAfter": 486,
+    "kind": "literal",
+    "language": "zh",
+    "before": "热豆浆配油条。想要甜的，点单时说一声。",
+    "after": "豆浆配刚出锅的油条。豆浆要甜的，点的时候记得说。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 487,
+    "lineAfter": 487,
+    "kind": "literal",
+    "language": "en",
+    "before": "Hot soy milk and dough sticks. Ask if you like it sweet.",
+    "after": "Soy milk with fresh dough sticks. Say when you order if you want it sweet."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 496,
+    "lineAfter": 496,
+    "kind": "literal",
+    "language": "zh",
+    "before": "卖完就收摊，阿姨要去接孩子。",
+    "after": "卖完就收摊，还得去接孩子。晚起的别磨蹭啦。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 497,
+    "lineAfter": 497,
+    "kind": "literal",
+    "language": "en",
+    "before": "We close when we sell out. Auntie has a school pickup.",
+    "after": "We close when it’s sold out—there’s a child to pick up. Don’t leave it too late."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 519,
+    "lineAfter": 519,
+    "kind": "literal",
+    "language": "zh",
+    "before": "老板不催客，只催自己烧水。",
+    "after": "热水喝完再添，慢慢坐，不催你走。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 520,
+    "lineAfter": 520,
+    "kind": "literal",
+    "language": "en",
+    "before": "The owner rushes the kettle, never the guests.",
+    "after": "More hot water when you need it. Sit as long as you like."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 531,
+    "lineAfter": 531,
+    "kind": "literal",
+    "language": "zh",
+    "before": "门口有两棵树，靠窗那桌能看见。桌子有点晃，下面垫着一张旧报纸。",
+    "after": "靠窗那桌能看见门口的两棵树。桌脚不太平，底下垫了张旧报纸。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 532,
+    "lineAfter": 532,
+    "kind": "literal",
+    "language": "en",
+    "before": "Two trees outside the window. The table wobbles a little; there is an old newspaper under one leg.",
+    "after": "The window table looks out at the two trees by the door. An old newspaper keeps the uneven leg steady."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 541,
+    "lineAfter": 541,
+    "kind": "literal",
+    "language": "zh",
+    "before": "茶叶放在蓝色铁罐里，别和老板的饼干拿混了。",
+    "after": "茉莉花茶放在蓝色铁罐里。旁边那罐是老板的饼干，别拿错。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 542,
+    "lineAfter": 542,
+    "kind": "literal",
+    "language": "en",
+    "before": "In the blue tin. Please do not confuse it with the owner’s biscuit tin.",
+    "after": "The jasmine tea is in the blue tin. The other tin holds the owner’s biscuits."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 551,
+    "lineAfter": 551,
+    "kind": "literal",
+    "language": "zh",
+    "before": "可以下棋，输赢自行商量。老板一般不当裁判。",
+    "after": "想下棋可以坐这儿，谁输谁赢你们自己商量，老板不判。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 552,
+    "lineAfter": 552,
+    "kind": "literal",
+    "language": "en",
+    "before": "Chess is welcome. Settle disputes yourselves; the owner usually declines to referee.",
+    "after": "Stay for a game if you like. Settle the result yourselves; the owner isn’t refereeing."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 574,
+    "lineAfter": 574,
+    "kind": "literal",
+    "language": "zh",
+    "before": "上周也是最后一箱，老板又从床底翻出一箱。",
+    "after": "上周也说最后一箱。后来收拾床底，又翻出来了。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 575,
+    "lineAfter": 575,
+    "kind": "literal",
+    "language": "en",
+    "before": "It was the last box last week, too. The owner found another under the bed.",
+    "after": "It was the last crate last week too. Then the owner cleaned under the bed."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 586,
+    "lineAfter": 586,
+    "kind": "literal",
+    "language": "zh",
+    "before": "唱片按歌手姓氏排。老板记错的那几张，按他记得的姓氏排。",
+    "after": "大体按歌手的姓排。找不着就问老板，他自己也经常放错。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 587,
+    "lineAfter": 587,
+    "kind": "literal",
+    "language": "en",
+    "before": "Filed by the singer’s surname. A few are filed under the surname the owner remembers.",
+    "after": "Mostly sorted by the singer’s surname. Ask if you can’t find one; the owner misfiles them too."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 596,
+    "lineAfter": 596,
+    "kind": "literal",
+    "language": "zh",
+    "before": "封套有点旧，唱片还能听。内页上写着上一任主人的名字。",
+    "after": "封套旧了点，唱片还能听。内页上还留着前一位主人的名字。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 597,
+    "lineAfter": 597,
+    "kind": "literal",
+    "language": "en",
+    "before": "Worn sleeve, playable record. A former owner wrote their name on the insert.",
+    "after": "Worn sleeve, playable record. The previous owner’s name is still written inside."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 606,
+    "lineAfter": 606,
+    "kind": "literal",
+    "language": "zh",
+    "before": "试听台的右声道接触不好，转一下旋钮就好了。",
+    "after": "试听台右声道有点接触不良，转一下旋钮再听。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 607,
+    "lineAfter": 607,
+    "kind": "literal",
+    "language": "en",
+    "before": "The right channel is a little loose. Give the knob a gentle turn.",
+    "after": "The listening deck’s right channel has a loose contact. Try turning the knob."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 629,
+    "lineAfter": 629,
+    "kind": "literal",
+    "language": "zh",
+    "before": "不问生辰，不收钱。准不准先别急着说。",
+    "after": "不用填生辰，也不收钱。翻一张，图个乐。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 630,
+    "lineAfter": 630,
+    "kind": "literal",
+    "language": "en",
+    "before": "No birthday. No fee. Give it a chance.",
+    "after": "No birth date and no fee. Turn one over for a bit of fun."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 641,
+    "lineAfter": 641,
+    "kind": "literal",
+    "language": "zh",
+    "before": "便利店门口的纸签机。大叔说自己写了好多张，抽出来总是那几句。",
+    "after": "便利店门口摆着台纸签机。大叔说里面写了很多张，可大家翻来翻去，总碰上那几句。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 642,
+    "lineAfter": 642,
+    "kind": "literal",
+    "language": "en",
+    "before": "A paper-slip machine outside the corner shop. The owner claims he wrote dozens. We keep getting the same few.",
+    "after": "A paper-slip machine outside the corner shop. The man says he wrote plenty; everyone seems to get the same few lines."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 651,
+    "lineAfter": 651,
+    "kind": "literal",
+    "language": "zh",
+    "before": "上上签：能赶上的车就别跑了，先看看是不是你要坐的。",
+    "after": "上上签：车来了先看线路，别追了半天才发现上错车。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 652,
+    "lineAfter": 652,
+    "kind": "literal",
+    "language": "en",
+    "before": "Good fortune: before you chase the bus, check it is yours.",
+    "after": "Good fortune: check the route before you run for the bus."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 661,
+    "lineAfter": 661,
+    "kind": "literal",
+    "language": "zh",
+    "before": "一把能找到的钥匙。",
+    "after": "家里的那把钥匙。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 662,
+    "lineAfter": 662,
+    "kind": "literal",
+    "language": "en",
+    "before": "A key you can actually find.",
+    "after": "Your house key."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 684,
+    "lineAfter": 684,
+    "kind": "literal",
+    "language": "zh",
+    "before": "每次打电话都听同一句，同事已经会唱了。",
+    "after": "这首彩铃用了多久？同事都能跟着唱了。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 685,
+    "lineAfter": 685,
+    "kind": "literal",
+    "language": "en",
+    "before": "Your colleagues know every word of the old one.",
+    "after": "How long have you had that ringback tune? Your colleagues can sing it now."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 696,
+    "lineAfter": 696,
+    "kind": "literal",
+    "language": "zh",
+    "before": "店主把所有曲目都听过一遍。现在只要电话一响，他就条件反射地跟着哼。",
+    "after": "店主把榜单从头听到了尾。现在电话一来，开口就想跟着哼。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 697,
+    "lineAfter": 697,
+    "kind": "literal",
+    "language": "en",
+    "before": "The owner has heard the entire catalogue. Any ringing phone now makes him hum along.",
+    "after": "The owner listened through the whole chart. Now he hums along whenever a call comes in."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 706,
+    "lineAfter": 706,
+    "kind": "literal",
+    "language": "zh",
+    "before": "一段很短的前奏，播完了人还没找到手机。",
+    "after": "前奏很短。常常播完了，人还在找手机。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 707,
+    "lineAfter": 707,
+    "kind": "literal",
+    "language": "en",
+    "before": "A short intro. By the end, they still have not found the phone.",
+    "after": "A very short intro. Often over before anyone’s found their phone."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 716,
+    "lineAfter": 716,
+    "kind": "literal",
+    "language": "zh",
+    "before": "适合周末。店主建议不要在周一上班前忘了换。",
+    "after": "周末用正合适。周一记得换回来，别让老板听见。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 717,
+    "lineAfter": 717,
+    "kind": "literal",
+    "language": "en",
+    "before": "For weekends. Remember to change it before Monday morning.",
+    "after": "Good for the weekend. Change it back on Monday before the boss hears it."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 739,
+    "lineAfter": 739,
+    "kind": "literal",
+    "language": "zh",
+    "before": "怎么准时下班。第一课：先把电脑关了。",
+    "after": "学的是怎么准时下班。老师说，第一课先从关电脑开始。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 740,
+    "lineAfter": 740,
+    "kind": "literal",
+    "language": "en",
+    "before": "How to leave work on time. Lesson one: shut the computer down.",
+    "after": "The subject is leaving on time. The teacher starts with switching the computer off."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 751,
+    "lineAfter": 751,
+    "kind": "literal",
+    "language": "zh",
+    "before": "借了活动室开小课堂。白板笔只有黑色，老师说重点用圈画就行。",
+    "after": "课在借来的活动室上。白板笔只剩黑色，老师把重点全圈了起来。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 752,
+    "lineAfter": 752,
+    "kind": "literal",
+    "language": "en",
+    "before": "A borrowed activity room and a single black whiteboard pen. The teacher circles the important bits.",
+    "after": "Classes are in a borrowed activity room. Only black markers left, so the teacher circles the important bits."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 761,
+    "lineAfter": 761,
+    "kind": "literal",
+    "language": "zh",
+    "before": "先教怎么把弄丢的那一列找回来。",
+    "after": "先讲怎么把藏起来的那一列找回来。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 762,
+    "lineAfter": 762,
+    "kind": "literal",
+    "language": "en",
+    "before": "First, find the column you accidentally hid.",
+    "after": "First, find the column that’s gone into hiding."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 771,
+    "lineAfter": 771,
+    "kind": "literal",
+    "language": "zh",
+    "before": "原定两小时，老师准备压到半小时。",
+    "after": "原定两小时，老师正琢磨能不能半小时讲完。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 772,
+    "lineAfter": 772,
+    "kind": "literal",
+    "language": "en",
+    "before": "Originally two hours. The teacher hopes to make it thirty minutes.",
+    "after": "Booked for two hours. The teacher is trying to get it down to thirty minutes."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 794,
+    "lineAfter": 794,
+    "kind": "literal",
+    "language": "zh",
+    "before": "坐着坐着睡着了，店员会帮你把包放好。",
+    "after": "要是坐着睡着了，店员会帮你把包放好。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 795,
+    "lineAfter": 795,
+    "kind": "literal",
+    "language": "en",
+    "before": "Doze off and the assistant will keep your bag safe.",
+    "after": "If you nod off, the staff will keep your bag out of the way."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 806,
+    "lineAfter": 806,
+    "kind": "literal",
+    "language": "zh",
+    "before": "门口的沙发最软，老板自己每天中午都坐。午休时请轻声叫他。",
+    "after": "门口那张最软，老板每天中午都坐着歇。赶上午休，轻声叫他就行。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 807,
+    "lineAfter": 807,
+    "kind": "literal",
+    "language": "en",
+    "before": "The softest sofa is by the door. The owner naps there at lunch; wake him gently.",
+    "after": "The softest one is by the door. The owner rests there at lunchtime; a quiet word will wake him."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 816,
+    "lineAfter": 816,
+    "kind": "literal",
+    "language": "zh",
+    "before": "能坐两个人和一只坚持挤在中间的猫。",
+    "after": "两个人坐正好，猫还非要往中间挤。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 817,
+    "lineAfter": 817,
+    "kind": "literal",
+    "language": "en",
+    "before": "Seats two people and a cat determined to sit between them.",
+    "after": "Room for two. The cat insists on squeezing into the middle."
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 826,
+    "lineAfter": 826,
+    "kind": "literal",
+    "language": "zh",
+    "before": "扶手宽，可以放遥控器。店员已经试过了。",
+    "after": "扶手挺宽，遥控器放得下，店员已经替你试过。"
+  },
+  {
+    "file": "ad-data.js",
+    "lineBefore": 827,
+    "lineAfter": 827,
+    "kind": "literal",
+    "language": "en",
+    "before": "Wide arms for the remote. The assistant has tested them.",
+    "after": "Wide armrests, with room for a remote. The staff have checked."
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 5,
+    "lineAfter": 5,
+    "kind": "literal",
+    "language": "zh",
+    "before": "恭喜您！访客礼包",
+    "after": "恭喜！访客专享礼包"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 5,
+    "lineAfter": 5,
+    "kind": "literal",
+    "language": "en",
+    "before": "Congratulations! Visitor gift",
+    "after": "Congratulations! Visitor gift pack"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 9,
+    "lineAfter": 9,
+    "kind": "literal",
+    "language": "zh",
+    "before": "打印优惠券，请收好",
+    "after": "打印优惠券 · 明早可用"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 9,
+    "lineAfter": 9,
+    "kind": "literal",
+    "language": "en",
+    "before": "Your printing coupon",
+    "after": "Printing coupon · From tomorrow morning"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 15,
+    "lineAfter": 15,
+    "kind": "literal",
+    "language": "zh",
+    "before": "早餐优惠派送",
+    "after": "早餐优惠券来了"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 15,
+    "lineAfter": 15,
+    "kind": "literal",
+    "language": "en",
+    "before": "Breakfast coupons",
+    "after": "Breakfast coupons are here"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 16,
+    "lineAfter": 16,
+    "kind": "literal",
+    "language": "zh",
+    "before": "慢慢来 · 茶馆小窗",
+    "after": "慢慢来茶馆 · 热水管够"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 16,
+    "lineAfter": 16,
+    "kind": "literal",
+    "language": "en",
+    "before": "Take Your Time · Tea window",
+    "after": "Take Your Time · More hot water"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 33,
+    "lineAfter": 33,
+    "kind": "literal",
+    "language": "zh",
+    "before": "恭喜！礼包已到站",
+    "after": "恭喜您！礼包等您领取"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 33,
+    "lineAfter": 33,
+    "kind": "literal",
+    "language": "en",
+    "before": "Congratulations! A gift awaits",
+    "after": "Congratulations! Claim your gift"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 33,
+    "lineAfter": 33,
+    "kind": "literal",
+    "language": "zh",
+    "before": "幸运来访",
+    "after": "幸运访客"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 33,
+    "lineAfter": 33,
+    "kind": "literal",
+    "language": "en",
+    "before": "LUCKY VISIT",
+    "after": "LUCKY VISITOR"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 34,
+    "lineAfter": 34,
+    "kind": "literal",
+    "language": "zh",
+    "before": "沙发给你留好了",
+    "after": "今晚有片，坐下就看"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 34,
+    "lineAfter": 34,
+    "kind": "literal",
+    "language": "en",
+    "before": "Your sofa is waiting",
+    "after": "Tonight’s films · Take a seat"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 36,
+    "lineAfter": 36,
+    "kind": "literal",
+    "language": "zh",
+    "before": "低到不敢标原价",
+    "after": "搬家急出，价钱好商量"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 36,
+    "lineAfter": 36,
+    "kind": "literal",
+    "language": "en",
+    "before": "TOO LOW TO SHOW THE OLD PRICE",
+    "after": "MOVING SOON · PRICES NEGOTIABLE"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 37,
+    "lineAfter": 37,
+    "kind": "literal",
+    "language": "zh",
+    "before": "论文今晚交？先把券领了",
+    "after": "今晚赶论文？明早带券来"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 37,
+    "lineAfter": 37,
+    "kind": "literal",
+    "language": "en",
+    "before": "Due tonight? Take the coupon first.",
+    "after": "Working late? Bring the coupon tomorrow"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 38,
+    "lineAfter": 38,
+    "kind": "literal",
+    "language": "zh",
+    "before": "在吗？新到三张猫照，给你看看。",
+    "after": "在吗？刚挑了三张猫照，点开给你看。"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 38,
+    "lineAfter": 38,
+    "kind": "literal",
+    "language": "en",
+    "before": "You there? Three new cat pictures. Take a look.",
+    "after": "You there? Picked out three cat photos. Have a look."
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 38,
+    "lineAfter": 38,
+    "kind": "literal",
+    "language": "zh",
+    "before": "打开收到的相册",
+    "after": "点开看猫"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 38,
+    "lineAfter": 38,
+    "kind": "literal",
+    "language": "en",
+    "before": "Open the photo album",
+    "after": "Open the cat pictures"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 39,
+    "lineAfter": 39,
+    "kind": "literal",
+    "language": "zh",
+    "before": "出门带伞了吗？",
+    "after": "今天带伞了吗？"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 39,
+    "lineAfter": 39,
+    "kind": "literal",
+    "language": "en",
+    "before": "Got your umbrella?",
+    "after": "Did you bring an umbrella?"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 40,
+    "lineAfter": 40,
+    "kind": "literal",
+    "language": "zh",
+    "before": "无需下载 · 看看再说",
+    "after": "不用下载，点开看礼包"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 40,
+    "lineAfter": 40,
+    "kind": "literal",
+    "language": "en",
+    "before": "NO DOWNLOAD · HAVE A LOOK",
+    "after": "NO DOWNLOAD · VIEW THE PACK"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 41,
+    "lineAfter": 41,
+    "kind": "literal",
+    "language": "zh",
+    "before": "另一位负责看行李",
+    "after": "小字：另一位负责看行李"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 41,
+    "lineAfter": 41,
+    "kind": "literal",
+    "language": "en",
+    "before": "The other minds the bags",
+    "after": "SMALL PRINT: THE OTHER MINDS THE BAGS"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 42,
+    "lineAfter": 42,
+    "kind": "literal",
+    "language": "zh",
+    "before": "别再占着电话线啦",
+    "after": "上网不用再占电话线"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 42,
+    "lineAfter": 42,
+    "kind": "literal",
+    "language": "en",
+    "before": "GIVE THE PHONE LINE BACK",
+    "after": "GO ONLINE WITHOUT TYING UP THE PHONE"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 43,
+    "lineAfter": 43,
+    "kind": "literal",
+    "language": "zh",
+    "before": "早餐券 · 今天别空着肚子",
+    "after": "早餐券来了，热豆浆刚出锅"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 43,
+    "lineAfter": 43,
+    "kind": "literal",
+    "language": "en",
+    "before": "BREAKFAST COUPON · EAT SOMETHING",
+    "after": "BREAKFAST COUPON · HOT SOY MILK"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 43,
+    "lineAfter": 43,
+    "kind": "literal",
+    "language": "zh",
+    "before": "豆浆趁热 · 油条刚炸好",
+    "after": "豆浆趁热喝，油条刚炸好"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 43,
+    "lineAfter": 43,
+    "kind": "literal",
+    "language": "en",
+    "before": "Hot soy milk · Fresh dough sticks",
+    "after": "HOT SOY MILK · FRESH DOUGH STICKS"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 44,
+    "lineAfter": 44,
+    "kind": "literal",
+    "language": "zh",
+    "before": "老板不催客　热水管够",
+    "after": "慢慢坐，热水喝完再添"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 44,
+    "lineAfter": 44,
+    "kind": "literal",
+    "language": "en",
+    "before": "NO RUSH · HOT WATER INCLUDED",
+    "after": "STAY A WHILE · MORE HOT WATER"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 45,
+    "lineAfter": 45,
+    "kind": "literal",
+    "language": "zh",
+    "before": "封套旧一点，没关系。",
+    "after": "封套旧了点，唱片还能听。"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 45,
+    "lineAfter": 45,
+    "kind": "literal",
+    "language": "en",
+    "before": "A worn sleeve never hurt a good record.",
+    "after": "WORN SLEEVE. STILL PLAYS."
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 46,
+    "lineAfter": 46,
+    "kind": "literal",
+    "language": "zh",
+    "before": "今天，说不定就轮到你了。",
+    "after": "今天能碰上什么好事？"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 46,
+    "lineAfter": 46,
+    "kind": "literal",
+    "language": "en",
+    "before": "Maybe today is your day.",
+    "after": "WHAT WILL TODAY BRING?"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 46,
+    "lineAfter": 46,
+    "kind": "literal",
+    "language": "zh",
+    "before": "不问生辰 · 不收钱",
+    "after": "不用填生辰，也不用付钱"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 46,
+    "lineAfter": 46,
+    "kind": "literal",
+    "language": "en",
+    "before": "NO BIRTHDAY · NO FEE",
+    "after": "NO BIRTH DATE · NO PAYMENT"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 47,
+    "lineAfter": 47,
+    "kind": "literal",
+    "language": "zh",
+    "before": "来电，换个心情",
+    "after": "这首彩铃，该换了！"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 47,
+    "lineAfter": 47,
+    "kind": "literal",
+    "language": "en",
+    "before": "A NEW SOUND FOR EVERY CALL",
+    "after": "TIME FOR A NEW RINGBACK TUNE"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 48,
+    "lineAfter": 48,
+    "kind": "literal",
+    "language": "zh",
+    "before": "第一课：先把电脑关了。",
+    "after": "老师说，先从关电脑学起。"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 48,
+    "lineAfter": 48,
+    "kind": "literal",
+    "language": "en",
+    "before": "Lesson one: shut the computer down.",
+    "after": "FIRST UP: SWITCH OFF THE COMPUTER"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 49,
+    "lineAfter": 49,
+    "kind": "literal",
+    "language": "zh",
+    "before": "样品清场　错过再等",
+    "after": "样品清场，来店慢慢挑"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 49,
+    "lineAfter": 49,
+    "kind": "literal",
+    "language": "en",
+    "before": "FLOOR MODEL CLEARANCE",
+    "after": "FLOOR MODELS · COME AND TRY THEM"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 49,
+    "lineAfter": 49,
+    "kind": "literal",
+    "language": "zh",
+    "before": "没事，老板也这么说。",
+    "after": "老板午休，也爱坐这张。"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 49,
+    "lineAfter": 49,
+    "kind": "literal",
+    "language": "en",
+    "before": "The owner says the same thing.",
+    "after": "THE OWNER NAPS ON THIS ONE TOO"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 49,
+    "lineAfter": 49,
+    "kind": "literal",
+    "language": "zh",
+    "before": "去看看样品",
+    "after": "进店看样品"
+  },
+  {
+    "file": "ad-campaigns.js",
+    "lineBefore": 49,
+    "lineAfter": 49,
+    "kind": "literal",
+    "language": "en",
+    "before": "SEE THE SOFAS",
+    "after": "VIEW THE FLOOR MODELS"
+  },
+  {
+    "file": "ad-system.js",
+    "lineBefore": 195,
+    "lineAfter": 195,
+    "kind": "literal",
+    "language": "zh",
+    "before": "作品照片署名",
+    "after": "照片来源与许可"
+  },
+  {
+    "file": "ad-system.js",
+    "lineBefore": 195,
+    "lineAfter": 195,
+    "kind": "literal",
+    "language": "en",
+    "before": "Portrait photo credits",
+    "after": "Photo credits & licences"
+  },
+  {
+    "file": "ad-system.js",
+    "lineBefore": 215,
+    "lineAfter": 215,
+    "kind": "literal",
+    "language": "zh",
+    "before": "收藏的广告保存在当前浏览器，游戏进度不受影响。",
+    "after": "广告收藏保存在当前浏览器，与游戏进度分开保存。"
+  },
+  {
+    "file": "ad-system.js",
+    "lineBefore": 215,
+    "lineAfter": 215,
+    "kind": "literal",
+    "language": "zh",
+    "before": "还没留下广告。看到喜欢的，点“留着”就行。",
+    "after": "这里还没有收藏。看到想再看的广告，点“留着”即可。"
+  },
+  {
+    "file": "ad-system.js",
+    "lineBefore": 226,
+    "lineAfter": 226,
+    "kind": "literal",
+    "language": "zh",
+    "before": "以下实拍照片来自 Wikimedia Commons，用于虚构商家展示。照片中的场所、动物及摄影师不代言这些商家。原图保留，显示副本已降低分辨率并增加 JPEG 压缩。",
+    "after": "广告中的实拍照片来自 Wikimedia Commons。店铺是虚构的，与照片中的场所、动物及摄影师无关。页面使用低清压缩副本，原图和许可保留。"
+  },
+  {
+    "file": "ad-system.js",
+    "lineBefore": 272,
+    "lineAfter": 272,
+    "kind": "literal",
+    "language": "zh",
+    "before": "已收藏，下次可以从“我的广告夹”再打开。",
+    "after": "已收藏，可随时从“我的广告夹”重新打开。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 17,
+    "lineAfter": 17,
+    "kind": "literal",
+    "language": "zh",
+    "before": "清洁推车，扶手缠着黄色胶带。",
+    "after": "清洁推车的扶手上缠着黄色胶带。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 21,
+    "lineAfter": 21,
+    "kind": "literal",
+    "language": "zh",
+    "before": "维修告示，右下角缺了一块。",
+    "after": "一张维修告示，右下角撕掉了一块。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 44,
+    "lineAfter": 44,
+    "kind": "literal",
+    "language": "zh",
+    "before": "接下来的监控和通道可能出现突然靠近的面孔与画面故障。鬼脸和突脸默认开启，也可以关闭；关闭后仍能体验全部剧情和操作。",
+    "after": "接下来的监控和通道会有鬼脸、突脸及画面故障。鬼脸默认开启；关闭后，剧情和解谜仍可全部完成。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 44,
+    "lineAfter": 44,
+    "kind": "literal",
+    "language": "zh",
+    "before": "声音仍由底部菜单单独控制，可随时在设置里更改。",
+    "after": "声音可在底部菜单单独开关，也可打开设置调整。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 57,
+    "lineAfter": 57,
+    "kind": "literal",
+    "language": "zh",
+    "before": "以下为当前页面，原来的资料保存在历史副本中。",
+    "after": "当前页面已更新，旧资料仍可在历史副本中查看。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 62,
+    "lineAfter": 62,
+    "kind": "literal",
+    "language": "zh",
+    "before": "房卡正在制作，请不要离开本页。",
+    "after": "正在制作房卡，请留在此页。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 72,
+    "lineAfter": 72,
+    "kind": "literal",
+    "language": "zh",
+    "before": "维修说明：转动镜头，找到交接处的同一件物品后，接通相邻机位。",
+    "after": "转动镜头，查看相邻机位的交界处。两边拍到同一件物品后，再确认连接。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 73,
+    "lineAfter": 73,
+    "kind": "literal",
+    "language": "en",
+    "before": "Maintenance: pan adjacent cameras to the same landmark before linking them.",
+    "after": "Turn the cameras toward the overlap. When both views show the same object, confirm their connection."
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 94,
+    "lineAfter": 94,
+    "kind": "literal",
+    "language": "zh",
+    "before": "原件已锁定。下方“保留原件并退出夜班”可结束本次工作。",
+    "after": "原件已锁定。点击下方“保留原件并退出夜班”，即可结束本次工作。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 98,
+    "lineAfter": 98,
+    "kind": "literal",
+    "language": "zh",
+    "before": "录像末尾还有一段未归档画面。请在监控下方打开查看。",
+    "after": "录像末尾多出一段未归档画面，入口在监控下方。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 100,
+    "lineAfter": 100,
+    "kind": "literal",
+    "language": "zh",
+    "before": "配置已保存。还需锁定原始备份，才能安全退出夜班。",
+    "after": "接线配置已保存。还需锁定原始备份，再办理退出交接。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 101,
+    "lineAfter": 101,
+    "kind": "literal",
+    "language": "zh",
+    "before": "配置已保存。请先点击监控下方“恢复缓存的最后一帧”，再锁定原始备份。",
+    "after": "接线配置已保存。先在监控下方恢复缓存的最后一帧，再锁定原始备份。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 102,
+    "lineAfter": 102,
+    "kind": "literal",
+    "language": "zh",
+    "before": "线路已就绪。保存当前配置后，再锁定原始备份。",
+    "after": "线路已接好，请先保存配置，再锁定原始备份。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 109,
+    "lineAfter": 109,
+    "kind": "literal",
+    "language": "zh",
+    "before": "已保留未核实分类，未分配身份。可以继续原件锁定与交接。",
+    "after": "该画面保留为未核实，未分配身份。现在可以锁定原件，继续交接。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 109,
+    "lineAfter": 109,
+    "kind": "literal",
+    "language": "zh",
+    "before": "最后一帧后还有一段画面，没有对应的摄像头。",
+    "after": "最后一帧后面还有画面，却查不到对应的摄像头。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 117,
+    "lineAfter": 117,
+    "kind": "literal",
+    "language": "zh",
+    "before": "按一下接头，会顺时针转 90°。相邻线头要对齐，才能传送信号。",
+    "after": "每点一次接头，顺时针转动 90°。把相邻接口对齐，接成连续的线路。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 117,
+    "lineAfter": 117,
+    "kind": "literal",
+    "language": "zh",
+    "before": "录像从 A 左侧输入，接到 F 右侧的只读存储。接通后，监控会恢复 03:17 的画面。",
+    "after": "信号从 A 的左侧进入，须接到 F 右侧的只读存储。接通后可查看 03:17 的录像。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 134,
+    "lineAfter": 134,
+    "kind": "literal",
+    "language": "zh",
+    "before": "回写电源接在 D 上方，员工名册共用 F 的出口。",
+    "after": "自动回写电源从 D 上方接入，与员工名册共用 F 的出口。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 134,
+    "lineAfter": 134,
+    "kind": "literal",
+    "language": "zh",
+    "before": "原件已锁定，自动回写已隔离。点击“保留原件并退出夜班”，即可完成离开手续。",
+    "after": "原件已锁定，自动回写线路已隔离。选择“保留原件并退出夜班”，完成退出交接。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 134,
+    "lineAfter": 134,
+    "kind": "literal",
+    "language": "zh",
+    "before": "直接结案或离开会保留当前处理结果。要保护原件，请先保存配线配置并锁定备份。",
+    "after": "直接结案或离开，都会保留当前处理结果。如需保护原件，请先保存接线配置，再锁定备份。"
+  },
+  {
+    "file": "case-night.js",
+    "lineBefore": 147,
+    "lineAfter": 147,
+    "kind": "literal",
+    "language": "zh",
+    "before": "后续排班已取消。Mara 的备注与原始预订已保留，不再接受自动改写。",
+    "after": "后续排班已取消。Mara 的备注和原始预订单已保留，自动改写已停止。"
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 52,
+    "lineAfter": 52,
+    "kind": "literal",
+    "language": "zh",
+    "before": "浏览器未能开启音效。可在页面底部再次开启，静音也能通关。",
+    "after": "声音暂时未能开启。之后可在底部菜单重试，静音也能通关。"
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "zh",
+    "before": "这是一款虚构的网页恐怖解谜游戏。论坛、招聘、酒店、人物、聊天和网站故障都是剧情，不是真实服务。",
+    "after": "本作是虚构的网页恐怖解谜游戏。论坛、招聘、酒店和人物均为虚构，聊天及网站故障也属于剧情。"
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "zh",
+    "before": "含突然出现的鬼脸、异常人影、画面扭曲、呼吸声，以及涉及失踪与死亡的剧情。建议先调低音量；感到不适时，可随时暂停或关闭网页。",
+    "after": "游戏含突脸、人影、画面扭曲和呼吸声，剧情涉及失踪与死亡。建议先调低音量；如感到不适，可随时暂停或关闭网页。"
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "zh",
+    "before": "可以关闭鬼脸和音效，仍能完成全部剧情与解谜。游戏不使用快速频闪；系统的“减少动态效果”设置也会生效。",
+    "after": "关闭鬼脸或音效也能完成全部剧情和解谜。游戏不使用快速频闪，并遵循设备的“减少动态效果”设置。"
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "zh",
+    "before": "默认关闭。包括聊天提示音和后续背景音；勾选后点击进入即可开启，之后可在“声音与设置”中调整。",
+    "after": "默认关闭。勾选并进入游戏后，会开启聊天提示音和后续背景音；可随时在“声音与设置”中调整。"
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "zh",
+    "before": "当前正在减少动态效果：即使勾选鬼脸，突脸仍会跳过。可在浏览设置中查看；设备设置始终优先。",
+    "after": "设备已开启“减少动态效果”，因此突脸仍会跳过。此项以设备设置为准，可在浏览设置中查看。"
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "zh",
+    "before": "电脑用鼠标点击，手机直接点按。群聊可自由输入，Enter 发送，Shift + Enter 换行；朋友发的论坛卡片可以直接打开。链接、留言和档案中的引用都可以继续调查；设备页面可点击场景或旁边的同名按钮。",
+    "after": "电脑用鼠标，手机直接点按。群聊中按 Enter 发送，Shift + Enter 换行，论坛卡片可直接打开。网页里的链接和文件引用都能点；设备页面也可使用场景旁的同名按钮。"
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "zh",
+    "before": "进度自动保存在当前浏览器。换设备、换浏览器或清除网站数据后，存档不会自动转移。",
+    "after": "进度保存在当前浏览器，不会自动同步到其他设备或浏览器。清除网站数据也会清掉存档。"
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "en",
+    "before": "Progress saves in this browser. It does not transfer when you change devices or browsers, or clear site data.",
+    "after": "Progress is saved in this browser, without automatic syncing to another device or browser. Clearing site data also clears the save."
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "zh",
+    "before": "重新开始：顶部“存档与重置”→“重新开始游戏”→确认。声音和鬼脸设置可在“声音与设置”里随时修改。",
+    "after": "重新开始：打开“存档与重置”，选择“重新开始游戏”并确认。声音和鬼脸选项可在“声音与设置”里调整。"
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "en",
+    "before": "To restart: Saves & reset → Start the game again → Confirm. Sound & settings lets you change sound and scare preferences at any time.",
+    "after": "To restart, open Saves & reset, choose Restart game and confirm. Sound and face options are in Sound & settings."
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "zh",
+    "before": "酒店与广告使用现成实拍照片；现实场所、人物和摄影师不参与或代言剧情。显示副本经过低清处理，原图与许可保留。监控空间由程序绘制，部分恐怖人像为已有的生成插图。背景音乐使用 CC0 音源，聊天提示音和部分环境音由浏览器本地合成。",
+    "after": "酒店和广告页使用实拍照片，真实场所、人物及摄影师与剧情无关。展示照片经过低清处理，原图和许可保留。监控场景由程序绘制，部分恐怖人像为生成插图。背景音乐使用 CC0 音源，提示音及部分环境音由浏览器合成。"
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "zh",
+    "before": "无需真实姓名、电话、简历或支付信息。页面中的预订、应聘和留言均为本地模拟。",
+    "after": "酒店预订查询、应聘样本和住客留言均为本地模拟，无需填写真实姓名、电话、简历或支付信息。"
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "en",
+    "before": "No real name, phone number, CV or payment details are needed. Reservations, applications and messages are local simulations.",
+    "after": "Hotel booking searches, job samples and guestbook forms are simulated locally. They do not need real names, phone numbers, CVs or payment details."
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "zh",
+    "before": "阅读后即可进入。之后可从顶部“游玩说明”重新打开本页。",
+    "after": "之后可通过“游玩说明”重新查看本页。"
+  },
+  {
+    "file": "case-welcome.js",
+    "lineBefore": 65,
+    "lineAfter": 65,
+    "kind": "literal",
+    "language": "en",
+    "before": "Continue when ready. Reopen this page through How to play in the header.",
+    "after": "You can reopen this page from How to play."
+  },
+  {
+    "file": "case-space.js",
+    "lineBefore": 21,
+    "lineAfter": 21,
+    "kind": "literal",
+    "language": "zh",
+    "before": "317 的门牌下面还有一层旧胶。隔壁的门刚才关着。",
+    "after": "317 门牌底下留着一层旧胶。隔壁那扇门，刚才还是关着的。"
+  },
+  {
+    "file": "case-space.js",
+    "lineBefore": 28,
+    "lineAfter": 28,
+    "kind": "literal",
+    "language": "zh",
+    "before": "猫眼里只有一盏灯。没有人。",
+    "after": "猫眼里只看得见一盏灯，没有人。"
+  },
+  {
+    "file": "case-space.js",
+    "lineBefore": 35,
+    "lineAfter": 35,
+    "kind": "literal",
+    "language": "zh",
+    "before": "合照背面：2006.10.17 夜班。E-014 那一栏被刮掉了。",
+    "after": "合照背面写着“2006.10.17 夜班”。E-014 那一栏被刮掉了。"
+  },
+  {
+    "file": "case-space.js",
+    "lineBefore": 43,
+    "lineAfter": 43,
+    "kind": "literal",
+    "language": "zh",
+    "before": "推车靠在墙边，维修柜现在能打开了。",
+    "after": "推车已挪到墙边，柜门前空出来了。"
+  },
+  {
+    "file": "case-space.js",
+    "lineBefore": 47,
+    "lineAfter": 47,
+    "kind": "literal",
+    "language": "zh",
+    "before": "黄色胶带的推车挡在维修柜前。",
+    "after": "扶手缠着黄色胶带的推车挡住了维修柜。"
+  },
+  {
+    "file": "case-space.js",
+    "lineBefore": 54,
+    "lineAfter": 54,
+    "kind": "literal",
+    "language": "zh",
+    "before": "柜门内侧：B-3 门锁供电。合上拉杆即可解锁。",
+    "after": "柜门内贴着标签：“B-3 门锁供电”。合上拉杆即可解锁。"
+  },
+  {
+    "file": "case-space.js",
+    "lineBefore": 61,
+    "lineAfter": 61,
+    "kind": "literal",
+    "language": "zh",
+    "before": "拉杆已合上。通道另一头的灯变绿了。",
+    "after": "拉杆合上了。通道另一头的灯由红变绿。"
+  },
+  {
+    "file": "case-space.js",
+    "lineBefore": 69,
+    "lineAfter": 69,
+    "kind": "literal",
+    "language": "zh",
+    "before": "门锁已经松开。里面是录像配线板。",
+    "after": "门锁松开了，里面是一块录像信号配线板。"
+  },
+  {
+    "file": "case-space.js",
+    "lineBefore": 73,
+    "lineAfter": 73,
+    "kind": "literal",
+    "language": "zh",
+    "before": "门上红灯亮着。墙上的线路沿原路接回维修柜。",
+    "after": "门上的红灯还亮着。沿墙上的电线看回去，另一头接在维修柜里。"
+  },
+  {
+    "file": "case-space.js",
+    "lineBefore": 80,
+    "lineAfter": 80,
+    "kind": "literal",
+    "language": "zh",
+    "before": "维修告示：门禁电源在西侧柜内。录像信号在 B-3 内另行检修。",
+    "after": "维修告示：门禁电源在西侧维修柜；录像信号请到 B-3 配线室检修。"
+  }
+]

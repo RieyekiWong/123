@@ -191,8 +191,8 @@
       if (!result.ok) {
         const target = document.querySelector("#void-feedback");
         if (target) target.textContent = result.error === "void-alignment"
-          ? t("边缘还没接上。看看门框和地缝在两块画面之间是否连续。", "The edges do not meet yet. Check the frame and floor seams between fragments.")
-          : t("这一步还没完成。当前画面和操作已保留。", "This operation is not ready yet. Your picture and adjustments are retained.");
+          ? t("画面还没拼齐。检查相邻边缘的门框和地缝，看看哪里断开了。", "The edges do not meet yet. Check the frame and floor seams between fragments.")
+          : t("这一步还未完成，刚才的操作已保留。", "This operation is not ready yet. Your picture and adjustments are retained.");
         voidWorld.refresh();
         return;
       }
@@ -206,96 +206,96 @@
   });
   const errors = {
     sample: [
-      "缺少样本编号。可返回招聘页查看。",
+      "请先到招聘页查看样本编号。",
       "Check the reference on the job sample.",
     ],
     reservation: [
-      "未找到预订，请检查编号。",
+      "查不到这笔预订，请检查编号是否完整。",
       "No record found. Check the reference on the original sample.",
     ],
-    booking: ["还没找到对应的预订单。", "Identify the retained booking first."],
+    booking: ["请先查到对应的预订单。", "Identify the retained booking first."],
     inventory: [
-      "房号与预订单不符。",
+      "这个房号与预订单不一致，请再看一下登记房号。",
       "This is not the assignment on the original booking. Check that record.",
     ],
     "inventory-first": [
-      "尚未确认预订单上的房号。",
+      "请先核对预订单上的房号。",
       "Associate the booking with the guest inventory first.",
     ],
     "message-first": [
-      "尚未打开对应的住客留言。",
+      "请先查看这笔预订对应的住客留言。",
       "Review the key entry associated with the booking.",
     ],
     "inspect-first": [
-      "尚未打开服务区域登记卡。",
+      "请先打开服务区域的登记卡。",
       "Open the position card on the floor plan first.",
     ],
     classification: [
-      "所选用途与登记卡不符。",
+      "所选用途与登记卡上的内容不一致。",
       "That classification does not match the position card.",
     ],
     "service-first": [
-      "服务区域用途尚未确认。",
+      "请先核对服务区域的登记用途。",
       "Check the position classification on the floor plan first.",
     ],
     maintenance: [
-      "未找到维修单，请检查公告编号。",
+      "查不到这张维修单，请核对公告编号。",
       "No docket found. Check the original access notice reference.",
     ],
     "maintenance-first": [
-      "尚未查到对应的维修单。",
+      "请先查询对应的维修单。",
       "The source records are not yet associated with this booking. Check its maintenance docket.",
     ],
     "audit-order": [
-      "时间顺序不对，请对照每条记录的日期和时间。",
+      "顺序不对。请按记录上的日期和时间，从早到晚排列。",
       "The source timestamps do not match this sequence. Check each original timestamp.",
     ],
     "audit-assessment": [
-      "现有记录不能支持这一判断。",
+      "现有记录还不足以得出这个结论。",
       "That finding is not supported by the records.",
     ],
     "audit-first": [
-      "当晚记录尚未核对。",
+      "请先核对当晚的记录。",
       "The personnel file requires a reconciled night-audit record.",
     ],
     "revision-unchanged": [
-      "选中了未修改的项目。请对照两栏内容。",
+      "有一项两栏内容相同，不需要勾选。",
       "An unchanged field was selected. Compare the versions row by row.",
     ],
     "revision-missing": [
-      "有修改项尚未选中。",
+      "还有改动没有选出来，请再对照一次。",
       "A changed field is still unrecorded. Check both originals.",
     ],
     "revisions-first": [
-      "修改记录尚未核对。",
+      "请先比较原稿与修改稿。",
       "Associate this addendum with the revision record first.",
     ],
     "closure-first": [
-      "请从停业通知的附件打开这份草稿。",
+      "这份草稿附在停业通知后，请从附件进入。",
       "Read the closure notice to establish the note’s historical context.",
     ],
     "evidence-incomplete": [
-      "资料不全，暂时无法提交。",
+      "还有资料未查看，暂时无法提交。",
       "Some records are still missing. Reopen the sources in Case Notes before submitting.",
     ],
     "evidence-occupancy": [
-      "没有记录能确认住客实际入住。",
+      "目前没有记录能证实住客实际入住。",
       "This finding needs a matching record.",
     ],
     "evidence-operating": [
-      "该说法与停业通知不符。",
+      "这项说法与停业通知的内容不符。",
       "This finding does not match the notice.",
     ],
     "evidence-consent": [
-      "该说法与 Mara 的原备注不符。",
+      "这项说法与 Mara 留下的原备注不符。",
       "Check the authorization in Mara’s original note.",
     ],
     "evidence-missing": [
-      "请选择三项有原始记录支持的说法。",
+      "请选择三项能在原始记录中找到依据的说法。",
       "Submit only the three findings that can be cross-checked against the originals.",
     ],
     unknown: [
-      "操作未完成，已保存的资料不受影响。",
+      "操作未完成，之前保存的资料还在。",
       "This operation is not recognized. The original records remain available.",
     ],
   };
@@ -344,7 +344,7 @@
         "RECORD INDEX",
         t("文件暂时打不开", "Record not currently available"),
         t(
-          "暂时没有这份文件的访问权限。请从相关资料打开。",
+          "这份文件暂时无法直接打开，请从相关资料中的链接进入。",
           "This file is not available yet. Open it through the related record.",
         ),
       ) + views.reference(recovery, t("查看相关文件", "Open the source record"))
@@ -355,15 +355,15 @@
   }
   function siteFooter(site) {
     const warning = storageFailed
-      ? `<p role="status">${t("浏览器无法保存进度，当前标签页仍可继续操作。", "Storage is unavailable; the current tab remains playable.")}</p>`
+      ? `<p role="status">${t("浏览器暂时无法保存进度。这个标签页仍可继续，关闭后可能丢失记录。", "Your browser can’t save progress right now. You can keep going in this tab, but closing it may lose your work.")}</p>`
       : "";
     const credits = `<button class="footer-settings" data-ad-action="credits">${t("图片鸣谢", "Photo acknowledgements")}</button>`;
     const folder = `<button class="footer-settings" data-ad-action="folder">${t("我的广告夹", "My ad folder")}</button>`;
     if (site === "forum")
-      return `<footer class="forum-footer"><p class="bbs-footer-sticker">${t("本站没有自动刷新功能。你看到的只是最后一次保存的帖子。", "This forum does not refresh automatically. You are reading the last saved copy of each thread.")}</p><p class="footer-site-name">NIGHT OWL BBS · ${t("夜猫论坛", "Night Owl BBS")}</p><div class="footer-links">${a("chat", t("回到聊天", "Back to chat"))} · ${a("forum", t("论坛首页", "Forum home"))} · ${a("forum?section=work", t("工作信息", "Work notices"))} · ${a("forum?section=web", t("老网站", "Old websites"))} · ${folder} · ${credits}</div><p>${t("虚构社区，帖子与商家均为作品内容，不接受真实交易。", "A fictional community. Posts and shops are part of the work; no real transactions are accepted.")}</p>${warning}</footer>`;
+      return `<footer class="forum-footer"><p class="bbs-footer-sticker">${t("页面不会自动刷新，帖子内容以本次打开时显示的为准。", "This page does not refresh automatically. You’re reading the version loaded when you opened it.")}</p><p class="footer-site-name">NIGHT OWL BBS · ${t("夜猫论坛", "Night Owl BBS")}</p><div class="footer-links">${a("chat", t("回到聊天", "Back to chat"))} · ${a("forum", t("论坛首页", "Forum home"))} · ${a("forum?section=work", t("工作信息", "Work notices"))} · ${a("forum?section=web", t("老网站", "Old websites"))} · ${folder} · ${credits}</div><p>${t("本论坛及商家均为虚构，不接受真实交易。", "A fictional community. Posts and shops are part of the work; no real transactions are accepted.")}</p>${warning}</footer>`;
     if (site === "careers")
-      return `<footer class="careers-footer"><p class="footer-site-name">STILLWATER HERITAGE RECORDS</p><div class="footer-links">${a("careers", t("招聘信息", "Opportunities"))} · ${a("forum", t("回论坛看看", "Back to the forum"))} · ${folder} · ${credits}</div><p>${t("虚构职位展示，不接收真实简历、申请或付款。", "A fictional job listing. No real CVs, applications or payments are accepted.")}</p>${warning}</footer>`;
-    return `<footer>${site === "hotel" ? `<p class="hotel-archive-stamp">${t("网页资料存档：2006 年版本。房型与服务信息仅供历史查阅。", "Website archive: 2006 edition. Room and service information is retained for historical reference.")}</p>` : ""}<p>${t("虚构互动作品。酒店、招聘和资料均为剧情，不接收真实申请或付款。", "A fictional interactive work. The hotel, role and records are part of the story. No real applications or payments are accepted.")}</p>${storageFailed ? `<p role="status">${t("浏览器无法保存进度，当前标签页仍可继续操作。", "Storage is unavailable; the current tab remains playable.")}</p>` : ""}${a("forum", t("回论坛看看", "Back to the forum"))} · ${a("careers", t("返回招聘页", "Careers"))} · ${a("guestbook", t("住客留言", "Guestbook"))} · ${a("history", t("旅馆历史", "History"))} · ${a("gallery", t("旅馆相册", "Photo gallery"))} · ${a("notices", t("公告栏", "Notices"))} · ${a("staff", t("员工档案", "Staff archive"))} · ${a("notes", t("工作笔记", "Case Notes"))} · <button class="footer-settings" data-case-action="toggle-sound" aria-pressed="${state.preferences.sound}">${state.preferences.sound ? t("声音：开启", "Sound: On") : t("声音：关闭", "Sound: Off")}</button> · <button class="footer-settings" data-case-action="settings">${t("声音与设置", "Sound & settings")}</button> · <button class="footer-settings" data-ad-action="folder">${t("我的广告夹", "My ad folder")}</button> · ${a("credits", t("图片来源", "Image credits"))}</footer>`;
+      return `<footer class="careers-footer"><p class="footer-site-name">STILLWATER HERITAGE RECORDS</p><div class="footer-links">${a("careers", t("招聘信息", "Opportunities"))} · ${a("forum", t("回论坛看看", "Back to the forum"))} · ${folder} · ${credits}</div><p>${t("职位均为虚构，不接收简历、真实申请或付款。", "A fictional job listing. No real CVs, applications or payments are accepted.")}</p>${warning}</footer>`;
+    return `<footer>${site === "hotel" ? `<p class="hotel-archive-stamp">${t("网页存档 · 2006 年版本。房型和服务信息仅供查阅。", "Website archive: 2006 edition. Room and service information is retained for historical reference.")}</p>` : ""}<p>${t("本作是虚构互动作品，酒店、招聘及档案均属剧情内容。不接受真实申请或付款。", "A fictional interactive work. The hotel, role and records are part of the story. No real applications or payments are accepted.")}</p>${storageFailed ? `<p role="status">${t("浏览器暂时无法保存进度。这个标签页仍可继续，关闭后可能丢失记录。", "Your browser can’t save progress right now. You can keep going in this tab, but closing it may lose your work.")}</p>` : ""}${a("forum", t("回论坛看看", "Back to the forum"))} · ${a("careers", t("返回招聘页", "Careers"))} · ${a("guestbook", t("住客留言", "Guestbook"))} · ${a("history", t("旅馆历史", "History"))} · ${a("gallery", t("旅馆相册", "Photo gallery"))} · ${a("notices", t("公告栏", "Notices"))} · ${a("staff", t("员工档案", "Staff archive"))} · ${a("notes", t("工作笔记", "Case Notes"))} · <button class="footer-settings" data-case-action="toggle-sound" aria-pressed="${state.preferences.sound}">${state.preferences.sound ? t("声音：开启", "Sound: On") : t("声音：关闭", "Sound: Off")}</button> · <button class="footer-settings" data-case-action="settings">${t("声音与设置", "Sound & settings")}</button> · <button class="footer-settings" data-ad-action="folder">${t("我的广告夹", "My ad folder")}</button> · ${a("credits", t("图片来源", "Image credits"))}</footer>`;
   }
   function endingView() {
     const requested = new URLSearchParams(
@@ -484,7 +484,7 @@
         "STAFF ARCHIVE",
         t("旧档案目录", "Retained file index"),
         t(
-          "这里只列出本次已打开的文件。",
+          "本次查看过的文件列在这里。",
           "This index contains read-only material associated with the review.",
         ),
       ) + views.reference("notes", t("工作笔记", "Case Notes"));
@@ -608,7 +608,7 @@
         .querySelector(".daily-notice")
         ?.insertAdjacentHTML(
           "afterend",
-          `<p class="document"><a href="#mirror">${t("客房目录已更新 · 查看当前页面", "Room directory updated · View current page")} →</a></p>`,
+          `<p class="document"><a href="#mirror">${t("客房目录有更新 · 查看", "Room directory updated · View current page")} →</a></p>`,
         );
     }
     ads.navigate();
@@ -666,7 +666,7 @@
         if (el) {
           el.className = "night-feedback-error";
           el.textContent = result.error === "void-first"
-            ? t("还有一段未归档画面，先在监控下方打开查看。", "An unlisted picture remains. Open it below the monitor first.")
+            ? t("还有一段画面未查看，入口在监控下方。", "An unlisted picture remains. Open it below the monitor first.")
             : [
             "night-cart",
             "night-cabinet",
@@ -674,21 +674,21 @@
           ].includes(result.error)
             ? {
                 "night-cart": t(
-                  "先把推车挪开，柜门才能打开。",
+                  "推车挡住了柜门，先把它挪开。",
                   "Move the cart to reach the cabinet.",
                 ),
                 "night-cabinet": t(
-                  "供电拉杆在维修柜里。",
+                  "门锁的供电拉杆在维修柜内。",
                   "The supply lever is inside the cabinet.",
                 ),
                 "night-power": t(
-                  "门锁没通电。沿线路回西侧维修柜看看。",
+                  "门锁没有通电。沿墙上的线回西侧维修柜检查。",
                   "The lock has no power. Follow its cable back to the west cabinet.",
                 ),
               }[result.error]
             : result.error === "night-landmark"
               ? t(
-                  "两路画面的地标对不上。已确认的连接还在。",
+                  "这两个机位的地标对不上。之前确认的连接已保留。",
                   "The landmarks do not match. Earlier connections are retained.",
                 )
               : (() => {
@@ -697,21 +697,21 @@
                   );
                   return !circuit.readable
                     ? t(
-                        "未保存：录像线路还没接通。A 的左侧输入必须连到 F 的右侧出口。当前接线已保留。",
+                        "未保存：录像线路没有接通。请检查 A 左侧到 F 右侧是否连成通路；当前接线不会丢失。",
                         "Not saved: the reel has no continuous path from the left of A to the right of F. Your wiring is retained.",
                       )
                     : !state.night.isolated
                       ? t(
-                          "未保存：自动回写电源仍然连接。请把 AUTO-WRITE 切到“已隔离”。",
+                          "未保存：AUTO-WRITE 仍接着电源，请先切到“已隔离”。",
                           "Not saved: auto-write is still connected. Switch AUTO-WRITE to ISOLATED.",
                         )
                       : !state.night.manual
                         ? t(
-                            "未保存：当前为自动模式。切换到 MANUAL 后才能保存检修配置。",
+                            "未保存：当前是 AUTO 模式，请切换为 MANUAL 后再保存。",
                             "Not saved: the panel is in AUTO mode. Select MANUAL to save the service configuration.",
                           )
                         : t(
-                            "锁定前请先保存配置，并恢复监控最后一帧。",
+                            "请先保存接线配置、恢复监控最后一帧，再锁定原始备份。",
                             "Save the configuration and restore the last camera frame before locking the archive.",
                           );
                 })();

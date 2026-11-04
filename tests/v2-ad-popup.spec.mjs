@@ -169,7 +169,7 @@ test('passive windows rotate while the card being read or keyboard-focused stays
 test('the original adverts and new themed campaigns both open the same existing shops',async({page})=>{
   await start(page);await page.clock.runFor(8000);
   await expect(card(page,'pet')).toHaveAttribute('data-layout','classic');
-  await expect(card(page,'pet').locator('h2')).toContainText('狗狗最近怎么老叹气');
+  await expect(card(page,'pet').locator('h2')).toContainText('狗狗最近总没精神');
   await card(page,'pet').locator('[data-ad-action=close]').click();await page.evaluate(()=>{Math.random=()=>.5;});
   await page.clock.runFor(10000);
   const promotion=page.locator('[data-active-ad]:not([data-layout=classic])').first();await expect(promotion).toBeVisible();

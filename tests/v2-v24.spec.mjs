@@ -134,7 +134,7 @@ for (const entry of ["index-zh.html", "index.html"])
     await expect(page.locator('.cctv-osd.bottom').first()).toContainText('2006-10-17');
     await page.goto("/" + entry + "#terminal");
     await expect(page.locator(".maintenance-label")).toContainText(
-      entry.includes("zh") ? "A 左侧" : "enters A from the left",
+      entry.includes("zh") ? /A\s*(?:的\s*)?左侧/ : "enters A from the left",
     );
     await expect(page.locator(".maintenance-label")).toContainText("MANUAL");
     await expect(
@@ -145,7 +145,7 @@ for (const entry of ["index-zh.html", "index.html"])
     ).toBeVisible();
     await page.locator("[data-night-action=save]").click();
     await expect(page.locator("#night-feedback")).toContainText(
-      entry.includes("zh") ? "A 的左侧" : "left of A",
+      entry.includes("zh") ? /A\s*(?:的\s*)?左侧/ : "left of A",
     );
   });
 for (const width of [375, 390, 768, 1280, 1440])

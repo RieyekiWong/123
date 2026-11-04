@@ -23,10 +23,14 @@ test('the supplied eight complete Chinese threads and 44 replies are preserved v
  }
  assert.equal(replies,44);assert.equal(all.find(p=>p.id==='welcome-rules').replies.length,0);
 });
-test('the company, four jobs, FAQ and four ordinary guest entries retain the supplied Chinese copy',()=>{
+test('edited recruitment copy retains the supplied roles and bilingual content; ordinary guest entries stay verbatim',()=>{
  const {company,jobs,updates,faq}=StillwaterCareers.data;
  assert.equal(jobs.length,4);assert.deepEqual(jobs.map(j=>j.work),['remote','onsite','remote','remote']);
- for(const copy of [...company,...jobs.flatMap(j=>[j.title,j.summary,...j.paragraphs]),...updates.map(u=>u[1]),...faq.flat()]){assert.ok(brief.includes(copy[0]),copy[0]);assert.ok(copy[1]);}
+ assert.deepEqual(jobs.map(j=>j.id),['archive-job','scan-assistant','photo-proofreader','catalog-tester']);
+ assert.deepEqual(jobs.map(j=>j.date),[null,'2026-10-28','2026-10-22','2026-10-09']);
+ for(const job of jobs)assert.ok(brief.includes(job.title[0]));
+ assert.ok(company[0][0].includes('Stillwater Heritage Records'));
+ for(const copy of [...company,...jobs.flatMap(j=>[j.title,j.summary,...j.paragraphs]),...updates.map(u=>u[1]),...faq.flat()]){assert.ok(copy[0]?.trim());assert.ok(copy[1]?.trim());}
  assert.equal(StillwaterHotelExtras.guests.length,4);
  for(const guest of StillwaterHotelExtras.guests){assert.ok(brief.includes(guest.name+'｜'+guest.at));assert.ok(brief.includes(guest.text[0]));assert.ok(guest.at<'2006-10-17');assert.ok(guest.text[1]);}
 });
