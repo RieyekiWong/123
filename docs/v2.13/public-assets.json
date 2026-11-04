@@ -1,0 +1,1362 @@
+{
+  "at": "2026-11-04T20:18:55.346944+00:00",
+  "version": "4.13.0",
+  "deploymentCommit": "38de1b52a94a84342b0bbb791263bca7cd1d928d",
+  "defaultTLSVerification": true,
+  "files": 169,
+  "matched": 169,
+  "rows": [
+    {
+      "file": "index.html",
+      "status": 200,
+      "bytes": 4480,
+      "expected": "64c7df9f57787053e013cb1d6dbef93b0dbaaac1a563937c4eac28c209b6ac0f",
+      "actual": "64c7df9f57787053e013cb1d6dbef93b0dbaaac1a563937c4eac28c209b6ac0f",
+      "match": true
+    },
+    {
+      "file": "index-zh.html",
+      "status": 200,
+      "bytes": 4451,
+      "expected": "eed11e21ced4397a7a2435ad9800ca466949223e9229d8245dad1eef87bd3d2b",
+      "actual": "eed11e21ced4397a7a2435ad9800ca466949223e9229d8245dad1eef87bd3d2b",
+      "match": true
+    },
+    {
+      "file": "haunt-preview.html",
+      "status": 200,
+      "bytes": 3281,
+      "expected": "fb08a446349e1ecbc175c3b63142b14cd54f9a128d2f5b58abc727eb8ac468e1",
+      "actual": "fb08a446349e1ecbc175c3b63142b14cd54f9a128d2f5b58abc727eb8ac468e1",
+      "match": true
+    },
+    {
+      "file": "case-data.js",
+      "status": 200,
+      "bytes": 35712,
+      "expected": "65b62652c3281f8f653a314c64a17a4a75908375a00ef6baf6ea39f362da39b9",
+      "actual": "65b62652c3281f8f653a314c64a17a4a75908375a00ef6baf6ea39f362da39b9",
+      "match": true
+    },
+    {
+      "file": "case-evidence.js",
+      "status": 200,
+      "bytes": 19148,
+      "expected": "8b9677dc5a33e0bbf8d7f5d3f6be84ff69088f21d66ab9fad1455f1150a4c5eb",
+      "actual": "8b9677dc5a33e0bbf8d7f5d3f6be84ff69088f21d66ab9fad1455f1150a4c5eb",
+      "match": true
+    },
+    {
+      "file": "case-evidence.css",
+      "status": 200,
+      "bytes": 11665,
+      "expected": "5f01188f41394fe12c129060d511e2b5438206291d7f7777ad101a290769a2ea",
+      "actual": "5f01188f41394fe12c129060d511e2b5438206291d7f7777ad101a290769a2ea",
+      "match": true
+    },
+    {
+      "file": "case-state.js",
+      "status": 200,
+      "bytes": 43661,
+      "expected": "e4406cadb9dcc63bae65a6522f48f5469b94394d42cfd9044566b70285dfd5ec",
+      "actual": "e4406cadb9dcc63bae65a6522f48f5469b94394d42cfd9044566b70285dfd5ec",
+      "match": true
+    },
+    {
+      "file": "case-app.js",
+      "status": 200,
+      "bytes": 42015,
+      "expected": "755d5371d207ab0a3ed34a177a1f7b1f4956793618bca7d7b1aa2554f0c8fc4c",
+      "actual": "755d5371d207ab0a3ed34a177a1f7b1f4956793618bca7d7b1aa2554f0c8fc4c",
+      "match": true
+    },
+    {
+      "file": "case-pages.js",
+      "status": 200,
+      "bytes": 42456,
+      "expected": "573b60c7868ba2ad845a9fd09ee11b8f735f4098bb8340a397c7f55f8e4f6224",
+      "actual": "573b60c7868ba2ad845a9fd09ee11b8f735f4098bb8340a397c7f55f8e4f6224",
+      "match": true
+    },
+    {
+      "file": "case-comfort.js",
+      "status": 200,
+      "bytes": 8938,
+      "expected": "896b5822d000783d0db69be0e385713274d27b67575fad095fac2eb1eb82d0f6",
+      "actual": "896b5822d000783d0db69be0e385713274d27b67575fad095fac2eb1eb82d0f6",
+      "match": true
+    },
+    {
+      "file": "case-feedback.js",
+      "status": 200,
+      "bytes": 4486,
+      "expected": "8f36991dc5a3e2ba4c5a6a990be62475c7c996595bb5052343900ec5a0e3d595",
+      "actual": "8f36991dc5a3e2ba4c5a6a990be62475c7c996595bb5052343900ec5a0e3d595",
+      "match": true
+    },
+    {
+      "file": "case-ending.js",
+      "status": 200,
+      "bytes": 2711,
+      "expected": "d2e4ad2facfdda574b5a5ca558c7082e6b9bdc95111c41f4a3c9049147ee2bd6",
+      "actual": "d2e4ad2facfdda574b5a5ca558c7082e6b9bdc95111c41f4a3c9049147ee2bd6",
+      "match": true
+    },
+    {
+      "file": "case-ending.css",
+      "status": 200,
+      "bytes": 3073,
+      "expected": "bc4725122a7b46f1d8e9571fb98c5909656fe97d71d4701db53081a64a60a156",
+      "actual": "bc4725122a7b46f1d8e9571fb98c5909656fe97d71d4701db53081a64a60a156",
+      "match": true
+    },
+    {
+      "file": "forum-data.js",
+      "status": 200,
+      "bytes": 7392,
+      "expected": "6080b1953d8c99b27561fe0cd7e4414ff67cfc6809963c44e5edef52d4527794",
+      "actual": "6080b1953d8c99b27561fe0cd7e4414ff67cfc6809963c44e5edef52d4527794",
+      "match": true
+    },
+    {
+      "file": "forum-extra-data.js",
+      "status": 200,
+      "bytes": 22661,
+      "expected": "1f82fa5775ee4e344c8eb99e2a7d889e1b76845a42ac8c8958c6e807eeea4ba6",
+      "actual": "1f82fa5775ee4e344c8eb99e2a7d889e1b76845a42ac8c8958c6e807eeea4ba6",
+      "match": true
+    },
+    {
+      "file": "forum-avatars.js",
+      "status": 200,
+      "bytes": 6892,
+      "expected": "ff48bc56dea859ab082057fd99addd6b418720be1002a4616a49e6d27f393170",
+      "actual": "ff48bc56dea859ab082057fd99addd6b418720be1002a4616a49e6d27f393170",
+      "match": true
+    },
+    {
+      "file": "forum.js",
+      "status": 200,
+      "bytes": 10691,
+      "expected": "196f7f0d1f7865c5cff22891a90ec82e438e60034c71a0caaff24af9b40da3ed",
+      "actual": "196f7f0d1f7865c5cff22891a90ec82e438e60034c71a0caaff24af9b40da3ed",
+      "match": true
+    },
+    {
+      "file": "forum-style.css",
+      "status": 200,
+      "bytes": 5736,
+      "expected": "c81ef165b65482923b026e11009e57b6c08885d61e59572d620c02c81ab1d96e",
+      "actual": "c81ef165b65482923b026e11009e57b6c08885d61e59572d620c02c81ab1d96e",
+      "match": true
+    },
+    {
+      "file": "careers.js",
+      "status": 200,
+      "bytes": 12270,
+      "expected": "32b9479dc3c18e4625e64417bab6781b03deb2ac089d573a6208131be9347ad9",
+      "actual": "32b9479dc3c18e4625e64417bab6781b03deb2ac089d573a6208131be9347ad9",
+      "match": true
+    },
+    {
+      "file": "hotel-extras.js",
+      "status": 200,
+      "bytes": 7210,
+      "expected": "caea186ec15ab44e9781a223a82a7b19ff000be240472ce735f5f80106915e88",
+      "actual": "caea186ec15ab44e9781a223a82a7b19ff000be240472ce735f5f80106915e88",
+      "match": true
+    },
+    {
+      "file": "front-sites.css",
+      "status": 200,
+      "bytes": 21363,
+      "expected": "956c8a83dabd58be58f0a234731f39c7d454d8e18a8e5eca1b310d74af2c2e81",
+      "actual": "956c8a83dabd58be58f0a234731f39c7d454d8e18a8e5eca1b310d74af2c2e81",
+      "match": true
+    },
+    {
+      "file": "chat-data.js",
+      "status": 200,
+      "bytes": 12575,
+      "expected": "3594ffe5b53b4b8ee47efb0f03a4d881d48c98099a795187c4efd7f2ae0e070a",
+      "actual": "3594ffe5b53b4b8ee47efb0f03a4d881d48c98099a795187c4efd7f2ae0e070a",
+      "match": true
+    },
+    {
+      "file": "chat-personas.js",
+      "status": 200,
+      "bytes": 8831,
+      "expected": "6c7c364439eebb77769b2dc6553cd3c8d1a3055d7fd36ae88cd5577c99ff651d",
+      "actual": "6c7c364439eebb77769b2dc6553cd3c8d1a3055d7fd36ae88cd5577c99ff651d",
+      "match": true
+    },
+    {
+      "file": "chat-protocol.js",
+      "status": 200,
+      "bytes": 2093,
+      "expected": "116f09174b9dc462d44c5bb3be6f19246915d81da4b771e54983ad435f6ff32e",
+      "actual": "116f09174b9dc462d44c5bb3be6f19246915d81da4b771e54983ad435f6ff32e",
+      "match": true
+    },
+    {
+      "file": "chat-fallback.js",
+      "status": 200,
+      "bytes": 14771,
+      "expected": "74697c6d348d34b347722895a9d22ef33c32b040cfc85df8f7dbda5a5e2bb08c",
+      "actual": "74697c6d348d34b347722895a9d22ef33c32b040cfc85df8f7dbda5a5e2bb08c",
+      "match": true
+    },
+    {
+      "file": "chat-model.js",
+      "status": 200,
+      "bytes": 12782,
+      "expected": "bbd0d97626cba476ffd4540d8a935bc23fa0295f860a6bd45c515258d3c3eb89",
+      "actual": "bbd0d97626cba476ffd4540d8a935bc23fa0295f860a6bd45c515258d3c3eb89",
+      "match": true
+    },
+    {
+      "file": "chat-config.js",
+      "status": 200,
+      "bytes": 520,
+      "expected": "f1a97b9d1f5a7f3d97a69470e603040aa41428af80c5cb2d46575e779694af7e",
+      "actual": "f1a97b9d1f5a7f3d97a69470e603040aa41428af80c5cb2d46575e779694af7e",
+      "match": true
+    },
+    {
+      "file": "chat-transport.js",
+      "status": 200,
+      "bytes": 5020,
+      "expected": "3b65db6a2880a3d253187bc870127da7ad841f3bac60b6e7b809c0969d6cb900",
+      "actual": "3b65db6a2880a3d253187bc870127da7ad841f3bac60b6e7b809c0969d6cb900",
+      "match": true
+    },
+    {
+      "file": "chat-view.js",
+      "status": 200,
+      "bytes": 26945,
+      "expected": "3238ea52259394946d3f65ff0d86a2ad1f94bcf81e881f7be1f93ca9829d6f70",
+      "actual": "3238ea52259394946d3f65ff0d86a2ad1f94bcf81e881f7be1f93ca9829d6f70",
+      "match": true
+    },
+    {
+      "file": "chat-style.css",
+      "status": 200,
+      "bytes": 15722,
+      "expected": "1b914e83735752d2fec02b658ea944bd5b01b05a0e5c30ac4aef2ac4b5f7052f",
+      "actual": "1b914e83735752d2fec02b658ea944bd5b01b05a0e5c30ac4aef2ac4b5f7052f",
+      "match": true
+    },
+    {
+      "file": "chat-photos.js",
+      "status": 200,
+      "bytes": 3310,
+      "expected": "e095ffe82d35231d8133fceeadc23ad9e7f4e5b4418e495a03d7f2fd15f70d07",
+      "actual": "e095ffe82d35231d8133fceeadc23ad9e7f4e5b4418e495a03d7f2fd15f70d07",
+      "match": true
+    },
+    {
+      "file": "case-void-model.js",
+      "status": 200,
+      "bytes": 10042,
+      "expected": "5b64e21955dc74313720ad3698f47a8a8180c5c900889b6f9a2c3bb1ba79120f",
+      "actual": "5b64e21955dc74313720ad3698f47a8a8180c5c900889b6f9a2c3bb1ba79120f",
+      "match": true
+    },
+    {
+      "file": "case-void.js",
+      "status": 200,
+      "bytes": 22416,
+      "expected": "31673301345a56eed46c85d333b011c985ffdbbf98e9aa0b2e1feea0600541f9",
+      "actual": "31673301345a56eed46c85d333b011c985ffdbbf98e9aa0b2e1feea0600541f9",
+      "match": true
+    },
+    {
+      "file": "case-void.css",
+      "status": 200,
+      "bytes": 5683,
+      "expected": "0fdc33b933555c7ed2fdd7a1c1b2981968db9efd03f8d8d2f25843c572c0b9c9",
+      "actual": "0fdc33b933555c7ed2fdd7a1c1b2981968db9efd03f8d8d2f25843c572c0b9c9",
+      "match": true
+    },
+    {
+      "file": "ad-data.js",
+      "status": 200,
+      "bytes": 25268,
+      "expected": "5324ba622a6ad392bb22d3ad3af8fc2428aa8e8c84f8f130b60f238631e3b68f",
+      "actual": "5324ba622a6ad392bb22d3ad3af8fc2428aa8e8c84f8f130b60f238631e3b68f",
+      "match": true
+    },
+    {
+      "file": "ad-campaigns.js",
+      "status": 200,
+      "bytes": 12980,
+      "expected": "8cd4f068f147117a8731ad3fe78069f6226c25a16f176f0dd970bef0a2fe28ba",
+      "actual": "8cd4f068f147117a8731ad3fe78069f6226c25a16f176f0dd970bef0a2fe28ba",
+      "match": true
+    },
+    {
+      "file": "ad-system.js",
+      "status": 200,
+      "bytes": 20534,
+      "expected": "d8f759a8a412093a596bd15aa9a9210900097f174a095ca4a28c16d811dc5de4",
+      "actual": "d8f759a8a412093a596bd15aa9a9210900097f174a095ca4a28c16d811dc5de4",
+      "match": true
+    },
+    {
+      "file": "ad-style.css",
+      "status": 200,
+      "bytes": 9180,
+      "expected": "f159098fc32971a52f27cdfc2942f786d8198521a02fe9bd60b3498dc46aad7d",
+      "actual": "f159098fc32971a52f27cdfc2942f786d8198521a02fe9bd60b3498dc46aad7d",
+      "match": true
+    },
+    {
+      "file": "ad-popup.css",
+      "status": 200,
+      "bytes": 24758,
+      "expected": "3089420b02a6acc420a414e2da325ad8f6c24504ba4a465f056e382621518e84",
+      "actual": "3089420b02a6acc420a414e2da325ad8f6c24504ba4a465f056e382621518e84",
+      "match": true
+    },
+    {
+      "file": "case-style.css",
+      "status": 200,
+      "bytes": 18931,
+      "expected": "54b36db9ff6ddfeba9b661f72055fb42abf7af5bbc15c0080f8208c3f00cbf0c",
+      "actual": "54b36db9ff6ddfeba9b661f72055fb42abf7af5bbc15c0080f8208c3f00cbf0c",
+      "match": true
+    },
+    {
+      "file": "hotel-promo-data.js",
+      "status": 200,
+      "bytes": 4824,
+      "expected": "12b5c99c284b212eefaff039233e455b3d91bd7afad2b192ed102df1358aa610",
+      "actual": "12b5c99c284b212eefaff039233e455b3d91bd7afad2b192ed102df1358aa610",
+      "match": true
+    },
+    {
+      "file": "hotel-promo.js",
+      "status": 200,
+      "bytes": 16424,
+      "expected": "a3c56fb7fecac13196110f2296b43e1acd8434f9999d9b4bcd7fb7d142ddafbd",
+      "actual": "a3c56fb7fecac13196110f2296b43e1acd8434f9999d9b4bcd7fb7d142ddafbd",
+      "match": true
+    },
+    {
+      "file": "hotel-promo.css",
+      "status": 200,
+      "bytes": 7880,
+      "expected": "59c4607f2bd74c466ad2e525223d38ce79d334feecc4581a3e300a6e012c11f3",
+      "actual": "59c4607f2bd74c466ad2e525223d38ce79d334feecc4581a3e300a6e012c11f3",
+      "match": true
+    },
+    {
+      "file": "site-media.js",
+      "status": 200,
+      "bytes": 17828,
+      "expected": "192a59a83d8a496b3177a3d171bbd4ed4de1da9f43be82ccd479964c8919eeed",
+      "actual": "192a59a83d8a496b3177a3d171bbd4ed4de1da9f43be82ccd479964c8919eeed",
+      "match": true
+    },
+    {
+      "file": "retro-media.js",
+      "status": 200,
+      "bytes": 2902,
+      "expected": "bead2d0b8460ce7d5a273d365795f0e6189265c2794c2af000551fdaaf9660e2",
+      "actual": "bead2d0b8460ce7d5a273d365795f0e6189265c2794c2af000551fdaaf9660e2",
+      "match": true
+    },
+    {
+      "file": "cctv-filter.css",
+      "status": 200,
+      "bytes": 6454,
+      "expected": "1fb2d3a2352dbc03ffb8d1a4b3a82819b9ad7a51397037de0697a3bf30450e5e",
+      "actual": "1fb2d3a2352dbc03ffb8d1a4b3a82819b9ad7a51397037de0697a3bf30450e5e",
+      "match": true
+    },
+    {
+      "file": "cctv-scenes.js",
+      "status": 200,
+      "bytes": 17536,
+      "expected": "ba133be4129a345dbfbdaaa5964253c0a79f8ced7c6e87b6d823c9b6385429aa",
+      "actual": "ba133be4129a345dbfbdaaa5964253c0a79f8ced7c6e87b6d823c9b6385429aa",
+      "match": true
+    },
+    {
+      "file": "case-night-model.js",
+      "status": 200,
+      "bytes": 6375,
+      "expected": "e3136a9b0daa5bbad538316db8b7ec76c23583cc020e4ed207f61e0faaa0eea1",
+      "actual": "e3136a9b0daa5bbad538316db8b7ec76c23583cc020e4ed207f61e0faaa0eea1",
+      "match": true
+    },
+    {
+      "file": "case-night.js",
+      "status": 200,
+      "bytes": 20500,
+      "expected": "55da3a830ee520a717f1c96d336f7f732c447537c818cd5621bab00d8eedbc24",
+      "actual": "55da3a830ee520a717f1c96d336f7f732c447537c818cd5621bab00d8eedbc24",
+      "match": true
+    },
+    {
+      "file": "case-audio-tracks.js",
+      "status": 200,
+      "bytes": 3186,
+      "expected": "caf35f6ca3d0d44211cf2a9bef4c3256bbe9175510d194c213233e6be2c6c2fe",
+      "actual": "caf35f6ca3d0d44211cf2a9bef4c3256bbe9175510d194c213233e6be2c6c2fe",
+      "match": true
+    },
+    {
+      "file": "case-audio-policy.js",
+      "status": 200,
+      "bytes": 1782,
+      "expected": "f1a8164e110e4d131a2adcc151f60740f97f5847c0fbec14e7a9de1d935ca011",
+      "actual": "f1a8164e110e4d131a2adcc151f60740f97f5847c0fbec14e7a9de1d935ca011",
+      "match": true
+    },
+    {
+      "file": "case-audio.js",
+      "status": 200,
+      "bytes": 10678,
+      "expected": "871335d0a2430c891761c13393d1cb3865af58587ed9df9bf61c3ae95c8702cf",
+      "actual": "871335d0a2430c891761c13393d1cb3865af58587ed9df9bf61c3ae95c8702cf",
+      "match": true
+    },
+    {
+      "file": "case-anomaly.css",
+      "status": 200,
+      "bytes": 8189,
+      "expected": "cf0b33e9f76f370c7fdf49b6f64a6b36930c20f4d6eb38429a12d4a2b9b75bd3",
+      "actual": "cf0b33e9f76f370c7fdf49b6f64a6b36930c20f4d6eb38429a12d4a2b9b75bd3",
+      "match": true
+    },
+    {
+      "file": "design-tokens.css",
+      "status": 200,
+      "bytes": 1821,
+      "expected": "46a8da4e64b3a11e403f9e068237f2a9f645fe2819ed60662c7724ba5d38ac3c",
+      "actual": "46a8da4e64b3a11e403f9e068237f2a9f645fe2819ed60662c7724ba5d38ac3c",
+      "match": true
+    },
+    {
+      "file": "visual-v24.css",
+      "status": 200,
+      "bytes": 18722,
+      "expected": "dbe631a1450296644dff420c74563cd15d26585355cf7203f11ac2be7f7a6978",
+      "actual": "dbe631a1450296644dff420c74563cd15d26585355cf7203f11ac2be7f7a6978",
+      "match": true
+    },
+    {
+      "file": "case-wiring.css",
+      "status": 200,
+      "bytes": 5372,
+      "expected": "1aebc499ef51f413fa4fdfc15d2fcb0c76bc5fa0bb74eb9193ada6205b48d437",
+      "actual": "1aebc499ef51f413fa4fdfc15d2fcb0c76bc5fa0bb74eb9193ada6205b48d437",
+      "match": true
+    },
+    {
+      "file": "case-transition.js",
+      "status": 200,
+      "bytes": 2497,
+      "expected": "02d949a7983c6e68696602a5e97a193624fbc5e6b1848e79355b02260aa58165",
+      "actual": "02d949a7983c6e68696602a5e97a193624fbc5e6b1848e79355b02260aa58165",
+      "match": true
+    },
+    {
+      "file": "case-welcome.js",
+      "status": 200,
+      "bytes": 9128,
+      "expected": "618efe279477707eedda0ceba388212637b1a94555a33264648d296721707a58",
+      "actual": "618efe279477707eedda0ceba388212637b1a94555a33264648d296721707a58",
+      "match": true
+    },
+    {
+      "file": "case-welcome.css",
+      "status": 200,
+      "bytes": 4392,
+      "expected": "0ec40e02cb6252598a77f81c9a72bf6067165a5f29c3b25581e266e567796980",
+      "actual": "0ec40e02cb6252598a77f81c9a72bf6067165a5f29c3b25581e266e567796980",
+      "match": true
+    },
+    {
+      "file": "case-space.js",
+      "status": 200,
+      "bytes": 7214,
+      "expected": "ed4e4eb632a38c841e2510bfb0048fbdd70d53e246c1b7d01eb3748bb45f7a55",
+      "actual": "ed4e4eb632a38c841e2510bfb0048fbdd70d53e246c1b7d01eb3748bb45f7a55",
+      "match": true
+    },
+    {
+      "file": "case-events.js",
+      "status": 200,
+      "bytes": 7232,
+      "expected": "d95162acc41c25d60d18e5db92ac7c17fc2ffc564249bff3b55ad5a1dc7c5656",
+      "actual": "d95162acc41c25d60d18e5db92ac7c17fc2ffc564249bff3b55ad5a1dc7c5656",
+      "match": true
+    },
+    {
+      "file": "hotel-2010.css",
+      "status": 200,
+      "bytes": 11208,
+      "expected": "8c800c8f3696f3869367cf800e1dcd09e54f709c003ed775c479f00e3d0dd108",
+      "actual": "8c800c8f3696f3869367cf800e1dcd09e54f709c003ed775c479f00e3d0dd108",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/archive.mp3",
+      "status": 200,
+      "bytes": 288524,
+      "expected": "738381d34d9f3a98315c0925679636a54c3cd1e148ced63db60b483f2b0f9088",
+      "actual": "738381d34d9f3a98315c0925679636a54c3cd1e148ced63db60b483f2b0f9088",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/archive.ogg",
+      "status": 200,
+      "bytes": 145178,
+      "expected": "3c1175569c2f25673ba0f50eb8752581c2089ec509ea4dcea6e9ff8e6afd4146",
+      "actual": "3c1175569c2f25673ba0f50eb8752581c2089ec509ea4dcea6e9ff8e6afd4146",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/cctv.mp3",
+      "status": 200,
+      "bytes": 286508,
+      "expected": "6a1c0937018d867463b1332d6f1179972e59be8c781a9fac0952325b8e168c5e",
+      "actual": "6a1c0937018d867463b1332d6f1179972e59be8c781a9fac0952325b8e168c5e",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/cctv.ogg",
+      "status": 200,
+      "bytes": 217524,
+      "expected": "ddb8916b6ce2ce12b063b5f5ad8e16768eeedbf2c3bae64f411efc8e175cffe1",
+      "actual": "ddb8916b6ce2ce12b063b5f5ad8e16768eeedbf2c3bae64f411efc8e175cffe1",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/credits.json",
+      "status": 200,
+      "bytes": 9147,
+      "expected": "dd476221bfb3f238e1f46574742bbc8fded3e505bdf4898f278a5bbc9227148f",
+      "actual": "dd476221bfb3f238e1f46574742bbc8fded3e505bdf4898f278a5bbc9227148f",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/deep.mp3",
+      "status": 200,
+      "bytes": 558524,
+      "expected": "e8efa0072d4097d20f10d1b1222bacebc03583d7f674e2d716a782cffe6f39dc",
+      "actual": "e8efa0072d4097d20f10d1b1222bacebc03583d7f674e2d716a782cffe6f39dc",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/deep.ogg",
+      "status": 200,
+      "bytes": 318319,
+      "expected": "84415789906e3e2ae7acda215508db79856fb10da27a021262f45e9a1dc732a7",
+      "actual": "84415789906e3e2ae7acda215508db79856fb10da27a021262f45e9a1dc732a7",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/investigation.mp3",
+      "status": 200,
+      "bytes": 288524,
+      "expected": "4067e5e05afb48d9e33a0d046500d71c1d82964fe3ba1adab95d0784736a6f9d",
+      "actual": "4067e5e05afb48d9e33a0d046500d71c1d82964fe3ba1adab95d0784736a6f9d",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/investigation.ogg",
+      "status": 200,
+      "bytes": 104869,
+      "expected": "3a7924b3296bc7e93bdd8cd9879d7ae011f38d96867c015aac4574323e7d5aab",
+      "actual": "3a7924b3296bc7e93bdd8cd9879d7ae011f38d96867c015aac4574323e7d5aab",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/passage.mp3",
+      "status": 200,
+      "bytes": 188444,
+      "expected": "efd131c4d9d4e0125ead509f50c954f507f9d5973ae521cd09147a2877186426",
+      "actual": "efd131c4d9d4e0125ead509f50c954f507f9d5973ae521cd09147a2877186426",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/passage.ogg",
+      "status": 200,
+      "bytes": 101659,
+      "expected": "4b7567cddee2536d9930108991e21ecd98bb2d10f7090aecc3d3f9d070042027",
+      "actual": "4b7567cddee2536d9930108991e21ecd98bb2d10f7090aecc3d3f9d070042027",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/rewrite.mp3",
+      "status": 200,
+      "bytes": 558524,
+      "expected": "328336f361db78ed23ae0cd8b4909bef2b875f7069217faee8778c4f4d6f19c6",
+      "actual": "328336f361db78ed23ae0cd8b4909bef2b875f7069217faee8778c4f4d6f19c6",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/rewrite.ogg",
+      "status": 200,
+      "bytes": 298121,
+      "expected": "5367c9629609d8e3ab566dc9c69f953fcceef93e1f11e5e2e22afe0d98abdaf4",
+      "actual": "5367c9629609d8e3ab566dc9c69f953fcceef93e1f11e5e2e22afe0d98abdaf4",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/safe.mp3",
+      "status": 200,
+      "bytes": 558524,
+      "expected": "46a96326f51570eb425fde9c32ba5bdd2357cfee2ad9da2036ef6072bb761231",
+      "actual": "46a96326f51570eb425fde9c32ba5bdd2357cfee2ad9da2036ef6072bb761231",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/safe.ogg",
+      "status": 200,
+      "bytes": 221480,
+      "expected": "50631a8bcbc2b06184d10d36c74414692d3c56d234a5bb2bf2c2a3866f61e147",
+      "actual": "50631a8bcbc2b06184d10d36c74414692d3c56d234a5bb2bf2c2a3866f61e147",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/unlisted.mp3",
+      "status": 200,
+      "bytes": 558524,
+      "expected": "ba227613532dfd04088ece0b06bca4e3760ccfade4f1f7dabe7e4d953f6b1bd8",
+      "actual": "ba227613532dfd04088ece0b06bca4e3760ccfade4f1f7dabe7e4d953f6b1bd8",
+      "match": true
+    },
+    {
+      "file": "assets/audio-v28/unlisted.ogg",
+      "status": 200,
+      "bytes": 269986,
+      "expected": "7b34f22b91bbb5f98e104fb1dd821ee432dae5f4ca6d340f776a955a3a35789d",
+      "actual": "7b34f22b91bbb5f98e104fb1dd821ee432dae5f4ca6d340f776a955a3a35789d",
+      "match": true
+    },
+    {
+      "file": "assets/cctv-grain.svg",
+      "status": 200,
+      "bytes": 293,
+      "expected": "5ab503aa27df47dff39ce74925dddb92632f1867f0244b43eeffe9a115914b14",
+      "actual": "5ab503aa27df47dff39ce74925dddb92632f1867f0244b43eeffe9a115914b14",
+      "match": true
+    },
+    {
+      "file": "assets/chat-avatars/credits.json",
+      "status": 200,
+      "bytes": 2803,
+      "expected": "dd598ba7c323a6a63e114830e4eab306dfa62caf9bf821d5a636cf6425368467",
+      "actual": "dd598ba7c323a6a63e114830e4eab306dfa62caf9bf821d5a636cf6425368467",
+      "match": true
+    },
+    {
+      "file": "assets/chat-avatars/gg.jpg",
+      "status": 200,
+      "bytes": 22127,
+      "expected": "89193b2612e5efa594b67101814c667e13dda24cc34fb26099a5c5b7fc1fbf21",
+      "actual": "89193b2612e5efa594b67101814c667e13dda24cc34fb26099a5c5b7fc1fbf21",
+      "match": true
+    },
+    {
+      "file": "assets/chat-avatars/lin.jpg",
+      "status": 200,
+      "bytes": 15229,
+      "expected": "1764351b527a995e6ff70a84c850d9e96a406c3ba51c0596c42b0d0d18f002d2",
+      "actual": "1764351b527a995e6ff70a84c850d9e96a406c3ba51c0596c42b0d0d18f002d2",
+      "match": true
+    },
+    {
+      "file": "assets/chat-avatars/me.jpg",
+      "status": 200,
+      "bytes": 15596,
+      "expected": "e5ab850847ae1fad2263795b7e96d19be7cb2630963a2a99b756040807a37740",
+      "actual": "e5ab850847ae1fad2263795b7e96d19be7cb2630963a2a99b756040807a37740",
+      "match": true
+    },
+    {
+      "file": "assets/chat-avatars/zhang.jpg",
+      "status": 200,
+      "bytes": 11673,
+      "expected": "6546c04f176e5d7f02fb8e76ba2bf8a5297c12e93c1dbcbd190e855d0501b19b",
+      "actual": "6546c04f176e5d7f02fb8e76ba2bf8a5297c12e93c1dbcbd190e855d0501b19b",
+      "match": true
+    },
+    {
+      "file": "assets/dylan-help.mp3",
+      "status": 200,
+      "bytes": 9784,
+      "expected": "56f6651dcaa61c376ec144315c82c4b4ece3baaeef3d903662df6c88b8188c97",
+      "actual": "56f6651dcaa61c376ec144315c82c4b4ece3baaeef3d903662df6c88b8188c97",
+      "match": true
+    },
+    {
+      "file": "assets/dylan-room.png",
+      "status": 200,
+      "bytes": 2202874,
+      "expected": "395b0bc9b81a3068db61094ee75d0e3fc17ca5e5b358b7e32593608ad3c906be",
+      "actual": "395b0bc9b81a3068db61094ee75d0e3fc17ca5e5b358b7e32593608ad3c906be",
+      "match": true
+    },
+    {
+      "file": "assets/emblem.svg",
+      "status": 200,
+      "bytes": 310,
+      "expected": "05ac4e701915ebd522b93d0ec843327749a61a3d2cbcdf2338aac84b643d9509",
+      "actual": "05ac4e701915ebd522b93d0ec843327749a61a3d2cbcdf2338aac84b643d9509",
+      "match": true
+    },
+    {
+      "file": "assets/forum-avatars/air_fryer_here.jpg",
+      "status": 200,
+      "bytes": 16986,
+      "expected": "79be10ce5f5e5882fa276bc0ceae2b5fd5b9a7b937c21400c0c6f9126045566b",
+      "actual": "79be10ce5f5e5882fa276bc0ceae2b5fd5b9a7b937c21400c0c6f9126045566b",
+      "match": true
+    },
+    {
+      "file": "assets/forum-avatars/credits.json",
+      "status": 200,
+      "bytes": 12954,
+      "expected": "62c395423cde3e61afade23ebbbdfdf1d5dad68687465722937a515d0cb258c1",
+      "actual": "62c395423cde3e61afade23ebbbdfdf1d5dad68687465722937a515d0cb258c1",
+      "match": true
+    },
+    {
+      "file": "assets/forum-avatars/disk_almost_full.jpg",
+      "status": 200,
+      "bytes": 21715,
+      "expected": "61808f1305772c4de88da541939f8f880ca786ba537e899100cccdab653cdbf6",
+      "actual": "61808f1305772c4de88da541939f8f880ca786ba537e899100cccdab653cdbf6",
+      "match": true
+    },
+    {
+      "file": "assets/forum-avatars/folded_corner.jpg",
+      "status": 200,
+      "bytes": 33349,
+      "expected": "510a6331e18bd251a2cbce3705768709cfaf5ee08b25261aada2dcb9fe6e5cef",
+      "actual": "510a6331e18bd251a2cbce3705768709cfaf5ee08b25261aada2dcb9fe6e5cef",
+      "match": true
+    },
+    {
+      "file": "assets/forum-avatars/friday_off.jpg",
+      "status": 200,
+      "bytes": 20001,
+      "expected": "b45a76a51f773a7a35e320dcefc1316eea148a776f26e5b118a033745ab9c42a",
+      "actual": "b45a76a51f773a7a35e320dcefc1316eea148a776f26e5b118a033745ab9c42a",
+      "match": true
+    },
+    {
+      "file": "assets/forum-avatars/fridge_cola.jpg",
+      "status": 200,
+      "bytes": 22154,
+      "expected": "e51abd45be724175f1711158c444410b3e5ea3d94f05d49eb2e7bca024713340",
+      "actual": "e51abd45be724175f1711158c444410b3e5ea3d94f05d49eb2e7bca024713340",
+      "match": true
+    },
+    {
+      "file": "assets/forum-avatars/headless_pin.jpg",
+      "status": 200,
+      "bytes": 15520,
+      "expected": "90b1822ebdb96ce76e9652049c35bc090e283a8808c915f25cb128969c235014",
+      "actual": "90b1822ebdb96ce76e9652049c35bc090e283a8808c915f25cb128969c235014",
+      "match": true
+    },
+    {
+      "file": "assets/forum-avatars/loose_sesame.jpg",
+      "status": 200,
+      "bytes": 23247,
+      "expected": "7e37a83eebad4ebe7b8ec54a6a804e01360b9806b5ff95433313199182133038",
+      "actual": "7e37a83eebad4ebe7b8ec54a6a804e01360b9806b5ff95433313199182133038",
+      "match": true
+    },
+    {
+      "file": "assets/forum-avatars/night_duty.jpg",
+      "status": 200,
+      "bytes": 18358,
+      "expected": "5c94e3f661f00c6912e12804d6a8312c932268b9938454b1d41e497893234e97",
+      "actual": "5c94e3f661f00c6912e12804d6a8312c932268b9938454b1d41e497893234e97",
+      "match": true
+    },
+    {
+      "file": "assets/forum-avatars/one_beat_late.jpg",
+      "status": 200,
+      "bytes": 38318,
+      "expected": "b81772c40a69f5dc4a82e61708c5e42035a345cd468453e6bf6713aed0b1207c",
+      "actual": "b81772c40a69f5dc4a82e61708c5e42035a345cd468453e6bf6713aed0b1207c",
+      "match": true
+    },
+    {
+      "file": "assets/forum-avatars/paperclip_04.jpg",
+      "status": 200,
+      "bytes": 18462,
+      "expected": "e996a1f34aad1217efb6ed9e4ec9b71966e34e96fa1de081ad01bde415620c96",
+      "actual": "e996a1f34aad1217efb6ed9e4ec9b71966e34e96fa1de081ad01bde415620c96",
+      "match": true
+    },
+    {
+      "file": "assets/forum-avatars/passing_sandwich.jpg",
+      "status": 200,
+      "bytes": 7146,
+      "expected": "013d642de67c2c46325cd2a22a1d20ac69b2e4b1182dfc6cc20900cf0d3a21c8",
+      "actual": "013d642de67c2c46325cd2a22a1d20ac69b2e4b1182dfc6cc20900cf0d3a21c8",
+      "match": true
+    },
+    {
+      "file": "assets/forum-avatars/turn_pages_quietly.jpg",
+      "status": 200,
+      "bytes": 26815,
+      "expected": "82d919f989abd1f6e3cd4286b232ccd028918a15f657590d522a1fab29c692ee",
+      "actual": "82d919f989abd1f6e3cd4286b232ccd028918a15f657590d522a1fab29c692ee",
+      "match": true
+    },
+    {
+      "file": "assets/forum-avatars/wide_awake_at_three.jpg",
+      "status": 200,
+      "bytes": 26628,
+      "expected": "5cfd959a90e4a0bf88112af40c7b8750a1e983ff8f5215cfec566bd6408eb670",
+      "actual": "5cfd959a90e4a0bf88112af40c7b8750a1e983ff8f5215cfec566bd6408eb670",
+      "match": true
+    },
+    {
+      "file": "assets/guestroom.jpg",
+      "status": 200,
+      "bytes": 334477,
+      "expected": "4f093ff4c47e4ade9066f48e1433b499e1e680e9820a3638bed390292274e3e7",
+      "actual": "4f093ff4c47e4ade9066f48e1433b499e1e680e9820a3638bed390292274e3e7",
+      "match": true
+    },
+    {
+      "file": "assets/hallway.jpg",
+      "status": 200,
+      "bytes": 594905,
+      "expected": "43b08bfbec57e4d2a101f21d50ea0ba570fc066ec82c287c6690d77d11263e3b",
+      "actual": "43b08bfbec57e4d2a101f21d50ea0ba570fc066ec82c287c6690d77d11263e3b",
+      "match": true
+    },
+    {
+      "file": "assets/haunt-v442/cabinet.jpg",
+      "status": 200,
+      "bytes": 18320,
+      "expected": "9c10edd9713c12c130e4907fcf66de25e882d45bc7766d55e5a2b0ebcf5ee91b",
+      "actual": "9c10edd9713c12c130e4907fcf66de25e882d45bc7766d55e5a2b0ebcf5ee91b",
+      "match": true
+    },
+    {
+      "file": "assets/haunt-v442/corridor.jpg",
+      "status": 200,
+      "bytes": 7874,
+      "expected": "aac91e5e5fb6a2a3e6ffbb437f8748511b913aaca506b4c46d81a9d90c5891d0",
+      "actual": "aac91e5e5fb6a2a3e6ffbb437f8748511b913aaca506b4c46d81a9d90c5891d0",
+      "match": true
+    },
+    {
+      "file": "assets/haunt-v442/escape.jpg",
+      "status": 200,
+      "bytes": 16597,
+      "expected": "580d61c1d6bdc320f203b14d72ba1dccef6270e563ac9f933305058793549b98",
+      "actual": "580d61c1d6bdc320f203b14d72ba1dccef6270e563ac9f933305058793549b98",
+      "match": true
+    },
+    {
+      "file": "assets/haunt-v442/last-frame.jpg",
+      "status": 200,
+      "bytes": 16945,
+      "expected": "54397cfc05f202612445d945facaf32dcb5029a0f459566f77a184d477725b9a",
+      "actual": "54397cfc05f202612445d945facaf32dcb5029a0f459566f77a184d477725b9a",
+      "match": true
+    },
+    {
+      "file": "assets/haunt-v442/manifest.json",
+      "status": 200,
+      "bytes": 3146,
+      "expected": "460684ad13143e9f363905b5d422522f72b532da8dc378a46813d1684647f028",
+      "actual": "460684ad13143e9f363905b5d422522f72b532da8dc378a46813d1684647f028",
+      "match": true
+    },
+    {
+      "file": "assets/haunt-v442/sources/cabinet.png",
+      "status": 200,
+      "bytes": 2269645,
+      "expected": "55ce0581609d2a4d8c53b5223969a76022c309f5a094bdc707aee3e344dfffc5",
+      "actual": "55ce0581609d2a4d8c53b5223969a76022c309f5a094bdc707aee3e344dfffc5",
+      "match": true
+    },
+    {
+      "file": "assets/haunt-v442/sources/corridor.png",
+      "status": 200,
+      "bytes": 2332973,
+      "expected": "618318e3503765d1702f6236d2529a145d96b1d2e3d0ba00e8ff5ac55498471f",
+      "actual": "618318e3503765d1702f6236d2529a145d96b1d2e3d0ba00e8ff5ac55498471f",
+      "match": true
+    },
+    {
+      "file": "assets/haunt-v442/sources/escape.png",
+      "status": 200,
+      "bytes": 2424472,
+      "expected": "945419f912a26898112a044b1b38af8dcbeb8e2dec74b801f35f9d521ff33456",
+      "actual": "945419f912a26898112a044b1b38af8dcbeb8e2dec74b801f35f9d521ff33456",
+      "match": true
+    },
+    {
+      "file": "assets/haunt-v442/sources/last-frame.png",
+      "status": 200,
+      "bytes": 2216932,
+      "expected": "f162e1dd2efd478e9fa8a0c354ec2920e2d400f24644d81b023bca750907b8a1",
+      "actual": "f162e1dd2efd478e9fa8a0c354ec2920e2d400f24644d81b023bca750907b8a1",
+      "match": true
+    },
+    {
+      "file": "assets/hotel-promo-v1/corridor-base.png",
+      "status": 200,
+      "bytes": 2240823,
+      "expected": "7c0c833b452616b3d7975dac79760a18dcf4c3f603e09c6ba1d1f1c1d01392c9",
+      "actual": "7c0c833b452616b3d7975dac79760a18dcf4c3f603e09c6ba1d1f1c1d01392c9",
+      "match": true
+    },
+    {
+      "file": "assets/hotel-promo-v1/credits.json",
+      "status": 200,
+      "bytes": 1448,
+      "expected": "50c2067719a8afbb5b8f756203494a64b851304cfa3c200aef46f764119e86af",
+      "actual": "50c2067719a8afbb5b8f756203494a64b851304cfa3c200aef46f764119e86af",
+      "match": true
+    },
+    {
+      "file": "assets/lobby.jpg",
+      "status": 200,
+      "bytes": 613313,
+      "expected": "a840b6ac4e32e355e71498ef62882169d635403871f8933ca960b7bd343f176c",
+      "actual": "a840b6ac4e32e355e71498ef62882169d635403871f8933ca960b7bd343f176c",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/dylan-room.jpg",
+      "status": 200,
+      "bytes": 12555,
+      "expected": "603805778516e6b8a17bd854f9c3da73b4f24e73d7ab04c3826d9245507c62d6",
+      "actual": "603805778516e6b8a17bd854f9c3da73b4f24e73d7ab04c3826d9245507c62d6",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/guestroom.jpg",
+      "status": 200,
+      "bytes": 10857,
+      "expected": "5bc443fb1a6db52f55bc619da9e0604de93bd27091d5aadf1bd6c3d806f4bf0d",
+      "actual": "5bc443fb1a6db52f55bc619da9e0604de93bd27091d5aadf1bd6c3d806f4bf0d",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/hallway.jpg",
+      "status": 200,
+      "bytes": 15830,
+      "expected": "375edcec86ada4634491393dd81dfe31525b00afa2a0d5a361e00c9a969f1a95",
+      "actual": "375edcec86ada4634491393dd81dfe31525b00afa2a0d5a361e00c9a969f1a95",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/lobby.jpg",
+      "status": 200,
+      "bytes": 20062,
+      "expected": "69372415844c3363a294afdb12ba9b769d29f3f323b15abde6490e150f9a31c5",
+      "actual": "69372415844c3363a294afdb12ba9b769d29f3f323b15abde6490e150f9a31c5",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/night-mask.jpg",
+      "status": 200,
+      "bytes": 19537,
+      "expected": "b797a32b992344d41cd29f253b50331d675a48434f221343f786fc739487b0c5",
+      "actual": "b797a32b992344d41cd29f253b50331d675a48434f221343f786fc739487b0c5",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/scare-porter.jpg",
+      "status": 200,
+      "bytes": 5478,
+      "expected": "a96f5a3bc001a335a3fecd0766dcb9c3af1f78b3162d8f368779db89406e9808",
+      "actual": "a96f5a3bc001a335a3fecd0766dcb9c3af1f78b3162d8f368779db89406e9808",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/scare-reflection.jpg",
+      "status": 200,
+      "bytes": 10214,
+      "expected": "d4099a2e432fcd495b30074547d6f9606b2d51ebbb6c2d55ffff6021886781e6",
+      "actual": "d4099a2e432fcd495b30074547d6f9606b2d51ebbb6c2d55ffff6021886781e6",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/scare-veil.jpg",
+      "status": 200,
+      "bytes": 15597,
+      "expected": "1b15ef7d9237dc227bcd814c33bee5ecb34744a4e62ff5f4dd04e68d6e31977e",
+      "actual": "1b15ef7d9237dc227bcd814c33bee5ecb34744a4e62ff5f4dd04e68d6e31977e",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/suite.jpg",
+      "status": 200,
+      "bytes": 12532,
+      "expected": "900a5138b2b3296d1b6652e8df58af51082d62f64092b1c6dec493b7ec666d9c",
+      "actual": "900a5138b2b3296d1b6652e8df58af51082d62f64092b1c6dec493b7ec666d9c",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/twin.jpg",
+      "status": 200,
+      "bytes": 16631,
+      "expected": "563cbe52aedc8413b8bbbfe5e4e9468f4aae3238d75d4fddde68d3a562bdda74",
+      "actual": "563cbe52aedc8413b8bbbfe5e4e9468f4aae3238d75d4fddde68d3a562bdda74",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/web-ad-cat-snow.jpg",
+      "status": 200,
+      "bytes": 14668,
+      "expected": "09e5278e4c0aac24e1a9e8fcb1c260511e5a62c4370042dcd30b11bb890560ac",
+      "actual": "09e5278e4c0aac24e1a9e8fcb1c260511e5a62c4370042dcd30b11bb890560ac",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/web-ad-cat-tabby.jpg",
+      "status": 200,
+      "bytes": 37322,
+      "expected": "9012cbc73faaa6bc8d490b1e63b45299235a13f5b65bb1227fd83f79cb567560",
+      "actual": "9012cbc73faaa6bc8d490b1e63b45299235a13f5b65bb1227fd83f79cb567560",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/web-ad-cat.jpg",
+      "status": 200,
+      "bytes": 21694,
+      "expected": "8ebb6a48f77934c0fd1ff35d94b945bebc2158dacac005bc0ff13131b16e5369",
+      "actual": "8ebb6a48f77934c0fd1ff35d94b945bebc2158dacac005bc0ff13131b16e5369",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/web-ad-cinema.jpg",
+      "status": 200,
+      "bytes": 16938,
+      "expected": "7816fe31086040cf570123c2bd59bf94c509204f86b41cb658bedbb74be45f88",
+      "actual": "7816fe31086040cf570123c2bd59bf94c509204f86b41cb658bedbb74be45f88",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/web-ad-clouds.jpg",
+      "status": 200,
+      "bytes": 12901,
+      "expected": "1597863c889dc29cf6a24959e77ed590645870be053ac5d45549405d656c5276",
+      "actual": "1597863c889dc29cf6a24959e77ed590645870be053ac5d45549405d656c5276",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/web-ad-computer.jpg",
+      "status": 200,
+      "bytes": 14624,
+      "expected": "a1fe7aa8052b2c0a952740426ce6873057bdb9125d015e66adef5d7e63a62c3c",
+      "actual": "a1fe7aa8052b2c0a952740426ce6873057bdb9125d015e66adef5d7e63a62c3c",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/web-ad-dog.jpg",
+      "status": 200,
+      "bytes": 24211,
+      "expected": "d1ed7eced7de27754fee57caa192b8f94cc1c693e7fd0b9bcb513851e8b40c8f",
+      "actual": "d1ed7eced7de27754fee57caa192b8f94cc1c693e7fd0b9bcb513851e8b40c8f",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/web-ad-print.jpg",
+      "status": 200,
+      "bytes": 17582,
+      "expected": "a94ae6458602feee7fdf7989cb0baf47521f1525ebf2d365875eb393c497d558",
+      "actual": "a94ae6458602feee7fdf7989cb0baf47521f1525ebf2d365875eb393c497d558",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/web-ad-records.jpg",
+      "status": 200,
+      "bytes": 23547,
+      "expected": "dd4e568ddb68d91fcf1438f70fcd10b844812606c3c93726e639af5a5cb4094b",
+      "actual": "dd4e568ddb68d91fcf1438f70fcd10b844812606c3c93726e639af5a5cb4094b",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/web-hotel-breakfast.jpg",
+      "status": 200,
+      "bytes": 19405,
+      "expected": "8641f03507b81de9d3d533ee0ae1c2da49f6d11e969ecfc4080cdcb593ce6ac8",
+      "actual": "8641f03507b81de9d3d533ee0ae1c2da49f6d11e969ecfc4080cdcb593ce6ac8",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/web-hotel-dayroom.jpg",
+      "status": 200,
+      "bytes": 12806,
+      "expected": "4cdd485dc23881e41b35c1722102ac83c61f437e1a3d61e48c3fa164b10ea785",
+      "actual": "4cdd485dc23881e41b35c1722102ac83c61f437e1a3d61e48c3fa164b10ea785",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/web-hotel-dining.jpg",
+      "status": 200,
+      "bytes": 16867,
+      "expected": "fb54dbf1f4764f5aee39f35c283007536613cb13d5f4b30c14d047c28f313d13",
+      "actual": "fb54dbf1f4764f5aee39f35c283007536613cb13d5f4b30c14d047c28f313d13",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/web-hotel-exterior.jpg",
+      "status": 200,
+      "bytes": 13243,
+      "expected": "49b0898f5748b869f1d718495010fc23a5a0cb45984f69cfc2c79f2cdfd4c011",
+      "actual": "49b0898f5748b869f1d718495010fc23a5a0cb45984f69cfc2c79f2cdfd4c011",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/web-hotel-garden.jpg",
+      "status": 200,
+      "bytes": 49093,
+      "expected": "ec38868b2fd6e7d5a13d494bf3112e2be559924230adbbd8038baae975dca49a",
+      "actual": "ec38868b2fd6e7d5a13d494bf3112e2be559924230adbbd8038baae975dca49a",
+      "match": true
+    },
+    {
+      "file": "assets/lowres/web-hotel-lounge.jpg",
+      "status": 200,
+      "bytes": 28997,
+      "expected": "84a8bbe4c5012751836dafed0e589516581551916fdbcaebdc9fee3f703076c4",
+      "actual": "84a8bbe4c5012751836dafed0e589516581551916fdbcaebdc9fee3f703076c4",
+      "match": true
+    },
+    {
+      "file": "assets/lowres-manifest.json",
+      "status": 200,
+      "bytes": 8894,
+      "expected": "f77f9e563c0c4470d0a043f1a1b741d713f947cf273e57e08e7f3355ae6ad2de",
+      "actual": "f77f9e563c0c4470d0a043f1a1b741d713f947cf273e57e08e7f3355ae6ad2de",
+      "match": true
+    },
+    {
+      "file": "assets/night-mask-credit.json",
+      "status": 200,
+      "bytes": 826,
+      "expected": "851181a26fd284194f128ada00c51e9bba6816ca1fdba8488208acc31e0d2a84",
+      "actual": "851181a26fd284194f128ada00c51e9bba6816ca1fdba8488208acc31e0d2a84",
+      "match": true
+    },
+    {
+      "file": "assets/night-mask.jpg",
+      "status": 200,
+      "bytes": 51157,
+      "expected": "4e95bf5692d12b1b8549c8347eb24a4fd6990aa432025f5edc7370d453cc4c5a",
+      "actual": "4e95bf5692d12b1b8549c8347eb24a4fd6990aa432025f5edc7370d453cc4c5a",
+      "match": true
+    },
+    {
+      "file": "assets/photo-credits.json",
+      "status": 200,
+      "bytes": 3419,
+      "expected": "ba59b83fd78fbbac2bbf1bce32df0c42e0acde745582b6afb79184a6ba8d775a",
+      "actual": "ba59b83fd78fbbac2bbf1bce32df0c42e0acde745582b6afb79184a6ba8d775a",
+      "match": true
+    },
+    {
+      "file": "assets/scare-porter.png",
+      "status": 200,
+      "bytes": 1883587,
+      "expected": "24b7de0feb819beafd6df29f02c859109ef1730b7b76bf1d674c5ef0163101ec",
+      "actual": "24b7de0feb819beafd6df29f02c859109ef1730b7b76bf1d674c5ef0163101ec",
+      "match": true
+    },
+    {
+      "file": "assets/scare-reflection.png",
+      "status": 200,
+      "bytes": 2033129,
+      "expected": "6a50a44d52bdb1ddae9aeb94b4f2c79f21bb8f6eb006961ac79f029e97182181",
+      "actual": "6a50a44d52bdb1ddae9aeb94b4f2c79f21bb8f6eb006961ac79f029e97182181",
+      "match": true
+    },
+    {
+      "file": "assets/scare-veil.png",
+      "status": 200,
+      "bytes": 2821779,
+      "expected": "445f8223135f8edb0907b6a6eb0ef1e7ab78077fca7c6cd691c75dae6d594a2a",
+      "actual": "445f8223135f8edb0907b6a6eb0ef1e7ab78077fca7c6cd691c75dae6d594a2a",
+      "match": true
+    },
+    {
+      "file": "assets/suite.jpg",
+      "status": 200,
+      "bytes": 519932,
+      "expected": "01b15004bb86892ce978153503deb908216689eae777a65d38b31a49a615f4e1",
+      "actual": "01b15004bb86892ce978153503deb908216689eae777a65d38b31a49a615f4e1",
+      "match": true
+    },
+    {
+      "file": "assets/twin.jpg",
+      "status": 200,
+      "bytes": 431763,
+      "expected": "d81578ae5ce883acfff414ef1ba3db03306bdb8fc2e4a08a03c3368f622a04cb",
+      "actual": "d81578ae5ce883acfff414ef1ba3db03306bdb8fc2e4a08a03c3368f622a04cb",
+      "match": true
+    },
+    {
+      "file": "assets/void-v26/credits.json",
+      "status": 200,
+      "bytes": 732,
+      "expected": "7758f85b766ff76b1ac45fc43e0aba4c0efeb52ca4bca3bb72b6120bac07151b",
+      "actual": "7758f85b766ff76b1ac45fc43e0aba4c0efeb52ca4bca3bb72b6120bac07151b",
+      "match": true
+    },
+    {
+      "file": "assets/void-v26/fragment-face.png",
+      "status": 200,
+      "bytes": 210840,
+      "expected": "78b075e0df5f9c29b8a72dfdf24d37a61917f44a7efe180c0a2537048524f03f",
+      "actual": "78b075e0df5f9c29b8a72dfdf24d37a61917f44a7efe180c0a2537048524f03f",
+      "match": true
+    },
+    {
+      "file": "assets/void-v26/lookback.png",
+      "status": 200,
+      "bytes": 205294,
+      "expected": "1135b71b4ffe49081d2b461a2f434f083f9d4a0f5616d6096808e09e059de004",
+      "actual": "1135b71b4ffe49081d2b461a2f434f083f9d4a0f5616d6096808e09e059de004",
+      "match": true
+    },
+    {
+      "file": "assets/web/ad-cat-snow.jpg",
+      "status": 200,
+      "bytes": 126936,
+      "expected": "a34ee05fe8cb1badd2d7ffbeec2257c79f3683bd3ea0aef2b4ec709e42878734",
+      "actual": "a34ee05fe8cb1badd2d7ffbeec2257c79f3683bd3ea0aef2b4ec709e42878734",
+      "match": true
+    },
+    {
+      "file": "assets/web/ad-cat-tabby.jpg",
+      "status": 200,
+      "bytes": 331846,
+      "expected": "9b46595fdf92b4a91d380e6b94721da5a68ec18ace40f4829a29db357d79bda5",
+      "actual": "9b46595fdf92b4a91d380e6b94721da5a68ec18ace40f4829a29db357d79bda5",
+      "match": true
+    },
+    {
+      "file": "assets/web/ad-cat.jpg",
+      "status": 200,
+      "bytes": 191206,
+      "expected": "cf439a8a90cd05d5922818c34129116fa64eb676c0a0a702295e85d5879e55c2",
+      "actual": "cf439a8a90cd05d5922818c34129116fa64eb676c0a0a702295e85d5879e55c2",
+      "match": true
+    },
+    {
+      "file": "assets/web/ad-cinema.jpg",
+      "status": 200,
+      "bytes": 129259,
+      "expected": "b2c72ea89aa9dde21326c3de03345111c11abe37b7d3a4846a7ee6dd1abbf9c3",
+      "actual": "b2c72ea89aa9dde21326c3de03345111c11abe37b7d3a4846a7ee6dd1abbf9c3",
+      "match": true
+    },
+    {
+      "file": "assets/web/ad-clouds.jpg",
+      "status": 200,
+      "bytes": 99697,
+      "expected": "a0edc716f96abf55d9296b1829f21df01cc9339a203b430f8705fa2b1817395d",
+      "actual": "a0edc716f96abf55d9296b1829f21df01cc9339a203b430f8705fa2b1817395d",
+      "match": true
+    },
+    {
+      "file": "assets/web/ad-computer.jpg",
+      "status": 200,
+      "bytes": 79645,
+      "expected": "cbbdc6a2fc45f0118906d19c0edf18e2cf66762344da45f661fcef2a1c15df98",
+      "actual": "cbbdc6a2fc45f0118906d19c0edf18e2cf66762344da45f661fcef2a1c15df98",
+      "match": true
+    },
+    {
+      "file": "assets/web/ad-dog.jpg",
+      "status": 200,
+      "bytes": 248335,
+      "expected": "3d7124dd3dd12544571816d152a8ae1e3174a731a7c78f583a93990ca60cf65a",
+      "actual": "3d7124dd3dd12544571816d152a8ae1e3174a731a7c78f583a93990ca60cf65a",
+      "match": true
+    },
+    {
+      "file": "assets/web/ad-print.jpg",
+      "status": 200,
+      "bytes": 131945,
+      "expected": "61cc719cbf035d0e2fc4647fd3d63c52fa41a2dd8f8d89218bd22cdb73f1073d",
+      "actual": "61cc719cbf035d0e2fc4647fd3d63c52fa41a2dd8f8d89218bd22cdb73f1073d",
+      "match": true
+    },
+    {
+      "file": "assets/web/ad-records.jpg",
+      "status": 200,
+      "bytes": 148094,
+      "expected": "ea9426afdb705f1a16ab9d7ae23f4cf7e5bcb5981a073ef77870108dc3364f34",
+      "actual": "ea9426afdb705f1a16ab9d7ae23f4cf7e5bcb5981a073ef77870108dc3364f34",
+      "match": true
+    },
+    {
+      "file": "assets/web/hotel-breakfast.jpg",
+      "status": 200,
+      "bytes": 251238,
+      "expected": "528b364a57199c6000175843260690e6765dcfaea5aed9bdf23e18079f4b0c7c",
+      "actual": "528b364a57199c6000175843260690e6765dcfaea5aed9bdf23e18079f4b0c7c",
+      "match": true
+    },
+    {
+      "file": "assets/web/hotel-dayroom.jpg",
+      "status": 200,
+      "bytes": 183543,
+      "expected": "2e0db0857d5c02e38a9684eea920ab2c2f2a80c19d57a36fe157216a16951eac",
+      "actual": "2e0db0857d5c02e38a9684eea920ab2c2f2a80c19d57a36fe157216a16951eac",
+      "match": true
+    },
+    {
+      "file": "assets/web/hotel-dining.jpg",
+      "status": 200,
+      "bytes": 236018,
+      "expected": "9f9ca4aa21901edd35c62af730747869f57fa8ad7922a987e32fd8f97c0790b8",
+      "actual": "9f9ca4aa21901edd35c62af730747869f57fa8ad7922a987e32fd8f97c0790b8",
+      "match": true
+    },
+    {
+      "file": "assets/web/hotel-exterior.jpg",
+      "status": 200,
+      "bytes": 191986,
+      "expected": "348121f45b23c7227c912739e82e92a5e21b80556a53520c0314da2d462a8b11",
+      "actual": "348121f45b23c7227c912739e82e92a5e21b80556a53520c0314da2d462a8b11",
+      "match": true
+    },
+    {
+      "file": "assets/web/hotel-garden.jpg",
+      "status": 200,
+      "bytes": 285633,
+      "expected": "0ee5695d5cdb2dd15b28f0772ce1c42118f426375749316fc02fa9832273dfe6",
+      "actual": "0ee5695d5cdb2dd15b28f0772ce1c42118f426375749316fc02fa9832273dfe6",
+      "match": true
+    },
+    {
+      "file": "assets/web/hotel-lounge.jpg",
+      "status": 200,
+      "bytes": 434648,
+      "expected": "a212c36e1c40b7bf459e6527e9dea58d4079edfed4207e90761d8eaf51551eab",
+      "actual": "a212c36e1c40b7bf459e6527e9dea58d4079edfed4207e90761d8eaf51551eab",
+      "match": true
+    },
+    {
+      "file": "assets/web-photo-credits.json",
+      "status": 200,
+      "bytes": 17502,
+      "expected": "45b563af14300e57794064311af017f186f289346e399c680ae341d319164b66",
+      "actual": "45b563af14300e57794064311af017f186f289346e399c680ae341d319164b66",
+      "match": true
+    }
+  ]
+}

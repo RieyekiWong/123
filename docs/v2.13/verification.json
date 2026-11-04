@@ -41,12 +41,17 @@
           "actual open-window contrast and phone width"
         ]
       },
-      "uniqueBrowserCasesVerified": 189
+      "uniqueBrowserCasesVerified": 189,
+      "recordingCaptionCheck": {
+        "tests": 1,
+        "passed": 1,
+        "rule": "Retained source CAM label matches the restored live camera label."
+      }
     }
   },
   "protectedSystems": "preserved-systems.json",
   "localPlaythrough": "local-playthrough.json",
-  "publicStatus": "Not published yet. Will verify the actual deployed files and UI after push.",
+  "publicStatus": "First deployment passed 169 file hashes and two complete public playthroughs. A recording-caption correction is being deployed and will be rechecked.",
   "limitations": [
     "Automated Chromium runs, desktop and emulated phone/tablet viewports; no physical iPhone/Safari/Firefox test.",
     "Fresh runs use actual page interactions with predetermined test decisions, not a human blind usability study.",
@@ -58,7 +63,8 @@
     "Legacy browser fixtures explicitly omit the new desk field so they genuinely represent old saves.",
     "Error count no longer expands deeper hints automatically.",
     "Classification windows override dark-chapter heading/link colors and retain a consistent readable background.",
-    "Unavailable routes show one recovery entry rather than duplicate goal links."
+    "Unavailable routes show one recovery entry rather than duplicate goal links.",
+    "Retained recording caption now matches the actual CAM 02 west-corridor feed; the module URL is cache-busted."
   ],
   "localPlaythroughResult": {
     "runs": 2,
@@ -81,5 +87,17 @@
     "allIdentical": true,
     "factsAndInventoryUnchanged": true,
     "retainedVoidRuleASTs": 18
+  },
+  "publicFirstDeployment": {
+    "commit": "38de1b52a94a84342b0bbb791263bca7cd1d928d",
+    "run": "https://github.com/RieyekiWong/123/actions/runs/41905135154",
+    "result": "success",
+    "matchedFiles": 169,
+    "playthroughs": [
+      "zh-CN / 390px / GAME OVER",
+      "en / 1440px / GAME OVER"
+    ],
+    "pageErrors": 0,
+    "nonGetRequests": 0
   }
 }

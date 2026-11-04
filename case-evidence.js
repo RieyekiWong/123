@@ -109,7 +109,7 @@ globalThis.StillwaterEvidence = {
       if (id === "footage") {
         const p = desk().footage;
         if (p)
-          media = `<div class="desk-footage cctv-frame" data-cctv-phase="altered"><canvas width="480" height="360" data-desk-footage aria-label="${t("保存的 03:17 服务通道画面", "Retained 03:17 service-passage picture")}"></canvas><p>CAM 03 / 2006-10-17 03:17:00 / READ ONLY</p></div>`;
+          media = `<div class="desk-footage cctv-frame" data-cctv-phase="altered"><canvas width="480" height="360" data-desk-footage aria-label="${t("保存的 03:17 西侧走廊画面", "Retained 03:17 west-corridor picture")}"></canvas><p>CAM 02 / 2006-10-17 03:17:00 / READ ONLY</p></div>`;
       }
       return `<article class="desk-source" data-desk-document="${id}"><header><small>${esc(doc.group)} / SOURCE FILE</small><h3>${esc(t(...doc.title))}</h3><p>${esc(doc.reference)}<br><time>${esc(doc.at)}</time></p></header>${media}<table><caption>${t("原始记录 · 点字段可作标记", "Source record · select a field to mark it")}</caption><tbody>${doc.rows.map((r) => `<tr class="${marks.includes(r.id) ? "desk-marked" : ""}"><th>${button("mark", esc(t(...r.label)), `data-document="${id}" data-field="${r.id}" aria-pressed="${marks.includes(r.id)}"`)}</th><td>${esc(t(...r.value))}</td></tr>`).join("")}</tbody></table><p class="desk-source-origin">${t("出处", "Source")}: ${link(doc.route, doc.route)}</p><div class="desk-file-actions">${comparison ? button("drop", t("移出对照", "Remove from comparison"), `data-document="${id}"`) : button("compare", t("加入对照", "Compare this file"), `data-document="${id}"`)}${link(doc.route, t("打开原网页", "Open source page"))}</div></article>`;
     }

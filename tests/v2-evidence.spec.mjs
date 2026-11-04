@@ -223,6 +223,9 @@ test("a recording becomes a retained visual source only after restoration; rewir
   s.night.frame = false;
   s.night.orientations[0] = 0;
   await seed(page, s, "terminal");
+  const originalCamera = (
+    await page.locator(".terminal-layout .cctv-osd span").first().innerText()
+  ).split(" · ")[0];
   await expect(page.locator("[data-desk-op=footage]")).toHaveCount(0);
   await page.locator("[data-night-action=frame]").click();
   await expect(page.locator("[data-desk-op=footage]")).toHaveCount(0);
@@ -234,6 +237,7 @@ test("a recording becomes a retained visual source only after restoration; rewir
   await page.evaluate(() => (location.hash = "evidence-desk"));
   await page.locator(".desk-files [data-document=footage]").click();
   await expect(page.locator("[data-desk-footage]")).toHaveCount(1);
+  await expect(page.locator(".desk-footage p")).toContainText(originalCamera);
   await expect
     .poll(() => page.locator("[data-desk-footage]").getAttribute("width"))
     .toBe("320");

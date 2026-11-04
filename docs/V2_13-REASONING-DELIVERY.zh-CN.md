@@ -124,3 +124,7 @@
 - Safari / Firefox 和真机未测；没有将这些自动化路线称为真人盲测。线上发布与实玩结果另行写入验证记录。
 
 预览：[手机核对台](v2.13/local-zh-390-evidence-desk.png)、[终章复核](v2.13/local-en-1440-final-review.png)、[最终处理](v2.13/local-en-1440-final-disposition.png)。
+
+### 首轮正式网站核对
+
+[Pages 发布](https://github.com/RieyekiWong/123/actions/runs/41905135154)成功，169 个运行文件与媒体的 SHA-256 全部一致。中文手机和英文桌面均在正式网址从微信走到 GAME OVER，刷新成功，没有脚本错误或付费聊天请求。复核时将保留录像的机位字幕修正为与实际恢复画面一致的 CAM 02 / 西侧走廊，补了来源编号对应测试，并更新该模块缓存地址；最终发布状态见验证记录。
