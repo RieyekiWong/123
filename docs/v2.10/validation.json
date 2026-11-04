@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-04",
+  "backendPublishedCommit": "0a4650f",
+  "frontendPublished": false,
+  "liveOpenAIValidated": false,
+  "backendPublicProbe": {
+    "status": 200,
+    "body": "Hello World!",
+    "cors": null
+  },
+  "unitTestsPassed": 87,
+  "chromium": {
+    "total": 160,
+    "firstRunPassed": 158,
+    "storageRegressionsFixedAndRechecked": 2
+  },
+  "chatBrowserTestsPassed": 19,
+  "localCloudflareRuntimeE2EPassed": 2,
+  "runtimeModesTested": [
+    "mock with Durable Object",
+    "mock with D1 single file"
+  ],
+  "externalOpenAIResponsesTests": "contract tests with mocked upstream; live verification pending manual deploy"
+}

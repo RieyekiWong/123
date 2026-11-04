@@ -49,3 +49,10 @@ globalThis.StillwaterChatPhotos = [
     "display": "CSS square crop; downloaded thumbnail bytes unchanged"
   }
 ];
+
+/* Additional fictional contacts reuse photographs already credited in this edition. */
+for (const [id,person] of Object.entries(globalThis.StillwaterChatPeople.contacts)) {
+  if (!person.avatarMedia) continue;
+  const photo=globalThis.StillwaterMedia.find(person.avatarMedia);
+  globalThis.StillwaterChatPhotos.push({...photo,id,file:'assets/'+photo.file,display:'CSS square crop; file bytes unchanged'});
+}

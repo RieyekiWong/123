@@ -128,3 +128,30 @@ body[data-site=chat] .chat-sr-only {position:absolute;width:1px;height:1px;paddi
 }
 
 .chat-unread{display:inline-block;margin-left:6px;min-width:17px;padding:0 4px;border-radius:10px;background:#c43b35;color:#fff;font:11px/17px Arial,sans-serif;text-align:center;}
+/* More contacts and explicit online-chat controls; retain the desktop messenger layout. */
+body[data-site=chat] .chat-contact-pane {display:flex;flex-direction:column;min-height:0;}
+body[data-site=chat] .chat-contact-list {flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;}
+body[data-site=chat] .chat-local-label {position:static;flex:none;margin:6px 17px;}
+body[data-site=chat] .chat-heading .chat-ai-open {font-size:12px;letter-spacing:0;white-space:nowrap;color:#287742;padding:6px;}
+body[data-site=chat] .chat-ai-status {flex:none;margin:0;padding:5px 26px;font-size:11px;line-height:1.5;color:#747474;background:#ededed;}
+body[data-site=chat] .chat-shared-photo {display:block;width:180px;max-width:100%;height:auto;max-height:180px;object-fit:cover;border-radius:3px;margin-top:8px;}
+body[data-site=chat] .chat-menu-actions {flex-wrap:wrap;}
+body[data-site=chat] .chat-unread {display:inline-block;vertical-align:middle;margin-left:5px;min-width:18px;padding:0 4px;font-size:11px;line-height:18px;color:white;background:#e85252;border-radius:12px;}
+.chat-ai-dialog {width:min(520px,calc(100vw - 30px));max-height:85dvh;overflow:auto;padding:24px;background:#f7f7f7;color:#242424;border:1px solid #ccc;border-radius:8px;font:14px/1.7 "PingFang SC","Microsoft YaHei",Arial,sans-serif;}
+.chat-ai-dialog::backdrop {background:#0006;}
+.chat-ai-dialog h2 {font-family:inherit;font-size:21px;margin:0 0 12px;}
+.chat-ai-dialog p {font-size:14px;line-height:1.7;margin:12px 0;}
+.chat-ai-dialog .chat-ai-dialog-state {color:#41654a;}
+.chat-ai-dialog-actions {display:flex;flex-wrap:wrap;gap:9px;margin-top:18px;}
+.chat-ai-dialog button {background:#fff;color:#2a5934;border:1px solid #c7cfca;border-radius:4px;padding:9px 12px;font:inherit;min-height:42px;cursor:pointer;}
+.chat-ai-dialog button:disabled {opacity:.5;cursor:default;}
+.chat-ai-dialog [data-chat-ai=enable] {background:#268443;color:white;border-color:#268443;}
+@media(max-width:720px) {
+ body[data-site=chat] .chat-heading {gap:5px;padding-inline:9px;}
+ body[data-site=chat] .chat-heading h1 {font-size:15px;}
+ body[data-site=chat] .chat-heading .chat-ai-open {font-size:11px;min-width:45px;padding:3px;}
+ body[data-site=chat] .chat-ai-status {font-size:10px;padding-inline:14px;}
+ body[data-site=chat] .chat-contact-pane {height:100%;}
+ body[data-site=chat] .chat-app[data-chat-list=false] .chat-contact-pane {display:none;}
+ body[data-site=chat] .chat-app[data-chat-list=true] .chat-contact-pane {display:flex;}
+}

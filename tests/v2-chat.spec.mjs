@@ -59,7 +59,8 @@ test('Enter, Shift+Enter, IME, literal HTML and local drafts work without sendin
   await expect(page.locator('.chat-message-self .chat-bubble').last()).toHaveText(literal);
   await expect(page.locator('.chat-bubble img')).toHaveCount(0);expect(await page.evaluate(()=>window.chatInjected)).toBeUndefined();
   await input.fill('草稿还没发');await page.clock.runFor(200);await page.reload();await expect(input).toHaveValue('草稿还没发');
-  await input.fill('x'.repeat(700));expect((await input.inputValue()).length).toBe(600);
+  await input.fill('x'.repeat(700));expect((await input.inputValue()).length).toBe(700);
+  await input.fill('x'.repeat(2500));expect((await input.inputValue()).length).toBe(2400);
 });
 test('returning, reloading and switching languages preserve chat and never restart the conversation',async({page})=>{
   await open(page);await send(page,'哈哈哈哈');await send(page,'发链接');
@@ -135,10 +136,10 @@ test('confirmed restart clears chat together with the new case, preserving ad an
   expect(await page.evaluate(()=>localStorage.getItem('stillwater-hotel:v2'))).toBe('old visitor');
   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('stillwater-ads:v1')).pinnedIds)).toEqual(['pet']);
 });
-test('four sourced offline photo avatars stay with the same speakers and expose author and license credits',async({page})=>{
+test('eight sourced offline photo avatars stay with the same speakers and expose author and license credits',async({page})=>{
  await open(page);
  const photos=await page.evaluate(()=>StillwaterChatPhotos);
- expect(photos).toHaveLength(4);
+ expect(photos).toHaveLength(8);
  for(const photo of photos) {
   const image=page.locator(`.chat-avatar[src="${photo.file}"]`).first();
   await expect.poll(()=>image.evaluate(el=>el.naturalWidth)).toBeGreaterThan(0);
@@ -146,6 +147,6 @@ test('four sourced offline photo avatars stay with the same speakers and expose 
  }
  await page.locator('.chat-heading [data-chat-action=members]').click();
  await page.locator('.chat-avatar-credits summary').click();
- await expect(page.locator('.chat-avatar-credits p')).toHaveCount(4);
+ await expect(page.locator('.chat-avatar-credits p')).toHaveCount(8);
  await expect(page.locator('.chat-avatar-credits')).toContainText('CC BY');
 });

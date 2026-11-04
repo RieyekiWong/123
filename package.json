@@ -1,14 +1,18 @@
 {
   "name": "stillwater-hotel",
-  "version": "4.9.0",
+  "version": "4.10.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "node server.mjs",
     "start": "node server.mjs",
     "build": "node build.mjs",
-    "test": "node --test tests/server.test.mjs tests/v2-state.test.mjs tests/v2-front-copy.test.mjs tests/v2-audio-policy.test.mjs tests/v2-ads-policy.test.mjs tests/v2-chat.test.mjs tests/v2-media.test.mjs tests/v2-night.test.mjs tests/v2-void.test.mjs",
-    "test:e2e": "playwright test"
+    "test": "node --test tests/server.test.mjs tests/v2-state.test.mjs tests/v2-front-copy.test.mjs tests/v2-audio-policy.test.mjs tests/v2-ads-policy.test.mjs tests/v2-chat.test.mjs tests/v2-media.test.mjs tests/v2-night.test.mjs tests/v2-void.test.mjs tests/v2-chat-ai.test.mjs tests/v2-chat-worker.test.mjs tests/v2-chat-d1.test.mjs",
+    "test:e2e": "playwright test",
+    "chat:install": "npm ci --prefix workers/chat",
+    "chat:dev": "npm run dev --prefix workers/chat",
+    "chat:check": "npm run check --prefix workers/chat",
+    "chat:deploy": "npm run deploy --prefix workers/chat"
   },
   "engines": {
     "node": ">=20"

@@ -1,3 +1,5 @@
+The optional AI chat backend has a **[Cloudflare Edit code deployment guide](workers/chat/dashboard/README.zh-CN.md)** and a [complete integration report](docs/V2_10-AI-CHAT.zh-CN.md). A local mock test does not confirm live OpenAI inference.
+
 # The Stillwater Hotel — V2.5
 
 A bilingual browser ARG that begins in a local group chat with friends. GGbond shares a forum post about a part-time job, which opens the existing Night Owl BBS thread. A modern careers page leads to a hotel website and its retained 2006 records, night-audit records and two evidence-based dispositions. V2.3 preserves Night Owl BBS, the seven fictional shops and the original case, then adds a mirrored hotel, spatial camera relay, operable circuit graph and a third disposition.
