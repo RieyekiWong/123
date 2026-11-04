@@ -1,0 +1,22 @@
+{
+  "release": "4.12.0",
+  "baseline": "a52e004a85acedab1edf3d26ce37e3d89a4b437e",
+  "build": "passed",
+  "unitTestsPassed": 94,
+  "browserChecks": {
+    "fullRegressionPassed": 174,
+    "updatedRelatedChecksPassed": 14,
+    "newRestartCheckPassed": 1,
+    "distinctChecksVerified": 175,
+    "functionalFailuresRemaining": 0
+  },
+  "protectedFilesByteIdentical": 47,
+  "existingAssetsChanged": [],
+  "visualReview": "visual-review.json",
+  "newAssetRecord": "../../assets/hotel-promo-v1/credits.json",
+  "schema": 2,
+  "newCaseField": "promo",
+  "originalAdStorageUnchanged": "stillwater-ads:v1",
+  "paidChatRequests": 0,
+  "publicDeploymentVerified": false
+}

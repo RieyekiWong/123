@@ -1,6 +1,8 @@
+新版 V2.12 新增 W3-02 酒店宣传资料线：同一张照片的原版、同步版与异常预览，以及接在 B-3 保存之后的可操作影像来源核对。原广告、微信、C1–C9 和三种结局保留。[改动、触发条件、存档与试玩路径](docs/V2_12-HOTEL-PROMO.zh-CN.md)。
+
 新版 V2.11 已整理广告、论坛界面、招聘、酒店与后半段文案。微信、论坛帖子和评论保留原稿。详见[本轮说明](docs/v2.11/DELIVERY.zh-CN.md)与[完整修改对照](docs/V2_11-COPY-REVIEW.zh-CN.md)。
 
-新版微信已接通真实 AI：打开[中文版](https://rieyekiwong.github.io/123/index-zh.html?v=4.11.0#chat)，点右上角「AI 聊天」并同意启用。默认仍可使用本地回复。部署说明见 **[Cloudflare 网页单文件步骤](workers/chat/dashboard/README.zh-CN.md)**；[V2.10 说明](docs/V2_10-AI-CHAT.zh-CN.md)及[正式网页验收](docs/v2.10/live-frontend.json)记录了真实接口、各角色和存档检查。
+新版微信已接通真实 AI：打开[中文版](https://rieyekiwong.github.io/123/index-zh.html?v=4.12.0#chat)，点右上角「AI 聊天」并同意启用。默认仍可使用本地回复。部署说明见 **[Cloudflare 网页单文件步骤](workers/chat/dashboard/README.zh-CN.md)**；[V2.10 说明](docs/V2_10-AI-CHAT.zh-CN.md)及[正式网页验收](docs/v2.10/live-frontend.json)记录了真实接口、各角色和存档检查。
 
 # 静水旅馆 V2.6：最后一条夜班记录与未归档画面
 

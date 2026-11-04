@@ -51,8 +51,19 @@
   }
   const a = (route, label, cls = "") =>
     `<a class="${cls}" href="#${route}">${label}</a>`;
+  const promo = window.StillwaterHotelPromo.create({
+    t, esc, getState: () => state,
+    reduced: () => comfort.reduced(),
+    sound: () => nightAudio.effect("camera"),
+    onAction: (action, payload) => {
+      const result = M.transition(state, "promo-" + action, payload);
+      save();
+      render();
+      return result;
+    },
+  });
   const views = window.StillwaterCaseViews({ t, esc, getState: () => state });
-  const nightViews = window.StillwaterNightViews({ t, getState: () => state });
+  const nightViews = window.StillwaterNightViews({ t, getState: () => state, sourceCheck: () => promo.renderCheck() });
   const spaceViews = window.StillwaterSpaceViews({ t, getState: () => state });
   const nightAudio = window.StillwaterCaseAudio.create({
     getState: () => state,
@@ -145,6 +156,7 @@
         !state.preferences.sound
       )
         nightEvents.clear();
+      promo.stopEffects();
       void nightAudio.sync();
       voidWorld?.refresh();
     },
@@ -156,6 +168,7 @@
       nextVoidFocus = "";
       welcome?.forget();
       chat.reset();
+      promo.reset();
       nightEvents.clear();
       nightAudio.stop();
       const preferences = { ...state.preferences, sound: false };
@@ -387,6 +400,7 @@
     void nightAudio.sync();
   }
   function render(moveFocus = false) {
+    promo.stopEffects();
     let route = currentRoute();
     if (route === "home") route = "hotel";
     const inVoid = route === "void" && M.canOpen(state, "void");
@@ -433,6 +447,7 @@
         matchMedia("(prefers-reduced-motion: reduce)").matches,
     );
     if (route === "chat") {
+      promo.mount(route);
       voidWorld.leave();
       document.title = t("这周一定早睡（4） · 聊天", "Early nights, starting this week (4) · Chat");
       chat.mount(document.querySelector("#case-shell"), { focus: moveFocus });
@@ -441,6 +456,7 @@
     }
     chat.leave();
     if (inVoid) {
+      promo.mount(route);
       M.transition(state, "void", { action: "enter", now: Date.now() });
       save();
       document.title = "NO INDEX · Stillwater";
@@ -612,6 +628,7 @@
         );
     }
     ads.navigate();
+    promo.mount(route);
     if (
       pendingEscape &&
       route === "ending" &&
@@ -752,7 +769,7 @@
         ? document.querySelector('[data-ending="released"]')
         : act === "save" || (act === "frame" && state.night.saved && !state.night.locked)
           ? state.night.frame && !window.StillwaterVoidModel.finished(state.night)
-            ? document.querySelector('[data-unlisted-entry]')
+            ? document.querySelector('[data-unlisted-entry]') || document.querySelector('[data-promo-action=source]')
             : document.querySelector(`[data-night-action="${state.night.frame ? "lock" : "frame"}"]`)
           : null;
       if (nextControl) {

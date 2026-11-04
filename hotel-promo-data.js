@@ -1,0 +1,57 @@
+/* W3-02 is a publicity-image reference, never a booking code or a tenth case clue. */
+globalThis.StillwaterHotelPromoData = Object.freeze({
+  id: "stillwater-archive-promo",
+  reference: "W3-02",
+  baseImage: "assets/hotel-promo-v1/corridor-base.png",
+  versions: [
+    { id: "original", label: ["W3-02 / 2006 原始宣传页", "W3-02 / 2006 original leaflet"], sign: "STAFF ONLY", stamp: "2006.09 / ORIGINAL" },
+    { id: "synced", label: ["W3-02 / 2026 同步版本", "W3-02 / 2026 synced copy"], sign: "317", stamp: "2026 / DISPLAY REVISION" },
+    { id: "preview", label: ["W3-02 / 系统临时预览", "W3-02 / system preview"], sign: "— —", stamp: "2026 / TEMP PREVIEW" },
+  ],
+  forum: {
+    tag: ["本地资料存档 · 赞助展示", "LOCAL ARCHIVE · SPONSORED"],
+    title: ["有人还记得静水旅馆吗？", "Remember Stillwater Hotel?"],
+    text: ["翻旧网页时找到了一张 2006 年的酒店宣传照。扫描得不太清楚，不过门牌还能认出来。", "We came across a 2006 hotel leaflet while sorting old web pages. The scan isn't great, but you can still make out the door signs."],
+    action: ["看看旧照片", "View the old scan"],
+    note: ["历史资料展示，不接受订房。", "Archive material only. No bookings."],
+  },
+  careers: {
+    tag: ["档案整理样张 / 非招聘岗位", "ARCHIVE SAMPLE / NOT A JOB LISTING"],
+    title: ["旧照片扫描样张：静水旅馆", "Scanning sample: Stillwater Hotel"],
+    text: ["样张编号 W3-02。旧照片里的标牌和手写备注也要保留，别直接照着新系统的信息重打。", "Sample W3-02. Signs and handwritten notes in the original image should be kept as they are, not retyped from newer records."],
+    action: ["查看扫描前后", "Compare the scan"],
+    note: ["这是以前项目留下的展示材料，不是当前招聘任务。", "An example from an earlier project, not part of the current vacancy."],
+  },
+  leaflet: {
+    tag: ["历史广告 / 扫描资料", "HISTORICAL ADVERT / SCANNED MATERIAL"],
+    title: ["静水旅馆 · 湖边歇一晚", "Stillwater Hotel · A night by the lake"],
+    text: ["离镇中心不远。前台夜里有人值班，早餐从早上七点开始。走廊有点绕，找不到房间可以回前台问。", "Just outside the town centre. The front desk is staffed overnight; breakfast starts at seven. If you get turned around upstairs, ask at reception."],
+    caption: ["三楼西侧走廊。W3-02，2006 年留档。", "Third-floor west corridor. W3-02, archived 2006."],
+    action: ["查看照片背面", "Turn over the print"],
+    back: ["W3-02 / 三楼西侧。冲印记录：2006.09。", "W3-02 / West Wing, Level 3. Print logged: Sep 2006."],
+  },
+  synced: {
+    tag: ["旧资料更新", "ARCHIVE UPDATE"],
+    title: ["静水旅馆宣传照片已重新整理", "Stillwater Hotel photo updated"],
+    text: ["门牌资料已按当前记录补齐。图像编号：W3-02。", "Door labels have been brought in line with the current register. Image W3-02."],
+    action: ["查看更新后的照片", "See the revised image"],
+    details: ["原图文件时间：2006 / 展示图更新时间：2026", "Original file: 2006 / Display revision: 2026"],
+  },
+  preview: {
+    tag: ["您刚才查看的资料", "RECENTLY VIEWED"],
+    title: ["那扇门还在照片里。", "The door is still in the picture."],
+    text: ["系统已经补全缺少的房号。您还要看旧版吗？", "The missing room number has been filled in. Do you still want the older copy?"],
+    action: ["查看旧版", "View previous version"],
+    closed: ["W3-02 的旧版仍保留在宣传资料里。", "The earlier W3-02 scan is still in the publicity archive."],
+  },
+  check: {
+    title: ["影像来源核对", "SOURCE IMAGE CHECK"],
+    intro: ["03:17 的录像已经恢复。系统找到三份标注相同位置的照片，但门牌记录不一致。", "The 03:17 recording is available. Three images match this corridor, but their door labels disagree."],
+    heading: ["先找原始照片，再检查哪一处被改过。", "Find the original image, then check what changed."],
+    later: ["这份图片是后来生成的。看看照片角落的留档日期。", "This copy was generated later. Check the archive date on the image."],
+    unchanged: ["这里没有变化。再看看门上方的字。", "Nothing changed here. Check the lettering above the door."],
+    success: ["原始照片已确认。W3-02：中间为员工通道，非客房。更新版本把它标成了 317。", "Original identified. W3-02 shows a staff access door, not a guest room. The revised copy labels it 317."],
+    action: ["继续检查未归档画面", "Continue to the unlisted image"],
+    archive: ["查看原始宣传资料", "View the original publicity archive"],
+  },
+});

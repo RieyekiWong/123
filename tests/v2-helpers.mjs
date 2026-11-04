@@ -1,5 +1,6 @@
 import { expect } from "@playwright/test";
 import { solveVoid } from "./v2-void-helpers.mjs";
+import { solvePromo } from "./v2-promo-helpers.mjs";
 export const link = async (page, route, scope = "main") => {
   await page.locator(`${scope} a[href="#${route}"]`).first().click();
   await expect(page).toHaveURL((url) => url.hash === "#" + route);
@@ -126,6 +127,7 @@ export async function toNight(page, visit = async () => {}) {
   await expect(page.locator("[data-ending]")).toHaveCount(0);
   await page.locator("[data-case-action=sync-records]").click();
   await expect(page.locator("body")).toHaveAttribute("data-anomaly", "altered");
+  await visit("mirror");
   await link(page, "rooms");
   await link(page, "guestbook");
   await link(page, "cameras");
@@ -194,6 +196,7 @@ export async function wireNight(page, { visitVoid = async () => {} } = {}) {
   await page.locator("[data-night-action=isolate]").click();
   await page.locator("[data-night-action=manual]").click();
   await page.locator("[data-night-action=save]").click();
+  if (await page.locator('.promo-source-cards').count()) await solvePromo(page);
   if (await page.locator('[data-unlisted-entry]').count() && !(await page.locator('[data-night-action=lock]').count())) {
     await page.locator('[data-unlisted-entry]').click();
     await solveVoid(page, { visit: visitVoid });

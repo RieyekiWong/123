@@ -140,6 +140,10 @@ globalThis.StillwaterVoid = {
       ctx.strokeStyle='#586455';ctx.lineWidth=2;
       ctx.beginPath();ctx.moveTo(20,110);ctx.lineTo(126,147);ctx.lineTo(176,147);ctx.moveTo(303,147);ctx.lineTo(354,147);ctx.lineTo(460,110);ctx.moveTo(86,324);ctx.lineTo(205,274);ctx.moveTo(418,324);ctx.lineTo(278,274);ctx.stroke();
       timberDoor(ctx,176,50,127,222,{lit:true});
+      if(getState().promo?.verified) {
+        ctx.fillStyle='#8d947b';ctx.font='8px monospace';
+        ctx.fillText(state().reviewed?'NO INDEX':'W3-02 / ... ORIGINAL',32,313);
+      }
     }
     function fragments(ctx,v,positions=v.positions,selected=v.selected) {
       // Fixed registration marks make the absolute picture position observable,

@@ -1,0 +1,212 @@
+{
+  "baseline": "a52e004a85acedab1edf3d26ce37e3d89a4b437e",
+  "protectedFilesByteIdentical": 47,
+  "files": [
+    {
+      "file": "ad-campaigns.js",
+      "sha256": "8cd4f068f147117a8731ad3fe78069f6226c25a16f176f0dd970bef0a2fe28ba"
+    },
+    {
+      "file": "ad-data.js",
+      "sha256": "5324ba622a6ad392bb22d3ad3af8fc2428aa8e8c84f8f130b60f238631e3b68f"
+    },
+    {
+      "file": "ad-popup.css",
+      "sha256": "3089420b02a6acc420a414e2da325ad8f6c24504ba4a465f056e382621518e84"
+    },
+    {
+      "file": "ad-style.css",
+      "sha256": "f159098fc32971a52f27cdfc2942f786d8198521a02fe9bd60b3498dc46aad7d"
+    },
+    {
+      "file": "ad-system.js",
+      "sha256": "d8f759a8a412093a596bd15aa9a9210900097f174a095ca4a28c16d811dc5de4"
+    },
+    {
+      "file": "careers.js",
+      "sha256": "32b9479dc3c18e4625e64417bab6781b03deb2ac089d573a6208131be9347ad9"
+    },
+    {
+      "file": "case-audio-policy.js",
+      "sha256": "f1a8164e110e4d131a2adcc151f60740f97f5847c0fbec14e7a9de1d935ca011"
+    },
+    {
+      "file": "case-audio-tracks.js",
+      "sha256": "caf35f6ca3d0d44211cf2a9bef4c3256bbe9175510d194c213233e6be2c6c2fe"
+    },
+    {
+      "file": "case-audio.js",
+      "sha256": "871335d0a2430c891761c13393d1cb3865af58587ed9df9bf61c3ae95c8702cf"
+    },
+    {
+      "file": "case-data.js",
+      "sha256": "2356cd089d51525cbb14743c2d25d6642040561e8c1ea3a35af24c0ea6a89d57"
+    },
+    {
+      "file": "case-ending.css",
+      "sha256": "bc4725122a7b46f1d8e9571fb98c5909656fe97d71d4701db53081a64a60a156"
+    },
+    {
+      "file": "case-ending.js",
+      "sha256": "d2e4ad2facfdda574b5a5ca558c7082e6b9bdc95111c41f4a3c9049147ee2bd6"
+    },
+    {
+      "file": "case-night-model.js",
+      "sha256": "e3136a9b0daa5bbad538316db8b7ec76c23583cc020e4ed207f61e0faaa0eea1"
+    },
+    {
+      "file": "case-void-model.js",
+      "sha256": "c676ac1c724bd062ac5bf4409a71783cf4e55829476896907af2b2c225bd6cdb"
+    },
+    {
+      "file": "cctv-filter.css",
+      "sha256": "1fb2d3a2352dbc03ffb8d1a4b3a82819b9ad7a51397037de0697a3bf30450e5e"
+    },
+    {
+      "file": "cctv-scenes.js",
+      "sha256": "ba133be4129a345dbfbdaaa5964253c0a79f8ced7c6e87b6d823c9b6385429aa"
+    },
+    {
+      "file": "chat-config.js",
+      "sha256": "f1a97b9d1f5a7f3d97a69470e603040aa41428af80c5cb2d46575e779694af7e"
+    },
+    {
+      "file": "chat-data.js",
+      "sha256": "3594ffe5b53b4b8ee47efb0f03a4d881d48c98099a795187c4efd7f2ae0e070a"
+    },
+    {
+      "file": "chat-fallback.js",
+      "sha256": "74697c6d348d34b347722895a9d22ef33c32b040cfc85df8f7dbda5a5e2bb08c"
+    },
+    {
+      "file": "chat-model.js",
+      "sha256": "bbd0d97626cba476ffd4540d8a935bc23fa0295f860a6bd45c515258d3c3eb89"
+    },
+    {
+      "file": "chat-personas.js",
+      "sha256": "6c7c364439eebb77769b2dc6553cd3c8d1a3055d7fd36ae88cd5577c99ff651d"
+    },
+    {
+      "file": "chat-photos.js",
+      "sha256": "e095ffe82d35231d8133fceeadc23ad9e7f4e5b4418e495a03d7f2fd15f70d07"
+    },
+    {
+      "file": "chat-protocol.js",
+      "sha256": "116f09174b9dc462d44c5bb3be6f19246915d81da4b771e54983ad435f6ff32e"
+    },
+    {
+      "file": "chat-style.css",
+      "sha256": "1b914e83735752d2fec02b658ea944bd5b01b05a0e5c30ac4aef2ac4b5f7052f"
+    },
+    {
+      "file": "chat-transport.js",
+      "sha256": "3b65db6a2880a3d253187bc870127da7ad841f3bac60b6e7b809c0969d6cb900"
+    },
+    {
+      "file": "chat-view.js",
+      "sha256": "3238ea52259394946d3f65ff0d86a2ad1f94bcf81e881f7be1f93ca9829d6f70"
+    },
+    {
+      "file": "forum-data.js",
+      "sha256": "6080b1953d8c99b27561fe0cd7e4414ff67cfc6809963c44e5edef52d4527794"
+    },
+    {
+      "file": "forum-extra-data.js",
+      "sha256": "1f82fa5775ee4e344c8eb99e2a7d889e1b76845a42ac8c8958c6e807eeea4ba6"
+    },
+    {
+      "file": "forum.js",
+      "sha256": "3df6e42d396a976ea0950edbcc8674a8572b2a06444a63080f3078eb197fa346"
+    },
+    {
+      "file": "hotel-extras.js",
+      "sha256": "caea186ec15ab44e9781a223a82a7b19ff000be240472ce735f5f80106915e88"
+    },
+    {
+      "file": "workers/chat/.dev.vars.example",
+      "sha256": "1b2e1951f6d223411e4d9aee937027514c8e64021d4f7573d87be2a850a37437"
+    },
+    {
+      "file": "workers/chat/README.md",
+      "sha256": "e0ee7178ffa05d45a23f7e645887832868ee8346a0c32835fa16aef45eb4d085"
+    },
+    {
+      "file": "workers/chat/build-dashboard.mjs",
+      "sha256": "0c6e265b875dbe90c0a5b6ec3ef9e1028621ef74fdd1fea520eff972b1eb5497"
+    },
+    {
+      "file": "workers/chat/create-session-secret.mjs",
+      "sha256": "b03dd61c1cdb475138ca96bcddd2cdaf53b321af887121a3748ecb1190e813fd"
+    },
+    {
+      "file": "workers/chat/dashboard/README.zh-CN.md",
+      "sha256": "a081f65fd6e360d11e025404413d4fb38497a6ddcc39fd32a7302da0ce8de43a"
+    },
+    {
+      "file": "workers/chat/dashboard/deploy-checklist.json",
+      "sha256": "e000a269309a2345bda5130ba26764c6d0bb9b7ce3cc2a681d59590431e4a216"
+    },
+    {
+      "file": "workers/chat/dashboard/entry.mjs",
+      "sha256": "1c683ee1d5458c80ad3e29612fb0e5fdb1f99b567d54645e86a14c396cfa45e6"
+    },
+    {
+      "file": "workers/chat/dashboard/schema.sql",
+      "sha256": "fa0f85788be0a7682c75d6865be283d67ba2de07a0f139280164c11391f27190"
+    },
+    {
+      "file": "workers/chat/dashboard/worker.js",
+      "sha256": "18cfca37832669f6b9f6d1f9a82efecd94ef995e119a7a012d84b2b6bbc7cb93"
+    },
+    {
+      "file": "workers/chat/package-lock.json",
+      "sha256": "1ee1bf21d5d41345e8d22a41096e38eba6801c31aaebb8d0168496f33b3ede7b"
+    },
+    {
+      "file": "workers/chat/package.json",
+      "sha256": "aa52fb5edb0d47d347dd75351a6508c86bf6cdee3e62373f69cd71c41e3f434f"
+    },
+    {
+      "file": "workers/chat/smoke.mjs",
+      "sha256": "c4ae6332c9ff187958923b420ff303b76961065463f332d31dad296aebefc6b1"
+    },
+    {
+      "file": "workers/chat/src/d1-budget.mjs",
+      "sha256": "4523a65069b2c3ac6cf1aec2e40e5cdb418730d28f51d8888e700aa992425483"
+    },
+    {
+      "file": "workers/chat/src/personas.mjs",
+      "sha256": "d93da639d49e344e0074791f6837e9f014ea0ab8715bf9b820af78be427614e1"
+    },
+    {
+      "file": "workers/chat/src/worker.mjs",
+      "sha256": "389d2a8fa3f41303e2ae995966e5b2c1f5d7c8e7d31a4d721e39660f4a6b3372"
+    },
+    {
+      "file": "workers/chat/wrangler.dashboard-test.jsonc",
+      "sha256": "dcbf6166dbc125b1b9baeee8a77c1cb9d7a82eefc0bfbce2e174b17a51b72f76"
+    },
+    {
+      "file": "workers/chat/wrangler.jsonc",
+      "sha256": "0b1f8512049e6e674118a23b2caac1f0a72683e55f6ec36e8051806f7361898a"
+    }
+  ],
+  "existingAssetsChanged": [],
+  "ordinaryShopCount": 17,
+  "caseClueIdsPreserved": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C7",
+    "C8",
+    "C9"
+  ],
+  "endingIdsPreserved": [
+    "auto-close",
+    "unverified",
+    "released"
+  ]
+}

@@ -1,5 +1,5 @@
 /* Equipment views. State/graph validation lives in the shared progression model. */
-globalThis.StillwaterNightViews = ({ t, getState }) => {
+globalThis.StillwaterNightViews = ({ t, getState, sourceCheck = () => "" }) => {
   const N = globalThis.StillwaterNightModel,
     names = [
       ["大堂楼梯", "LOBBY STAIRS"],
@@ -94,6 +94,8 @@ globalThis.StillwaterNightViews = ({ t, getState }) => {
       "原件已锁定。点击下方“保留原件并退出夜班”，即可结束本次工作。",
       "Originals locked. Keep the originals and end the shift below to finish.",
     );
+    if (n.saved && n.frame && !globalThis.StillwaterCaseState.promoChecked(getState()))
+      return t("录像已恢复。监控下方有一份影像来源核对。", "Recording restored. The source image check is below the monitor.");
     if (n.saved && n.frame && !globalThis.StillwaterVoidModel.finished(n))
       return t("录像末尾多出一段未归档画面，入口在监控下方。", "An unlisted picture remains at the end of the reel. Open it below the monitor.");
     if (n.saved) return n.frame
@@ -105,8 +107,9 @@ globalThis.StillwaterNightViews = ({ t, getState }) => {
   function terminal() {
     const n = getState().night,
       c = N.circuit(n);
-    const unlisted = globalThis.StillwaterVoidModel.gate(n)
-      ? `<section class="unlisted-record"><h2>03:17 / ${t("无机位编号", "NO CAMERA INDEX")}</h2><div class="unlisted-preview" aria-hidden="true"></div><p>${n.void.complete ? t("该画面保留为未核实，未分配身份。现在可以锁定原件，继续交接。", "Classification kept unverified, with no identity assigned. Continue with the archive lock and handover.") : t("最后一帧后面还有画面，却查不到对应的摄像头。", "A picture follows the last recorded frame. No camera is assigned to it.")}</p><a href="#void" data-unlisted-entry>${n.void.complete ? t("回看未归档画面", "Revisit the unlisted picture") : n.void.entered ? t("继续查看未归档画面", "Continue the unlisted picture") : t("查看未归档画面", "Open unlisted picture")} →</a></section>` : "";
+    const sourcePanel = sourceCheck();
+    const unlisted = sourcePanel || (globalThis.StillwaterCaseState.canOpen(getState(), "void")
+      ? `<section class="unlisted-record"><h2>03:17 / ${t("无机位编号", "NO CAMERA INDEX")}</h2><div class="unlisted-preview" aria-hidden="true"></div><p>${n.void.complete ? t("该画面保留为未核实，未分配身份。现在可以锁定原件，继续交接。", "Classification kept unverified, with no identity assigned. Continue with the archive lock and handover.") : t("最后一帧后面还有画面，却查不到对应的摄像头。", "A picture follows the last recorded frame. No camera is assigned to it.")}</p><a href="#void" data-unlisted-entry>${n.void.complete ? t("回看未归档画面", "Revisit the unlisted picture") : n.void.entered ? t("继续查看未归档画面", "Continue the unlisted picture") : t("查看未归档画面", "Open unlisted picture")} →</a></section>` : "");
 
     return (
       heading(

@@ -2,6 +2,8 @@
 globalThis.StillwaterCaseState = (() => {
   const D = globalThis.StillwaterCaseData,
     F = D.facts;
+  const freshPromo = () => ({ schema: 1, selected: "", marked: "", verified: false, echoSeen: false, legacy: false });
+  const promoChecked = (state) => state.promo.verified || state.promo.legacy;
   const routes = {
     chat: null,
     forum: null,
@@ -34,6 +36,7 @@ globalThis.StillwaterCaseState = (() => {
   const fresh = () => ({
     schema: 2,
     night: globalThis.StillwaterNightModel.fresh(),
+    promo: freshPromo(),
     evidence: [],
     completed: { serviceInspected: false, audit: false, finalEvidence: false },
     drafts: {
@@ -72,6 +75,7 @@ globalThis.StillwaterCaseState = (() => {
     (requirement === "passageComplete" &&
       globalThis.StillwaterNightModel.passageReady(state.night)) ||
     (requirement === "unlistedReady" &&
+      promoChecked(state) &&
       globalThis.StillwaterVoidModel.gate(state.night));
   const canRecord = (state, id) =>
     !!D.clues[id] && met(state, D.clues[id].unlockedAt);
@@ -185,6 +189,19 @@ globalThis.StillwaterCaseState = (() => {
     state.lastEnding = state.endings.includes(raw.lastEnding)
       ? raw.lastEnding
       : "";
+    // Existing third-chapter and completed saves keep their access. A mere
+    // pre-chapter wiring save still has the new source check available in B-3.
+    const oldDeepSave = state.night.void.entered || state.night.void.legacy ||
+      state.night.locked || state.endings.length > 0;
+    const promo = raw.promo?.schema === 1 ? raw.promo : null;
+    state.promo = freshPromo();
+    state.promo.legacy = oldDeepSave && (!promo || promo.legacy === true);
+    if (promo) {
+      state.promo.selected = ["original", "synced", "preview"].includes(promo.selected) ? promo.selected : "";
+      state.promo.marked = ["left", "middle", "right", "lamp"].includes(promo.marked) ? promo.marked : "";
+      state.promo.verified = promo.verified === true && state.promo.selected === "original" && state.promo.marked === "middle";
+      state.promo.echoSeen = state.promo.verified && promo.echoSeen === true;
+    }
     state.notices = {
       shown: raw.notices?.shown === true,
       dismissed: raw.notices?.dismissed === true,
@@ -220,9 +237,28 @@ globalThis.StillwaterCaseState = (() => {
   const fail = (error) => ({ ok: false, error });
   function transition(state, action, payload = {}) {
     if (action === "void") {
-      if (!state.completed.finalEvidence || !globalThis.StillwaterVoidModel.gate(state.night))
+      if (!state.completed.finalEvidence || !promoChecked(state) || !globalThis.StillwaterVoidModel.gate(state.night))
         return fail("void-entry");
       return globalThis.StillwaterVoidModel.transition(state.night.void, payload.action, payload);
+    }
+    if (action === "promo-source" || action === "promo-mark") {
+      if (!state.completed.finalEvidence || !globalThis.StillwaterVoidModel.ready(state.night))
+        return fail("promo-not-ready");
+      if (state.promo.verified) return ok();
+      if (action === "promo-source") {
+        if (!["original", "synced", "preview"].includes(payload.version)) return fail("promo-source");
+        state.promo.selected = payload.version;
+        state.promo.marked = "";
+        return payload.version === "original" ? ok() : fail("promo-source");
+      }
+      if (state.promo.selected !== "original") return fail("promo-source");
+      if (!["left", "middle", "right", "lamp"].includes(payload.target)) return fail("promo-unchanged");
+      state.promo.marked = payload.target;
+      if (payload.target !== "middle") return fail("promo-unchanged");
+      state.promo.verified = true;
+      const first = !state.promo.echoSeen;
+      state.promo.echoSeen = true;
+      return { ok: true, ...(first ? { event: "promo-source-echo" } : {}) };
     }
     if (action.startsWith("night-") && !state.completed.finalEvidence)
       return fail("evidence-incomplete");
@@ -532,6 +568,7 @@ globalThis.StillwaterCaseState = (() => {
     hydrate,
     has,
     canOpen,
+    promoChecked,
     recovery,
     transition,
     routes,

@@ -1,0 +1,67 @@
+{
+  "reference": "W3-02",
+  "base": {
+    "file": "corridor-base.png",
+    "sha256": "7c0c833b452616b3d7975dac79760a18dcf4c3f603e09c6ba1d1f1c1d01392c9",
+    "type": "Original generated fictional scene",
+    "created": "2026-11-04",
+    "generator": "OpenAI image generation tool",
+    "realHotel": false
+  },
+  "composition": {
+    "viewBox": [
+      0,
+      0,
+      1000,
+      750
+    ],
+    "signs": {
+      "left": {
+        "x": 155,
+        "y": 309,
+        "width": 90,
+        "height": 38
+      },
+      "middle": {
+        "x": 440,
+        "y": 303,
+        "width": 106,
+        "height": 38
+      },
+      "right": {
+        "x": 798,
+        "y": 309,
+        "width": 96,
+        "height": 38
+      }
+    }
+  },
+  "versions": {
+    "original": {
+      "signs": [
+        "316",
+        "STAFF ONLY",
+        "318"
+      ],
+      "stamp": "2006.09 / ORIGINAL"
+    },
+    "synced": {
+      "signs": [
+        "316",
+        "317",
+        "318"
+      ],
+      "stamp": "2026 / DISPLAY REVISION"
+    },
+    "preview": {
+      "signs": [
+        "316",
+        "— —",
+        "318"
+      ],
+      "stamp": "2026 / TEMP PREVIEW",
+      "optionalFigure": true
+    }
+  },
+  "implementation": "hotel-promo.js composites exact SVG sign lettering over the same unchanged base. Print texture is CSS. Preview silhouette is authored SVG and the brief source-check echo is CSS. No real hotel photograph or prior game image was replaced."
+}

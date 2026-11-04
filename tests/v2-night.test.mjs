@@ -84,6 +84,8 @@ test("new endings cannot skip equipment, true ending needs saved isolation and e
   s = M.hydrate(s);
   assert.equal(s.night.saved, true);
   assert.equal(move(s, "lock").error, "void-first");
+  assert.ok(M.transition(s, "promo-source", { version: "original" }).ok);
+  assert.ok(M.transition(s, "promo-mark", { target: "middle" }).ok);
   M.transition(s, "void", { action: "enter", now: 1000 });
   const V = globalThis.StillwaterVoidModel, v = s.night.void;
   for (let i = 0; i < 4; i++) V.transition(v, "walk", { direction: V.correct(i) });

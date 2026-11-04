@@ -1,5 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {solveVoid} from './v2-void-helpers.mjs';
+import {solvePromo} from './v2-promo-helpers.mjs';
 async function trace(page) {
  await page.addInitScript(()=>{
   window.audioTrace={contexts:[],starts:[],gains:[]};
@@ -76,6 +77,7 @@ test('CCTV, B-3, black-space entry, deeper space and a released ending use disti
  await go(page,'staff');await expect.poll(()=>active(page)).toEqual(['archive']);
  await go(page,'mirror');await expect.poll(()=>active(page)).toEqual(['rewrite']);
  await go(page,'terminal');await expect.poll(()=>active(page)).toEqual(['passage']);
+ await solvePromo(page);
  await page.locator('[data-unlisted-entry]').click();await expect.poll(()=>active(page)).toEqual(['unlisted']);
  await solveVoid(page,{visit:async stage=>{if(stage==='void-fragments')await expect.poll(()=>active(page)).toEqual(['deep']);}});
  await expect.poll(()=>active(page)).toEqual(['passage']);

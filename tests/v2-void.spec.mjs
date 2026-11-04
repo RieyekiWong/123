@@ -1,5 +1,6 @@
 import {test,expect} from './v2-fixture.mjs';
 import {solveVoid} from './v2-void-helpers.mjs';
+import {solvePromo} from './v2-promo-helpers.mjs';
 const saved=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('stillwater-case:v2')));
 async function setup(page,{entry='index-zh.html',skip=true,legacy=false}={}) {
  await page.addInitScript(({skip,legacy})=>{
@@ -7,6 +8,7 @@ async function setup(page,{entry='index-zh.html',skip=true,legacy=false}={}) {
   localStorage.setItem('stillwater-case:v2',JSON.stringify({schema:2,evidence:['C1','C2','C3','C4','C5','C6','C7','C8','C9'],completed:{audit:true,finalEvidence:true},night:{started:true,links:[0,1],door:true,frame:true,orientations:[2,1,2,0,3,0],isolated:true,manual:true,saved:true,operations:6,...(legacy?{locked:true,released:true}:{void:{schema:1}})},...(legacy?{endings:['released'],lastEnding:'released'}:{}),preferences:{skipScares:skip,scareChoiceMade:true}}));
  },{skip,legacy});
  await page.goto('/'+entry+'#terminal');
+ if(!legacy)await solvePromo(page);
 }
 for(const entry of ['index-zh.html','index.html']) {
  test(`${entry}: B-3 opens three real puzzles, returns to the original archive and preserves all endings`,async({page})=>{

@@ -10,7 +10,7 @@ const enter=()=>{const v=V.fresh();act(v,'enter',{now:1000});return v;};
 function corridor(v){for(let step=0;step<4;step++)assert.ok(act(v,'walk',{direction:V.correct(step)}).ok);}
 function align(v){for(let id=0;id<3;id++)act(v,'move',{id,dx:-v.positions[id][0],dy:-v.positions[id][1]});}
 function finish(v){corridor(v);align(v);act(v,'review');act(v,'terminal');for(const type of ['ROOM','GUEST','EMPLOYEE'])act(v,'classify',{type});act(v,'classify',{type:'UNVERIFIED'});act(v,'leave');}
-function ready(){const s=M.fresh();s.evidence=Object.keys(D.clues);s.completed={serviceInspected:true,audit:true,finalEvidence:true};Object.assign(s.night,{started:true,links:[0,1],door:true,frame:true,orientations:[2,1,2,0,3,0],isolated:true,manual:true,saved:true,operations:6});return s;}
+function ready(){const s=M.fresh();s.evidence=Object.keys(D.clues);s.completed={serviceInspected:true,audit:true,finalEvidence:true};Object.assign(s.night,{started:true,links:[0,1],door:true,frame:true,orientations:[2,1,2,0,3,0],isolated:true,manual:true,saved:true,operations:6});M.transition(s,'promo-source',{version:'original'});M.transition(s,'promo-mark',{target:'middle'});return s;}
 test('corridor routes depend on all three visible anchors and wrong doors retain the case while changing the entrance',()=>{
  const v=enter();assert.equal(act(v,'walk',{direction:'right'}).ok,true);assert.equal(v.step,0);assert.equal(v.visits,2);assert.equal(v.shadow,true);
  act(v,'observe',{target:'shadow'});assert.equal(v.shadow,false);act(v,'walk',{direction:'right'});assert.equal(v.shadow,false);
