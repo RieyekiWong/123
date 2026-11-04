@@ -1,6 +1,6 @@
 /* Clickable black space, movable image fragments and a single in-world terminal. */
 globalThis.StillwaterVoid = {
-  create({getState,t,esc,onAction}) {
+  create({getState,t,esc,onAction,evidenceReview=()=>'',guide=()=>''}) {
     const V=globalThis.StillwaterVoidModel;
     let root=null,canvas=null,drag=null,light=null,frame=0;
     const roman=['I','II','III'];
@@ -20,14 +20,6 @@ globalThis.StillwaterVoid = {
       if(v.observation==='shadow')return t("再照过去，那里已经空了。",'Nothing there when you turn the light toward it.');
       return t('来时门框的缺口、门槛上的破损和光照方向都还在。','The frame notch, threshold damage and direction of the light are still there.');
     }
-    function conflict(type) {
-      const F=globalThis.StillwaterCaseData.facts;
-      return ({
-        ROOM:t(`${F.service} 的登记用途是 SERVICE HOLDING。原客房目录没有这个房号。`,`${F.service} is registered as SERVICE HOLDING. It is absent from the original guest-room directory.`),
-        GUEST:t(`原预订单的住客是 ${F.guest}。后来写入住客栏的 ${F.reviewerName} 原本是处理人。`,`The original guest is ${F.guest}. ${F.reviewerName}, later placed in the guest field, was the reviewer.`),
-        EMPLOYEE:t(`${F.temporary} 只有一条自动排班记录，没有实际到岗记录。`,`${F.temporary} has an automatic shift assignment, but no record of arriving for duty.`),
-      })[type]||'';
-    }
     function render() {
       const v=state(),corridor=v.stage==='corridor',fragments=v.stage==='fragments',terminal=v.stage==='classify';
       const title=corridor?t(...V.scenes[v.step].title):fragments?t('断裂影像','Fragmented picture'):terminal?t('分类终端','Classification terminal'):t('未归档画面','Unlisted picture');
@@ -35,9 +27,10 @@ globalThis.StillwaterVoid = {
       if(corridor)controls=`<p class="void-instruction">${t("点击画面左侧可以回看入口；点击门，可照亮门框。也可使用下方按钮查看。",'Touch the left edge to look back, or either door to illuminate its frame. The buttons below offer the same views.')}</p><div class="void-observe">${button('observe',t('回看入口门框','Look at the frame behind you'),'data-target="reference"')}${button('observe',t('照一下左侧门','Illuminate the left door'),'data-target="left"')}${button('observe',t('照一下右侧门','Illuminate the right door'),'data-target="right"')}${v.shadow?button('observe',t('查看走廊尽头','Look down the corridor'),'data-target="shadow"'):''}</div><p class="void-observation" role="status">${feedbackText(v)}</p><div class="void-directions">${button('walk',t('穿过左侧门','Go through the left door'),'data-direction="left"')}${button('walk',t('穿过右侧门','Go through the right door'),'data-direction="right"')}</div>`;
       else if(fragments)controls=`<p class="void-instruction">${t("把三块影像拖入四角标记围出的区域，沿边缘对齐门框、墙角和地缝。也可先选中一块，再用方向键或下方按钮微调。",'Use the faint corner marks to position the three fragments so the frame, corner and floor seams meet at their edges. Drag, or select a fragment and use the arrow keys or buttons.')}</p><div class="void-fragment-tabs" role="group" aria-label="${t('选择影像片段','Select a fragment')}">${roman.map((label,id)=>button('select',t('片段 ','Fragment ')+label,`data-id="${id}" aria-pressed="${id===v.selected}" ${v.reviewed?'disabled':''}`)).join('')}</div><p class="void-alignment" role="status">${t('边缘已对齐','Edges aligned')}: ${V.aligned(v).length}/3</p>${v.reviewed?`<p class="void-missing-source">${t("中央的黑区没有对应摄像头，并不是少了一块影像。",'No camera covers the black area. It is not a missing fourth fragment.')}</p>${button('terminal',t('查看黑区后面的终端','Look at the terminal beyond the gap'),'class="void-primary"')}`:`<div class="void-nudges">${[['0','-1','↑'],['-1','0','←'],['1','0','→'],['0','1','↓']].map(([dx,dy,label])=>button('move',label,`data-dx="${dx}" data-dy="${dy}" aria-label="${t('移动片段','Move fragment')} ${label}"`)).join('')}</div><div class="void-fragment-actions">${button('reset-fragments',t('重新摆放','Reset fragments'))}${button('review',t('复核这段画面','Review this picture'),'class="void-primary"')}</div>`}`;
       else if(terminal) {
-        const current=['ROOM','GUEST','EMPLOYEE'].includes(v.observation)?v.observation:v.attempts.at(-1);
-        controls=`<div class="void-classification"><p class="void-system-id">CONTINUITY / UNKNOWN SOURCE</p><h2>${t("无法识别此处，请选择记录类别。",'Location unrecognized. Select a record type.')}</h2><div class="void-types">${['ROOM','GUEST','EMPLOYEE'].map(type=>button('classify',type,`data-type="${type}" aria-pressed="${v.attempts.includes(type)}"`)).join('')}</div>${current?`<div class="void-conflict" role="status"><span>${current} / ${t('与原件不符','SOURCE CONFLICT')}</span><p>${esc(conflict(current))}</p></div>`:''}${v.attempts.length===3?button('classify','UNVERIFIED', 'data-type="UNVERIFIED" class="void-primary"'):''}</div>`;
+        const forced=state().forcedType||'ROOM';
+        controls=`<div class="void-classification"><p class="void-system-id">CONTINUITY / UNKNOWN SOURCE</p><h2>${t('核对这段影像的归类依据。','Review the basis for classifying this picture.')}</h2><div class="void-types">${['ROOM','GUEST','EMPLOYEE'].map(type=>button('classify',type,`data-type="${type}" data-reviewed="${v.attempts.includes(type)}" aria-pressed="${v.activeCategory===type}"`)).join('')}</div><div class="void-classification-status">${v.attempts.map(type=>`<p>${globalThis.StillwaterCaseData.proofs[type].record}</p>`).join('')}</div>${evidenceReview()}${v.attempts.length===3?`<section class="void-disposition"><p>NO VERIFIED CATEGORY</p><h2>${t('最终处理','Final disposition')}</h2><label for="force-category">${t('强制归类时使用的类别','Category used for forced classification')}</label><select id="force-category">${['ROOM','GUEST','EMPLOYEE'].map(type=>`<option ${type===forced?'selected':''}>${type}</option>`).join('')}</select>${button('disposition','FORCE CLASSIFICATION / '+t('强制归类','Assign a category'),'data-mode="force"')}${button('disposition','AUTO CLOSE / '+t('接受自动结案','Accept automatic closure'),'data-mode="auto"')}${button('disposition','RETAIN AS UNVERIFIED / '+t('保留未核实状态','Keep unverified'),'data-mode="retain" class="void-primary"')}</section>`:''}</div>`;
       } else controls=`<div class="void-return-record"><p>NO CAMERA / UNVERIFIED</p><h2>${t('保留无法确认的部分。','Leave the unknown unverified.')}</h2><p>${t("这段画面仍未分配房间、住客或员工身份。返回 B-3 后，还需完成夜班交接。","This picture is still unassigned to any room, guest or employee. Return to B-3 to finish the shift handover.")}</p>${button('lookback',t('再看最后一帧','Look back at the last frame'))}${button('leave',t('返回 B-3 配线室','Return to B-3'),'class="void-primary"')}</div>`;
+      if(corridor)controls+=guide('void-corridor');else if(fragments)controls+=guide('void-fragments');
       const elapsed=Date.now()-v.enteredAt;
       return `<main id="content" class="void-world" tabindex="-1"><header class="void-heading"><a href="#terminal">B-3 / ${t('返回配线室','Patch room')}</a><h1>${title}</h1><a data-case-language href="${document.documentElement.lang==='zh-CN'?'index.html':'index-zh.html'}${esc(location.search)}#void">${t('English','简体中文')}</a></header><div class="void-frame" data-void-stage="${v.stage}"><canvas class="void-canvas" width="480" height="360" tabindex="0" aria-label="${t("未归档空间。下方按钮可查看场景；影像片段可拖动，也可用方向键移动。",'Unlisted space. The buttons below offer the same observations. Fragments can be dragged or moved with arrow keys.')}" aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight"></canvas>${elapsed<2400&&!reduced()?`<div class="void-peeling-hud" aria-hidden="true" style="animation-delay:-${Math.max(0,elapsed)}ms"><span>CAM -- / NO INDEX</span><span>2006-10-17 03:17:00</span></div>`:''}${v.reviewed&&fragments?`<span class="void-no-camera">${t('没有对应机位','NO CAMERA')}</span>`:''}</div><section class="void-controls">${controls}<p id="void-feedback" role="status"></p></section><footer class="void-footer"><a href="#terminal">${t('暂时返回配线室','Return to the patch room')}</a><button data-case-action="toggle-sound" aria-pressed="${getState().preferences.sound}">${getState().preferences.sound?t('声音：开启','Sound: On'):t('声音：关闭','Sound: Off')}</button><button data-case-action="settings">${t('声音与设置','Sound & settings')}</button><button data-case-action="save-settings">${t('存档与重置','Saves & reset')}</button></footer></main>`;
     }
@@ -166,7 +159,7 @@ globalThis.StillwaterVoid = {
       polygon(ctx,[[77,58],[362,68],[354,276],[70,265]],'#262b30');
       ctx.fillStyle='#040506';ctx.fillRect(91,77,247,173);ctx.strokeStyle='#4d555c';ctx.strokeRect(91,77,247,173);
       ctx.fillStyle='#9aaba6';ctx.font='13px monospace';ctx.fillText('CONTINUITY',108,104);ctx.fillText('UNKNOWN SOURCE',108,129);
-      ctx.fillStyle='#737d80';ctx.fillText(v.classified?'UNVERIFIED':v.attempts.at(-1)||'TYPE REQUIRED',108,192);
+      ctx.fillStyle='#737d80';ctx.fillText(v.classified?'UNVERIFIED':v.activeCategory||(v.attempts.length===3?'NO VERIFIED CATEGORY':v.attempts.at(-1)||'TYPE REQUIRED'),108,192);
       polygon(ctx,[[83,279],[350,291],[379,330],[55,316]],'#21262a');
       ctx.fillStyle='#454b50';for(let r=0;r<3;r++)for(let c=0;c<13;c++)ctx.fillRect(90+c*18-r*5,288+r*9,12,5);
     }
@@ -214,7 +207,7 @@ globalThis.StillwaterVoid = {
     }
     function click(event) {
       const target=event.target.closest('[data-void-action]');if(!target)return;
-      onAction(target.dataset.voidAction,{target:target.dataset.target,direction:target.dataset.direction,id:target.dataset.id===undefined?undefined:Number(target.dataset.id),dx:Number(target.dataset.dx||0),dy:Number(target.dataset.dy||0),type:target.dataset.type},focusKey(target));
+      onAction(target.dataset.voidAction,{target:target.dataset.target,direction:target.dataset.direction,id:target.dataset.id===undefined?undefined:Number(target.dataset.id),dx:Number(target.dataset.dx||0),dy:Number(target.dataset.dy||0),type:target.dataset.voidAction==='disposition'?root.querySelector('#force-category')?.value:target.dataset.type,mode:target.dataset.mode},focusKey(target));
     }
     function leave(){cancelAnimationFrame(frame);if(root)root.removeEventListener('click',click);if(canvas){canvas.removeEventListener('pointerdown',pointerdown);canvas.removeEventListener('pointermove',pointermove);canvas.removeEventListener('pointerup',pointerup);canvas.removeEventListener('keydown',keydown);}root=null;canvas=null;drag=null;light=null;}
     function mount(container,requestedFocus) {
@@ -223,6 +216,6 @@ globalThis.StillwaterVoid = {
       if(requestedFocus==='canvas')canvas.focus({preventScroll:true});
       else if(requestedFocus){const match=[...root.querySelectorAll('[data-void-action]')].find(el=>focusKey(el)===requestedFocus);(match||canvas).focus({preventScroll:true});}
     }
-    return {render,mount,leave,conflict,refresh:()=>paint()};
+    return {render,mount,leave,refresh:()=>paint()};
   },
 };

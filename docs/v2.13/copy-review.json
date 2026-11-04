@@ -1,0 +1,1629 @@
+{
+  "baseline": "392334a03a07b041db86d8652182043a7f59c32a",
+  "version": "4.13.0",
+  "scope": "New or removed bilingual source strings; code placeholders are not a claim of every runtime state being rendered.",
+  "files": [
+    {
+      "file": "case-data.js",
+      "removed": [
+        {
+          "line": 60,
+          "zh": "服务区域的登记用途",
+          "en": "Classification of the service area"
+        },
+        {
+          "line": 107,
+          "zh": "查房：${facts.bookedRoom} 空置，床品未使用。这里只记了这间房的情况。",
+          "en": "Room ${facts.bookedRoom} is empty; bedding unused. This record does not establish occupancy elsewhere."
+        },
+        {
+          "line": 127,
+          "zh": "${facts.reviewer} 备注：${facts.service} 是否住过人，目前查不清，保留待核实。",
+          "en": "${facts.reviewer}: no confirmed guest is evidenced at service holding ${facts.service}. Record remains unverified."
+        }
+      ],
+      "added": [
+        {
+          "line": 60,
+          "zh": "服务区域登记卡",
+          "en": "Service-position card"
+        },
+        {
+          "line": 107,
+          "zh": "查房：${facts.bookedRoom} 空置，床品未使用。",
+          "en": "Room ${facts.bookedRoom} is empty; bedding unused."
+        },
+        {
+          "line": 127,
+          "zh": "${facts.reviewer} 备注：${facts.service} 是否住过人，目前查不清，保留待核实。",
+          "en": "${facts.reviewer}: I cannot confirm whether anyone stayed at ${facts.service}. Leave the record unverified."
+        },
+        {
+          "line": 260,
+          "zh": "岗位工作样本",
+          "en": "Role sample"
+        },
+        {
+          "line": 265,
+          "zh": "样本编号",
+          "en": "Sample reference"
+        },
+        {
+          "line": 266,
+          "zh": "工作内容",
+          "en": "Work"
+        },
+        {
+          "line": 278,
+          "zh": "原始预订单",
+          "en": "Original booking"
+        },
+        {
+          "line": 283,
+          "zh": "预订编号",
+          "en": "Booking reference"
+        },
+        {
+          "line": 284,
+          "zh": "住客",
+          "en": "Guest"
+        },
+        {
+          "line": 285,
+          "zh": "分配房号",
+          "en": "Assigned room"
+        },
+        {
+          "line": 286,
+          "zh": "记录状态",
+          "en": "Record status"
+        },
+        {
+          "line": 292,
+          "zh": "三楼客房目录",
+          "en": "Third-floor room directory"
+        },
+        {
+          "line": 297,
+          "zh": "可预订房号",
+          "en": "Bookable rooms"
+        },
+        {
+          "line": 298,
+          "zh": "目录范围",
+          "en": "Scope"
+        },
+        {
+          "line": 310,
+          "zh": "钥匙套留言",
+          "en": "Key-sleeve entry"
+        },
+        {
+          "line": 315,
+          "zh": "留言人",
+          "en": "Author"
+        },
+        {
+          "line": 316,
+          "zh": "留言原文",
+          "en": "Entry"
+        },
+        {
+          "line": 328,
+          "zh": "服务区域登记卡",
+          "en": "Service-position card"
+        },
+        {
+          "line": 333,
+          "zh": "内部编号",
+          "en": "Internal identifier"
+        },
+        {
+          "line": 334,
+          "zh": "登记用途",
+          "en": "Registered use"
+        },
+        {
+          "line": 341,
+          "zh": "位置",
+          "en": "Position"
+        },
+        {
+          "line": 348,
+          "zh": "维修单",
+          "en": "Maintenance docket"
+        },
+        {
+          "line": 354,
+          "zh": "客房巡查记录",
+          "en": "Housekeeping round"
+        },
+        {
+          "line": 359,
+          "zh": "巡查房间",
+          "en": "Room inspected"
+        },
+        {
+          "line": 360,
+          "zh": "巡查所见",
+          "en": "Observation"
+        },
+        {
+          "line": 372,
+          "zh": "系统移交记录",
+          "en": "System transfer"
+        },
+        {
+          "line": 377,
+          "zh": "预订编号",
+          "en": "Booking reference"
+        },
+        {
+          "line": 378,
+          "zh": "移交位置",
+          "en": "Transfer destination"
+        },
+        {
+          "line": 379,
+          "zh": "原处理人",
+          "en": "Original reviewer"
+        },
+        {
+          "line": 380,
+          "zh": "系统操作",
+          "en": "System action"
+        },
+        {
+          "line": 392,
+          "zh": "03:24 留言摘录",
+          "en": "03:24 note extract"
+        },
+        {
+          "line": 397,
+          "zh": "当晚备注",
+          "en": "Night note"
+        },
+        {
+          "line": 409,
+          "zh": "原始员工档案",
+          "en": "Original personnel record"
+        },
+        {
+          "line": 414,
+          "zh": "姓名",
+          "en": "Name"
+        },
+        {
+          "line": 415,
+          "zh": "员工编号",
+          "en": "Staff number"
+        },
+        {
+          "line": 416,
+          "zh": "记录角色",
+          "en": "Record role"
+        },
+        {
+          "line": 423,
+          "zh": "原预订单住客栏",
+          "en": "Guest field on original booking"
+        },
+        {
+          "line": 433,
+          "zh": "2007 年修订记录",
+          "en": "2007 revision"
+        },
+        {
+          "line": 450,
+          "zh": "当前自动排班",
+          "en": "Current generated assignment"
+        },
+        {
+          "line": 455,
+          "zh": "工作编号",
+          "en": "Assignment identifier"
+        },
+        {
+          "line": 456,
+          "zh": "生成方式",
+          "en": "Created by"
+        },
+        {
+          "line": 457,
+          "zh": "签收状态",
+          "en": "Acknowledgement"
+        },
+        {
+          "line": 462,
+          "zh": "到岗资料索引",
+          "en": "Attendance-file index"
+        },
+        {
+          "line": 467,
+          "zh": "检索范围",
+          "en": "Search scope"
+        },
+        {
+          "line": 474,
+          "zh": "检索结果",
+          "en": "Search result"
+        },
+        {
+          "line": 485,
+          "zh": "停业通知",
+          "en": "Closure notice"
+        },
+        {
+          "line": 490,
+          "zh": "通知内容",
+          "en": "Notice"
+        },
+        {
+          "line": 502,
+          "zh": "Mara 留存草稿",
+          "en": "Mara’s retained draft"
+        },
+        {
+          "line": 507,
+          "zh": "原处理人",
+          "en": "Original reviewer"
+        },
+        {
+          "line": 508,
+          "zh": "备注",
+          "en": "Note"
+        },
+        {
+          "line": 520,
+          "zh": "恢复的 03:17 录像",
+          "en": "Restored 03:17 footage"
+        },
+        {
+          "line": 525,
+          "zh": "影像来源",
+          "en": "Picture source"
+        },
+        {
+          "line": 532,
+          "zh": "画面范围",
+          "en": "Visible area"
+        },
+        {
+          "line": 539,
+          "zh": "系统叠字",
+          "en": "System overlay"
+        },
+        {
+          "line": 545,
+          "zh": "画面所见",
+          "en": "Visible in this frame"
+        },
+        {
+          "line": 565,
+          "zh": "样本登记",
+          "en": "Sample intake"
+        },
+        {
+          "line": 566,
+          "zh": "样本和预订单对应的是同一笔记录吗？",
+          "en": "Do the sample and booking refer to the same record?"
+        },
+        {
+          "line": 574,
+          "zh": "编号对应",
+          "en": "Reference match"
+        },
+        {
+          "line": 577,
+          "zh": "同一笔记录",
+          "en": "Same record"
+        },
+        {
+          "line": 578,
+          "zh": "不是同一笔记录",
+          "en": "Different records"
+        },
+        {
+          "line": 579,
+          "zh": "暂时无法判断",
+          "en": "Not established"
+        },
+        {
+          "line": 586,
+          "zh": "317 原始用途",
+          "en": "Original use of 317"
+        },
+        {
+          "line": 587,
+          "zh": "317 在原始资料中属于什么？",
+          "en": "What use is registered for 317 in the original files?"
+        },
+        {
+          "line": 595,
+          "zh": "登记用途",
+          "en": "Registered use"
+        },
+        {
+          "line": 598,
+          "zh": "正常客房",
+          "en": "Bookable guest room"
+        },
+        {
+          "line": 599,
+          "zh": "非客房服务暂存区域",
+          "en": "Non-guest service holding"
+        },
+        {
+          "line": 600,
+          "zh": "已确认入住的客房",
+          "en": "Confirmed occupied guest room"
+        },
+        {
+          "line": 611,
+          "zh": "夜班记录核对",
+          "en": "Night-record review"
+        },
+        {
+          "line": 612,
+          "zh": "这些记录能证明住客实际进入了 317 吗？",
+          "en": "Do these records establish actual occupancy of 317?"
+        },
+        {
+          "line": 620,
+          "zh": "入住情况",
+          "en": "Occupancy"
+        },
+        {
+          "line": 623,
+          "zh": "足以确认入住",
+          "en": "Occupancy established"
+        },
+        {
+          "line": 624,
+          "zh": "目前证据不足",
+          "en": "Insufficient evidence"
+        },
+        {
+          "line": 625,
+          "zh": "能证明从未有人进入",
+          "en": "Proves nobody ever entered"
+        },
+        {
+          "line": 632,
+          "zh": "Mara 与当前排班",
+          "en": "Mara and the current queue"
+        },
+        {
+          "line": 633,
+          "zh": "核对原处理人的身份，以及新工作编号的到岗依据。",
+          "en": "Check the original reviewer’s role and the basis for the new assignment’s attendance status."
+        },
+        {
+          "line": 641,
+          "zh": "Mara 的原始字段",
+          "en": "Mara’s original field"
+        },
+        {
+          "line": 644,
+          "zh": "REVIEWER / 处理人",
+          "en": "REVIEWER"
+        },
+        {
+          "line": 645,
+          "zh": "GUEST / 住客",
+          "en": "GUEST"
+        },
+        {
+          "line": 650,
+          "zh": "自动排班能否证明到岗",
+          "en": "Does an automatic assignment prove arrival?"
+        },
+        {
+          "line": 656,
+          "zh": "可以确认到岗",
+          "en": "Arrival established"
+        },
+        {
+          "line": 657,
+          "zh": "不能，尚缺到岗记录",
+          "en": "No; an arrival record is still missing"
+        },
+        {
+          "line": 668,
+          "zh": "ROOM / 客房归类",
+          "en": "ROOM / classification"
+        },
+        {
+          "line": 669,
+          "zh": "现有资料是否足以把这段影像中的位置确认成正常客房？",
+          "en": "Do the retained files support classifying the position in this picture as a guest room?"
+        },
+        {
+          "line": 677,
+          "zh": "核对判断",
+          "en": "Finding"
+        },
+        {
+          "line": 680,
+          "zh": "资料支持归为客房",
+          "en": "Supported as a guest room"
+        },
+        {
+          "line": 681,
+          "zh": "现有资料不支持这项归类",
+          "en": "Not supported by the available sources"
+        },
+        {
+          "line": 692,
+          "zh": "GUEST / 入住核对",
+          "en": "GUEST / occupancy review"
+        },
+        {
+          "line": 693,
+          "zh": "能否确认住客实际入住这个位置？",
+          "en": "Can actual guest occupancy of this position be verified?"
+        },
+        {
+          "line": 701,
+          "zh": "核对判断",
+          "en": "Finding"
+        },
+        {
+          "line": 704,
+          "zh": "移交已发生，可以确认入住",
+          "en": "Transfer establishes occupancy"
+        },
+        {
+          "line": 709,
+          "zh": "移交及钥匙套不足以证明入住",
+          "en": "Transfer and key sleeve do not establish occupancy"
+        },
+        {
+          "line": 714,
+          "zh": "可以证明从未有人进入",
+          "en": "Nobody could ever have entered"
+        },
+        {
+          "line": 725,
+          "zh": "EMPLOYEE / 人员核对",
+          "en": "EMPLOYEE / personnel review"
+        },
+        {
+          "line": 726,
+          "zh": "能否将这份记录归属于已确认到岗的工作人员？",
+          "en": "Can this record be assigned to a verified member of staff on duty?"
+        },
+        {
+          "line": 734,
+          "zh": "核对判断",
+          "en": "Finding"
+        },
+        {
+          "line": 737,
+          "zh": "自动排班足以确认人员到岗",
+          "en": "Automatic assignment establishes attendance"
+        },
+        {
+          "line": 742,
+          "zh": "编号不能证明到岗，也不能改写原处理人身份",
+          "en": "An identifier does not establish attendance or replace the original reviewer’s role"
+        },
+        {
+          "line": 757,
+          "zh": "318 房间空置，床品未使用。",
+          "en": "Room 318 empty; bedding unused."
+        },
+        {
+          "line": 762,
+          "zh": "03:17，R-4829 移交到 317。",
+          "en": "03:17: R-4829 transferred to 317."
+        },
+        {
+          "line": 767,
+          "zh": "住客已经实际入住 317。",
+          "en": "The guest actually occupied 317."
+        },
+        {
+          "line": 771,
+          "zh": "直接观察",
+          "en": "Direct observation"
+        },
+        {
+          "line": 772,
+          "zh": "系统操作",
+          "en": "System action"
+        },
+        {
+          "line": 773,
+          "zh": "未证实的判断",
+          "en": "Unverified claim"
+        },
+        {
+          "line": 777,
+          "zh": "编号一般附在工作样本里。",
+          "en": "The reference is retained with the work sample."
+        },
+        {
+          "line": 781,
+          "zh": "返回招聘页，查看这次整理任务的样本。",
+          "en": "Reopen the role sample on the careers page."
+        },
+        {
+          "line": 785,
+          "zh": "把样本上的完整编号填入预订查询，保留字母和连字符。",
+          "en": "Enter the complete sample reference in reservation search, including letters and the hyphen."
+        },
+        {
+          "line": 791,
+          "zh": "先核对预订单实际分配的房号。",
+          "en": "Check the room assigned by the original booking."
+        },
+        {
+          "line": 795,
+          "zh": "预订单与三楼客房目录可以来回查看。",
+          "en": "You can reopen both the booking and third-floor directory."
+        },
+        {
+          "line": 799,
+          "zh": "在目录下方选择预订单的分配房号，保存这份目录；同日留言也可单独查看。",
+          "en": "Select the assigned room below the directory and retain it. The night’s guest entry can be checked separately."
+        },
+        {
+          "line": 805,
+          "zh": "维修资料按单号归档。",
+          "en": "Maintenance files are indexed by docket."
+        },
+        {
+          "line": 806,
+          "zh": "通行公告和服务区域登记卡都留有单号。",
+          "en": "The access notice and position card both retain a docket number."
+        },
+        {
+          "line": 810,
+          "zh": "重新打开其中一份原件，将完整单号填入维修查询。",
+          "en": "Reopen either original and enter its complete docket reference in maintenance search."
+        },
+        {
+          "line": 816,
+          "zh": "几个机位可能拍到了同一件东西。",
+          "en": "Adjacent cameras may show the same object."
+        },
+        {
+          "line": 820,
+          "zh": "试着调整角度，找推车或维修告示的特征。",
+          "en": "Adjust the views and compare details on the cart or notice."
+        },
+        {
+          "line": 824,
+          "zh": "让相邻机位拍到同一地标，再确认连接。两处连接保留后，可检查服务区域的门。",
+          "en": "Match a landmark across adjacent views and confirm the connection. Once both links are retained, inspect the service-area door."
+        },
+        {
+          "line": 830,
+          "zh": "先把录像信号与自动写入电源分开看。",
+          "en": "Treat the reel signal and auto-write supply separately."
+        },
+        {
+          "line": 834,
+          "zh": "录像从 A 左侧进入，通向 F 右侧；每个弯头都要与邻居对齐。",
+          "en": "The reel enters left of A and exits right of F. Each elbow must face its neighbor."
+        },
+        {
+          "line": 838,
+          "zh": "沿着发亮的接口检查断点。通路恢复后，隔离 AUTO-WRITE 并切为 MANUAL，再保存配置。",
+          "en": "Trace the lit ports to find a break. After restoring the path, isolate AUTO-WRITE, switch to MANUAL and save."
+        },
+        {
+          "line": 844,
+          "zh": "先看看来时的门框。",
+          "en": "Look at the frame behind you first."
+        },
+        {
+          "line": 845,
+          "zh": "缺口、门槛破损和光照方向都可用来认门。",
+          "en": "Use the notch, threshold damage and lighting direction together."
+        },
+        {
+          "line": 849,
+          "zh": "用查看按钮照亮两侧的门。将三处特征与入口逐一比较，再选择穿过哪一扇。",
+          "en": "Illuminate both doors with the view buttons. Compare all three features with the entrance before walking through."
+        },
+        {
+          "line": 855,
+          "zh": "先对齐影像外侧的边缘。",
+          "en": "Start with the picture’s outer edges."
+        },
+        {
+          "line": 856,
+          "zh": "四角的淡色标记围出了影像应在的位置。",
+          "en": "The faint corner marks define the picture’s position."
+        },
+        {
+          "line": 860,
+          "zh": "选中一块，用方向键或按钮微调，让门框、墙角与地缝在相邻边缘连上，再复核。",
+          "en": "Select a piece and nudge it with the arrow keys or buttons until the frame, corner and floor seams meet, then review."
+        },
+        {
+          "line": 866,
+          "zh": "先看两份宣传资料的来源和日期。",
+          "en": "Check the source and date of each publicity copy."
+        },
+        {
+          "line": 870,
+          "zh": "原宣传照片可以在此重新打开，不需要早先保存广告。",
+          "en": "The original publicity photograph can be reopened here; an early saved ad is not needed."
+        },
+        {
+          "line": 874,
+          "zh": "选择留有原始来源的副本，再在并排影像中标记被修改的部分。",
+          "en": "Choose the copy with its original provenance, then mark the altered area in the paired images."
+        },
+        {
+          "line": 881,
+          "zh": "先看两份文件的编号。",
+          "en": "Check the references on both files."
+        },
+        {
+          "line": 882,
+          "zh": "招聘样本和原始预订单都可以重新打开。",
+          "en": "The role sample and original booking can both be reopened."
+        },
+        {
+          "line": 886,
+          "zh": "分别打开两份文件，加入对照；引用它们后再提交编号判断。",
+          "en": "Open both files, add them to the comparison, then cite them and submit your reference finding."
+        },
+        {
+          "line": 892,
+          "zh": "门牌和可预订房号不一定是同一回事。",
+          "en": "A position number and a bookable room number may mean different things."
+        },
+        {
+          "line": 896,
+          "zh": "客房目录与服务区域登记卡记录的范围不同。",
+          "en": "Compare the scope of the room directory with the service-position card."
+        },
+        {
+          "line": 900,
+          "zh": "把这两份原件放入对照，检查房号列表和登记用途，再引用资料提交。",
+          "en": "Compare the two originals, inspect the room list and registered use, then cite your sources."
+        },
+        {
+          "line": 906,
+          "zh": "记录说的是亲眼所见，还是系统做过的操作？",
+          "en": "Does each record describe an observation or a system operation?"
+        },
+        {
+          "line": 910,
+          "zh": "把 02:50 的巡查与 03:17 的移交分开看。",
+          "en": "Read the 02:50 round separately from the 03:17 transfer."
+        },
+        {
+          "line": 914,
+          "zh": "先确认时间顺序，再给三张记录卡选择性质；引用当晚四份记录，判断它们能证明到哪一步。",
+          "en": "Confirm the order, classify the three cards, then cite all four night records and decide what they establish."
+        },
+        {
+          "line": 920,
+          "zh": "文件里的名字和字段要一起看。",
+          "en": "Read the field labels as well as the names."
+        },
+        {
+          "line": 924,
+          "zh": "对照 E-014 原件、修订记录及 TEMP-015 的排班和到岗资料。",
+          "en": "Compare E-014, the revision, and TEMP-015’s assignment and attendance files."
+        },
+        {
+          "line": 928,
+          "zh": "在人员页刷新当前队列，保留相关原件，再分别核对 Mara 的原字段和新编号的到岗依据。",
+          "en": "Refresh the queue on the personnel page, retain its sources, then check Mara’s original field and the evidence of arrival."
+        },
+        {
+          "line": 934,
+          "zh": "画面里的门并不自带记录类别。",
+          "en": "A door in a picture does not establish a record category."
+        },
+        {
+          "line": 938,
+          "zh": "将恢复的录像与客房目录、区域登记卡对照。",
+          "en": "Compare the restored footage with the room directory and position card."
+        },
+        {
+          "line": 942,
+          "zh": "在 B-3 将已恢复的 03:17 录像加入核对台，引用这三份来源再提交。",
+          "en": "Add the restored 03:17 footage in B-3, cite all three sources, then submit."
+        },
+        {
+          "line": 948,
+          "zh": "分配房间和实际入住需要不同的依据。",
+          "en": "A room assignment and actual occupancy require different evidence."
+        },
+        {
+          "line": 952,
+          "zh": "重看预订单、钥匙套、巡查和系统移交。",
+          "en": "Revisit the booking, key sleeve, round and transfer."
+        },
+        {
+          "line": 956,
+          "zh": "引用这四份原件，分别看它们记录了什么，再判断能否确认入住。",
+          "en": "Cite the four originals and check what each records before deciding whether occupancy is verified."
+        },
+        {
+          "line": 962,
+          "zh": "工作编号与到岗记录不是同一种资料。",
+          "en": "An assignment identifier and an arrival record are different sources."
+        },
+        {
+          "line": 966,
+          "zh": "核对 E-014 原件、修订、当前队列和到岗索引。",
+          "en": "Check E-014, the revision, current queue and attendance index."
+        },
+        {
+          "line": 970,
+          "zh": "引用这四份资料，查看原处理人字段以及当前编号的签收状态后提交。",
+          "en": "Cite all four files and review the original role and current acknowledgement status before submitting."
+        },
+        {
+          "line": 976,
+          "zh": "逐行查看原稿和修订。",
+          "en": "Read the original and revision row by row."
+        },
+        {
+          "line": 977,
+          "zh": "只标记内容发生变化的字段。",
+          "en": "Select only fields whose contents changed."
+        },
+        {
+          "line": 981,
+          "zh": "换行内容也属于同一字段；编号和分配房号也需要对照。",
+          "en": "Wrapped text belongs to the same field; compare the reference and room assignment too."
+        }
+      ]
+    },
+    {
+      "file": "case-state.js",
+      "removed": [],
+      "added": [
+        {
+          "line": 316,
+          "zh": "查看处理结果",
+          "en": "View disposition"
+        },
+        {
+          "line": 321,
+          "zh": "岗位工作样本",
+          "en": "Role sample"
+        },
+        {
+          "line": 325,
+          "zh": "工作样本",
+          "en": "Role sample"
+        },
+        {
+          "line": 326,
+          "zh": "预订查询",
+          "en": "Reservation search"
+        },
+        {
+          "line": 332,
+          "zh": "证据核对台 · 初次登记",
+          "en": "Evidence desk · sample intake"
+        },
+        {
+          "line": 341,
+          "zh": "三楼客房目录",
+          "en": "Third-floor directory"
+        },
+        {
+          "line": 344,
+          "zh": "同日住客留言",
+          "en": "Entry from that night"
+        },
+        {
+          "line": 347,
+          "zh": "三楼平面图",
+          "en": "Third-floor plan"
+        },
+        {
+          "line": 357,
+          "zh": "平面图与区域卡",
+          "en": "Plan and position card"
+        },
+        {
+          "line": 360,
+          "zh": "核对登记用途",
+          "en": "Review the registered use"
+        },
+        {
+          "line": 370,
+          "zh": "维修记录查询",
+          "en": "Maintenance records"
+        },
+        {
+          "line": 371,
+          "zh": "当日通行公告",
+          "en": "Access notice"
+        },
+        {
+          "line": 376,
+          "zh": "当晚记录与时间",
+          "en": "Night records and timestamps"
+        },
+        {
+          "line": 377,
+          "zh": "住客留言原件",
+          "en": "Original guest entry"
+        },
+        {
+          "line": 380,
+          "zh": "记录性质核对",
+          "en": "Review record types"
+        },
+        {
+          "line": 389,
+          "zh": "版本记录",
+          "en": "Revision history"
+        },
+        {
+          "line": 390,
+          "zh": "原员工档案",
+          "en": "Original personnel record"
+        },
+        {
+          "line": 399,
+          "zh": "人员与当前队列",
+          "en": "Personnel and current queue"
+        },
+        {
+          "line": 402,
+          "zh": "身份记录核对",
+          "en": "Review personnel sources"
+        },
+        {
+          "line": 411,
+          "zh": "营业通知存档",
+          "en": "Operating-notice archive"
+        },
+        {
+          "line": 418,
+          "zh": "Mara 留存草稿",
+          "en": "Mara’s retained draft"
+        },
+        {
+          "line": 422,
+          "zh": "核对汇总",
+          "en": "Review summary"
+        },
+        {
+          "line": 426,
+          "zh": "记录提交结果",
+          "en": "Submitted review"
+        },
+        {
+          "line": 430,
+          "zh": "当前客房目录",
+          "en": "Current directory"
+        },
+        {
+          "line": 431,
+          "zh": "当前住客留言",
+          "en": "Current guestbook"
+        },
+        {
+          "line": 435,
+          "zh": "监控室",
+          "en": "Camera room"
+        },
+        {
+          "line": 442,
+          "zh": "三楼维修通道",
+          "en": "Third-floor service passage"
+        },
+        {
+          "line": 450,
+          "zh": "B-3 录像配线室",
+          "en": "B-3 patch room"
+        },
+        {
+          "line": 453,
+          "zh": "未归档影像",
+          "en": "Unlisted picture"
+        },
+        {
+          "line": 463,
+          "zh": "分类终端",
+          "en": "Classification terminal"
+        },
+        {
+          "line": 464,
+          "zh": "原始资料",
+          "en": "Original sources"
+        },
+        {
+          "line": 465,
+          "zh": "恢复的录像",
+          "en": "Restored footage"
+        },
+        {
+          "line": 469,
+          "zh": "B-3 交接终端",
+          "en": "B-3 handover terminal"
+        }
+      ]
+    },
+    {
+      "file": "case-pages.js",
+      "removed": [
+        {
+          "line": 102,
+          "zh": "已收到。预订单上的房号没有改动，钥匙套仍在核查。请先查看当天的楼层图。",
+          "en": "Noted. The booking assignment is unchanged; we are checking the key sleeve. Please look at the floor plan from that date."
+        },
+        {
+          "line": 127,
+          "zh": "根据登记卡，这个区域属于哪一类？",
+          "en": "How should this position be classified in the review?"
+        },
+        {
+          "line": 128,
+          "zh": "住客已入住的客房",
+          "en": "Confirmed occupied guest room"
+        },
+        {
+          "line": 131,
+          "zh": "非客房 / 服务暂存区",
+          "en": "Non-guest space / service holding"
+        },
+        {
+          "line": 135,
+          "zh": "仅为门牌印刷错误，无需核查",
+          "en": "A door-label typo that can be ignored"
+        },
+        {
+          "line": 147,
+          "zh": "保存选择",
+          "en": "Retain position classification"
+        },
+        {
+          "line": 175,
+          "zh": "夜审把待核查的预订单移交给当班人员。入住情况一栏未填写。",
+          "en": "Automatic night audit moved an unreconciled booking to a service holding position and required an owner. This action did not verify actual guest occupancy."
+        },
+        {
+          "line": 246,
+          "zh": "核对当晚记录",
+          "en": "Source-record reconciliation"
+        },
+        {
+          "line": 247,
+          "zh": "用“上移”“下移”调整顺序，按日期和时间由早到晚排列。排好后，选择下方的核对结果。",
+          "en": "Put the source records in timestamp order, then decide what they establish."
+        },
+        {
+          "line": 259,
+          "zh": "根据这些记录，能否确定住客实际住进了 {service}？",
+          "en": "Do these records establish that the guest occupied {service}?"
+        },
+        {
+          "line": 260,
+          "zh": "能确定",
+          "en": "Confirmed"
+        },
+        {
+          "line": 263,
+          "zh": "目前还不能确定",
+          "en": "Insufficient evidence / unverified"
+        },
+        {
+          "line": 267,
+          "zh": "能确定住客住在另一间房",
+          "en": "Confirmed occupancy in another guest room"
+        },
+        {
+          "line": 279,
+          "zh": "提交核对结果",
+          "en": "Reconcile sequence & finding"
+        },
+        {
+          "line": 279,
+          "zh": "打开当班员工档案",
+          "en": "Associated reviewer file"
+        },
+        {
+          "line": 292,
+          "zh": "记录未结案，须指定处理人。",
+          "en": "A reviewer must remain assigned until the record is closed."
+        },
+        {
+          "line": 301,
+          "zh": "左侧为原稿，右侧为修改稿。请逐行比较，只勾选有改动的项目。",
+          "en": "Mark only fields that actually changed between these originals. The original booking reference is unchanged."
+        },
+        {
+          "line": 306,
+          "zh": "原预订单的住客为 {guest}。请分别核对两份表中的人员栏。",
+          "en": "The booking’s original guest initials remain {guest}; the revision reclassifies the former reviewer as a guest."
+        },
+        {
+          "line": 306,
+          "zh": "对比结果已保存，附有同日通知。",
+          "en": "Comparison saved. A notice dated the same day is attached."
+        },
+        {
+          "line": 338,
+          "zh": "请选择三项能在原始记录中找到依据的说法，再提交核对。",
+          "en": "Check three findings against their sources, then synchronize the hotel directory."
+        },
+        {
+          "line": 350,
+          "zh": "选择记录",
+          "en": "Evidence association"
+        },
+        {
+          "line": 350,
+          "zh": "核对这三条",
+          "en": "Validate the associated findings"
+        }
+      ],
+      "added": [
+        {
+          "line": 51,
+          "zh": "同日住客留言",
+          "en": "Guest entries from that night"
+        },
+        {
+          "line": 51,
+          "zh": "登记工作样本",
+          "en": "Register the work sample"
+        },
+        {
+          "line": 93,
+          "zh": "三楼平面图与服务区域",
+          "en": "Third-floor plan and service areas"
+        },
+        {
+          "line": 104,
+          "zh": "已收到。预订单上的房号没有改动，钥匙套仍在核查。附件留有当天的楼层资料。",
+          "en": "Noted. The booking assignment is unchanged; we are checking the key sleeve. The floor records from that date are retained with the entry."
+        },
+        {
+          "line": 104,
+          "zh": "三楼客房目录",
+          "en": "Third-floor room directory"
+        },
+        {
+          "line": 129,
+          "zh": "在核对台检查登记用途",
+          "en": "Review the registered use at the evidence desk"
+        },
+        {
+          "line": 157,
+          "zh": "夜审把待核查的预订单移交给当班人员。入住情况一栏未填写。",
+          "en": "Night audit handed the pending booking to the duty reviewer. The occupancy field is blank."
+        },
+        {
+          "line": 226,
+          "zh": "核对当晚记录",
+          "en": "Night-record review"
+        },
+        {
+          "line": 226,
+          "zh": "先确认时间顺序，再核对这些记录各自能证明什么。",
+          "en": "Confirm the sequence, then review what each record establishes."
+        },
+        {
+          "line": 227,
+          "zh": "时间顺序已确认",
+          "en": "SEQUENCE CONFIRMED"
+        },
+        {
+          "line": 227,
+          "zh": "确认时间顺序",
+          "en": "Confirm sequence"
+        },
+        {
+          "line": 227,
+          "zh": "打开当班员工档案",
+          "en": "Open the reviewer’s personnel file"
+        },
+        {
+          "line": 239,
+          "zh": "到岗资料索引",
+          "en": "Attendance-file index"
+        },
+        {
+          "line": 239,
+          "zh": "在本次保留的人员与交接资料中，未找到 TEMP-015 的到岗签收记录。",
+          "en": "No arrival acknowledgement for TEMP-015 was found in the retained personnel and handover files."
+        },
+        {
+          "line": 239,
+          "zh": "核对人员与排班资料",
+          "en": "Review personnel and assignment sources"
+        },
+        {
+          "line": 248,
+          "zh": "左侧为原稿，右侧为修改稿。请逐行比较，只勾选有改动的项目。",
+          "en": "Mark the fields that changed between these two copies. "
+        },
+        {
+          "line": 253,
+          "zh": "原预订单的住客为 {guest}。请分别核对两份表中的人员栏。",
+          "en": "The original booking names {guest}. Compare the people fields in both copies."
+        },
+        {
+          "line": 253,
+          "zh": "字段对照已保存。人员资料中保留着原档案和当前队列。",
+          "en": "Field comparison retained. The personnel page holds the original file and current queue."
+        },
+        {
+          "line": 253,
+          "zh": "核对身份变更的影响",
+          "en": "Review the effect of the identity changes"
+        },
+        {
+          "line": 285,
+          "zh": "提交已完成的来源核对，原始资料会继续保留。",
+          "en": "Submit the completed source reviews. The originals will remain available."
+        },
+        {
+          "line": 297,
+          "zh": "这里只提交已核对的记录，不替任何人补签。",
+          "en": "This submits the reviewed records without signing on anyone’s behalf."
+        },
+        {
+          "line": 297,
+          "zh": "提交本次核对",
+          "en": "Submit this review"
+        }
+      ]
+    },
+    {
+      "file": "case-app.js",
+      "removed": [],
+      "added": [
+        {
+          "line": 576,
+          "zh": "工作笔记",
+          "en": "Case notes"
+        },
+        {
+          "line": 598,
+          "zh": "证据核对台",
+          "en": "Evidence desk"
+        }
+      ]
+    },
+    {
+      "file": "case-evidence.js",
+      "removed": [],
+      "added": [
+        {
+          "line": 15,
+          "zh": "这份核对所需的资料还未开放。",
+          "en": "The source files for this review are not open yet."
+        },
+        {
+          "line": 19,
+          "zh": "先完成样本登记，正式核对会继续保留。",
+          "en": "Complete sample intake first. Your review draft is retained."
+        },
+        {
+          "line": 23,
+          "zh": "还缺少一份原始资料：",
+          "en": "An original source is still needed: "
+        },
+        {
+          "line": 27,
+          "zh": "附上的资料中有不支持本项判断的记录。请保留与这项核对直接相关的原件。",
+          "en": "One or more attached files do not support this review. Keep the original sources relevant to this finding."
+        },
+        {
+          "line": 31,
+          "zh": "先分别打开样本和预订单，并把两份文件放入对照栏。",
+          "en": "Open the sample and booking, then add both to the comparison."
+        },
+        {
+          "line": 35,
+          "zh": "对照栏已放了两份文件。先移出其中一份，再添加。",
+          "en": "Two files are already being compared. Remove one before adding another."
+        },
+        {
+          "line": 39,
+          "zh": "客房目录中没有对应的可预订房号。请核对目录范围。",
+          "en": "No corresponding bookable room is listed. Check the directory’s scope."
+        },
+        {
+          "line": 43,
+          "zh": "区域编号不能确认实际入住。请检查记录用途。",
+          "en": "A position number does not establish occupancy. Check the purpose of the record."
+        },
+        {
+          "line": 47,
+          "zh": "时间顺序还未确认，可回夜审记录继续调整。",
+          "en": "The sequence has not been confirmed. Reopen the night records to finish ordering them."
+        },
+        {
+          "line": 51,
+          "zh": "记录性质还未核对清楚。巡查所见、系统操作和入住判断需要分开。",
+          "en": "The record types still need review. Distinguish the round’s observation, a system operation and an occupancy claim."
+        },
+        {
+          "line": 55,
+          "zh": "现有记录没有补足实际入住的依据。请核对每份记录的范围。",
+          "en": "The sources do not fill the gap in evidence of actual occupancy. Check what each record covers."
+        },
+        {
+          "line": 59,
+          "zh": "无法确认入住，也不等于能证明从未有人进入。",
+          "en": "Unverified occupancy does not establish that nobody ever entered."
+        },
+        {
+          "line": 63,
+          "zh": "请核对原始员工编号与预订单住客字段。",
+          "en": "Compare the original staff identifier with the booking’s guest field."
+        },
+        {
+          "line": 67,
+          "zh": "系统分配了工作，但尚未找到实际到岗记录。",
+          "en": "The system assigned work, but an arrival record has not been found."
+        },
+        {
+          "line": 71,
+          "zh": "这项判断没有得到所附原件的支持。草稿和之前的核对仍已保存。",
+          "en": "The cited originals do not support this finding. Your draft and earlier reviews are retained."
+        },
+        {
+          "line": 75,
+          "zh": "录像尚未恢复。先检查原始录像线路和 03:17 缓存帧。",
+          "en": "The recording is not restored yet. Check the original circuit and the 03:17 cached frame."
+        },
+        {
+          "line": 87,
+          "zh": "核对帮助",
+          "en": "Review help"
+        },
+        {
+          "line": 94,
+          "zh": "再看一级提示",
+          "en": "Next hint"
+        },
+        {
+          "line": 94,
+          "zh": "查看提示",
+          "en": "Need help?"
+        },
+        {
+          "line": 94,
+          "zh": "已查看全部三级提示",
+          "en": "All three hints opened"
+        },
+        {
+          "line": 98,
+          "zh": "当前调查",
+          "en": "Current investigation"
+        },
+        {
+          "line": 98,
+          "zh": "当前调查",
+          "en": "CURRENT REVIEW"
+        },
+        {
+          "line": 106,
+          "zh": "选择一份已发现的资料。",
+          "en": "Select a retained source."
+        },
+        {
+          "line": 112,
+          "zh": "保存的 03:17 服务通道画面",
+          "en": "Retained 03:17 service-passage picture"
+        },
+        {
+          "line": 114,
+          "zh": "原始记录 · 点字段可作标记",
+          "en": "Source record · select a field to mark it"
+        },
+        {
+          "line": 114,
+          "zh": "出处",
+          "en": "Source"
+        },
+        {
+          "line": 114,
+          "zh": "移出对照",
+          "en": "Remove from comparison"
+        },
+        {
+          "line": 114,
+          "zh": "加入对照",
+          "en": "Compare this file"
+        },
+        {
+          "line": 114,
+          "zh": "打开原网页",
+          "en": "Open source page"
+        },
+        {
+          "line": 117,
+          "zh": "两份原件对照",
+          "en": "Compare two originals"
+        },
+        {
+          "line": 117,
+          "zh": "原件对照",
+          "en": "Source comparison"
+        },
+        {
+          "line": 121,
+          "zh": "在文件下方选择“加入对照”，可并排查看两份原件。",
+          "en": "Choose “Compare this file” below a source to view two originals side by side."
+        },
+        {
+          "line": 125,
+          "zh": "记录性质",
+          "en": "Record type"
+        },
+        {
+          "line": 125,
+          "zh": "选择性质",
+          "en": "Choose a type"
+        },
+        {
+          "line": 133,
+          "zh": "核对记录",
+          "en": "REVIEW RECORD"
+        },
+        {
+          "line": 133,
+          "zh": "关闭核对窗口",
+          "en": "Close review"
+        },
+        {
+          "line": 135,
+          "zh": "已保留的核对",
+          "en": "retained review"
+        },
+        {
+          "line": 136,
+          "zh": "先打开两份文件，加入对照，再引用原件提交。离开此页也会保留。",
+          "en": "Open both files, compare them, then cite the originals and submit. You can leave and return at any time."
+        },
+        {
+          "line": 136,
+          "zh": "时间顺序已确认 · 返回查看",
+          "en": "Sequence confirmed · reopen"
+        },
+        {
+          "line": 136,
+          "zh": "返回夜审记录排列时间",
+          "en": "Order the night records"
+        },
+        {
+          "line": 136,
+          "zh": "引用的原始资料",
+          "en": "Cited originals"
+        },
+        {
+          "line": 140,
+          "zh": "查看",
+          "en": "View"
+        },
+        {
+          "line": 144,
+          "zh": "提交来源核对",
+          "en": "Submit source review"
+        },
+        {
+          "line": 149,
+          "zh": "已保存的核对结果",
+          "en": "Saved review results"
+        },
+        {
+          "line": 149,
+          "zh": "尚未提交核对结果。",
+          "en": "No source reviews submitted yet."
+        },
+        {
+          "line": 157,
+          "zh": "证据核对台",
+          "en": "Evidence desk"
+        },
+        {
+          "line": 157,
+          "zh": "返回上次调查位置",
+          "en": "Return to the last file"
+        },
+        {
+          "line": 157,
+          "zh": "工作笔记",
+          "en": "Case notes"
+        },
+        {
+          "line": 157,
+          "zh": "可核对的记录",
+          "en": "Available reviews"
+        },
+        {
+          "line": 177,
+          "zh": "已发现的文件",
+          "en": "Retained files"
+        },
+        {
+          "line": 177,
+          "zh": "查看资料",
+          "en": "Open a source"
+        },
+        {
+          "line": 177,
+          "zh": "查看已发现的资料",
+          "en": "Open a retained source"
+        },
+        {
+          "line": 210,
+          "zh": "归类证据核对",
+          "en": "Classification source review"
+        },
+        {
+          "line": 210,
+          "zh": "打开完整核对台",
+          "en": "Open the full evidence desk"
+        },
+        {
+          "line": 298,
+          "zh": "打开证据核对台",
+          "en": "Open evidence desk"
+        },
+        {
+          "line": 298,
+          "zh": "调查记录",
+          "en": "Review status"
+        },
+        {
+          "line": 298,
+          "zh": "已核对",
+          "en": "REVIEWED"
+        },
+        {
+          "line": 298,
+          "zh": "正在调查",
+          "en": "OPEN"
+        },
+        {
+          "line": 298,
+          "zh": "尚未开放",
+          "en": "NOT OPEN"
+        },
+        {
+          "line": 298,
+          "zh": "人员资料核对",
+          "en": "Personnel review"
+        },
+        {
+          "line": 298,
+          "zh": "区域用途核对",
+          "en": "Position-use review"
+        },
+        {
+          "line": 301,
+          "zh": "查看所选原件与对照",
+          "en": "View the selected source and comparison"
+        }
+      ]
+    },
+    {
+      "file": "case-feedback.js",
+      "removed": [
+        {
+          "line": 58,
+          "zh": "再看一下人员、区域用途和状态三栏，换行的内容也要读完。",
+          "en": "Check the people, position and status fields, including wrapped text."
+        },
+        {
+          "line": 114,
+          "zh": "相关资料：",
+          "en": "Check this page: "
+        }
+      ],
+      "added": [
+        {
+          "line": 58,
+          "zh": "仍有改动未标记。请把每一行的两份内容读完。",
+          "en": "Some changed fields remain unmarked. Read both copies of each row, including wrapped text."
+        }
+      ]
+    },
+    {
+      "file": "case-night.js",
+      "removed": [],
+      "added": [
+        {
+          "line": 120,
+          "zh": "03:17 / 录像来源",
+          "en": "03:17 / Recording source"
+        },
+        {
+          "line": 120,
+          "zh": "可将这段恢复画面保留到核对台，与旧记录一起查看。",
+          "en": "Retain the restored picture for comparison with the historical records."
+        },
+        {
+          "line": 120,
+          "zh": "已加入证据核对台",
+          "en": "Retained at evidence desk"
+        },
+        {
+          "line": 120,
+          "zh": "加入证据核对台",
+          "en": "Add to evidence desk"
+        },
+        {
+          "line": 120,
+          "zh": "查看保留来源",
+          "en": "View retained source"
+        }
+      ]
+    },
+    {
+      "file": "case-void.js",
+      "removed": [
+        {
+          "line": 26,
+          "zh": "${F.service} 的登记用途是 SERVICE HOLDING。原客房目录没有这个房号。",
+          "en": "${F.service} is registered as SERVICE HOLDING. It is absent from the original guest-room directory."
+        },
+        {
+          "line": 27,
+          "zh": "原预订单的住客是 ${F.guest}。后来写入住客栏的 ${F.reviewerName} 原本是处理人。",
+          "en": "The original guest is ${F.guest}. ${F.reviewerName}, later placed in the guest field, was the reviewer."
+        },
+        {
+          "line": 28,
+          "zh": "${F.temporary} 只有一条自动排班记录，没有实际到岗记录。",
+          "en": "${F.temporary} has an automatic shift assignment, but no record of arriving for duty."
+        },
+        {
+          "line": 39,
+          "zh": "无法识别此处，请选择记录类别。",
+          "en": "Location unrecognized. Select a record type."
+        },
+        {
+          "line": 39,
+          "zh": "与原件不符",
+          "en": "SOURCE CONFLICT"
+        }
+      ],
+      "added": [
+        {
+          "line": 31,
+          "zh": "核对这段影像的归类依据。",
+          "en": "Review the basis for classifying this picture."
+        },
+        {
+          "line": 31,
+          "zh": "最终处理",
+          "en": "Final disposition"
+        },
+        {
+          "line": 31,
+          "zh": "强制归类时使用的类别",
+          "en": "Category used for forced classification"
+        },
+        {
+          "line": 31,
+          "zh": "强制归类",
+          "en": "Assign a category"
+        },
+        {
+          "line": 31,
+          "zh": "接受自动结案",
+          "en": "Accept automatic closure"
+        },
+        {
+          "line": 31,
+          "zh": "保留未核实状态",
+          "en": "Keep unverified"
+        }
+      ]
+    }
+  ]
+}

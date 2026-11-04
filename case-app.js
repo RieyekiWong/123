@@ -62,7 +62,13 @@
       return result;
     },
   });
-  const views = window.StillwaterCaseViews({ t, esc, getState: () => state });
+  const evidenceDesk = window.StillwaterEvidence.create({t,esc,getState:()=>state,onAction:(action,payload,options={})=>{
+    const result=action==='desk-refresh'?{ok:true}:M.transition(state,action,payload);
+    save();
+    if(options.render!==false){render();if(options.focus){const el=document.querySelector(options.focus);if(el){if(!el.matches('button,input,select,a'))el.tabIndex=-1;el.focus({preventScroll:true});}}}
+    return result;
+  }});
+  const views = window.StillwaterCaseViews({ t, esc, getState: () => state, evidence: evidenceDesk });
   const nightViews = window.StillwaterNightViews({ t, getState: () => state, sourceCheck: () => promo.renderCheck() });
   const spaceViews = window.StillwaterSpaceViews({ t, getState: () => state });
   const nightAudio = window.StillwaterCaseAudio.create({
@@ -97,6 +103,7 @@
     if (!Object.hasOwn(M.routes, route)) return;
     if (!["forum", "chat"].includes(route)) prologue.entered = true;
     prologue.lastRoute = location.hash.slice(1) || route;
+    if(!["evidence-desk","chat","forum","notes","ending"].includes(route)) state.desk.returnTo=prologue.lastRoute;
     try {
       localStorage.setItem(PROLOGUE, JSON.stringify(prologue));
     } catch {}
@@ -168,6 +175,7 @@
       nextVoidFocus = "";
       welcome?.forget();
       chat.reset();
+      evidenceDesk.reset();
       promo.reset();
       nightEvents.clear();
       nightAudio.stop();
@@ -196,7 +204,7 @@
     t,
   });
   const voidWorld = window.StillwaterVoid.create({
-    getState: () => state, t, esc,
+    getState: () => state, t, esc, evidenceReview:()=>evidenceDesk.finalReview(), guide:(key)=>evidenceDesk.hints(key),
     onAction: (action, payload, focusKey) => {
       const previousEvents = state.night.void.events.length;
       const result = M.transition(state, "void", { action, ...payload });
@@ -210,6 +218,7 @@
         return;
       }
       nightAudio.effect(action === "walk" ? "door" : "ui");
+      if (action === "disposition" && payload.mode !== "retain") { location.hash="ending"; return; }
       if (result.route) { pendingVoidHandover = true; location.hash = result.route; return; }
       nextVoidFocus = focusKey;
       render();
@@ -405,6 +414,7 @@
     if (route === "home") route = "hotel";
     const inVoid = route === "void" && M.canOpen(state, "void");
     const staff = [
+      "evidence-desk",
       "night-audit",
       "staff",
       "revisions",
@@ -462,6 +472,7 @@
       document.title = "NO INDEX · Stillwater";
       document.querySelector("#case-shell").innerHTML = voidWorld.render();
       voidWorld.mount(document.querySelector("#case-shell"), nextVoidFocus);
+      evidenceDesk.decorate();
       nextVoidFocus = "";
       ads.navigate();
       if (moveFocus) {
@@ -522,10 +533,17 @@
       M.transition(state, "night-observe-public", { page: route });
       save();
     }
+    if(allowed && route==='staff'){M.transition(state,'desk-discover',{route});save();}
+    if(allowed && route==='evidence-desk'){
+      const requested=params.get('proof');
+      if(requested)M.transition(state,'desk-ui',{op:'proof',key:requested});
+      M.syncSources(state);save();
+    }
     const content = allowed
       ? (
           {
             careers,
+            "evidence-desk": evidenceDesk.render,
             forum: forum.render,
             ...views,
             ...nightViews,
@@ -555,7 +573,7 @@
       if (shown === "released") document.title = "GAME OVER · Stillwater Hotel";
     }
     document.querySelector("#case-shell").innerHTML =
-      `<header class="site-header"><a class="site-brand" href="#${route === "forum" ? "forum" : route === "careers" ? "careers" : staff ? "staff" : "hotel"}">${route === "forum" ? t('夜猫论坛<span class="bbs-subtitle">NIGHT OWL BBS</span>', 'Night Owl BBS<span class="bbs-subtitle">THE LATE THREAD</span>') : route === "careers" ? "Stillwater Heritage Careers" : staff ? "STILLWATER / STAFF ARCHIVE" : '<span class="hotel-brand-title">The Stillwater Hotel</span><span class="hotel-brand-subtitle">A FAMILIAR PLACE · SINCE 1987</span>'}</a><div class="site-utilities"><button data-case-action="instructions" aria-haspopup="dialog">${t("游玩说明", "How to play")}</button><button data-case-action="save-settings" aria-haspopup="dialog">${t("存档与重置", "Saves & reset")}</button><a data-case-language href="${zh ? "index.html" : "index-zh.html"}${esc(location.search)}${esc(location.hash)}">${zh ? "English" : "简体中文"}</a></div></header>${
+      `<header class="site-header"><a class="site-brand" href="#${route === "forum" ? "forum" : route === "careers" ? "careers" : staff ? "notes" : "hotel"}">${route === "forum" ? t('夜猫论坛<span class="bbs-subtitle">NIGHT OWL BBS</span>', 'Night Owl BBS<span class="bbs-subtitle">THE LATE THREAD</span>') : route === "careers" ? "Stillwater Heritage Careers" : staff ? "STILLWATER / STAFF ARCHIVE" : '<span class="hotel-brand-title">The Stillwater Hotel</span><span class="hotel-brand-subtitle">A FAMILIAR PLACE · SINCE 1987</span>'}</a><div class="site-utilities">${M.has(state,"C1") && site!=="forum"?a("notes",t("工作笔记","Case notes")):""}<button data-case-action="instructions" aria-haspopup="dialog">${t("游玩说明", "How to play")}</button><button data-case-action="save-settings" aria-haspopup="dialog">${t("存档与重置", "Saves & reset")}</button><a data-case-language href="${zh ? "index.html" : "index-zh.html"}${esc(location.search)}${esc(location.hash)}">${zh ? "English" : "简体中文"}</a></div></header>${
         route === "forum"
           ? '<nav class="forum-nav" aria-label="' +
             t("论坛分区", "Forum sections") +
@@ -577,7 +595,8 @@
               ? '<nav class="staff-nav">' +
                 a("hotel", t("酒店目录", "Hotel index")) +
                 a("notes", t("工作笔记", "Case Notes")) +
-                a("staff", t("员工档案", "Staff archive")) +
+                a("evidence-desk", t("证据核对台", "Evidence desk")) +
+                (M.canOpen(state,"staff")?a("staff", t("员工档案", "Staff archive")):"") +
                 "</nav>"
               : '<nav class="hotel-nav">' +
                 a("hotel", t("首页", "Home")) +
@@ -585,7 +604,7 @@
                 a("reservations", t("预订查询", "Reservations")) +
                 a("contact", t("联系前台", "Contact")) +
                 "</nav>"
-      }<main id="content" tabindex="-1">${allowed && ["cameras", "terminal", "service-passage"].includes(route) ? nightViews.scareChoice() : ""}${content}</main>${siteFooter(site)}`;
+      }<main id="content" tabindex="-1">${allowed && ["cameras", "terminal", "service-passage"].includes(route) ? nightViews.scareChoice() : ""}${allowed && staff && !["evidence-desk","ending"].includes(route)?evidenceDesk.goal(true):""}${content}${allowed&&route==="cameras"?evidenceDesk.hints("cameras"):""}${allowed&&route==="terminal"?evidenceDesk.hints("wiring"):""}${allowed&&route==="terminal"&&window.StillwaterVoidModel.ready(state.night)&&!M.promoChecked(state)?evidenceDesk.hints("promo"):""}</main>${siteFooter(site)}`;
     const walker = document.createTreeWalker(
       document.querySelector("#content"),
       NodeFilter.SHOW_TEXT,
@@ -627,6 +646,7 @@
           `<p class="document"><a href="#mirror">${t("客房目录有更新 · 查看", "Room directory updated · View current page")} →</a></p>`,
         );
     }
+    evidenceDesk.decorate();
     ads.navigate();
     promo.mount(route);
     if (
@@ -866,6 +886,9 @@
       location.hash = "rooms";
     }
   });
+  document.addEventListener("click", (event)=>evidenceDesk.click(event));
+  document.addEventListener("change", (event)=>evidenceDesk.change(event));
+  document.addEventListener("submit", (event)=>evidenceDesk.submit(event));
   document.addEventListener("input", (e) => {
     if (e.target.id === "reservation-reference")
       state.drafts.reservation = e.target.value.slice(0, 32);
@@ -932,8 +955,8 @@
       e.preventDefault();
       if (
         perform(
-          "audit",
-          { order: state.drafts.auditOrder, assessment: form.assessment.value },
+          "audit-order",
+          { order: state.drafts.auditOrder },
           "audit-error",
         )
       )
@@ -955,7 +978,7 @@
       if (
         perform(
           "evidence",
-          { selection: state.drafts.finalSelection },
+          { confirmed: true },
           "evidence-error",
         )
       )

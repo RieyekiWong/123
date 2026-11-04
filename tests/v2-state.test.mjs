@@ -7,21 +7,8 @@ import "../case-state.js";
 const D = globalThis.StillwaterCaseData,
   M = globalThis.StillwaterCaseState,
   F = D.facts;
-function throughAudit() {
-  const s = M.fresh();
-  for (const [a, p] of [
-    ["sample", {}],
-    ["reservation", { reference: F.reservation }],
-    ["inventory", { room: F.bookedRoom }],
-    ["message", {}],
-    ["inspect-service", {}],
-    ["classify-service", { classification: "service" }],
-    ["maintenance", { reference: F.notice }],
-    ["audit", { order: D.audit.map((e) => e.id), assessment: "insufficient" }],
-  ])
-    assert.equal(M.transition(s, a, p).ok, true, a);
-  return s;
-}
+import {toAudit,prepareProof,solveProof,fullCase} from './v2-evidence-model-helpers.mjs';
+const throughAudit=toAudit;
 test("every necessary clue has an actual source, dependency and downstream use", () => {
   assert.equal(Object.keys(D.clues).length, 9);
   for (const c of Object.values(D.clues)) {
@@ -42,31 +29,14 @@ test("a guessed final answer and a premature deep link cannot bypass the case", 
   );
   assert.deepEqual(s.evidence, []);
 });
-test("incorrect classification, timeline and assessment leave a recoverable case", () => {
-  const s = throughAudit();
-  s.completed.audit = false;
-  assert.equal(
-    M.transition(s, "audit", {
-      order: D.auditInitial,
-      assessment: "insufficient",
-    }).error,
-    "audit-order",
-  );
-  assert.equal(
-    M.transition(s, "audit", {
-      order: D.audit.map((e) => e.id),
-      assessment: "confirmed",
-    }).error,
-    "audit-assessment",
-  );
-  assert.equal(
-    M.transition(s, "audit", {
-      order: D.audit.map((e) => e.id),
-      assessment: "insufficient",
-    }).ok,
-    true,
-  );
-  assert.equal(M.canOpen(s, "staff"), true);
+test("incorrect order and record findings leave a recoverable case", () => {
+  const s=throughAudit();s.completed.audit=false;delete s.desk.results.timeline;
+  assert.equal(M.transition(s,'audit-order',{order:D.auditInitial}).error,'audit-order');
+  s.desk.drafts.timeline.values.assessment='confirmed';
+  assert.equal(M.transition(s,'audit').error,'audit-assessment');
+  s.desk.drafts.timeline.values.assessment='insufficient';
+  assert.equal(M.transition(s,'audit').ok,true);
+  assert.equal(M.canOpen(s,'staff'),true);
 });
 test("revision comparison checks both missing differences and unchanged rows", () => {
   const s = throughAudit();
@@ -85,6 +55,8 @@ test("revision comparison checks both missing differences and unchanged rows", (
     }).ok,
     true,
   );
+  assert.equal(M.canOpen(s, "closure"), false);
+  M.transition(s,'desk-discover',{route:'staff'});M.transition(s,'queue');solveProof(s,'identity');
   assert.equal(M.canOpen(s, "closure"), true);
 });
 test("the same verified evidence supports two replayable endings and survives reload", () => {
@@ -121,8 +93,10 @@ test("the same verified evidence supports two replayable endings and survives re
     ["night-rotate", { node: 0 }],
     ["ending", { ending: "auto-close" }],
     ["ending", { ending: "unverified" }],
-  ])
-    assert.equal(M.transition(s, a, p).ok, true, a);
+  ]) {
+    if(a==='closure'){M.transition(s,'desk-discover',{route:'staff'});M.transition(s,'queue');solveProof(s,'identity');}
+    assert.equal(M.transition(s,a,p).ok,true,a);
+  }
   s.drafts.auditOrder = ["housekeeping", "transfer", "message", "draft"];
   s = M.hydrate(JSON.parse(JSON.stringify(s)));
   assert.equal(s.evidence.length, 9);
@@ -152,6 +126,7 @@ test("invalid saves are sanitized without affecting the previous edition", () =>
 test("editing a current conclusion invalidates new sign-off without erasing historical dispositions", () => {
   const s = throughAudit();
   M.transition(s, "revisions", { selection: ["owner", "location", "status"] });
+  M.transition(s,'desk-discover',{route:'staff'});M.transition(s,'queue');solveProof(s,'identity');
   M.transition(s, "closure");
   M.transition(s, "mara");
   M.transition(s, "evidence", {
@@ -167,50 +142,15 @@ test("editing a current conclusion invalidates new sign-off without erasing hist
   assert.equal(M.canOpen(restored, "ending"), true);
   assert.equal(restored.completed.finalEvidence, false);
 });
-test("all early wrong classifications reject without advancing evidence and remain correctable", () => {
-  const s = M.fresh();
-  M.transition(s, "sample");
-  assert.equal(
-    M.transition(s, "reservation", { reference: "R-wrong" }).ok,
-    false,
-  );
-  M.transition(s, "reservation", { reference: F.reservation });
-  assert.equal(
-    M.transition(s, "inventory", {
-      room: D.inventory.find((n) => n !== F.bookedRoom),
-    }).ok,
-    false,
-  );
-  assert.equal(s.evidence.includes("C3"), false);
-  M.transition(s, "inventory", { room: F.bookedRoom });
-  M.transition(s, "message");
-  M.transition(s, "inspect-service");
-  for (const classification of ["guest", "typo"])
-    assert.equal(
-      M.transition(s, "classify-service", { classification }).ok,
-      false,
-    );
-  assert.equal(s.evidence.includes("C5"), false);
-  M.transition(s, "classify-service", { classification: "service" });
-  assert.equal(
-    M.transition(s, "maintenance", { reference: "A-wrong" }).ok,
-    false,
-  );
-  M.transition(s, "maintenance", { reference: F.notice });
-  for (const assessment of ["confirmed", "other-room"])
-    assert.equal(
-      M.transition(s, "audit", { order: D.audit.map((r) => r.id), assessment })
-        .ok,
-      false,
-    );
-  assert.equal(s.completed.audit, false);
-  assert.equal(
-    M.transition(s, "audit", {
-      order: D.audit.map((r) => r.id),
-      assessment: "insufficient",
-    }).ok,
-    true,
-  );
+test("all early wrong classifications reject without advancing judgments and remain correctable", () => {
+ const s=M.fresh();M.transition(s,'sample');assert.equal(M.transition(s,'reservation',{reference:'R-wrong'}).ok,false);
+ M.transition(s,'reservation',{reference:F.reservation});assert.equal(M.transition(s,'inventory',{room:'301'}).ok,false);assert.equal(s.evidence.includes('C3'),false);
+ solveProof(s,'intake');M.transition(s,'inventory',{room:F.bookedRoom});M.transition(s,'message');M.transition(s,'inspect-service');
+ assert.equal(s.evidence.includes('C5'),true);assert.equal(s.desk.results.space,undefined);
+ for(const use of ['room','occupied']){prepareProof(s,'space',{use});assert.equal(M.transition(s,'desk-submit',{key:'space'}).ok,false);}
+ solveProof(s,'space');assert.equal(M.transition(s,'maintenance',{reference:'A-wrong'}).ok,false);M.transition(s,'maintenance',{reference:F.notice});
+ for(const assessment of ['confirmed','never']){prepareProof(s,'timeline',{assessment});assert.equal(M.transition(s,'desk-submit',{key:'timeline'}).ok,false);}
+ assert.equal(s.completed.audit,false);solveProof(s,'timeline');assert.equal(s.completed.audit,true);
 });
 
 test("faces default to on; explicit player skip and reduced-motion preferences survive hydration", () => {

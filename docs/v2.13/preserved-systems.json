@@ -1,0 +1,1140 @@
+{
+  "baseline": "392334a03a07b041db86d8652182043a7f59c32a",
+  "version": "4.13.0",
+  "protectedFileCount": 176,
+  "allProtectedFilesIdentical": true,
+  "files": [
+    {
+      "file": "ad-campaigns.js",
+      "before": "8cd4f068f147117a8731ad3fe78069f6226c25a16f176f0dd970bef0a2fe28ba",
+      "after": "8cd4f068f147117a8731ad3fe78069f6226c25a16f176f0dd970bef0a2fe28ba",
+      "same": true
+    },
+    {
+      "file": "ad-data.js",
+      "before": "5324ba622a6ad392bb22d3ad3af8fc2428aa8e8c84f8f130b60f238631e3b68f",
+      "after": "5324ba622a6ad392bb22d3ad3af8fc2428aa8e8c84f8f130b60f238631e3b68f",
+      "same": true
+    },
+    {
+      "file": "ad-popup.css",
+      "before": "3089420b02a6acc420a414e2da325ad8f6c24504ba4a465f056e382621518e84",
+      "after": "3089420b02a6acc420a414e2da325ad8f6c24504ba4a465f056e382621518e84",
+      "same": true
+    },
+    {
+      "file": "ad-style.css",
+      "before": "f159098fc32971a52f27cdfc2942f786d8198521a02fe9bd60b3498dc46aad7d",
+      "after": "f159098fc32971a52f27cdfc2942f786d8198521a02fe9bd60b3498dc46aad7d",
+      "same": true
+    },
+    {
+      "file": "ad-system.js",
+      "before": "d8f759a8a412093a596bd15aa9a9210900097f174a095ca4a28c16d811dc5de4",
+      "after": "d8f759a8a412093a596bd15aa9a9210900097f174a095ca4a28c16d811dc5de4",
+      "same": true
+    },
+    {
+      "file": "afterword.css",
+      "before": "5f167d870afdeea946adfec964658812d805b8c38071882df84f445959baa6a4",
+      "after": "5f167d870afdeea946adfec964658812d805b8c38071882df84f445959baa6a4",
+      "same": true
+    },
+    {
+      "file": "afterword.js",
+      "before": "9921cf06f4727b16ce04b6819bd785bdeddd3837391e88fae1dd903d7d7d620b",
+      "after": "9921cf06f4727b16ce04b6819bd785bdeddd3837391e88fae1dd903d7d7d620b",
+      "same": true
+    },
+    {
+      "file": "app.js",
+      "before": "b169b83dae6ace8d27e94587b15c1a552db7793da0f08d3940209244e7eb20f4",
+      "after": "b169b83dae6ace8d27e94587b15c1a552db7793da0f08d3940209244e7eb20f4",
+      "same": true
+    },
+    {
+      "file": "assets/CREDITS.md",
+      "before": "21c357000c593f40a27c89cc7f8cb15390e39f52a42a3134c6d52f1f48f4b357",
+      "after": "21c357000c593f40a27c89cc7f8cb15390e39f52a42a3134c6d52f1f48f4b357",
+      "same": true
+    },
+    {
+      "file": "assets/RETRO-IMAGES.md",
+      "before": "37af3d4b890276bf8cebbf567c32b17da26832a9b5d87e26f15710de17e26c02",
+      "after": "37af3d4b890276bf8cebbf567c32b17da26832a9b5d87e26f15710de17e26c02",
+      "same": true
+    },
+    {
+      "file": "assets/WEB-PHOTOS.md",
+      "before": "954f4d42cf692e1aa68ca63b391f2692090a3ef2e8e50aa29b16b41e12989826",
+      "after": "954f4d42cf692e1aa68ca63b391f2692090a3ef2e8e50aa29b16b41e12989826",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/SOURCES.md",
+      "before": "2041ae69a68c7963257fd66fe48f0d2002534f47740ac4796423ca925df33c49",
+      "after": "2041ae69a68c7963257fd66fe48f0d2002534f47740ac4796423ca925df33c49",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/archive.mp3",
+      "before": "738381d34d9f3a98315c0925679636a54c3cd1e148ced63db60b483f2b0f9088",
+      "after": "738381d34d9f3a98315c0925679636a54c3cd1e148ced63db60b483f2b0f9088",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/archive.ogg",
+      "before": "3c1175569c2f25673ba0f50eb8752581c2089ec509ea4dcea6e9ff8e6afd4146",
+      "after": "3c1175569c2f25673ba0f50eb8752581c2089ec509ea4dcea6e9ff8e6afd4146",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/cctv.mp3",
+      "before": "6a1c0937018d867463b1332d6f1179972e59be8c781a9fac0952325b8e168c5e",
+      "after": "6a1c0937018d867463b1332d6f1179972e59be8c781a9fac0952325b8e168c5e",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/cctv.ogg",
+      "before": "ddb8916b6ce2ce12b063b5f5ad8e16768eeedbf2c3bae64f411efc8e175cffe1",
+      "after": "ddb8916b6ce2ce12b063b5f5ad8e16768eeedbf2c3bae64f411efc8e175cffe1",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/credits.json",
+      "before": "dd476221bfb3f238e1f46574742bbc8fded3e505bdf4898f278a5bbc9227148f",
+      "after": "dd476221bfb3f238e1f46574742bbc8fded3e505bdf4898f278a5bbc9227148f",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/deep.mp3",
+      "before": "e8efa0072d4097d20f10d1b1222bacebc03583d7f674e2d716a782cffe6f39dc",
+      "after": "e8efa0072d4097d20f10d1b1222bacebc03583d7f674e2d716a782cffe6f39dc",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/deep.ogg",
+      "before": "84415789906e3e2ae7acda215508db79856fb10da27a021262f45e9a1dc732a7",
+      "after": "84415789906e3e2ae7acda215508db79856fb10da27a021262f45e9a1dc732a7",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/investigation.mp3",
+      "before": "4067e5e05afb48d9e33a0d046500d71c1d82964fe3ba1adab95d0784736a6f9d",
+      "after": "4067e5e05afb48d9e33a0d046500d71c1d82964fe3ba1adab95d0784736a6f9d",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/investigation.ogg",
+      "before": "3a7924b3296bc7e93bdd8cd9879d7ae011f38d96867c015aac4574323e7d5aab",
+      "after": "3a7924b3296bc7e93bdd8cd9879d7ae011f38d96867c015aac4574323e7d5aab",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/passage.mp3",
+      "before": "efd131c4d9d4e0125ead509f50c954f507f9d5973ae521cd09147a2877186426",
+      "after": "efd131c4d9d4e0125ead509f50c954f507f9d5973ae521cd09147a2877186426",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/passage.ogg",
+      "before": "4b7567cddee2536d9930108991e21ecd98bb2d10f7090aecc3d3f9d070042027",
+      "after": "4b7567cddee2536d9930108991e21ecd98bb2d10f7090aecc3d3f9d070042027",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/rewrite.mp3",
+      "before": "328336f361db78ed23ae0cd8b4909bef2b875f7069217faee8778c4f4d6f19c6",
+      "after": "328336f361db78ed23ae0cd8b4909bef2b875f7069217faee8778c4f4d6f19c6",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/rewrite.ogg",
+      "before": "5367c9629609d8e3ab566dc9c69f953fcceef93e1f11e5e2e22afe0d98abdaf4",
+      "after": "5367c9629609d8e3ab566dc9c69f953fcceef93e1f11e5e2e22afe0d98abdaf4",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/safe.mp3",
+      "before": "46a96326f51570eb425fde9c32ba5bdd2357cfee2ad9da2036ef6072bb761231",
+      "after": "46a96326f51570eb425fde9c32ba5bdd2357cfee2ad9da2036ef6072bb761231",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/safe.ogg",
+      "before": "50631a8bcbc2b06184d10d36c74414692d3c56d234a5bb2bf2c2a3866f61e147",
+      "after": "50631a8bcbc2b06184d10d36c74414692d3c56d234a5bb2bf2c2a3866f61e147",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/unlisted.mp3",
+      "before": "ba227613532dfd04088ece0b06bca4e3760ccfade4f1f7dabe7e4d953f6b1bd8",
+      "after": "ba227613532dfd04088ece0b06bca4e3760ccfade4f1f7dabe7e4d953f6b1bd8",
+      "same": true
+    },
+    {
+      "file": "assets/audio-v28/unlisted.ogg",
+      "before": "7b34f22b91bbb5f98e104fb1dd821ee432dae5f4ca6d340f776a955a3a35789d",
+      "after": "7b34f22b91bbb5f98e104fb1dd821ee432dae5f4ca6d340f776a955a3a35789d",
+      "same": true
+    },
+    {
+      "file": "assets/cctv-grain.svg",
+      "before": "5ab503aa27df47dff39ce74925dddb92632f1867f0244b43eeffe9a115914b14",
+      "after": "5ab503aa27df47dff39ce74925dddb92632f1867f0244b43eeffe9a115914b14",
+      "same": true
+    },
+    {
+      "file": "assets/chat-avatars/SOURCES.md",
+      "before": "604ed2d7b37ca99765327422729cdfa7a846f42ea2a6978714e596c395740a16",
+      "after": "604ed2d7b37ca99765327422729cdfa7a846f42ea2a6978714e596c395740a16",
+      "same": true
+    },
+    {
+      "file": "assets/chat-avatars/credits.json",
+      "before": "dd598ba7c323a6a63e114830e4eab306dfa62caf9bf821d5a636cf6425368467",
+      "after": "dd598ba7c323a6a63e114830e4eab306dfa62caf9bf821d5a636cf6425368467",
+      "same": true
+    },
+    {
+      "file": "assets/chat-avatars/gg.jpg",
+      "before": "89193b2612e5efa594b67101814c667e13dda24cc34fb26099a5c5b7fc1fbf21",
+      "after": "89193b2612e5efa594b67101814c667e13dda24cc34fb26099a5c5b7fc1fbf21",
+      "same": true
+    },
+    {
+      "file": "assets/chat-avatars/lin.jpg",
+      "before": "1764351b527a995e6ff70a84c850d9e96a406c3ba51c0596c42b0d0d18f002d2",
+      "after": "1764351b527a995e6ff70a84c850d9e96a406c3ba51c0596c42b0d0d18f002d2",
+      "same": true
+    },
+    {
+      "file": "assets/chat-avatars/me.jpg",
+      "before": "e5ab850847ae1fad2263795b7e96d19be7cb2630963a2a99b756040807a37740",
+      "after": "e5ab850847ae1fad2263795b7e96d19be7cb2630963a2a99b756040807a37740",
+      "same": true
+    },
+    {
+      "file": "assets/chat-avatars/zhang.jpg",
+      "before": "6546c04f176e5d7f02fb8e76ba2bf8a5297c12e93c1dbcbd190e855d0501b19b",
+      "after": "6546c04f176e5d7f02fb8e76ba2bf8a5297c12e93c1dbcbd190e855d0501b19b",
+      "same": true
+    },
+    {
+      "file": "assets/dylan-help.mp3",
+      "before": "56f6651dcaa61c376ec144315c82c4b4ece3baaeef3d903662df6c88b8188c97",
+      "after": "56f6651dcaa61c376ec144315c82c4b4ece3baaeef3d903662df6c88b8188c97",
+      "same": true
+    },
+    {
+      "file": "assets/dylan-room.png",
+      "before": "395b0bc9b81a3068db61094ee75d0e3fc17ca5e5b358b7e32593608ad3c906be",
+      "after": "395b0bc9b81a3068db61094ee75d0e3fc17ca5e5b358b7e32593608ad3c906be",
+      "same": true
+    },
+    {
+      "file": "assets/emblem.svg",
+      "before": "05ac4e701915ebd522b93d0ec843327749a61a3d2cbcdf2338aac84b643d9509",
+      "after": "05ac4e701915ebd522b93d0ec843327749a61a3d2cbcdf2338aac84b643d9509",
+      "same": true
+    },
+    {
+      "file": "assets/forum-avatars/air_fryer_here.jpg",
+      "before": "79be10ce5f5e5882fa276bc0ceae2b5fd5b9a7b937c21400c0c6f9126045566b",
+      "after": "79be10ce5f5e5882fa276bc0ceae2b5fd5b9a7b937c21400c0c6f9126045566b",
+      "same": true
+    },
+    {
+      "file": "assets/forum-avatars/credits.json",
+      "before": "62c395423cde3e61afade23ebbbdfdf1d5dad68687465722937a515d0cb258c1",
+      "after": "62c395423cde3e61afade23ebbbdfdf1d5dad68687465722937a515d0cb258c1",
+      "same": true
+    },
+    {
+      "file": "assets/forum-avatars/disk_almost_full.jpg",
+      "before": "61808f1305772c4de88da541939f8f880ca786ba537e899100cccdab653cdbf6",
+      "after": "61808f1305772c4de88da541939f8f880ca786ba537e899100cccdab653cdbf6",
+      "same": true
+    },
+    {
+      "file": "assets/forum-avatars/folded_corner.jpg",
+      "before": "510a6331e18bd251a2cbce3705768709cfaf5ee08b25261aada2dcb9fe6e5cef",
+      "after": "510a6331e18bd251a2cbce3705768709cfaf5ee08b25261aada2dcb9fe6e5cef",
+      "same": true
+    },
+    {
+      "file": "assets/forum-avatars/friday_off.jpg",
+      "before": "b45a76a51f773a7a35e320dcefc1316eea148a776f26e5b118a033745ab9c42a",
+      "after": "b45a76a51f773a7a35e320dcefc1316eea148a776f26e5b118a033745ab9c42a",
+      "same": true
+    },
+    {
+      "file": "assets/forum-avatars/fridge_cola.jpg",
+      "before": "e51abd45be724175f1711158c444410b3e5ea3d94f05d49eb2e7bca024713340",
+      "after": "e51abd45be724175f1711158c444410b3e5ea3d94f05d49eb2e7bca024713340",
+      "same": true
+    },
+    {
+      "file": "assets/forum-avatars/headless_pin.jpg",
+      "before": "90b1822ebdb96ce76e9652049c35bc090e283a8808c915f25cb128969c235014",
+      "after": "90b1822ebdb96ce76e9652049c35bc090e283a8808c915f25cb128969c235014",
+      "same": true
+    },
+    {
+      "file": "assets/forum-avatars/loose_sesame.jpg",
+      "before": "7e37a83eebad4ebe7b8ec54a6a804e01360b9806b5ff95433313199182133038",
+      "after": "7e37a83eebad4ebe7b8ec54a6a804e01360b9806b5ff95433313199182133038",
+      "same": true
+    },
+    {
+      "file": "assets/forum-avatars/night_duty.jpg",
+      "before": "5c94e3f661f00c6912e12804d6a8312c932268b9938454b1d41e497893234e97",
+      "after": "5c94e3f661f00c6912e12804d6a8312c932268b9938454b1d41e497893234e97",
+      "same": true
+    },
+    {
+      "file": "assets/forum-avatars/one_beat_late.jpg",
+      "before": "b81772c40a69f5dc4a82e61708c5e42035a345cd468453e6bf6713aed0b1207c",
+      "after": "b81772c40a69f5dc4a82e61708c5e42035a345cd468453e6bf6713aed0b1207c",
+      "same": true
+    },
+    {
+      "file": "assets/forum-avatars/paperclip_04.jpg",
+      "before": "e996a1f34aad1217efb6ed9e4ec9b71966e34e96fa1de081ad01bde415620c96",
+      "after": "e996a1f34aad1217efb6ed9e4ec9b71966e34e96fa1de081ad01bde415620c96",
+      "same": true
+    },
+    {
+      "file": "assets/forum-avatars/passing_sandwich.jpg",
+      "before": "013d642de67c2c46325cd2a22a1d20ac69b2e4b1182dfc6cc20900cf0d3a21c8",
+      "after": "013d642de67c2c46325cd2a22a1d20ac69b2e4b1182dfc6cc20900cf0d3a21c8",
+      "same": true
+    },
+    {
+      "file": "assets/forum-avatars/turn_pages_quietly.jpg",
+      "before": "82d919f989abd1f6e3cd4286b232ccd028918a15f657590d522a1fab29c692ee",
+      "after": "82d919f989abd1f6e3cd4286b232ccd028918a15f657590d522a1fab29c692ee",
+      "same": true
+    },
+    {
+      "file": "assets/forum-avatars/wide_awake_at_three.jpg",
+      "before": "5cfd959a90e4a0bf88112af40c7b8750a1e983ff8f5215cfec566bd6408eb670",
+      "after": "5cfd959a90e4a0bf88112af40c7b8750a1e983ff8f5215cfec566bd6408eb670",
+      "same": true
+    },
+    {
+      "file": "assets/guestroom.jpg",
+      "before": "4f093ff4c47e4ade9066f48e1433b499e1e680e9820a3638bed390292274e3e7",
+      "after": "4f093ff4c47e4ade9066f48e1433b499e1e680e9820a3638bed390292274e3e7",
+      "same": true
+    },
+    {
+      "file": "assets/hallway.jpg",
+      "before": "43b08bfbec57e4d2a101f21d50ea0ba570fc066ec82c287c6690d77d11263e3b",
+      "after": "43b08bfbec57e4d2a101f21d50ea0ba570fc066ec82c287c6690d77d11263e3b",
+      "same": true
+    },
+    {
+      "file": "assets/haunt-v442/cabinet.jpg",
+      "before": "9c10edd9713c12c130e4907fcf66de25e882d45bc7766d55e5a2b0ebcf5ee91b",
+      "after": "9c10edd9713c12c130e4907fcf66de25e882d45bc7766d55e5a2b0ebcf5ee91b",
+      "same": true
+    },
+    {
+      "file": "assets/haunt-v442/corridor.jpg",
+      "before": "aac91e5e5fb6a2a3e6ffbb437f8748511b913aaca506b4c46d81a9d90c5891d0",
+      "after": "aac91e5e5fb6a2a3e6ffbb437f8748511b913aaca506b4c46d81a9d90c5891d0",
+      "same": true
+    },
+    {
+      "file": "assets/haunt-v442/escape.jpg",
+      "before": "580d61c1d6bdc320f203b14d72ba1dccef6270e563ac9f933305058793549b98",
+      "after": "580d61c1d6bdc320f203b14d72ba1dccef6270e563ac9f933305058793549b98",
+      "same": true
+    },
+    {
+      "file": "assets/haunt-v442/last-frame.jpg",
+      "before": "54397cfc05f202612445d945facaf32dcb5029a0f459566f77a184d477725b9a",
+      "after": "54397cfc05f202612445d945facaf32dcb5029a0f459566f77a184d477725b9a",
+      "same": true
+    },
+    {
+      "file": "assets/haunt-v442/manifest.json",
+      "before": "460684ad13143e9f363905b5d422522f72b532da8dc378a46813d1684647f028",
+      "after": "460684ad13143e9f363905b5d422522f72b532da8dc378a46813d1684647f028",
+      "same": true
+    },
+    {
+      "file": "assets/haunt-v442/sources/cabinet.png",
+      "before": "55ce0581609d2a4d8c53b5223969a76022c309f5a094bdc707aee3e344dfffc5",
+      "after": "55ce0581609d2a4d8c53b5223969a76022c309f5a094bdc707aee3e344dfffc5",
+      "same": true
+    },
+    {
+      "file": "assets/haunt-v442/sources/corridor.png",
+      "before": "618318e3503765d1702f6236d2529a145d96b1d2e3d0ba00e8ff5ac55498471f",
+      "after": "618318e3503765d1702f6236d2529a145d96b1d2e3d0ba00e8ff5ac55498471f",
+      "same": true
+    },
+    {
+      "file": "assets/haunt-v442/sources/escape.png",
+      "before": "945419f912a26898112a044b1b38af8dcbeb8e2dec74b801f35f9d521ff33456",
+      "after": "945419f912a26898112a044b1b38af8dcbeb8e2dec74b801f35f9d521ff33456",
+      "same": true
+    },
+    {
+      "file": "assets/haunt-v442/sources/last-frame.png",
+      "before": "f162e1dd2efd478e9fa8a0c354ec2920e2d400f24644d81b023bca750907b8a1",
+      "after": "f162e1dd2efd478e9fa8a0c354ec2920e2d400f24644d81b023bca750907b8a1",
+      "same": true
+    },
+    {
+      "file": "assets/hotel-promo-v1/SOURCES.md",
+      "before": "912ddc7f61e0ed4c290d21e6c5255447f1f99220a6fcb86cd122d47eff188524",
+      "after": "912ddc7f61e0ed4c290d21e6c5255447f1f99220a6fcb86cd122d47eff188524",
+      "same": true
+    },
+    {
+      "file": "assets/hotel-promo-v1/corridor-base.png",
+      "before": "7c0c833b452616b3d7975dac79760a18dcf4c3f603e09c6ba1d1f1c1d01392c9",
+      "after": "7c0c833b452616b3d7975dac79760a18dcf4c3f603e09c6ba1d1f1c1d01392c9",
+      "same": true
+    },
+    {
+      "file": "assets/hotel-promo-v1/credits.json",
+      "before": "50c2067719a8afbb5b8f756203494a64b851304cfa3c200aef46f764119e86af",
+      "after": "50c2067719a8afbb5b8f756203494a64b851304cfa3c200aef46f764119e86af",
+      "same": true
+    },
+    {
+      "file": "assets/lobby.jpg",
+      "before": "a840b6ac4e32e355e71498ef62882169d635403871f8933ca960b7bd343f176c",
+      "after": "a840b6ac4e32e355e71498ef62882169d635403871f8933ca960b7bd343f176c",
+      "same": true
+    },
+    {
+      "file": "assets/lowres-manifest.json",
+      "before": "f77f9e563c0c4470d0a043f1a1b741d713f947cf273e57e08e7f3355ae6ad2de",
+      "after": "f77f9e563c0c4470d0a043f1a1b741d713f947cf273e57e08e7f3355ae6ad2de",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/dylan-room.jpg",
+      "before": "603805778516e6b8a17bd854f9c3da73b4f24e73d7ab04c3826d9245507c62d6",
+      "after": "603805778516e6b8a17bd854f9c3da73b4f24e73d7ab04c3826d9245507c62d6",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/guestroom.jpg",
+      "before": "5bc443fb1a6db52f55bc619da9e0604de93bd27091d5aadf1bd6c3d806f4bf0d",
+      "after": "5bc443fb1a6db52f55bc619da9e0604de93bd27091d5aadf1bd6c3d806f4bf0d",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/hallway.jpg",
+      "before": "375edcec86ada4634491393dd81dfe31525b00afa2a0d5a361e00c9a969f1a95",
+      "after": "375edcec86ada4634491393dd81dfe31525b00afa2a0d5a361e00c9a969f1a95",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/lobby.jpg",
+      "before": "69372415844c3363a294afdb12ba9b769d29f3f323b15abde6490e150f9a31c5",
+      "after": "69372415844c3363a294afdb12ba9b769d29f3f323b15abde6490e150f9a31c5",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/night-mask.jpg",
+      "before": "b797a32b992344d41cd29f253b50331d675a48434f221343f786fc739487b0c5",
+      "after": "b797a32b992344d41cd29f253b50331d675a48434f221343f786fc739487b0c5",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/scare-porter.jpg",
+      "before": "a96f5a3bc001a335a3fecd0766dcb9c3af1f78b3162d8f368779db89406e9808",
+      "after": "a96f5a3bc001a335a3fecd0766dcb9c3af1f78b3162d8f368779db89406e9808",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/scare-reflection.jpg",
+      "before": "d4099a2e432fcd495b30074547d6f9606b2d51ebbb6c2d55ffff6021886781e6",
+      "after": "d4099a2e432fcd495b30074547d6f9606b2d51ebbb6c2d55ffff6021886781e6",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/scare-veil.jpg",
+      "before": "1b15ef7d9237dc227bcd814c33bee5ecb34744a4e62ff5f4dd04e68d6e31977e",
+      "after": "1b15ef7d9237dc227bcd814c33bee5ecb34744a4e62ff5f4dd04e68d6e31977e",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/suite.jpg",
+      "before": "900a5138b2b3296d1b6652e8df58af51082d62f64092b1c6dec493b7ec666d9c",
+      "after": "900a5138b2b3296d1b6652e8df58af51082d62f64092b1c6dec493b7ec666d9c",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/twin.jpg",
+      "before": "563cbe52aedc8413b8bbbfe5e4e9468f4aae3238d75d4fddde68d3a562bdda74",
+      "after": "563cbe52aedc8413b8bbbfe5e4e9468f4aae3238d75d4fddde68d3a562bdda74",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/web-ad-cat-snow.jpg",
+      "before": "09e5278e4c0aac24e1a9e8fcb1c260511e5a62c4370042dcd30b11bb890560ac",
+      "after": "09e5278e4c0aac24e1a9e8fcb1c260511e5a62c4370042dcd30b11bb890560ac",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/web-ad-cat-tabby.jpg",
+      "before": "9012cbc73faaa6bc8d490b1e63b45299235a13f5b65bb1227fd83f79cb567560",
+      "after": "9012cbc73faaa6bc8d490b1e63b45299235a13f5b65bb1227fd83f79cb567560",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/web-ad-cat.jpg",
+      "before": "8ebb6a48f77934c0fd1ff35d94b945bebc2158dacac005bc0ff13131b16e5369",
+      "after": "8ebb6a48f77934c0fd1ff35d94b945bebc2158dacac005bc0ff13131b16e5369",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/web-ad-cinema.jpg",
+      "before": "7816fe31086040cf570123c2bd59bf94c509204f86b41cb658bedbb74be45f88",
+      "after": "7816fe31086040cf570123c2bd59bf94c509204f86b41cb658bedbb74be45f88",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/web-ad-clouds.jpg",
+      "before": "1597863c889dc29cf6a24959e77ed590645870be053ac5d45549405d656c5276",
+      "after": "1597863c889dc29cf6a24959e77ed590645870be053ac5d45549405d656c5276",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/web-ad-computer.jpg",
+      "before": "a1fe7aa8052b2c0a952740426ce6873057bdb9125d015e66adef5d7e63a62c3c",
+      "after": "a1fe7aa8052b2c0a952740426ce6873057bdb9125d015e66adef5d7e63a62c3c",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/web-ad-dog.jpg",
+      "before": "d1ed7eced7de27754fee57caa192b8f94cc1c693e7fd0b9bcb513851e8b40c8f",
+      "after": "d1ed7eced7de27754fee57caa192b8f94cc1c693e7fd0b9bcb513851e8b40c8f",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/web-ad-print.jpg",
+      "before": "a94ae6458602feee7fdf7989cb0baf47521f1525ebf2d365875eb393c497d558",
+      "after": "a94ae6458602feee7fdf7989cb0baf47521f1525ebf2d365875eb393c497d558",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/web-ad-records.jpg",
+      "before": "dd4e568ddb68d91fcf1438f70fcd10b844812606c3c93726e639af5a5cb4094b",
+      "after": "dd4e568ddb68d91fcf1438f70fcd10b844812606c3c93726e639af5a5cb4094b",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/web-hotel-breakfast.jpg",
+      "before": "8641f03507b81de9d3d533ee0ae1c2da49f6d11e969ecfc4080cdcb593ce6ac8",
+      "after": "8641f03507b81de9d3d533ee0ae1c2da49f6d11e969ecfc4080cdcb593ce6ac8",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/web-hotel-dayroom.jpg",
+      "before": "4cdd485dc23881e41b35c1722102ac83c61f437e1a3d61e48c3fa164b10ea785",
+      "after": "4cdd485dc23881e41b35c1722102ac83c61f437e1a3d61e48c3fa164b10ea785",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/web-hotel-dining.jpg",
+      "before": "fb54dbf1f4764f5aee39f35c283007536613cb13d5f4b30c14d047c28f313d13",
+      "after": "fb54dbf1f4764f5aee39f35c283007536613cb13d5f4b30c14d047c28f313d13",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/web-hotel-exterior.jpg",
+      "before": "49b0898f5748b869f1d718495010fc23a5a0cb45984f69cfc2c79f2cdfd4c011",
+      "after": "49b0898f5748b869f1d718495010fc23a5a0cb45984f69cfc2c79f2cdfd4c011",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/web-hotel-garden.jpg",
+      "before": "ec38868b2fd6e7d5a13d494bf3112e2be559924230adbbd8038baae975dca49a",
+      "after": "ec38868b2fd6e7d5a13d494bf3112e2be559924230adbbd8038baae975dca49a",
+      "same": true
+    },
+    {
+      "file": "assets/lowres/web-hotel-lounge.jpg",
+      "before": "84a8bbe4c5012751836dafed0e589516581551916fdbcaebdc9fee3f703076c4",
+      "after": "84a8bbe4c5012751836dafed0e589516581551916fdbcaebdc9fee3f703076c4",
+      "same": true
+    },
+    {
+      "file": "assets/night-mask-credit.json",
+      "before": "851181a26fd284194f128ada00c51e9bba6816ca1fdba8488208acc31e0d2a84",
+      "after": "851181a26fd284194f128ada00c51e9bba6816ca1fdba8488208acc31e0d2a84",
+      "same": true
+    },
+    {
+      "file": "assets/night-mask.jpg",
+      "before": "4e95bf5692d12b1b8549c8347eb24a4fd6990aa432025f5edc7370d453cc4c5a",
+      "after": "4e95bf5692d12b1b8549c8347eb24a4fd6990aa432025f5edc7370d453cc4c5a",
+      "same": true
+    },
+    {
+      "file": "assets/photo-credits.json",
+      "before": "ba59b83fd78fbbac2bbf1bce32df0c42e0acde745582b6afb79184a6ba8d775a",
+      "after": "ba59b83fd78fbbac2bbf1bce32df0c42e0acde745582b6afb79184a6ba8d775a",
+      "same": true
+    },
+    {
+      "file": "assets/scare-porter.png",
+      "before": "24b7de0feb819beafd6df29f02c859109ef1730b7b76bf1d674c5ef0163101ec",
+      "after": "24b7de0feb819beafd6df29f02c859109ef1730b7b76bf1d674c5ef0163101ec",
+      "same": true
+    },
+    {
+      "file": "assets/scare-reflection.png",
+      "before": "6a50a44d52bdb1ddae9aeb94b4f2c79f21bb8f6eb006961ac79f029e97182181",
+      "after": "6a50a44d52bdb1ddae9aeb94b4f2c79f21bb8f6eb006961ac79f029e97182181",
+      "same": true
+    },
+    {
+      "file": "assets/scare-veil.png",
+      "before": "445f8223135f8edb0907b6a6eb0ef1e7ab78077fca7c6cd691c75dae6d594a2a",
+      "after": "445f8223135f8edb0907b6a6eb0ef1e7ab78077fca7c6cd691c75dae6d594a2a",
+      "same": true
+    },
+    {
+      "file": "assets/suite.jpg",
+      "before": "01b15004bb86892ce978153503deb908216689eae777a65d38b31a49a615f4e1",
+      "after": "01b15004bb86892ce978153503deb908216689eae777a65d38b31a49a615f4e1",
+      "same": true
+    },
+    {
+      "file": "assets/twin.jpg",
+      "before": "d81578ae5ce883acfff414ef1ba3db03306bdb8fc2e4a08a03c3368f622a04cb",
+      "after": "d81578ae5ce883acfff414ef1ba3db03306bdb8fc2e4a08a03c3368f622a04cb",
+      "same": true
+    },
+    {
+      "file": "assets/void-v26/SOURCES.md",
+      "before": "ea0b5bb53f1dcc8491f0ca964fdb065fdc23d252e51b3ec1ef5d5be17f410d73",
+      "after": "ea0b5bb53f1dcc8491f0ca964fdb065fdc23d252e51b3ec1ef5d5be17f410d73",
+      "same": true
+    },
+    {
+      "file": "assets/void-v26/credits.json",
+      "before": "7758f85b766ff76b1ac45fc43e0aba4c0efeb52ca4bca3bb72b6120bac07151b",
+      "after": "7758f85b766ff76b1ac45fc43e0aba4c0efeb52ca4bca3bb72b6120bac07151b",
+      "same": true
+    },
+    {
+      "file": "assets/void-v26/fragment-face.png",
+      "before": "78b075e0df5f9c29b8a72dfdf24d37a61917f44a7efe180c0a2537048524f03f",
+      "after": "78b075e0df5f9c29b8a72dfdf24d37a61917f44a7efe180c0a2537048524f03f",
+      "same": true
+    },
+    {
+      "file": "assets/void-v26/lookback.png",
+      "before": "1135b71b4ffe49081d2b461a2f434f083f9d4a0f5616d6096808e09e059de004",
+      "after": "1135b71b4ffe49081d2b461a2f434f083f9d4a0f5616d6096808e09e059de004",
+      "same": true
+    },
+    {
+      "file": "assets/web-photo-credits.json",
+      "before": "45b563af14300e57794064311af017f186f289346e399c680ae341d319164b66",
+      "after": "45b563af14300e57794064311af017f186f289346e399c680ae341d319164b66",
+      "same": true
+    },
+    {
+      "file": "assets/web/ad-cat-snow.jpg",
+      "before": "a34ee05fe8cb1badd2d7ffbeec2257c79f3683bd3ea0aef2b4ec709e42878734",
+      "after": "a34ee05fe8cb1badd2d7ffbeec2257c79f3683bd3ea0aef2b4ec709e42878734",
+      "same": true
+    },
+    {
+      "file": "assets/web/ad-cat-tabby.jpg",
+      "before": "9b46595fdf92b4a91d380e6b94721da5a68ec18ace40f4829a29db357d79bda5",
+      "after": "9b46595fdf92b4a91d380e6b94721da5a68ec18ace40f4829a29db357d79bda5",
+      "same": true
+    },
+    {
+      "file": "assets/web/ad-cat.jpg",
+      "before": "cf439a8a90cd05d5922818c34129116fa64eb676c0a0a702295e85d5879e55c2",
+      "after": "cf439a8a90cd05d5922818c34129116fa64eb676c0a0a702295e85d5879e55c2",
+      "same": true
+    },
+    {
+      "file": "assets/web/ad-cinema.jpg",
+      "before": "b2c72ea89aa9dde21326c3de03345111c11abe37b7d3a4846a7ee6dd1abbf9c3",
+      "after": "b2c72ea89aa9dde21326c3de03345111c11abe37b7d3a4846a7ee6dd1abbf9c3",
+      "same": true
+    },
+    {
+      "file": "assets/web/ad-clouds.jpg",
+      "before": "a0edc716f96abf55d9296b1829f21df01cc9339a203b430f8705fa2b1817395d",
+      "after": "a0edc716f96abf55d9296b1829f21df01cc9339a203b430f8705fa2b1817395d",
+      "same": true
+    },
+    {
+      "file": "assets/web/ad-computer.jpg",
+      "before": "cbbdc6a2fc45f0118906d19c0edf18e2cf66762344da45f661fcef2a1c15df98",
+      "after": "cbbdc6a2fc45f0118906d19c0edf18e2cf66762344da45f661fcef2a1c15df98",
+      "same": true
+    },
+    {
+      "file": "assets/web/ad-dog.jpg",
+      "before": "3d7124dd3dd12544571816d152a8ae1e3174a731a7c78f583a93990ca60cf65a",
+      "after": "3d7124dd3dd12544571816d152a8ae1e3174a731a7c78f583a93990ca60cf65a",
+      "same": true
+    },
+    {
+      "file": "assets/web/ad-print.jpg",
+      "before": "61cc719cbf035d0e2fc4647fd3d63c52fa41a2dd8f8d89218bd22cdb73f1073d",
+      "after": "61cc719cbf035d0e2fc4647fd3d63c52fa41a2dd8f8d89218bd22cdb73f1073d",
+      "same": true
+    },
+    {
+      "file": "assets/web/ad-records.jpg",
+      "before": "ea9426afdb705f1a16ab9d7ae23f4cf7e5bcb5981a073ef77870108dc3364f34",
+      "after": "ea9426afdb705f1a16ab9d7ae23f4cf7e5bcb5981a073ef77870108dc3364f34",
+      "same": true
+    },
+    {
+      "file": "assets/web/hotel-breakfast.jpg",
+      "before": "528b364a57199c6000175843260690e6765dcfaea5aed9bdf23e18079f4b0c7c",
+      "after": "528b364a57199c6000175843260690e6765dcfaea5aed9bdf23e18079f4b0c7c",
+      "same": true
+    },
+    {
+      "file": "assets/web/hotel-dayroom.jpg",
+      "before": "2e0db0857d5c02e38a9684eea920ab2c2f2a80c19d57a36fe157216a16951eac",
+      "after": "2e0db0857d5c02e38a9684eea920ab2c2f2a80c19d57a36fe157216a16951eac",
+      "same": true
+    },
+    {
+      "file": "assets/web/hotel-dining.jpg",
+      "before": "9f9ca4aa21901edd35c62af730747869f57fa8ad7922a987e32fd8f97c0790b8",
+      "after": "9f9ca4aa21901edd35c62af730747869f57fa8ad7922a987e32fd8f97c0790b8",
+      "same": true
+    },
+    {
+      "file": "assets/web/hotel-exterior.jpg",
+      "before": "348121f45b23c7227c912739e82e92a5e21b80556a53520c0314da2d462a8b11",
+      "after": "348121f45b23c7227c912739e82e92a5e21b80556a53520c0314da2d462a8b11",
+      "same": true
+    },
+    {
+      "file": "assets/web/hotel-garden.jpg",
+      "before": "0ee5695d5cdb2dd15b28f0772ce1c42118f426375749316fc02fa9832273dfe6",
+      "after": "0ee5695d5cdb2dd15b28f0772ce1c42118f426375749316fc02fa9832273dfe6",
+      "same": true
+    },
+    {
+      "file": "assets/web/hotel-lounge.jpg",
+      "before": "a212c36e1c40b7bf459e6527e9dea58d4079edfed4207e90761d8eaf51551eab",
+      "after": "a212c36e1c40b7bf459e6527e9dea58d4079edfed4207e90761d8eaf51551eab",
+      "same": true
+    },
+    {
+      "file": "branches.css",
+      "before": "9642b8624c9c03d1dcf260ade50626f7a6fe99e7117de5c3fb15ce859b32ae83",
+      "after": "9642b8624c9c03d1dcf260ade50626f7a6fe99e7117de5c3fb15ce859b32ae83",
+      "same": true
+    },
+    {
+      "file": "branches.js",
+      "before": "6994223435aeffc7fe356e1362396ce71e3cd002ee1f32c1a5d01f216247f2a4",
+      "after": "6994223435aeffc7fe356e1362396ce71e3cd002ee1f32c1a5d01f216247f2a4",
+      "same": true
+    },
+    {
+      "file": "career.css",
+      "before": "98b063e428892eedb43ad31872cc08d62dcc6b31dadba27ea22f3f60c7e213e6",
+      "after": "98b063e428892eedb43ad31872cc08d62dcc6b31dadba27ea22f3f60c7e213e6",
+      "same": true
+    },
+    {
+      "file": "career.js",
+      "before": "732a386c03aa742867cf67d8094aff21b818a8d3955bd02865d2a5d557babd48",
+      "after": "732a386c03aa742867cf67d8094aff21b818a8d3955bd02865d2a5d557babd48",
+      "same": true
+    },
+    {
+      "file": "case-night-model.js",
+      "before": "e3136a9b0daa5bbad538316db8b7ec76c23583cc020e4ed207f61e0faaa0eea1",
+      "after": "e3136a9b0daa5bbad538316db8b7ec76c23583cc020e4ed207f61e0faaa0eea1",
+      "same": true
+    },
+    {
+      "file": "chat-config.js",
+      "before": "f1a97b9d1f5a7f3d97a69470e603040aa41428af80c5cb2d46575e779694af7e",
+      "after": "f1a97b9d1f5a7f3d97a69470e603040aa41428af80c5cb2d46575e779694af7e",
+      "same": true
+    },
+    {
+      "file": "chat-data.js",
+      "before": "3594ffe5b53b4b8ee47efb0f03a4d881d48c98099a795187c4efd7f2ae0e070a",
+      "after": "3594ffe5b53b4b8ee47efb0f03a4d881d48c98099a795187c4efd7f2ae0e070a",
+      "same": true
+    },
+    {
+      "file": "chat-fallback.js",
+      "before": "74697c6d348d34b347722895a9d22ef33c32b040cfc85df8f7dbda5a5e2bb08c",
+      "after": "74697c6d348d34b347722895a9d22ef33c32b040cfc85df8f7dbda5a5e2bb08c",
+      "same": true
+    },
+    {
+      "file": "chat-model.js",
+      "before": "bbd0d97626cba476ffd4540d8a935bc23fa0295f860a6bd45c515258d3c3eb89",
+      "after": "bbd0d97626cba476ffd4540d8a935bc23fa0295f860a6bd45c515258d3c3eb89",
+      "same": true
+    },
+    {
+      "file": "chat-personas.js",
+      "before": "6c7c364439eebb77769b2dc6553cd3c8d1a3055d7fd36ae88cd5577c99ff651d",
+      "after": "6c7c364439eebb77769b2dc6553cd3c8d1a3055d7fd36ae88cd5577c99ff651d",
+      "same": true
+    },
+    {
+      "file": "chat-photos.js",
+      "before": "e095ffe82d35231d8133fceeadc23ad9e7f4e5b4418e495a03d7f2fd15f70d07",
+      "after": "e095ffe82d35231d8133fceeadc23ad9e7f4e5b4418e495a03d7f2fd15f70d07",
+      "same": true
+    },
+    {
+      "file": "chat-protocol.js",
+      "before": "116f09174b9dc462d44c5bb3be6f19246915d81da4b771e54983ad435f6ff32e",
+      "after": "116f09174b9dc462d44c5bb3be6f19246915d81da4b771e54983ad435f6ff32e",
+      "same": true
+    },
+    {
+      "file": "chat-style.css",
+      "before": "1b914e83735752d2fec02b658ea944bd5b01b05a0e5c30ac4aef2ac4b5f7052f",
+      "after": "1b914e83735752d2fec02b658ea944bd5b01b05a0e5c30ac4aef2ac4b5f7052f",
+      "same": true
+    },
+    {
+      "file": "chat-transport.js",
+      "before": "3b65db6a2880a3d253187bc870127da7ad841f3bac60b6e7b809c0969d6cb900",
+      "after": "3b65db6a2880a3d253187bc870127da7ad841f3bac60b6e7b809c0969d6cb900",
+      "same": true
+    },
+    {
+      "file": "chat-view.js",
+      "before": "3238ea52259394946d3f65ff0d86a2ad1f94bcf81e881f7be1f93ca9829d6f70",
+      "after": "3238ea52259394946d3f65ff0d86a2ad1f94bcf81e881f7be1f93ca9829d6f70",
+      "same": true
+    },
+    {
+      "file": "classic-bridge.js",
+      "before": "e628c15e71f8b8b658a95a7652dceb2cceed7a66efef6e58d7cc355ffeb8e43d",
+      "after": "e628c15e71f8b8b658a95a7652dceb2cceed7a66efef6e58d7cc355ffeb8e43d",
+      "same": true
+    },
+    {
+      "file": "classic-zh.html",
+      "before": "847e75b499b378e99b0c3a3808a56fead3db02cfe0db329a55c185ba3d110f47",
+      "after": "847e75b499b378e99b0c3a3808a56fead3db02cfe0db329a55c185ba3d110f47",
+      "same": true
+    },
+    {
+      "file": "classic.html",
+      "before": "12cb598646df0d236b8cb0d909d05788b698117f08307c86c44fa5741e2ae0a3",
+      "after": "12cb598646df0d236b8cb0d909d05788b698117f08307c86c44fa5741e2ae0a3",
+      "same": true
+    },
+    {
+      "file": "exploration.js",
+      "before": "1bc70d74a7a758749532566f062dfca0897f73561b3af650fcdb2348ba02fc93",
+      "after": "1bc70d74a7a758749532566f062dfca0897f73561b3af650fcdb2348ba02fc93",
+      "same": true
+    },
+    {
+      "file": "forum-avatars.js",
+      "before": "ff48bc56dea859ab082057fd99addd6b418720be1002a4616a49e6d27f393170",
+      "after": "ff48bc56dea859ab082057fd99addd6b418720be1002a4616a49e6d27f393170",
+      "same": true
+    },
+    {
+      "file": "forum-data.js",
+      "before": "6080b1953d8c99b27561fe0cd7e4414ff67cfc6809963c44e5edef52d4527794",
+      "after": "6080b1953d8c99b27561fe0cd7e4414ff67cfc6809963c44e5edef52d4527794",
+      "same": true
+    },
+    {
+      "file": "forum-extra-data.js",
+      "before": "1f82fa5775ee4e344c8eb99e2a7d889e1b76845a42ac8c8958c6e807eeea4ba6",
+      "after": "1f82fa5775ee4e344c8eb99e2a7d889e1b76845a42ac8c8958c6e807eeea4ba6",
+      "same": true
+    },
+    {
+      "file": "forum-style.css",
+      "before": "c81ef165b65482923b026e11009e57b6c08885d61e59572d620c02c81ab1d96e",
+      "after": "c81ef165b65482923b026e11009e57b6c08885d61e59572d620c02c81ab1d96e",
+      "same": true
+    },
+    {
+      "file": "forum.js",
+      "before": "196f7f0d1f7865c5cff22891a90ec82e438e60034c71a0caaff24af9b40da3ed",
+      "after": "196f7f0d1f7865c5cff22891a90ec82e438e60034c71a0caaff24af9b40da3ed",
+      "same": true
+    },
+    {
+      "file": "heritage.css",
+      "before": "13d4eefcbaee80969b4ac1f9df27d23386dc9412eadc9d2157bdef94c4cc4f46",
+      "after": "13d4eefcbaee80969b4ac1f9df27d23386dc9412eadc9d2157bdef94c4cc4f46",
+      "same": true
+    },
+    {
+      "file": "hotel-promo-data.js",
+      "before": "12b5c99c284b212eefaff039233e455b3d91bd7afad2b192ed102df1358aa610",
+      "after": "12b5c99c284b212eefaff039233e455b3d91bd7afad2b192ed102df1358aa610",
+      "same": true
+    },
+    {
+      "file": "hotel-promo.css",
+      "before": "59c4607f2bd74c466ad2e525223d38ce79d334feecc4581a3e300a6e012c11f3",
+      "after": "59c4607f2bd74c466ad2e525223d38ce79d334feecc4581a3e300a6e012c11f3",
+      "same": true
+    },
+    {
+      "file": "hotel-promo.js",
+      "before": "a3c56fb7fecac13196110f2296b43e1acd8434f9999d9b4bcd7fb7d142ddafbd",
+      "after": "a3c56fb7fecac13196110f2296b43e1acd8434f9999d9b4bcd7fb7d142ddafbd",
+      "same": true
+    },
+    {
+      "file": "instructions.css",
+      "before": "93ff7de67f9d8cdc4256809a0378bc58f2ed9dba6fb98885ac5cb296cd84a747",
+      "after": "93ff7de67f9d8cdc4256809a0378bc58f2ed9dba6fb98885ac5cb296cd84a747",
+      "same": true
+    },
+    {
+      "file": "instructions.js",
+      "before": "c0669592d991bedf12326bb669516a22ef8c5703ec237c243f5088d39f10a33d",
+      "after": "c0669592d991bedf12326bb669516a22ef8c5703ec237c243f5088d39f10a33d",
+      "same": true
+    },
+    {
+      "file": "lobby-music.css",
+      "before": "56bccff01352db4b8d2891c2d86f83cad4e59da8f139f5374a5768dbf37810c3",
+      "after": "56bccff01352db4b8d2891c2d86f83cad4e59da8f139f5374a5768dbf37810c3",
+      "same": true
+    },
+    {
+      "file": "lobby-music.js",
+      "before": "457d796e6186a93ba51487ce7e846614ea7b943733b69fa1a583712f14637034",
+      "after": "457d796e6186a93ba51487ce7e846614ea7b943733b69fa1a583712f14637034",
+      "same": true
+    },
+    {
+      "file": "locale-zh.js",
+      "before": "e69608fffd90b7f0d716a80ef74e1b4620bd5d7c4614d4aadf2a83ece0a4396a",
+      "after": "e69608fffd90b7f0d716a80ef74e1b4620bd5d7c4614d4aadf2a83ece0a4396a",
+      "same": true
+    },
+    {
+      "file": "story-expansion.js",
+      "before": "86123021357c3dbb73a2ccb8138c9f6e4e16d09515505b185f505151fb4aecb3",
+      "after": "86123021357c3dbb73a2ccb8138c9f6e4e16d09515505b185f505151fb4aecb3",
+      "same": true
+    },
+    {
+      "file": "style.css",
+      "before": "e7de5b878655bf76ba6f86d8d0fcd50c0b730462bbca77bdd6a151c3f93f5830",
+      "after": "e7de5b878655bf76ba6f86d8d0fcd50c0b730462bbca77bdd6a151c3f93f5830",
+      "same": true
+    },
+    {
+      "file": "support-chat.css",
+      "before": "d602db1a6feeeb2c2858a14afb4311218c42a82195fd02530f43536bee4fd8b0",
+      "after": "d602db1a6feeeb2c2858a14afb4311218c42a82195fd02530f43536bee4fd8b0",
+      "same": true
+    },
+    {
+      "file": "support-chat.js",
+      "before": "d7875bb6ec8d4af9e1a1b756eed22e5a0d3cbd3320ce43e4c9e858a1b4622974",
+      "after": "d7875bb6ec8d4af9e1a1b756eed22e5a0d3cbd3320ce43e4c9e858a1b4622974",
+      "same": true
+    },
+    {
+      "file": "workers/chat/.dev.vars.example",
+      "before": "1b2e1951f6d223411e4d9aee937027514c8e64021d4f7573d87be2a850a37437",
+      "after": "1b2e1951f6d223411e4d9aee937027514c8e64021d4f7573d87be2a850a37437",
+      "same": true
+    },
+    {
+      "file": "workers/chat/README.md",
+      "before": "e0ee7178ffa05d45a23f7e645887832868ee8346a0c32835fa16aef45eb4d085",
+      "after": "e0ee7178ffa05d45a23f7e645887832868ee8346a0c32835fa16aef45eb4d085",
+      "same": true
+    },
+    {
+      "file": "workers/chat/build-dashboard.mjs",
+      "before": "0c6e265b875dbe90c0a5b6ec3ef9e1028621ef74fdd1fea520eff972b1eb5497",
+      "after": "0c6e265b875dbe90c0a5b6ec3ef9e1028621ef74fdd1fea520eff972b1eb5497",
+      "same": true
+    },
+    {
+      "file": "workers/chat/create-session-secret.mjs",
+      "before": "b03dd61c1cdb475138ca96bcddd2cdaf53b321af887121a3748ecb1190e813fd",
+      "after": "b03dd61c1cdb475138ca96bcddd2cdaf53b321af887121a3748ecb1190e813fd",
+      "same": true
+    },
+    {
+      "file": "workers/chat/dashboard/README.zh-CN.md",
+      "before": "a081f65fd6e360d11e025404413d4fb38497a6ddcc39fd32a7302da0ce8de43a",
+      "after": "a081f65fd6e360d11e025404413d4fb38497a6ddcc39fd32a7302da0ce8de43a",
+      "same": true
+    },
+    {
+      "file": "workers/chat/dashboard/deploy-checklist.json",
+      "before": "e000a269309a2345bda5130ba26764c6d0bb9b7ce3cc2a681d59590431e4a216",
+      "after": "e000a269309a2345bda5130ba26764c6d0bb9b7ce3cc2a681d59590431e4a216",
+      "same": true
+    },
+    {
+      "file": "workers/chat/dashboard/entry.mjs",
+      "before": "1c683ee1d5458c80ad3e29612fb0e5fdb1f99b567d54645e86a14c396cfa45e6",
+      "after": "1c683ee1d5458c80ad3e29612fb0e5fdb1f99b567d54645e86a14c396cfa45e6",
+      "same": true
+    },
+    {
+      "file": "workers/chat/dashboard/schema.sql",
+      "before": "fa0f85788be0a7682c75d6865be283d67ba2de07a0f139280164c11391f27190",
+      "after": "fa0f85788be0a7682c75d6865be283d67ba2de07a0f139280164c11391f27190",
+      "same": true
+    },
+    {
+      "file": "workers/chat/dashboard/worker.js",
+      "before": "18cfca37832669f6b9f6d1f9a82efecd94ef995e119a7a012d84b2b6bbc7cb93",
+      "after": "18cfca37832669f6b9f6d1f9a82efecd94ef995e119a7a012d84b2b6bbc7cb93",
+      "same": true
+    },
+    {
+      "file": "workers/chat/package-lock.json",
+      "before": "1ee1bf21d5d41345e8d22a41096e38eba6801c31aaebb8d0168496f33b3ede7b",
+      "after": "1ee1bf21d5d41345e8d22a41096e38eba6801c31aaebb8d0168496f33b3ede7b",
+      "same": true
+    },
+    {
+      "file": "workers/chat/package.json",
+      "before": "aa52fb5edb0d47d347dd75351a6508c86bf6cdee3e62373f69cd71c41e3f434f",
+      "after": "aa52fb5edb0d47d347dd75351a6508c86bf6cdee3e62373f69cd71c41e3f434f",
+      "same": true
+    },
+    {
+      "file": "workers/chat/smoke.mjs",
+      "before": "c4ae6332c9ff187958923b420ff303b76961065463f332d31dad296aebefc6b1",
+      "after": "c4ae6332c9ff187958923b420ff303b76961065463f332d31dad296aebefc6b1",
+      "same": true
+    },
+    {
+      "file": "workers/chat/src/d1-budget.mjs",
+      "before": "4523a65069b2c3ac6cf1aec2e40e5cdb418730d28f51d8888e700aa992425483",
+      "after": "4523a65069b2c3ac6cf1aec2e40e5cdb418730d28f51d8888e700aa992425483",
+      "same": true
+    },
+    {
+      "file": "workers/chat/src/personas.mjs",
+      "before": "d93da639d49e344e0074791f6837e9f014ea0ab8715bf9b820af78be427614e1",
+      "after": "d93da639d49e344e0074791f6837e9f014ea0ab8715bf9b820af78be427614e1",
+      "same": true
+    },
+    {
+      "file": "workers/chat/src/worker.mjs",
+      "before": "389d2a8fa3f41303e2ae995966e5b2c1f5d7c8e7d31a4d721e39660f4a6b3372",
+      "after": "389d2a8fa3f41303e2ae995966e5b2c1f5d7c8e7d31a4d721e39660f4a6b3372",
+      "same": true
+    },
+    {
+      "file": "workers/chat/wrangler.dashboard-test.jsonc",
+      "before": "dcbf6166dbc125b1b9baeee8a77c1cb9d7a82eefc0bfbce2e174b17a51b72f76",
+      "after": "dcbf6166dbc125b1b9baeee8a77c1cb9d7a82eefc0bfbce2e174b17a51b72f76",
+      "same": true
+    },
+    {
+      "file": "workers/chat/wrangler.jsonc",
+      "before": "0b1f8512049e6e674118a23b2caac1f0a72683e55f6ec36e8051806f7361898a",
+      "after": "0b1f8512049e6e674118a23b2caac1f0a72683e55f6ec36e8051806f7361898a",
+      "same": true
+    }
+  ],
+  "factsUnchanged": true,
+  "inventoryUnchanged": true,
+  "voidMechanics": [
+    {
+      "key": "scenes",
+      "unchanged": true
+    },
+    {
+      "key": "initial",
+      "unchanged": true
+    },
+    {
+      "key": "slots",
+      "unchanged": true
+    },
+    {
+      "key": "correct",
+      "unchanged": true
+    },
+    {
+      "key": "aligned",
+      "unchanged": true
+    },
+    {
+      "key": "ready",
+      "unchanged": true
+    },
+    {
+      "key": "gate",
+      "unchanged": true
+    },
+    {
+      "key": "finished",
+      "unchanged": true
+    },
+    {
+      "key": "action:enter",
+      "unchanged": true
+    },
+    {
+      "key": "action:observe",
+      "unchanged": true
+    },
+    {
+      "key": "action:walk",
+      "unchanged": true
+    },
+    {
+      "key": "action:select",
+      "unchanged": true
+    },
+    {
+      "key": "action:move",
+      "unchanged": true
+    },
+    {
+      "key": "action:reset-fragments",
+      "unchanged": true
+    },
+    {
+      "key": "action:review",
+      "unchanged": true
+    },
+    {
+      "key": "action:terminal",
+      "unchanged": true
+    },
+    {
+      "key": "action:lookback",
+      "unchanged": true
+    },
+    {
+      "key": "action:leave",
+      "unchanged": true
+    }
+  ]
+}

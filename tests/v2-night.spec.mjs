@@ -13,6 +13,7 @@ async function oldSave(page, extra = {}) {
   await page.goto("/index-zh.html#hotel");
   const old = await page.evaluate((extra) => {
     const s = StillwaterCaseState.fresh();
+    delete s.desk; // This fixture represents a save made before the evidence desk existed.
     s.evidence = Object.keys(StillwaterCaseData.clues);
     s.completed = { audit: true, finalEvidence: true, serviceInspected: true };
     delete s.night;

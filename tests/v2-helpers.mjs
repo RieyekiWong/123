@@ -1,5 +1,6 @@
 import { expect } from "@playwright/test";
 import { solveVoid } from "./v2-void-helpers.mjs";
+import {intake,citeAndSubmit} from "./v2-evidence-ui-helpers.mjs";
 import { solvePromo } from "./v2-promo-helpers.mjs";
 export const link = async (page, route, scope = "main") => {
   await page.locator(`${scope} a[href="#${route}"]`).first().click();
@@ -32,12 +33,13 @@ export async function toAudit(page, entry = "index-zh.html") {
     .nth(2)
     .locator("td")
     .innerText();
-  await link(page, "rooms");
+  await intake(page);
+  await link(page, "rooms?copy=original");
   await expect(page.locator(".notice-window")).toBeVisible();
   await page.locator("[data-case-action=dismiss-notice]").click();
   await page.locator("#inventory-room").selectOption(assigned);
   await page.locator("#inventory-check button").click();
-  await link(page, "guestbook");
+  await link(page, "guestbook?copy=original");
   await page.locator("[data-case-action=read-key]").click();
   await link(page, "floor-plan");
   await page.locator(".service-space").click();
@@ -46,11 +48,10 @@ export async function toAudit(page, entry = "index-zh.html") {
     .nth(2)
     .locator("td")
     .innerText();
-  await page.locator("[name=classification][value=guest]").check();
-  await page.locator("#service-classification button").click();
-  await expect(page.locator("#service-error")).not.toBeEmpty();
-  await page.locator("[name=classification][value=service]").check();
-  await page.locator("#service-classification button").click();
+  await link(page,'evidence-desk?proof=space');
+  await citeAndSubmit(page,'space',{wrong:true,override:{use:'occupied'}});
+  await expect(page.locator('#desk-feedback')).not.toBeEmpty();
+  await citeAndSubmit(page,'space');
   await link(page, "maintenance");
   await page.locator("#maintenance-reference").fill(docket);
   await page.locator("#maintenance-search button").click();
@@ -58,7 +59,6 @@ export async function toAudit(page, entry = "index-zh.html") {
   await link(page, "night-audit");
 }
 export async function toRevisions(page) {
-  await page.locator("[name=assessment][value=insufficient]").check();
   await page.locator("#night-audit-form > button").click();
   await expect(page.locator("#audit-error")).not.toBeEmpty();
   const rows = await page.locator(".audit-cards li").evaluateAll((els) =>
@@ -82,11 +82,10 @@ export async function toRevisions(page) {
         .locator(`[data-log="${rows[index].id}"] [data-direction="-1"]`)
         .click();
   }
-  await page.locator("[name=assessment][value=confirmed]").check();
-  await page.locator("#night-audit-form > button").click();
-  await expect(page.locator("#audit-error")).not.toBeEmpty();
-  await page.locator("[name=assessment][value=insufficient]").check();
-  await page.locator("#night-audit-form > button").click();
+  await page.locator('#night-audit-form > button').click();
+  await citeAndSubmit(page,'timeline',{wrong:true,override:{assessment:'confirmed'}});
+  await expect(page.locator('#desk-feedback')).not.toBeEmpty();
+  await citeAndSubmit(page,'timeline');
   await link(page, "staff");
   await expect(page.locator("main")).toContainText("Mara Ellis");
   await link(page, "revisions");
@@ -107,20 +106,21 @@ export async function toReview(page) {
   for (const field of changed)
     await page.locator(`[name=difference][value="${field}"]`).check();
   await page.locator("#revision-form > button").click();
+  await link(page,'staff');
+  await page.locator('[data-case-action=refresh-queue]').click();
+  await link(page,'evidence-desk?proof=identity');
+  await citeAndSubmit(page,'identity');
   await link(page, "closure");
   await expect(page.locator("main")).toContainText("2007-01-08");
   await link(page, "mara");
   await link(page, "review");
 }
 export async function validateFindings(page) {
-  await page.locator("[name=claim][value=occupancy]").check();
-  await page.locator("#final-evidence-form > button").click();
-  await expect(page.locator("#evidence-error")).not.toBeEmpty();
-  await page.locator("[name=claim][value=occupancy]").uncheck();
-  for (const id of ["service", "reviewer", "revision"])
-    await page.locator(`[name=claim][value="${id}"]`).check();
-  await page.locator("#final-evidence-form > button").click();
-  await expect(page.locator(".verification-receipt")).toBeVisible();
+  await expect(page.locator('.desk-results')).toContainText('SERVICE HOLDING');
+  await expect(page.locator('.desk-results')).toContainText('OCCUPANCY NOT VERIFIED');
+  await expect(page.locator('.desk-results')).toContainText('ORIGINAL ROLE: REVIEWER');
+  await page.locator('#final-evidence-form > button').click();
+  await expect(page.locator('.verification-receipt')).toBeVisible();
 }
 
 export async function toNight(page, visit = async () => {}) {
@@ -196,6 +196,7 @@ export async function wireNight(page, { visitVoid = async () => {} } = {}) {
   await page.locator("[data-night-action=isolate]").click();
   await page.locator("[data-night-action=manual]").click();
   await page.locator("[data-night-action=save]").click();
+  if(await page.locator("[data-desk-op=footage]:not(:disabled)").count())await page.locator("[data-desk-op=footage]").click();
   if (await page.locator('.promo-source-cards').count()) await solvePromo(page);
   if (await page.locator('[data-unlisted-entry]').count() && !(await page.locator('[data-night-action=lock]').count())) {
     await page.locator('[data-unlisted-entry]').click();

@@ -8,12 +8,9 @@ const M = globalThis.StillwaterCaseState,
   N = globalThis.StillwaterNightModel,
   D = globalThis.StillwaterCaseData;
 const move = (s, a, p = {}) => M.transition(s, "night-" + a, p);
+import {fullCase} from './v2-evidence-model-helpers.mjs';
 function ready() {
-  const s = M.fresh();
-  s.evidence = Object.keys(D.clues);
-  s.completed.audit = true;
-  s.completed.finalEvidence = true;
-  return s;
+  return fullCase();
 }
 function door(s) {
   move(s, "start");
@@ -91,7 +88,8 @@ test("new endings cannot skip equipment, true ending needs saved isolation and e
   for (let i = 0; i < 4; i++) V.transition(v, "walk", { direction: V.correct(i) });
   for (let id = 0; id < 3; id++) V.transition(v, "move", { id, dx: -v.positions[id][0], dy: -v.positions[id][1] });
   V.transition(v, "review"); V.transition(v, "terminal");
-  for (const type of ["ROOM", "GUEST", "EMPLOYEE", "UNVERIFIED"]) V.transition(v, "classify", { type });
+  for (const type of ["ROOM", "GUEST", "EMPLOYEE"]) {const spec=D.proofs[type];V.confirm(v,type,{sources:spec.sources,values:Object.fromEntries(spec.fields.map(f=>[f.id,f.answer]))});}
+  V.transition(v,'disposition',{mode:'retain'});
   V.transition(v, "leave");
   assert.ok(move(s, "lock").ok);
   assert.ok(M.transition(s, "ending", { ending: "released" }).ok);

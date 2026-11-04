@@ -78,7 +78,7 @@ test("ordinary threads and all forum sections lead to real local content", async
     await expect(page.locator(".bbs-post h1")).toBeVisible();
   }
 });
-test("early notices no longer explain the position; progressive errors point back without filling answers", async ({
+test("early notices no longer explain the position; repeated errors keep help manual without filling answers", async ({
   page,
 }) => {
   await page.goto("/index-zh.html#rooms");
@@ -106,10 +106,10 @@ test("early notices no longer explain the position; progressive errors point bac
     "data-attempt",
     "2",
   );
-  await expect(page.locator("#reservation-error > p a")).toHaveAttribute(
-    "href",
-    "#careers",
-  );
+  await expect(page.locator("#reservation-error > p")).toHaveCount(0);
+  await expect(page.locator("#reservation-error details")).not.toHaveAttribute("open");
+  await page.locator("#reservation-error summary").click();
+  await expect(page.locator("#reservation-error details a")).toHaveAttribute("href","#careers");
   await page.locator("#reservation-search button").click();
   await expect(page.locator("#reservation-error")).toHaveAttribute(
     "data-attempt",

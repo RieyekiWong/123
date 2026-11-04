@@ -116,26 +116,19 @@ test("audit drafts and keyboard ordering persist across originals and language s
   await first.focus();
   await page.keyboard.press("Enter");
   await expect(first).toBeFocused();
-  await page.locator("[name=assessment][value=other-room]").check();
   const saved = (await state(page)).drafts;
   await page.locator("[data-log=housekeeping] a").click();
   await expect(page.locator(".handover-excerpt")).toBeVisible();
   await link(page, "night-audit");
   await page.reload();
   expect((await state(page)).drafts.auditOrder).toEqual(saved.auditOrder);
-  await expect(
-    page.locator("[name=assessment][value=other-room]"),
-  ).toBeChecked();
   await page.locator("[data-case-language]").click();
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
   await expect(page).toHaveURL(/index\.html#night-audit$/);
   expect((await state(page)).drafts.auditOrder).toEqual(saved.auditOrder);
-  await expect(
-    page.locator("[name=assessment][value=other-room]"),
-  ).toBeChecked();
 });
 
-test("every unsupported final finding can be corrected; historical endings remain read-only", async ({
+test("source findings persist independently of final sign-off; historical endings remain read-only", async ({
   page,
 }) => {
   test.setTimeout(90_000);
@@ -146,22 +139,18 @@ test("every unsupported final finding can be corrected; historical endings remai
   await toAudit(page);
   await toRevisions(page);
   await toReview(page);
-  for (const claim of ["occupancy", "operating", "consent"]) {
-    await page.locator(`[name=claim][value=${claim}]`).check();
-    await page.locator("#final-evidence-form > button").click();
-    await expect(page.locator("#evidence-error")).not.toBeEmpty();
-    await expect(page.locator("[data-ending]")).toHaveCount(0);
-    await page.locator(`[name=claim][value=${claim}]`).uncheck();
-  }
+  const findings=(await state(page)).desk.results;
+  expect(findings.space).toBeTruthy();expect(findings.timeline).toBeTruthy();expect(findings.identity).toBeTruthy();
   await validateFindings(page);
   await toNight(page);
   await page.locator("[data-ending=unverified]").click();
   await page.goto("/index-zh.html#review");
   await page.locator("[data-case-action=edit-evidence]").click();
   await page.reload();
-  await page.locator("[name=claim][value=service]").uncheck();
+  await expect(page.locator("#final-evidence-form")).toBeVisible();
+  expect((await state(page)).desk.results).toEqual(findings);
   await link(page, "notes", "footer");
-  await page.locator('a[href="#ending?view=unverified"]').click();
+  await page.locator('.past-dispositions a[href="#ending?view=unverified"]').click();
   await expect(page.locator("[data-ending-record=unverified]")).toBeVisible();
   await page.goto("/index-zh.html#review");
   await expect(page.locator("[data-ending]")).toHaveCount(0);

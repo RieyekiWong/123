@@ -56,8 +56,8 @@ globalThis.StillwaterCaseFeedback = ({ t }) => {
       "Compare each row across both columns; leave identical rows unchecked.",
     ],
     "revision-missing": [
-      "再看一下人员、区域用途和状态三栏，换行的内容也要读完。",
-      "Check the people, position and status fields, including wrapped text.",
+      "仍有改动未标记。请把每一行的两份内容读完。",
+      "Some changed fields remain unmarked. Read both copies of each row, including wrapped text.",
     ],
     "evidence-occupancy": [
       "钥匙套上的房号，能否说明人实际去了那里？",
@@ -108,19 +108,6 @@ globalThis.StillwaterCaseFeedback = ({ t }) => {
     text.textContent = t(...direction);
     help.append(summary, link, text);
     el.append(help);
-    if (count >= 2) {
-      const p = document.createElement("p");
-      p.append(
-        document.createTextNode(t("相关资料：", "Check this page: ")),
-        link.cloneNode(true),
-      );
-      el.insertBefore(p, help);
-    }
-    if (count >= 3) {
-      const p = document.createElement("p");
-      p.textContent = t(...direction);
-      el.insertBefore(p, help);
-    }
     el.dataset.attempt = String(Math.min(count, 3));
     el.focus({ preventScroll: true });
   }

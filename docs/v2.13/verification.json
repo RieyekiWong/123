@@ -1,0 +1,85 @@
+{
+  "version": "4.13.0",
+  "baseline": "392334a03a07b041db86d8652182043a7f59c32a",
+  "build": {
+    "command": "npm run build",
+    "result": "pass"
+  },
+  "unit": {
+    "command": "npm test",
+    "tests": 109,
+    "passed": 109,
+    "result": "pass",
+    "latestPassed": 109
+  },
+  "browser": {
+    "command": "npx playwright test --project=v2 --reporter=line",
+    "fullRun": {
+      "tests": 187,
+      "passed": 187,
+      "duration": "5.2 minutes"
+    },
+    "afterScopedStyleAndPickerChanges": {
+      "relevantSuite": {
+        "tests": 38,
+        "passed": 38,
+        "duration": "1.3 minutes",
+        "scope": [
+          "evidence desk",
+          "black world",
+          "W3-02",
+          "complete WeChat-to-GAME-OVER path"
+        ]
+      },
+      "finalEvidenceSuite": {
+        "tests": 14,
+        "passed": 14,
+        "duration": "18.1 seconds",
+        "includes": [
+          "native source picker",
+          "pre-intake exploration",
+          "actual open-window contrast and phone width"
+        ]
+      },
+      "uniqueBrowserCasesVerified": 189
+    }
+  },
+  "protectedSystems": "preserved-systems.json",
+  "localPlaythrough": "local-playthrough.json",
+  "publicStatus": "Not published yet. Will verify the actual deployed files and UI after push.",
+  "limitations": [
+    "Automated Chromium runs, desktop and emulated phone/tablet viewports; no physical iPhone/Safari/Firefox test.",
+    "Fresh runs use actual page interactions with predetermined test decisions, not a human blind usability study.",
+    "No live paid AI chat request: WeChat and Worker are outside this upgrade.",
+    "Historical save compatibility is checked using fixtures representing the previous save structures, not access to other players private browser data."
+  ],
+  "resolvedDuringDevelopment": [
+    "Maintenance sources now appear immediately after discovery; no extra visit to the evidence desk is needed.",
+    "Legacy browser fixtures explicitly omit the new desk field so they genuinely represent old saves.",
+    "Error count no longer expands deeper hints automatically.",
+    "Classification windows override dark-chapter heading/link colors and retain a consistent readable background.",
+    "Unavailable routes show one recovery entry rather than duplicate goal links."
+  ],
+  "localPlaythroughResult": {
+    "runs": 2,
+    "languages": [
+      "zh-CN",
+      "en"
+    ],
+    "widths": [
+      390,
+      1440
+    ],
+    "freshGameProgress": true,
+    "ending": "released / GAME OVER",
+    "pageErrors": 0,
+    "nonGetRequests": 0,
+    "refreshPreserved": true
+  },
+  "preservation": {
+    "filesChecked": 176,
+    "allIdentical": true,
+    "factsAndInventoryUnchanged": true,
+    "retainedVoidRuleASTs": 18
+  }
+}

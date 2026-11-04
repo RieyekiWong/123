@@ -1,0 +1,702 @@
+{
+  "at": "2026-11-04T20:16:13.524Z",
+  "base": "http://127.0.0.1:3113/",
+  "mode": "real browser, no seeded game progress; actual UI path, predetermined test decisions; not a human blind test",
+  "browserTlsBypass": false,
+  "runs": [
+    {
+      "entry": "index-zh.html",
+      "width": 390,
+      "errors": [],
+      "nonGetRequests": [],
+      "outsideRequests": [],
+      "schema": 2,
+      "ending": "released",
+      "allEvidence": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9"
+      ],
+      "proofs": {
+        "intake": {
+          "sources": [
+            "sample",
+            "booking"
+          ],
+          "values": {
+            "match": "same"
+          },
+          "record": "R-4829 / SOURCE MATCHED"
+        },
+        "space": {
+          "sources": [
+            "inventory",
+            "position"
+          ],
+          "values": {
+            "use": "service"
+          },
+          "record": "317 / POSITION TYPE / SERVICE HOLDING"
+        },
+        "timeline": {
+          "sources": [
+            "key",
+            "housekeeping",
+            "transfer",
+            "draft-audit"
+          ],
+          "values": {
+            "assessment": "insufficient"
+          },
+          "record": "R-4829 / OCCUPANCY NOT VERIFIED",
+          "sequence": [
+            "message",
+            "housekeeping",
+            "transfer",
+            "draft"
+          ],
+          "recordTypes": {
+            "housekeeping": "observation",
+            "transfer": "system",
+            "occupancy": "claim"
+          }
+        },
+        "identity": {
+          "sources": [
+            "personnel",
+            "revision",
+            "queue",
+            "attendance"
+          ],
+          "values": {
+            "role": "reviewer",
+            "attendance": "insufficient"
+          },
+          "record": "E-014 / ORIGINAL ROLE: REVIEWER · TEMP-015 / ATTENDANCE UNVERIFIED"
+        },
+        "ROOM": {
+          "sources": [
+            "inventory",
+            "position",
+            "footage"
+          ],
+          "values": {
+            "finding": "unsupported"
+          },
+          "record": "ROOM / NOT SUPPORTED"
+        },
+        "GUEST": {
+          "sources": [
+            "booking",
+            "key",
+            "housekeeping",
+            "transfer"
+          ],
+          "values": {
+            "finding": "unverified"
+          },
+          "record": "GUEST / NOT VERIFIED"
+        },
+        "EMPLOYEE": {
+          "sources": [
+            "personnel",
+            "revision",
+            "queue",
+            "attendance"
+          ],
+          "values": {
+            "finding": "unverified"
+          },
+          "record": "EMPLOYEE / NOT VERIFIED"
+        }
+      },
+      "footage": {
+        "reference": "B-3/03:17",
+        "pans": [
+          2,
+          2,
+          2
+        ],
+        "captured": true,
+        "openDoor": true,
+        "silhouette": false,
+        "cartMoved": true,
+        "power": true
+      },
+      "voidComplete": true,
+      "promoVerified": true,
+      "scareChoice": false,
+      "chatPreserved": true,
+      "snapshots": [
+        {
+          "stage": "night-records",
+          "route": "#night-audit",
+          "site": "staff",
+          "title": "Stillwater / Staff Archive",
+          "body": "当前调查\n\n核对夜班记录\n\n当晚记录与时间\n住客留言原件\n记录性质核对\n\nNIGHT AUDIT / R-4829\n\n核对当晚记录\n\n先确认时间顺序，再核对这些记录各自能证明什么。\n\n连接已中断，正在载入备份。\n2006-10-17 03:24\n夜审备注\n\nE-014 备注：317 是否住过人，目前查不清，保留待核实。\n\n↑ 上移\n↓ 下移\n原始来源\n2006-10-17 02:40\n钥匙留言\n\nE. Vale 留言：前台说是 318，钥匙套却写着 317。\n\n↑ 上移\n↓ 下移\n原始来源\n2006-10-17 03:17\n系统移交\n\nContinuity 将 R-4829 转到 317（服务暂存区），交给 E-014 处理。\n\n↑ 上移\n↓ 下移\n原始来源\n2006-10-17 02:50\n客房部记录\n\n查房：318 空置，床品未使用。\n\n↑ 上移\n↓ 下移\n原始来源\n确认时间顺序\n核对帮助\n查看提示",
+          "currentGoal": "space",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6"
+          ],
+          "confirmed": [
+            "intake",
+            "space"
+          ],
+          "categoryReviews": []
+        },
+        {
+          "stage": "evidence-desk",
+          "route": "#evidence-desk?proof=space",
+          "site": "staff",
+          "title": "Stillwater / Staff Archive",
+          "body": "CONTINUITY / EVIDENCE DESK\n\n证据核对台\n\n返回上次调查位置 · 工作笔记\n\n当前调查\n\n核对夜班记录\n当晚记录与时间\n住客留言原件\n记录性质核对\n样本登记 ✓\n317 原始用途 ✓\n夜班记录核对\n已发现的文件\n查看资料\n岗位工作样本\n原始预订单\n钥匙套留言\n三楼客房目录\n客房巡查记录\n服务区域登记卡\n系统移交记录\n03:24 留言摘录\nBOOKING\n岗位工作样本\n原始预订单\n钥匙套留言\nROOM\n三楼客房目录\n客房巡查记录\nSERVICE\n服务区域登记卡\nSYSTEM\n系统移交记录\n03:24 留言摘录\nSERVICE / SOURCE FILE\n服务区域登记卡\n\n3F / 317 / A-06-17\n2006-10-17\n\n原始记录 · 点字段可作标记\n内部编号\t317\n登记用途\tSERVICE HOLDING / 服务暂存区\n位置\t316 与 318 之间\n维修单\tA-06-17\n\n出处: floor-plan\n\n加入对照\n打开原网页\n原件对照 2/2\nROOM / SOURCE FILE\n三楼客房目录\n\n3F / GUEST INVENTORY\n2006-10-17\n\n原始记录 · 点字段可作标记\n可预订房号\t301 · 302 · 303 · 304 · 305 · 306 · 307 · 308 · 309 · 310 · 311 · 312 · 313 · 314 · 315 · 316 · 318 · 319 · 320\n目录范围\t只列可供预订的客房。\n\n出处: rooms?copy=original\n\n移出对照\n打开原网页\nSERVICE / SOURCE FILE\n服务区域登记卡\n\n3F / 317 / A-06-17\n2006-10-17\n\n原始记录 · 点字段可作标记\n内部编号\t317\n登记用途\tSERVICE HOLDING / 服务暂存区\n位置\t316 与 318 之间\n维修单\tA-06-17\n\n出处: floor-plan\n\n移出对照\n打开原网页\n\n核对记录\n\n317 原始用途\n\n317 / POSITION TYPE / SERVICE HOLDING\n\nSOURCE VERIFIED\n核对帮助\n查看提示\n已保存的核对结果\n\n样本登记\nR-4829 / SOURCE MATCHED\n\n317 原始用途\n317 / POSITION TYPE / SERVICE HOLDING",
+          "currentGoal": "space",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6"
+          ],
+          "confirmed": [
+            "intake",
+            "space"
+          ],
+          "categoryReviews": []
+        },
+        {
+          "stage": "revisions",
+          "route": "#revisions",
+          "site": "staff",
+          "title": "Stillwater / Staff Archive",
+          "body": "当前调查\n\n对照原稿与修订\n\n版本记录\n原员工档案\n\nPERSONNEL / E-014\n\n人员档案\n\n当班人员登记资料。\n\nMara Ellis / E-014\n原岗位\t夜班审计员\n职责\t核对房态、钥匙发放与预订记录。\n经手记录\tR-4829 · A-06-17\n移交时间\t2006-10-17 03:17\n\n这笔预订有两份文件，两份的处理人一栏不同。\n\n比较原稿与修订副本 →",
+          "currentGoal": "space",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6"
+          ],
+          "confirmed": [
+            "intake",
+            "space",
+            "timeline"
+          ],
+          "categoryReviews": []
+        },
+        {
+          "stage": "review-summary",
+          "route": "#review",
+          "site": "staff",
+          "title": "Stillwater / Staff Archive",
+          "body": "当前调查\n\n查看系统同步结果\n\n记录提交结果\n\nSOURCE REVIEW / R-4829\n\n资料核对\n\n提交已完成的来源核对，原始资料会继续保留。\n\n已核对的三项记录\n\n登记卡写明：317 是服务暂存区，不是客房。\n\nE-014 负责处理这条夜审记录。\n\n2007 年的修改把“待核实”改成了“已完成”。\n\n本次工作编号: TEMP-015\n\n两份客房目录不一致，当前显示的仍是旧版。\n\n同步资料，返回酒店查看返回修改",
+          "currentGoal": "identity",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6",
+            "C7",
+            "C8",
+            "C9"
+          ],
+          "confirmed": [
+            "intake",
+            "space",
+            "timeline",
+            "identity"
+          ],
+          "categoryReviews": []
+        },
+        {
+          "stage": "cameras",
+          "route": "#cameras",
+          "site": "staff",
+          "title": "Stillwater / Staff Archive",
+          "body": "当前调查\n\n确认服务通道的位置\n\n监控室\n\n07 / PASSAGE CAMERAS\n\n通道监控\n\n转动镜头，查看相邻机位的交界处。两边拍到同一件物品后，再确认连接。\n\nCAM 01 / 大堂楼梯\nCAM 01 · LOBBY STAIRS\nREC\n2006-10-17 03:17:--\nSTILLWATER\n左移\n居中\n右移\n\n这个角度看不到通道标志。\n\nCAM 02 / 三楼西走廊\nCAM 02 · WEST CORRIDOR\nREC\n2006-10-17 03:17:--\nSTILLWATER\n左移\n居中\n右移\n\n这个角度看不到通道标志。\n\nCAM 03 / 员工通道\nCAM 03 · STAFF PASSAGE\nREC\n2006-10-17 03:17:--\nSTILLWATER\n左移\n居中\n右移\n\n这个角度看不到通道标志。\n\n您刚才查看的资料\n\n那扇门还在照片里。\n316\n— —\n318\nW3-02 / WEST WING, 3F / 2006\n2026 / TEMP PREVIEW\n\n系统已经补全缺少的房号。您还要看旧版吗？\n\n查看旧版\n关闭提醒\n通道连接图\nCAM 01 ┄┄┄┄ CAM 02\n确认连接\nCAM 02 ┄┄┄┄ CAM 03\n确认连接\n\n返回酒店目录 →\n\n核对帮助\n查看提示",
+          "currentGoal": "identity",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6",
+            "C7",
+            "C8",
+            "C9"
+          ],
+          "confirmed": [
+            "intake",
+            "space",
+            "timeline",
+            "identity"
+          ],
+          "categoryReviews": []
+        },
+        {
+          "stage": "final-review",
+          "route": "#void",
+          "site": "void",
+          "title": "NO INDEX · Stillwater",
+          "body": "B-3 / 返回配线室\n分类终端\nEnglish\n\nCONTINUITY / UNKNOWN SOURCE\n\n核对这段影像的归类依据。\nROOM\nGUEST\nEMPLOYEE\n\nROOM / NOT SUPPORTED\n\nGUEST / NOT VERIFIED\n\nEMPLOYEE / NOT VERIFIED\n\nCONTINUITY / SOURCE REVIEW\n\nROOM / 客房归类\n关闭核对窗口\n\nROOM / NOT SUPPORTED\n\nSOURCE VERIFIED\n核对帮助\n查看提示\nSERVICE / SOURCE FILE\n服务区域登记卡\n\n3F / 317 / A-06-17\n2006-10-17\n\n原始记录 · 点字段可作标记\n内部编号\t317\n登记用途\tSERVICE HOLDING / 服务暂存区\n位置\t316 与 318 之间\n维修单\tA-06-17\n\n出处: floor-plan\n\n加入对照\n打开原网页\n原件对照 2/2\nROOM / SOURCE FILE\n三楼客房目录\n\n3F / GUEST INVENTORY\n2006-10-17\n\n原始记录 · 点字段可作标记\n可预订房号\t301 · 302 · 303 · 304 · 305 · 306 · 307 · 308 · 309 · 310 · 311 · 312 · 313 · 314 · 315 · 316 · 318 · 319 · 320\n目录范围\t只列可供预订的客房。\n\n出处: rooms?copy=original\n\n移出对照\n打开原网页\nSERVICE / SOURCE FILE\n服务区域登记卡\n\n3F / 317 / A-06-17\n2006-10-17\n\n原始记录 · 点字段可作标记\n内部编号\t317\n登记用途\tSERVICE HOLDING / 服务暂存区\n位置\t316 与 318 之间\n维修单\tA-06-17\n\n出处: floor-plan\n\n移出对照\n打开原网页\n打开完整核对台\n\nNO VERIFIED CATEGORY\n\n最终处理\n强制归类时使用的类别\nROOM\nGUEST\nEMPLOYEE\nFORCE CLASSIFICATION / 强制归类\nAUTO CLOSE / 接受自动结案\nRETAIN AS UNVERIFIED / 保留未核实状态\n\n暂时返回配线室\n声音：关闭\n声音与设置\n存档与重置",
+          "currentGoal": "identity",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6",
+            "C7",
+            "C8",
+            "C9"
+          ],
+          "confirmed": [
+            "intake",
+            "space",
+            "timeline",
+            "identity",
+            "ROOM",
+            "GUEST",
+            "EMPLOYEE"
+          ],
+          "categoryReviews": [
+            "ROOM",
+            "GUEST",
+            "EMPLOYEE"
+          ]
+        },
+        {
+          "stage": "final-disposition",
+          "route": "#void",
+          "site": "void",
+          "title": "NO INDEX · Stillwater",
+          "body": "B-3 / 返回配线室\n分类终端\nEnglish\n\nCONTINUITY / UNKNOWN SOURCE\n\n核对这段影像的归类依据。\nROOM\nGUEST\nEMPLOYEE\n\nROOM / NOT SUPPORTED\n\nGUEST / NOT VERIFIED\n\nEMPLOYEE / NOT VERIFIED\n\nNO VERIFIED CATEGORY\n\n最终处理\n强制归类时使用的类别\nROOM\nGUEST\nEMPLOYEE\nFORCE CLASSIFICATION / 强制归类\nAUTO CLOSE / 接受自动结案\nRETAIN AS UNVERIFIED / 保留未核实状态\n\n暂时返回配线室\n声音：关闭\n声音与设置\n存档与重置",
+          "currentGoal": "identity",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6",
+            "C7",
+            "C8",
+            "C9"
+          ],
+          "confirmed": [
+            "intake",
+            "space",
+            "timeline",
+            "identity",
+            "ROOM",
+            "GUEST",
+            "EMPLOYEE"
+          ],
+          "categoryReviews": [
+            "ROOM",
+            "GUEST",
+            "EMPLOYEE"
+          ]
+        },
+        {
+          "stage": "game-over",
+          "route": "#ending",
+          "site": "staff",
+          "title": "GAME OVER · Stillwater Hotel",
+          "body": "ENDING 03 / TRUE ENDING\n\nGAME OVER\n真结局 · 保留原件并离开\n\n你已退出值班系统，原始资料已锁定。故事到这里结束。\n\n进度已保存在当前浏览器，现在可以关闭网页。\n\n回看调查记录\n重新开始\n\nREVIEW ENDED\n\n保留的结局记录\n\n原始资料已锁定，只能查看。\n\nTEMP-015 / RELEASED\n\n317 / SERVICE HOLDING\nE-014 / Mara Ellis\nR-4829 / UNVERIFIED\n\n后续排班已取消。Mara 的备注和原始预订单已保留，自动改写已停止。",
+          "currentGoal": "identity",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6",
+            "C7",
+            "C8",
+            "C9"
+          ],
+          "confirmed": [
+            "intake",
+            "space",
+            "timeline",
+            "identity",
+            "ROOM",
+            "GUEST",
+            "EMPLOYEE"
+          ],
+          "categoryReviews": [
+            "ROOM",
+            "GUEST",
+            "EMPLOYEE"
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "index.html",
+      "width": 1440,
+      "errors": [],
+      "nonGetRequests": [],
+      "outsideRequests": [],
+      "schema": 2,
+      "ending": "released",
+      "allEvidence": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9"
+      ],
+      "proofs": {
+        "intake": {
+          "sources": [
+            "sample",
+            "booking"
+          ],
+          "values": {
+            "match": "same"
+          },
+          "record": "R-4829 / SOURCE MATCHED"
+        },
+        "space": {
+          "sources": [
+            "inventory",
+            "position"
+          ],
+          "values": {
+            "use": "service"
+          },
+          "record": "317 / POSITION TYPE / SERVICE HOLDING"
+        },
+        "timeline": {
+          "sources": [
+            "key",
+            "housekeeping",
+            "transfer",
+            "draft-audit"
+          ],
+          "values": {
+            "assessment": "insufficient"
+          },
+          "record": "R-4829 / OCCUPANCY NOT VERIFIED",
+          "sequence": [
+            "message",
+            "housekeeping",
+            "transfer",
+            "draft"
+          ],
+          "recordTypes": {
+            "housekeeping": "observation",
+            "transfer": "system",
+            "occupancy": "claim"
+          }
+        },
+        "identity": {
+          "sources": [
+            "personnel",
+            "revision",
+            "queue",
+            "attendance"
+          ],
+          "values": {
+            "role": "reviewer",
+            "attendance": "insufficient"
+          },
+          "record": "E-014 / ORIGINAL ROLE: REVIEWER · TEMP-015 / ATTENDANCE UNVERIFIED"
+        },
+        "ROOM": {
+          "sources": [
+            "inventory",
+            "position",
+            "footage"
+          ],
+          "values": {
+            "finding": "unsupported"
+          },
+          "record": "ROOM / NOT SUPPORTED"
+        },
+        "GUEST": {
+          "sources": [
+            "booking",
+            "key",
+            "housekeeping",
+            "transfer"
+          ],
+          "values": {
+            "finding": "unverified"
+          },
+          "record": "GUEST / NOT VERIFIED"
+        },
+        "EMPLOYEE": {
+          "sources": [
+            "personnel",
+            "revision",
+            "queue",
+            "attendance"
+          ],
+          "values": {
+            "finding": "unverified"
+          },
+          "record": "EMPLOYEE / NOT VERIFIED"
+        }
+      },
+      "footage": {
+        "reference": "B-3/03:17",
+        "pans": [
+          2,
+          2,
+          2
+        ],
+        "captured": true,
+        "openDoor": true,
+        "silhouette": false,
+        "cartMoved": true,
+        "power": true
+      },
+      "voidComplete": true,
+      "promoVerified": true,
+      "scareChoice": false,
+      "chatPreserved": true,
+      "snapshots": [
+        {
+          "stage": "night-records",
+          "route": "#night-audit",
+          "site": "staff",
+          "title": "Stillwater / Staff Archive",
+          "body": "CURRENT REVIEW\n\nReconcile the night records\n\nNight records and timestamps\nOriginal guest entry\nReview record types\n\nNIGHT AUDIT / R-4829\n\nNight-record review\n\nConfirm the sequence, then review what each record establishes.\n\nConnection delayed. Reading the retained copy.\n2006-10-17 03:24\nNight-audit note\n\nE-014: I cannot confirm whether anyone stayed at 317. Leave the record unverified.\n\n↑ Up\n↓ Down\nOriginal source\n2006-10-17 02:40\nKey-sleeve entry\n\nGuest E. Vale reports assignment to 318, but a key sleeve marked 317.\n\n↑ Up\n↓ Down\nOriginal source\n2006-10-17 03:17\nSystem handover\n\nContinuity moves R-4829 to service holding 317, assigned to E-014.\n\n↑ Up\n↓ Down\nOriginal source\n2006-10-17 02:50\nHousekeeping record\n\nRoom 318 is empty; bedding unused.\n\n↑ Up\n↓ Down\nOriginal source\nConfirm sequence\nReview help\nNeed help?",
+          "currentGoal": "space",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6"
+          ],
+          "confirmed": [
+            "intake",
+            "space"
+          ],
+          "categoryReviews": []
+        },
+        {
+          "stage": "evidence-desk",
+          "route": "#evidence-desk?proof=space",
+          "site": "staff",
+          "title": "Stillwater / Staff Archive",
+          "body": "CONTINUITY / EVIDENCE DESK\n\nEvidence desk\n\nReturn to the last file · Case notes\n\nCURRENT REVIEW\n\nReconcile the night records\nNight records and timestamps\nOriginal guest entry\nReview record types\nSample intake ✓\nOriginal use of 317 ✓\nNight-record review\nRetained files\nBOOKING\nRole sample\nOriginal booking\nKey-sleeve entry\nROOM\nThird-floor room directory\nHousekeeping round\nSERVICE\nService-position card\nSYSTEM\nSystem transfer\n03:24 note extract\nSERVICE / SOURCE FILE\nService-position card\n\n3F / 317 / A-06-17\n2006-10-17\n\nSource record · select a field to mark it\nInternal identifier\t317\nRegistered use\tSERVICE HOLDING\nPosition\tBetween 316 and 318\nMaintenance docket\tA-06-17\n\nSource: floor-plan\n\nCompare this file\nOpen source page\nSource comparison 2/2\nROOM / SOURCE FILE\nThird-floor room directory\n\n3F / GUEST INVENTORY\n2006-10-17\n\nSource record · select a field to mark it\nBookable rooms\t301 · 302 · 303 · 304 · 305 · 306 · 307 · 308 · 309 · 310 · 311 · 312 · 313 · 314 · 315 · 316 · 318 · 319 · 320\nScope\tBookable guest rooms only.\n\nSource: rooms?copy=original\n\nRemove from comparison\nOpen source page\nSERVICE / SOURCE FILE\nService-position card\n\n3F / 317 / A-06-17\n2006-10-17\n\nSource record · select a field to mark it\nInternal identifier\t317\nRegistered use\tSERVICE HOLDING\nPosition\tBetween 316 and 318\nMaintenance docket\tA-06-17\n\nSource: floor-plan\n\nRemove from comparison\nOpen source page\n\nREVIEW RECORD\n\nOriginal use of 317\n\n317 / POSITION TYPE / SERVICE HOLDING\n\nSOURCE VERIFIED\nReview help\nNeed help?\nSaved review results\n\nSample intake\nR-4829 / SOURCE MATCHED\n\nOriginal use of 317\n317 / POSITION TYPE / SERVICE HOLDING",
+          "currentGoal": "space",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6"
+          ],
+          "confirmed": [
+            "intake",
+            "space"
+          ],
+          "categoryReviews": []
+        },
+        {
+          "stage": "revisions",
+          "route": "#revisions",
+          "site": "staff",
+          "title": "Stillwater / Staff Archive",
+          "body": "CURRENT REVIEW\n\nCompare the original and revision\n\nRevision history\nOriginal personnel record\n\nPERSONNEL / E-014\n\nPersonnel record\n\nThe retained record for the employee on duty.\n\nMara Ellis / E-014\nOriginal role\tNight-audit clerk\nResponsibility\tCross-check guest inventory, keys and reservations.\nAssociated record\tR-4829 · A-06-17\nOriginal handover\t2006-10-17 03:17\n\nTwo copies have the same booking reference, but different entries in the reviewer field.\n\nCompare original and revised copies →",
+          "currentGoal": "space",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6"
+          ],
+          "confirmed": [
+            "intake",
+            "space",
+            "timeline"
+          ],
+          "categoryReviews": []
+        },
+        {
+          "stage": "review-summary",
+          "route": "#review",
+          "site": "staff",
+          "title": "Stillwater / Staff Archive",
+          "body": "CURRENT REVIEW\n\nView the synchronization result\n\nSubmitted review\n\nSOURCE REVIEW / R-4829\n\nSource review\n\nSubmit the completed source reviews. The originals will remain available.\n\nAssociated source findings\n\n317 is a service holding position, not a confirmed occupied guest room.\n\nE-014 is the night-audit reviewer assigned to this record.\n\nThe 2007 revision changes an unverified record to a completed one.\n\nCurrent review: TEMP-015\n\nThe two room directories differ. This page is not the latest version.\n\nSynchronize records and return to the hotelReview the selected findings again",
+          "currentGoal": "identity",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6",
+            "C7",
+            "C8",
+            "C9"
+          ],
+          "confirmed": [
+            "intake",
+            "space",
+            "timeline",
+            "identity"
+          ],
+          "categoryReviews": []
+        },
+        {
+          "stage": "cameras",
+          "route": "#cameras",
+          "site": "hotel",
+          "title": "The Stillwater Hotel",
+          "body": "GUESTBOOK\n\nGuestbook\n\nThank you to our guests for sharing their stays.\n\nL. Chen\n2006-09-08 10:26\n\nWe only stayed one night. The room was quiet and we walked by the lake in the morning. Thank you to reception for finding the scarf we left in the dining room.\n\nM. Cooper\n2006-09-24 16:11\n\nThe courtyard is a little smaller than it looks in the pictures, but lovely to sit in when the weather is good. Nice bread at breakfast.\n\nH. Wong\n2006-10-09 08:48\n\nWe arrived very late and were worried no one would be there. The reception light was on and check-in was quick. Hope to stay longer next time.\n\nS. Reed\n2006-10-12 12:07\n\nSome creaking from the wooden floor on the second floor, but a good stay overall. Loved the old photographs in the lobby.\n\nR. Bennett\n2006-10-15 09:10\n\nA good breakfast and helpful arrangements for our late arrival. Thank you.\n\nE. Vale\n2006-10-17 02:40\n\nChecked in normally.\n\nView historical copy →\n·\nReception note: passage cameras restored →\nRead reception’s attachment\n\nNoted. The booking assignment is unchanged; we are checking the key sleeve. The floor records from that date are retained with the entry.\n\nThird-floor plan →\nJ. Park\n2006-10-18 08:15\n\nA tidy twin room. The courtyard was a pleasant place to sit in the morning.",
+          "currentGoal": "identity",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6",
+            "C7",
+            "C8",
+            "C9"
+          ],
+          "confirmed": [
+            "intake",
+            "space",
+            "timeline",
+            "identity"
+          ],
+          "categoryReviews": []
+        },
+        {
+          "stage": "final-review",
+          "route": "#void",
+          "site": "void",
+          "title": "NO INDEX · Stillwater",
+          "body": "B-3 / Patch room\nClassification terminal\n简体中文\n\nCONTINUITY / UNKNOWN SOURCE\n\nReview the basis for classifying this picture.\nROOM\nGUEST\nEMPLOYEE\n\nROOM / NOT SUPPORTED\n\nGUEST / NOT VERIFIED\n\nEMPLOYEE / NOT VERIFIED\n\nCONTINUITY / SOURCE REVIEW\n\nROOM / classification\nClose review\n\nROOM / NOT SUPPORTED\n\nSOURCE VERIFIED\nReview help\nNeed help?\nSERVICE / SOURCE FILE\nService-position card\n\n3F / 317 / A-06-17\n2006-10-17\n\nSource record · select a field to mark it\nInternal identifier\t317\nRegistered use\tSERVICE HOLDING\nPosition\tBetween 316 and 318\nMaintenance docket\tA-06-17\n\nSource: floor-plan\n\nCompare this file\nOpen source page\nSource comparison 2/2\nROOM / SOURCE FILE\nThird-floor room directory\n\n3F / GUEST INVENTORY\n2006-10-17\n\nSource record · select a field to mark it\nBookable rooms\t301 · 302 · 303 · 304 · 305 · 306 · 307 · 308 · 309 · 310 · 311 · 312 · 313 · 314 · 315 · 316 · 318 · 319 · 320\nScope\tBookable guest rooms only.\n\nSource: rooms?copy=original\n\nRemove from comparison\nOpen source page\nSERVICE / SOURCE FILE\nService-position card\n\n3F / 317 / A-06-17\n2006-10-17\n\nSource record · select a field to mark it\nInternal identifier\t317\nRegistered use\tSERVICE HOLDING\nPosition\tBetween 316 and 318\nMaintenance docket\tA-06-17\n\nSource: floor-plan\n\nRemove from comparison\nOpen source page\nOpen the full evidence desk\n\nNO VERIFIED CATEGORY\n\nFinal disposition\nCategory used for forced classification\nROOM\nGUEST\nEMPLOYEE\nFORCE CLASSIFICATION / Assign a category\nAUTO CLOSE / Accept automatic closure\nRETAIN AS UNVERIFIED / Keep unverified\n\nReturn to the patch room\nSound: Off\nSound & settings\nSaves & reset",
+          "currentGoal": "identity",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6",
+            "C7",
+            "C8",
+            "C9"
+          ],
+          "confirmed": [
+            "intake",
+            "space",
+            "timeline",
+            "identity",
+            "ROOM",
+            "GUEST",
+            "EMPLOYEE"
+          ],
+          "categoryReviews": [
+            "ROOM",
+            "GUEST",
+            "EMPLOYEE"
+          ]
+        },
+        {
+          "stage": "final-disposition",
+          "route": "#void",
+          "site": "void",
+          "title": "NO INDEX · Stillwater",
+          "body": "B-3 / Patch room\nClassification terminal\n简体中文\n\nCONTINUITY / UNKNOWN SOURCE\n\nReview the basis for classifying this picture.\nROOM\nGUEST\nEMPLOYEE\n\nROOM / NOT SUPPORTED\n\nGUEST / NOT VERIFIED\n\nEMPLOYEE / NOT VERIFIED\n\nNO VERIFIED CATEGORY\n\nFinal disposition\nCategory used for forced classification\nROOM\nGUEST\nEMPLOYEE\nFORCE CLASSIFICATION / Assign a category\nAUTO CLOSE / Accept automatic closure\nRETAIN AS UNVERIFIED / Keep unverified\n\nReturn to the patch room\nSound: Off\nSound & settings\nSaves & reset",
+          "currentGoal": "identity",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6",
+            "C7",
+            "C8",
+            "C9"
+          ],
+          "confirmed": [
+            "intake",
+            "space",
+            "timeline",
+            "identity",
+            "ROOM",
+            "GUEST",
+            "EMPLOYEE"
+          ],
+          "categoryReviews": [
+            "ROOM",
+            "GUEST",
+            "EMPLOYEE"
+          ]
+        },
+        {
+          "stage": "game-over",
+          "route": "#ending",
+          "site": "staff",
+          "title": "GAME OVER · Stillwater Hotel",
+          "body": "ENDING 03 / TRUE ENDING\n\nGAME OVER\nTrue ending · Keep the originals and leave\n\nYou have left the shift system. The original records are locked. The story ends here.\n\nProgress is saved in this browser. You can close the page now.\n\nRevisit the case records\nStart again\n\nREVIEW ENDED\n\nRetained ending record\n\nOriginal records retained in read-only storage.\n\nTEMP-015 / RELEASED\n\n317 / SERVICE HOLDING\nE-014 / Mara Ellis\nR-4829 / UNVERIFIED\n\nFurther shifts are cancelled. Mara’s note and the original booking are retained, protected against automatic changes.",
+          "currentGoal": "identity",
+          "clues": [
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "C5",
+            "C6",
+            "C7",
+            "C8",
+            "C9"
+          ],
+          "confirmed": [
+            "intake",
+            "space",
+            "timeline",
+            "identity",
+            "ROOM",
+            "GUEST",
+            "EMPLOYEE"
+          ],
+          "categoryReviews": [
+            "ROOM",
+            "GUEST",
+            "EMPLOYEE"
+          ]
+        }
+      ]
+    }
+  ]
+}

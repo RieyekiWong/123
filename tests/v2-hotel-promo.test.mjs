@@ -5,8 +5,9 @@ import "../case-void-model.js";
 import "../case-night-model.js";
 import "../case-state.js";
 const M = globalThis.StillwaterCaseState, D = globalThis.StillwaterCaseData;
+import {fullCase} from './v2-evidence-model-helpers.mjs';
 function ready() {
-  const s = M.fresh();
+  const s = fullCase();
   s.evidence = Object.keys(D.clues);
   s.completed = { serviceInspected: true, audit: true, finalEvidence: true };
   Object.assign(s.night, { started: true, links: [0, 1], door: true, frame: true, orientations: [2, 1, 2, 0, 3, 0], isolated: true, manual: true, saved: true, operations: 6 });

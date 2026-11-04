@@ -6,6 +6,7 @@ import "../case-state.js";
 const M = globalThis.StillwaterCaseState;
 async function seed(page, stage = "normal") {
   const s = M.fresh();
+  delete s.desk; // Retain the original pre-desk migration fixture.
   s.evidence = Object.keys(StillwaterCaseData.clues);
   s.completed = { serviceInspected: true, audit: true, finalEvidence: true };
   s.notices = { shown: true, dismissed: true };

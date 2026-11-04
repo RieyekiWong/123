@@ -1,4 +1,5 @@
 import {expect} from '@playwright/test';
+import {citeAndSubmit} from './v2-evidence-ui-helpers.mjs';
 export async function solveVoid(page,{visit=async()=>{},lookback=true}={}) {
  await expect(page).toHaveURL(/#void$/);
  await visit('void-entry');
@@ -23,9 +24,18 @@ export async function solveVoid(page,{visit=async()=>{},lookback=true}={}) {
  await expect(page.locator('.void-alignment')).toContainText('3/3');
  await page.locator('[data-void-action=review]').click();await visit('void-reviewed');
  await page.locator('[data-void-action=terminal]').click();
- for(const type of ['ROOM','GUEST','EMPLOYEE'])await page.locator(`[data-void-action=classify][data-type=${type}]`).click();
+ if(!(await page.evaluate(()=>JSON.parse(localStorage.getItem('stillwater-case:v2')).desk.footage))){
+  await page.locator('a[href="#terminal"]').first().click();
+  await page.locator('[data-desk-op=footage]:not(:disabled)').click();
+  await page.locator('[data-unlisted-entry]').click();
+ }
+ for(const type of ['ROOM','GUEST','EMPLOYEE']){
+  await page.locator(`[data-void-action=classify][data-type=${type}]`).click();
+  if(await page.locator(`[data-desk-form="${type}"]`).count())await citeAndSubmit(page,type);
+  else await page.locator('[data-desk-op=close-final]').click();
+ }
  await visit('void-classification');
- await page.locator('[data-void-action=classify][data-type=UNVERIFIED]').click();
+ await page.locator('[data-void-action=disposition][data-mode=retain]').click();
  if(lookback)await page.locator('[data-void-action=lookback]').click();
  await visit('void-return');
  await page.locator('[data-void-action=leave]').click();
