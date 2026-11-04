@@ -16,5 +16,7 @@
   "changedChineseOccurrences": 323,
   "changedEnglishOccurrences": 146,
   "paidChatRequestsForThisCopyReview": 0,
-  "publicDeploymentVerified": false
+  "publicDeploymentVerified": false,
+  "publicDeploymentStatus": "queued during GitHub Actions partial outage",
+  "publicDeploymentEvidence": "public-verification.json"
 }

@@ -28,3 +28,7 @@
 - 本次文案测试没有调用公开 AI 付费接口。
 
 版本号与入口缓存更新为 4.11.0。原 schema-two 游戏存档、schema-one 聊天记录和独立广告收藏继续兼容。
+
+## 发布状态
+
+代码已推送至 GitHub。2026-11-04 17:44 UTC 核对时，GitHub 官方报告 Actions 服务部分故障，Pages 发布任务仍在排队，正式网站尚未更新。线上流程核对暂未完成，不能把上述本地验证当作线上验证。详见 [发布记录](public-verification.json)和[发布任务](https://github.com/RieyekiWong/123/actions/runs/41878946108)。发布完成后，原游戏网址会加载新文案。
