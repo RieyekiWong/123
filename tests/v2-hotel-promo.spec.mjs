@@ -33,7 +33,7 @@ for (const entry of ["index-zh.html", "index.html"]) {
     await page.locator('.hotel-promo-forum [data-promo-action=open]').click();
     await expect(page.locator('#hotel-promo-viewer')).toBeVisible();
     await expect(page.locator('#hotel-promo-viewer [data-promo-action=version]')).toHaveCount(1);
-    await expect(page.locator('#hotel-promo-viewer .promo-sign-lettering')).toHaveText("316STAFF ONLY318");
+    await expect(page.locator('#hotel-promo-viewer svg[data-promo-signs]')).toHaveAttribute("data-promo-signs", "316 / STAFF ONLY / 318");
     await page.locator('[data-promo-action=print-mode][data-mode=back]').click();
     await expect(page.locator('.promo-print-back')).toContainText(entry.includes("zh") ? "2006.09" : "Sep 2006");
     await page.keyboard.press("Escape");
@@ -42,10 +42,10 @@ for (const entry of ["index-zh.html", "index.html"]) {
     await expect(page.locator('.job-card')).toHaveCount(4);
     await page.locator('.hotel-promo-careers [data-promo-action=open]').click();
     await page.locator('[data-promo-action=print-mode][data-mode=clean]').click();
-    await expect(page.locator('.promo-clean-print .promo-sign-lettering')).toHaveText("316STAFF ONLY318");
+    await expect(page.locator('.promo-clean-print svg[data-promo-signs]')).toHaveAttribute("data-promo-signs", "316 / STAFF ONLY / 318");
     await page.keyboard.press("Escape");
     await page.goto("/" + entry + "#gallery");
-    await expect(page.locator('.hotel-promo-hotel .promo-sign-lettering')).toHaveText("316STAFF ONLY318");
+    await expect(page.locator('.hotel-promo-hotel svg[data-promo-signs]')).toHaveAttribute("data-promo-signs", "316 / STAFF ONLY / 318");
     expect(await page.evaluate(() => StillwaterAdData.length)).toBe(17);
     expect(await page.evaluate(() => localStorage.getItem("stillwater-case:v2"))).toBe(before);
   });
@@ -66,7 +66,7 @@ for (const entry of ["index-zh.html", "index.html"]) {
     await expect(page.locator('#promo-check-feedback')).toContainText(entry.includes("zh") ? "没有变化" : "Nothing changed");
     await page.reload();
     await expect(page.locator('.promo-comparison')).toBeVisible();
-    const sameBase = await page.locator('.promo-comparison svg image').evaluateAll(images => images.map(el => el.getAttribute("href")));
+    const sameBase = await page.locator('.promo-comparison svg .promo-base-image').evaluateAll(images => images.map(el => el.getAttribute("href")));
     expect(new Set(sameBase).size).toBe(1);
     await expect(page.locator('.promo-comparison .promo-region-middle').first()).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
     await page.locator('.promo-mark-controls [data-target=middle]').click();
@@ -86,7 +86,7 @@ for (const entry of ["index-zh.html", "index.html"]) {
     await toAudit(page, entry + "#forum?topic=job");
     await toRevisions(page); await toReview(page); await validateFindings(page);
     await toNight(page, async stage => {
-      if (stage === "mirror") await expect(page.locator('.hotel-promo-archive .promo-sign-lettering')).toHaveText("316317318");
+      if (stage === "mirror") await expect(page.locator('.hotel-promo-archive svg[data-promo-signs]')).toHaveAttribute("data-promo-signs", "316 / 317 / 318");
       if (stage === "cameras") await expect(page.locator('.hotel-promo-cameras')).toContainText(entry.includes("zh") ? "那扇门还在照片里" : "The door is still in the picture");
     });
     await wireNight(page);
@@ -95,7 +95,7 @@ for (const entry of ["index-zh.html", "index.html"]) {
     await page.locator('[data-night-action=lock]').click(); await page.locator('[data-ending=released]').click();
     await expect(page.getByRole("heading", { name: "GAME OVER", exact: true })).toBeVisible();
     await page.goto("/" + entry + "#forum?topic=job");
-    await expect(page.locator('.hotel-promo-forum .promo-sign-lettering')).toHaveText("316STAFF ONLY318");
+    await expect(page.locator('.hotel-promo-forum svg[data-promo-signs]')).toHaveAttribute("data-promo-signs", "316 / STAFF ONLY / 318");
     expect(errors).toEqual([]);
   });
 }
@@ -111,7 +111,7 @@ test("the preview is a one-time inline update, preserves the old original and ne
   await expect(page.locator('.promo-dismissed-note')).toContainText("W3-02");
   await page.reload(); await expect(page.locator('.hotel-promo-cameras')).toHaveCount(0);
   await page.goto("/index-zh.html#gallery");
-  await expect(page.locator('.hotel-promo-hotel .promo-sign-lettering')).toHaveText("316STAFF ONLY318");
+  await expect(page.locator('.hotel-promo-hotel svg[data-promo-signs]')).toHaveAttribute("data-promo-signs", "316 / STAFF ONLY / 318");
   await page.goto("/index-zh.html#chat");
   await expect(page.locator('.hotel-promo-placement,#hotel-promo-viewer[open]')).toHaveCount(0);
 });

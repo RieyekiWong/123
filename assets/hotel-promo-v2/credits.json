@@ -1,0 +1,36 @@
+{
+  "created": "2026-11-04",
+  "tool": "OpenAI image generation",
+  "fictionalScene": true,
+  "base": "original.png",
+  "compositing": "One base photograph. Plaque-only raster changes; optional preview figure masked to the service recess.",
+  "coordinates": "1000 × 750",
+  "plaque": "M464 306H524V339H464Z",
+  "recess": "M564 235H690V620H564Z",
+  "images": [
+    {
+      "id": "original",
+      "file": "original.png",
+      "width": 1448,
+      "height": 1086,
+      "bytes": 2426196,
+      "sha256": "641909b1f61cf60d064528055ea3292f0b5765bca8088f8ef31cb04a9817e2a6"
+    },
+    {
+      "id": "synced",
+      "file": "synced.png",
+      "width": 1448,
+      "height": 1086,
+      "bytes": 2148966,
+      "sha256": "04a2a9c10c3c2d5e7d6aff0cd6c8b1209f17f64f5d7d41b3e69b00920d86cc8d"
+    },
+    {
+      "id": "preview",
+      "file": "preview.png",
+      "width": 1448,
+      "height": 1086,
+      "bytes": 2413391,
+      "sha256": "36fb6891487fdb1f6dbf7eab05208663de5b80dc7411edc345eb2a1626f50e9f"
+    }
+  ]
+}

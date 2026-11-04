@@ -534,54 +534,6 @@
   border-color: #48584c;
   box-shadow: none;
 }
-.void-world .desk-final-window .desk-hints {
-  color: #29343d;
-  border-color: #b5babe;
-}
-.void-world .desk-final-window .desk-hints > span {
-  color: #5a6269;
-}
-.void-world .desk-final-window .desk-hints button {
-  background: #e2e5e6;
-  color: #172e44;
-  border-color: #8996a2;
-}
-/* The terminal's light record window must override the black chapter's headings
-   and link rules; the surrounding world keeps its original dark palette. */
-body[data-site="void"] .desk-final-window {
-  color-scheme: light;
-  color: #242b31;
-}
-body[data-site="void"] .desk-final-window .desk-proof h2,
-body[data-site="void"] .desk-final-window .desk-source h3,
-body[data-site="void"] .desk-final-window .desk-comparison h2 {
-  color: #202a31;
-  text-align: left;
-}
-body[data-site="void"] .desk-final-window a {
-  color: #244b70;
-}
-body[data-site="void"] .desk-final-window button {
-  background: #e2e5e6;
-  color: #172e44;
-  border-color: #8996a2;
-  box-shadow: inset 1px 1px #fff;
-}
-body[data-site="void"] .desk-final-window .desk-proof .primary {
-  background: #344e68;
-  color: #fff;
-}
-body[data-site="void"] .desk-final-window .desk-source th button {
-  background: none;
-  box-shadow: none;
-  color: #283f57;
-  border: 0;
-}
-body[data-site="void"] .desk-final-window {
-  background: #e8ebeb;
-  border: 1px solid #87939a;
-  padding: 16px;
-}
 body[data-site="void"] .void-classification-status p,
 body[data-site="void"] .void-disposition > p {
   color: #c2cec5;
@@ -602,8 +554,5 @@ body[data-site="void"] .void-disposition > p {
     background: #f8f8f3;
     color: #242b31;
     font-size: 14px;
-  }
-  body[data-site="void"] .desk-final-window {
-    padding: 10px;
   }
 }

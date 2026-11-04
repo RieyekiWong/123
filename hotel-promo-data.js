@@ -2,11 +2,12 @@
 globalThis.StillwaterHotelPromoData = Object.freeze({
   id: "stillwater-archive-promo",
   reference: "W3-02",
-  baseImage: "assets/hotel-promo-v1/corridor-base.png",
+  baseImage: "assets/hotel-promo-v2/original.png",
+  editRegions: { plaque: "M464 306H524V339H464Z", recess: "M564 235H690V620H564Z" },
   versions: [
-    { id: "original", label: ["W3-02 / 2006 原始宣传页", "W3-02 / 2006 original leaflet"], sign: "STAFF ONLY", stamp: "2006.09 / ORIGINAL" },
-    { id: "synced", label: ["W3-02 / 2026 同步版本", "W3-02 / 2026 synced copy"], sign: "317", stamp: "2026 / DISPLAY REVISION" },
-    { id: "preview", label: ["W3-02 / 系统临时预览", "W3-02 / system preview"], sign: "— —", stamp: "2026 / TEMP PREVIEW" },
+    { id: "original", image: "assets/hotel-promo-v2/original.png", label: ["W3-02 / 2006 原始宣传页", "W3-02 / 2006 original leaflet"], sign: "STAFF ONLY", stamp: "2006.09 / ORIGINAL" },
+    { id: "synced", image: "assets/hotel-promo-v2/synced.png", label: ["W3-02 / 2026 同步版本", "W3-02 / 2026 synced copy"], sign: "317", stamp: "2026 / DISPLAY REVISION" },
+    { id: "preview", image: "assets/hotel-promo-v2/preview.png", label: ["W3-02 / 系统临时预览", "W3-02 / system preview"], sign: "— —", stamp: "2026 / TEMP PREVIEW" },
   ],
   forum: {
     tag: ["本地资料存档 · 赞助展示", "LOCAL ARCHIVE · SPONSORED"],
@@ -49,7 +50,7 @@ globalThis.StillwaterHotelPromoData = Object.freeze({
     intro: ["03:17 的录像已经恢复。系统找到三份标注相同位置的照片，但门牌记录不一致。", "The 03:17 recording is available. Three images match this corridor, but their door labels disagree."],
     heading: ["先找原始照片，再检查哪一处被改过。", "Find the original image, then check what changed."],
     later: ["这份图片是后来生成的。看看照片角落的留档日期。", "This copy was generated later. Check the archive date on the image."],
-    unchanged: ["这里没有变化。再看看门上方的字。", "Nothing changed here. Check the lettering above the door."],
+    unchanged: ["这里没有变化。再看看门上的铜牌。", "Nothing changed here. Check the brass signs on the doors."],
     success: ["原始照片已确认。W3-02：中间为员工通道，非客房。更新版本把它标成了 317。", "Original identified. W3-02 shows a staff access door, not a guest room. The revised copy labels it 317."],
     action: ["继续检查未归档画面", "Continue to the unlisted image"],
     archive: ["查看原始宣传资料", "View the original publicity archive"],

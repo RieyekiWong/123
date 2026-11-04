@@ -841,14 +841,14 @@ globalThis.StillwaterCaseData = (() => {
       ],
     ],
     "void-corridor": [
-      ["先看看来时的门框。", "Look at the frame behind you first."],
+      ["先回头看刚经过的那扇门。", "Look back at the door you came through."],
       [
-        "缺口、门槛破损和光照方向都可用来认门。",
-        "Use the notch, threshold damage and lighting direction together.",
+        "分别看壁灯在哪边、门框哪角有缺口、门槛哪端破了。左右以正对每扇门时为准。",
+        "Check the lamp, the missing frame corner and the chipped end of the threshold. Read left and right while facing each door.",
       ],
       [
-        "用查看按钮照亮两侧的门。将三处特征与入口逐一比较，再选择穿过哪一扇。",
-        "Illuminate both doors with the view buttons. Compare all three features with the entrance before walking through.",
+        "用“查看”按钮检查前方两扇门。把三处细节与刚经过的门逐一对照，全部相同后再推门。",
+        "Inspect both doors ahead. Compare all three details with the previous door, then open the one whose details all match.",
       ],
     ],
     "void-fragments": [

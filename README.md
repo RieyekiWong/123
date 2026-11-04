@@ -1,3 +1,5 @@
+Version 4.14.0 refines the three W3-02 photographs, perspective-correct CCTV signs, the dark final review terminal and corridor door descriptions. [Changes and verification](docs/v2.14/DELIVERY.zh-CN.md).
+
 V2.12 adds the W3-02 publicity archive: three versions of one corridor print and an interactive source check after the existing B-3 wiring save. Ordinary adverts, chat, C1–C9 and all three ending IDs remain. [Implementation, triggers, save migration and walkthrough](docs/V2_12-HOTEL-PROMO.zh-CN.md).
 
 V2.11 revises shop, forum-interface, recruitment, hotel and later-chapter copy. Chat and authored forum threads and replies are preserved. See the [release notes](docs/v2.11/DELIVERY.zh-CN.md) and [full copy review](docs/V2_11-COPY-REVIEW.zh-CN.md).

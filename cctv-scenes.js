@@ -4,8 +4,9 @@ globalThis.StillwaterScenes = (() => {
   const W = 320,
     H = 240,
     textures = new Map();
-  function texture(kind) {
-    if (textures.has(kind)) return textures.get(kind);
+  function texture(kind, label = "") {
+    const key = `${kind}:${label}`;
+    if (textures.has(key)) return textures.get(key);
     const c = document.createElement("canvas");
     c.width = c.height = 64;
     const x = c.getContext("2d");
@@ -36,7 +37,27 @@ globalThis.StillwaterScenes = (() => {
         x.fillStyle = `rgb(${base.map((v) => Math.max(0, Math.min(255, Math.round((v + noise) / 8) * 8))).join(",")})`;
         x.fillRect(xx, y, 1, 1);
       }
-    textures.set(kind, c);
+    // Physical ink and fixings belong on the textured surface. Their perspective,
+    // occlusion and lighting are then the same as the object carrying them.
+    if (label) {
+      x.strokeStyle = "#6b644c";
+      x.strokeRect(2, 3, 59, 57);
+      x.fillStyle = "#514b3a";
+      for (const px of [5, 58]) for (const py of [6, 57]) x.fillRect(px, py, 2, 2);
+      if (label === "TAPE") {
+        x.fillStyle = "#b9a85b";
+        x.fillRect(0, 5, 64, 54);
+      } else {
+        x.font = `${label.length > 4 ? 10 : 17}px Georgia, serif`;
+        x.textAlign = "center";
+        x.textBaseline = "middle";
+        x.fillStyle = "#28291f";
+        x.fillText(label, 32, 33, 54);
+        x.fillStyle = "#b6ab8740";
+        for (let i = 0; i < 14; i++) x.fillRect(rand() * 60, rand() * 60, 2 + rand() * 5, 1);
+      }
+    }
+    textures.set(key, c);
     return c;
   }
   function render(canvas, options = {}) {
@@ -388,8 +409,17 @@ globalThis.StillwaterScenes = (() => {
     for (const f of faces.sort((a, b) => b.z - a.z)) {
       const q = f.v.map(project);
       if (q.every((p) => p[2] < 0.2)) continue;
-      const image = texture(f.mat);
-      if (q.length === 4) {
+      const surfaceLabel = options.classic ? "" : f.label;
+      const image = texture(f.mat, surfaceLabel);
+      if (surfaceLabel) {
+        const xs = f.v.map(p => p[0]), zs = f.v.map(p => p[2]), ys = f.v.map(p => p[1]);
+        const axis = Math.max(...xs) - Math.min(...xs) >= Math.max(...zs) - Math.min(...zs) ? 0 : 2;
+        const hs = f.v.map(p => p[axis]), lo = Math.min(...hs), hi = Math.max(...hs);
+        const bottom = Math.min(...ys), top = Math.max(...ys);
+        const flip = q[hs.indexOf(lo)][0] > q[hs.indexOf(hi)][0];
+        const uv = f.v.map(p => [64 * (flip ? hi - p[axis] : p[axis] - lo) / (hi - lo), 64 * (top - p[1]) / (top - bottom)]);
+        for (let i = 1; i < q.length - 1; i++) triangle(image, [uv[0], uv[i], uv[i + 1]], [q[0], q[i], q[i + 1]]);
+      } else if (q.length === 4) {
         triangle(
           image,
           [
@@ -420,7 +450,7 @@ globalThis.StillwaterScenes = (() => {
       q.forEach((p, i) => (i ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1])));
       c.closePath();
       c.fill();
-      if (f.label) {
+      if (f.label && options.classic) {
         const center = q.reduce(
             (a, p) => [a[0] + p[0] / q.length, a[1] + p[1] / q.length],
             [0, 0],
@@ -460,6 +490,15 @@ globalThis.StillwaterScenes = (() => {
     c.fillRect(0, 0, W, H);
     canvas.dataset.rendered = "yes";
     canvas.setAttribute("aria-hidden", "true");
+    const cartX = (scene === "lobby" ? 1.2 : -1.1) + (options.cartMoved ? .3 : 0);
+    return Object.fromEntries(Object.entries({
+      plate: [width - .015, 1.88, 4.36],
+      peephole: [width - .015, 1.5, 4.36],
+      photo: [-width + .025, 1.8, 3.25],
+      cart: [cartX + .3, .9, scene === "lobby" ? 5.8 : 5.5],
+      cabinet: [-width + .2, 1.25, 3.7],
+      enter: [width - .03, 1.3, 4.05],
+    }).map(([key, point]) => { const p = project(point); return [key, { x: p[0] / W, y: p[1] / H }]; }));
   }
   const portraitCache = new Map();
   async function portrait(im) {
@@ -537,7 +576,7 @@ globalThis.StillwaterScenes = (() => {
                 : /LOBBY|大堂/.test(frame.textContent)
                   ? "lobby"
                   : "hall");
-      render(canvas, {
+      const targets = render(canvas, {
         scene,
         pan: Number(picture.dataset.pan ?? 1),
         landmark: picture.dataset.landmark || "",
@@ -551,6 +590,14 @@ globalThis.StillwaterScenes = (() => {
         b3: picture.dataset.b3 === "true",
         classic: document.body.dataset.edition === "classic",
       });
+      if (document.body.dataset.edition !== "classic") {
+        for (const control of frame.querySelectorAll(".scene-hotspots [data-target]")) {
+          const p = targets?.[control.dataset.target];
+          if (!p) continue;
+          control.style.left = `${Math.max(.06, Math.min(.94, p.x)) * 100}%`;
+          control.style.top = `${Math.max(.08, Math.min(.92, p.y)) * 100}%`;
+        }
+      }
     }
     const portraits = [
       ...(root.matches?.(

@@ -9,26 +9,26 @@ globalThis.StillwaterVoid = {
     const reduced=()=>getState().preferences.reduceMotion||matchMedia('(prefers-reduced-motion:reduce)').matches;
     const button=(action,label,attributes='')=>`<button data-void-action="${action}" ${attributes}>${label}</button>`;
     const description=anchors=>t(
-      `光从${anchors[0]==='left'?'左':'右'}边落下；门槛${anchors[1]==='left'?'左':'右'}侧有破损；门框${anchors[2]==='left'?'左':'右'}上角有缺口。`,
-      `Light from the ${anchors[0]}; damage on the ${anchors[1]} side of the threshold; a notch in the upper-${anchors[2]} corner of the frame.`,
+      `壁灯在门${anchors[0]==='left'?'左':'右'}边；门框${anchors[2]==='left'?'左':'右'}上角缺了一块；门槛${anchors[1]==='left'?'左':'右'}端有崩口。`,
+      `The wall lamp is on the ${anchors[0]}; a piece is missing from the frame’s upper-${anchors[2]} corner; the ${anchors[1]} end of the threshold is chipped.`,
     );
     function feedbackText(v) {
       const scene=V.scenes[Math.min(3,v.step)];
-      if(['reference','left','right'].includes(v.observation))return (v.observation==='reference'?t('来时的门框：','The frame behind you: '):v.observation==='left'?t('左侧的门：','Left door: '):t('右侧的门：','Right door: '))+description(scene[v.observation]);
-      if(v.observation==='loop')return t("又回到了入口。门槛上的破损还在同一侧。",'Back at the entrance. The threshold is damaged on the same side.');
-      if(v.observation==='joined')return t('门框和门槛都对上了。','The frame and threshold match.');
+      if(['reference','left','right'].includes(v.observation))return (v.observation==='reference'?t('刚经过的门：','The door you came through: '):v.observation==='left'?t('前方左侧的门：','Door ahead on the left: '):t('前方右侧的门：','Door ahead on the right: '))+description(scene[v.observation]);
+      if(v.observation==='loop')return t("又站回最初那扇门前了。之前看过的细节还在。",'You are back at the first door. The details you checked are still there.');
+      if(v.observation==='joined')return t('三处细节都对上了。','All three details match.');
       if(v.observation==='shadow')return t("再照过去，那里已经空了。",'Nothing there when you turn the light toward it.');
-      return t('来时门框的缺口、门槛上的破损和光照方向都还在。','The frame notch, threshold damage and direction of the light are still there.');
+      return t('前面两扇门差不多，先回头认一下刚经过的那扇。','The two doors ahead look alike. Look back at the one you came through first.');
     }
     function render() {
       const v=state(),corridor=v.stage==='corridor',fragments=v.stage==='fragments',terminal=v.stage==='classify';
       const title=corridor?t(...V.scenes[v.step].title):fragments?t('断裂影像','Fragmented picture'):terminal?t('分类终端','Classification terminal'):t('未归档画面','Unlisted picture');
       let controls='';
-      if(corridor)controls=`<p class="void-instruction">${t("点击画面左侧可以回看入口；点击门，可照亮门框。也可使用下方按钮查看。",'Touch the left edge to look back, or either door to illuminate its frame. The buttons below offer the same views.')}</p><div class="void-observe">${button('observe',t('回看入口门框','Look at the frame behind you'),'data-target="reference"')}${button('observe',t('照一下左侧门','Illuminate the left door'),'data-target="left"')}${button('observe',t('照一下右侧门','Illuminate the right door'),'data-target="right"')}${v.shadow?button('observe',t('查看走廊尽头','Look down the corridor'),'data-target="shadow"'):''}</div><p class="void-observation" role="status">${feedbackText(v)}</p><div class="void-directions">${button('walk',t('穿过左侧门','Go through the left door'),'data-direction="left"')}${button('walk',t('穿过右侧门','Go through the right door'),'data-direction="right"')}</div>`;
+      if(corridor)controls=`<p class="void-instruction">${t("回头看一眼刚经过的门，再检查前面的两扇。壁灯、门框缺口、门槛崩口，三处都要对得上。",'Look back at the door you came through, then inspect the two ahead. Match the wall lamp, the frame notch and the chipped threshold.')}</p><div class="void-observe">${button('observe',t('回头看刚经过的门','Look at the previous door'),'data-target="reference"')}${button('observe',t('查看前方左侧门','Inspect the left door ahead'),'data-target="left"')}${button('observe',t('查看前方右侧门','Inspect the right door ahead'),'data-target="right"')}${v.shadow?button('observe',t('查看走廊尽头','Look down the corridor'),'data-target="shadow"'):''}</div><p class="void-observation" role="status">${feedbackText(v)}</p><p class="void-facing-note">${t("左右位置均以正对这扇门时为准。", "Left and right are always described while facing that door.")}</p><div class="void-directions">${button('walk',t('推开前方左侧门','Open the left door ahead'),'data-direction="left"')}${button('walk',t('推开前方右侧门','Open the right door ahead'),'data-direction="right"')}</div>`;
       else if(fragments)controls=`<p class="void-instruction">${t("把三块影像拖入四角标记围出的区域，沿边缘对齐门框、墙角和地缝。也可先选中一块，再用方向键或下方按钮微调。",'Use the faint corner marks to position the three fragments so the frame, corner and floor seams meet at their edges. Drag, or select a fragment and use the arrow keys or buttons.')}</p><div class="void-fragment-tabs" role="group" aria-label="${t('选择影像片段','Select a fragment')}">${roman.map((label,id)=>button('select',t('片段 ','Fragment ')+label,`data-id="${id}" aria-pressed="${id===v.selected}" ${v.reviewed?'disabled':''}`)).join('')}</div><p class="void-alignment" role="status">${t('边缘已对齐','Edges aligned')}: ${V.aligned(v).length}/3</p>${v.reviewed?`<p class="void-missing-source">${t("中央的黑区没有对应摄像头，并不是少了一块影像。",'No camera covers the black area. It is not a missing fourth fragment.')}</p>${button('terminal',t('查看黑区后面的终端','Look at the terminal beyond the gap'),'class="void-primary"')}`:`<div class="void-nudges">${[['0','-1','↑'],['-1','0','←'],['1','0','→'],['0','1','↓']].map(([dx,dy,label])=>button('move',label,`data-dx="${dx}" data-dy="${dy}" aria-label="${t('移动片段','Move fragment')} ${label}"`)).join('')}</div><div class="void-fragment-actions">${button('reset-fragments',t('重新摆放','Reset fragments'))}${button('review',t('复核这段画面','Review this picture'),'class="void-primary"')}</div>`}`;
       else if(terminal) {
         const forced=state().forcedType||'ROOM';
-        controls=`<div class="void-classification"><p class="void-system-id">CONTINUITY / UNKNOWN SOURCE</p><h2>${t('核对这段影像的归类依据。','Review the basis for classifying this picture.')}</h2><div class="void-types">${['ROOM','GUEST','EMPLOYEE'].map(type=>button('classify',type,`data-type="${type}" data-reviewed="${v.attempts.includes(type)}" aria-pressed="${v.activeCategory===type}"`)).join('')}</div><div class="void-classification-status">${v.attempts.map(type=>`<p>${globalThis.StillwaterCaseData.proofs[type].record}</p>`).join('')}</div>${evidenceReview()}${v.attempts.length===3?`<section class="void-disposition"><p>NO VERIFIED CATEGORY</p><h2>${t('最终处理','Final disposition')}</h2><label for="force-category">${t('强制归类时使用的类别','Category used for forced classification')}</label><select id="force-category">${['ROOM','GUEST','EMPLOYEE'].map(type=>`<option ${type===forced?'selected':''}>${type}</option>`).join('')}</select>${button('disposition','FORCE CLASSIFICATION / '+t('强制归类','Assign a category'),'data-mode="force"')}${button('disposition','AUTO CLOSE / '+t('接受自动结案','Accept automatic closure'),'data-mode="auto"')}${button('disposition','RETAIN AS UNVERIFIED / '+t('保留未核实状态','Keep unverified'),'data-mode="retain" class="void-primary"')}</section>`:''}</div>`;
+        controls=`<div class="void-classification"><p class="void-system-id">CONTINUITY / UNKNOWN SOURCE</p><h2>${t('这段画面该归到哪一栏？','Which record does this picture belong to?')}</h2><div class="void-types">${['ROOM','GUEST','EMPLOYEE'].map(type=>button('classify',type,`data-type="${type}" data-reviewed="${v.attempts.includes(type)}" aria-pressed="${v.activeCategory===type}"`)).join('')}</div><div class="void-classification-status">${v.attempts.map(type=>`<p>${globalThis.StillwaterCaseData.proofs[type].record}</p>`).join('')}</div>${evidenceReview()}${v.attempts.length===3?`<section class="void-disposition"><p>NO VERIFIED CATEGORY</p><h2>${t('最终处理','Final disposition')}</h2><label for="force-category">${t('强制归类时使用的类别','Category used for forced classification')}</label><select id="force-category">${['ROOM','GUEST','EMPLOYEE'].map(type=>`<option ${type===forced?'selected':''}>${type}</option>`).join('')}</select>${button('disposition','FORCE CLASSIFICATION / '+t('强制归类','Assign a category'),'data-mode="force"')}${button('disposition','AUTO CLOSE / '+t('接受自动结案','Accept automatic closure'),'data-mode="auto"')}${button('disposition','RETAIN AS UNVERIFIED / '+t('保留未核实状态','Keep unverified'),'data-mode="retain" class="void-primary"')}</section>`:''}</div>`;
       } else controls=`<div class="void-return-record"><p>NO CAMERA / UNVERIFIED</p><h2>${t('保留无法确认的部分。','Leave the unknown unverified.')}</h2><p>${t("这段画面仍未分配房间、住客或员工身份。返回 B-3 后，还需完成夜班交接。","This picture is still unassigned to any room, guest or employee. Return to B-3 to finish the shift handover.")}</p>${button('lookback',t('再看最后一帧','Look back at the last frame'))}${button('leave',t('返回 B-3 配线室','Return to B-3'),'class="void-primary"')}</div>`;
       if(corridor)controls+=guide('void-corridor');else if(fragments)controls+=guide('void-fragments');
       const elapsed=Date.now()-v.enteredAt;
@@ -154,14 +154,40 @@ globalThis.StillwaterVoid = {
       ctx.fillStyle='#000';ctx.fillRect(192,124,96,104);
       if(v.reviewed){ctx.strokeStyle='#373b40';ctx.setLineDash([3,4]);ctx.strokeRect(192,124,96,104);ctx.setLineDash([]);}
     }
+    function keyboard(ctx) {
+      const deck=[[83,279],[350,291],[379,330],[55,316]];
+      // Project the whole key bed from one plane. Both row directions share
+      // the case's vanishing points; no screen-aligned rectangles on top.
+      const [a,b,c,d]=deck;
+      const dx1=b[0]-c[0],dx2=d[0]-c[0],dx3=a[0]-b[0]+c[0]-d[0];
+      const dy1=b[1]-c[1],dy2=d[1]-c[1],dy3=a[1]-b[1]+c[1]-d[1];
+      const den=dx1*dy2-dx2*dy1;
+      const g=(dx3*dy2-dx2*dy3)/den,h=(dx1*dy3-dx3*dy1)/den;
+      const project=(u,v)=>{
+        const w=g*u+h*v+1;
+        return [((b[0]-a[0]+g*b[0])*u+(d[0]-a[0]+h*d[0])*v+a[0])/w,
+          ((b[1]-a[1]+g*b[1])*u+(d[1]-a[1]+h*d[1])*v+a[1])/w];
+      };
+      polygon(ctx,[d,c,[c[0],c[1]+4],[d[0],d[1]+4]],'#101518');
+      polygon(ctx,deck,'#21262a');
+      ctx.save();ctx.beginPath();deck.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.closePath();ctx.clip();
+      const key=(u,v,w,h)=>{
+        const corners=[[u,v],[u+w,v],[u+w,v+h],[u,v+h]].map(p=>project(...p));
+        polygon(ctx,corners.map(([x,y])=>[x,y+1]),'#11171b');
+        polygon(ctx,corners,'#454b50');
+        ctx.strokeStyle='#5b6267';ctx.lineWidth=.6;ctx.beginPath();ctx.moveTo(...corners[0]);ctx.lineTo(...corners[1]);ctx.stroke();
+      };
+      for(let row=0;row<3;row++)for(let col=0;col<13;col++)key(.045+col*.067+row*.009,.13+row*.205,.049,.12);
+      for(const [u,w]of [[.06,.09],[.18,.08],[.29,.4],[.72,.08],[.83,.09]])key(u,.77,w,.115);
+      ctx.restore();
+    }
     function terminal(ctx,v) {
       if(v.events.includes('terminal-shape')&&!getState().preferences.skipScares){ctx.fillStyle='#1e2226';ctx.beginPath();ctx.ellipse(382,91,14,21,0,0,7);ctx.fill();polygon(ctx,[[370,116],[394,116],[413,251],[351,251]],'#14191d');}
       polygon(ctx,[[77,58],[362,68],[354,276],[70,265]],'#262b30');
       ctx.fillStyle='#040506';ctx.fillRect(91,77,247,173);ctx.strokeStyle='#4d555c';ctx.strokeRect(91,77,247,173);
       ctx.fillStyle='#9aaba6';ctx.font='13px monospace';ctx.fillText('CONTINUITY',108,104);ctx.fillText('UNKNOWN SOURCE',108,129);
       ctx.fillStyle='#737d80';ctx.fillText(v.classified?'UNVERIFIED':v.activeCategory||(v.attempts.length===3?'NO VERIFIED CATEGORY':v.attempts.at(-1)||'TYPE REQUIRED'),108,192);
-      polygon(ctx,[[83,279],[350,291],[379,330],[55,316]],'#21262a');
-      ctx.fillStyle='#454b50';for(let r=0;r<3;r++)for(let c=0;c<13;c++)ctx.fillRect(90+c*18-r*5,288+r*9,12,5);
+      keyboard(ctx);
     }
     function paint(preview) {
       if(!canvas)return;const ctx=canvas.getContext('2d'),v=state();ctx.clearRect(0,0,480,360);ctx.fillStyle='#000';ctx.fillRect(0,0,480,360);

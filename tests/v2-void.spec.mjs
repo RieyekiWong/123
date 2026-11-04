@@ -28,7 +28,7 @@ test('wrong doors have a repeatable rule and the second entrance visit changes t
  await setup(page);await page.locator('[data-unlisted-entry]').click();
  const canvas=page.locator('.void-canvas'),box=await canvas.boundingBox();
  await canvas.click({position:{x:box.width*.1,y:box.height*.55}});
- await expect(page.locator('.void-observation')).toContainText('来时的门框');
+ await expect(page.locator('.void-observation')).toContainText('刚经过的门');
  await canvas.click({position:{x:box.width*.68,y:box.height*.45}});
  await expect(page.locator('.void-observation')).toContainText('右侧的门');
  await page.locator('[data-void-action=walk][data-direction=right]').click();

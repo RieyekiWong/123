@@ -1,0 +1,272 @@
+/* Current-edition scene details and the terminal inside the unlit chapter.
+   Earlier staff pages keep their own light palette and shared controls. */
+.annotation-comparison .annotated-photo figcaption {
+  position: static;
+  max-width: none;
+  margin: 0;
+  padding: 10px 13px;
+  border: 1px solid #9aa7ad;
+  border-top: 0;
+  background: #e9eae4;
+  color: #203c4e;
+}
+.space-console .scene-hotspots button.hotspot {
+  transform: translate(-50%, -50%);
+  right: auto;
+  bottom: auto;
+  color: transparent;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  cursor: crosshair;
+}
+.space-console .scene-hotspots button.hotspot:is(:hover, :focus-visible) {
+  color: #e1dfcd;
+  background: #10150eae;
+  border-color: #b1b29a99;
+  outline: 1px solid #d6bf7b;
+}
+/* The plaque and peephole are close together on the same door. Keep their
+   picture targets separate; the labelled controls alongside remain full size. */
+.space-console .scene-hotspots :is(.plate, .peephole) {
+  min-height: 24px;
+  height: 24px;
+  padding-block: 0;
+}
+body[data-site="void"] .void-classification {
+  max-width: 860px;
+}
+body[data-site="void"] .void-frame[data-void-stage="classify"] {
+  width: min(680px, 100%);
+}
+body[data-site="void"] .desk-final-window {
+  --terminal-text: #c6d2c7;
+  --terminal-muted: #a1b1a5;
+  --terminal-line: #35493b;
+  position: relative;
+  isolation: isolate;
+  grid-template-columns: minmax(270px, 0.9fr) minmax(0, 1.25fr);
+  padding: 15px;
+  gap: 16px;
+  background: #020605;
+  color: var(--terminal-text);
+  color-scheme: dark;
+  border: 1px solid #35493b;
+  border-top: 2px solid #566e55;
+  box-shadow:
+    0 0 28px #45694312,
+    inset 0 0 42px #000;
+  font-family: var(--font-terminal), "Microsoft YaHei", sans-serif;
+}
+body[data-site="void"] .desk-final-window::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.12;
+  background: repeating-linear-gradient(transparent 0 3px, #000b 3px 4px);
+  box-shadow: inset 0 0 36px #0007;
+}
+body[data-site="void"] .desk-final-window[data-terminal-haunt="true"] {
+  animation: terminal-wake 0.24s ease-out both;
+}
+@keyframes terminal-wake {
+  from {
+    opacity: 0.45;
+    transform: translateY(1px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+body[data-site="void"] .desk-final-window :is(.desk-proof, .desk-source) {
+  background: #070d09;
+  color: var(--terminal-text);
+  border: 1px solid var(--terminal-line);
+  box-shadow: none;
+}
+body[data-site="void"] .desk-final-window .desk-proof {
+  align-self: start;
+}
+body[data-site="void"] .desk-final-window :is(h2, h3) {
+  font-family: var(--font-terminal), "Microsoft YaHei", sans-serif;
+  color: #d2ded0;
+  text-align: left;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+body[data-site="void"] .desk-final-window :is(p, label, td, legend, code) {
+  color: var(--terminal-text);
+}
+body[data-site="void"]
+  .desk-final-window
+  :is(
+    .desk-label,
+    small,
+    time,
+    caption,
+    .desk-source-origin,
+    .terminal-buffer-label
+  ) {
+  color: var(--terminal-muted);
+  text-shadow: none;
+}
+body[data-site="void"] .desk-final-window .desk-source header {
+  border-color: var(--terminal-line);
+}
+body[data-site="void"] .desk-final-window .desk-source header p {
+  font-size: 12px;
+  line-height: 1.8;
+}
+body[data-site="void"] .terminal-buffer-label {
+  margin: 0 0 10px;
+  font: 11px/1.7 var(--font-terminal);
+  letter-spacing: 0.06em;
+}
+body[data-site="void"] .desk-final-window :is(fieldset, .desk-citations > div) {
+  border-color: var(--terminal-line);
+}
+body[data-site="void"] .desk-final-window legend {
+  font-size: 13px;
+  padding-inline: 5px;
+  color: #bccbbd;
+}
+body[data-site="void"] .desk-final-window .desk-source :is(th, td) {
+  border-color: #35463a;
+  font-size: 13px;
+}
+body[data-site="void"] .desk-final-window .desk-source th {
+  background: #111b14;
+  color: #b6c7b5;
+}
+body[data-site="void"] .desk-final-window .desk-source td {
+  background: #080e0a;
+}
+body[data-site="void"] .desk-final-window :is(a, .desk-source th button) {
+  color: #b9cbb2;
+  text-underline-offset: 3px;
+}
+body[data-site="void"] .desk-final-window .desk-source th button {
+  background: transparent;
+  box-shadow: none;
+  border: 0;
+}
+body[data-site="void"] .desk-final-window button {
+  background: #101a12;
+  color: #c5d4c0;
+  border: 1px solid #546951;
+  box-shadow: none;
+  font-family: var(--font-terminal), "Microsoft YaHei", sans-serif;
+  text-shadow: none;
+}
+body[data-site="void"] .desk-final-window button:hover {
+  background: #1c2b1e;
+  color: #e0e9da;
+  border-color: #85997a;
+}
+body[data-site="void"] .desk-final-window .desk-proof .primary {
+  background: #17271b;
+  color: #e0eadb;
+  border-color: #809475;
+}
+body[data-site="void"] .desk-final-window input {
+  accent-color: #a6b994;
+  color-scheme: dark;
+}
+body[data-site="void"] .desk-final-window :focus-visible {
+  outline: 2px solid #b9c997;
+  outline-offset: 3px;
+}
+body[data-site="void"]
+  .desk-final-window
+  .desk-source
+  .desk-marked
+  :is(th, td) {
+  background: #352e1d;
+  color: #eee1bc;
+}
+body[data-site="void"] .desk-final-window .desk-marked th button {
+  color: #eee1bc;
+}
+body[data-site="void"] .desk-final-window .desk-comparison h2 {
+  border-color: var(--terminal-line);
+  color: #bdcdb9;
+}
+body[data-site="void"] .desk-final-window .desk-empty {
+  border-color: #4b614c;
+  color: var(--terminal-muted);
+}
+body[data-site="void"] .desk-final-window .desk-confirmed {
+  background: #0a170e;
+  border: 1px solid #506b4b;
+}
+body[data-site="void"] .desk-final-window .desk-confirmed :is(p, small) {
+  color: #c7d9bd;
+}
+body[data-site="void"] .desk-final-window .desk-feedback {
+  background: #190e0d;
+  color: #e0c5b8;
+  border-color: #956e56;
+}
+body[data-site="void"] .desk-final-window .desk-hints {
+  background: transparent;
+  color: var(--terminal-text);
+  border-color: var(--terminal-line);
+}
+body[data-site="void"] .desk-final-window .desk-hints > span {
+  color: var(--terminal-muted);
+}
+body[data-site="void"] .void-facing-note {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #9facb2;
+  text-align: center;
+  margin: 8px auto 18px;
+}
+body[data-site="void"] .void-observation {
+  text-wrap: pretty;
+}
+body[data-site="void"] .void-types button[data-reviewed="true"]::after {
+  content: " / CHECKED";
+  font-size: 10px;
+  color: #b2c4aa;
+}
+@media (max-width: 1100px) {
+  body[data-site="void"] .desk-final-window {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  body[data-site="void"] .desk-final-window {
+    padding: 10px;
+    gap: 14px;
+  }
+  body[data-site="void"] .desk-final-window :is(.desk-proof, .desk-source) {
+    padding: 11px;
+  }
+  body[data-site="void"] .desk-final-window .desk-proof h2 {
+    font-size: 17px;
+  }
+  body[data-site="void"] .void-observation {
+    font-size: 14px;
+    text-align: left;
+  }
+  body[data-site="void"] .void-facing-note {
+    text-align: left;
+  }
+  body[data-site="void"] .void-directions button {
+    flex: 1 1 140px;
+  }
+}
+body.reduced-motion .desk-final-window[data-terminal-haunt="true"] {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-site="void"] .desk-final-window[data-terminal-haunt="true"] {
+    animation: none;
+  }
+}

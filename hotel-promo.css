@@ -7,7 +7,7 @@
 .promo-print svg{display:block;width:100%;height:auto;aspect-ratio:4/3;filter:saturate(.7) contrast(.92) sepia(.14)}
 .promo-paper-wear{position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,#e6e0bf1c 2%,transparent 3%,transparent 47%,#e0d5aa24 48%,#5f503914 48.3%,transparent 49%),repeating-linear-gradient(0deg,transparent 0 3px,#332f2010 3px 4px);box-shadow:inset 0 0 28px #574a2344;mix-blend-mode:multiply}
 .promo-clean-print .promo-paper-wear{opacity:.22}.promo-clean-print svg{filter:saturate(.8) contrast(1.02)}
-.promo-distant-figure{fill:#171c1a;opacity:.7;filter:blur(1px)}
+.promo-distant-figure{opacity:1;filter:none}
 .promo-card-actions,.promo-scan-controls,.promo-zoom-controls,.promo-version-tabs,.promo-mark-controls{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;margin:.8rem 0}
 .hotel-promo-placement button,.hotel-promo-dialog button,.promo-check-panel button{box-sizing:border-box;min-height:44px;max-width:100%;font:inherit;line-height:1.45;white-space:normal;color:#3c3527;background:#ebe2cd;border:1px solid #9f9377;padding:.5rem .7rem;cursor:pointer}
 .hotel-promo-placement button:hover,.hotel-promo-dialog button:hover,.promo-check-panel button:hover{background:#e1d6bc}

@@ -1,7 +1,7 @@
 /* The current edition's deployable code. Archived game code is not a dependency. */
 export const V2_FILES = [
   "index.html", "index-zh.html", "haunt-preview.html",
-  "case-data.js", "case-evidence.js", "case-evidence.css", "case-state.js", "case-app.js", "case-pages.js",
+  "case-data.js", "case-evidence.js", "case-evidence.css", "case-scene-polish.css", "case-state.js", "case-app.js", "case-pages.js",
   "case-comfort.js", "case-feedback.js", "case-ending.js", "case-ending.css",
   "forum-data.js", "forum-extra-data.js", "forum-avatars.js", "forum.js", "forum-style.css", "careers.js", "hotel-extras.js", "front-sites.css",
   "chat-data.js", "chat-personas.js", "chat-protocol.js", "chat-fallback.js", "chat-model.js",
