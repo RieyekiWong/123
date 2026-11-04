@@ -78,12 +78,14 @@ globalThis.StillwaterChatModel = (() => {
   }
   function fallback(s,id) {const p=s.pending.find(p=>p.id===id);if(p)p.waiting=false;}
   function markRead(s,room) {s.ui.unread[room]=0;s.ui.visited[room]=true;}
-  function checkIn(s,room,language='zh') {
+  function checkIn(s,room,language='zh',{repeat=false}={}) {
     const contact=globalThis.StillwaterChatPeople.contacts[room];
-    if(!contact||s.memories[room]?.checkedIn||s.pending.some(p=>p.conversation===room))return null;
-    const entry=contact.proactive[0],lang=s.memories[room]?.language||language;
+    if(!contact?.proactive?.length||(!repeat&&s.memories[room]?.checkedIn)||s.pending.some(p=>p.conversation===room))return null;
+    const count=bounded(s.memories[room]?.checkIns,1000000,s.memories[room]?.checkedIn?1:0);
+    const entry=contact.proactive[count%contact.proactive.length],lang=s.memories[room]?.language||language;
+    if(!entry)return null;
     const message=append(s,{kind:'social',person:room,text:entry.text[lang==='en'?1:0],conversation:room,source:'local',...(entry.image?{image:entry.image}:{})});
-    s.memories[room]||={turn:0,language:lang,topic:'',awaiting:'',payUnknown:false,recent:[]};s.memories[room].checkedIn=true;return message;
+    s.memories[room]||={turn:0,language:lang,topic:'',awaiting:'',payUnknown:false,recent:[]};s.memories[room].checkedIn=true;s.memories[room].checkIns=(count+1)%1000000;return message;
   }
   function advance(s,ms,{story=true,chatActive=true,proactive=false}={}) {
     const dt=bounded(ms,2000);s.wallElapsed=bounded((s.wallElapsed||0)+dt,86400000);if(chatActive)s.elapsed+=dt;
@@ -161,7 +163,7 @@ globalThis.StillwaterChatModel = (() => {
     if(raw.turns&&typeof raw.turns==='object')for(const [key,value]of Object.entries(raw.turns))if(/^[a-z_]+:(early|job|shared|any)$/.test(key))s.turns[key]=bounded(value,100000);
     for(const room of ['group',...Object.keys(D.sideChats)]) {
       const mem=raw.memories?.[room];
-      if(mem)s.memories[room]={turn:bounded(mem.turn,100000),language:['zh','en','mixed'].includes(mem.language)?mem.language:'zh',topic:String(mem.topic||'').slice(0,30),awaiting:String(mem.awaiting||'').slice(0,30),payUnknown:mem.payUnknown===true,recent:Array.isArray(mem.recent)?mem.recent.filter(x=>typeof x==='string').slice(-5).map(x=>x.slice(0,600)):[],...(mem.checkedIn?{checkedIn:true}:{})};
+      if(mem)s.memories[room]={turn:bounded(mem.turn,100000),language:['zh','en','mixed'].includes(mem.language)?mem.language:'zh',topic:String(mem.topic||'').slice(0,30),awaiting:String(mem.awaiting||'').slice(0,30),payUnknown:mem.payUnknown===true,recent:Array.isArray(mem.recent)?mem.recent.filter(x=>typeof x==='string').slice(-5).map(x=>x.slice(0,600)):[],...(mem.checkedIn?{checkedIn:true,checkIns:bounded(mem.checkIns,1000000,1)}:{})};
       const ui=raw.ui||{};
       if(typeof ui.drafts?.[room]==='string')s.ui.drafts[room]=ui.drafts[room].slice(0,D.maxText);
       if(ui.scroll?.[room])s.ui.scroll[room]={top:bounded(ui.scroll[room].top,1000000),bottom:ui.scroll[room].bottom!==false};

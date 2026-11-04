@@ -14,6 +14,9 @@ globalThis.StillwaterMessengerBridge = {
   }) {
     const SNAP = "stillwater-browser:v1",
       META = "stillwater-messenger:v1";
+    const contacts = ["mom", "gg", "milk", "lin", "zhang", "dad", "zhe"];
+    const firstDelay = () => 30000 + Math.random() * 10000;
+    const nextDelay = () => 60000 + Math.random() * 60000;
     const host = () => document.querySelector("#case-shell");
     const isChat = () => getRoute() === "chat";
     const coordinate = (value) =>
@@ -92,13 +95,25 @@ globalThis.StillwaterMessengerBridge = {
       past = getState().evidence.includes("C9") || getState().night.started;
     let meta = {
       schema: 1,
-      remaining: 45000 + Math.random() * 30000,
+      cadence: 2,
+      remaining: firstDelay(),
+      nextContact: 0,
       intrusionSeen: past,
     };
     if (raw?.schema === 1) {
       meta.remaining = Number.isFinite(raw.remaining)
-        ? Math.max(1000, Math.min(150000, raw.remaining))
+        ? Math.max(
+            1000,
+            Math.min(
+              raw.cadence === 2 ? 120000 : meta.remaining,
+              raw.remaining,
+            ),
+          )
         : meta.remaining;
+      meta.nextContact =
+        Number.isInteger(raw.nextContact) && raw.nextContact >= 0
+          ? raw.nextContact % contacts.length
+          : 0;
       meta.intrusionSeen =
         raw.intrusionSeen === true || getState().night.started;
     }
@@ -393,22 +408,16 @@ globalThis.StillwaterMessengerBridge = {
       if (!eligible()) return;
       meta.remaining -= dt;
       if (meta.remaining <= 0) {
-        for (const room of [
-          "mom",
-          "gg",
-          "milk",
-          "lin",
-          "zhang",
-          "dad",
-          "zhe",
-        ]) {
-          const message = chat.checkIn(room);
+        for (let offset = 0; offset < contacts.length; offset++) {
+          const index = (meta.nextContact + offset) % contacts.length;
+          const message = chat.checkIn(contacts[index], { repeat: true });
           if (message) {
+            meta.nextContact = (index + 1) % contacts.length;
             incoming([message]);
             break;
           }
         }
-        meta.remaining = 90000 + Math.random() * 60000;
+        meta.remaining = nextDelay();
         write(META, meta);
       } else if (now - lastMeta > 15000) {
         write(META, meta);
@@ -441,7 +450,9 @@ globalThis.StillwaterMessengerBridge = {
         restorePending = false;
         meta = {
           schema: 1,
-          remaining: 45000 + Math.random() * 30000,
+          cadence: 2,
+          remaining: firstDelay(),
+          nextContact: 0,
           intrusionSeen: false,
         };
         for (const key of [SNAP, META])

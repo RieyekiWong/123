@@ -273,6 +273,6 @@ globalThis.StillwaterChat = {
     window.addEventListener('pagehide',()=>{if(root){rememberScroll();persist();}});
     window.addEventListener('resize',fitViewport);
     window.visualViewport?.addEventListener('resize',fitViewport);
-    return {mount,leave,openRoom,contact:room=>({name:personName(room),avatar:avatar(room)}),unread:()=>Object.values(state.ui.unread).reduce((a,b)=>a+b,0),checkIn(room){const message=M.checkIn(state,room,document.documentElement.lang==='zh-CN'?'zh':'en');if(!message)return null;persist();return notification(message);},reset(){leave();transport.reset();state=M.fresh();try {localStorage.removeItem(M.KEY);}catch {}},hasVisitedForum:()=>state.openedForum};
+    return {mount,leave,openRoom,contact:room=>({name:personName(room),avatar:avatar(room)}),unread:()=>Object.values(state.ui.unread).reduce((a,b)=>a+b,0),checkIn(room,options){const message=M.checkIn(state,room,document.documentElement.lang==='zh-CN'?'zh':'en',options);if(!message)return null;persist();return notification(message);},reset(){leave();transport.reset();state=M.fresh();try {localStorage.removeItem(M.KEY);}catch {}},hasVisitedForum:()=>state.openedForum};
   },
 };

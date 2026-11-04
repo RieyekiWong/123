@@ -7,6 +7,37 @@ import '../chat-fallback.js';
 import '../chat-model.js';
 const D=globalThis.StillwaterChatData,M=globalThis.StillwaterChatModel;
 const run=(s,ms,options)=>{for(let time=0;time<ms;time+=1000)M.advance(s,1000,options);};
+test('repeat browser check-ins rotate each contact’s bilingual messages and retain the next message on refresh',()=>{
+ for(const language of ['zh','en']) {
+  let s=M.fresh();
+  for(const room of Object.keys(globalThis.StillwaterChatPeople.contacts)) {
+   const first=M.checkIn(s,room,language,{repeat:true});
+   assert.equal(M.checkIn(s,room,language),null);
+   s=M.hydrate(JSON.parse(JSON.stringify(s)));
+   const second=M.checkIn(s,room,language,{repeat:true});
+   const third=M.checkIn(s,room,language,{repeat:true});
+   assert.equal(new Set([first.text,second.text,third.text]).size,3);
+   for(const message of [first,second,third]) {
+    assert.equal(message.person,room);assert.equal(message.conversation,room);assert.equal(message.source,'local');
+    assert.doesNotMatch(message.text,/317|Mara|Continuity|TEMP-015|R-4829/i);
+    assert.equal(/[\u4e00-\u9fff]/.test(message.text),language==='zh');
+   }
+   assert.equal(s.ui.unread[room],3);
+  }
+  assert.equal(s.cursor,1);assert.equal(s.shared,false);assert.deepEqual(s.pending,[]);
+ }
+});
+test('legacy check-ins resume with a different greeting, while a pending personal reply is never interrupted',()=>{
+ const legacy=M.fresh();legacy.memories.mom={checkedIn:true,language:'en'};
+ const s=M.hydrate(legacy);
+ assert.equal(M.checkIn(s,'mom'),null);
+ assert.equal(M.checkIn(s,'mom','en',{repeat:true}).text,globalThis.StillwaterChatPeople.contacts.mom.proactive[1].text[1]);
+ M.send(s,'today has been exhausting','mom',()=>0);
+ const pending=JSON.stringify(s.pending),memory=JSON.stringify(s.memories.mom);
+ assert.equal(M.checkIn(s,'mom','en',{repeat:true}),null);
+ assert.equal(JSON.stringify(s.pending),pending);assert.equal(JSON.stringify(s.memories.mom),memory);
+ for(const room of ['group','notes','constructor','unknown'])assert.equal(M.checkIn(s,room,'en',{repeat:true}),null);
+});
 test('54 fictional group messages include one real forum card and never speak for Rieyeki or reveal the case',()=>{
   assert.equal(D.script.length,54);assert.equal(new Set(D.script.map(m=>m.id)).size,54);
   assert.equal(D.script.filter(m=>m.kind==='card').length,1);assert.equal(D.script[30].post,'job');

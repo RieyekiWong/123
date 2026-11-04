@@ -43,6 +43,74 @@ const chatState = (page) =>
   page.evaluate(() => JSON.parse(localStorage.getItem("stillwater-chat:v1")));
 const caseState = (page) =>
   page.evaluate(() => JSON.parse(localStorage.getItem("stillwater-case:v2")));
+for (const entry of ["index-zh.html", "index.html"])
+  test(`${entry}: first notice arrives within 30–40 seconds, then recurring contacts rotate every 60–120 seconds across refresh`, async ({
+    page,
+  }) => {
+    const paid = [];
+    page.on("request", (r) => {
+      if (/workers\.dev.*\/api\/(chat|session)/.test(r.url()))
+        paid.push(r.url());
+    });
+    await seed(page, { entry, meta: false });
+    const before = await caseState(page);
+    await page.clock.runFor(30000);
+    await expect(page.locator(".messenger-notice")).toHaveCount(0);
+    await page.clock.runFor(4000);
+    let firstText = "";
+    for (const [index, room] of [
+      "mom",
+      "gg",
+      "milk",
+      "lin",
+      "zhang",
+      "dad",
+      "zhe",
+      "mom",
+    ].entries()) {
+      if (index) await page.clock.runFor(75000);
+      const notice = page.locator(".messenger-notice-open");
+      await expect(notice).toHaveAttribute("data-room", room);
+      const text = await notice.locator(".messenger-notice-text").innerText();
+      if (index === 0) firstText = text;
+      if (index === 7) expect(text).not.toBe(firstText);
+      const meta = await page.evaluate(() =>
+        JSON.parse(localStorage.getItem("stillwater-messenger:v1")),
+      );
+      expect(meta.remaining).toBeGreaterThanOrEqual(60000);
+      expect(meta.remaining).toBeLessThanOrEqual(120000);
+      if (index === 3) await page.reload();
+    }
+    expect((await chatState(page)).ui.unread.mom).toBe(2);
+    expect((await chatState(page)).memories.mom.checkIns).toBe(2);
+    expect(await caseState(page)).toEqual(before);
+    expect(paid).toEqual([]);
+  });
+
+test("the earlier long cooldown migrates without resetting the case, and time spent in WeChat does not spend the new wait", async ({
+  page,
+}) => {
+  await seed(page, { remaining: 150000 });
+  const before = await caseState(page);
+  await page.clock.runFor(10000);
+  const migrated = await page.evaluate(() =>
+    JSON.parse(localStorage.getItem("stillwater-messenger:v1")),
+  );
+  expect(migrated.cadence).toBe(2);
+  expect(migrated.remaining).toBeLessThanOrEqual(40000);
+  await page.locator("[data-messenger-action=launch]").click();
+  await page.clock.runFor(180000);
+  await expect(page.locator(".messenger-notice")).toHaveCount(0);
+  await page.locator("[data-messenger-action=return]").click();
+  await page.clock.runFor(20000);
+  await expect(page.locator(".messenger-notice")).toHaveCount(0);
+  await page.clock.runFor(4000);
+  await expect(page.locator(".messenger-notice-open")).toHaveAttribute(
+    "data-room",
+    "mom",
+  );
+  expect(await caseState(page)).toEqual(before);
+});
 for (const [entry, width] of [
   ["index-zh.html", 390],
   ["index.html", 1440],
