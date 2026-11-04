@@ -5,8 +5,9 @@
 ## 当前部署状态
 
 - 前端生产地址已指定为 `https://damp-rain-a5a6.ywang254.workers.dev/api/chat`。
-- 2026-11-04 实测此 Worker 仍返回 `Hello World!`；当前开发环境的 `wrangler whoami` 显示尚未登录 Cloudflare。**本地联调成功不等于此公网 Worker 已部署，也不等于已收到真实 OpenAI 回复。**
-- 本仓库的 Worker 源码、部署配置和真实 API 验收脚本已提供。生产联通需要下面的部署步骤；无需把 OpenAI Key 发给开发助手。
+- 用户已通过 Cloudflare 网页手动部署，公网 health 为 `mode: ai`、`storage: d1`、`configured: true`，GitHub Pages origin 的 CORS 预检通过。
+- 2026-11-04 已通过公网 Worker **实际取得 OpenAI 回复**：妈妈的两轮中文、阿哲英文、GGbond 的中英混合群聊。实际响应约 1.6–2.2 秒，返回 `mode: ai`；记录见 [公网后端验收](v2.10/live-backend.json)。
+- 测试中普通短连接经过代理出口变化时触发了 IP 绑定保护；稳定 HTTPS 连接下会话正常。未读取、索取或公开用户 Secret。
 
 ## 推荐：Cloudflare 网页 Edit code 部署
 

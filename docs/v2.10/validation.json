@@ -2,11 +2,13 @@
   "date": "2026-11-04",
   "backendPublishedCommit": "0a4650f",
   "frontendPublished": false,
-  "liveOpenAIValidated": false,
+  "liveOpenAIValidated": true,
   "backendPublicProbe": {
     "status": 200,
-    "body": "Hello World!",
-    "cors": null
+    "mode": "ai",
+    "storage": "d1",
+    "configured": true,
+    "cors": "https://rieyekiwong.github.io"
   },
   "unitTestsPassed": 87,
   "chromium": {
@@ -20,5 +22,6 @@
     "mock with Durable Object",
     "mock with D1 single file"
   ],
-  "externalOpenAIResponsesTests": "contract tests with mocked upstream; live verification pending manual deploy"
+  "externalOpenAIResponsesTests": "Four successful real public Responses API calls: Chinese two-turn mother, English Zhe, mixed-language group; frontend live validation follows deployment.",
+  "liveBackendReport": "live-backend.json"
 }

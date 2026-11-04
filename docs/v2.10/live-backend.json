@@ -1,0 +1,107 @@
+{
+  "timestamp": 1793810195.189851,
+  "worker": "https://damp-rain-a5a6.ywang254.workers.dev",
+  "tests": [
+    {
+      "room": "mom",
+      "language": "zh",
+      "input": [
+        {
+          "person": "me",
+          "text": "今天好累。"
+        }
+      ],
+      "response": {
+        "version": 1,
+        "requestId": "q701",
+        "mode": "ai",
+        "messages": [
+          {
+            "person": "mom",
+            "text": "怎么啦，今天遇到什么事了？"
+          }
+        ]
+      },
+      "seconds": 2.2
+    },
+    {
+      "room": "mom",
+      "language": "zh",
+      "input": [
+        {
+          "person": "me",
+          "text": "今天好累。"
+        },
+        {
+          "person": "mom",
+          "text": "怎么啦，今天遇到什么事了？"
+        },
+        {
+          "person": "me",
+          "text": "赶作业赶了一晚上，刚刚才交上去，是关于城市树木的报告。"
+        }
+      ],
+      "response": {
+        "version": 1,
+        "requestId": "q702",
+        "mode": "ai",
+        "messages": [
+          {
+            "person": "mom",
+            "text": "总算交上去了，辛苦你了。赶了一晚上肯定累坏了，先歇一会儿吧。城市树木的报告写得还顺利吗？"
+          }
+        ]
+      },
+      "seconds": 1.95
+    },
+    {
+      "room": "zhe",
+      "language": "en",
+      "input": [
+        {
+          "person": "me",
+          "text": "I played a game yesterday. Have you had time to play anything lately?"
+        }
+      ],
+      "response": {
+        "version": 1,
+        "requestId": "q703",
+        "mode": "ai",
+        "messages": [
+          {
+            "person": "zhe",
+            "text": "I downloaded an update for the weekend, but haven’t had a chance to play yet. What game did you play yesterday?"
+          }
+        ]
+      },
+      "seconds": 1.64
+    },
+    {
+      "room": "group",
+      "language": "mixed",
+      "input": [
+        {
+          "person": "gg",
+          "text": "看到个整理旧酒店预订单的兼职，工资还没问清楚。"
+        },
+        {
+          "person": "me",
+          "text": "bruh这个job有点sus，那你怎么敢发出来"
+        }
+      ],
+      "response": {
+        "version": 1,
+        "requestId": "q704",
+        "mode": "ai",
+        "messages": [
+          {
+            "person": "gg",
+            "text": "我就刷到个论坛通知，还没申请也没核实雇主，当然不敢说靠谱😂"
+          }
+        ]
+      },
+      "seconds": 1.7
+    }
+  ],
+  "passed": true
+}

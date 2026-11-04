@@ -1,6 +1,6 @@
-# V2.10 验证记录（部署前）
+# V2.10 验证记录
 
-2026-11-04。当前公网后端部署文件已发布到 main，提交 `0a4650f`。新版微信前端已在工作区完成，按用户要求，等待手动部署后端并取得真实 OpenAI 回复后再发布到 GitHub Pages。
+2026-11-04。当前公网后端部署文件已发布到 main，提交 `0a4650f`。用户已完成网页手动部署，已取得四次真实 OpenAI 回复，微信前端进入发布和公网验收。
 
 - 构建：`npm run build` 通过。
 - 单元：87 项通过，包括七个人物、六种输入表达、上下文隔离、父母不获得群聊知识、旧聊天记录迁移、错误/过期/越权回复拒绝、撤销授权、被浏览器禁止存储的情况。
@@ -11,7 +11,7 @@
 - 单文件 Worker 在实际 SQLite 中验证原子配额 SQL；同时并发准入、全站/IP/会话额度、输入限制、Secret 缺失拒绝调用、已知秘密和网址拒绝、D1 清理均通过。
 - 单文件没有外部 import，也不导出 Durable Object 类，不需要 npm 或迁移。公开 GitHub 文件的 SHA-256 与本地测试文件逐一一致（worker.js、schema.sql、README）。
 - `wrangler deploy --dry-run` 通过。没有直接登录用户 Cloudflare 账号或读取其 OpenAI Secret。
-- 部署前公网复查：`https://damp-rain-a5a6.ywang254.workers.dev/api/health` HTTP 200，正文仍是 `Hello World!`，没有 CORS header。**真实 AI 上线验收尚未完成**。
+- 历史部署前公网复查：`https://damp-rain-a5a6.ywang254.workers.dev/api/health` HTTP 200，正文仍是 `Hello World!`，没有 CORS header。该历史状态已由下方真实后端验收取代。
 
 ## 用户手动部署后要做的验收
 
@@ -21,3 +21,7 @@
 4. 独立私聊不传其他私聊、父母无群聊已知信息；测试关键词探问不会泄露。
 5. 然后发布已验证的新前端；再在 GitHub Pages 实际启用 AI 聊天，检查网页真实收到上述公网结果、刷新/切换和接口失败备援。
 6. 若公网未部署、无余额、无模型权限、缺少 Secret 或数据库绑定，不应称为 AI 已连接。
+
+## 用户手动部署后的真实后端验收
+
+公网 health 为 ai/d1/configured:true，CORS OPTIONS 通过。真实 Responses API 四次成功：妈妈中文问候、熬夜赶报告后的上下文接话、阿哲英文游戏闲聊、GGbond 中英混合群聊。结果和耗时见 `live-backend.json`，不是 mock；未保存会话 token 或任何 Secret。
