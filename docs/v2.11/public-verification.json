@@ -1,34 +1,82 @@
 {
   "release": "4.11.0",
-  "checkedAt": "2026-11-04T17:44:56.463467+00:00",
+  "checkedAt": "2026-11-04T18:05:51.026605+00:00",
   "sourceCommit": "b38fb4c4ae1d396a2cf3f26304742f15af9cd777",
-  "pagesRun": "https://github.com/RieyekiWong/123/actions/runs/41878946108",
-  "publicDeploymentVerified": false,
-  "lastObservedPagesStatus": "queued",
-  "blockingService": {
-    "source": "https://www.githubstatus.com/",
-    "status": {
-      "indicator": "minor",
-      "description": "Minor Service Outage"
-    },
-    "components": [
-      {
-        "name": "Actions",
-        "status": "partial_outage"
-      },
-      {
-        "name": "Pages",
-        "status": "operational"
-      }
-    ],
-    "incidents": [
-      {
-        "name": "Incident with Actions",
-        "status": "investigating",
-        "url": "https://stspg.io/7pwv28hvkmz8",
-        "updatedAt": "2026-11-04T17:40:33.890Z"
-      }
-    ]
+  "deployedCommit": "5dc602223156aec888419604d2a0e9a11f560acc",
+  "pagesRun": "https://github.com/RieyekiWong/123/actions/runs/41880211549",
+  "publicDeploymentVerified": true,
+  "lastObservedPagesStatus": "completed",
+  "pagesConclusion": "success",
+  "site": "https://rieyekiwong.github.io/123/",
+  "resourceVerification": {
+    "matchedFiles": 81,
+    "mismatches": [],
+    "tls": "default verification",
+    "evidence": "public-assets.json"
   },
-  "note": "Local checks passed and source was pushed. Public site still serves the previous release; live copy verification must wait for GitHub Actions recovery and Pages deployment."
+  "browserChecks": [
+    {
+      "entry": "index-zh.html",
+      "width": 390,
+      "route": "#ending",
+      "threads": 15,
+      "jobs": 4,
+      "adShopsChecked": 3,
+      "fullGameToEnding": true,
+      "paidChatRequests": 0,
+      "pageErrors": []
+    },
+    {
+      "entry": "index.html",
+      "width": 1440,
+      "route": "#ending",
+      "threads": 15,
+      "jobs": 4,
+      "adShopsChecked": 3,
+      "fullGameToEnding": true,
+      "paidChatRequests": 0,
+      "pageErrors": []
+    }
+  ],
+  "browserConfiguration": {
+    "certificateChecks": "The isolated Chromium contexts ignored certificate errors from the execution environment proxy. Separate Python requests for all 81 compared files used default TLS verification.",
+    "aiConsent": "Not enabled",
+    "paidChatRequests": 0
+  },
+  "testHarnessNote": "The initial public check read revision rows before navigation had rendered the table. The test helper now waits for the table to be visible before inspecting its rows; the website logic is unchanged. Both language playthroughs then completed.",
+  "previousDeploymentBlock": {
+    "release": "4.11.0",
+    "checkedAt": "2026-11-04T17:44:56.463467+00:00",
+    "sourceCommit": "b38fb4c4ae1d396a2cf3f26304742f15af9cd777",
+    "pagesRun": "https://github.com/RieyekiWong/123/actions/runs/41878946108",
+    "publicDeploymentVerified": false,
+    "lastObservedPagesStatus": "queued",
+    "blockingService": {
+      "source": "https://www.githubstatus.com/",
+      "status": {
+        "indicator": "minor",
+        "description": "Minor Service Outage"
+      },
+      "components": [
+        {
+          "name": "Actions",
+          "status": "partial_outage"
+        },
+        {
+          "name": "Pages",
+          "status": "operational"
+        }
+      ],
+      "incidents": [
+        {
+          "name": "Incident with Actions",
+          "status": "investigating",
+          "url": "https://stspg.io/7pwv28hvkmz8",
+          "updatedAt": "2026-11-04T17:40:33.890Z"
+        }
+      ]
+    },
+    "note": "Local checks passed and source was pushed. Public site still serves the previous release; live copy verification must wait for GitHub Actions recovery and Pages deployment."
+  },
+  "note": "The 4.11.0 runtime is live. Both Chinese mobile and English desktop checks completed the existing investigation, CCTV, corridor, wiring and black-world route through GAME OVER. No public AI requests were made."
 }

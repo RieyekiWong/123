@@ -91,6 +91,7 @@ export async function toRevisions(page) {
   await link(page, "revisions");
 }
 export async function toReview(page) {
+  await expect(page.locator(".revision-table")).toBeVisible();
   const changed = await page
     .locator(".revision-table tbody tr")
     .evaluateAll((rows) =>
