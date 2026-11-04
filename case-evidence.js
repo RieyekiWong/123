@@ -207,7 +207,7 @@ globalThis.StillwaterEvidence = {
       const v = S().night.void,
         key = v.activeCategory;
       if (!key) return "";
-      return `<div class="desk-final-window" data-terminal-haunt="${!S().preferences.skipScares && !S().preferences.reduceMotion}" role="region" aria-label="${t("归类证据核对", "Classification source review")}">${proofPanel(key, { final: true })}<div class="desk-final-sources" id="desk-viewer" tabindex="-1"><p class="terminal-buffer-label">${t("原始资料缓存 · 只读", "SOURCE BUFFER / READ ONLY")}</p>${documentView(desk().active)}${comparison()}${link("evidence-desk", t("打开完整核对台", "Open the full evidence desk"))}</div></div>`;
+      return globalThis.StillwaterFinalTerminal.render({state:S(),t,esc,error:lastError,hints});
     }
     function act(action, payload, focus = "", render = true) {
       const result = onAction(action, payload, { focus, render });

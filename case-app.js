@@ -11,7 +11,7 @@
     finalScenePending = false,
     welcome = null,
     storageFailed = false;
-  let nextVoidFocus = "", pendingVoidHandover = false;
+  let nextVoidFocus = "", pendingVoidHandover = false, voidSignal = null, messenger = null;
   let existingSave = null;
   try {
     existingSave = localStorage.getItem(KEY);
@@ -86,7 +86,7 @@
     }),
   });
   const forum = window.StillwaterForum({ t, esc, getState: () => state });
-  const chat = window.StillwaterChat.create({ t, esc, getRoute: currentRoute, audio: nightAudio });
+  const chat = window.StillwaterChat.create({ t, esc, getRoute: currentRoute, audio: nightAudio, onIncoming: messages=>messenger?.incoming(messages) });
   const PROLOGUE = "stillwater-prologue:v1";
   let prologue = { schema: 1, entered: false, lastRoute: "" };
   try {
@@ -133,7 +133,7 @@
   const phaseTransition = window.StillwaterCaseTransition.create({
     getState: () => state,
     t,
-    onBegin: () => void nightAudio.sync(),
+    onBegin: () => {void nightAudio.sync();messenger?.sync();},
     complete: () => {
       history.replaceState(
         null,
@@ -166,6 +166,7 @@
       promo.stopEffects();
       void nightAudio.sync();
       voidWorld?.refresh();
+      voidSignal?.sync();
     },
     reset: () => {
       phaseTransition.cancel();
@@ -178,6 +179,8 @@
       evidenceDesk.reset();
       promo.reset();
       nightEvents.clear();
+      voidSignal?.clear();
+      messenger?.reset();
       nightAudio.stop();
       const preferences = { ...state.preferences, sound: false };
       state = M.fresh();
@@ -203,6 +206,7 @@
     sting: () => comfort.tone(),
     t,
   });
+  voidSignal = window.StillwaterVoidSignal.create({getState:()=>state,reduced:()=>comfort.reduced(),audio:nightAudio});
   const voidWorld = window.StillwaterVoid.create({
     getState: () => state, t, esc, evidenceReview:()=>evidenceDesk.finalReview(), guide:(key)=>evidenceDesk.hints(key),
     onAction: (action, payload, focusKey) => {
@@ -226,6 +230,7 @@
       if (result.event) nightEvents.present(result.event);
     },
   });
+  messenger = window.StillwaterMessengerBridge.create({chat,getState:()=>state,getRoute:currentRoute,canOpen:route=>M.canOpen(state,route),t,esc,audio:nightAudio,reduced:()=>comfort.reduced(),blocked:()=>!!welcome?.isOpen()||phaseTransition.isActive()});
   const errors = {
     sample: [
       "请先到招聘页查看样本编号。",
@@ -409,6 +414,7 @@
     void nightAudio.sync();
   }
   function render(moveFocus = false) {
+    messenger?.beforeRender();
     promo.stopEffects();
     let route = currentRoute();
     if (route === "home") route = "hotel";
@@ -456,15 +462,21 @@
       state.preferences.reduceMotion ||
         matchMedia("(prefers-reduced-motion: reduce)").matches,
     );
+    voidSignal.sync();
     if (route === "chat") {
       promo.mount(route);
       voidWorld.leave();
       document.title = t("这周一定早睡（4） · 聊天", "Early nights, starting this week (4) · Chat");
-      chat.mount(document.querySelector("#case-shell"), { focus: moveFocus });
+      chat.mount(document.querySelector("#case-shell"), { focus: moveFocus, room: new URLSearchParams(location.hash.split("?")[1]||"").get("room") });
       ads.navigate();
+      messenger.afterRender();
       return;
     }
     chat.leave();
+    if(messenger.restoreDOM()) {
+      if(inVoid)voidWorld.mount(document.querySelector('#case-shell'),nextVoidFocus);
+      evidenceDesk.decorate();ads.navigate();messenger.afterRender();voidSignal.sync();return;
+    }
     if (inVoid) {
       promo.mount(route);
       M.transition(state, "void", { action: "enter", now: Date.now() });
@@ -472,9 +484,11 @@
       document.title = "NO INDEX · Stillwater";
       document.querySelector("#case-shell").innerHTML = voidWorld.render();
       voidWorld.mount(document.querySelector("#case-shell"), nextVoidFocus);
+      voidSignal.sync();
       evidenceDesk.decorate();
       nextVoidFocus = "";
       ads.navigate();
+      messenger.afterRender();
       if (moveFocus) {
         window.scrollTo(0, 0);
         document.querySelector("#case-shell").scrollTop = 0;
@@ -671,6 +685,7 @@
       handover?.scrollIntoView({ block: "center", behavior: "instant" });
       handover?.focus({ preventScroll: true });
     }
+    messenger.afterRender();
   }
   document.addEventListener("click", (e) => {
     if (e.target.closest("a.skip")) {

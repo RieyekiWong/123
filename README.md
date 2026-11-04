@@ -1,4 +1,4 @@
-Version 4.14.0 refines the three W3-02 photographs, perspective-correct CCTV signs, the dark final review terminal and corridor door descriptions. [Changes and verification](docs/v2.14/DELIVERY.zh-CN.md).
+Version 4.15.0 adds early-investigation WeChat notifications with exact-page return, a six-second warning intrusion, a compact black final terminal and the approved interference/face effect. [Changes and verification](docs/v2.15/IMPLEMENTATION.zh-CN.md).
 
 V2.12 adds the W3-02 publicity archive: three versions of one corridor print and an interactive source check after the existing B-3 wiring save. Ordinary adverts, chat, C1–C9 and all three ending IDs remain. [Implementation, triggers, save migration and walkthrough](docs/V2_12-HOTEL-PROMO.zh-CN.md).
 

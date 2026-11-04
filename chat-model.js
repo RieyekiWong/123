@@ -10,12 +10,12 @@ globalThis.StillwaterChatModel = (() => {
   const phase=s=>s.shared?'shared':s.cursor>=15?'job':'early';
   const topic=text=>({job:'work',fatigue:'sleep','unknown-person':'spoiler',other:'other'})[F.intent(text)]||F.intent(text);
   function fresh() {
-    return {schema:1,pacing:2,social:1,cursor:1,remaining:2600,elapsed:0,hold:0,counter:1,requestCounter:0,shared:false,openedForum:false,
+    return {schema:1,pacing:2,social:1,cursor:1,remaining:2600,elapsed:0,wallElapsed:0,hold:0,counter:1,requestCounter:0,shared:false,openedForum:false,
       context:{reading:false,declined:false},messages:[{id:'m1',kind:'script',key:'s1',at:base}],pending:[],turns:{},memories:{},
       proactive:{remaining:95000,index:0},ui:{conversation:'group',list:false,scroll:{},drafts:{},unread:{},visited:{group:true}}};
   }
   function append(s,message) {
-    const next={id:'m'+(++s.counter),at:base+s.elapsed,...message};s.messages.push(next);
+    const next={id:'m'+(++s.counter),at:base+Math.max(s.elapsed,s.wallElapsed||0),...message};s.messages.push(next);
     if(next.kind!=='user') {const room=roomOf(next);s.ui.unread[room]=Math.min(99,(s.ui.unread[room]||0)+1);}
     while(s.messages.length>400) {
       // Keep every story message and favour the busiest room when trimming free chat.
@@ -78,8 +78,15 @@ globalThis.StillwaterChatModel = (() => {
   }
   function fallback(s,id) {const p=s.pending.find(p=>p.id===id);if(p)p.waiting=false;}
   function markRead(s,room) {s.ui.unread[room]=0;s.ui.visited[room]=true;}
+  function checkIn(s,room,language='zh') {
+    const contact=globalThis.StillwaterChatPeople.contacts[room];
+    if(!contact||s.memories[room]?.checkedIn||s.pending.some(p=>p.conversation===room))return null;
+    const entry=contact.proactive[0],lang=s.memories[room]?.language||language;
+    const message=append(s,{kind:'social',person:room,text:entry.text[lang==='en'?1:0],conversation:room,source:'local',...(entry.image?{image:entry.image}:{})});
+    s.memories[room]||={turn:0,language:lang,topic:'',awaiting:'',payUnknown:false,recent:[]};s.memories[room].checkedIn=true;return message;
+  }
   function advance(s,ms,{story=true,chatActive=true,proactive=false}={}) {
-    const dt=bounded(ms,2000);if(chatActive)s.elapsed+=dt;
+    const dt=bounded(ms,2000);s.wallElapsed=bounded((s.wallElapsed||0)+dt,86400000);if(chatActive)s.elapsed+=dt;
     s.hold=Math.max(0,s.hold-dt);let changed=false;
     const keep=[];
     for(const p of s.pending) {
@@ -108,13 +115,7 @@ globalThis.StillwaterChatModel = (() => {
       if(s.proactive.remaining<=0) {
         const candidates=['mom','zhang','gg','dad','milk','zhe','lin'].filter(id=>s.ui.visited[id]&&!s.pending.some(p=>p.conversation===id));
         const id=candidates[s.proactive.index%candidates.length];
-        if(id) {
-          const entry=globalThis.StillwaterChatPeople.contacts[id].proactive[0],lang=s.memories[id]?.language||'zh';
-          if(!s.memories[id]?.checkedIn) {
-            append(s,{kind:'social',person:id,text:entry.text[lang==='en'?1:0],conversation:id,source:'local',...(entry.image?{image:entry.image}:{})});
-            s.memories[id]||={turn:0,language:lang,topic:'',awaiting:'',payUnknown:false,recent:[]};s.memories[id].checkedIn=true;changed=true;
-          }
-        }
+        if(id&&checkIn(s,id))changed=true;
         s.proactive.index++;s.proactive.remaining=120000;
       }
     }
@@ -145,7 +146,7 @@ globalThis.StillwaterChatModel = (() => {
         m.kind==='social'?{person:m.person,text:m.text.slice(0,P.limits.reply),conversation:m.conversation,source:['ai','mock'].includes(m.source)?m.source:'local',...(globalThis.StillwaterMedia?.find(m.image)?{image:m.image}:{})}:{key:m.key})};
     });
     s.counter=Math.max(bounded(raw.counter,100000000),...s.messages.map(m=>Number(m.id.slice(1))));s.requestCounter=bounded(raw.requestCounter,100000000);
-    s.cursor=Math.max(1,bounded(raw.cursor,D.script.length,1));s.elapsed=bounded(raw.elapsed,86400000);s.remaining=bounded(raw.remaining,10000,2600);s.hold=bounded(raw.hold,4200);
+    s.cursor=Math.max(1,bounded(raw.cursor,D.script.length,1));s.elapsed=bounded(raw.elapsed,86400000);s.wallElapsed=Math.max(s.elapsed,bounded(raw.wallElapsed,86400000),...s.messages.map(m=>Math.max(0,m.at-base)));s.remaining=bounded(raw.remaining,10000,2600);s.hold=bounded(raw.hold,4200);
     if(raw.pacing!==2){s.remaining=Math.round(s.remaining*.65);s.hold=Math.round(s.hold*.65);}
     s.context={reading:raw.context?.reading===true,declined:raw.context?.declined===true};
     s.shared=s.messages.some(m=>m.kind==='script'&&m.key==='s31');s.openedForum=raw.openedForum===true;if(s.shared)s.cursor=Math.max(31,s.cursor);
@@ -171,5 +172,5 @@ globalThis.StillwaterChatModel = (() => {
     s.proactive={remaining:bounded(raw.proactive?.remaining,180000,95000),index:bounded(raw.proactive?.index,1000)};
     return s;
   }
-  return {KEY,base,fresh,hydrate,phase,topic,send,advance,roomOf,resolved,history,request,accept,fallback,markRead};
+  return {KEY,base,fresh,hydrate,phase,topic,send,advance,roomOf,resolved,history,request,accept,fallback,markRead,checkIn,validRoom};
 })();

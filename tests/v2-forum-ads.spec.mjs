@@ -266,8 +266,11 @@ test("the investigation stays free of active ads and all advertising stops after
     page.locator("[data-active-ad],.ad-saved-tab,.ad-inline"),
   ).toHaveCount(0);
   expect((await state(page)).evidence).toEqual(before.evidence);
+  // Let the authored six-second WeChat scene finish before clicking through Mara.
+  await page.clock.resume();
   await toRevisions(page);
   await toReview(page);
+  await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000));
   await link(page, "forum", "footer");
   await page.clock.runFor(180000);
   await expect(

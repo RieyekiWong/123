@@ -88,9 +88,9 @@ globalThis.StillwaterCaseAudio = {
       if(!context||context.state!=='running'||!getState().preferences.sound||document.hidden||getPresentation().blocked||Date.now()<quietUntil)return;
       if(kind.startsWith('chat-')&&getRoute()!=='chat')return;
       const now=context.currentTime,wall=Date.now();
-      if(kind==='chat-receive'){if(wall-lastNotification<1800)return;lastNotification=wall;}
+      if(kind==='chat-receive'||kind==='messenger-receive'){if(wall-lastNotification<1800)return;lastNotification=wall;}
       if(kind==='chat-send'){if(wall-lastSend<120)return;lastSend=wall;}
-      const received=kind==='chat-receive',sent=kind==='chat-send',door=kind==='door',camera=kind==='camera';
+      const received=kind==='chat-receive'||kind==='messenger-receive',sent=kind==='chat-send',door=kind==='door',camera=kind==='camera';
       const duration=received ? .16 : sent ? .075 : door ? .24 : camera ? .13 : .055;
       const source=context.createOscillator(),gain=context.createGain();source.type=door?'triangle':'sine';
       source.frequency.setValueAtTime(received?540:sent?380:door?91:camera?160:240,now);
@@ -98,11 +98,19 @@ globalThis.StillwaterCaseAudio = {
       gain.gain.setValueAtTime(0,now);gain.gain.linearRampToValueAtTime(received ? .035 : sent ? .02 : door ? .018 : .012,now+.006);gain.gain.exponentialRampToValueAtTime(.0001,now+duration);
       source.connect(gain).connect(effectBus);own(source,gain,kind);source.start();source.stop(now+duration+.02);
     }
+    function signalHiss() {
+      if(!context||context.state!=='running'||!getState().preferences.sound||document.hidden||getPresentation().blocked)return null;
+      const source=context.createBufferSource(),filter=context.createBiquadFilter(),gain=context.createGain(),now=context.currentTime;
+      source.buffer=noiseBuffer();filter.type='bandpass';filter.frequency.value=2800;filter.Q.value=.45;
+      gain.gain.setValueAtTime(0,now);gain.gain.linearRampToValueAtTime(.25,now+.08);gain.gain.linearRampToValueAtTime(.15,now+.6);gain.gain.linearRampToValueAtTime(0,now+.9);
+      source.connect(filter).connect(gain).connect(effectBus);own(source,gain,'void-signal-hiss',[filter]);source.start();source.stop(now+.92);
+      return ()=>{try{source.stop();}catch{}for(const n of [source,gain,filter]){try{n.disconnect();}catch{}effects.delete(n);}};
+    }
     function silence(ms=3200) {if(!context)return;quietUntil=Math.max(quietUntil,Date.now()+ms);applyMix();clearTimeout(restoreTimer);restoreTimer=setTimeout(()=>{quietUntil=0;applyMix();},Math.max(0,quietUntil-Date.now()));}
     function afterScare() {breathQuietUntil=Date.now()+8000;closeUntil=0;for(const n of [...breaths]){try{n.stop?.();n.disconnect();}catch{}effects.delete(n);breaths.delete(n);}silence(3200);}
     function approach() {breathQuietUntil=0;closeUntil=Date.now()+2500;silence(1200);clearTimeout(breathTimer);if(breathActive)breathTimer=setTimeout(breath,1200);}
     function setMix(channel,value) {if(!['music','effects'].includes(channel)||!Number.isFinite(value))return;mix[channel]=Math.max(0,Math.min(1,value));try{localStorage.setItem('stillwater-audio:v1',JSON.stringify(mix));}catch{}applyMix();}
     document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else void sync();});window.addEventListener('pagehide',stop);
-    return {sync,stop,pause,unlock,effect,silence,afterScare,approach,setMix,getMix:()=>({...mix}),snapshot:()=>({scene,playing:[...voices].filter(v=>!v.retiring).map(v=>v.id),loading:loading?.id||null,quiet:Date.now()<quietUntil,cache:[...cache.keys()]})};
+    return {sync,stop,pause,unlock,effect,signalHiss,silence,afterScare,approach,setMix,getMix:()=>({...mix}),snapshot:()=>({scene,playing:[...voices].filter(v=>!v.retiring).map(v=>v.id),loading:loading?.id||null,quiet:Date.now()<quietUntil,cache:[...cache.keys()]})};
   },
 };

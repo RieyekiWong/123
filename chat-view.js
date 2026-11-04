@@ -1,6 +1,6 @@
 /* Desktop messenger: fixed story + opt-in Worker AI + offline fallback. */
 globalThis.StillwaterChat = {
-  create({t,esc,getRoute,audio}) {
+  create({t,esc,getRoute,audio,onIncoming=()=>{}}) {
     const D=globalThis.StillwaterChatData,M=globalThis.StillwaterChatModel;
     let state=M.fresh(),root=null,lastTick=Date.now(),lastInput=0,lastFlush=0,saveTimer=null,aiNotice='',connectGeneration=0;
     try {state=M.hydrate(JSON.parse(localStorage.getItem(M.KEY)));} catch {}
@@ -177,12 +177,12 @@ globalThis.StillwaterChat = {
     function click(event) {
       if(event.target.closest('[data-chat-forum]')) {state.openedForum=true;rememberScroll();persist();return;}
       const room=event.target.closest('[data-chat-room]');
-      if(room) {rememberScroll();state.ui.conversation=room.dataset.chatRoom;state.ui.list=false;renderConversation();persist();return;}
+      if(room) {openRoom(room.dataset.chatRoom);return;}
       const action=event.target.closest('[data-chat-action]')?.dataset.chatAction;
       if(action==='list') {rememberScroll();state.ui.list=!state.ui.list;root.querySelector('.chat-app').dataset.chatList=state.ui.list;persist();}
       if(action==='ai')openAISettings();
       if(action==='members'||action==='people')root.querySelector('.chat-members').hidden=!root.querySelector('.chat-members').hidden;
-      if(action==='notes'){rememberScroll();state.ui.conversation='notes';state.ui.list=false;renderConversation();persist();}
+      if(action==='notes')openRoom('notes');
       if(action==='instructions')root.querySelector('[data-case-action=instructions]').click();
       if(action==='settings')root.querySelector('[data-case-action=save-settings]').click();
       if(action==='latest') {state.ui.scroll[state.ui.conversation]={top:0,bottom:true};renderMessages();persist();}
@@ -210,7 +210,18 @@ globalThis.StillwaterChat = {
       root.style.removeProperty('--chat-view-height');
       root=null;
     }
-    function mount(container,{focus=false}={}) {
+    function openRoom(room) {
+      if(!M.validRoom(room))return false;
+      rememberScroll();state.ui.conversation=room;state.ui.list=false;
+      const parameters=new URLSearchParams(location.hash.split('?')[1]||'');
+      if(getRoute()==='chat'&&parameters.has('room')){parameters.set('room',room);history.replaceState(null,'',location.pathname+location.search+'#chat?'+parameters.toString());}
+      if(root)renderConversation();persist();return true;
+    }
+    function notification(message) {
+      const entry=resolved(message);return entry?{room:M.roomOf(message),name:personName(entry.person),avatar:avatar(entry.person),text:localized(entry.text)||t('[链接]','[Link]')}:null;
+    }
+    function mount(container,{focus=false,room=null}={}) {
+      if(room&&room!==state.ui.conversation)openRoom(room);
       if(root===container&&container.querySelector('.chat-app'))return;
       leave();root=container;lastTick=Date.now();
       const english=document.documentElement.lang!=='zh-CN';
@@ -254,6 +265,7 @@ globalThis.StillwaterChat = {
           renderContacts();
         }
         persist();
+        if(incoming.length)onIncoming(incoming.map(notification).filter(Boolean));
       }else if(active&&now-lastFlush>5000)persist();
       if(active)renderStatus();
     },250);
@@ -261,6 +273,6 @@ globalThis.StillwaterChat = {
     window.addEventListener('pagehide',()=>{if(root){rememberScroll();persist();}});
     window.addEventListener('resize',fitViewport);
     window.visualViewport?.addEventListener('resize',fitViewport);
-    return {mount,leave,reset(){leave();transport.reset();state=M.fresh();try {localStorage.removeItem(M.KEY);}catch {}},hasVisitedForum:()=>state.openedForum};
+    return {mount,leave,openRoom,contact:room=>({name:personName(room),avatar:avatar(room)}),unread:()=>Object.values(state.ui.unread).reduce((a,b)=>a+b,0),checkIn(room){const message=M.checkIn(state,room,document.documentElement.lang==='zh-CN'?'zh':'en');if(!message)return null;persist();return notification(message);},reset(){leave();transport.reset();state=M.fresh();try {localStorage.removeItem(M.KEY);}catch {}},hasVisitedForum:()=>state.openedForum};
   },
 };

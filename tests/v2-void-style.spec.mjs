@@ -58,9 +58,11 @@ for (const [entry, width] of [
     await page
       .locator("[data-void-action=classify][data-type=EMPLOYEE]")
       .click();
-    await expect(page.locator(".desk-final-window")).toBeVisible();
+    await expect(page.locator(".void-terminal-review")).toBeVisible();
+    await expect(page.locator(".void-terminal-review table")).toHaveCount(0);
+    await expect(page.locator("#desk-viewer")).not.toHaveAttribute("open");
     const colors = await page
-      .locator(".desk-final-window")
+      .locator(".void-terminal-review")
       .evaluate((panel) => {
         const rgb = (s) =>
           s
@@ -75,11 +77,11 @@ for (const [entry, width] of [
             )
             .reduce((s, x, i) => s + x * [0.2126, 0.7152, 0.0722][i], 0);
         const title = panel.querySelector("h2"),
-          p = panel.querySelector(".desk-proof");
+          p = panel;
         const a = lum(rgb(getComputedStyle(title).color)),
           b = lum(rgb(getComputedStyle(p).backgroundColor));
         return {
-          surfaces: [panel, p, panel.querySelector(".desk-source")].map((el) =>
+          surfaces: [panel].map((el) =>
             rgb(getComputedStyle(el).backgroundColor),
           ),
           contrast: (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05),
@@ -97,7 +99,7 @@ for (const [entry, width] of [
     ).toBe(true);
     await page.locator("[data-desk-op=close-final]").focus();
     await page.keyboard.press("Enter");
-    await expect(page.locator(".desk-final-window")).toHaveCount(0);
+    await expect(page.locator(".void-terminal-review")).toHaveCount(0);
     await page.evaluate(() => (location.hash = "evidence-desk"));
     const light = await page
       .locator(".evidence-desk .desk-source")
@@ -149,11 +151,8 @@ for (const pref of [
     Object.assign(s.preferences, pref);
     await seed(page, s);
     await page.locator("[data-void-action=classify][data-type=ROOM]").click();
-    await expect(page.locator(".desk-final-window")).toHaveAttribute(
-      "data-terminal-haunt",
-      "false",
-    );
-    await expect(page.locator(".desk-final-window")).toHaveCSS(
+    await expect(page.locator(".void-terminal-review table")).toHaveCount(0);
+    await expect(page.locator(".void-terminal-review")).toHaveCSS(
       "animation-name",
       "none",
     );

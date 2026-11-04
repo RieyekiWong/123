@@ -1,0 +1,427 @@
+/* Local OS-style messages sit over the browser without changing its layout. */
+.messenger-notice {
+  position: fixed;
+  right: 20px;
+  top: 18px;
+  width: 350px;
+  max-width: calc(100vw - 24px);
+  z-index: 2147482500;
+  border: 1px solid #ffffff79;
+  border-radius: 14px;
+  background: #e2e9e8eb;
+  box-shadow: 0 8px 28px #0003;
+  backdrop-filter: blur(18px);
+  color: #16251f;
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+  overflow: hidden;
+  animation: messenger-arrive 0.22s ease-out;
+}
+.messenger-notice button {
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  cursor: pointer;
+}
+.messenger-notice .messenger-notice-open {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 42px 14px 14px;
+  text-align: left;
+  min-height: 86px;
+  line-height: 1.5;
+}
+.messenger-notice .chat-avatar {
+  width: 38px;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex: none;
+}
+.messenger-notice-open > span {
+  flex: 1;
+  min-width: 0;
+}
+.messenger-notice small {
+  display: flex;
+  font-size: 11px;
+  color: #495c53;
+  margin-bottom: 4px;
+  gap: 8px;
+}
+.messenger-notice time {
+  margin-left: auto;
+  color: #6c7871;
+  font-size: 10px;
+}
+.messenger-notice-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.messenger-notice .messenger-notice-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  min-width: 36px;
+  min-height: 42px;
+  font-size: 21px;
+  opacity: 0.65;
+  padding: 4px;
+}
+.messenger-notice :focus-visible {
+  outline: 2px solid #19784a;
+  outline-offset: -3px;
+}
+.browser-wechat-launch {
+  font: inherit !important;
+  background: transparent !important;
+  color: inherit !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  min-height: 32px;
+  padding: 5px 10px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.chat-browser-bar {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: #d2d6d7;
+  border-bottom: 1px solid #bcc3c7;
+  font:
+    12px/1.5 Arial,
+    "Microsoft YaHei",
+    sans-serif;
+  color: #35474c;
+}
+.chat-browser-bar button {
+  display: block;
+  height: 34px;
+  max-width: min(66%, 550px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 0;
+  border-right: 1px solid #bbc3c7;
+  background: #e5e8e9;
+  color: #2e494f;
+  cursor: pointer;
+  padding: 0 16px;
+  text-align: left;
+  font: inherit;
+}
+.browser-current-tab {
+  padding: 0 18px;
+  color: #253438;
+}
+.browser-return-mobile {
+  display: none;
+}
+body[data-site="chat"].has-browser-return .chat-app {
+  height: calc(var(--chat-view-height, 100dvh) - 34px);
+  min-height: 0;
+}
+@keyframes messenger-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* A temporary system impersonation. It contains no real chat messages. */
+.messenger-intrusion {
+  position: fixed;
+  inset: 0;
+  z-index: 2147482600;
+  pointer-events: none;
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+  color: #d5e2da;
+  background: #0a0e0c25;
+}
+.intrusion-notifications {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  width: 350px;
+  max-width: calc(100vw - 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  z-index: 2;
+}
+.intrusion-notice {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 11px 15px;
+  background: #c1ccc7ee;
+  color: #283930;
+  border: 1px solid #7e968a;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px #0003;
+}
+.intrusion-notice .chat-avatar,
+.intrusion-app .chat-avatar {
+  width: 34px;
+  height: 34px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex: none;
+}
+.intrusion-notice small {
+  font-size: 11px;
+  color: #4c6656;
+}
+.messenger-intrusion .intrusion-notice p {
+  margin: 3px 0 0;
+  font-size: 15px;
+  color: #233c2d;
+}
+.intrusion-wechat {
+  position: absolute;
+  inset: 8% 8%;
+  background: #18251f;
+  border: 1px solid #6a8373;
+  box-shadow: 0 20px 100px #000a;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  max-width: 1080px;
+  margin: auto;
+}
+.show-window .intrusion-wechat {
+  opacity: 1;
+  pointer-events: auto;
+}
+.intrusion-wechat > header {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 14px;
+  background: #273b30;
+  color: #c5d4ca;
+  font-size: 13px;
+  border-bottom: 1px solid #49614e;
+}
+.messenger-app-icon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  background: #426f54;
+  color: #bacbb5;
+  border-radius: 5px;
+  font-size: 10px;
+  letter-spacing: -3px;
+  padding-right: 3px;
+}
+.intrusion-close {
+  margin-left: auto;
+  background: none;
+  border: 0;
+  color: #bacbbc;
+  font-size: 22px;
+  min-width: 44px;
+  min-height: 40px;
+  cursor: pointer;
+}
+.intrusion-app {
+  height: calc(100% - 44px);
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+}
+.intrusion-app > aside {
+  background: #21352a;
+  border-right: 1px solid #405e49;
+  overflow: hidden;
+}
+.intrusion-app > aside > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 10px;
+  min-height: 65px;
+  font-size: 12px;
+  color: #a0b8a8;
+  border-bottom: 1px solid #2d4936;
+}
+.intrusion-app aside b {
+  margin-left: auto;
+  background: #784645;
+  color: #d4b8ad;
+  border-radius: 5px;
+  font-size: 10px;
+  padding: 1px 3px;
+  font-weight: 400;
+}
+.messenger-intrusion .intrusion-app > main {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  background: #14221a;
+  color: #abc1ad;
+  max-width: none;
+}
+.messenger-intrusion .intrusion-app h2 {
+  margin: 0;
+  padding: 12px 18px;
+  border-bottom: 1px solid #395240;
+  font-size: 14px;
+  font-weight: 400;
+  flex: none;
+  color: #abc1ad;
+}
+.intrusion-message-log {
+  overflow: hidden;
+  flex: 1;
+  min-height: 0;
+  padding: 12px 18px;
+}
+.intrusion-bubble {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 11px;
+  align-items: flex-start;
+}
+.messenger-intrusion .intrusion-bubble small {
+  color: #7e9d85;
+  font-size: 11px;
+}
+.messenger-intrusion .intrusion-bubble p {
+  margin: 3px 0 0;
+  padding: 7px 11px;
+  background: #314d36;
+  color: #adc4a6;
+  border-radius: 3px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.intrusion-frozen-input {
+  height: 88px;
+  border-top: 1px solid #3d5943;
+  padding: 16px;
+  color: #7a9e75;
+  background: #1b2d20;
+  flex: none;
+}
+.messenger-intrusion-active #case-shell {
+  filter: sepia(0.35) hue-rotate(65deg) saturate(0.8);
+}
+@media (max-width: 720px) {
+  .messenger-notice {
+    top: calc(env(safe-area-inset-top, 0px) + 9px);
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: none;
+  }
+  .messenger-notice .messenger-notice-open {
+    min-height: 82px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+  .browser-return-desktop,
+  .browser-current-tab {
+    display: none;
+  }
+  .browser-return-mobile {
+    display: inline;
+  }
+  .chat-browser-bar button {
+    max-width: 100%;
+    border: 0;
+    background: none;
+    padding-left: 12px;
+  }
+  .chat-browser-bar {
+    background: #e1e6e7;
+  }
+  .intrusion-notifications {
+    left: 10px;
+    right: 10px;
+    top: 10px;
+    width: auto;
+  }
+  .intrusion-wechat {
+    inset: 5% 8px 6%;
+    max-width: none;
+  }
+  .intrusion-app {
+    grid-template-columns: 90px minmax(0, 1fr);
+  }
+  .intrusion-app > aside > div {
+    display: block;
+    padding: 9px 7px;
+    font-size: 10px;
+    position: relative;
+  }
+  .intrusion-app aside span {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .intrusion-app aside b {
+    position: absolute;
+    right: 4px;
+    top: 10px;
+  }
+  .intrusion-message-log {
+    padding: 12px 9px;
+  }
+  .intrusion-bubble {
+    gap: 6px;
+  }
+  .messenger-intrusion .intrusion-app h2 {
+    padding-left: 12px;
+  }
+  .intrusion-frozen-input {
+    height: 70px;
+  }
+}
+body.reduced-motion .messenger-notice {
+  animation: none;
+}
+body.reduced-motion .intrusion-wechat {
+  transition: none;
+}
+.messenger-intrusion[data-quiet="true"] .intrusion-wechat {
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .messenger-notice {
+    animation: none;
+  }
+  .intrusion-wechat {
+    transition: none;
+  }
+  .messenger-intrusion-active #case-shell {
+    filter: none;
+  }
+}
+
+.intrusion-notice {
+  pointer-events: auto;
+  cursor: pointer;
+}
+.chat-browser-bar button {
+  box-shadow: none;
+  border-radius: 0;
+}
