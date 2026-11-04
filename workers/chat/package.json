@@ -1,0 +1,16 @@
+{
+  "name": "stillwater-chat-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --local --var CHAT_MODE:mock",
+    "deploy": "wrangler deploy --keep-vars",
+    "check": "wrangler deploy --dry-run",
+    "secret:session": "node create-session-secret.mjs",
+    "build:dashboard": "node build-dashboard.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0",
+    "esbuild": "^0.28.2"
+  }
+}

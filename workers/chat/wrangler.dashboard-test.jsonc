@@ -1,0 +1,8 @@
+{
+  "name": "stillwater-chat-dashboard-local-test",
+  "main": "dashboard/worker.js",
+  "compatibility_date": "2026-11-04",
+  "vars": {"CHAT_MODE":"mock", "ALLOWED_ORIGINS":"http://127.0.0.1:3110,https://rieyekiwong.github.io"},
+  "d1_databases": [{"binding":"CHAT_DB", "database_name":"stillwater-chat-quota", "database_id":"00000000-0000-0000-0000-000000000001"}],
+  "dev":{"ip":"127.0.0.1","port":8788}
+}

@@ -1,0 +1,5 @@
+# Local MOCK testing needs no secrets. For local LIVE testing copy to .dev.vars.
+# Real values must NEVER be committed. Production uses `wrangler secret put`.
+# OPENAI_API_KEY=your-key
+# SESSION_SECRET=a-random-value-at-least-32-characters-long
+# TURNSTILE_SECRET=your-turnstile-secret

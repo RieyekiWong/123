@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "damp-rain-a5a6",
+  "main": "src/worker.mjs",
+  "compatibility_date": "2026-11-04",
+  "workers_dev": true,
+  "observability": { "enabled": false },
+  "vars": {
+    "CHAT_MODE": "live",
+    "REQUIRE_TURNSTILE": "false",
+    "OPENAI_MODEL": "gpt-6-luna",
+    "REASONING_EFFORT": "none",
+    "ALLOWED_ORIGINS": "https://rieyekiwong.github.io,http://127.0.0.1:3110,http://localhost:3110",
+    "GLOBAL_REQUESTS_PER_DAY": "300",
+    "GLOBAL_RESERVED_TOKENS_PER_DAY": "300000",
+    "IP_REQUESTS_PER_DAY": "60",
+    "IP_REQUESTS_PER_MINUTE": "6",
+    "MAX_CONCURRENT": "6"
+  },
+  "durable_objects": { "bindings": [{ "name": "CHAT_BUDGET", "class_name": "ChatBudget" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ChatBudget"] }],
+  "dev": { "ip": "127.0.0.1", "port": 8787 }
+}
