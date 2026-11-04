@@ -1,7 +1,7 @@
 {
-  "at": "2026-11-04T20:18:55.346944+00:00",
+  "at": "2026-11-04T20:23:17.024817+00:00",
   "version": "4.13.0",
-  "deploymentCommit": "38de1b52a94a84342b0bbb791263bca7cd1d928d",
+  "deploymentCommit": "84a9d5dacfca33863ad6126ce253dd7dcbd5916a",
   "defaultTLSVerification": true,
   "files": 169,
   "matched": 169,
@@ -9,17 +9,17 @@
     {
       "file": "index.html",
       "status": 200,
-      "bytes": 4480,
-      "expected": "64c7df9f57787053e013cb1d6dbef93b0dbaaac1a563937c4eac28c209b6ac0f",
-      "actual": "64c7df9f57787053e013cb1d6dbef93b0dbaaac1a563937c4eac28c209b6ac0f",
+      "bytes": 4483,
+      "expected": "d3eea910821473f6ee61c2c808d414054e4bff23fed02e093558c07240550f21",
+      "actual": "d3eea910821473f6ee61c2c808d414054e4bff23fed02e093558c07240550f21",
       "match": true
     },
     {
       "file": "index-zh.html",
       "status": 200,
-      "bytes": 4451,
-      "expected": "eed11e21ced4397a7a2435ad9800ca466949223e9229d8245dad1eef87bd3d2b",
-      "actual": "eed11e21ced4397a7a2435ad9800ca466949223e9229d8245dad1eef87bd3d2b",
+      "bytes": 4454,
+      "expected": "3ec3475879d3d263e1eb0dbb55df104473162967528f6bc27362bfc4a7a6b3c0",
+      "actual": "3ec3475879d3d263e1eb0dbb55df104473162967528f6bc27362bfc4a7a6b3c0",
       "match": true
     },
     {
@@ -41,9 +41,9 @@
     {
       "file": "case-evidence.js",
       "status": 200,
-      "bytes": 19148,
-      "expected": "8b9677dc5a33e0bbf8d7f5d3f6be84ff69088f21d66ab9fad1455f1150a4c5eb",
-      "actual": "8b9677dc5a33e0bbf8d7f5d3f6be84ff69088f21d66ab9fad1455f1150a4c5eb",
+      "bytes": 19146,
+      "expected": "c9b9aec83889aadb05ba0876c49257c23cbfd32e5387c68ff4b3e6568ad9dffd",
+      "actual": "c9b9aec83889aadb05ba0876c49257c23cbfd32e5387c68ff4b3e6568ad9dffd",
       "match": true
     },
     {

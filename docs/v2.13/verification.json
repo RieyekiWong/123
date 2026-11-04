@@ -51,7 +51,7 @@
   },
   "protectedSystems": "preserved-systems.json",
   "localPlaythrough": "local-playthrough.json",
-  "publicStatus": "First deployment passed 169 file hashes and two complete public playthroughs. A recording-caption correction is being deployed and will be rechecked.",
+  "publicStatus": "Verified: final code deployed successfully; all 169 files match; both fresh public UI paths reach GAME OVER and survive refresh.",
   "limitations": [
     "Automated Chromium runs, desktop and emulated phone/tablet viewports; no physical iPhone/Safari/Firefox test.",
     "Fresh runs use actual page interactions with predetermined test decisions, not a human blind usability study.",
@@ -99,5 +99,28 @@
     ],
     "pageErrors": 0,
     "nonGetRequests": 0
-  }
+  },
+  "publicFinalDeployment": {
+    "commit": "84a9d5dacfca33863ad6126ce253dd7dcbd5916a",
+    "run": "https://github.com/RieyekiWong/123/actions/runs/41905880872",
+    "result": "success",
+    "matchedFiles": 169,
+    "defaultTLSVerification": true,
+    "browserPlaythroughs": 2,
+    "languages": [
+      "zh-CN",
+      "en"
+    ],
+    "viewports": [
+      390,
+      1440
+    ],
+    "pageErrors": 0,
+    "nonGetRequests": 0,
+    "ending": "RELEASED / GAME OVER",
+    "refreshPreserved": true,
+    "report": "public-playthrough.json",
+    "assets": "public-assets.json"
+  },
+  "finishedAt": "2026-11-04T20:24:47.878069+00:00"
 }

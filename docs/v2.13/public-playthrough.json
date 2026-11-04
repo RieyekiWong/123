@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-04T20:19:24.498Z",
+  "at": "2026-11-04T20:23:47.038Z",
   "base": "https://rieyekiwong.github.io/123/",
   "mode": "real browser, no seeded game progress; actual UI path, predetermined test decisions; not a human blind test",
   "browserTlsBypass": true,
@@ -181,7 +181,7 @@
           "route": "#revisions",
           "site": "staff",
           "title": "Stillwater / Staff Archive",
-          "body": "当前调查\n\n对照原稿与修订\n\n版本记录\n原员工档案\n\nPERSONNEL / E-014\n\n人员档案\n\n当班人员登记资料。\n\nMara Ellis / E-014\n原岗位\t夜班审计员\n职责\t核对房态、钥匙发放与预订记录。\n经手记录\tR-4829 · A-06-17\n移交时间\t2006-10-17 03:17\n\n这笔预订有两份文件，两份的处理人一栏不同。\n\n比较原稿与修订副本 →",
+          "body": "当前调查\n\n对照原稿与修订\n\n版本记录\n原员工档案\n\nREVISION HISTORY / R-4829\n\n记录修改对照\n\n左侧为原稿，右侧为修改稿。请逐行比较，只勾选有改动的项目。\n\n有修改\t字段\tORIGINAL\n2006-10-17 03:24\tREVISION\n2007-01-08\n\t处理人及人员类别\tE-014 / Mara Ellis（员工，处理人）\tSYSTEM（处理人） / Mara Ellis（住客）\n\t区域用途\t317 / 服务暂存区\t317 / 客房\n\t核实状态\tUNVERIFIED / 待核实\tVERIFIED / CLOSED / 已完成\n\t原预订编号\tR-4829\tR-4829\n\t原登记房号\t318\t318\n\n原预订单的住客为 E. Vale。请分别核对两份表中的人员栏。\n\n保存对比\n核对帮助\n查看提示",
           "currentGoal": "space",
           "clues": [
             "C1",
@@ -255,7 +255,7 @@
           "route": "#void",
           "site": "void",
           "title": "NO INDEX · Stillwater",
-          "body": "B-3 / 返回配线室\n分类终端\nEnglish\nCAM -- / NO INDEX\n2006-10-17 03:17:00\n\nCONTINUITY / UNKNOWN SOURCE\n\n核对这段影像的归类依据。\nROOM\nGUEST\nEMPLOYEE\n\nROOM / NOT SUPPORTED\n\nGUEST / NOT VERIFIED\n\nEMPLOYEE / NOT VERIFIED\n\nCONTINUITY / SOURCE REVIEW\n\nROOM / 客房归类\n关闭核对窗口\n\nROOM / NOT SUPPORTED\n\nSOURCE VERIFIED\n核对帮助\n查看提示\nSERVICE / SOURCE FILE\n服务区域登记卡\n\n3F / 317 / A-06-17\n2006-10-17\n\n原始记录 · 点字段可作标记\n内部编号\t317\n登记用途\tSERVICE HOLDING / 服务暂存区\n位置\t316 与 318 之间\n维修单\tA-06-17\n\n出处: floor-plan\n\n加入对照\n打开原网页\n原件对照 2/2\nROOM / SOURCE FILE\n三楼客房目录\n\n3F / GUEST INVENTORY\n2006-10-17\n\n原始记录 · 点字段可作标记\n可预订房号\t301 · 302 · 303 · 304 · 305 · 306 · 307 · 308 · 309 · 310 · 311 · 312 · 313 · 314 · 315 · 316 · 318 · 319 · 320\n目录范围\t只列可供预订的客房。\n\n出处: rooms?copy=original\n\n移出对照\n打开原网页\nSERVICE / SOURCE FILE\n服务区域登记卡\n\n3F / 317 / A-06-17\n2006-10-17\n\n原始记录 · 点字段可作标记\n内部编号\t317\n登记用途\tSERVICE HOLDING / 服务暂存区\n位置\t316 与 318 之间\n维修单\tA-06-17\n\n出处: floor-plan\n\n移出对照\n打开原网页\n打开完整核对台\n\nNO VERIFIED CATEGORY\n\n最终处理\n强制归类时使用的类别\nROOM\nGUEST\nEMPLOYEE\nFORCE CLASSIFICATION / 强制归类\nAUTO CLOSE / 接受自动结案\nRETAIN AS UNVERIFIED / 保留未核实状态\n\n暂时返回配线室\n声音：关闭\n声音与设置\n存档与重置",
+          "body": "B-3 / 返回配线室\n分类终端\nEnglish\n\nCONTINUITY / UNKNOWN SOURCE\n\n核对这段影像的归类依据。\nROOM\nGUEST\nEMPLOYEE\n\nROOM / NOT SUPPORTED\n\nGUEST / NOT VERIFIED\n\nEMPLOYEE / NOT VERIFIED\n\nCONTINUITY / SOURCE REVIEW\n\nROOM / 客房归类\n关闭核对窗口\n\nROOM / NOT SUPPORTED\n\nSOURCE VERIFIED\n核对帮助\n查看提示\nSERVICE / SOURCE FILE\n服务区域登记卡\n\n3F / 317 / A-06-17\n2006-10-17\n\n原始记录 · 点字段可作标记\n内部编号\t317\n登记用途\tSERVICE HOLDING / 服务暂存区\n位置\t316 与 318 之间\n维修单\tA-06-17\n\n出处: floor-plan\n\n加入对照\n打开原网页\n原件对照 2/2\nROOM / SOURCE FILE\n三楼客房目录\n\n3F / GUEST INVENTORY\n2006-10-17\n\n原始记录 · 点字段可作标记\n可预订房号\t301 · 302 · 303 · 304 · 305 · 306 · 307 · 308 · 309 · 310 · 311 · 312 · 313 · 314 · 315 · 316 · 318 · 319 · 320\n目录范围\t只列可供预订的客房。\n\n出处: rooms?copy=original\n\n移出对照\n打开原网页\nSERVICE / SOURCE FILE\n服务区域登记卡\n\n3F / 317 / A-06-17\n2006-10-17\n\n原始记录 · 点字段可作标记\n内部编号\t317\n登记用途\tSERVICE HOLDING / 服务暂存区\n位置\t316 与 318 之间\n维修单\tA-06-17\n\n出处: floor-plan\n\n移出对照\n打开原网页\n打开完整核对台\n\nNO VERIFIED CATEGORY\n\n最终处理\n强制归类时使用的类别\nROOM\nGUEST\nEMPLOYEE\nFORCE CLASSIFICATION / 强制归类\nAUTO CLOSE / 接受自动结案\nRETAIN AS UNVERIFIED / 保留未核实状态\n\n暂时返回配线室\n声音：关闭\n声音与设置\n存档与重置",
           "currentGoal": "identity",
           "clues": [
             "C1",
@@ -484,9 +484,9 @@
         {
           "stage": "night-records",
           "route": "#night-audit",
-          "site": "hotel",
-          "title": "The Stillwater Hotel",
-          "body": "MAINTENANCE RECORDS\n\nMaintenance docket lookup\n\nUse the reference printed on the reception notice.\n\nNotice / docket reference\nOpen original\nA-06-17 / Night-audit handover\nTimestamp\t2006-10-17 03:17\nRecord reference\tR-4829\nPosition classification\t317 / SERVICE HOLDING\nHandover owner\tE-014 / Mara Ellis\n\nNight audit handed the pending booking to the duty reviewer. The occupancy field is blank.\n\nAttached extract: housekeeping check\n\n2006-10-17 02:50 · Room 318 is empty; bedding unused.\n\nPosition annotation: 317 / SERVICE HOLDING\nReconcile the source records from that night →\nReview help\nNeed help?",
+          "site": "staff",
+          "title": "Stillwater / Staff Archive",
+          "body": "CURRENT REVIEW\n\nReconcile the night records\n\nNight records and timestamps\nOriginal guest entry\nReview record types\n\nNIGHT AUDIT / R-4829\n\nNight-record review\n\nConfirm the sequence, then review what each record establishes.\n\nConnection delayed. Reading the retained copy.\n2006-10-17 03:24\nNight-audit note\n\nE-014: I cannot confirm whether anyone stayed at 317. Leave the record unverified.\n\n↑ Up\n↓ Down\nOriginal source\n2006-10-17 02:40\nKey-sleeve entry\n\nGuest E. Vale reports assignment to 318, but a key sleeve marked 317.\n\n↑ Up\n↓ Down\nOriginal source\n2006-10-17 03:17\nSystem handover\n\nContinuity moves R-4829 to service holding 317, assigned to E-014.\n\n↑ Up\n↓ Down\nOriginal source\n2006-10-17 02:50\nHousekeeping record\n\nRoom 318 is empty; bedding unused.\n\n↑ Up\n↓ Down\nOriginal source\nConfirm sequence\nReview help\nNeed help?",
           "currentGoal": "space",
           "clues": [
             "C1",
@@ -528,7 +528,7 @@
           "route": "#revisions",
           "site": "staff",
           "title": "Stillwater / Staff Archive",
-          "body": "CURRENT REVIEW\n\nCompare the original and revision\n\nRevision history\nOriginal personnel record\n\nPERSONNEL / E-014\n\nPersonnel record\n\nThe retained record for the employee on duty.\n\nMara Ellis / E-014\nOriginal role\tNight-audit clerk\nResponsibility\tCross-check guest inventory, keys and reservations.\nAssociated record\tR-4829 · A-06-17\nOriginal handover\t2006-10-17 03:17\n\nTwo copies have the same booking reference, but different entries in the reviewer field.\n\nCompare original and revised copies →",
+          "body": "CURRENT REVIEW\n\nCompare the original and revision\n\nRevision history\nOriginal personnel record\n\nREVISION HISTORY / R-4829\n\nTwo versions of one record\n\nMark the fields that changed between these two copies.\n\nChanged\tField\tORIGINAL\n2006-10-17 03:24\tREVISION\n2007-01-08\n\tHandler / record ownership\tE-014 / Mara Ellis (staff reviewer)\tSYSTEM (handler) / Mara Ellis (guest)\n\tPosition type\t317 / SERVICE HOLDING\t317 / GUEST ROOM\n\tVerification status\tUNVERIFIED\tVERIFIED / CLOSED\n\tOriginal booking reference\tR-4829\tR-4829\n\tOriginal assignment\t318\t318\n\nThe original booking names E. Vale. Compare the people fields in both copies.\n\nRetain comparison\nReview help\nNeed help?",
           "currentGoal": "space",
           "clues": [
             "C1",
@@ -602,7 +602,7 @@
           "route": "#void",
           "site": "void",
           "title": "NO INDEX · Stillwater",
-          "body": "B-3 / Patch room\nClassification terminal\n简体中文\n\nCONTINUITY / UNKNOWN SOURCE\n\nReview the basis for classifying this picture.\nROOM\nGUEST\nEMPLOYEE\n\nROOM / NOT SUPPORTED\n\nGUEST / NOT VERIFIED\n\nEMPLOYEE / NOT VERIFIED\n\nCONTINUITY / SOURCE REVIEW\n\nROOM / classification\nClose review\n\nROOM / NOT SUPPORTED\n\nSOURCE VERIFIED\nReview help\nNeed help?\nSERVICE / SOURCE FILE\nService-position card\n\n3F / 317 / A-06-17\n2006-10-17\n\nSource record · select a field to mark it\nInternal identifier\t317\nRegistered use\tSERVICE HOLDING\nPosition\tBetween 316 and 318\nMaintenance docket\tA-06-17\n\nSource: floor-plan\n\nCompare this file\nOpen source page\nSource comparison 2/2\nROOM / SOURCE FILE\nThird-floor room directory\n\n3F / GUEST INVENTORY\n2006-10-17\n\nSource record · select a field to mark it\nBookable rooms\t301 · 302 · 303 · 304 · 305 · 306 · 307 · 308 · 309 · 310 · 311 · 312 · 313 · 314 · 315 · 316 · 318 · 319 · 320\nScope\tBookable guest rooms only.\n\nSource: rooms?copy=original\n\nRemove from comparison\nOpen source page\nSERVICE / SOURCE FILE\nService-position card\n\n3F / 317 / A-06-17\n2006-10-17\n\nSource record · select a field to mark it\nInternal identifier\t317\nRegistered use\tSERVICE HOLDING\nPosition\tBetween 316 and 318\nMaintenance docket\tA-06-17\n\nSource: floor-plan\n\nRemove from comparison\nOpen source page\nOpen the full evidence desk\n\nNO VERIFIED CATEGORY\n\nFinal disposition\nCategory used for forced classification\nROOM\nGUEST\nEMPLOYEE\nFORCE CLASSIFICATION / Assign a category\nAUTO CLOSE / Accept automatic closure\nRETAIN AS UNVERIFIED / Keep unverified\n\nReturn to the patch room\nSound: Off\nSound & settings\nSaves & reset",
+          "body": "B-3 / Patch room\nClassification terminal\n简体中文\nCAM -- / NO INDEX\n2006-10-17 03:17:00\n\nCONTINUITY / UNKNOWN SOURCE\n\nReview the basis for classifying this picture.\nROOM\nGUEST\nEMPLOYEE\n\nROOM / NOT SUPPORTED\n\nGUEST / NOT VERIFIED\n\nEMPLOYEE / NOT VERIFIED\n\nCONTINUITY / SOURCE REVIEW\n\nROOM / classification\nClose review\n\nROOM / NOT SUPPORTED\n\nSOURCE VERIFIED\nReview help\nNeed help?\nSERVICE / SOURCE FILE\nService-position card\n\n3F / 317 / A-06-17\n2006-10-17\n\nSource record · select a field to mark it\nInternal identifier\t317\nRegistered use\tSERVICE HOLDING\nPosition\tBetween 316 and 318\nMaintenance docket\tA-06-17\n\nSource: floor-plan\n\nCompare this file\nOpen source page\nSource comparison 2/2\nROOM / SOURCE FILE\nThird-floor room directory\n\n3F / GUEST INVENTORY\n2006-10-17\n\nSource record · select a field to mark it\nBookable rooms\t301 · 302 · 303 · 304 · 305 · 306 · 307 · 308 · 309 · 310 · 311 · 312 · 313 · 314 · 315 · 316 · 318 · 319 · 320\nScope\tBookable guest rooms only.\n\nSource: rooms?copy=original\n\nRemove from comparison\nOpen source page\nSERVICE / SOURCE FILE\nService-position card\n\n3F / 317 / A-06-17\n2006-10-17\n\nSource record · select a field to mark it\nInternal identifier\t317\nRegistered use\tSERVICE HOLDING\nPosition\tBetween 316 and 318\nMaintenance docket\tA-06-17\n\nSource: floor-plan\n\nRemove from comparison\nOpen source page\nOpen the full evidence desk\n\nNO VERIFIED CATEGORY\n\nFinal disposition\nCategory used for forced classification\nROOM\nGUEST\nEMPLOYEE\nFORCE CLASSIFICATION / Assign a category\nAUTO CLOSE / Accept automatic closure\nRETAIN AS UNVERIFIED / Keep unverified\n\nReturn to the patch room\nSound: Off\nSound & settings\nSaves & reset",
           "currentGoal": "identity",
           "clues": [
             "C1",
@@ -698,5 +698,7 @@
         }
       ]
     }
-  ]
+  ],
+  "version": "4.13.0",
+  "deploymentCommit": "84a9d5dacfca33863ad6126ce253dd7dcbd5916a"
 }

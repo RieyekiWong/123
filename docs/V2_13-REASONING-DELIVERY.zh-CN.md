@@ -128,3 +128,14 @@
 ### 首轮正式网站核对
 
 [Pages 发布](https://github.com/RieyekiWong/123/actions/runs/41905135154)成功，169 个运行文件与媒体的 SHA-256 全部一致。中文手机和英文桌面均在正式网址从微信走到 GAME OVER，刷新成功，没有脚本错误或付费聊天请求。复核时将保留录像的机位字幕修正为与实际恢复画面一致的 CAM 02 / 西侧走廊，补了来源编号对应测试，并更新该模块缓存地址；最终发布状态见验证记录。
+
+### 最终发布完成
+
+4.13 已更新到[中文正式网站](https://rieyekiwong.github.io/123/index-zh.html?v=4.13.0)及[英文正式网站](https://rieyekiwong.github.io/123/index.html?v=4.13.0)。最终运行代码为 `84a9d5d`，[Pages 发布成功](https://github.com/RieyekiWong/123/actions/runs/41905880872)。
+
+- 再次下载正式网站 62 个运行文件与 107 个媒体/元数据文件，169 个 SHA-256 全部吻合；使用默认 TLS 校验。[文件核对](v2.13/public-assets.json)
+- 中文 390px 与英文 1440px，再次从全新微信存档真实点击至 RELEASED / GAME OVER，刷新保留；没有种入主线进度，脚本错误和非 GET 请求均为零。[实玩记录](v2.13/public-playthrough.json)
+- 保留录像的字幕与 B-3 实际恢复的 CAM 02 / 西侧走廊保持一致；新增对应断言已通过。
+- 图片及记录见：[线上手机核对台](v2.13/public-zh-390-evidence-desk.png)、[线上终章窗口](v2.13/public-en-1440-final-review.png)、[线上最终处理](v2.13/public-en-1440-final-disposition.png)、[线上 GAME OVER](v2.13/public-zh-390-game-over.png)。
+
+既有存档保留其完成状态。若要完整体验新增的推理操作，可在“存档与重置”中选择重新开始；更新本身不会自动清除游戏、微信或广告收藏。
