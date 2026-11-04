@@ -18,5 +18,9 @@
   "newCaseField": "promo",
   "originalAdStorageUnchanged": "stillwater-ads:v1",
   "paidChatRequests": 0,
-  "publicDeploymentVerified": false
+  "publicDeploymentVerified": true,
+  "publicDeploymentEvidence": "public-verification.json",
+  "publicResourceMatches": 87,
+  "publicFullPlaythroughs": 2,
+  "publicPageErrors": []
 }

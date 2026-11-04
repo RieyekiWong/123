@@ -1,0 +1,356 @@
+{
+  "release": "4.12.0",
+  "checkedAt": "2026-11-04T19:03:54.435498+00:00",
+  "tls": "default verification",
+  "matched": [
+    {
+      "file": "index.html",
+      "sha256": "5a533616b5a6e595e1cf8519e8f2a07b6922173dc39fb22cc2b8d7a3bad7df7b"
+    },
+    {
+      "file": "index-zh.html",
+      "sha256": "31e73d6e6a099f945d1dedb1ced225d57010426007bd1c7995941e8a69e394c3"
+    },
+    {
+      "file": "haunt-preview.html",
+      "sha256": "fb08a446349e1ecbc175c3b63142b14cd54f9a128d2f5b58abc727eb8ac468e1"
+    },
+    {
+      "file": "case-data.js",
+      "sha256": "2356cd089d51525cbb14743c2d25d6642040561e8c1ea3a35af24c0ea6a89d57"
+    },
+    {
+      "file": "case-state.js",
+      "sha256": "7ba24cbb74bcb385829f74294ea57214315190c5325e1b92666214290b93242b"
+    },
+    {
+      "file": "case-app.js",
+      "sha256": "368cccd666541fa6b476c75d125542459afc66d9b0073ffda4104ad180cf4290"
+    },
+    {
+      "file": "case-pages.js",
+      "sha256": "5eb7ccc2a8b0894e1116030865a53bcb7493f5adc3c442338232cb34646cd0f5"
+    },
+    {
+      "file": "case-comfort.js",
+      "sha256": "896b5822d000783d0db69be0e385713274d27b67575fad095fac2eb1eb82d0f6"
+    },
+    {
+      "file": "case-feedback.js",
+      "sha256": "e8f87ae5d1687313ecc7f2e10b5ee159b6726bf63d158636e28c8261680d2625"
+    },
+    {
+      "file": "case-ending.js",
+      "sha256": "d2e4ad2facfdda574b5a5ca558c7082e6b9bdc95111c41f4a3c9049147ee2bd6"
+    },
+    {
+      "file": "case-ending.css",
+      "sha256": "bc4725122a7b46f1d8e9571fb98c5909656fe97d71d4701db53081a64a60a156"
+    },
+    {
+      "file": "forum-data.js",
+      "sha256": "6080b1953d8c99b27561fe0cd7e4414ff67cfc6809963c44e5edef52d4527794"
+    },
+    {
+      "file": "forum-extra-data.js",
+      "sha256": "1f82fa5775ee4e344c8eb99e2a7d889e1b76845a42ac8c8958c6e807eeea4ba6"
+    },
+    {
+      "file": "forum.js",
+      "sha256": "3df6e42d396a976ea0950edbcc8674a8572b2a06444a63080f3078eb197fa346"
+    },
+    {
+      "file": "forum-style.css",
+      "sha256": "c81ef165b65482923b026e11009e57b6c08885d61e59572d620c02c81ab1d96e"
+    },
+    {
+      "file": "careers.js",
+      "sha256": "32b9479dc3c18e4625e64417bab6781b03deb2ac089d573a6208131be9347ad9"
+    },
+    {
+      "file": "hotel-extras.js",
+      "sha256": "caea186ec15ab44e9781a223a82a7b19ff000be240472ce735f5f80106915e88"
+    },
+    {
+      "file": "front-sites.css",
+      "sha256": "8b0f519cb59957473e58f14646ec5308e4f284abc4f1bbba35c98f0370731129"
+    },
+    {
+      "file": "chat-data.js",
+      "sha256": "3594ffe5b53b4b8ee47efb0f03a4d881d48c98099a795187c4efd7f2ae0e070a"
+    },
+    {
+      "file": "chat-personas.js",
+      "sha256": "6c7c364439eebb77769b2dc6553cd3c8d1a3055d7fd36ae88cd5577c99ff651d"
+    },
+    {
+      "file": "chat-protocol.js",
+      "sha256": "116f09174b9dc462d44c5bb3be6f19246915d81da4b771e54983ad435f6ff32e"
+    },
+    {
+      "file": "chat-fallback.js",
+      "sha256": "74697c6d348d34b347722895a9d22ef33c32b040cfc85df8f7dbda5a5e2bb08c"
+    },
+    {
+      "file": "chat-model.js",
+      "sha256": "bbd0d97626cba476ffd4540d8a935bc23fa0295f860a6bd45c515258d3c3eb89"
+    },
+    {
+      "file": "chat-config.js",
+      "sha256": "f1a97b9d1f5a7f3d97a69470e603040aa41428af80c5cb2d46575e779694af7e"
+    },
+    {
+      "file": "chat-transport.js",
+      "sha256": "3b65db6a2880a3d253187bc870127da7ad841f3bac60b6e7b809c0969d6cb900"
+    },
+    {
+      "file": "chat-view.js",
+      "sha256": "3238ea52259394946d3f65ff0d86a2ad1f94bcf81e881f7be1f93ca9829d6f70"
+    },
+    {
+      "file": "chat-style.css",
+      "sha256": "1b914e83735752d2fec02b658ea944bd5b01b05a0e5c30ac4aef2ac4b5f7052f"
+    },
+    {
+      "file": "chat-photos.js",
+      "sha256": "e095ffe82d35231d8133fceeadc23ad9e7f4e5b4418e495a03d7f2fd15f70d07"
+    },
+    {
+      "file": "case-void-model.js",
+      "sha256": "c676ac1c724bd062ac5bf4409a71783cf4e55829476896907af2b2c225bd6cdb"
+    },
+    {
+      "file": "case-void.js",
+      "sha256": "ce27da50c60d2618978e5c31e2726889e8bebce1ab78604b0794c946c0d7335a"
+    },
+    {
+      "file": "case-void.css",
+      "sha256": "0fdc33b933555c7ed2fdd7a1c1b2981968db9efd03f8d8d2f25843c572c0b9c9"
+    },
+    {
+      "file": "ad-data.js",
+      "sha256": "5324ba622a6ad392bb22d3ad3af8fc2428aa8e8c84f8f130b60f238631e3b68f"
+    },
+    {
+      "file": "ad-campaigns.js",
+      "sha256": "8cd4f068f147117a8731ad3fe78069f6226c25a16f176f0dd970bef0a2fe28ba"
+    },
+    {
+      "file": "ad-system.js",
+      "sha256": "d8f759a8a412093a596bd15aa9a9210900097f174a095ca4a28c16d811dc5de4"
+    },
+    {
+      "file": "ad-style.css",
+      "sha256": "f159098fc32971a52f27cdfc2942f786d8198521a02fe9bd60b3498dc46aad7d"
+    },
+    {
+      "file": "ad-popup.css",
+      "sha256": "3089420b02a6acc420a414e2da325ad8f6c24504ba4a465f056e382621518e84"
+    },
+    {
+      "file": "case-style.css",
+      "sha256": "54b36db9ff6ddfeba9b661f72055fb42abf7af5bbc15c0080f8208c3f00cbf0c"
+    },
+    {
+      "file": "hotel-promo-data.js",
+      "sha256": "12b5c99c284b212eefaff039233e455b3d91bd7afad2b192ed102df1358aa610"
+    },
+    {
+      "file": "hotel-promo.js",
+      "sha256": "a3c56fb7fecac13196110f2296b43e1acd8434f9999d9b4bcd7fb7d142ddafbd"
+    },
+    {
+      "file": "hotel-promo.css",
+      "sha256": "59c4607f2bd74c466ad2e525223d38ce79d334feecc4581a3e300a6e012c11f3"
+    },
+    {
+      "file": "site-media.js",
+      "sha256": "192a59a83d8a496b3177a3d171bbd4ed4de1da9f43be82ccd479964c8919eeed"
+    },
+    {
+      "file": "retro-media.js",
+      "sha256": "bead2d0b8460ce7d5a273d365795f0e6189265c2794c2af000551fdaaf9660e2"
+    },
+    {
+      "file": "cctv-filter.css",
+      "sha256": "1fb2d3a2352dbc03ffb8d1a4b3a82819b9ad7a51397037de0697a3bf30450e5e"
+    },
+    {
+      "file": "cctv-scenes.js",
+      "sha256": "ba133be4129a345dbfbdaaa5964253c0a79f8ced7c6e87b6d823c9b6385429aa"
+    },
+    {
+      "file": "case-night-model.js",
+      "sha256": "e3136a9b0daa5bbad538316db8b7ec76c23583cc020e4ed207f61e0faaa0eea1"
+    },
+    {
+      "file": "case-night.js",
+      "sha256": "12baeb74dfd89d12af465f5b00170bb27a05a5db7ee888ff5e41b2df84331286"
+    },
+    {
+      "file": "case-audio-tracks.js",
+      "sha256": "caf35f6ca3d0d44211cf2a9bef4c3256bbe9175510d194c213233e6be2c6c2fe"
+    },
+    {
+      "file": "case-audio-policy.js",
+      "sha256": "f1a8164e110e4d131a2adcc151f60740f97f5847c0fbec14e7a9de1d935ca011"
+    },
+    {
+      "file": "case-audio.js",
+      "sha256": "871335d0a2430c891761c13393d1cb3865af58587ed9df9bf61c3ae95c8702cf"
+    },
+    {
+      "file": "case-anomaly.css",
+      "sha256": "cf0b33e9f76f370c7fdf49b6f64a6b36930c20f4d6eb38429a12d4a2b9b75bd3"
+    },
+    {
+      "file": "design-tokens.css",
+      "sha256": "46a8da4e64b3a11e403f9e068237f2a9f645fe2819ed60662c7724ba5d38ac3c"
+    },
+    {
+      "file": "visual-v24.css",
+      "sha256": "dbe631a1450296644dff420c74563cd15d26585355cf7203f11ac2be7f7a6978"
+    },
+    {
+      "file": "case-wiring.css",
+      "sha256": "1aebc499ef51f413fa4fdfc15d2fcb0c76bc5fa0bb74eb9193ada6205b48d437"
+    },
+    {
+      "file": "case-transition.js",
+      "sha256": "02d949a7983c6e68696602a5e97a193624fbc5e6b1848e79355b02260aa58165"
+    },
+    {
+      "file": "case-welcome.js",
+      "sha256": "618efe279477707eedda0ceba388212637b1a94555a33264648d296721707a58"
+    },
+    {
+      "file": "case-welcome.css",
+      "sha256": "0ec40e02cb6252598a77f81c9a72bf6067165a5f29c3b25581e266e567796980"
+    },
+    {
+      "file": "case-space.js",
+      "sha256": "ed4e4eb632a38c841e2510bfb0048fbdd70d53e246c1b7d01eb3748bb45f7a55"
+    },
+    {
+      "file": "case-events.js",
+      "sha256": "d95162acc41c25d60d18e5db92ac7c17fc2ffc564249bff3b55ad5a1dc7c5656"
+    },
+    {
+      "file": "hotel-2010.css",
+      "sha256": "8c800c8f3696f3869367cf800e1dcd09e54f709c003ed775c479f00e3d0dd108"
+    },
+    {
+      "file": "assets/chat-avatars/gg.jpg",
+      "sha256": "89193b2612e5efa594b67101814c667e13dda24cc34fb26099a5c5b7fc1fbf21"
+    },
+    {
+      "file": "assets/chat-avatars/zhang.jpg",
+      "sha256": "6546c04f176e5d7f02fb8e76ba2bf8a5297c12e93c1dbcbd190e855d0501b19b"
+    },
+    {
+      "file": "assets/chat-avatars/lin.jpg",
+      "sha256": "1764351b527a995e6ff70a84c850d9e96a406c3ba51c0596c42b0d0d18f002d2"
+    },
+    {
+      "file": "assets/chat-avatars/me.jpg",
+      "sha256": "e5ab850847ae1fad2263795b7e96d19be7cb2630963a2a99b756040807a37740"
+    },
+    {
+      "file": "assets/chat-avatars/credits.json",
+      "sha256": "dd598ba7c323a6a63e114830e4eab306dfa62caf9bf821d5a636cf6425368467"
+    },
+    {
+      "file": "assets/void-v26/fragment-face.png",
+      "sha256": "78b075e0df5f9c29b8a72dfdf24d37a61917f44a7efe180c0a2537048524f03f"
+    },
+    {
+      "file": "assets/void-v26/lookback.png",
+      "sha256": "1135b71b4ffe49081d2b461a2f434f083f9d4a0f5616d6096808e09e059de004"
+    },
+    {
+      "file": "assets/void-v26/credits.json",
+      "sha256": "7758f85b766ff76b1ac45fc43e0aba4c0efeb52ca4bca3bb72b6120bac07151b"
+    },
+    {
+      "file": "assets/audio-v28/investigation.mp3",
+      "sha256": "4067e5e05afb48d9e33a0d046500d71c1d82964fe3ba1adab95d0784736a6f9d"
+    },
+    {
+      "file": "assets/audio-v28/investigation.ogg",
+      "sha256": "3a7924b3296bc7e93bdd8cd9879d7ae011f38d96867c015aac4574323e7d5aab"
+    },
+    {
+      "file": "assets/audio-v28/archive.mp3",
+      "sha256": "738381d34d9f3a98315c0925679636a54c3cd1e148ced63db60b483f2b0f9088"
+    },
+    {
+      "file": "assets/audio-v28/archive.ogg",
+      "sha256": "3c1175569c2f25673ba0f50eb8752581c2089ec509ea4dcea6e9ff8e6afd4146"
+    },
+    {
+      "file": "assets/audio-v28/rewrite.mp3",
+      "sha256": "328336f361db78ed23ae0cd8b4909bef2b875f7069217faee8778c4f4d6f19c6"
+    },
+    {
+      "file": "assets/audio-v28/rewrite.ogg",
+      "sha256": "5367c9629609d8e3ab566dc9c69f953fcceef93e1f11e5e2e22afe0d98abdaf4"
+    },
+    {
+      "file": "assets/audio-v28/cctv.mp3",
+      "sha256": "6a1c0937018d867463b1332d6f1179972e59be8c781a9fac0952325b8e168c5e"
+    },
+    {
+      "file": "assets/audio-v28/cctv.ogg",
+      "sha256": "ddb8916b6ce2ce12b063b5f5ad8e16768eeedbf2c3bae64f411efc8e175cffe1"
+    },
+    {
+      "file": "assets/audio-v28/passage.mp3",
+      "sha256": "efd131c4d9d4e0125ead509f50c954f507f9d5973ae521cd09147a2877186426"
+    },
+    {
+      "file": "assets/audio-v28/passage.ogg",
+      "sha256": "4b7567cddee2536d9930108991e21ecd98bb2d10f7090aecc3d3f9d070042027"
+    },
+    {
+      "file": "assets/audio-v28/unlisted.mp3",
+      "sha256": "ba227613532dfd04088ece0b06bca4e3760ccfade4f1f7dabe7e4d953f6b1bd8"
+    },
+    {
+      "file": "assets/audio-v28/unlisted.ogg",
+      "sha256": "7b34f22b91bbb5f98e104fb1dd821ee432dae5f4ca6d340f776a955a3a35789d"
+    },
+    {
+      "file": "assets/audio-v28/deep.mp3",
+      "sha256": "e8efa0072d4097d20f10d1b1222bacebc03583d7f674e2d716a782cffe6f39dc"
+    },
+    {
+      "file": "assets/audio-v28/deep.ogg",
+      "sha256": "84415789906e3e2ae7acda215508db79856fb10da27a021262f45e9a1dc732a7"
+    },
+    {
+      "file": "assets/audio-v28/safe.mp3",
+      "sha256": "46a96326f51570eb425fde9c32ba5bdd2357cfee2ad9da2036ef6072bb761231"
+    },
+    {
+      "file": "assets/audio-v28/safe.ogg",
+      "sha256": "50631a8bcbc2b06184d10d36c74414692d3c56d234a5bb2bf2c2a3866f61e147"
+    },
+    {
+      "file": "assets/audio-v28/credits.json",
+      "sha256": "dd476221bfb3f238e1f46574742bbc8fded3e505bdf4898f278a5bbc9227148f"
+    },
+    {
+      "file": "assets/hotel-promo-v1/corridor-base.png",
+      "sha256": "7c0c833b452616b3d7975dac79760a18dcf4c3f603e09c6ba1d1f1c1d01392c9"
+    },
+    {
+      "file": "assets/hotel-promo-v1/credits.json",
+      "sha256": "50c2067719a8afbb5b8f756203494a64b851304cfa3c200aef46f764119e86af"
+    },
+    {
+      "file": "assets/hotel-promo-v1/SOURCES.md",
+      "sha256": "912ddc7f61e0ed4c290d21e6c5255447f1f99220a6fcb86cd122d47eff188524"
+    }
+  ],
+  "mismatches": []
+}

@@ -80,3 +80,11 @@
 - 新系统两种语言都实际走完论坛至 GAME OVER；另有键盘、触屏、375px、刷新、换语言、静音、跳过惊吓、减少动态效果及旧存档检查。
 - [47 个受保护文件](v2.12/protected-files.json)与基线逐字节一致，所有已有图片文件未变。新增三版标牌可视对照的截图已保存，手机热点保持透明，避免盖住证据。
 - [页面采样](v2.12/visual-review.json)的脚本错误和横向溢出均为零。本次没有调用公开 AI 付费接口。正式网站部署结果在 `v2.12/validation.json` 中另记。
+
+## 正式网站验收
+
+4.12.0 已部署到[中文版](https://rieyekiwong.github.io/123/index-zh.html?v=4.12.0#chat)和[英文版](https://rieyekiwong.github.io/123/index.html?v=4.12.0#chat)。[发布任务](https://github.com/RieyekiWong/123/actions/runs/41892919374)成功。
+
+线上 87 个页面、脚本及媒体文件与发布提交 SHA-256 一致。另用实际浏览器分别完成中文 390px、英文 1440px 的整条证据线：早期宣传查看、招聘样张、2006 酒店原件、改写版本、预览提醒、原 C1–C9、监控与走廊、六接头配线、正式来源核对、纯黑章节、锁定及 GAME OVER。检查了 `promo` 中保存的正确来源、改写位置及完成结果；结束后回到论坛会重新显示原件。
+
+两次线上流程均无页面脚本错误，未启用在线 AI 或发送付费聊天请求。完整结果见 [线上验收记录](v2.12/public-verification.json)与[线上文件摘要](v2.12/public-assets.json)。

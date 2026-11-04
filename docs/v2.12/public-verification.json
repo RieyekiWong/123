@@ -1,0 +1,58 @@
+{
+  "release": "4.12.0",
+  "checkedAt": "2026-11-04T19:04:48.373599+00:00",
+  "deployedCommit": "1946bd1af8c566861ef3244b9cf19dbde132d378",
+  "pagesRun": "https://github.com/RieyekiWong/123/actions/runs/41892919374",
+  "pagesConclusion": "success",
+  "publicDeploymentVerified": true,
+  "resourceMatches": 87,
+  "resourceEvidence": "public-assets.json",
+  "browserChecks": [
+    {
+      "entry": "index-zh.html",
+      "width": 390,
+      "ordinaryShops": 17,
+      "caseClues": 9,
+      "earlyArchiveViewed": true,
+      "syncedVersionChecked": true,
+      "previewVersionChecked": true,
+      "verifiedSource": {
+        "schema": 1,
+        "selected": "original",
+        "marked": "middle",
+        "verified": true,
+        "echoSeen": true,
+        "legacy": false
+      },
+      "blackChapterComplete": true,
+      "gameOver": true,
+      "originalRestoredAfterRelease": true,
+      "pageErrors": [],
+      "paidChatRequests": 0
+    },
+    {
+      "entry": "index.html",
+      "width": 1440,
+      "ordinaryShops": 17,
+      "caseClues": 9,
+      "earlyArchiveViewed": true,
+      "syncedVersionChecked": true,
+      "previewVersionChecked": true,
+      "verifiedSource": {
+        "schema": 1,
+        "selected": "original",
+        "marked": "middle",
+        "verified": true,
+        "echoSeen": true,
+        "legacy": false
+      },
+      "blackChapterComplete": true,
+      "gameOver": true,
+      "originalRestoredAfterRelease": true,
+      "pageErrors": [],
+      "paidChatRequests": 0
+    }
+  ],
+  "certificateHandling": "Isolated Chromium used ignoreHTTPSErrors for the execution-environment proxy; the independent resource check used default TLS verification for all 87 files.",
+  "paidChatRequests": 0
+}
