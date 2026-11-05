@@ -1,0 +1,106 @@
+{
+  "auditDate": "2026-11-05",
+  "stage": 0,
+  "implementationStatus": "Planning only; no 2.0 runtime implemented.",
+  "sourceCommit": "51c80cb13b34f4a07d197e73c265d26fb868e412",
+  "remoteMainAtAudit": "51c80cb13b34f4a07d197e73c265d26fb868e412",
+  "existingImplementationCommit": "3ac19d0",
+  "packageVersion": "4.19.0",
+  "storyEdition": "v13",
+  "backupTag": "stillwater-pre-2.0-4.19.0",
+  "planningBranch": "plan/stillwater-2-stage0",
+  "attachments": [
+    {
+      "name": "Stillwater_2_0_Master_Blueprint (1).md",
+      "bytes": 72135,
+      "sha256": "411acf654851a3585aea27a8221a871b4ffe0739dfa7861cfaa85b982c1d1bbc"
+    },
+    {
+      "name": "Stillwater_2_0_Reference_Index.md",
+      "bytes": 2757,
+      "sha256": "4afb789a472d73262e20acf414ca498fed16ec1474e94f89c30be5827fb05330"
+    }
+  ],
+  "sourceIntegrity": {
+    "trackedFilesChecked": 1172,
+    "trackedFilesChanged": [],
+    "trackedPathAndSha256Aggregate": "40b45cc3d8b58a1c86f3a79e2dc9e794259707da98fc2a83601e05a6b337866f",
+    "preexistingUntrackedNote": "docs/NEXT-STORY-REVISION.zh-CN.md",
+    "preexistingNoteUnchanged": true,
+    "preexistingNoteSha256": "8847ae08380042dc2e01642ab5facadc25c9883e973946747115af3081ff4b2c",
+    "newFilesScope": "docs/stillwater-2-stage0/ only"
+  },
+  "tests": {
+    "build": {
+      "command": "npm run build",
+      "result": "passed"
+    },
+    "unit": {
+      "command": "npm test",
+      "passed": 140,
+      "failed": 0,
+      "initialRestrictedRun": "Service test file failed under restricted execution; full command rerun with loopback server permitted."
+    },
+    "browser": {
+      "command": "npx playwright test --project=v2 tests/v2-chat-ai.spec.mjs tests/v2-messenger.spec.mjs tests/v2-opening.spec.mjs tests/v2-v13.spec.mjs --workers=2 --trace=off --output=/tmp/stillwater-2-stage0/browser-results",
+      "passed": 34,
+      "failed": 0,
+      "scope": "Existing implementation only; structured AI mock and offline fallback, not a new paid live OpenAI test. Three complete existing endings included."
+    },
+    "newStory2Tests": "Not run: implementation does not exist yet."
+  },
+  "b3": {
+    "combinations": 16384,
+    "orientations": 4096,
+    "validCount": 1,
+    "valid": [
+      [
+        2,
+        1,
+        2,
+        0,
+        3,
+        0
+      ]
+    ],
+    "sha256": "50b1d6c6788b11fef6eebf2b1ac5424ecde68e8908ad0e60ad474fae6a84be44"
+  },
+  "advertisements": {
+    "existingOrdinaryCount": 25,
+    "decision": "Keep all; permit only in explicitly calm scenes. No popup ads in horror, source reading, signal, CCTV, B-3, finale or endings.",
+    "implementation": "Planned, not applied to current runtime."
+  },
+  "mediaGeneration": false,
+  "runtimeEdited": false,
+  "workerChangedOrDeployed": false,
+  "siteDeployed": false,
+  "references": {
+    "count": 36,
+    "http200": 36,
+    "javascriptTextChecks": [
+      "R09",
+      "R14",
+      "R17",
+      "R26"
+    ]
+  },
+  "pagesAtAudit": {
+    "buildType": "legacy",
+    "sourceBranch": "main",
+    "sourcePath": "/",
+    "url": "https://rieyekiwong.github.io/123/",
+    "distIsCurrentPublishSource": false
+  },
+  "workerHealthAtAudit": {
+    "status": 200,
+    "url": "https://damp-rain-a5a6.ywang254.workers.dev/api/health",
+    "allowOrigin": "https://rieyekiwong.github.io",
+    "health": {
+      "mode": "ai",
+      "storage": "d1",
+      "configured": true,
+      "version": "4.10.0"
+    },
+    "paidChatRequested": false
+  }
+}
