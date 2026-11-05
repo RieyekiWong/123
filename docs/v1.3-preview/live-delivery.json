@@ -1,0 +1,76 @@
+{
+  "version": "4.19.0",
+  "release": "3ac19d0",
+  "origin": "https://rieyekiwong.github.io/123/",
+  "checks": "Fresh public-site WeChat → GG private card → forum → careers → hotel → Churen name index",
+  "backendUsage": "No AI enabled; no chat or session API requests",
+  "results": [
+    {
+      "language": "zh",
+      "width": 1440,
+      "httpStatus": 200,
+      "storyEdition": "v13",
+      "query": "王楚人",
+      "route": "#guest-index",
+      "forumCardRooms": [
+        "gg"
+      ],
+      "errors": [],
+      "failedRequests": [],
+      "aiRequestsBeforeConsent": 0,
+      "htmlOverflow": false,
+      "cancelledImageRequests": [
+        {
+          "url": "https://rieyekiwong.github.io/123/assets/web/ad-cinema.jpg",
+          "error": "net::ERR_ABORTED",
+          "count": 1
+        }
+      ],
+      "cancelledImageRequestCount": 1
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "httpStatus": 200,
+      "storyEdition": "v13",
+      "query": "Churen Wang",
+      "route": "#guest-index",
+      "forumCardRooms": [
+        "gg"
+      ],
+      "errors": [],
+      "failedRequests": [],
+      "aiRequestsBeforeConsent": 0,
+      "htmlOverflow": false,
+      "cancelledImageRequests": [
+        {
+          "url": "https://rieyekiwong.github.io/123/assets/web/ad-clouds.jpg",
+          "error": "net::ERR_ABORTED",
+          "count": 26
+        },
+        {
+          "url": "https://rieyekiwong.github.io/123/assets/web/ad-dog.jpg",
+          "error": "net::ERR_ABORTED",
+          "count": 26
+        },
+        {
+          "url": "https://rieyekiwong.github.io/123/assets/web/ad-cat-snow.jpg",
+          "error": "net::ERR_ABORTED",
+          "count": 26
+        },
+        {
+          "url": "https://rieyekiwong.github.io/123/assets/web/ad-computer.jpg",
+          "error": "net::ERR_ABORTED",
+          "count": 26
+        },
+        {
+          "url": "https://rieyekiwong.github.io/123/assets/web/hotel-breakfast.jpg",
+          "error": "net::ERR_ABORTED",
+          "count": 1
+        }
+      ],
+      "cancelledImageRequestCount": 105
+    }
+  ],
+  "requestCancellationNote": "Image requests cancelled by navigation, ad rerenders or closing the browser context during accelerated-clock play are counted separately from HTTP/script failures."
+}

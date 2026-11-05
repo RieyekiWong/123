@@ -135,7 +135,7 @@ D：新档实际从微信到三个结局、错误来源、忽略申请、关闭�
 | `tests/v2-v13-helpers.mjs`、`tests/v2-v13.test.mjs` | 新规则、错误来源、真实设备前提、存档、结局与账号收尾验证；答案仅存在开发资料中 |
 | `tests/v2-v13.spec.mjs`、`tests/v2-v13-recovery.spec.mjs` | 三条实际完整新路线，及通知往返、部分填写、提示、转场恢复、长邮件、深色阅读与无障碍设置 |
 | `assets/story-v12/`、`assets/story-v13/` | 原创虚构人物与场景原图；各有实物清单、尺寸与校验值 |
-| `README.md`、本报告、`docs/v1.3-preview/` | 当前实现说明、开发者答案、真实界面预览；不作为玩家页面引入 |
+| `README.md`、`README.zh-CN.md`、本报告、`docs/v1.3-preview/` | 当前实现说明、开发者答案、真实界面预览；不作为玩家页面引入 |
 
 未重写 `case-data.js` 的旧事实，未改 `case-night.js`／`case-night-model.js` 的接线规则，未改微信传输、角色 Prompt、Cloudflare Worker、普通论坛正文或广告调度。此前存在的 `docs/NEXT-STORY-REVISION.zh-CN.md` 保留原样。
 
@@ -218,4 +218,16 @@ NULL 原脸 SHA-256 仍为 `f2c9cec352ee1548aa1f93c5cc0acbfbcf6800b9f14c0c6c640e
 - 完整 Playwright：256 / 256 通过，4 workers，7.8 分钟。
 - 原 Worker `/api/health`：`mode=ai`、`configured=true`、`storage=d1`；只读健康检查没有发送聊天或调用 OpenAI。
 
-代码发布后还需验证公开站点的中英文新档入口与资源加载；线上结果将在本节补记。
+主实现已通过提交 [`3ac19d0`](https://github.com/RieyekiWong/123/commit/3ac19d0f83afed5fef479b6a45a981e7026ded8e) 推送至 `main`。对应的 [Pages 构建与部署](https://github.com/RieyekiWong/123/actions/runs/42120649424) 成功，公开页面已加载 4.19.0。
+
+线上检查在全新浏览器上下文完成：中文 1440px 和英文 390px 均从实际公开网址开始，读声明、发送消息、接收 GG 私聊分享、进入论坛及招聘、打开工作样本、自动到酒店，再查询王楚人。两边均进入 `story.edition=v13`，论坛卡片只出现在 GG 私聊中一次，没有 JS 错误、HTTP／资源加载失败或横向溢出。切页、广告重绘及关闭上下文取消的图片请求另行计数；使用加速时钟，未把这些取消混作 HTTP 失败。
+
+未启用 AI 的线上试玩没有任何 `/api/chat` 或 `/api/session` 请求。独立只读健康检查确认原 Worker 仍为 AI／D1 配置。线上另核对了 23 个脚本与图片的 SHA-256，全部与已提交源文件一致，包括原 NULL 图；没有额外调用 OpenAI 或调整 Cloudflare。
+
+- [线上试玩记录](v1.3-preview/live-delivery.json)
+- [线上资源校验](v1.3-preview/live-assets.json)
+- [中文桌面开场](v1.3-preview/live-zh-opening.png)／[英文手机开场](v1.3-preview/live-en-opening.png)
+
+线上快速试玩范围为开场至姓名索引；三个完整结局的验证来自前述本地完整浏览器流程。发布后只补充本说明和上述四份线上记录，运行代码保持主实现提交不变。
+
+游玩：[中文版](https://rieyekiwong.github.io/123/index-zh.html?v=4.19.0)／[English](https://rieyekiwong.github.io/123/index.html?v=4.19.0)。已有存档继续原路线；体验 V1.3 全新开场可使用无痕窗口，不必删除原存档。
