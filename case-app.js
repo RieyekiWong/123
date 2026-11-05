@@ -233,6 +233,7 @@
   });
   messenger = window.StillwaterMessengerBridge.create({chat,getState:()=>state,getRoute:currentRoute,canOpen:route=>M.canOpen(state,route),t,esc,audio:nightAudio,reduced:()=>comfort.reduced(),blocked:()=>!!welcome?.isOpen()||phaseTransition.isActive()});
   const errors = {
+    "story-required":["姓名关联仍有来源冲突，请先完成当前调查中的来源核对。","The name association still has source conflicts. Complete the current source review before synchronizing."],
     sample: [
       "请先到招聘页查看样本编号。",
       "Check the reference on the job sample.",
@@ -349,6 +350,7 @@
       void nightAudio.sync();
     },
   });
+  const story = window.StillwaterStory.create({getState:()=>state,getRoute:currentRoute,save,render,chat,signal:voidSignal,t,esc,blocked:()=>!!welcome?.isOpen()||phaseTransition.isActive()});
   function perform(action, payload = {}, errorId = "case-status") {
     const result = M.transition(state, action, payload);
     save();
@@ -418,9 +420,11 @@
     messenger?.beforeRender();
     promo.stopEffects();
     let route = currentRoute();
+    story.prepare(route,new URLSearchParams(location.hash.split("?")[1]||""));
     if (route === "home") route = "hotel";
     const inVoid = route === "void" && M.canOpen(state, "void");
     const staff = [
+      ...window.StillwaterStoryModel.routes,
       "evidence-desk",
       "night-audit",
       "staff",
@@ -471,12 +475,13 @@
       chat.mount(document.querySelector("#case-shell"), { focus: moveFocus, room: new URLSearchParams(location.hash.split("?")[1]||"").get("room") });
       ads.navigate();
       messenger.afterRender();
+      story.afterRender();
       return;
     }
     chat.leave();
     if(messenger.restoreDOM()) {
       if(inVoid)voidWorld.mount(document.querySelector('#case-shell'),nextVoidFocus);
-      evidenceDesk.decorate();ads.navigate();messenger.afterRender();voidSignal.sync();return;
+      evidenceDesk.decorate();ads.navigate();messenger.afterRender();voidSignal.sync();story.afterRender();return;
     }
     if (inVoid) {
       promo.mount(route);
@@ -490,6 +495,7 @@
       nextVoidFocus = "";
       ads.navigate();
       messenger.afterRender();
+      story.afterRender();
       if (moveFocus) {
         window.scrollTo(0, 0);
         document.querySelector("#case-shell").scrollTop = 0;
@@ -563,6 +569,7 @@
             ...views,
             ...nightViews,
             ...spaceViews,
+            ...story.views.routes,
             ending: endingView,
           }[route] || placeholder
         )()
@@ -687,6 +694,7 @@
       handover?.focus({ preventScroll: true });
     }
     messenger.afterRender();
+    story.afterRender();
   }
   document.addEventListener("click", (e) => {
     if (e.target.closest("a.skip")) {

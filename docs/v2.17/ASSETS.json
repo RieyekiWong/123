@@ -1,0 +1,22 @@
+{
+  "fictional": true,
+  "assets": [
+    {
+      "file": "assets/story-v417/north-ferry.png",
+      "source": "Generated fictional scene for Stillwater Hotel 4.17",
+      "sha256": "0a56f79893b071d825e1b3d0497eff91866a325157c776db4bb1b80364bb5450",
+      "bytes": 3191899
+    },
+    {
+      "file": "assets/story-v417/west-passage.png",
+      "source": "Generated fictional scene for Stillwater Hotel 4.17",
+      "sha256": "b5cc34f17d0aa194acdebe13b3525c583bb890bd3003d410239892f7ae722fa8",
+      "bytes": 2466647
+    }
+  ],
+  "nullMaster": {
+    "file": "assets/previews/v415-signal/apparition.png",
+    "sha256": "f2c9cec352ee1548aa1f93c5cc0acbfbcf6800b9f14c0c6c640e679c5fca8388",
+    "unchangedFrom416": true
+  }
+}

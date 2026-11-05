@@ -1,10 +1,12 @@
+Version 4.17.0 adds the Wang Churen / NULL story: a 2023 conversation, historical name index, three diaries, a separate account request, source tracing and a photo overlay, connected to the existing CCTV, B-3, black chapter and three endings. NULL retains the approved apparition. Existing saves stay compatible; a fresh case follows the full expansion. The original seven AI contacts remain; the new story account uses authored dialogue and local replies. [Development report and previews (spoilers)](docs/v2.17/REPORT.zh-CN.md).
+
 Version 4.16.0 adds eight different interactive retro ads alongside the existing seventeen, with a popup opt-out in the opening declaration and settings. [Designs and verification](docs/v2.16/DELIVERY.zh-CN.md).
 
 V2.12 adds the W3-02 publicity archive: three versions of one corridor print and an interactive source check after the existing B-3 wiring save. Ordinary adverts, chat, C1–C9 and all three ending IDs remain. [Implementation, triggers, save migration and walkthrough](docs/V2_12-HOTEL-PROMO.zh-CN.md).
 
 V2.11 revises shop, forum-interface, recruitment, hotel and later-chapter copy. Chat and authored forum threads and replies are preserved. See the [release notes](docs/v2.11/DELIVERY.zh-CN.md) and [full copy review](docs/V2_11-COPY-REVIEW.zh-CN.md).
 
-AI chat is live in the [current edition](https://rieyekiwong.github.io/123/index.html?v=4.12.0#chat). Choose **AI chat → Agree and enable** to opt in; local replies remain available. See the [Cloudflare Edit code guide](workers/chat/dashboard/README.zh-CN.md), [integration report](docs/V2_10-AI-CHAT.zh-CN.md), and [real production browser checks](docs/v2.10/live-frontend.json).
+AI chat is live in the [current edition](https://rieyekiwong.github.io/123/index.html?v=4.17.0#chat). Choose **AI chat → Agree and enable** to opt in; local replies remain available. See the [Cloudflare Edit code guide](workers/chat/dashboard/README.zh-CN.md), [integration report](docs/V2_10-AI-CHAT.zh-CN.md), and [real production browser checks](docs/v2.10/live-frontend.json).
 
 # The Stillwater Hotel — V2.5
 

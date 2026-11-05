@@ -624,6 +624,7 @@ globalThis.StillwaterCaseState = (() => {
 
   const fresh = () => ({
     schema: 2,
+    story: globalThis.StillwaterStoryModel?.fresh(),
     night: globalThis.StillwaterNightModel.fresh(),
     promo: freshPromo(),
     desk: freshDesk(),
@@ -678,14 +679,16 @@ globalThis.StillwaterCaseState = (() => {
     syncSources(state);
     return true;
   }
+  for (const route of globalThis.StillwaterStoryModel?.routes || []) routes[route] = "public";
   const canOpen = (state, route) =>
+    (globalThis.StillwaterStoryModel?.routes.includes(route) ? globalThis.StillwaterStoryModel.canOpen(state,route) :
     Object.hasOwn(routes, route) &&
     (!["mirror", "cameras", "service-passage", "terminal", "void"].includes(
       route,
     ) ||
       state.completed.finalEvidence) &&
     ((route === "ending" && state.endings.length > 0) ||
-      met(state, routes[route]));
+      met(state, routes[route])));
   function recovery(state, route) {
     if (
       route === "maintenance" &&
@@ -873,13 +876,16 @@ globalThis.StillwaterCaseState = (() => {
       !!state.desk.results.space &&
       !!state.desk.results.timeline &&
       !!state.desk.results.identity;
+    if(globalThis.StillwaterStoryModel)state.story=globalThis.StillwaterStoryModel.hydrate(raw.story,state);
     return state;
   }
   const ok = () => ({ ok: true });
   const fail = (error) => ({ ok: false, error });
   function transition(state, action, payload = {}) {
+    if(action.startsWith("story-"))return globalThis.StillwaterStoryModel?.action(state,action.slice(6),payload)||fail("unknown");
     if (action.startsWith("desk-")) return deskAction(state, action, payload);
     if (action === "void") {
+      if(globalThis.StillwaterStoryModel?.on(state)&&((payload.action==="disposition")||(payload.action==="classify"&&payload.type==="UNVERIFIED"))&&!state.story.findings.footage)return fail("story-footage");
       if (
         !state.completed.finalEvidence ||
         !promoChecked(state) ||
@@ -1031,6 +1037,7 @@ globalThis.StillwaterCaseState = (() => {
         state.completed.finalEvidence = false;
         return ok();
       case "night-start":
+        if(globalThis.StillwaterStoryModel && !globalThis.StillwaterStoryModel.ready(state))return fail("story-required");
         if (!state.completed.finalEvidence) return fail("evidence-incomplete");
         if (!n.started) n.spreadRequired = true;
         state.night.started = true;

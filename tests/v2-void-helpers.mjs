@@ -34,6 +34,7 @@ export async function solveVoid(page,{visit=async()=>{},lookback=true}={}) {
   if(await page.locator(`[data-desk-form="${type}"]`).count())await citeAndSubmit(page,type);
   else await page.locator('[data-desk-op=close-final]').click();
  }
+ if(await page.locator('[data-story-form=footage]').count()){for(const id of ['footage','notebook','index'])await page.locator(`[data-story-boundary-cite=${id}]`).check();await page.locator('[data-story-field=finding][value=unverified]').check();await page.locator('[data-story-form=footage] button[type=submit]').click();}
  await visit('void-classification');
  await page.locator('[data-void-action=disposition][data-mode=retain]').click();
  if(lookback)await page.locator('[data-void-action=lookback]').click();

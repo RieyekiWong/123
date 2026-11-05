@@ -1,6 +1,7 @@
 import { expect } from "@playwright/test";
 import { solveVoid } from "./v2-void-helpers.mjs";
 import {intake,citeAndSubmit} from "./v2-evidence-ui-helpers.mjs";
+import {completeStory} from "./v2-story-ui-helpers.mjs";
 import { solvePromo } from "./v2-promo-helpers.mjs";
 export const link = async (page, route, scope = "main") => {
   await page.locator(`${scope} a[href="#${route}"]`).first().click();
@@ -124,6 +125,7 @@ export async function validateFindings(page) {
 }
 
 export async function toNight(page, visit = async () => {}) {
+  const saved=await state(page);if(saved.story?.active&&!saved.story.legacy&&(!saved.story.findings.cause||saved.story.preview==="pending"))await completeStory(page);
   await expect(page.locator("[data-ending]")).toHaveCount(0);
   await page.locator("[data-case-action=sync-records]").click();
   await expect(page.locator("body")).toHaveAttribute("data-anomaly", "altered");

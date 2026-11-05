@@ -44,10 +44,10 @@ test('a silent player receives the forum card before the conversation ends and m
   await expect(page.locator('.chat-share-card')).toHaveCount(1);
   const mid=await saved(page);expect(mid.cursor).toBeLessThan(54);
   await page.clock.runFor(125000);
-  const complete=await saved(page);expect(complete.cursor).toBe(54);expect(complete.messages).toHaveLength(54);
-  await page.clock.runFor(120000);expect((await saved(page)).messages).toHaveLength(54);
+  const complete=await saved(page);expect(complete.cursor).toBe(54);expect(complete.messages.filter(m=>m.kind==='script')).toHaveLength(54);
+  await page.clock.runFor(120000);expect((await saved(page)).messages.filter(m=>m.kind==='script')).toHaveLength(54);
   await expect(page.locator('.chat-message-self')).toHaveCount(0);
-  expect(complete.messages.every(m=>m.kind==='script')).toBe(true);
+  expect(complete.messages.filter(m=>m.kind==='script').every(m=>!m.conversation||m.conversation==='group')).toBe(true);expect(complete.messages.filter(m=>m.kind==='story'&&m.key.startsWith('discovery:'))).toHaveLength(15);
 });
 test('Enter, Shift+Enter, IME, literal HTML and local drafts work without sending data to a service',async({page})=>{
   await open(page);const input=page.locator('#chat-input');
@@ -136,17 +136,18 @@ test('confirmed restart clears chat together with the new case, preserving ad an
   expect(await page.evaluate(()=>localStorage.getItem('stillwater-hotel:v2'))).toBe('old visitor');
   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('stillwater-ads:v1')).pinnedIds)).toEqual(['pet']);
 });
-test('eight sourced offline photo avatars stay with the same speakers and expose author and license credits',async({page})=>{
+test('eight sourced avatars retain their credits; two fictional story accounts have separate artwork',async({page})=>{
  await open(page);
  const photos=await page.evaluate(()=>StillwaterChatPhotos);
- expect(photos).toHaveLength(8);
- for(const photo of photos) {
+ expect(photos).toHaveLength(10);expect(photos.filter(p=>p.source.startsWith('https://commons.wikimedia.org'))).toHaveLength(8);
+ expect(photos.find(p=>p.id==='wcr_old').file).not.toBe(photos.find(p=>p.id==='wcr_new').file);
+ for(const photo of photos.filter(p=>p.source.startsWith('https://commons.wikimedia.org'))) {
   const image=page.locator(`.chat-avatar[src="${photo.file}"]`).first();
   await expect.poll(()=>image.evaluate(el=>el.naturalWidth)).toBeGreaterThan(0);
   expect(photo.source).toMatch(/^https:\/\/commons.wikimedia.org\/wiki\/File:/);
  }
  await page.locator('.chat-heading [data-chat-action=members]').click();
  await page.locator('.chat-avatar-credits summary').click();
- await expect(page.locator('.chat-avatar-credits p')).toHaveCount(8);
+ await expect(page.locator('.chat-avatar-credits p')).toHaveCount(10);
  await expect(page.locator('.chat-avatar-credits')).toContainText('CC BY');
 });

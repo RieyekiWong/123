@@ -10,14 +10,16 @@ globalThis.StillwaterVoidSignal = {
       overlay = null,
       stopHiss = null,
       bag = [];
+    let manual = null;
     let image = null,
       loading = null;
     const eligible = () =>
+      (manual ? manual.target.isConnected && location.hash === manual.hash :
       document.body.dataset.site === "void" &&
       getState().night.void.entered &&
       ["corridor", "fragments", "classify"].includes(
         getState().night.void.stage,
-      ) &&
+      )) &&
       !getState().preferences.skipScares &&
       !document.hidden &&
       !reduced() &&
@@ -33,6 +35,7 @@ globalThis.StillwaterVoidSignal = {
       overlay = null;
       stopHiss?.();
       stopHiss = null;
+      if(manual){manual=null;active=false;}
     }
     function clear() {
       generation++;
@@ -52,6 +55,7 @@ globalThis.StillwaterVoidSignal = {
       return loading;
     }
     function schedule(first = false) {
+      if(manual)return;
       clearTimeout(timer);
       timer = setTimeout(
         () => void play(),
@@ -69,7 +73,7 @@ globalThis.StillwaterVoidSignal = {
         return;
       }
       if (!bag.length) bag = random() < 0.5 ? [true, false] : [false, true];
-      const wanted = bag.pop() && !getState().preferences.skipScares,
+      const wanted = (manual ? true : bag.pop()) && !getState().preferences.skipScares,
         token = generation;
       const hasFace = wanted && (await preload());
       if (token !== generation || !active || !eligible()) return;
@@ -79,11 +83,14 @@ globalThis.StillwaterVoidSignal = {
       }
       overlay = document.createElement("canvas");
       overlay.className = "void-signal-burst";
-      overlay.dataset.face = String(hasFace);
+      overlay.dataset.face = String(hasFace);overlay.dataset.nullForm=manual?.form||(getState().story?.active&&!getState().story?.legacy?"trace":"assembled");
       overlay.setAttribute("aria-hidden", "true");
-      const scale = Math.min(384 / innerWidth, 384 / innerHeight);
-      overlay.width = Math.max(1, Math.round(innerWidth * scale));
-      overlay.height = Math.max(1, Math.round(innerHeight * scale));
+      const bounds=manual?.target.getBoundingClientRect(),visible=bounds&&Math.min(innerHeight,bounds.bottom)-Math.max(0,bounds.top),region=manual?(visible>80?{left:Math.max(0,bounds.left),top:Math.max(0,bounds.top),width:Math.min(innerWidth,bounds.right)-Math.max(0,bounds.left),height:visible}:{left:0,top:0,width:innerWidth,height:innerHeight}):null,width=region?.width||innerWidth,height=region?.height||innerHeight;
+      if(region){Object.assign(overlay.style,{position:"fixed",inset:"auto",left:region.left+"px",top:region.top+"px",width:width+"px",height:height+"px"});overlay.dataset.nullEvent=manual.id;}
+      const form=manual?.form||(getState().story?.active&&!getState().story?.legacy?"trace":"assembled");
+      const scale = Math.min(384 / width, 384 / height);
+      overlay.width = Math.max(1, Math.round(width * scale));
+      overlay.height = Math.max(1, Math.round(height * scale));
       document.body.append(overlay);
       const c = overlay.getContext("2d"),
         w = overlay.width,
@@ -118,7 +125,7 @@ globalThis.StillwaterVoidSignal = {
         c.fillStyle = `rgba(2,8,12,${0.28 * envelope})`;
         c.fillRect(0, 0, w, h);
         // Tear the current scene rather than a baked screenshot of the website.
-        const scene = document.querySelector(".void-canvas");
+        const scene = manual ? null : document.querySelector(".void-canvas");
         if (scene) {
           const r = scene.getBoundingClientRect(),
             x = (r.left * w) / innerWidth,
@@ -142,7 +149,8 @@ globalThis.StillwaterVoidSignal = {
           }
         }
         if (hasFace && p >= 0.22 && p < 0.51) {
-          const fit = Math.min(
+          c.save();if(form==="trace"){c.beginPath();c.rect(w*.4,h*.3,w*.17,h*.24);c.clip();}if(form==="half"){c.beginPath();c.rect(w*.48,0,w*.52,h);c.clip();}
+          const fit = (form==="close"?1.35:1)*Math.min(
               (w * 1.6) / image.naturalWidth,
               (h * 0.94) / image.naturalHeight,
             ),
@@ -169,6 +177,7 @@ globalThis.StillwaterVoidSignal = {
               sh * fit,
             );
           }
+          c.restore();
         }
         for (let i = 0; i < noise.data.length; i += 4) {
           const value = rand() * 135;
@@ -240,6 +249,14 @@ globalThis.StillwaterVoidSignal = {
     window.addEventListener("pageshow", sync);
     window.addEventListener("resize", resize);
     return {
+      occupied,
+      async burst({id,form="assembled",target}){
+        clear();const token=generation;
+        if(!target?.isConnected||getState().preferences.skipScares||reduced()||document.hidden||document.querySelector("dialog[open]"))return false;
+        manual={id,form,target,hash:location.hash};active=true;
+        if(!(await preload())||token!==generation||!target.isConnected){if(token===generation)clear();return false;}
+        await play();return true;
+      },
       sync,
       clear,
       destroy() {

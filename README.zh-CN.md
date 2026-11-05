@@ -1,10 +1,12 @@
+新版 4.17.0 接入王楚人 / NULL 故事线：2023 旧会话、姓名索引、三份日记、新账号申请、来源核对与照片叠片，接回原监控、B-3、黑空间和三个结局。NULL 沿用已确认的鬼脸。旧档保持兼容；完整新线从新档开始。原七位 AI 联系人保留，王楚人新号目前为剧情脚本与本地回复。[开发报告与预览（含谜底）](docs/v2.17/REPORT.zh-CN.md)。
+
 新版 4.16.0 在原有 17 款广告之外增加 8 款不同版式的小互动广告，并在开场声明和设置中加入取消弹窗广告的选项。[预览、改动与验证](docs/v2.16/DELIVERY.zh-CN.md)。
 
 新版 V2.12 新增 W3-02 酒店宣传资料线：同一张照片的原版、同步版与异常预览，以及接在 B-3 保存之后的可操作影像来源核对。原广告、微信、C1–C9 和三种结局保留。[改动、触发条件、存档与试玩路径](docs/V2_12-HOTEL-PROMO.zh-CN.md)。
 
 新版 V2.11 已整理广告、论坛界面、招聘、酒店与后半段文案。微信、论坛帖子和评论保留原稿。详见[本轮说明](docs/v2.11/DELIVERY.zh-CN.md)与[完整修改对照](docs/V2_11-COPY-REVIEW.zh-CN.md)。
 
-新版微信已接通真实 AI：打开[中文版](https://rieyekiwong.github.io/123/index-zh.html?v=4.12.0#chat)，点右上角「AI 聊天」并同意启用。默认仍可使用本地回复。部署说明见 **[Cloudflare 网页单文件步骤](workers/chat/dashboard/README.zh-CN.md)**；[V2.10 说明](docs/V2_10-AI-CHAT.zh-CN.md)及[正式网页验收](docs/v2.10/live-frontend.json)记录了真实接口、各角色和存档检查。
+新版微信已接通真实 AI：打开[中文版](https://rieyekiwong.github.io/123/index-zh.html?v=4.17.0#chat)，点右上角「AI 聊天」并同意启用。默认仍可使用本地回复。部署说明见 **[Cloudflare 网页单文件步骤](workers/chat/dashboard/README.zh-CN.md)**；[V2.10 说明](docs/V2_10-AI-CHAT.zh-CN.md)及[正式网页验收](docs/v2.10/live-frontend.json)记录了真实接口、各角色和存档检查。
 
 # 静水旅馆 V2.6：最后一条夜班记录与未归档画面
 
