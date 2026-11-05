@@ -1,8 +1,10 @@
 /* Authored event queue, archive controls and scene bridges. No AI progression. */
 globalThis.StillwaterStory = {
-  create({getState,getRoute,save,render,chat,signal,t,esc,blocked=()=>false}){
+  create({getState,getRoute,save,render,chat,signal,t,esc,blocked=()=>false,phaseTransition}){
     const M=globalThis.StillwaterStoryModel,D=globalThis.StillwaterStoryData;
     const views=globalThis.StillwaterStoryPages({getState,t,esc}),P=()=>getState().story;
+    const current=()=>globalThis.StillwaterStoryV13?.active(getState());
+    const flow=globalThis.StillwaterStoryV13Runtime?.create({getState,getRoute,save,render,chat,signal,t,esc,blocked,phaseTransition});
     let drag=null,busy=false;
     function persistStory(){if(getState().evidence.length||P().events.length||P().viewed.length||P().restored)save();}
     const tr=v=>t(...v),apply=(action,payload={})=>{const r=M.action(getState(),action,payload);persistStory();return r;};
@@ -18,6 +20,7 @@ globalThis.StillwaterStory = {
     }
     function prepare(route,params){
       sync();if(!M.on(getState()))return;
+      if(current()){flow.prepare(route,params);return;}
       const key=params.get('proof');if(key&&D.proofs[key])apply('tab',{key});
       if(route==='source-trace')apply('tab',{key:'echo'});
       if(route==='rewrite-review')apply('tab',{key:'cause'});
@@ -48,7 +51,7 @@ globalThis.StillwaterStory = {
       panel.textContent=result.ok?t('核对已保存。','Review retained.'):tr(copy[result.error]||copy['not-ready'])+(result.document?views.name(result.document):'');
       panel.dataset.error=String(!result.ok);if(!result.ok)panel.focus({preventScroll:true});
     }
-    function controls(action,payload){if(action==='open'){const params=new URLSearchParams(location.hash.split('?')[1]||'');if(params.has('source')){params.set('source',payload.id);history.replaceState(null,'',location.pathname+location.search+'#'+getRoute()+'?'+params);}}const result=apply(action,payload);sync();if(result.ok)render();feedback(result);return result;}
+    function controls(action,payload){if(action==='open'){const params=new URLSearchParams(location.hash.split('?')[1]||'');if(params.has('source')){params.set('source',payload.id);history.replaceState(null,'',location.pathname+location.search+'#'+getRoute()+'?'+params);}}const result=apply(action,payload);sync();if(result.ok)render();if(current()){flow.feedback(result,action);if(result.ok&&action==='open')flow.openSource(payload.id);void flow.resume();}else feedback(result);return result;}
     function updatePhoto(){const o=P().overlay,img=document.querySelector('[data-story-overlay-photo]');if(img){img.style.transform=`translate(${o.x}%,${o.y}%) scale(${o.zoom/100})`;img.style.opacity=o.opacity/100;}const out=document.querySelector('[data-story-overlay-output]');if(out)out.textContent=`X ${o.x} / Y ${o.y} / ${o.zoom}%`;}
     document.addEventListener('click',event=>{
       const el=event.target.closest('[data-story-action]');if(!el)return;
@@ -94,6 +97,7 @@ globalThis.StillwaterStory = {
     function goal(){const o=M.objective(getState());if(o){const base=globalThis.StillwaterCaseState.objective(getState());o.links=[...new Map([o.links[0],...base.directions,...o.links.slice(1)].map(x=>[x[0],x])).values()].slice(0,3);}return o?`<section class="investigation-focus story-focus" aria-label="${t('当前调查','Current investigation')}"><p class="desk-label">${t('当前调查','CURRENT REVIEW')}</p><p>${esc(tr(o.label))}</p><div class="investigation-directions">${o.links.slice(0,3).map(([r,label])=>`<a href="#${r}">${esc(tr(label))} →</a>`).join('')}</div></section>`:'';}
     function afterRender(){
       sync();if(!M.on(getState()))return;
+      if(current()){flow.afterRender();return;}
       const route=getRoute(),params=new URLSearchParams(location.hash.split('?')[1]||''),main=document.querySelector('#content');
       if(!main||route==='chat'||!globalThis.StillwaterCaseState.canOpen(getState(),route))return;
       for(const [id,file]of Object.entries(globalThis.StillwaterCaseData.documents)){if(file.route.split('?')[0]!==route||!M.allowed(getState(),id)||P().viewed.includes(id))continue;if(['rooms','guestbook'].includes(route)&&params.get('copy')!=='original')continue;M.action(getState(),'open',{id});}
@@ -119,7 +123,7 @@ globalThis.StillwaterStory = {
       if(route==='ending'&&!main.querySelector('.story-epilogue')){const view=params.get('view'),id=getState().endings.includes(view)?view:getState().lastEnding;main.insertAdjacentHTML('beforeend',views.epilogue(id));}
       persistStory();void effects();
     }
-    setInterval(()=>{sync();if(M.on(getState()))void effects();},1000);
+    setInterval(()=>{sync();if(current())void flow.resume();else if(M.on(getState()))void effects();},1000);
     return {prepare,afterRender,views,sync,goal};
   }
 };

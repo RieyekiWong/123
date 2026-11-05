@@ -141,7 +141,7 @@ test("explicit frame scare happens once and is filtered, skip mode retains the s
 for (const width of [375, 768, 1440])
   test(`equipment at ${width}px fits and retains 4:3 screens`, async ({
     page,
-  }) => {
+  }, testInfo) => {
     // This includes the entire camera/passage route, wiring, and a full-page capture.
     test.setTimeout(60000);
     await page.setViewportSize({ width, height: 900 });
@@ -161,7 +161,7 @@ for (const width of [375, 768, 1440])
       ),
     ).toBe(true);
     await page.screenshot({
-      path: `docs/v2.4.3/terminal-${width}.png`,
+      path: testInfo.outputPath(`terminal-${width}.png`),
       fullPage: true,
     });
   });

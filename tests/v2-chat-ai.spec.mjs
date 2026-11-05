@@ -1,6 +1,7 @@
 import {test,expect} from './v2-fixture.mjs';
+import {seedLegacyChat} from './v2-chat-legacy-fixture.mjs';
 const save=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('stillwater-chat:v1')));
-async function open(page,entry='index-zh.html',width=1440){await page.setViewportSize({width,height:900});await page.clock.install({time:new Date('2026-11-04T12:00:00Z')});await page.clock.pauseAt(new Date('2026-11-04T12:00:01Z'));await page.goto('/'+entry);}
+async function open(page,entry='index-zh.html',width=1440){await seedLegacyChat(page);await page.setViewportSize({width,height:900});await page.clock.install({time:new Date('2026-11-04T12:00:00Z')});await page.clock.pauseAt(new Date('2026-11-04T12:00:01Z'));await page.goto('/'+entry);}
 async function closeAds(page){for(const button of await page.locator('[data-active-ad] [data-ad-action=close]').all())await button.click();}
 async function room(page,id){if(await page.locator('.chat-mobile-back').isVisible())await page.locator('.chat-mobile-back').click();await page.locator('[data-chat-room='+id+']').click();}
 async function send(page,text,ms=6000){await page.locator('#chat-input').fill(text);await page.locator('#chat-input').press('Enter');await page.clock.runFor(ms);await closeAds(page);}

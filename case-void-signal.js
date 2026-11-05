@@ -55,7 +55,7 @@ globalThis.StillwaterVoidSignal = {
       return loading;
     }
     function schedule(first = false) {
-      if(manual)return;
+      if(manual||globalThis.StillwaterStoryV13?.active(getState()))return;
       clearTimeout(timer);
       timer = setTimeout(
         () => void play(),

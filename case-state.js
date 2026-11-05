@@ -304,6 +304,7 @@ globalThis.StillwaterCaseState = (() => {
     syncSources(state);
   }
   function objective(state) {
+    if(globalThis.StillwaterStoryV13?.active(state)){const o=globalThis.StillwaterStoryV13.objective(state);return {key:'v13',title:o.label,directions:o.links};}
     const go = (key, zh, en, directions) => ({
       key,
       title: [zh, en],
@@ -672,7 +673,7 @@ globalThis.StillwaterCaseState = (() => {
       promoChecked(state) &&
       globalThis.StillwaterVoidModel.gate(state.night));
   const canRecord = (state, id) =>
-    !!D.clues[id] && met(state, D.clues[id].unlockedAt);
+    !!D.clues[id] && (globalThis.StillwaterStoryV13?.active(state)?state.story.discovered.some(key=>D.documents[key]?.clue===id):met(state, D.clues[id].unlockedAt));
   function record(state, id) {
     if (!canRecord(state, id)) return false;
     if (!has(state, id)) state.evidence.push(id);
@@ -681,6 +682,7 @@ globalThis.StillwaterCaseState = (() => {
   }
   for (const route of globalThis.StillwaterStoryModel?.routes || []) routes[route] = "public";
   const canOpen = (state, route) =>
+    (globalThis.StillwaterStoryV13?.active(state)&&globalThis.StillwaterStoryV13.canOpen(state,route)!==null?globalThis.StillwaterStoryV13.canOpen(state,route):
     (globalThis.StillwaterStoryModel?.routes.includes(route) ? globalThis.StillwaterStoryModel.canOpen(state,route) :
     Object.hasOwn(routes, route) &&
     (!["mirror", "cameras", "service-passage", "terminal", "void"].includes(
@@ -688,8 +690,9 @@ globalThis.StillwaterCaseState = (() => {
     ) ||
       state.completed.finalEvidence) &&
     ((route === "ending" && state.endings.length > 0) ||
-      met(state, routes[route])));
+      met(state, routes[route]))));
   function recovery(state, route) {
+    if(globalThis.StillwaterStoryV13?.active(state)){const goal=globalThis.StillwaterStoryV13.objective(state);if(goal)return goal.links[0][0];return state.night.door?'terminal':'cameras';}
     if (
       route === "maintenance" &&
       !state.desk.results.space &&
@@ -725,6 +728,8 @@ globalThis.StillwaterCaseState = (() => {
   function hydrate(raw) {
     const state = fresh();
     if (!raw || raw.schema !== 2) return state;
+    const currentStory=raw.story?.schema===2&&raw.story.edition==='v13'&&!!globalThis.StillwaterStoryV13;
+    if(currentStory)state.story=globalThis.StillwaterStoryV13.hydrate(raw.story,state);
     const wanted = new Set(Array.isArray(raw.evidence) ? raw.evidence : []);
     for (const id of Object.keys(D.clues)) {
       if (id === "C7")
@@ -737,7 +742,7 @@ globalThis.StillwaterCaseState = (() => {
     state.completed.serviceInspected =
       raw.completed?.serviceInspected === true && has(state, "C4");
     state.completed.finalEvidence =
-      raw.completed?.finalEvidence === true &&
+      currentStory?globalThis.StillwaterStoryV13.ready(state):raw.completed?.finalEvidence === true &&
       Object.keys(D.clues).every((id) => has(state, id));
     const draft = raw.drafts || {};
     for (const key of ["reservation", "maintenance"])
@@ -786,8 +791,8 @@ globalThis.StillwaterCaseState = (() => {
       ...(state.night.released ? ["released"] : []),
     ];
     state.endings =
-      state.completed.audit &&
-      Object.keys(D.clues).every((id) => has(state, id)) &&
+      (currentStory?state.completed.finalEvidence:state.completed.audit &&
+      Object.keys(D.clues).every((id) => has(state, id))) &&
       Array.isArray(raw.endings)
         ? ends.filter((id) => raw.endings.includes(id))
         : [];
@@ -859,7 +864,7 @@ globalThis.StillwaterCaseState = (() => {
     hydrateDesk(state, raw.desk, raw);
     const v = state.night.void;
     for (const key of ["ROOM", "GUEST", "EMPLOYEE"]) {
-      if (
+      if (!currentStory&&
         v.reviews[key] &&
         !v.reviews[key].legacy &&
         !state.desk.results[key]
@@ -871,12 +876,12 @@ globalThis.StillwaterCaseState = (() => {
         if (v.reviewed) v.stage = "classify";
       }
     }
-    state.completed.finalEvidence =
+    if(!currentStory)state.completed.finalEvidence =
       state.completed.finalEvidence &&
       !!state.desk.results.space &&
       !!state.desk.results.timeline &&
       !!state.desk.results.identity;
-    if(globalThis.StillwaterStoryModel)state.story=globalThis.StillwaterStoryModel.hydrate(raw.story,state);
+    if(!currentStory&&globalThis.StillwaterStoryModel)state.story=globalThis.StillwaterStoryModel.hydrate(raw.story,state);
     return state;
   }
   const ok = () => ({ ok: true });
@@ -885,7 +890,7 @@ globalThis.StillwaterCaseState = (() => {
     if(action.startsWith("story-"))return globalThis.StillwaterStoryModel?.action(state,action.slice(6),payload)||fail("unknown");
     if (action.startsWith("desk-")) return deskAction(state, action, payload);
     if (action === "void") {
-      if(globalThis.StillwaterStoryModel?.on(state)&&((payload.action==="disposition")||(payload.action==="classify"&&payload.type==="UNVERIFIED"))&&!state.story.findings.footage)return fail("story-footage");
+      if(!globalThis.StillwaterStoryV13?.active(state)&&globalThis.StillwaterStoryModel?.on(state)&&((payload.action==="disposition")||(payload.action==="classify"&&payload.type==="UNVERIFIED"))&&!state.story.findings.footage)return fail("story-footage");
       if (
         !state.completed.finalEvidence ||
         !promoChecked(state) ||
@@ -901,11 +906,13 @@ globalThis.StillwaterCaseState = (() => {
         if (!result.ok || payload.mode === "retain") return result;
         return transition(state, "ending", { ending: "auto-close" });
       }
-      return globalThis.StillwaterVoidModel.transition(
+      const result=globalThis.StillwaterVoidModel.transition(
         state.night.void,
         payload.action,
         payload,
       );
+      if(result.ok&&payload.action==='review'&&globalThis.StillwaterStoryV13?.active(state))globalThis.StillwaterVoidModel.transition(state.night.void,'terminal');
+      return result;
     }
     if (action === "promo-source" || action === "promo-mark") {
       if (
@@ -950,9 +957,11 @@ globalThis.StillwaterCaseState = (() => {
         if (!has(state, "C1")) return fail("sample");
         if (String(payload.reference).trim().toUpperCase() !== F.reservation)
           return fail("reservation");
+        if(globalThis.StillwaterStoryV13?.active(state))return globalThis.StillwaterStoryV13.open(state,'booking');
         record(state, "C2");
         return ok();
       case "inventory":
+        if(globalThis.StillwaterStoryV13?.active(state))return payload.room===F.bookedRoom?globalThis.StillwaterStoryV13.open(state,'inventory'):fail('inventory');
         if (!has(state, "C2")) return fail("booking");
         if (
           payload.room !== F.bookedRoom ||
@@ -962,9 +971,11 @@ globalThis.StillwaterCaseState = (() => {
         record(state, "C3");
         return ok();
       case "message":
+        if(globalThis.StillwaterStoryV13?.active(state))return globalThis.StillwaterStoryV13.open(state,'key');
         if (!record(state, "C4")) return fail("inventory-first");
         return ok();
       case "inspect-service":
+        if(globalThis.StillwaterStoryV13?.active(state))return globalThis.StillwaterStoryV13.open(state,'position');
         if (!has(state, "C3")) return fail("inventory-first");
         record(state, "C5");
         state.completed.serviceInspected = true;
@@ -1220,7 +1231,7 @@ globalThis.StillwaterCaseState = (() => {
       case "ending":
         if (
           !state.completed.finalEvidence ||
-          !Object.keys(D.clues).every((id) => has(state, id))
+          (globalThis.StillwaterStoryV13?.active(state)?state.story.finalChoice!==payload.ending||!state.night.void.complete:!Object.keys(D.clues).every((id) => has(state, id)))
         )
           return fail("evidence-incomplete");
         if (!N.passageReady(n) || !state.night.frame || !state.night.operations)

@@ -8,7 +8,7 @@ globalThis.StillwaterChat = {
     const personName=id=>localized((D.people||D.members)[id]?.name||id);
     const transport=globalThis.StillwaterChatTransport.create({onStatus:code=>{aiNotice=code;renderStatus();}});
     const messagesFor=id=>[
-      ...(D.sideChats[id]?.messages||[]).map((m,index)=>({id:id+index,kind:'side',entry:m,at:(D.sideChats[id]?.historyAt||M.base-600000)+index*20000})),
+      ...M.sideMessages(state,id).map((m,index)=>({id:id+index,kind:'side',entry:m,at:m.at||(D.sideChats[id]?.historyAt||M.base-600000)+index*20000,displayTime:m.displayTime})),
       ...state.messages.filter(m=>M.roomOf(m)===id)
     ];
     const icons={
@@ -63,7 +63,7 @@ globalThis.StillwaterChat = {
         limited:['在线聊天暂时达到用量限制，已改用本地回复','Online chat has reached its limit. Using local replies.'],
         fallback:['在线聊天暂时连不上，已改用本地回复','Online chat is unavailable. Using local replies.'],
       };
-      label.textContent=room==='wcr_old'?t('旧会话 · 2023 年留存','Older conversation · Retained in 2023'):room==='wcr_new'?t('新账号 · 剧情对话与本地回复','New account · Authored dialogue and local replies'):t(...(notices[code]||notices.fallback));
+      label.textContent=room==='wcr_old'?globalThis.StillwaterChatOpening?.active(state)?t('旧会话 · 2021—2023 · 时间按原记录显示','Older conversation · 2021–2023 · Original message times'):t('旧会话 · 2023 年留存','Older conversation · Retained in 2023'):room==='wcr_new'?t('新账号 · 剧情对话与本地回复','New account · Authored dialogue and local replies'):t(...(notices[code]||notices.fallback));
     }
     function openAISettings() {
       root.querySelector('.chat-ai-dialog')?.remove();
@@ -115,7 +115,7 @@ globalThis.StillwaterChat = {
       const entry=message.entry||resolved(message);
       if(!entry)return '';
       const self=entry.person==='me';
-      return `<div class="chat-message ${self?'chat-message-self':''}" data-chat-message="${esc(message.id)}">${avatar(entry.person)}<div class="chat-message-content">${self?'':`<span class="chat-speaker">${esc(personName(entry.person))}</span>`}${entry.kind==='card'?shareCard():`<div class="chat-bubble">${esc(localized(entry.text))}${entry.storyImage?`<span class="chat-story-photo"><img src="${esc(entry.storyImage)}" alt="${t('旧湖区照片，2023 年留存','Old Lake photograph retained in 2023')}"><i aria-hidden="true"></i></span>`:''}${entry.image&&globalThis.StillwaterMedia.find(entry.image)?`<img class="chat-shared-photo" src="assets/${esc(globalThis.StillwaterMedia.find(entry.image).file)}" alt="${esc(localized(globalThis.StillwaterMedia.find(entry.image).alt))}" loading="lazy">`:''}</div>`}</div></div>`;
+      return `<div class="chat-message ${self?'chat-message-self':''}" data-chat-message="${esc(message.id)}">${avatar(entry.person)}<div class="chat-message-content">${self?'':`<span class="chat-speaker">${esc(personName(entry.person))}</span>`}${entry.kind==='card'?shareCard():`<div class="chat-bubble">${entry.forwarded?`<span class="chat-forwarded-label">${t('转发自旧群聊','Forwarded from the older group chat')}</span>`:''}${esc(localized(entry.text))}${entry.photo?globalThis.StillwaterChatOpeningView?.photo(entry.photo,{t,esc})||'':''}${entry.contact==='wcr_old'?`<button class="chat-old-conversation-link" type="button" data-chat-room="wcr_old">${t('查看楚人的旧聊天','Open Churen’s older chat')}</button>`:''}${entry.storyImage?`<span class="chat-story-photo"><img src="${esc(entry.storyImage)}" alt="${t('旧湖区照片，2023 年留存','Old Lake photograph retained in 2023')}"><i aria-hidden="true"></i></span>`:''}${entry.image&&globalThis.StillwaterMedia.find(entry.image)?`<img class="chat-shared-photo" src="assets/${esc(globalThis.StillwaterMedia.find(entry.image).file)}" alt="${esc(localized(globalThis.StillwaterMedia.find(entry.image).alt))}" loading="lazy">`:''}</div>`}</div></div>`;
     }
     function renderMessages(newMessages=false) {
       const area=root?.querySelector('.chat-messages');
@@ -123,7 +123,7 @@ globalThis.StillwaterChat = {
       const id=state.ui.conversation,scroll=state.ui.scroll[id]||{top:0,bottom:true};
       let stamp='';
       area.innerHTML=messagesFor(id).map(message=>{
-        const time=new Date(message.at).toISOString().slice(message.at<M.base-86400000?0:11,16).replace('T',' '),divider=time!==stamp?`<p class="chat-time"><time datetime="${new Date(message.at).toISOString()}">${time}</time></p>`:'';
+        const time=message.displayTime||new Date(message.at).toISOString().slice(message.at<M.base-86400000?0:11,16).replace('T',' '),divider=time!==stamp?`<p class="chat-time"><time datetime="${new Date(message.at).toISOString()}">${esc(time)}</time></p>`:'';
         stamp=time;return divider+messageHTML(message);
       }).join('');
       area.scrollTop=scroll.bottom?area.scrollHeight:scroll.top;
@@ -137,12 +137,13 @@ globalThis.StillwaterChat = {
       const list=root?.querySelector('.chat-contact-list');
       if(!list)return;
       const query=root.querySelector('#chat-search').value.trim().toLowerCase();
-      list.innerHTML=globalThis.StillwaterChatPeople.order.filter(id=>id!=='wcr_new'||state.story.request==='accepted').filter(id=>conversationName(id).toLowerCase().includes(query)).map(id=>{
+      list.innerHTML=globalThis.StillwaterChatPeople.order.filter(id=>id!=='wcr_new'||state.story.request==='accepted').filter(id=>globalThis.StillwaterChatOpeningView?.visible(state,id)!==false).filter(id=>conversationName(id).toLowerCase().includes(query)).map(id=>{
         const last=messagesFor(id).at(-1),entry=last?.entry||(last&&resolved(last));
         const preview=entry?.kind==='card'?t('[链接] 夜猫论坛','[Link] Night Owl BBS'):entry?localized(entry.text):'';
         const time=last?new Date(last.at).toISOString().slice(11,16):'';
         return `<button class="chat-contact ${state.ui.conversation===id?'is-current':''}" data-chat-room="${id}" aria-pressed="${state.ui.conversation===id}">${id==='group'?`<span class="chat-group-avatar" aria-hidden="true">${avatar('gg')}${avatar('zhang')}${avatar('lin')}${avatar('me')}</span>`:id==='notes'?`<span class="chat-file-avatar">${icon('folder')}</span>`:avatar(D.sideChats[id].avatar)}<span class="chat-contact-copy"><span class="chat-contact-heading"><strong>${esc(conversationName(id))}${state.ui.unread[id]?`<span class="chat-unread" aria-label="${t('新消息','Unread')}">${state.ui.unread[id]}</span>`:''}</strong><time>${time}</time></span><small>${esc(preview)}</small></span></button>`;
       }).join('')||`<p class="chat-search-empty">${t('没有找到会话','No conversations found')}</p>`;
+      globalThis.StillwaterChatOpeningView?.invitation(root,state,{t,esc});
     }
     function renderConversation() {
       if(!root)return;
@@ -155,6 +156,7 @@ globalThis.StillwaterChat = {
       const profile=document.createElement('aside');profile.className='chat-story-profile';
       profile.innerHTML=(['pending','ignored'].includes(state.story.request)?`<span>${t('新的朋友：王楚人 · 新账号','New friend: Wang Churen · new account')}</span><small>${t('是我。先别在群里说。','It’s me. Don’t tell the group yet.')}</small><button data-story-action="request" data-choice="accepted">${t('接受','Accept')}</button><button data-story-action="request" data-choice="ignored">${t('暂时忽略','Not now')}</button>`:'')+(archived?`<p>${t('2023 年会话留存。此处不能发送新消息。','Retained 2023 conversation. New messages cannot be sent here.')}</p>`:state.ui.conversation==='wcr_new'?`<p>${t('新账号 · 与旧会话分开保存。','New account · Saved separately from the older conversation.')}</p>`:'');
       root.querySelector('.chat-heading').after(profile);
+      profile.insertAdjacentHTML('beforeend',globalThis.StillwaterChatOpeningView?.profile(state,{t,esc})||'');
       root.querySelector('.chat-member-list').hidden=state.ui.conversation!=='group';
       root.querySelector('.chat-members').hidden=true;
       state.ui.visited[state.ui.conversation]=true;renderMessages();renderContacts();resizeInput();renderStatus();
@@ -182,6 +184,9 @@ globalThis.StillwaterChat = {
     }
     function click(event) {
       if(event.target.closest('[data-chat-forum]')) {state.openedForum=true;rememberScroll();persist();return;}
+      const photo=event.target.closest('[data-chat-photo]');
+      if(photo){globalThis.StillwaterChatOpeningView?.openPhoto(root,photo.dataset.chatPhoto,{t,esc});return;}
+      if(event.target.closest('[data-chat-open-private]')){openRoom('gg');return;}
       const room=event.target.closest('[data-chat-room]');
       if(room) {openRoom(room.dataset.chatRoom);return;}
       const action=event.target.closest('[data-chat-action]')?.dataset.chatAction;
@@ -210,6 +215,7 @@ globalThis.StillwaterChat = {
     function submit(event) {if(event.target.matches('.chat-composer')) {event.preventDefault();send();}}
     function leave() {
       if(!root)return;
+      root.querySelector('.chat-photo-dialog')?.close();
       rememberScroll();persist();
       root.removeEventListener('click',click);root.removeEventListener('input',input);root.removeEventListener('keydown',keydown);root.removeEventListener('submit',submit);
       root.querySelector('.chat-messages')?.removeEventListener('scroll',scroll);
@@ -279,6 +285,6 @@ globalThis.StillwaterChat = {
     window.addEventListener('pagehide',()=>{if(root){rememberScroll();persist();}});
     window.addEventListener('resize',fitViewport);
     window.visualViewport?.addEventListener('resize',fitViewport);
-    return {mount,leave,openRoom,storyState:()=>({shared:state.shared,request:state.story.request,oldVisited:state.ui.visited.wcr_old===true}),setStoryRequest(value){if(state.story.request!==value){state.story.request=value;persist();if(root)renderConversation();}},deliverStory(id){const incoming=M.deliver(state,id);const saved=persist();if(incoming.length){if(root){rememberScroll();renderMessages(true);renderContacts();audio.effect('chat-receive');}onIncoming(incoming.slice(-1).map(notification).filter(Boolean));}return saved;},contact:room=>({name:personName(room),avatar:avatar(room)}),unread:()=>Object.values(state.ui.unread).reduce((a,b)=>a+b,0),checkIn(room,options){const message=M.checkIn(state,room,document.documentElement.lang==='zh-CN'?'zh':'en',options);if(!message)return null;persist();return notification(message);},reset(){leave();transport.reset();state=M.fresh();try {localStorage.removeItem(M.KEY);}catch {}},hasVisitedForum:()=>state.openedForum};
+    return {mount,leave,openRoom,storyState:()=>({shared:state.shared,request:state.story.request,oldVisited:state.ui.visited.wcr_old===true,openingEdition:state.story.opening?.edition||'legacy'}),setStoryRequest(value){if(state.story.request!==value){state.story.request=value;persist();if(root)renderConversation();}},deliverStory(id){const incoming=M.deliver(state,id);const saved=persist();if(incoming.length){if(root){rememberScroll();renderMessages(true);renderContacts();audio.effect('chat-receive');}onIncoming(incoming.slice(-1).map(notification).filter(Boolean));}return saved;},contact:room=>({name:personName(room),avatar:avatar(room)}),unread:()=>Object.values(state.ui.unread).reduce((a,b)=>a+b,0),checkIn(room,options){const message=M.checkIn(state,room,document.documentElement.lang==='zh-CN'?'zh':'en',options);if(!message)return null;persist();return notification(message);},reset(){leave();transport.reset();state=M.fresh();try {localStorage.removeItem(M.KEY);}catch {}},hasVisitedForum:()=>state.openedForum};
   },
 };

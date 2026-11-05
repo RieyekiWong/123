@@ -56,6 +56,7 @@ globalThis.StillwaterVoidModel = (() => {
     reviewed: false,
     attempts: [],
     reviewVersion: 1,
+    sourceEdition: '',
     reviews: {},
     activeCategory: "",
     disposition: "",
@@ -83,6 +84,7 @@ globalThis.StillwaterVoidModel = (() => {
   function hydrate(raw) {
     const v = fresh();
     if (!raw || raw.schema !== 1) return v;
+    v.sourceEdition=raw.sourceEdition==='v13'&&globalThis.StillwaterStoryV13Data?.categories?'v13':'';
     v.entered = raw.entered === true;
     v.enteredAt = Number.isFinite(raw.enteredAt)
       ? Math.max(0, raw.enteredAt)
@@ -129,7 +131,7 @@ globalThis.StillwaterVoidModel = (() => {
       : "";
     for (const type of ["ROOM", "GUEST", "EMPLOYEE"]) {
       const r = raw.reviews?.[type],
-        spec = globalThis.StillwaterCaseData.proofs[type];
+        spec = v.sourceEdition==='v13'?globalThis.StillwaterStoryV13Data.categories[type]:globalThis.StillwaterCaseData.proofs[type];
       const legacy =
         (raw.reviewVersion !== 1 || r?.legacy === true) &&
         Array.isArray(raw.attempts) &&
@@ -294,7 +296,7 @@ globalThis.StillwaterVoidModel = (() => {
       !["ROOM", "GUEST", "EMPLOYEE"].includes(type)
     )
       return fail("void-classify");
-    const spec = globalThis.StillwaterCaseData.proofs[type];
+    const spec = v.sourceEdition==='v13'?globalThis.StillwaterStoryV13Data.categories[type]:globalThis.StillwaterCaseData.proofs[type];
     if (
       !Array.isArray(input?.sources) ||
       input.sources.length !== spec.sources.length ||

@@ -40,7 +40,9 @@ test('all sound is opt-in; home starts silent, investigation fades in, and ordin
 test('chat has softer send/receive feedback, merges bursts and never loads BGM or replays historical notifications',async({page})=>{
  await trace(page);await page.clock.install();await page.clock.pauseAt(new Date(Date.now()+1000));
  await enter(page,'chat');await page.locator('#chat-input').fill('发链接我看看');await page.locator('#chat-input').press('Enter');
- await page.clock.runFor(4500);await expect(page.locator('.chat-share-card')).toHaveCount(1);
+ await page.clock.runFor(100000);
+ for(const close of await page.locator('[data-active-ad] [data-ad-action=close]').all())await close.click();
+ await page.locator('[data-chat-open-private=gg]').click();await expect(page.locator('.chat-share-card')).toHaveCount(1);
  const roles=await page.evaluate(()=>audioTrace.starts.map(s=>s.role));expect(roles).toContain('chat-send');expect(roles).toContain('chat-receive');expect(roles).not.toContain('bgm');
  const count=roles.filter(r=>r==='chat-receive').length;
  for(const close of await page.locator('[data-active-ad] [data-ad-action=close]').all())await close.click();

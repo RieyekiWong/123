@@ -235,14 +235,19 @@ test("the built static V2 distribution loads the case with bundled resources", a
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   try {
+    await page.clock.install();await page.clock.pauseAt(new Date(Date.now()+1000));
     await page.goto(`http://127.0.0.1:${server.address().port}/index-zh.html`);
     await expect(page.locator(".chat-app")).toBeVisible();
     await page.locator("#chat-input").fill("发链接我看看");
     await page.locator(".chat-composer button[type=submit]").click();
+    await page.clock.runFor(100000);
+    for(const close of await page.locator('[data-active-ad] [data-ad-action=close]').all())await close.click();
+    await page.locator('[data-chat-open-private=gg]').click();
     await page.locator(".chat-share-card").click();
     await page.locator(".forum-recruit-link").click();
     await expect(page.locator("#archive-job")).toBeVisible();
     await page.locator("[data-case-action=sample]").click();
+    await page.clock.runFor(1800);await expect(page).toHaveURL(/#hotel$/);
     await page.locator('nav a[href="#hotel"]').click();
     await expect(page.locator(".hotel-hero img")).toBeVisible();
     expect(

@@ -1,0 +1,30 @@
+/* V1.2 life memories stay inside the existing desktop/mobile messenger. */
+.chat-memory-photo{display:block;max-width:min(320px,100%);margin:10px 0 0;padding:0;overflow:hidden;border:1px solid #ccc;border-radius:3px;background:#e9e9e9;color:#4b4b4b;text-align:left;cursor:pointer}
+.chat-memory-photo img{display:block;width:100%;height:auto;max-height:235px;object-fit:cover}
+.chat-memory-photo span{display:block;padding:5px 8px;font-size:12px;line-height:1.4}
+.chat-old-conversation-link{display:block;margin-top:8px;padding:3px 0;border:0;background:none;color:#246341;text-align:left;text-decoration:underline;cursor:pointer}
+.chat-opening-invite{display:flex;align-items:center;gap:10px;width:100%;min-height:42px;padding:8px 17px;border:0;border-bottom:1px solid #d3dfd2;background:#e7eee4;color:#293b2b;font:inherit;text-align:left;cursor:pointer;flex-shrink:0}
+.chat-opening-invite strong{font-size:12px;flex-shrink:0}.chat-opening-invite span{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.chat-opening-invite small{margin-left:auto;white-space:nowrap;color:#28673a}
+.chat-forwarded-label{display:block;margin-bottom:4px;font-size:11px;color:#616161}
+.chat-friend-profile{display:flex;align-items:center;gap:7px 14px;flex-wrap:wrap;padding:7px 14px;border-bottom:1px solid #ddd;color:#626262;font-size:12px;background:#f4f4f4}
+.chat-friend-profile>button{border:0;padding:3px 0;background:none;color:#246341;text-decoration:underline;cursor:pointer}
+.chat-friend-profile details{flex-basis:100%}
+.chat-friend-profile summary{width:fit-content;cursor:pointer}
+.chat-friend-profile p{margin:7px 0;max-width:70ch;line-height:1.6;color:#494949}
+.chat-photo-dialog{box-sizing:border-box;width:min(900px,94vw);max-height:92dvh;padding:18px;border:1px solid #c7c7c7;border-radius:5px;background:#f5f5f5;color:#282828;overflow:auto;box-shadow:0 12px 55px #0005;font-family:var(--font-ui,sans-serif)}
+.chat-photo-dialog::backdrop{background:#0009}
+.chat-photo-dialog header{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:12px}
+.chat-photo-dialog h2{font-size:19px;margin:2px 0}
+.chat-photo-dialog header p{font-size:12px;color:#626262;margin:0}
+.chat-photo-dialog header button{min-height:40px;padding:5px 15px;background:#e6e6e6;border:1px solid #c6c6c6;border-radius:3px;color:#222;cursor:pointer}
+.chat-photo-dialog figure{margin:0}
+.chat-photo-dialog figure>img{display:block;width:100%;max-height:60dvh;object-fit:contain;background:#e9e7e3}
+.chat-photo-dialog figcaption{padding:10px 2px;line-height:1.65;font-size:14px}
+.chat-photo-dialog figcaption time{font-size:12px;color:#626262}
+.chat-photo-dialog figcaption p{margin:3px 0 0}
+.chat-photo-dialog nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.chat-photo-dialog nav button{display:flex;flex-direction:column;gap:5px;align-items:stretch;min-width:0;padding:5px;background:#eaeaea;border:1px solid transparent;border-radius:3px;color:#353535;font:inherit;font-size:12px;cursor:pointer}
+.chat-photo-dialog nav button[aria-pressed=true]{border-color:#4a8b5d;background:#e3ece4}
+.chat-photo-dialog nav img{width:100%;height:70px;object-fit:cover}
+.chat-photo-dialog :focus-visible,.chat-memory-photo:focus-visible,.chat-old-conversation-link:focus-visible,.chat-opening-invite:focus-visible,.chat-friend-profile :focus-visible{outline:2px solid #287642;outline-offset:3px}
+@media(max-width:720px){.chat-memory-photo{max-width:240px}.chat-friend-profile{padding:5px 10px;font-size:11px;gap:5px 10px}.chat-photo-dialog{width:96vw;max-height:94dvh;padding:12px}.chat-photo-dialog figure>img{max-height:52dvh}.chat-photo-dialog nav{grid-template-columns:repeat(2,minmax(0,1fr))}.chat-photo-dialog nav button{min-height:44px;flex-direction:row;align-items:center;text-align:left}.chat-photo-dialog nav img{width:54px;height:45px;flex-shrink:0}}

@@ -3,6 +3,7 @@ import { solveVoid } from "./v2-void-helpers.mjs";
 import {intake,citeAndSubmit} from "./v2-evidence-ui-helpers.mjs";
 import {completeStory} from "./v2-story-ui-helpers.mjs";
 import { solvePromo } from "./v2-promo-helpers.mjs";
+import {seedLegacyChat} from './v2-chat-legacy-fixture.mjs';
 export const link = async (page, route, scope = "main") => {
   await page.locator(`${scope} a[href="#${route}"]`).first().click();
   await expect(page).toHaveURL((url) => url.hash === "#" + route);
@@ -10,6 +11,7 @@ export const link = async (page, route, scope = "main") => {
 export const state = (page) =>
   page.evaluate(() => JSON.parse(localStorage.getItem("stillwater-case:v2")));
 export async function toAudit(page, entry = "index-zh.html") {
+  await seedLegacyChat(page);
   await page.goto("/" + entry);
   if (await page.locator("#case-welcome[open]").count())
     await page.locator("[data-welcome=enter]").click();

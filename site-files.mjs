@@ -2,6 +2,10 @@
 export const V2_FILES = [
   "index.html", "index-zh.html", "haunt-preview.html",
   "case-story-data.js", "case-story-pages.js", "case-story.js", "case-story.css", "case-story-model.js", "chat-story.js",
+  "chat-opening.js", "chat-opening-view.js", "chat-opening.css",
+  "case-story-v13-text.js", "case-story-v13-data.js", "case-story-v13-model.js",
+  "case-story-v13-pages.js", "case-story-v13.js", "case-story-v13.css",
+  "chat-story-v13.js",
   "case-data.js", "case-evidence.js", "case-evidence.css", "case-scene-polish.css", "case-state.js", "case-app.js", "case-pages.js",
   "case-comfort.js", "case-feedback.js", "case-ending.js", "case-ending.css",
   "forum-data.js", "forum-extra-data.js", "forum-avatars.js", "forum.js", "forum-style.css", "careers.js", "hotel-extras.js", "front-sites.css",

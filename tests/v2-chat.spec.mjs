@@ -1,6 +1,8 @@
 import {test,expect} from './v2-fixture.mjs';
+import {seedLegacyChat} from './v2-chat-legacy-fixture.mjs';
 const saved=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('stillwater-chat:v1')));
 async function open(page,entry='index-zh.html',width=1440) {
+  await seedLegacyChat(page);
   await page.setViewportSize({width,height:900});
   await page.clock.install({time:new Date('2026-11-03T12:00:00Z')});
   await page.clock.pauseAt(new Date('2026-11-03T12:00:01Z'));
@@ -13,7 +15,7 @@ async function send(page,text) {
   for(const close of await page.locator('[data-active-ad] [data-ad-action=close]').all())await close.click();
 }
 for(const entry of ['index-zh.html','index.html']) {
-  test(`${entry}: fresh chat accepts free input and its canonical share opens the existing forum`,async({page})=>{
+  test(`${entry}: saved legacy opening accepts free input and its canonical share opens the existing forum`,async({page})=>{
     const external=[];page.on('request',r=>{if(!r.url().startsWith('http://127.0.0.1:3110/'))external.push(r.url());});
     await open(page,entry);
     await expect(page).toHaveURL(/#chat$/);await expect(page.locator('.chat-message-self')).toHaveCount(0);

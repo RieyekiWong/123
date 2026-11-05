@@ -1,0 +1,90 @@
+{
+  "edition": "V1.3 / current route",
+  "note": "Narrative dates are fictional authored metadata, separate from production date. These records describe actual local artwork files, not real missing people.",
+  "assets": [
+    {
+      "id": "campus-original",
+      "file": "wcr-campus-original.png",
+      "status": "produced",
+      "kind": "generated fictional artwork",
+      "storyCaptureDate": "2022",
+      "storyRevisionDate": null,
+      "productionDate": "2026-11-05",
+      "identityOrSceneReference": "../story-v12/wcr-01-avatar-old.png",
+      "note": "Same fictional identity; a new pose, clothes, expression and setting.",
+      "width": 1448,
+      "height": 1086,
+      "bytes": 2007718,
+      "sha256": "078bf18a1b6d8605048bf828807a2bf8500a9b61b1fbb5aa083b5c60e3d595cd"
+    },
+    {
+      "id": "campus-account-copy",
+      "file": "wcr-campus-new.png",
+      "status": "produced",
+      "kind": "generated fictional artwork",
+      "storyCaptureDate": "2022",
+      "storyRevisionDate": "2026",
+      "productionDate": "2026-11-05",
+      "identityOrSceneReference": "wcr-campus-original.png",
+      "note": "Derived account image; not proof of a photograph taken in 2026.",
+      "width": 1448,
+      "height": 1086,
+      "bytes": 1931288,
+      "sha256": "81485f36b03ccbf607bdf8bd181a7b8635d3eab4334914abff86679d679b3a30"
+    },
+    {
+      "id": "nora-breakroom",
+      "file": "nora-breakroom.png",
+      "status": "produced",
+      "kind": "generated fictional artwork",
+      "storyCaptureDate": "2006-10-16",
+      "storyRevisionDate": null,
+      "productionDate": "2026-11-05",
+      "identityOrSceneReference": null,
+      "note": "Original fictional Nora, 27, speaking with Mara over ordinary shift paperwork.",
+      "width": 1448,
+      "height": 1086,
+      "bytes": 2322490,
+      "sha256": "46696fd066727bb0e16d8e31a3dc879c72893191d258a01948635e064811dd4c"
+    },
+    {
+      "id": "camera-full-original",
+      "file": "exhibit-original.png",
+      "status": "produced",
+      "kind": "generated fictional artwork",
+      "storyCaptureDate": "2023-10-17 18:26",
+      "storyRevisionDate": null,
+      "productionDate": "2026-11-05",
+      "identityOrSceneReference": "../story-v12/wcr-12-west-door.png",
+      "note": "One full master: the earlier display is cropped with CSS; RELEASED reveals the same file edge, without synthesizing new lettering.",
+      "width": 1448,
+      "height": 1086,
+      "bytes": 2531714,
+      "sha256": "a5724a477df358eb53dd7df88c2ef10c057e70a45443c3e44698bd1b9ed62338"
+    }
+  ],
+  "reusedV12": [
+    "wcr-01-avatar-old.png",
+    "wcr-02-three-friends.png",
+    "wcr-04-family-dinner.png",
+    "wcr-06-old-camera.png",
+    "wcr-11-blue-sign.png"
+  ],
+  "retainedSupersededV12": [
+    "wcr-12-west-door.png",
+    "wcr-14-avatar-new.png"
+  ],
+  "notProduced": [
+    "Nora and Ethan birthday photo",
+    "Helen portrait",
+    "Ruth portrait",
+    "2026 family album",
+    "Photograph of the actual W3-02 pencil-note reverse",
+    "Recorded Nora or Churen dialogue audio"
+  ],
+  "approvedNull": {
+    "file": "../previews/v415-signal/apparition.png",
+    "sha256": "f2c9cec352ee1548aa1f93c5cc0acbfbcf6800b9f14c0c6c640e679c5fca8388",
+    "changed": false
+  }
+}

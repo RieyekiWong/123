@@ -1,3 +1,5 @@
+Version 4.19.0 implements the adopted V1.3 story, *The Unregistered*: a fresh opening introduces Churen through ordinary memories, GGbond’s private discovery leads into one investigation, and Nora Bell’s original shift explains the older case. Four source reviews replace the new route’s duplicate audit steps. Important findings advance scenes automatically; long documents remain readable. CCTV, the physical B-3 circuit, W3-02, the black chapter, all three ending IDs and existing saves are retained. GitHub Pages keeps its existing front-end deployment; no Worker reconfiguration is required. [Implementation, source rules, artwork status and tests — spoilers](docs/STORY-V1.3-IMPLEMENTATION.zh-CN.md).
+
 Version 4.17.0 adds the Wang Churen / NULL story: a 2023 conversation, historical name index, three diaries, a separate account request, source tracing and a photo overlay, connected to the existing CCTV, B-3, black chapter and three endings. NULL retains the approved apparition. Existing saves stay compatible; a fresh case follows the full expansion. The original seven AI contacts remain; the new story account uses authored dialogue and local replies. [Development report and previews (spoilers)](docs/v2.17/REPORT.zh-CN.md).
 
 Version 4.16.0 adds eight different interactive retro ads alongside the existing seventeen, with a popup opt-out in the opening declaration and settings. [Designs and verification](docs/v2.16/DELIVERY.zh-CN.md).
@@ -6,19 +8,19 @@ V2.12 adds the W3-02 publicity archive: three versions of one corridor print and
 
 V2.11 revises shop, forum-interface, recruitment, hotel and later-chapter copy. Chat and authored forum threads and replies are preserved. See the [release notes](docs/v2.11/DELIVERY.zh-CN.md) and [full copy review](docs/V2_11-COPY-REVIEW.zh-CN.md).
 
-AI chat is live in the [current edition](https://rieyekiwong.github.io/123/index.html?v=4.17.0#chat). Choose **AI chat → Agree and enable** to opt in; local replies remain available. See the [Cloudflare Edit code guide](workers/chat/dashboard/README.zh-CN.md), [integration report](docs/V2_10-AI-CHAT.zh-CN.md), and [real production browser checks](docs/v2.10/live-frontend.json).
+AI chat is live in the [current edition](https://rieyekiwong.github.io/123/index.html?v=4.19.0#chat). Choose **AI chat → Agree and enable** to opt in; local replies remain available. See the [Cloudflare Edit code guide](workers/chat/dashboard/README.zh-CN.md), [integration report](docs/V2_10-AI-CHAT.zh-CN.md), and [real production browser checks](docs/v2.10/live-frontend.json).
 
-# The Stillwater Hotel — V2.5
+# Stillwater Hotel — The Unregistered · 4.19
 
-A bilingual browser ARG that begins in a local group chat with friends. GGbond shares a forum post about a part-time job, which opens the existing Night Owl BBS thread. A modern careers page leads to a hotel website and its retained 2006 records, night-audit records and two evidence-based dispositions. V2.3 preserves Night Owl BBS, the seven fictional shops and the original case, then adds a mirrored hotel, spatial camera relay, operable circuit graph and a third disposition.
+A bilingual browser ARG about looking for a missing friend. Ordinary messages and old photos introduce Churen before GGbond privately shares a Night Owl BBS post. The forum leads through a careers page to a hotel website, then to records that mix 2006, 2023 and 2026. Nora Bell’s last night shift explains the older case. The investigation continues through CCTV, the B-3 circuit and the black chapter to three different endings.
 
 **Play:** [简体中文](https://rieyekiwong.github.io/123/index-zh.html) · [English](https://rieyekiwong.github.io/123/index.html)
 
-The new case uses reservation R-4829, a discrepancy between the guest directory and a key sleeve, reviewer Mara Ellis and a current temporary assignment. Search, compare documents, inspect a floor plan, order timestamped records and review revisions. All necessary information is on the site. No external investigation or random password guessing is needed.
+Compare original records, photographs and personal writing to check what the system claims. Important findings lead into the next scene; the sources remain available for another look. Existing saves keep their previous route. Use a private window or a new browser profile to try the new story without deleting a saved investigation.
 
 ## Run or download
 
-Download **Code → Download ZIP**, extract the entire folder and open `index-zh.html` or `index.html` in Chrome or Edge. The application uses ordinary deferred scripts and bundled images; there are no runtime dependencies, remote fonts, sign-ups, backend services or API keys. A local server is recommended for consistent browser storage:
+Download **Code → Download ZIP**, extract the entire folder and open `index-zh.html` or `index.html` in Chrome or Edge. The static game uses ordinary deferred scripts and bundled images. Online AI chat is optional and uses the existing Cloudflare Worker after consent; its API key never belongs in front-end files. A local server is recommended for consistent browser storage:
 
 ```sh
 npm ci
@@ -29,11 +31,11 @@ Open `http://localhost:3000/index-zh.html`. Node.js 20 or newer is required for 
 
 ## Forum and local adverts
 
-The forum and careers page have their own footers; hotel operations appear on the hotel site. The public hotel now uses an early-2010s cream-and-bronze layout and a ten-photo album. Fifteen existing photographs were sourced from Wikimedia Commons and bundled locally, with no newly generated logos or images. See [photo sources and licenses](assets/WEB-PHOTOS.md).
+The forum and careers page have their own footers; hotel operations appear on the hotel site. The public hotel uses an early-2010s cream-and-bronze layout and a ten-photo album. Existing site and shop photographs remain locally bundled with their [sources and licenses](assets/WEB-PHOTOS.md). Churen, Nora and their companions use original fictional artwork, documented in the story asset manifests.
 
-New visitors begin at `#chat` after the content/settings preface. The 54-message opening now takes roughly three minutes, with free text and local replies. The forum card arrives automatically within two minutes of active conversation, even if the player is reading older messages; no keyword is required. Asking for the link can bring the share forward; it opens `#forum?topic=job` immediately. Follow the job preview, then review the sample to reach the reservation search. Existing V2 saves continue from a usable record; **Back to the forum** revisits the opening. Explicit hash links and language switches keep their destination.
+New visitors begin at `#chat` after the content/settings preface. The group remembers Churen, then GGbond sends his discovery privately. The forum card arrives automatically during active chat; no keyword or reply is required. It opens `#forum?topic=job`. Follow the job preview and its sample to reach the hotel, then look up Churen’s name. Private conversations remain optional. Existing saves, explicit hash links and language switches retain their destinations.
 
-Local adverts appear as early-web popup windows in random screen corners, with bevelled borders, blue title bars and selected blinking labels or border lights. They can be closed, kept, minimized, restored or opened from **My ad folder**. Up to two occupy opposite desktop edges; phones and tablets show one. Windows cover the page directly without resizing it or taking over scrolling. Popups pause during forms and never appear in the investigation’s serious records. Advertising stops after Mara’s note and during the altered chapters; saved adverts are preserved and return after the true ending. The shops have complete bilingual local pages, existing licensed photographs and no external tracking, media, orders or data collection. They are scenery, not puzzle clues.
+Local adverts appear as early-web popup windows in random screen corners, with bevelled borders, blue title bars and selected blinking labels or border lights. They can be closed, kept, minimized, restored or opened from **My ad folder**. Up to two occupy opposite desktop edges; phones and tablets show one. Windows cover the page directly without resizing it or taking over scrolling. Popups pause during forms and never appear in the investigation’s serious records. Advertising stops after Mara’s note and during the altered chapters; saved adverts are preserved and return after the true ending. The shops have complete bilingual local pages, existing licensed photographs and no external tracking, media, orders or data collection. The ordinary campaigns remain separate from the W3-02 hotel publicity source check, which stays accessible with popup delivery off.
 
 Saved adverts use `stillwater-ads:v1`; sessionStorage holds per-tab cooldown and display history. Chat uses a separate `stillwater-chat:v1` record for messages, drafts and reading position. Refreshing or switching languages preserves it; a confirmed game restart clears the chat and current case together. Restarting the main case preserves the ad folder. Remove saved adverts individually in the folder.
 
@@ -41,11 +43,11 @@ Saved adverts use `stillwater-ads:v1`; sessionStorage holds per-tab cooldown and
 
 The V2 save is `stillwater-case:v2`, with a versioned schema. Sources, unfinished sorting and selections, camera directions and connections, circuit rotations and switches, undo history, dispositions and viewing preferences survive refreshes and language changes on the same origin. **Case Notes** reopens sources already observed. Unavailable deep links offer a usable source link. If storage is blocked, the current tab remains playable and the footer explains that progress cannot be retained.
 
-First visits show a bilingual preface with fiction/content notes, controls, credits and two choices. **Audio defaults off; faces and jump scares default on.** Players can disable them before entering or reopen How to play in the header. Explicit skip choices and device Reduce Motion remain respected.
+First visits show a bilingual preface with fiction/content notes, controls, credits and choices for sound, scares and popup delivery. **Audio defaults off; faces and jump scares default on.** Players can disable them before entering or reopen How to play in the header. Explicit skip choices and device Reduce Motion remain respected.
 
 **Sound & settings** in the footer controls volume, motion and scares. Breathing enters automatically with enabled sound in the deeper chapter. The first successful escape shows its distinct full-screen face, then a clear GAME OVER screen. Skip/reduced-motion modes reach the same completion directly. Reloading or revisiting an ending never replays that effect.
 
-No form collects a name, email, phone, CV, payment information or real application. No answers are submitted to a server. The footer identifies the hotel, recruitment and records as fiction.
+The booking and recruitment forms make no real application or payment. Puzzle answers are checked locally. Enabling online AI chat sends the necessary recent conversation to the configured Worker and OpenAI; declining it keeps local replies available. The footer identifies the hotel, recruitment and records as fiction.
 
 ## Current-edition scope
 

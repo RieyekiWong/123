@@ -1,0 +1,188 @@
+{
+  "review": "V1.2 planning only; no runtime implementation or live AI requests",
+  "repositoryHead": "048d61a70544e06ef8553bb4239bfbfede628036",
+  "remoteMainMatches": true,
+  "documentPriority": "User request > Story Bible V1.2 front matter > non-conflicting V1.1 appendix",
+  "documents": [
+    {
+      "name": "Stillwater_Wang_Churen_Story_Bible_v1_2.md",
+      "sha256": "547578a64ac195968166de0ca0f6f7b4f8ae7e0533a6eab2e1bceab5480f7643"
+    },
+    {
+      "name": "Stillwater_Wang_Churen_Character_Backstory_v1_2.md",
+      "sha256": "6c2bc5ad2bd5d5c710d8bc380773058382e36db959cdfa2f90672655724a2655"
+    }
+  ],
+  "characterAttachmentMatchesEmbeddedV12": true,
+  "appendixDifferenceFromPriorV11": "Concept reference filename only",
+  "current": {
+    "caseSchema": 2,
+    "storySchema": 1,
+    "chatSchema": 1,
+    "routeCount": 36,
+    "clueIds": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7",
+      "C8",
+      "C9"
+    ],
+    "preNightLegacyProofs": [
+      "intake",
+      "space",
+      "timeline",
+      "identity"
+    ],
+    "preNightStoryProofs": [
+      "index",
+      "diary",
+      "echo",
+      "cause"
+    ],
+    "extraRequiredStoryActions": [
+      "photo overlay",
+      "sign-off preview"
+    ],
+    "diaryFields": 9,
+    "causeFields": 6,
+    "causePerEdgeCitations": 6
+  },
+  "probes": {
+    "nameAliasesAlreadyWork": {
+      "王楚人": true,
+      "WANG CHUREN": true,
+      "Churen Wang": true,
+      "楚人": true
+    },
+    "indexReviewAvailableAtC2": false,
+    "diaryReviewAvailableBeforeCacheRestore": false,
+    "newStoryReadyWithoutLegacyFinalReceipt": true,
+    "nightStartWithoutLegacyFinalReceipt": {
+      "ok": false,
+      "error": "evidence-incomplete"
+    },
+    "successfulIndexSubmitResult": {
+      "ok": true
+    },
+    "successfulIndexSubmitHasNextRoute": false,
+    "newAccountOnlineWhitelisted": false,
+    "newAccountReplyQueueKind": "story"
+  },
+  "existingOldConversationDate": "2023-10-21T18:10:00.000Z",
+  "existingWcrAvatars": {
+    "wcr_old": "assets/story-v417/north-ferry.png",
+    "wcr_new": "assets/story-v417/west-passage.png"
+  },
+  "proposedAssetStatus": [
+    {
+      "file": "wcr-01-avatar-old.jpg",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    },
+    {
+      "file": "wcr-02-three-friends.jpg",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    },
+    {
+      "file": "wcr-03-campus-print.jpg",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    },
+    {
+      "file": "wcr-04-family-dinner.jpg",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    },
+    {
+      "file": "wcr-05-sister-sticker.png",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    },
+    {
+      "file": "wcr-06-old-camera.jpg",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    },
+    {
+      "file": "wcr-07-notebook-desk.jpg",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    },
+    {
+      "file": "wcr-08-lecture-board.jpg",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    },
+    {
+      "file": "wcr-09-pizza-evening.jpg",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    },
+    {
+      "file": "wcr-10-silverpine-arrival.jpg",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    },
+    {
+      "file": "wcr-11-blue-sign.jpg",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    },
+    {
+      "file": "wcr-12-west-door.jpg",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    },
+    {
+      "file": "wcr-13-film-back.jpg",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    },
+    {
+      "file": "wcr-14-avatar-new.jpg",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    },
+    {
+      "file": "wcr-15-archive-composite.jpg",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    },
+    {
+      "file": "wcr-16-family-album-2026.jpg",
+      "status": "not produced",
+      "existsInExpectedStoryFolders": false
+    }
+  ],
+  "protectedFileSha256": {
+    "chat-config.js": "f1a97b9d1f5a7f3d97a69470e603040aa41428af80c5cb2d46575e779694af7e",
+    "chat-protocol.js": "116f09174b9dc462d44c5bb3be6f19246915d81da4b771e54983ad435f6ff32e",
+    "chat-transport.js": "3b65db6a2880a3d253187bc870127da7ad841f3bac60b6e7b809c0969d6cb900",
+    "chat-model.js": "4ae8b59bd4522ff87dbc2d5f76e7eadc4dd24c2804e1eeb3c538efb105b6672f",
+    "chat-view.js": "190213121eeaa8c261d4d5552b16c0bc01c5e792fdf5da755bb565208d992fd6",
+    "chat-personas.js": "88c380c58e9a3e5903e3a2e59b88a6d30115db5d82c9b7154c7a4514ca3d200c",
+    "chat-fallback.js": "74697c6d348d34b347722895a9d22ef33c32b040cfc85df8f7dbda5a5e2bb08c",
+    "messenger-bridge.js": "50e900fd4e50524801a37cfc3354bbb831f731415f30f8ad5bc114bfa30d415d",
+    "messenger-intrusion.js": "ee5b1e0816ec1c1ced3c0432e726f6be5e9b2532456f71c8477b7689a9e9ca7f",
+    "workers/chat/src/worker.mjs": "389d2a8fa3f41303e2ae995966e5b2c1f5d7c8e7d31a4d721e39660f4a6b3372",
+    "workers/chat/src/personas.mjs": "d93da639d49e344e0074791f6837e9f014ea0ab8715bf9b820af78be427614e1",
+    "workers/chat/dashboard/worker.js": "18cfca37832669f6b9f6d1f9a82efecd94ef995e119a7a012d84b2b6bbc7cb93",
+    "case-state.js": "4f01b6c8ec1f1e2a2d6f6eb1ac8cc8f84f630be65ac206935662bc71223a7363",
+    "case-app.js": "de146031a73b94b3447f4c69e4beff171a75836afc2a02c431e43476536ed119",
+    "case-night-model.js": "e3136a9b0daa5bbad538316db8b7ec76c23583cc020e4ed207f61e0faaa0eea1",
+    "case-void-model.js": "5b64e21955dc74313720ad3698f47a8a8180c5c900889b6f9a2c3bb1ba79120f",
+    "hotel-promo-data.js": "6a2e370aca4f2c0df4efa7a92896ce76c06ace31d8443bf6ac56d4598d6d6134",
+    "assets/previews/v415-signal/apparition.png": "f2c9cec352ee1548aa1f93c5cc0acbfbcf6800b9f14c0c6c640e679c5fca8388"
+  },
+  "notRun": [
+    "V1.2 feature acceptance (not implemented)",
+    "Paid OpenAI chat",
+    "Cloudflare deployment",
+    "Image generation"
+  ]
+}

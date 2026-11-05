@@ -350,7 +350,7 @@
       void nightAudio.sync();
     },
   });
-  const story = window.StillwaterStory.create({getState:()=>state,getRoute:currentRoute,save,render,chat,signal:voidSignal,t,esc,blocked:()=>!!welcome?.isOpen()||phaseTransition.isActive()});
+  const story = window.StillwaterStory.create({getState:()=>state,getRoute:currentRoute,save,render,chat,signal:voidSignal,t,esc,phaseTransition,blocked:()=>!!welcome?.isOpen()||phaseTransition.isActive()});
   function perform(action, payload = {}, errorId = "case-status") {
     const result = M.transition(state, action, payload);
     save();
@@ -404,9 +404,10 @@
       : state.lastEnding;
     return window.StillwaterEnding.render(shown, {
       t,
+      storyEdition:state.story?.edition,
       pending: shown === "released" && finalScenePending,
       stored: !storageFailed,
-    }) + (shown === "released" ? nightViews.released() : views.ending());
+    }) + (globalThis.StillwaterStoryV13?.active(state)?globalThis.StillwaterStoryV13Pages({getState:()=>state,t,esc}).epilogue(shown):shown === "released" ? nightViews.released() : views.ending());
   }
   function finishFinalScene() {
     finalScenePending = false;
@@ -793,7 +794,7 @@
       }
       render();
       if (act === "comfort") nightEvents.clear();
-      if (result.event) { nightAudio.silence(); nightEvents.present(result.event); }
+      if (result.event&&!(globalThis.StillwaterStoryV13?.active(state)&&result.event==='last-frame')) { nightAudio.silence(); nightEvents.present(result.event); }
       const match = [...document.querySelectorAll("[data-night-action]")].find(
         (el) =>
           el.dataset.nightAction === act &&
@@ -851,8 +852,10 @@
       const details = document.querySelector(".annotation-comparison");
       if (details) details.open = true;
     }
-    if (action === "sample" && perform("sample"))
-      location.hash = "reservations";
+    if (action === "sample" && perform("sample")) {
+      if(chat.storyState().openingEdition==='v12'&&chat.hasVisitedForum()&&state.evidence.length===1&&perform('story-v13-begin'))render();
+      else location.hash = "reservations";
+    }
     if (action === "read-key" && perform("message")) render();
     if (action === "inspect-service" && perform("inspect-service")) {
       render();

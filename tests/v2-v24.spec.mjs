@@ -7,6 +7,7 @@ const M = globalThis.StillwaterCaseState;
 async function seed(page, stage = "normal") {
   const s = M.fresh();
   delete s.desk; // Retain the original pre-desk migration fixture.
+  delete s.story; // That historical save also predates the story system, regardless of which test modules loaded first.
   s.evidence = Object.keys(StillwaterCaseData.clues);
   s.completed = { serviceInspected: true, audit: true, finalEvidence: true };
   s.notices = { shown: true, dismissed: true };

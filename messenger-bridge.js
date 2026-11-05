@@ -337,10 +337,14 @@ globalThis.StillwaterMessengerBridge = {
     }
     function sync() {
       if (!eligible()) dismiss();
+      const currentStory = globalThis.StillwaterStoryV13?.active(getState());
+      const warningReview = currentStory
+        ? getState().story.tab === "cause" && ["rewrite-review", "source-review"].includes(getRoute())
+        : ["mara", "review"].includes(getRoute());
       if (
         !getState().night.started &&
         getState().evidence.includes("C9") &&
-        ["mara", "review"].includes(getRoute()) &&
+        warningReview &&
         !meta.intrusionSeen &&
         !blocked() &&
         !document.hidden &&

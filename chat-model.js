@@ -10,9 +10,10 @@ globalThis.StillwaterChatModel = (() => {
   const phase=s=>s.shared?'shared':s.cursor>=15?'job':'early';
   const topic=text=>({job:'work',fatigue:'sleep','unknown-person':'spoiler',other:'other'})[F.intent(text)]||F.intent(text);
   function fresh() {
-    return {schema:1,pacing:2,social:1,cursor:1,remaining:2600,elapsed:0,wallElapsed:0,hold:0,counter:1,requestCounter:0,shared:false,openedForum:false,
+    const state={schema:1,pacing:2,social:1,cursor:1,remaining:2600,elapsed:0,wallElapsed:0,hold:0,counter:1,requestCounter:0,shared:false,openedForum:false,
       context:{reading:false,declined:false},messages:[{id:'m1',kind:'script',key:'s1',at:base}],pending:[],turns:{},memories:{},
       story:{request:'none',delivered:[]},proactive:{remaining:95000,index:0},ui:{conversation:'group',list:false,scroll:{},drafts:{},unread:{},visited:{group:true}}};
+    return globalThis.StillwaterChatOpening?.initialize(state)||state;
   }
   const protectedMessage=m=>m.kind==='script'||(m.kind==='story'&&!m.key.startsWith('wcr-'));
   function append(s,message) {
@@ -35,10 +36,11 @@ globalThis.StillwaterChatModel = (() => {
     return entry?{person:entry.person,text:entry.kind==='card'?'[Shared a forum post]':entry.text[language==='en'?1:0]}:null;
   }
   function history(s,room,language='zh') {
-    const past=(D.sideChats[room]?.messages||[]).map(m=>({person:m.person,text:m.text[language==='en'?1:0]}));
+    const past=sideMessages(s,room).map(m=>({person:m.person,text:m.text[language==='en'?1:0]}));
     return [...past,...s.messages.filter(m=>roomOf(m)===room).map(m=>resolved(m,language)).filter(Boolean)];
   }
   function share(s) {
+    if(globalThis.StillwaterChatOpening?.active(s))return;
     if(s.shared)return;
     if(!s.messages.some(m=>m.kind==='script'&&m.key==='s31'))append(s,{kind:'script',key:'s31'});
     s.shared=true;s.cursor=Math.max(s.cursor,31);s.remaining=4400;
@@ -48,11 +50,11 @@ globalThis.StillwaterChatModel = (() => {
     const text=String(value).trim().slice(0,D.maxText);if(!text)return false;
     const message=append(s,{kind:'user',text,conversation});s.ui.drafts[conversation]='';s.ui.visited[conversation]=true;
     if(conversation==='notes')return true;
-    if(conversation==='wcr_new'){s.pending=s.pending.filter(p=>p.conversation!==conversation);s.pending.push({kind:'story',key:globalThis.StillwaterChatStory.reply(text,s),conversation,language:/[\u4e00-\u9fff]/.test(text)?'zh':'en',remaining:900});return true;}
+    if(conversation==='wcr_new'){s.pending=s.pending.filter(p=>p.conversation!==conversation);const key=globalThis.StillwaterChatStory.reply(text,s);if(key)s.pending.push({kind:'story',key,conversation,language:/[\u4e00-\u9fff]/.test(text)?'zh':'en',remaining:900});return true;}
     const plan=F.plan(s,conversation,text,rng),profile=globalThis.StillwaterChatPeople.profile(plan.messages[0].person);
     // A new burst supersedes an undelivered answer in this room only.
     s.pending=s.pending.filter(p=>p.conversation!==conversation);
-    const shareRequested=conversation==='group'&&plan.topic==='links'&&!s.shared;
+    const shareRequested=conversation==='group'&&plan.topic==='links'&&!s.shared&&!globalThis.StillwaterChatOpening?.active(s);
     s.pending.push({kind:'social',id:'q'+(++s.requestCounter),conversation,anchor:message.id,language:plan.language,
       remaining:Math.round(profile.min+rng()*(profile.max-profile.min)),debounce:650,waiting:false,started:false,timeout:13000,
       messages:plan.messages,source:'local',share:shareRequested});
@@ -112,7 +114,7 @@ globalThis.StillwaterChatModel = (() => {
     }
     s.pending=keep;
     // Only chat-visible time counts towards the guaranteed scripted share.
-    if(chatActive&&!s.shared&&s.elapsed>=120000) {
+    if(chatActive&&!s.shared&&s.elapsed>=120000&&!globalThis.StillwaterChatOpening?.active(s)) {
       if(s.cursor<25)append(s,{kind:'reply',key:'share_bridge:any:0'});
       append(s,{kind:'reply',key:'share_bridge:any:1'});share(s);changed=true;s.hold=1400;
     }
@@ -125,6 +127,7 @@ globalThis.StillwaterChatModel = (() => {
         s.proactive.index++;s.proactive.remaining=120000;
       }
     }
+    if(globalThis.StillwaterChatOpening?.active(s))return globalThis.StillwaterChatOpening.advance(s,dt,{story,chatActive},append)||changed;
     if(!chatActive||!story||s.hold||s.cursor>=D.script.length)return changed;
     s.remaining=Math.max(0,s.remaining-dt);
     if(s.remaining===0) {
@@ -143,7 +146,7 @@ globalThis.StillwaterChatModel = (() => {
     const s=fresh(),scriptIds=new Set(D.script.map(m=>m.id)),ids=new Set();
     const goodText=x=>typeof x==='string'&&x.trim().length;
     const messages=Array.isArray(raw.messages)?raw.messages.slice(-400).filter(m=>m&&
-      ((m.kind==='script'&&scriptIds.has(m.key))||(m.kind==='story'&&globalThis.StillwaterChatStory?.entry(m.key)?.person===m.conversation)||(m.kind==='reply'&&Object.hasOwn(D.bank,m.key))||(m.kind==='user'&&goodText(m.text))||
+      ((m.kind==='script'&&scriptIds.has(m.key))||(m.kind==='story'&&validStoryRoom(m))||(m.kind==='reply'&&Object.hasOwn(D.bank,m.key))||(m.kind==='user'&&goodText(m.text))||
        (m.kind==='social'&&P.allowed(m.conversation).includes(m.person)&&goodText(m.text)&&!P.hidden.test(m.text)))):[];
     if(messages.length)s.messages=messages.map((m,index)=>{
       const id=/^m[1-9]\d{0,8}$/.test(m.id)&&!ids.has(m.id)?m.id:'m'+(index+1);ids.add(id);
@@ -176,10 +179,13 @@ globalThis.StillwaterChatModel = (() => {
       if(ui.visited?.[room])s.ui.visited[room]=true;
     }
     s.story={request:['none','pending','ignored','accepted'].includes(raw.story?.request)?raw.story.request:'none',delivered:[...new Set((Array.isArray(raw.story?.delivered)?raw.story.delivered:[]).filter(id=>!!globalThis.StillwaterStoryData?.batches[id]))]};
+    globalThis.StillwaterChatOpening?.hydrate(s,raw);
     s.ui.conversation=validRoom(raw.ui?.conversation)?raw.ui.conversation:'group';s.ui.list=raw.ui?.list===true;
     s.proactive={remaining:bounded(raw.proactive?.remaining,180000,95000),index:bounded(raw.proactive?.index,1000)};
     return s;
   }
-  function deliver(s,id){const batch=globalThis.StillwaterStoryData?.batches[id];if(!batch||s.story.delivered.includes(id))return [];s.story.delivered.push(id);return batch.keys.map(key=>append(s,{kind:'story',key,conversation:batch.room}));}
-  return {deliver,KEY,base,fresh,hydrate,phase,topic,send,advance,roomOf,resolved,history,request,accept,fallback,markRead,checkIn,validRoom};
+  function validStoryRoom(message){const e=globalThis.StillwaterChatStory?.entry(message.key);return !!e&&(e.room?e.room===message.conversation:e.person===message.conversation);}
+  function sideMessages(s,room){return globalThis.StillwaterChatOpening?.sideMessages(s,room)||D.sideChats[room]?.messages||[];}
+  function deliver(s,id){if(globalThis.StillwaterChatOpening)id=globalThis.StillwaterChatOpening.batchId(s,id);const batch=id&&globalThis.StillwaterStoryData?.batches[id];if(!batch||s.story.delivered.includes(id))return [];s.story.delivered.push(id);return batch.keys.map(key=>append(s,{kind:'story',key,conversation:batch.room}));}
+  return {deliver,KEY,base,fresh,hydrate,phase,topic,send,advance,roomOf,resolved,history,sideMessages,request,accept,fallback,markRead,checkIn,validRoom};
 })();
