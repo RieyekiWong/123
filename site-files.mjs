@@ -9,7 +9,7 @@ export const V2_FILES = [
   "messenger-intrusion.js", "messenger-bridge.js", "messenger-bridge.css",
   "case-void-model.js", "case-void.js", "case-void.css",
   "case-final-terminal.js", "case-void-signal.js", "case-void-terminal.css",
-  "ad-data.js", "ad-campaigns.js", "ad-system.js", "ad-style.css", "ad-popup.css", "case-style.css",
+  "ad-data.js", "ad-extra-campaigns.js", "ad-extra-campaigns.css", "ad-campaigns.js", "ad-system.js", "ad-style.css", "ad-popup.css", "case-style.css",
   "hotel-promo-data.js", "hotel-promo.js", "hotel-promo.css",
   "site-media.js", "retro-media.js", "cctv-filter.css", "cctv-scenes.js",
   "case-night-model.js", "case-night.js", "case-audio-tracks.js", "case-audio-policy.js", "case-audio.js", "case-anomaly.css",

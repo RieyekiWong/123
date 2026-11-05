@@ -167,6 +167,7 @@
       void nightAudio.sync();
       voidWorld?.refresh();
       voidSignal?.sync();
+      ads.navigate();
     },
     reset: () => {
       phaseTransition.cancel();

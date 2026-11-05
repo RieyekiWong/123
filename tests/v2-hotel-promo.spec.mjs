@@ -46,7 +46,7 @@ for (const entry of ["index-zh.html", "index.html"]) {
     await page.keyboard.press("Escape");
     await page.goto("/" + entry + "#gallery");
     await expect(page.locator('.hotel-promo-hotel svg[data-promo-signs]')).toHaveAttribute("data-promo-signs", "316 / STAFF ONLY / 318");
-    expect(await page.evaluate(() => StillwaterAdData.length)).toBe(17);
+    expect(await page.evaluate(() => StillwaterAdData.length)).toBe(25);
     expect(await page.evaluate(() => localStorage.getItem("stillwater-case:v2"))).toBe(before);
   });
 

@@ -832,5 +832,110 @@ globalThis.StillwaterAdData = Object.freeze([
     "虚构家具展厅，不接受订单、送货信息或付款。",
     "Fictional showroom. No orders, delivery details or payments."
   ]
+},
+{
+  id: "scratch", imageId: "ad-cat-tabby", kind: "scratch",
+  name: ["转角小卖部", "Corner Shop"],
+  headline: ["恭喜！你有一张刮刮券", "A scratch card with your name on it"],
+  copy: ["先刮开看看，老板把奖品写在底下了。", "Scratch it. The owner wrote the prize underneath."],
+  tag: ["到店小礼", "A LITTLE SHOP GIFT"], cta: ["看看奖品", "See the prizes"],
+  intro: ["柜台上放了盒刮刮券。老板说人人有份，又补了一句：别抱太大希望。", "There’s a box of scratch cards on the counter. One each, says the owner. Keep your expectations modest."],
+  items: [
+    [["一等奖", "First prize"], ["一张纸巾。全新，没用过。", "One tissue. Fresh out of the packet."]],
+    [["安慰奖", "Runner-up"], ["老板点头说：下次还来啊。", "The owner nods and says, see you next time."]]
+  ],
+  note: ["虚构小店，不兑换奖品，也不用留下资料。", "A fictional shop. Nothing to redeem and no details to leave."]
+},
+{
+  id: "parcel", imageId: "ad-print", kind: "parcel",
+  name: ["慢半拍包裹站", "One Step Behind Parcels"],
+  headline: ["有个包裹等你看看", "A parcel is waiting for a look"],
+  copy: ["件不大，箱子倒挺大。", "Small item. Rather large box."],
+  tag: ["到站通知", "ARRIVAL SLIP"], cta: ["查看取件单", "Read the collection slip"],
+  intro: ["老板把空箱子叠在门后，谁需要就拿一个。最小的那个箱子套在最大的里面。", "Empty boxes are stacked behind the door. Take one if you need it. The smallest is inside the biggest."],
+  items: [
+    [["包裹内容", "Contents"], ["一小卷胶带，外面包了五层纸。", "A little roll of tape, wrapped in five layers of paper."]],
+    [["取件须知", "Collection note"], ["纸箱留给下一位，胶带也尽量少撕一点。", "Leave the box for the next person. Try not to destroy all the tape."]]
+  ],
+  note: ["虚构包裹单。不查询真实快递，不收姓名、电话或地址。", "A fictional parcel slip. No real tracking, names, numbers or addresses."]
+},
+{
+  id: "photobooth", imageId: "ad-cat", galleryIds: ["ad-cat", "ad-cat-snow", "ad-cat-tabby"], kind: "photobooth",
+  name: ["三秒照相亭", "Three Second Photo Booth"],
+  headline: ["三张连拍，总有一张能用", "Three pictures. One ought to do"],
+  copy: ["第一张闭眼，第二张动了，第三张先留着。", "Eyes shut. Moved. Keep the third one."],
+  tag: ["即时成像", "WHILE YOU WAIT"], cta: ["看看相片", "See the prints"],
+  intro: ["帘子拉好，坐稳，等灯亮。老板说猫也能拍，就是通常不肯看镜头。", "Close the curtain, sit still and wait for the light. Cats are welcome, though they rarely face the camera."],
+  items: [
+    [["第一张", "Frame one"], ["眼睛还没睁开。", "Wasn’t quite ready."]],
+    [["第二张", "Frame two"], ["正在看别的地方。", "Something more interesting off to the side."]],
+    [["第三张", "Frame three"], ["这张留下。", "This one will do."]]
+  ],
+  note: ["现成动物照片的虚构展示，不调用摄像头，也不上传图片。", "A fictional display using existing animal photos. No camera access or photo uploads."]
+},
+{
+  id: "aquarium", imageId: "ad-computer", kind: "aquarium",
+  name: ["桌面摸鱼铺", "Desktop Fish Shop"],
+  headline: ["电脑在忙，你先看鱼", "Computer working? Watch the fish"],
+  copy: ["不用换鱼缸，屏幕里就能养。", "No tank required. They live on the screen."],
+  tag: ["屏保演示", "SCREENSAVER DEMO"], cta: ["看看说明", "Read the little manual"],
+  intro: ["这几条鱼不占桌面地方，也不吃电线。店主每天都来看看，主要是确认它们没游出屏幕。", "These fish don’t take up desk space or chew cables. The owner checks daily, mostly to make sure they haven’t escaped the screen."],
+  items: [
+    [["喂一粒", "One flake"], ["鱼会凑过来看看。再喂也只是一粒。", "They come over for a look. One flake at a time, please."]],
+    [["暂时停一下", "A quiet tank"], ["减少动态效果时，鱼留在原地。", "With reduced motion, the fish stay put."]]
+  ],
+  note: ["网页内的小演示，不下载或安装屏保。", "A little web demo. No screensaver download or installation."]
+},
+{
+  id: "pocket", imageId: "ad-clouds", galleryIds: ["ad-clouds", "ad-cat-tabby"], kind: "pocket",
+  name: ["口袋壁纸铺", "Pocket Wallpapers"],
+  headline: ["换张壁纸，像换台新机", "New wallpaper. Same old phone"],
+  copy: ["手机还能用，先别换。", "The phone still works. Start with the wallpaper."],
+  tag: ["小屏也好看", "MADE FOR LITTLE SCREENS"], cta: ["翻翻壁纸册", "Browse the wallpaper book"],
+  intro: ["店里只换壁纸，不修手机。那台银色样机的按键已经被大家按松了。", "Wallpapers only; no phone repairs. Everyone’s been pressing the buttons on the silver display model."],
+  items: [
+    [["晴天", "Clear sky"], ["看着像能放个假。", "Looks like a day off."]],
+    [["猫", "Cat"], ["它不接电话，只管盯着你。", "Won’t answer your calls. Will stare at you."]]
+  ],
+  note: ["本页预览，不发送短信、不订阅彩信，也不扣费。", "An on-page preview. No texts, subscriptions or charges."]
+},
+{
+  id: "noodles", imageId: "hotel-breakfast", kind: "noodles",
+  name: ["三分钟面馆", "Three Minute Noodles"],
+  headline: ["老板说三分钟就好", "Ready in three minutes, apparently"],
+  copy: ["水还没开，先挑个口味。", "Kettle’s not boiled. Pick a flavour."],
+  tag: ["夜宵加一份", "LATE-NIGHT SPECIAL"], cta: ["翻翻菜单", "See the menu"],
+  intro: ["门口贴着“三分钟出餐”，从水开了才开始算。老板还在找那个计时器。", "The sign promises three minutes. That’s after the water boils. The owner is still looking for the timer."],
+  items: [
+    [["葱香", "Spring onion"], ["葱给得挺实在，吃完记得照照镜子。", "Plenty of onion. Check your teeth afterwards."]],
+    [["微辣", "A little heat"], ["老板的微辣。旁边有水。", "The owner’s idea of mild. Water’s over there."]]
+  ],
+  note: ["虚构夜宵菜单，不点单、不收款。", "A fictional late-night menu. No orders or payments."]
+},
+{
+  id: "books", imageId: "ad-print", kind: "books",
+  name: ["路边旧书摊", "Pavement Books"],
+  headline: ["封面挺新，内容读过", "Fresh cover. Well-read pages"],
+  copy: ["两元起，夹着书签的不用另算。", "From two coins. Bookmarks included."],
+  tag: ["本周分类小报", "THIS WEEK’S LITTLE PAPER"], cta: ["看看摊上有什么", "Browse the stall"],
+  intro: ["书堆在折叠桌上，摊主怕风，给价目表压了块石头。问他哪本好看，他说这几本自己都还没看完。", "Books on a folding table, a stone holding down the price list. Ask for a recommendation and the owner admits he hasn’t finished most of them."],
+  items: [
+    [["故事书", "Stories"], ["有人把结尾折了个角，摊主已经展平了。", "Someone dog-eared the ending. The owner has flattened it out."]],
+    [["实用手册", "Useful manuals"], ["有本教人收纳的，至今没找到放在哪。", "There’s a book on tidying. Nobody can find it."]]
+  ],
+  note: ["虚构书摊，不交易，也不下载电子书。", "A fictional bookstall. No transactions or ebook downloads."]
+},
+{
+  id: "karaoke", imageId: "ad-cinema", kind: "karaoke",
+  name: ["麦不太响练歌房", "Quiet Mic Karaoke"],
+  headline: ["调跑了没事，麦还开着", "Wrong key? The mic is still on"],
+  copy: ["先挑一首，隔壁还没意见。", "Pick a song. No complaints next door yet."],
+  tag: ["今晚点歌台", "TONIGHT’S REQUESTS"], cta: ["看看歌单", "Browse the song list"],
+  intro: ["墙上的歌单写了又改。有首歌大家都会唱第一句，后面就跟着字幕猜。", "The list on the wall keeps changing. Everyone knows the first line of one song. The rest is a guess."],
+  items: [
+    [["隔壁还没睡", "Still Awake Next Door"], ["唱到副歌记得轻点。", "Keep the chorus down a little."]],
+    [["明天再说", "Ask Me Tomorrow"], ["老板说很适合压轴，然后把灯关了。", "The owner called it a good closer, then turned off the lights."]]
+  ],
+  note: ["虚构点歌展示，不播放歌曲，也不录音。", "A fictional request list. No music playback or recording."]
 }
 ]);

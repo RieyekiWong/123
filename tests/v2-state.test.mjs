@@ -153,6 +153,15 @@ test("all early wrong classifications reject without advancing judgments and rem
  assert.equal(s.completed.audit,false);solveProof(s,'timeline');assert.equal(s.completed.audit,true);
 });
 
+test("popup ads default to on and an explicit opt-out survives old-schema hydration",()=>{
+  assert.equal(M.fresh().preferences.popupAds,true);
+  assert.equal(M.hydrate({schema:2}).preferences.popupAds,true);
+  const s=fullCase();s.preferences.popupAds=false;
+  const restored=M.hydrate(JSON.parse(JSON.stringify(s)));
+  assert.equal(restored.preferences.popupAds,false);
+  assert.deepEqual(restored.evidence,s.evidence);
+  assert.deepEqual(restored.completed,s.completed);
+});
 test("faces default to on; explicit player skip and reduced-motion preferences survive hydration", () => {
   assert.equal(M.fresh().preferences.skipScares, false);
   assert.equal(M.hydrate({ schema: 2 }).preferences.skipScares, false);

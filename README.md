@@ -1,4 +1,4 @@
-Version 4.15.1 brings the first WeChat notice forward to 30–40 seconds, with recurring contacts every 60–120 seconds and varied everyday messages. Exact-page return, the six-second warning intrusion and the dark finale remain. [Changes and verification](docs/v2.15/IMPLEMENTATION.zh-CN.md).
+Version 4.16.0 adds eight different interactive retro ads alongside the existing seventeen, with a popup opt-out in the opening declaration and settings. [Designs and verification](docs/v2.16/DELIVERY.zh-CN.md).
 
 V2.12 adds the W3-02 publicity archive: three versions of one corridor print and an interactive source check after the existing B-3 wiring save. Ordinary adverts, chat, C1–C9 and all three ending IDs remain. [Implementation, triggers, save migration and walkthrough](docs/V2_12-HOTEL-PROMO.zh-CN.md).
 

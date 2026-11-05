@@ -128,7 +128,7 @@ globalThis.StillwaterAds = (() => {
       flushMs = 0;
     const small = matchMedia("(max-width:1199px)");
     const allowed = () =>
-      eligibleRoutes.has(getRoute()) && (getRoute() === "chat" || !getState().evidence.includes("C9") || getState().lastEnding === "released");
+      getState().preferences.popupAds !== false && eligibleRoutes.has(getRoute()) && (getRoute() === "chat" || !getState().evidence.includes("C9") || getState().lastEnding === "released");
     const save = () => {
       try {
         localStorage.setItem("stillwater-ads:v1", JSON.stringify(persistent));
@@ -192,7 +192,7 @@ globalThis.StillwaterAds = (() => {
       openDialog(
         frame(
           t(...ad.name),
-          `<article class="ad-mini-site ad-${ad.kind}"><p class="ad-label">AD · ${t("虚构店铺", "FICTIONAL SHOP")}</p><div class="ad-shop-intro">${photo(ad.imageId, "detail")}<div><h3>${esc(t(...ad.headline))}</h3><p>${esc(t(...ad.intro))}</p></div></div><div class="ad-shop-items">${ad.items.map(([title, text], index) => `<section class="ad-shop-item">${ad.galleryIds ? photo(ad.galleryIds[index], "gallery") : ""}<h4>${esc(t(...title))}</h4><p>${esc(t(...text))}</p></section>`).join("")}</div>${credit(ad.imageId)}${ad.galleryIds ? `<details class="ad-extra-credits"><summary>${t("照片来源与许可", "Photo credits & licences")}</summary>${ad.galleryIds.map(credit).join("")}</details>` : ""}<p class="ad-fineprint">${esc(t(...ad.note))}</p><div class="ad-detail-actions"><button data-ad-action="pin" data-ad-id="${id}" ${persistent.pinnedIds.includes(id) ? "disabled" : ""}>${persistent.pinnedIds.includes(id) ? t("已放进广告夹", "Saved") : t("收藏到广告夹", "Keep this ad")}</button><button data-ad-action="folder">${t("返回广告夹", "Back to the ad folder")}</button></div><p class="ad-feedback" role="status"></p></article>`,
+          `<article class="ad-mini-site ad-${ad.kind}"><p class="ad-label">AD · ${t("虚构店铺", "FICTIONAL SHOP")}</p><div class="ad-shop-intro">${photo(ad.imageId, "detail")}<div><h3>${esc(t(...ad.headline))}</h3><p>${esc(t(...ad.intro))}</p></div></div><div class="ad-shop-items">${ad.items.map(([title, text], index) => `<section class="ad-shop-item">${ad.galleryIds ? photo(ad.galleryIds[index], "gallery") : ""}<h4>${esc(t(...title))}</h4><p>${esc(t(...text))}</p></section>`).join("")}</div>${credit(ad.imageId)}${ad.galleryIds ? `<details class="ad-extra-credits"><summary>${t("照片来源与许可", "Photo credits & licences")}</summary>${ad.galleryIds.map(credit).join("")}</details>` : ""}<p class="ad-fineprint">${esc(t(...ad.note))}</p><div class="ad-detail-actions"><button data-ad-action="pin" data-ad-id="${id}" ${persistent.pinnedIds.includes(id) ? "disabled" : ""}>${persistent.pinnedIds.includes(id) ? t("已放进广告夹", "Saved") : t("收藏到广告夹", "Keep this ad")}</button>${allowed() ? `<button data-ad-action="reopen" data-ad-id="${id}">${t("预览弹窗", "Preview popup")}</button>` : ""}<button data-ad-action="folder">${t("返回广告夹", "Back to the ad folder")}</button></div><p class="ad-feedback" role="status"></p></article>`,
         ),
         trigger,
       );
@@ -246,6 +246,7 @@ globalThis.StillwaterAds = (() => {
       lastTick = Date.now();
     }
     document.addEventListener("click", (event) => {
+      if(campaigns.handle(event))return;
       const button = event.target.closest("[data-ad-action]");
       if (!button) return;
       const action = button.dataset.adAction,
@@ -330,7 +331,15 @@ globalThis.StillwaterAds = (() => {
       quietUntil = Date.now() + 1500;
     };
     document.addEventListener("pointerdown", interact, { passive: true });
-    document.addEventListener("keydown", interact);
+    document.addEventListener("keydown", event => {
+      interact();
+      if(event.key!=="Escape"||event.defaultPrevented||document.querySelector("dialog[open]"))return;
+      const focused=document.activeElement?.closest("#ad-host [data-active-ad]");
+      if(!focused&&document.activeElement?.matches("input,textarea,select,[contenteditable=true]"))return;
+      const top=focused||[...host.querySelectorAll("[data-active-ad]")].at(-1);
+      const close=top?.querySelector("[data-ad-action=close]");
+      if(close){event.preventDefault();close.click();}
+    });
     document.addEventListener("visibilitychange", () => {
       lastTick = Date.now();
       grace = 5000;

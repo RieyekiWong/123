@@ -22,6 +22,7 @@ globalThis.StillwaterAdCampaigns = (() => {
   };
   const effects={pet:'blink',cinema:'blink',repair:'lights',secondhand:'lights',print:'none',cats:'blink',weather:'none',arcade:'lights',travel:'blink',broadband:'none',snacks:'blink',teahouse:'none',vinyl:'none',fortune:'blink',ringtone:'lights',courses:'none',sleep:'blink'};
   function create({t,esc,photo}) {
+    const extra=globalThis.StillwaterExtraAds.create({t,esc,photo}),meta=globalThis.StillwaterExtraAds.meta;
     const text=(zh,en)=>esc(t(zh,en));
     const open=(ad,zh,en,cls='')=>`<button class="ad-offer-button ${cls}" data-ad-action="detail" data-ad-id="${ad.id}">${text(zh,en)}</button>`;
     const name=ad=>`<p class="ad-shop-name">${esc(t(...ad.name))}</p>`;
@@ -47,14 +48,15 @@ globalThis.StillwaterAdCampaigns = (() => {
         case 'ringtone':return `<div class="ad-card-body ad-ringtone-body"><p class="ad-teaser">${text('本周彩铃排行榜','THIS WEEK’S RINGBACK CHART')}</p><div class="ad-ringtone-player"><span aria-hidden="true">♪</span><h2>${text("这首彩铃，该换了！","TIME FOR A NEW RINGBACK TUNE")}</h2></div><ol><li><b>01</b>${text('马上就接','Be Right There')}</li><li><b>02</b>${text('今天休息','Day Off')}</li><li><b>03</b>${text('手机在哪','Where’s My Phone')}</li></ol>${open(ad,'打开完整榜单','VIEW THE CHART')}${name(ad)}</div>`;
         case 'courses':return `<div class="ad-card-body ad-courses-body"><p class="ad-courses-tab">${text('招生简章','COURSE NOTICE')}</p><h2>${text('三天学会','LEARN IN THREE DAYS')}<span>${text('准时下班','LEAVING ON TIME')}</span></h2><dl><div><dt>${text('周二','TUE')}</dt><dd>${text('表格入门','SPREADSHEETS')}</dd></div><div><dt>${text('周四','THU')}</dt><dd>${text('说话简洁','GET TO THE POINT')}</dd></div></dl><p>${text("老师说，先从关电脑学起。","FIRST UP: SWITCH OFF THE COMPUTER")}</p>${open(ad,'看看课程安排','READ THE TIMETABLE')}${name(ad)}</div>`;
         case 'sleep':return `<div class="ad-card-body ad-sleep-body"><p class="ad-teaser">${text("样品清场，来店慢慢挑","FLOOR MODELS · COME AND TRY THEM")}</p><div class="ad-sleep-showroom">${photo(ad.imageId)}<strong>${text('零元','FREE')}<small>${text('试坐','TEST SIT')}</small></strong></div><h2>${text('坐下就不想走？','HARD TO GET UP AGAIN?')}</h2><p>${text("老板午休，也爱坐这张。","THE OWNER NAPS ON THIS ONE TOO")}</p>${open(ad,"进店看样品","VIEW THE FLOOR MODELS")}${name(ad)}</div>`;
-        default:return '';
+        default:return extra.body(ad);
       }
     }
     return {
       body:(ad,classic=false)=>classic?classicBody(ad):body(ad),
-      title:(ad,classic=false)=>classic?t('AD · 本地推荐','AD · Local picks'):t(...titles[ad.id]),
-      layout:(ad,classic=false)=>classic?'classic':layouts[ad.id],
-      effect:(ad,classic=false)=>classic?(['cinema','cats'].includes(ad.id)?'blink':['repair','secondhand'].includes(ad.id)?'lights':'none'):effects[ad.id],
+      title:(ad,classic=false)=>classic?t('AD · 本地推荐','AD · Local picks'):t(...(titles[ad.id]||meta[ad.id].title)),
+      layout:(ad,classic=false)=>classic?'classic':layouts[ad.id]||meta[ad.id].layout,
+      effect:(ad,classic=false)=>classic?(['cinema','cats'].includes(ad.id)?'blink':['repair','secondhand'].includes(ad.id)?'lights':'none'):effects[ad.id]||meta[ad.id].effect,
+      handle:extra.handle,
     };
   }
   return {create,layouts,titles,effects};

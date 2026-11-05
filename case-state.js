@@ -645,6 +645,7 @@ globalThis.StillwaterCaseState = (() => {
     effectSeen: false,
     preferences: {
       sound: false,
+      popupAds: true,
       breathing: false,
       volume: 0.2,
       reduceMotion: false,
@@ -843,6 +844,7 @@ globalThis.StillwaterCaseState = (() => {
     }
     state.preferences = {
       sound: false,
+      popupAds: pref.popupAds !== false,
       breathing: pref.breathing === true,
       volume: Number.isFinite(pref.volume)
         ? Math.max(0, Math.min(0.5, pref.volume))
