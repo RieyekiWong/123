@@ -1,0 +1,31 @@
+{
+  "baselineCommit": "ce0219d4af890dadea9825ac032d6f239d204a5f",
+  "productionMain": "83d3a72fdb133f805914f1c96464d671b268fab1",
+  "unchangedTrackedFiles": 1216,
+  "modifiedBaselineFiles": [],
+  "separateBranch": "design/xueli-21-chapter-01",
+  "productionEntryAndManifestUnchanged": true,
+  "sampleExcludedFromProductionBuild": true,
+  "userNoteUnchanged": true,
+  "checks": {
+    "chapterModel": {
+      "passed": 14,
+      "failed": 0
+    },
+    "chapterBrowsers": "See browser-checks.json for actual four complete routes and edge cases",
+    "productionBuild": "passed",
+    "productionUnitTests": {
+      "passed": 156,
+      "failed": 0
+    },
+    "productionBrowserChecks": {
+      "project": "v2",
+      "passed": 2,
+      "tests": [
+        "legacy journals stay byte-for-byte intact; daily chats import without fake-account spoilers",
+        "structured AI still replies in its own room with explicit consent, and failure leaves the forum story available"
+      ],
+      "upstreamAI": "mocked; no paid API request"
+    }
+  }
+}

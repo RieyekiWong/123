@@ -1,0 +1,75 @@
+{
+  "checkedAt": "2026-11-06T03:41:26.664596+00:00",
+  "sources": [
+    {
+      "id": "roottrees",
+      "url": "https://roottrees.com/en/",
+      "status": 200,
+      "resolved": "https://roottrees.com/en/",
+      "title": "The Roottrees are Dead | Evil Trout inc."
+    },
+    {
+      "id": "hypnospace",
+      "url": "https://store.steampowered.com/app/844590/Hypnospace_Outlaw/",
+      "status": 200,
+      "resolved": "https://store.steampowered.com/app/844590/Hypnospace_Outlaw/",
+      "title": "Save 75% on Hypnospace Outlaw on Steam"
+    },
+    {
+      "id": "eastward",
+      "url": "https://eastwardgame.com/media/",
+      "status": 200,
+      "resolved": "https://eastwardgame.com/media/",
+      "title": "Media | Eastward"
+    },
+    {
+      "id": "oneshot",
+      "url": "https://store.steampowered.com/app/2915460/OneShot_World_Machine_Edition/",
+      "status": 200,
+      "resolved": "https://store.steampowered.com/app/2915460/OneShot_World_Machine_Edition/",
+      "title": "Save 20% on OneShot: World Machine Edition on Steam"
+    },
+    {
+      "id": "unpacking",
+      "url": "https://www.unpackinggame.com/",
+      "status": 200,
+      "resolved": "https://www.unpackinggame.com/",
+      "title": "Unpacking: a zen puzzle game about unpacking a life"
+    },
+    {
+      "id": "newspaper",
+      "url": "https://www.loc.gov/collections/chronicling-america/",
+      "status": 200,
+      "resolved": "https://www.loc.gov/collections/chronicling-america/",
+      "title": "Chronicling America | The Library of Congress"
+    },
+    {
+      "id": "reader",
+      "url": "https://openlibrary.org/dev/docs/bookreader",
+      "status": 200,
+      "resolved": "https://openlibrary.org/dev/docs/bookreader",
+      "title": "Internet Archive BookReader | Open Library"
+    },
+    {
+      "id": "error",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html",
+      "status": 200,
+      "resolved": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html",
+      "title": "Understanding Success Criterion 3.3.1: Error Identification | WAI | W3C"
+    },
+    {
+      "id": "labels",
+      "url": "https://www.w3.org/WAI/tutorials/forms/labels/",
+      "status": 200,
+      "resolved": "https://www.w3.org/WAI/tutorials/forms/labels/",
+      "title": "Labeling Controls | Web Accessibility Initiative (WAI) | W3C"
+    },
+    {
+      "id": "history",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/History_API",
+      "status": 200,
+      "resolved": "https://developer.mozilla.org/en-US/docs/Web/API/History_API",
+      "title": "History API - Web APIs | MDN"
+    }
+  ]
+}

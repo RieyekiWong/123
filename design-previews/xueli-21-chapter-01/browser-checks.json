@@ -1,0 +1,97 @@
+{
+  "testedAt": "2026-11-06T04:07:00.337Z",
+  "base": "http://127.0.0.1:3135/xueli-21-chapter-01/",
+  "runs": [
+    {
+      "lang": "zh",
+      "width": 1440,
+      "height": 1050,
+      "alternativeDirectoryEvidence": false,
+      "completed": true,
+      "readingPositionRestored": true,
+      "draftAndCitationsRestored": true,
+      "wrongAnswersRejected": true,
+      "storyOnceAfterRefresh": true,
+      "fonts": {
+        "fusion": true,
+        "silkscreen": true
+      },
+      "overflow": false,
+      "taskbarDoesNotCoverFooter": true,
+      "productionSavesPreserved": true,
+      "reducedMotion": true
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "height": 1050,
+      "alternativeDirectoryEvidence": true,
+      "completed": true,
+      "readingPositionRestored": true,
+      "draftAndCitationsRestored": true,
+      "wrongAnswersRejected": true,
+      "storyOnceAfterRefresh": true,
+      "fonts": {
+        "fusion": true,
+        "silkscreen": true
+      },
+      "overflow": false,
+      "taskbarDoesNotCoverFooter": true,
+      "productionSavesPreserved": true,
+      "reducedMotion": true
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "height": 1000,
+      "alternativeDirectoryEvidence": false,
+      "completed": true,
+      "readingPositionRestored": true,
+      "draftAndCitationsRestored": true,
+      "wrongAnswersRejected": true,
+      "storyOnceAfterRefresh": true,
+      "fonts": {
+        "fusion": true,
+        "silkscreen": true
+      },
+      "overflow": false,
+      "taskbarDoesNotCoverFooter": true,
+      "productionSavesPreserved": true,
+      "reducedMotion": true
+    },
+    {
+      "lang": "en",
+      "width": 320,
+      "height": 900,
+      "alternativeDirectoryEvidence": true,
+      "completed": true,
+      "readingPositionRestored": true,
+      "draftAndCitationsRestored": true,
+      "wrongAnswersRejected": true,
+      "storyOnceAfterRefresh": true,
+      "fonts": {
+        "fusion": true,
+        "silkscreen": true
+      },
+      "overflow": false,
+      "taskbarDoesNotCoverFooter": true,
+      "productionSavesPreserved": true,
+      "reducedMotion": true
+    }
+  ],
+  "errors": [],
+  "serviceRequests": [],
+  "screenshots": [
+    "screens/01-desktop-opening.png",
+    "screens/02-desktop-weekly.png",
+    "screens/03-desktop-search.png",
+    "screens/04-desktop-notebook.png",
+    "screens/05-mobile-weekly.png",
+    "screens/06-mobile-reading.png"
+  ],
+  "scope": "Isolated chapter sample, not a production-game playthrough",
+  "corruptSavePreservedUntilConfirmedReset": true,
+  "blockedStorageAllowsTemporaryReading": true,
+  "searchTextSafelyRendered": true,
+  "passed": true
+}
