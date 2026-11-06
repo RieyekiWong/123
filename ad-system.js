@@ -68,7 +68,7 @@ globalThis.StillwaterAds = (() => {
     s.remaining = Math.max(0, s.remaining - ms);
     return s.remaining === 0;
   }
-  function create({ getState, getRoute, t, esc }) {
+  function create({ getState, getRoute, t, esc, canShow = null, sessionKey = 'stillwater-ads-session:v1' }) {
     const data = globalThis.StillwaterAdData,
       ids = new Set(data.map((a) => a.id));
     const validIds = (value) =>
@@ -88,7 +88,7 @@ globalThis.StillwaterAds = (() => {
       }
     } catch {}
     try {
-      const v = JSON.parse(sessionStorage.getItem("stillwater-ads-session:v1"));
+      const v = JSON.parse(sessionStorage.getItem(sessionKey));
       if (v?.schema === 1) {
         loadedSession = true;
         session = {
@@ -128,14 +128,14 @@ globalThis.StillwaterAds = (() => {
       flushMs = 0;
     const small = matchMedia("(max-width:1199px)");
     const allowed = () =>
-      getState().preferences.popupAds !== false && eligibleRoutes.has(getRoute()) && (getRoute() === "chat" || !getState().evidence.includes("C9") || getState().lastEnding === "released");
+      getState().preferences.popupAds !== false && (canShow ? canShow() : eligibleRoutes.has(getRoute()) && (getRoute() === "chat" || !getState().evidence.includes("C9") || getState().lastEnding === "released"));
     const save = () => {
       try {
         localStorage.setItem("stillwater-ads:v1", JSON.stringify(persistent));
       } catch {}
       try {
         sessionStorage.setItem(
-          "stillwater-ads-session:v1",
+          sessionKey,
           JSON.stringify(session),
         );
       } catch {}
@@ -238,7 +238,7 @@ globalThis.StillwaterAds = (() => {
         route = next;
         session.lastRoute = next;
       }
-      if (!allowed()) active = [];
+      if (!allowed()) {active = [];if(canShow&&dialog.open)dialog.close();}
       else if (getRoute() === "chat") active = active.slice(-1).map(window => ({...window, slot:"bottom-right"}));
       else if (fromChat) active = active.map(window => ({...window, slot:chooseSlot([])}));
       renderOverlay();

@@ -1,6 +1,11 @@
 /* Completion presentation only. Existing ending IDs and saves remain authoritative. */
 globalThis.StillwaterEnding = {
   render(id, { t, pending = false, stored = true, storyEdition='' }) {
+    if(storyEdition==='2.0-prototype'){
+      const names={'auto-close':['错误的找到','A false return'],unverified:['保存疑问','Keep the question open'],released:['分离原件','Separate the originals']};
+      if(!names[id])return '';
+      return `<section class="ending-completion" data-ending-complete="${id}" tabindex="-1"><p>2.0 / ${t('路线预览结局','Route prototype ending')}</p><h1>GAME OVER</h1><h2>${t(...names[id])}</h2><p>${stored?t('这条预览路线已保存。正式演出和素材仍在后续阶段制作。','This prototype route is saved. Final scenes and assets are being made in later stages.'):t('本次预览已结束，浏览器未能保存记录。','The prototype has ended, but this browser could not save it.')}</p><a href="#sw2/notes">${t('回看调查资料','Revisit the sources')}</a> · <a href="#sw2/heritage/final-trace">${t('查看其他处理方式','Review other dispositions')}</a></section>`;
+    }
     const endings = {
       "auto-close": ["01", "夜班留任", "The permanent night shift"],
       unverified: ["02", "拒绝结案", "Leave the record open"],
