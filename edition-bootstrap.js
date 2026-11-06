@@ -3,15 +3,17 @@
   'use strict';
   const params = new URLSearchParams(location.search);
   const preview = params.get('edition') === '2.0' || location.hash.startsWith('#sw2/');
-  const version = '4.20.0';
+  const version = '4.21.0';
   const common = [
     'site-media.js', 'chat-data.js', 'chat-personas.js', 'chat-protocol.js',
     'chat-fallback.js', 'chat-model.js', 'chat-config.js', 'chat-transport.js',
-    'chat-photos.js', 'sw2-data.js', 'sw2-progress.js', 'sw2-chat-story.js',
+    'chat-photos.js', 'sw2-front-data.js', 'sw2-data.js', 'sw2-progress.js',
+    'sw2-opening-data.js', 'sw2-chat-story.js', 'chat-opening-view.js',
     'chat-view.js', 'messenger-intrusion.js', 'messenger-bridge.js',
+    'forum-data.js', 'forum-extra-data.js', 'forum-avatars.js', 'forum.js',
     'ad-data.js', 'ad-extra-campaigns.js', 'ad-campaigns.js', 'ad-system.js',
     'case-audio-tracks.js', 'case-audio-policy.js', 'case-audio.js',
-    'case-night-model.js', 'case-ending.js', 'sw2-pages.js', 'sw2-story.js', 'sw2-app.js',
+    'case-night-model.js', 'case-ending.js', 'sw2-front.js', 'sw2-pages.js', 'sw2-story.js', 'sw2-app.js',
   ];
   globalThis.StillwaterEdition = Object.freeze({ id: preview ? '2.0' : 'v13', prototype: preview });
   if (preview) document.documentElement.dataset.edition = 'sw2';
@@ -32,9 +34,11 @@
       return;
     }
     if (preview) {
-      const style = document.createElement('link');
-      style.rel = 'stylesheet'; style.href = 'sw2-style.css?v=' + version;
-      document.head.append(style);
+      for(const file of ['sw2-style.css','sw2-front.css']){
+        const style = document.createElement('link');
+        style.rel = 'stylesheet'; style.href = file+'?v=' + version;
+        document.head.append(style);
+      }
     }
     const sources = preview ? common.map(file => file + '?v=' + version) :
       [...document.querySelectorAll('script[data-legacy-src]')].map(script => script.dataset.legacySrc);

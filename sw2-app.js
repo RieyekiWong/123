@@ -1,4 +1,4 @@
-/* Opt-in Stage 1 preview. The production case controller is never loaded here. */
+/* Opt-in remake preview. Production case and AI transport remain separate. */
 (() => {
   'use strict';
   const D=globalThis.Stillwater2Data,M=globalThis.Stillwater2Progress;
@@ -9,10 +9,14 @@
   let state=M.hydrate(prior.value)||M.fresh();
   if(!prior.raw&&!prior.error)state.preferences=M.importPreferences(legacy.value);
   let stateFault=prior.error||!!prior.raw&&!M.hydrate(prior.value),chatFault=chatPrior.error||!!chatPrior.raw&&chatPrior.value?.schema!==1,saveFailed=false;
-  let messenger=null,ads=null,story=null,sourceDialog=null,feedbackDialog=null,lastRenderedRoute=null;
+  let messenger=null,ads=null,story=null,sourceDialog=null,feedbackDialog=null,lastRenderedRoute=null,lastRenderedHash=null;
   const host=document.querySelector('#case-shell');
   const current=()=>D.parse(location.hash)?.route||'chat';
-  const policy=()=>M.scene(state,current());
+  const policy=()=>{
+    const scene=M.scene(state,current());
+    if(current()==='hotel'&&D.parse(location.hash)?.params.get('record')==='churen')return {...scene,ads:false,notices:false,reading:true};
+    return scene;
+  };
   const reduced=()=>state.preferences.reduceMotion||matchMedia('(prefers-reduced-motion: reduce)').matches;
   const chrome=document.createElement('div');chrome.id='sw2-chrome';host.before(chrome);
   const alert=document.createElement('p');alert.id='sw2-storage-alert';alert.role='status';alert.hidden=true;chrome.after(alert);
@@ -35,7 +39,7 @@
   const chat=globalThis.StillwaterChat.create({
     t,esc,getRoute:current,audio,storageKey:M.CHAT_KEY,initialState:imported,canPersist:()=>!chatFault,formatRoute:D.hash,
     onIncoming:messages=>{messenger?.incoming(messages);updateChrome();},
-    renderShareCard:()=>`<a class="chat-share-card" data-chat-forum href="${D.hash('forum?topic=hotel-return')}"><strong>${t('旧湖区酒店的网站又能打开了','The old lake-district hotel site is back')}</strong><span class="chat-share-summary">${t('2007 年停业的 Stillwater Hotel，2026 年恢复了旧网页。','Stillwater Hotel closed in 2007. Its archive website returned in 2026.')}</span><span class="chat-share-source">NIGHT OWL BBS</span></a>`,
+    renderShareCard:()=>`<a class="chat-share-card" data-chat-forum href="${D.hash('forum?topic=hotel-return')}"><strong>${esc(t(...globalThis.Stillwater2FrontData.mainPost.title))}</strong><span class="chat-share-summary">${t('有人把旧湖区酒店的网站恢复了，楼主留了两份附件。','Someone restored the old lake-district hotel website. The OP kept two attachments.')}</span><span class="chat-share-source">NIGHT OWL BBS</span></a>`,
   });
   messenger=globalThis.StillwaterMessengerBridge.create({
     chat,getState:()=>state,getRoute:current,canOpen:route=>M.canOpen(state,route),t,esc,audio,reduced,
@@ -49,9 +53,9 @@
     const route=current(),goal=M.goal(state),p=Object.values(D.puzzles).find(p=>p.route===goal);
     const awaiting=route==='chat'&&!chat.storyState().shared&&!M.solved(state,'P1');
     const label=awaiting?t('查看 GG 的消息','Read GG’s messages'):goal==='chat'?t('查看好友申请','View friend request'):p?t(...p.goal):goal==='ending'?t('查看本次结局','View this ending'):t('查看修复项目署名','Check the restoration project');
-    const next=awaiting?`<button data-sw2-action="open-gg">${label}</button>`:`<a class="sw2-next" href="${D.hash(goal)}">${esc(label)}</a>`;
+    const next=awaiting?`<button data-sw2-action="open-gg">${label}</button>`:`<a class="sw2-next" href="${D.hash(M.destination(state))}">${esc(label)}</a>`;
     const english=document.documentElement.lang!=='zh-CN';
-    const html=`<p><strong>2.0 · ${t('开发预览 / Stage 1','Development preview / Stage 1')}</strong> · ${state.chapter+1}/8 · ${t('文字路线，正式谜题与美术尚未接入。','Text route; final puzzles and artwork are not integrated yet.')}</p><nav>${next}<button data-case-action="settings">${t('设置','Settings')}</button><a href="${english?'index-zh.html':'index.html'}${esc(location.search+location.hash)}">${t('English','简体中文')}</a><a href="${english?'index.html':'index-zh.html'}?edition=choose">${t('版本','Edition')}</a></nav>`;
+    const html=`<p><strong>2.0 · ${t('开发预览 / Stage 2','Development preview / Stage 2')}</strong> · ${state.chapter+1}/8 · ${t('开场、论坛与酒店已接入；后续仍为路线预览。','Opening, forum and hotel integrated; later chapters remain route prototypes.')}</p><nav>${next}<button data-case-action="settings">${t('设置','Settings')}</button><a href="${english?'index-zh.html':'index.html'}${esc(location.search+location.hash)}">${t('English','简体中文')}</a><a href="${english?'index.html':'index-zh.html'}?edition=choose">${t('版本','Edition')}</a></nav>`;
     if(chrome.innerHTML!==html)chrome.innerHTML=html;
     document.documentElement.style.setProperty('--sw2-chrome-height',chrome.getBoundingClientRect().height+'px');
     const composer=host.querySelector('.chat-composer');
@@ -69,20 +73,23 @@
   function showTransition(){
     const transition=state.transition;if(!transition||transition.from!==current()||feedbackDialog?.open)return;
     const dialog=document.createElement('dialog');dialog.id='sw2-transition';dialog.setAttribute('aria-labelledby','sw2-transition-title');
-    const p=D.puzzles[transition.id];dialog.innerHTML=`<p>${transition.id} / ${t('预览反馈','Prototype feedback')}</p><h2 id="sw2-transition-title">${t(...p.title)}</h2>${t(...p.feedback).split('\n\n').map(copy=>`<p>${esc(copy)}</p>`).join('')}<button class="sw2-primary" data-sw2-action="close-transition">${t('读完，关闭这一页','Finished reading; close this page')}</button>`;
+    const p=D.puzzles[transition.id],formal=['P1','P2'].includes(transition.id);
+    dialog.innerHTML=`<p>${transition.id} / ${formal?t('核对记录已保存','Review retained'):t('预览反馈','Prototype feedback')}</p><h2 id="sw2-transition-title">${t(...p.title)}</h2>${transition.id==='P1'?`<div class="sw2-date-pair"><div>${t('酒店停业','Hotel closure')}<p>2007</p></div><div>${t('网站恢复','Website restoration')}<p>2026</p></div></div>`:''}${t(...p.feedback).split('\n\n').map(copy=>`<p>${esc(copy)}</p>`).join('')}${transition.id==='P2'?`<div class="sw2-sync-status" role="status"><p data-sync-prior>${t('审核通过','REVIEW ACCEPTED')}</p><p data-sync-current hidden>${t('身份关联待补全','IDENTITY ASSOCIATION INCOMPLETE')}</p></div>`:''}<button class="sw2-primary" data-sw2-action="close-transition">${formal?transition.id==='P1'?t('读完，打开酒店网站 →','Finished; open the hotel site →'):t('读完，查看修复项目 →','Finished; view the restoration project →'):t('读完，关闭这一页','Finished reading; close this page')}</button>`;
+    const syncTimer=transition.id==='P2'?setTimeout(()=>{const prior=dialog.querySelector('[data-sync-prior]'),next=dialog.querySelector('[data-sync-current]');if(prior&&next){prior.classList.add('is-replaced');next.hidden=false;}},1200):null;
     feedbackDialog=dialog;document.body.append(dialog);
-    dialog.addEventListener('close',()=>{feedbackDialog=null;dialog.remove();if(!dialog.dataset.suspended)story.continueReading();});
+    dialog.addEventListener('close',()=>{clearTimeout(syncTimer);feedbackDialog=null;dialog.remove();if(!dialog.dataset.suspended)story.continueReading();});
     dialog.showModal();ads.navigate();audio.pause();
   }
   function render(){
-    if(!D.parse(location.hash)){navigate(M.goal(state));return;}
+    if(!D.parse(location.hash)){navigate(M.destination(state));return;}
     let route=current();
-    if(!M.canOpen(state,route)){navigate(M.goal(state));return;}
+    if(!M.canOpen(state,route)){navigate(M.destination(state));return;}
     if(sourceDialog?.open&&state.route!==route)suspendDialog(sourceDialog);
     if(feedbackDialog?.open&&state.transition?.from!==route)suspendDialog(feedbackDialog);
     messenger.beforeRender();
+    if(route==='hotel'&&D.parse(location.hash)?.params.get('record')==='churen')M.action(state,'entry-open');
     state.route=route;save();
-    document.body.dataset.site=route==='chat'?'chat':'sw2';document.body.dataset.sw2Tone=policy().dark?'horror':'quiet';
+    document.body.dataset.site=route==='chat'?'chat':route==='forum'?'forum':'sw2';document.body.dataset.sw2Tone=policy().dark?'horror':'quiet';
     document.body.classList.toggle('reduced-motion',reduced());
     updateChrome();story.sync();
     if(route==='chat'){
@@ -94,8 +101,8 @@
       document.title=t('Stillwater 2.0 · 路线预览','Stillwater 2.0 · Route prototype');
     }
     messenger.afterRender();ads.navigate();updateChrome();void audio.sync();
-    if(lastRenderedRoute&&lastRenderedRoute!==route&&lastRenderedRoute!=='chat'&&route!=='chat'){window.scrollTo(0,0);host.querySelector('#content')?.focus({preventScroll:true});}
-    lastRenderedRoute=route;
+    if(lastRenderedRoute&&lastRenderedHash!==location.hash&&lastRenderedRoute!=='chat'&&route!=='chat'){window.scrollTo(0,0);host.querySelector('#content')?.focus({preventScroll:true});}
+    lastRenderedRoute=route;lastRenderedHash=location.hash;
     showTransition();if(!state.transition)showSource();
   }
   function settings(){
@@ -118,10 +125,24 @@
     try{chat.reset({keepAI:true,initialState:daily});if(!save())return;messenger.reset();location.href=location.pathname+location.search+D.hash('chat');location.reload();}catch{saveFailed=true;storageNotice();}
   }
   document.addEventListener('input',event=>{const id=event.target.dataset.sw2Note;if(id){M.action(state,'draft',{puzzle:id,field:'note',value:event.target.value});save();}if(event.target.id==='chat-input')updateChrome();});
+  document.addEventListener('change',event=>{
+    if(event.target.name==='stay-reason'){M.action(state,'stay-reason',{id:event.target.value,checked:event.target.checked});save();}
+  });
+  document.addEventListener('submit',event=>{
+    if(event.target.id!=='sw2-stay-form')return;
+    event.preventDefault();const result=M.action(state,'check-stay');
+    if(!result.ok){const copy={
+      'sources':t('还缺少原件。请查看停业报道和这份条目旁的原始提交。','An original is missing. Check the closure report and the submission beside this entry.'),
+      'two-reasons':t('请保留两条能由原件支持的理由；当前选择已保留。','Keep two reasons supported by the originals. Your choices have been retained.'),
+      'unsupported-reasons':t('当前记录可以证明某个页面在 2026 年这么写，却不能证明 2023 年酒店还在接待客人。姓名或照片清晰度不能作为办理入住的凭据。','This record establishes what a page said in 2026, not that the hotel accepted guests in 2023. A name or photograph quality is not evidence of booking.'),
+    };feedback(copy[result.error]||t('核对暂未完成，已保留当前选择。','The review is incomplete. Your choices are retained.'));return;}
+    save();story.sync();render();
+  });
   document.addEventListener('focusin',event=>{if(event.target.matches('[data-sw2-note]'))ads.navigate();});
   document.addEventListener('click',event=>{
     const target=event.target.closest('[data-sw2-action]');
     if(!target){
+      if(event.target.closest('[data-chat-photo]')){M.action(state,'friend-context');save();}
       if(event.target.closest('[data-case-action]')){event.preventDefault();settings();}
       const request=event.target.closest('[data-story-action=request]');
       if(request){event.preventDefault();const r=M.action(state,'request',{choice:request.dataset.choice});if(r.ok){save();story.sync();if(state.friendRequest==='accepted'){chat.openRoom('wcr_new');navigate('chat?room=wcr_new');}else navigate(state.route);updateChrome();}}
@@ -133,6 +154,9 @@
     if(a==='close-settings'){document.querySelector('#case-settings').close();return;}
     if(a==='restart'){void restart();return;}
     if(a==='open-gg'){chat.openRoom('gg');navigate('chat?room=gg');return;}
+    if(a==='old-last'){
+      M.action(state,'friend-context');save();[...host.querySelectorAll('.chat-messages [data-chat-message]')].at(-1)?.scrollIntoView({block:'center',behavior:'instant'});return;
+    }
     const result=M.action(state,a,{id:a==='ending'?target.dataset.ending:target.dataset.source,puzzle:target.dataset.puzzle});
     if(!result.ok){feedback(result.error==='sources'?t('还有来源没有查看。先打开本幕列表里的原件，关闭后再试。','Some sources have not been viewed. Open the originals in this chapter, then try again.'):t('当前步骤还不能提交，已保存的内容没有丢。','This step is not ready. Your retained work is unchanged.'));return;}
     save();story.sync();

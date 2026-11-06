@@ -10,14 +10,28 @@
     line('group','sw2.open.1','你先别改群名了 改了也不睡','Don’t rename the group again. It doesn’t make you sleep.',{person:'zhang'}),
     line('group','sw2.open.2','先导一份备份吧 上次白做一晚上','Export a backup first. Last time you lost a whole night.',{person:'lin'}),
   ];
+  [
+    ['gg','sw2.open.3','我刚吃完 外卖又忘给筷子','Just ate. No chopsticks with the takeaway again.'],
+    ['zhang','sw2.open.4','你不是买了一百双吗','Didn’t you buy a hundred pairs?'],
+    ['gg','sw2.open.5','全在上次那个袋子里 袋子不见了','All in that one bag. The bag’s gone.'],
+    ['lin','sw2.open.6','你的文件也这么管理？','Is this how you organize files too?'],
+    ['zhang','sw2.open.7','翻到去年存的照片了','Found some old photos I’d saved.'],
+    ['gg','sw2.open.8','楚人那次还说下次不让我带路','Churen said I wasn’t allowed to navigate next time.',{photo:'friends',contact:'wcr_old'}],
+    ['lin','sw2.open.9','原图我还有 别再存压缩版了','I still have the original. Don’t keep saving compressed copies.'],
+    ['zhang','sw2.open.10','嗯 你那份留好','Yeah. Keep that copy safe.'],
+  ].forEach(([person,key,zh,en,extra])=>group.push(line('group',key,zh,en,{person,...extra})));
   const discovery=[
-    line('gg','sw2.discovery.0','在不在 我找到楚人以前查的那个酒店了','You there? I found that hotel Churen was looking into.'),
-    line('gg','sw2.discovery.1','三年了 那个网址一直打不开 今天居然能开','Three years of a dead address. Today it actually opens.'),
-    line('gg','sw2.discovery.2','我在夜猫论坛看到的 说是恢复旧网页 不是酒店重新营业','Found it on Night Owl. They’re restoring the old site, not reopening the hotel.'),
+    line('gg','sw2.discovery.0','你现在有空吗','Got a minute?'),
+    line('gg','sw2.discovery.1','我不知道是不是我看错了','I don’t know if I’m reading this right.'),
+    line('gg','sw2.discovery.2','楚人之前查的那家酒店，官网又出现了','That hotel Churen was looking into. The website’s back.'),
+    line('gg','sw2.discovery.3','我点开看了，是那个银松镇的','Opened it. It’s the one in Silverpine.'),
+    line('gg','sw2.discovery.4','我在夜猫论坛翻到的','Found it on Night Owl.'),
+    line('gg','sw2.discovery.5','你先别想太多，看看再说','Let’s just have a look before we get ahead of ourselves.'),
     line('gg','sw2.discovery.card','[夜猫论坛]','[Night Owl]',{kind:'card'}),
   ];
+  batch('sw2.P1','gg',[['对 就是这个站','Yeah, that’s the site.']]);
   batch('sw2.P2','gg',[
-    ['看到了 他问的是照片 怎么给办成入住了','Saw it. He asked about photographs. How did that become a stay?'],
+    ['谁在给他办入住啊？','Who’s checking him in?'],
     ['修复项目有署名 先看看谁在整理','The restoration has a project credit. Let’s see who’s doing it.'],
   ]);
   batch('sw2.P5','gg',[['你发来的两份说明我留着了 先别把修过的图当原片','Kept the two source descriptions you sent. Let’s keep the edited copy separate.']]);
@@ -30,16 +44,7 @@
   batch('sw2.end-released','gg',[['北岸旧渡口 这次总算是他自己留下的线索','The old north ferry. At least this lead is something he left himself.']]);
   line('wcr_new','sw2.synthetic.reply','我记得那些话。但你留的原件，比我现在说的可靠。','I remember those words. The originals you kept are more reliable than what I’m saying now.');
   D.people.wcr_old={name:['王楚人','Wang Churen']};D.people.wcr_new={name:['王楚人','Wang Churen']};
-  const old=[
-    {person:'wcr_old',text:['到芝加哥了 昨天一觉睡到下午','Made it to Chicago. Slept through most of yesterday.'],displayTime:'2021-09-18 19:34'},
-    {person:'wcr_old',text:['GG 又把地图拿反了 他坚持说北就画在下面','GG held the map upside down again. Insists north is at the bottom.'],displayTime:'2022-05-14 15:42'},
-    {person:'wcr_old',text:['妈又说那件蓝衣服穿三年了 最多两年半','Mum says I’ve worn that blue hoodie for three years. Two and a half, tops.'],displayTime:'2023-09-22 21:16'},
-    {person:'wcr_old',text:['周末去银松镇 对一下作业里的老照片 只拍公开的地方','Going to Silverpine this weekend to check the old photos for class. Just the public places.'],displayTime:'2023-10-12 20:18'},
-    {person:'wcr_old',text:['等我回来找你们吃饭 不吃上次那家','Food when I’m back. Anywhere but that place from last time.'],displayTime:'2023-10-12 20:20'},
-    {person:'wcr_old',text:['我好像找到那个地方了 我再看一下','I think I found the place. I’ll take another look.'],displayTime:'2023-10-17 18:10'},
-    {person:'wcr_old',text:['等我回去跟你们说','I’ll tell you when I get back.'],displayTime:'2023-10-17 18:12'},
-  ];
-  for(const message of old)message.at=Date.parse(message.displayTime.replace(' ','T')+':00-05:00');
+  const {old,photos,profile}=globalThis.Stillwater2OpeningData;
   D.sideChats.wcr_old={name:['王楚人 · 旧会话','Wang Churen · older chat'],avatar:'wcr_old',messages:old,kind:'archive',historyAt:Date.parse('2023-10-17T18:00:00Z')};
   D.sideChats.wcr_new={name:['王楚人 · 新账号','Wang Churen · new account'],avatar:'wcr_new',messages:[],kind:'scripted'};
   P.order.splice(2,0,'wcr_old','wcr_new');
@@ -51,22 +56,15 @@
     s.shared=s.messages.some(m=>m.key==='sw2.discovery.card');
   }
   function advance(s,dt,{chatActive},append){
-    if(!chatActive)return false;
+    if(!chatActive||s.openedForum)return false;
     const o=s.story.opening;o.elapsed+=dt;let changed=false;
     const post=key=>{if(s.messages.some(m=>m.key===key))return;append(s,{kind:'story',key,conversation:messages[key].room});changed=true;};
-    group.forEach((key,i)=>{if(o.elapsed>=i*2000)post(key);});
-    discovery.forEach((key,i)=>{if(o.elapsed>=6500+i*2200){o.discoveryStarted=true;post(key);if(key==='sw2.discovery.card')s.shared=true;}});
+    group.forEach((key,i)=>{if(o.elapsed>=i*3200)post(key);});
+    discovery.forEach((key,i)=>{if(o.elapsed>=10000+i*4000){o.discoveryStarted=true;post(key);if(key==='sw2.discovery.card')s.shared=true;}});
     return changed;
   }
   globalThis.StillwaterChatStory={entry:key=>messages[key]||null,reply:(_text,s)=>s.story.delivered.some(id=>id.startsWith('sw2.end-'))?null:'sw2.synthetic.reply'};
-  globalThis.StillwaterChatOpening={active,initialize,hydrate,advance,batchId:(_s,id)=>id,sideMessages:(_s,room)=>D.sideChats[room]?.messages||[]};
-  globalThis.StillwaterChatOpeningView={
-    visible:()=>true,
-    profile:(s,{t})=>s.ui.conversation==='wcr_old'?`<p class="chat-friend-profile">${t('苏州人，2021 年到芝加哥读设计。爱旧网页、摄影和奇怪的路牌。最后可靠消息：2023-10-17。','From Suzhou; moved to Chicago to study design in 2021. Liked old websites, photography and odd street signs. Last reliable message: 17 October 2023.')}</p>`:'',
-    invitation(root,s,{t,esc}){
-      root.querySelector('.chat-opening-invite')?.remove();
-      if(!s.ui.unread.gg||s.ui.conversation==='gg'||!s.messages.some(m=>discovery.includes(m.key)))return;
-      const button=document.createElement('button');button.className='chat-opening-invite';button.dataset.chatOpenPrivate='gg';button.innerHTML=`<strong>GGbond</strong><span>${esc(t('找到楚人以前看的酒店了','Found the hotel Churen was looking at'))}</span><small>${t('查看私聊','Open chat')} ›</small>`;root.querySelector('.chat-heading')?.after(button);
-    },
+  globalThis.StillwaterChatOpening={active,initialize,hydrate,advance,batchId:(_s,id)=>id,sideMessages:(_s,room)=>D.sideChats[room]?.messages||[],entries:messages,photos,profile,discovery,contactVisible:()=>true,
+    profileExtras:(_s,{t})=>`<button type="button" data-sw2-action="old-last">${t('2023 年 10 月最后一条消息','Last message, October 2023')}</button>`,
   };
 })();

@@ -8,9 +8,10 @@ globalThis.StillwaterChatOpeningView = (() => {
   }
   function profile(state,{t,esc}) {
     if(!O.active(state)||state.ui.conversation!=='wcr_old')return '';
-    return `<div class="chat-friend-profile"><button type="button" data-chat-photo="old">${t('照片与旧事','Photos & memories')}</button><span>${t('最后可靠消息：2023-10-17 18:12','Last reliable message: 2023-10-17 18:12')}</span><details><summary>${t('关于楚人','About Churen')}</summary><p>${esc(localized(O.profile.about,t))}</p><p>${esc(localized(O.profile.family,t))}</p><p>${esc(localized(O.profile.missing,t))}</p></details></div>`;
+    return `<div class="chat-friend-profile"><button type="button" data-chat-photo="old">${t('照片与旧事','Photos & memories')}</button><span>${t('最后可靠消息：2023-10-17 18:12','Last reliable message: 2023-10-17 18:12')}</span><details><summary>${t('关于楚人','About Churen')}</summary><p>${esc(localized(O.profile.about,t))}</p><p>${esc(localized(O.profile.family,t))}</p><p>${esc(localized(O.profile.missing,t))}</p></details>${O.profileExtras?.(state,{t,esc})||''}</div>`;
   }
   function visible(state,id) {
+    if(O.contactVisible)return O.contactVisible(state,id);
     if(id!=='wcr_old'||!O.active(state))return true;
     return state.ui.visited.wcr_old===true||state.messages.some(m=>m.key==='v12.group.7'||m.key==='v12.group.11')||state.story.opening.discoveryStarted;
   }
@@ -36,7 +37,7 @@ globalThis.StillwaterChatOpeningView = (() => {
     root.querySelector('.chat-opening-invite')?.remove();
     if(!O.active(state)||!state.story.opening.discoveryStarted||state.ui.conversation==='gg'||!state.ui.unread.gg)return;
     const button=document.createElement('button');button.type='button';button.className='chat-opening-invite';button.dataset.chatOpenPrivate='gg';
-    const latest=[...state.messages].reverse().find(m=>m.key?.startsWith('v12.discovery.'));
+    const latest=[...state.messages].reverse().find(m=>O.discovery?.includes(m.key));
     const entry=latest&&O.entries[latest.key];
     button.innerHTML=`<strong>GGbond</strong><span>${esc(entry?.kind==='card'?t('发来一个夜猫论坛帖子','Shared a Night Owl post'):entry?localized(entry.text,t):t('发来一条私聊','Sent you a private message'))}</span><small>${t('查看私聊','Open chat')} ›</small>`;
     root.querySelector('.chat-heading')?.after(button);

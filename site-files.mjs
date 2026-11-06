@@ -2,6 +2,7 @@
 export const V2_FILES = [
   "index.html", "index-zh.html", "haunt-preview.html",
   "edition-bootstrap.js", "sw2-data.js", "sw2-progress.js", "sw2-chat-story.js",
+  "sw2-front-data.js", "sw2-front.js", "sw2-front.css", "sw2-opening-data.js",
   "sw2-story.js", "sw2-pages.js", "sw2-app.js", "sw2-style.css",
   "case-story-data.js", "case-story-pages.js", "case-story.js", "case-story.css", "case-story-model.js", "chat-story.js",
   "chat-opening.js", "chat-opening-view.js", "chat-opening.css",

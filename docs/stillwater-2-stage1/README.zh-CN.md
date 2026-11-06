@@ -1,5 +1,7 @@
 # Stillwater Hotel 2.0 · Stage 1 开发预览
 
+本页记录 Stage 1 的历史范围。后续 P0–P2 已由 [Stage 2](../stillwater-2-stage2/README.zh-CN.md) 替换为实际内容与验证；请以对应阶段记录区分已完成内容和占位。
+
 日期：2026-11-06；前端版本：4.20.0。Stage 0 的审查和完整设计仍保留在[独立规划分支](https://github.com/RieyekiWong/123/tree/plan/stillwater-2-stage0/docs/stillwater-2-stage0)。
 
 ## 本阶段已实现

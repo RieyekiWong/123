@@ -1,20 +1,9 @@
-/* Stage 1 text prototype. Sources and route checks are local, never AI decisions. */
+/* Stage 2 front chapters; later chapters remain explicit text prototypes. */
 globalThis.Stillwater2Data = (() => {
   const text = (zh, en) => [zh, en];
   const source = (title, date, origin, zh, en) => ({title:text(...title), date, origin, body:text(zh,en)});
   const sources = {
-    closure: source(['停业报道','Closure report'], '2007', 'LOCAL NEWS / RETAINED COPY',
-      'Stillwater Hotel 于 2007 年停止营业。报道说的是旅馆本身，不是网站停止更新。',
-      'Stillwater Hotel closed in 2007. The report concerns the hotel, not merely its website.'),
-    restoration: source(['网页恢复公告','Website restoration notice'], '2026', 'DIGITAL HERITAGE PROJECT',
-      '项目将重新公开酒店旧网页和历史资料。客房不恢复营业。资料负责人：Sylvia Morgan。',
-      'The project reopens the hotel’s historical website and archives. Guest accommodation is not reopening. Archive lead: Sylvia Morgan.'),
-    enquiry: source(['楚人的课程咨询','Churen’s project enquiry'], '2023-10-17', 'W. CHUREN / CHICAGO STUDENT',
-      '我在做旧网页与建筑影像的课程项目，想确认两张西翼照片是不是同一个位置。附件里有现场照片、课程说明和几段用来解释照片的旧聊天。这不是订房申请。',
-      'I’m working on a class project about old websites and architectural photographs. Are these two west-wing pictures of the same location? I attached field photos, project notes and a few older messages explaining the images. This is not a booking request.'),
-    stay: source(['恢复页的入住条目','Stay entry on the restored page'], '2026 / REBUILT', 'CONTINUITY',
-      'WANG CHUREN\nArrived: 2023-10-17\nRoom: WEST SERVICE\nStatus: STILL ON PROPERTY\n这是一份 2026 年生成的状态，不是 2023 年的原始入住单。',
-      'WANG CHUREN\nArrived: 2023-10-17\nRoom: WEST SERVICE\nStatus: STILL ON PROPERTY\nThis status was generated in 2026. It is not an original 2023 booking.'),
+    ...globalThis.Stillwater2FrontData.sources,
     staff: source(['Nora 的工作记录','Nora’s work record'], '2006-10-17', 'HOTEL / STAFF COPY',
       'Nora Bell，夜班前台。她会替熟客留热水，也一直想离开小镇继续读书。这份工时记录显示她当晚受雇值班，不是来参加研究。',
       'Nora Bell worked the night desk. She remembered regular guests’ habits and hoped to leave town to study. This time record places her on a paid shift, not at a research event.'),
@@ -61,7 +50,7 @@ globalThis.Stillwater2Data = (() => {
   const puzzle = (chapter, route, title, goal, ids, feedback) => ({chapter,route,title:text(...title),goal:text(...goal),sources:ids,feedback:text(...feedback)});
   const puzzles = {
     P1:puzzle(1,'forum',['已经关门的酒店','The closed hotel'],['确认停业与网页恢复分别是什么时间。','Distinguish the hotel’s closure from its website restoration.'],['closure','restoration'],['2007 年停业。2026 年恢复的是旧网站。先看看 GG 找到的页面。','The hotel closed in 2007. Its website was restored in 2026. Open the page GG found.']),
-    P2:puzzle(1,'hotel',['谁在给他办理入住','Who is checking him in?'],['核对楚人的课程咨询与后来生成的入住条目。','Compare Churen’s enquiry with the later stay entry.'],['closure','enquiry','stay'],['楚人提交的是课程咨询。系统却在酒店停业后给他登记了入住。资助修复的人也许知道这份记录怎么来的。','Churen sent a project enquiry. The system assigned him a stay after the hotel had closed. The restoration sponsor may explain the entry.']),
+    P2:puzzle(1,'hotel',['谁在给他办理入住','Who is checking him in?'],['查找楚人留下的咨询，核对它为什么变成了入住记录。','Find Churen’s enquiry and check why it became a stay entry.'],['closure','enquiry','stay'],['楚人提交的是照片咨询，酒店也早在他来之前停业。这份后来生成的条目，不能证明他通过正常订房入住。\n\n原始提交已保留。页面正在同步这次核对；接下来查看负责恢复资料的项目组。','Churen asked about photographs, and the hotel had closed long before his visit. This later entry does not establish a stay through normal booking.\n\nThe original submission is retained. The page is synchronizing this review. Next, check who restored these records.']),
     P3:puzzle(3,'phase/archive',['有人替她同意了','Someone agreed for her'],['比较 Nora 的受雇记录与“自愿参加”的说法。','Compare Nora’s employment with the claim that she volunteered.'],['staff','history','newsletter'],['工作记录还在，但没有找到她本人同意的原件。展览里的旧声音可能留下了另一种说法。','The work record remains, but her original consent is missing. The exhibition recording may retain a different account.']),
     P4:puzzle(4,'phase/research',['不止一个人的声音','More than one voice'],['分清 Nora 的求助与继续连接的指令。','Separate Nora’s plea from the command to stay connected.'],['narration','nora','doctrine'],['两种声音在要求不同的事。三轨副本已留在预览记录里。微信收到一个使用楚人名字的新好友申请。','The voices ask for different things. The prototype retains all three transcripts. A new friend request has arrived under Churen’s name.']),
     P5:puzzle(5,'heritage/photos',['走廊背面','Behind the corridor'],['用两个年代的照片确认同一处建筑结构。','Locate the shared structure in the two photographs.'],['oldphoto','fieldphoto'],['正式叠片尚待制作；本次已验证两份来源能回看，并将调查带到监控。','The image overlay is still to be made. This preview verifies source revisiting and the transition to CCTV.']),
@@ -75,7 +64,7 @@ globalThis.Stillwater2Data = (() => {
     'phase/research':text('研究与展览','Research & exhibitions'),'phase/history':text('历史','History'),'phase/archive':text('数字遗产项目','Digital heritage'),
     'phase/join':text('参与','Take part'),'phase/contact':text('联系我们','Contact'),
   };
-  const routes=['chat','forum','hotel','hotel/archive-project',...Object.keys(phasePages),'heritage/photos','heritage/cctv','heritage/b3','heritage/final-trace','notes','ending'];
+  const routes=['chat','forum','hotel','hotel/rooms','hotel/dining','hotel/history','hotel/guestbook','hotel/contact','hotel/archive-project',...Object.keys(phasePages),'heritage/photos','heritage/cctv','heritage/b3','heritage/final-trace','notes','ending'];
   const endings=['auto-close','unverified','released'];
   const parse = hash => {const [route,query='']=String(hash).replace(/^#sw2\//,'').split('?');return String(hash).startsWith('#sw2/')&&routes.includes(route)?{route,params:new URLSearchParams(query)}:null;};
   const hash = route => '#sw2/'+route;

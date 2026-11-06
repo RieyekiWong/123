@@ -1,6 +1,7 @@
 /* Readable route placeholders, not the final puzzles or artwork. */
 globalThis.Stillwater2Pages = ({t,esc,getState,stored=()=>true}) => {
   const D=globalThis.Stillwater2Data,M=globalThis.Stillwater2Progress,tr=v=>t(...v);
+  const front=globalThis.Stillwater2Front?.({t,esc,getState});
   const link=(route,label)=>`<a href="${D.hash(route)}">${esc(label)}</a>`;
   function checkpoint(id,headingLevel=2){
     const s=getState(),p=D.puzzles[id];
@@ -21,17 +22,16 @@ globalThis.Stillwater2Pages = ({t,esc,getState,stored=()=>true}) => {
     'phase/contact':t('这是游戏里的虚构机构。资料团队的公开问答将在这里展示；没有需要联系的现实人员。','This is a fictional institution. The archive team’s public correspondence will appear here; there is no real person you need to contact.'),
   };
   function phase(route){return `<nav class="sw2-phase-nav" aria-label="${t('位体教官网','Phase Self website')}">${Object.entries(D.phasePages).map(([key,label])=>link(key,tr(label))).join('')}</nav><h1>${esc(tr(D.phasePages[route]))}</h1><p>${esc(phaseCopy[route])}</p>${route==='phase/archive'&&M.available(getState(),'P3')?checkpoint('P3'):route==='phase/research'&&M.available(getState(),'P4')?checkpoint('P4'):''}`;}
-  function notes(){const s=getState();return `<h1>${t('调查记录','Investigation records')}</h1><p>${t('这里只记你实际打开过的资料。写下的想法保留在各幕。','Only sources you have opened appear here. Your own notes stay with each chapter.')}</p><div class="sw2-source-list">${s.viewed.map(id=>`<button data-sw2-action="view" data-source="${id}">${esc(tr(D.sources[id].title))}<span>${esc(D.sources[id].date)}</span></button>`).join('')||`<p>${t('还没有查看过的资料。','No sources viewed yet.')}</p>`}</div><h2>${t('预览进度','Prototype progress')}</h2><ul>${Object.entries(D.puzzles).filter(([id])=>M.available(s,id)).map(([id,p])=>`<li>${link(p.route,tr(p.title))} · ${M.solved(s,id)?t('路线已验证','Route checked'):t('正在调查','In progress')}</li>`).join('')}</ul>`;}
+  function notes(){const s=getState();return `<h1>${t('调查记录','Investigation records')}</h1><p>${t('这里只记你实际打开过的资料。写下的想法保留在各幕。','Only sources you have opened appear here. Your own notes stay with each chapter.')}</p><div class="sw2-source-list">${s.viewed.map(id=>`<button data-sw2-action="view" data-source="${id}">${esc(tr(D.sources[id].title))}<span>${esc(D.sources[id].date)}</span></button>`).join('')||`<p>${t('还没有查看过的资料。','No sources viewed yet.')}</p>`}</div><h2>${t('预览进度','Prototype progress')}</h2><ul>${Object.entries(D.puzzles).filter(([id])=>M.available(s,id)).map(([id,p])=>`<li>${link(id==='P1'?'forum?topic=hotel-return':id==='P2'?(s.entryOpened?'hotel?record=churen':'hotel/guestbook'):p.route,tr(p.title))} · ${M.solved(s,id)?s.results[id].compat?t('旧预览进度保留','Earlier preview retained'):['P1','P2'].includes(id)?t('已核对','Checked'):t('路线已验证','Route checked'):t('正在调查','In progress')}</li>`).join('')}</ul>`;}
   function render(route){
     let body;
     if(Object.hasOwn(D.phasePages,route))body=phase(route);
-    else if(route==='forum')body=`<p class="sw2-kicker">NIGHT OWL / BBS</p><h1>${t('旧湖区酒店的网站又能打开了','The old lake-district hotel site is back')}</h1><p>${t('有人翻到一条恢复公告，也有人记得它早就关门了。两份公开附件还在，先看看是不是在说同一件事。','Someone found a restoration notice; others remember the hotel closing years ago. Both public attachments are still available.')}</p>${checkpoint('P1')}`;
-    else if(route==='hotel')body=`<p class="sw2-kicker">STILLWATER HOTEL / DIGITAL ARCHIVE</p><h1>${t('欢迎来到静水旅馆历史资料馆','Welcome to the Stillwater Hotel archive')}</h1><p>${t('旅馆于 2007 年停业。2026 年，项目组重新开放旧网页、照片和员工资料。这里不接受订房。','The hotel closed in 2007. In 2026 the project reopened its old pages, photographs and staff records. This is not a booking service.')}</p>${checkpoint('P2')}`;
-    else if(route==='hotel/archive-project')body=`<h1>${t('谁恢复了这份网站','Who restored this website?')}</h1><p>${t('资料负责人是 Sylvia Morgan。资助方 Phase Self Historical Preservation Initiative 将酒店资料作为数字遗产项目的一部分。','Archive lead Sylvia Morgan restored this site with support from the Phase Self Historical Preservation Initiative.')}</p><button class="sw2-primary" data-sw2-action="project">${t('查看资助方的项目资料','Open the sponsor’s archive')}</button>`;
+    else if(route==='forum')body=front.forum();
+    else if(route==='hotel'||route.startsWith('hotel/'))body=front.hotel(route);
     else if(route==='notes')body=notes();
     else if(route==='ending')body=globalThis.StillwaterEnding.render(getState().lastEnding,{t,stored:stored(),storyEdition:'2.0-prototype'})+`<p>${link('chat?room=gg',t('查看 GG 的消息','Read GG’s messages'))}</p>`;
     else {const id=Object.keys(D.puzzles).find(key=>D.puzzles[key].route===route);body=id?`<p class="sw2-kicker">HERITAGE CONSOLE / ${id}</p>${checkpoint(id,1)}`:'';}
-    return `<main id="content" tabindex="-1" class="sw2-page">${body}<footer>${link('notes',t('调查记录','Records'))}<button data-case-action="settings">${t('声音与设置','Sound & settings')}</button><button data-ad-action="folder">${t('我的广告夹','My ad folder')}</button></footer></main>`;
+    return `<main id="content" tabindex="-1" class="sw2-page ${route==='forum'||route.startsWith('hotel')?'sw2-front-page':''}">${body}<footer>${link('notes',t('调查记录','Records'))}<button data-case-action="settings">${t('声音与设置','Sound & settings')}</button><button data-ad-action="folder">${t('我的广告夹','My ad folder')}</button></footer></main>`;
   }
   function source(id){const p=D.sources[id];return `<header><div><p>${esc(p.origin)} · ${esc(p.date)}</p><h2>${esc(tr(p.title))}</h2></div><button data-sw2-action="close-source">${t('关闭资料','Close source')}</button></header><div class="sw2-source-body">${tr(p.body).split('\n\n').map(part=>`<p>${esc(part).replace(/\n/g,'<br>')}</p>`).join('')}</div>`;}
   return {render,source};

@@ -11,10 +11,23 @@ async function muteAds(page){await page.locator('#sw2-chrome [data-case-action=s
 async function room(page,id){if(await page.locator('.chat-mobile-back').isVisible())await page.locator('.chat-mobile-back').click();await page.locator(`[data-chat-room=${id}]`).click();}
 async function sources(page,id){
   const area=page.locator(`[data-sw2-puzzle=${id}]`);await expect(area).toBeVisible();const ids=await area.locator('[data-source]').evaluateAll(nodes=>nodes.map(n=>n.dataset.source));
-  for(const key of ids){await area.locator(`[data-source=${key}]`).click();await expect(page.locator('#sw2-source')).toBeVisible();await page.locator('[data-sw2-action=close-source]').click();await expect(page.locator('#sw2-source')).toHaveCount(0);}
+  for(const key of ids){
+    if(id==='P2'&&key==='closure')await area.locator('.sw2-closure-copy > summary').click();
+    await area.locator(`[data-source=${key}]`).click();await expect(page.locator('#sw2-source')).toBeVisible();await page.locator('[data-sw2-action=close-source]').click();await expect(page.locator('#sw2-source')).toHaveCount(0);
+  }
 }
 async function checkpoint(page,id,next){
-  await sources(page,id);await page.locator(`[data-sw2-puzzle=${id}] [data-sw2-action=checkpoint]`).click();await expect(page.locator('#sw2-transition')).toBeVisible();
+  if(id==='P2'){
+    await page.locator('.sw2-hotel-header a[href="#sw2/hotel/guestbook"]').click();
+    await page.locator('.sw2-churen-link').click();
+  }
+  await sources(page,id);
+  if(id==='P2'){
+    await page.locator('[name=stay-reason][value=closedBeforeVisit]').check();
+    await page.locator('[name=stay-reason][value=enquiryNotBooking]').check();
+    await page.locator('#sw2-stay-form button[type=submit]').click();
+  }else if(id!=='P1')await page.locator(`[data-sw2-puzzle=${id}] [data-sw2-action=checkpoint]`).click();
+  await expect(page.locator('#sw2-transition')).toBeVisible();
   await page.locator('[data-sw2-action=close-transition]').click();await expect.poll(()=>new URL(page.url()).hash).toBe('#sw2/'+next);
 }
 async function toP4(page){
@@ -25,8 +38,8 @@ for(const [entry,width,choice,ending] of [['index-zh.html',1440,'accepted','rele
   test(`2.0 prototype follows the actual UI through eight chapters / ${entry} / ${width} / ${ending}`,async({page})=>{
     const errors=[];page.on('pageerror',e=>errors.push(e.message));await open(page,{entry,width});await muteAds(page);
     expect(await page.evaluate(()=>typeof StillwaterCaseState)).toBe('undefined');await page.locator('#chat-input').fill(entry.includes('zh')?'我还在写作业':'Still working on my assignment.');await page.locator('#chat-input').press('Enter');
-    await page.clock.runFor(17000);await room(page,'gg');await page.locator('.chat-share-card').click();await expect(page).toHaveURL(/#sw2\/forum\?topic=hotel-return$/);
-    await page.locator('[data-sw2-action=checkpoint]').click();await expect(page.locator('[data-sw2-feedback]')).not.toBeEmpty();expect((await saved(page)).results.P1).toBeUndefined();
+    await page.clock.runFor(40000);await room(page,'gg');await page.locator('.chat-share-card').click();await expect(page).toHaveURL(/#sw2\/forum\?topic=hotel-return$/);
+    expect((await saved(page)).results.P1).toBeUndefined();
     await toP4(page);await checkpoint(page,'P4','chat?request=1');await page.locator(`.chat-story-profile [data-choice=${choice}]`).click();
     if(choice==='accepted'){await expect(page).toHaveURL(/#sw2\/chat\?room=wcr_new$/);await expect(page.locator('.chat-messages')).toContainText(entry.includes('zh')?'对你来说是关了':'It closed for you');await page.locator('#sw2-chrome .sw2-next').click();}
     await expect(page).toHaveURL(/#sw2\/heritage\/photos$/);await checkpoint(page,'P5','heritage/cctv');await checkpoint(page,'P6','heritage/b3');
@@ -42,7 +55,9 @@ for(const [entry,width,choice,ending] of [['index-zh.html',1440,'accepted','rele
 test('notification opens the right room; real DOM, notes, focus and refresh return to the exact source page',async({page})=>{
   await open(page,{route:'forum?topic=hotel-return'});await muteAds(page);
   await page.locator('#sw2-note-P1').fill('不要丢掉这份未提交的想法');await page.locator('#content').evaluate(el=>el.dataset.keptDom='yes');
-  await page.evaluate(()=>scrollTo(0,220));await page.clock.runFor(41000);await expect(page.locator('.messenger-notice')).toBeVisible();
+  await page.evaluate(()=>scrollTo(0,220));await page.clock.runFor(30000);
+  for(let i=0;i<12&&!await page.locator('.messenger-notice').isVisible();i++)await page.clock.runFor(1000);
+  await expect(page.locator('.messenger-notice')).toBeVisible();
   const target=await page.locator('.messenger-notice-open').getAttribute('data-room');await page.locator('.messenger-notice-open').click();await expect(page).toHaveURL(new RegExp('#sw2/chat\\?room='+target+'$'));
   await expect(page.locator('.chat-browser-bar [data-messenger-action=return]')).toBeVisible();await page.locator('[data-messenger-action=return]').click();await expect(page).toHaveURL(/#sw2\/forum\?topic=hotel-return$/);
   await expect(page.locator('#content')).toHaveAttribute('data-kept-dom','yes');await expect(page.locator('#sw2-note-P1')).toHaveValue('不要丢掉这份未提交的想法');
@@ -52,10 +67,10 @@ test('notification opens the right room; real DOM, notes, focus and refresh retu
 });
 
 test('source reading and transition persist without advancing on a timer, and re-opening a completed page does not replay',async({page})=>{
-  await open(page,{route:'forum'});await muteAds(page);await page.locator('[data-source=closure]').click();await page.reload();await expect(page.locator('#sw2-source')).toContainText('2007');await page.keyboard.press('Escape');
-  await sources(page,'P1');await page.locator('[data-sw2-action=checkpoint]').click();await page.clock.runFor(100000);await expect(page).toHaveURL(/#sw2\/forum$/);await page.reload();await expect(page.locator('#sw2-transition')).toBeVisible();
-  await page.keyboard.press('Escape');await expect(page).toHaveURL(/#sw2\/hotel$/);await page.goBack();await expect(page).toHaveURL(/#sw2\/forum$/);await expect(page.locator('#sw2-transition')).toHaveCount(0);
-  await page.locator('[data-sw2-puzzle=P1] a').click();await expect(page).toHaveURL(/#sw2\/hotel$/);
+  await open(page,{route:'forum?topic=hotel-return'});await muteAds(page);await page.locator('[data-source=closure]').click();await page.reload();await expect(page.locator('#sw2-source')).toContainText('2007');await page.keyboard.press('Escape');
+  await sources(page,'P1');await page.clock.runFor(100000);await expect(page).toHaveURL(/#sw2\/forum\?topic=hotel-return$/);await page.reload();await expect(page.locator('#sw2-transition')).toBeVisible();
+  await page.keyboard.press('Escape');await expect(page).toHaveURL(/#sw2\/hotel$/);await page.goBack();await expect(page).toHaveURL(/#sw2\/forum\?topic=hotel-return$/);await expect(page.locator('#sw2-transition')).toHaveCount(0);
+  await page.locator('[data-sw2-puzzle=P1] a[href="#sw2/hotel"]').click();await expect(page).toHaveURL(/#sw2\/hotel$/);
 });
 
 test('legacy journals stay byte-for-byte intact; daily chats import without fake-account spoilers',async({page})=>{
@@ -71,7 +86,7 @@ test('legacy journals stay byte-for-byte intact; daily chats import without fake
 test('ordinary ads overlay calm pages, settings opt-out persists, and the horror chain removes them even in WeChat',async({page})=>{
   await open(page);await page.clock.runFor(7000);await expect(page.locator('[data-active-ad]')).toHaveCount(1);await expect(page.locator('[data-active-ad]')).toHaveAttribute('data-slot','bottom-right');
   const rectangles=await page.evaluate(()=>({ad:document.querySelector('[data-active-ad]').getBoundingClientRect().bottom,composer:document.querySelector('.chat-composer').getBoundingClientRect().top}));expect(rectangles.ad).toBeLessThanOrEqual(rectangles.composer);
-  await muteAds(page);await expect(page.locator('[data-active-ad]')).toHaveCount(0);await page.reload();await page.clock.runFor(20000);await expect(page.locator('[data-active-ad]')).toHaveCount(0);
+  await muteAds(page);await expect(page.locator('[data-active-ad]')).toHaveCount(0);await page.reload();await page.clock.runFor(40000);await expect(page.locator('[data-active-ad]')).toHaveCount(0);
   await page.locator('#sw2-chrome [data-case-action=settings]').click();await page.locator('[name=popupAds]').check();await page.locator('#sw2-settings-form button[type=submit]').click();await room(page,'gg');await page.locator('.chat-share-card').click();await toP4(page);
   await page.clock.runFor(20000);await expect(page.locator('[data-active-ad]')).toHaveCount(0);await checkpoint(page,'P4','chat?request=1');await page.clock.runFor(20000);await expect(page.locator('[data-active-ad]')).toHaveCount(0);await expect(page.locator('.messenger-notice')).toHaveCount(0);
 });
@@ -83,7 +98,7 @@ test('restarting only the prototype keeps daily chats, AI consent, the original 
     localStorage.setItem('stillwater-chat-ai:v1',JSON.stringify({version:1,enabled:true,endpoint:'http://127.0.0.1:8787/api/chat'}));
     localStorage.setItem('stillwater-ads:v1',JSON.stringify({schema:1,pinnedIds:['pet'],collapsedPinnedIds:[]}));
   });
-  await open(page);await room(page,'mom');await page.locator('#chat-input').fill('日常聊天别丢');await page.locator('#chat-input').press('Enter');await page.clock.runFor(17000);await room(page,'gg');await page.locator('.chat-share-card').click();await checkpoint(page,'P1','hotel');
+  await open(page);await room(page,'mom');await page.locator('#chat-input').fill('日常聊天别丢');await page.locator('#chat-input').press('Enter');await page.clock.runFor(40000);await room(page,'gg');await page.locator('.chat-share-card').click();await checkpoint(page,'P1','hotel');
   const legacy=await page.evaluate(()=>localStorage.getItem('stillwater-case:v2')),consent=await page.evaluate(()=>localStorage.getItem('stillwater-chat-ai:v1'));
   await page.locator('#sw2-chrome [data-case-action=settings]').click();page.once('dialog',dialog=>dialog.accept());await page.locator('[data-sw2-action=restart]').click();await expect(page).toHaveURL(/#sw2\/chat$/);await expect(page.locator('#chat-input')).toBeVisible();
   expect(Object.keys((await saved(page)).results)).toEqual([]);await room(page,'mom');await expect(page.locator('.chat-messages')).toContainText('日常聊天别丢');
@@ -104,7 +119,7 @@ test('structured AI still replies in its own room with explicit consent, and fai
   await page.locator('#chat-input').fill('还没写完');await page.locator('#chat-input').press('Enter');await page.clock.runFor(1000);await expect.poll(()=>requests.length).toBe(1);await room(page,'gg');await page.clock.runFor(7000);await room(page,'mom');await expect(page.locator('.chat-bubble').last()).toHaveText('今天一直在赶那个作业吗？');expect(JSON.stringify(requests[0])).toContain('蓝莓');
   await room(page,'lin');await page.locator('#chat-input').fill('The file is still exporting.');await page.locator('#chat-input').press('Enter');await page.clock.runFor(1000);await expect.poll(()=>requests.length).toBe(2);await page.clock.runFor(7000);expect(requests[1].language).toBe('en');expect(JSON.stringify(requests[1])).not.toContain('蓝莓');await expect(page.locator('.chat-bubble').last()).toHaveText('Did the export finish?');
   fail=true;await page.locator('#chat-input').fill('软件又崩了');await page.locator('#chat-input').press('Enter');await page.clock.runFor(1000);await expect.poll(()=>requests.length).toBe(3);await page.clock.runFor(7000);await expect(page.locator('[data-chat-ai-status]')).toContainText('本地回复');
-  await room(page,'gg');await page.locator('.chat-share-card').click();await expect(page).toHaveURL(/#sw2\/forum/);expect((await saved(page)).results.P1).toBeUndefined();
+  await page.clock.runFor(40000);await room(page,'gg');await page.locator('.chat-share-card').click();await expect(page).toHaveURL(/#sw2\/forum/);expect((await saved(page)).results.P1).toBeUndefined();
 });
 
 test('corrupt prototype storage is retained, and the edition chooser runs only one app',async({page})=>{
@@ -119,4 +134,70 @@ test('mobile ads leave the composer clear and keyboard skip keeps the chat route
   await page.locator('[data-active-ad] [data-ad-action=close]').focus();await page.keyboard.press('Enter');await expect(page.locator('#chat-input')).toBeFocused();
   await page.locator('.skip').focus();await page.keyboard.press('Enter');await expect(page).toHaveURL(/#sw2\/chat$/);await expect(page.locator('#content')).toBeFocused();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(390);
+});
+
+test('P0 old friend is available immediately, photos and last message work, and ignoring them never gates the fixed card',async({page})=>{
+  const requests=[];page.on('request',request=>{if(request.url().includes('/api/'))requests.push(request.url());});
+  await open(page);await muteAds(page);await room(page,'wcr_old');await expect(page.locator('#chat-input')).toBeDisabled();
+  await expect(page.locator('.chat-messages [data-chat-message]')).toHaveCount(31);
+  await page.locator('.chat-friend-profile [data-chat-photo=old]').click();
+  await expect(page.locator('.chat-photo-dialog')).toBeVisible();await expect(page.locator('.chat-photo-dialog nav button')).toHaveCount(5);
+  for(const id of ['friends','family','camera','campus']){
+    await page.locator(`[data-chat-photo-select=${id}]`).click();
+    await expect.poll(()=>page.locator('.chat-photo-dialog figure img').evaluate(img=>img.complete&&img.naturalWidth>0)).toBe(true);
+  }
+  await page.keyboard.press('Escape');await page.locator('[data-sw2-action=old-last]').click();
+  await expect(page.locator('[data-chat-message=wcr_old30]')).toBeInViewport();expect((await saved(page)).oldFriendContextViewed).toBe(true);
+  await page.reload();expect((await saved(page)).oldFriendContextViewed).toBe(true);
+  await page.clock.runFor(40000);await room(page,'gg');await expect(page.locator('.chat-share-card')).toBeVisible();expect(requests).toEqual([]);
+});
+
+for(const entry of ['index-zh.html','index.html'])test(`P2 wrong reasons, hints and exact browser return survive refresh and language / ${entry}`,async({page})=>{
+  await open(page,{entry,route:'forum?topic=hotel-return'});await muteAds(page);await checkpoint(page,'P1','hotel');
+  expect((await saved(page)).oldFriendContextViewed).toBe(false);
+  await page.locator('.sw2-hotel-header a[href="#sw2/hotel/guestbook"]').click();await page.locator('.sw2-churen-link').click();
+  await page.locator('[value=sameName]').check();await page.locator('[value=oldPhotos]').check();await page.locator('#sw2-stay-form button[type=submit]').click();
+  await expect(page.locator('[data-sw2-feedback]')).toContainText('2026');expect((await saved(page)).results.P2).toBeUndefined();
+  await page.locator('#sw2-note-P2').fill('核对年份，不要丢原始咨询');await page.locator('.sw2-hints > summary').click();
+  for(let i=0;i<3;i++)await page.locator('[data-sw2-action=hint]').click();
+  await expect(page.locator('[data-sw2-action=hint]')).toBeDisabled();
+  await page.clock.runFor(60000);await expect(page.locator('[data-active-ad]')).toHaveCount(0);await expect(page.locator('.messenger-notice')).toHaveCount(0);
+  await page.locator('[data-messenger-action=launch]').click();await room(page,'mom');await page.locator('#chat-input').fill('作业还有一点');await page.reload();
+  await expect(page.locator('#chat-input')).toHaveValue('作业还有一点');await page.locator('[data-messenger-action=return]').click();
+  await expect(page).toHaveURL(/#sw2\/hotel\?record=churen$/);await expect(page.locator('[value=sameName]')).toBeChecked();await expect(page.locator('#sw2-note-P2')).toHaveValue('核对年份，不要丢原始咨询');
+  await page.locator('#sw2-chrome nav a').filter({hasText:entry.includes('zh')?'English':'简体中文'}).click();
+  await expect(page.locator('[value=oldPhotos]')).toBeChecked();
+  await page.locator('[value=sameName]').uncheck();await page.locator('[value=oldPhotos]').uncheck();await page.locator('[value=closedBeforeVisit]').check();await page.locator('[value=enquiryNotBooking]').check();
+  await page.locator('#sw2-stay-form button[type=submit]').click();await expect(page.locator('#sw2-transition')).toBeVisible();
+  await page.clock.runFor(1500);await expect(page.locator('[data-sync-current]')).toBeVisible();await page.keyboard.press('Escape');
+  await expect(page).toHaveURL(/#sw2\/hotel\/archive-project$/);await expect(page.locator('.sw2-project-credits')).toContainText('Phase Self');
+  await page.locator('[data-messenger-action=launch]').click();await room(page,'gg');await expect(page.locator('.chat-messages')).toContainText(entry.includes('zh')?'Who’s checking him in?':'谁在给他办入住啊？');
+  expect((await saved(page)).results.P2.method).toBe('stay-source-check');
+});
+
+test('all ordinary threads and hotel menus stay in this edition; keyboard and mobile browsing do not require the main investigation',async({page})=>{
+  await open(page,{width:390,route:'forum'});await muteAds(page);
+  await expect(page.locator('[data-forum-topic]')).toHaveCount(15);
+  const ids=await page.locator('[data-forum-topic]').evaluateAll(rows=>rows.map(row=>row.dataset.forumTopic));
+  for(const id of ids.filter(id=>id!=='hotel-return')){
+    await page.goto('/index-zh.html?edition=2.0#sw2/forum?topic='+id);await expect(page.locator(`[data-thread="${id}"] h1`)).toBeVisible();
+    expect(await page.locator('#content a[href^="#"]').evaluateAll(nodes=>nodes.every(a=>a.hash.startsWith('#sw2/')))).toBe(true);
+  }
+  await page.goto('/index-zh.html?edition=2.0#sw2/forum?topic=hotel-return');await checkpoint(page,'P1','hotel');
+  for(const route of ['rooms','dining','history','archive-project','contact','guestbook']){
+    await page.locator(`.sw2-hotel-header a[href="#sw2/hotel/${route}"]`).focus();await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(new RegExp('#sw2/hotel/'+route+'$'));await expect(page.locator('.sw2-hotel-body h1')).toBeVisible();
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+  }
+  expect((await saved(page)).results.P2).toBeUndefined();
+});
+
+test('an unknown route and the notes list return to the precise current investigation',async({page})=>{
+  await open(page,{route:'forum?topic=hotel-return'});await muteAds(page);await checkpoint(page,'P1','hotel');
+  await page.evaluate(()=>location.hash='#sw2/not-a-page');await expect(page).toHaveURL(/#sw2\/hotel\/guestbook$/);
+  await page.locator('.sw2-churen-link').click();await page.locator('[value=closedBeforeVisit]').check();
+  await page.locator('footer a[href="#sw2/notes"]').click();await expect(page.locator('li a[href="#sw2/hotel?record=churen"]')).toBeVisible();
+  await page.locator('li a[href="#sw2/hotel?record=churen"]').click();await expect(page.locator('[value=closedBeforeVisit]')).toBeChecked();
+  await page.evaluate(()=>location.hash='#sw2/not-a-page');await expect(page).toHaveURL(/#sw2\/hotel\?record=churen$/);
+  expect((await saved(page)).results.P2).toBeUndefined();
 });
