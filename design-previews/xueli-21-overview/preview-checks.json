@@ -1,0 +1,1643 @@
+[
+  {
+    "label": "stage-1",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 48,
+        "height": 48
+      }
+    ],
+    "title": "旧电脑启动",
+    "fonts": true
+  },
+  {
+    "label": "stage-2",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [],
+    "title": "资料追踪",
+    "fonts": true
+  },
+  {
+    "label": "stage-3",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 128,
+        "height": 128
+      }
+    ],
+    "title": "Stillwater Hotel",
+    "fonts": true
+  },
+  {
+    "label": "stage-4",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "位体教",
+    "fonts": true
+  },
+  {
+    "label": "stage-5",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 216,
+        "height": 216
+      },
+      {
+        "text": "需要画",
+        "width": 216,
+        "height": 216
+      }
+    ],
+    "title": "资料被改写",
+    "fonts": true
+  },
+  {
+    "label": "stage-6",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "信号分离",
+    "fonts": true
+  },
+  {
+    "label": "stage-7",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 48,
+        "height": 48
+      }
+    ],
+    "title": "身份对抗",
+    "fonts": true
+  },
+  {
+    "label": "stage-8",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 128,
+        "height": 128
+      }
+    ],
+    "title": "结局",
+    "fonts": true
+  },
+  {
+    "label": "app-wechat",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 48,
+        "height": 48
+      }
+    ],
+    "title": "微信",
+    "fonts": true
+  },
+  {
+    "label": "app-browser",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 128,
+        "height": 128
+      }
+    ],
+    "title": "浏览器",
+    "fonts": true
+  },
+  {
+    "label": "app-finder",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [],
+    "title": "检索器",
+    "fonts": true
+  },
+  {
+    "label": "app-photos",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 216,
+        "height": 216
+      },
+      {
+        "text": "需要画",
+        "width": 216,
+        "height": 216
+      }
+    ],
+    "title": "照片",
+    "fonts": true
+  },
+  {
+    "label": "app-weekly",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 128,
+        "height": 128
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "周刊",
+    "fonts": true
+  },
+  {
+    "label": "app-casebook",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 48,
+        "height": 48
+      }
+    ],
+    "title": "调查笔记",
+    "fonts": true
+  },
+  {
+    "label": "app-files",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "文件",
+    "fonts": true
+  },
+  {
+    "label": "app-system",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [],
+    "title": "设置",
+    "fonts": true
+  },
+  {
+    "label": "app-cctv",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 176,
+        "height": 176
+      }
+    ],
+    "title": "监控",
+    "fonts": true
+  },
+  {
+    "label": "app-audio",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "音轨",
+    "fonts": true
+  },
+  {
+    "label": "app-b3",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "B-3 接线",
+    "fonts": true
+  },
+  {
+    "label": "site-xianxia",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 176,
+        "height": 176
+      }
+    ],
+    "title": "闲虾二手软件",
+    "fonts": true
+  },
+  {
+    "label": "site-forum",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "雪梨镇论坛",
+    "fonts": true
+  },
+  {
+    "label": "site-weekly",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 128,
+        "height": 128
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "雪梨镇周刊",
+    "fonts": true
+  },
+  {
+    "label": "site-library",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 128,
+        "height": 128
+      }
+    ],
+    "title": "图书馆数字档案",
+    "fonts": true
+  },
+  {
+    "label": "site-hotel",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 128,
+        "height": 128
+      }
+    ],
+    "title": "酒店历史快照",
+    "fonts": true
+  },
+  {
+    "label": "site-phase",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "位体教官网",
+    "fonts": true
+  },
+  {
+    "label": "site-course",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "王楚人的课程页",
+    "fonts": true
+  },
+  {
+    "label": "site-shops",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "contentWidth": 990,
+    "contentScrollWidth": 990,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "本地商户与广告",
+    "fonts": true
+  },
+  {
+    "width": 1440,
+    "navigation": "8 stages / 11 apps / 8 sites",
+    "storageUnchanged": true,
+    "pageErrors": 0,
+    "externalRequests": 0,
+    "apiRequests": 0
+  },
+  {
+    "label": "stage-1",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 48,
+        "height": 48
+      }
+    ],
+    "title": "旧电脑启动",
+    "fonts": true
+  },
+  {
+    "label": "stage-2",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [],
+    "title": "资料追踪",
+    "fonts": true
+  },
+  {
+    "label": "stage-3",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 100,
+        "height": 100
+      }
+    ],
+    "title": "Stillwater Hotel",
+    "fonts": true
+  },
+  {
+    "label": "stage-4",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "位体教",
+    "fonts": true
+  },
+  {
+    "label": "stage-5",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 152,
+        "height": 152
+      },
+      {
+        "text": "需要画",
+        "width": 152,
+        "height": 152
+      }
+    ],
+    "title": "资料被改写",
+    "fonts": true
+  },
+  {
+    "label": "stage-6",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "信号分离",
+    "fonts": true
+  },
+  {
+    "label": "stage-7",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 48,
+        "height": 48
+      }
+    ],
+    "title": "身份对抗",
+    "fonts": true
+  },
+  {
+    "label": "stage-8",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 100,
+        "height": 100
+      }
+    ],
+    "title": "结局",
+    "fonts": true
+  },
+  {
+    "label": "app-wechat",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 48,
+        "height": 48
+      }
+    ],
+    "title": "微信",
+    "fonts": true
+  },
+  {
+    "label": "app-browser",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 100,
+        "height": 100
+      }
+    ],
+    "title": "浏览器",
+    "fonts": true
+  },
+  {
+    "label": "app-finder",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [],
+    "title": "检索器",
+    "fonts": true
+  },
+  {
+    "label": "app-photos",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 152,
+        "height": 152
+      },
+      {
+        "text": "需要画",
+        "width": 152,
+        "height": 152
+      }
+    ],
+    "title": "照片",
+    "fonts": true
+  },
+  {
+    "label": "app-weekly",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 100,
+        "height": 100
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "周刊",
+    "fonts": true
+  },
+  {
+    "label": "app-casebook",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 48,
+        "height": 48
+      }
+    ],
+    "title": "调查笔记",
+    "fonts": true
+  },
+  {
+    "label": "app-files",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "文件",
+    "fonts": true
+  },
+  {
+    "label": "app-system",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [],
+    "title": "设置",
+    "fonts": true
+  },
+  {
+    "label": "app-cctv",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 128,
+        "height": 128
+      }
+    ],
+    "title": "监控",
+    "fonts": true
+  },
+  {
+    "label": "app-audio",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "音轨",
+    "fonts": true
+  },
+  {
+    "label": "app-b3",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "B-3 接线",
+    "fonts": true
+  },
+  {
+    "label": "site-xianxia",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 128,
+        "height": 128
+      }
+    ],
+    "title": "闲虾二手软件",
+    "fonts": true
+  },
+  {
+    "label": "site-forum",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "雪梨镇论坛",
+    "fonts": true
+  },
+  {
+    "label": "site-weekly",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 100,
+        "height": 100
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "雪梨镇周刊",
+    "fonts": true
+  },
+  {
+    "label": "site-library",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 100,
+        "height": 100
+      }
+    ],
+    "title": "图书馆数字档案",
+    "fonts": true
+  },
+  {
+    "label": "site-hotel",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 100,
+        "height": 100
+      }
+    ],
+    "title": "酒店历史快照",
+    "fonts": true
+  },
+  {
+    "label": "site-phase",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "位体教官网",
+    "fonts": true
+  },
+  {
+    "label": "site-course",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 56,
+        "height": 56
+      },
+      {
+        "text": "需要画",
+        "width": 56,
+        "height": 56
+      },
+      {
+        "text": "需要画",
+        "width": 56,
+        "height": 56
+      }
+    ],
+    "title": "王楚人的课程页",
+    "fonts": true
+  },
+  {
+    "label": "site-shops",
+    "width": 390,
+    "scrollWidth": 390,
+    "contentWidth": 334,
+    "contentScrollWidth": 334,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "本地商户与广告",
+    "fonts": true
+  },
+  {
+    "width": 390,
+    "navigation": "8 stages / 11 apps / 8 sites",
+    "storageUnchanged": true,
+    "pageErrors": 0,
+    "externalRequests": 0,
+    "apiRequests": 0
+  },
+  {
+    "label": "stage-1",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 48,
+        "height": 48
+      }
+    ],
+    "title": "旧电脑启动",
+    "fonts": true
+  },
+  {
+    "label": "stage-2",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [],
+    "title": "资料追踪",
+    "fonts": true
+  },
+  {
+    "label": "stage-3",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 100,
+        "height": 100
+      }
+    ],
+    "title": "Stillwater Hotel",
+    "fonts": true
+  },
+  {
+    "label": "stage-4",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "位体教",
+    "fonts": true
+  },
+  {
+    "label": "stage-5",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 117,
+        "height": 117
+      },
+      {
+        "text": "需要画",
+        "width": 117,
+        "height": 117
+      }
+    ],
+    "title": "资料被改写",
+    "fonts": true
+  },
+  {
+    "label": "stage-6",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "信号分离",
+    "fonts": true
+  },
+  {
+    "label": "stage-7",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 48,
+        "height": 48
+      }
+    ],
+    "title": "身份对抗",
+    "fonts": true
+  },
+  {
+    "label": "stage-8",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 100,
+        "height": 100
+      }
+    ],
+    "title": "结局",
+    "fonts": true
+  },
+  {
+    "label": "app-wechat",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 48,
+        "height": 48
+      }
+    ],
+    "title": "微信",
+    "fonts": true
+  },
+  {
+    "label": "app-browser",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 100,
+        "height": 100
+      }
+    ],
+    "title": "浏览器",
+    "fonts": true
+  },
+  {
+    "label": "app-finder",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [],
+    "title": "检索器",
+    "fonts": true
+  },
+  {
+    "label": "app-photos",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 117,
+        "height": 117
+      },
+      {
+        "text": "需要画",
+        "width": 117,
+        "height": 117
+      }
+    ],
+    "title": "照片",
+    "fonts": true
+  },
+  {
+    "label": "app-weekly",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 100,
+        "height": 100
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "周刊",
+    "fonts": true
+  },
+  {
+    "label": "app-casebook",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 48,
+        "height": 48
+      }
+    ],
+    "title": "调查笔记",
+    "fonts": true
+  },
+  {
+    "label": "app-files",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "文件",
+    "fonts": true
+  },
+  {
+    "label": "app-system",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [],
+    "title": "设置",
+    "fonts": true
+  },
+  {
+    "label": "app-cctv",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 128,
+        "height": 128
+      }
+    ],
+    "title": "监控",
+    "fonts": true
+  },
+  {
+    "label": "app-audio",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "音轨",
+    "fonts": true
+  },
+  {
+    "label": "app-b3",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "B-3 接线",
+    "fonts": true
+  },
+  {
+    "label": "site-xianxia",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 128,
+        "height": 128
+      }
+    ],
+    "title": "闲虾二手软件",
+    "fonts": true
+  },
+  {
+    "label": "site-forum",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "雪梨镇论坛",
+    "fonts": true
+  },
+  {
+    "label": "site-weekly",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 100,
+        "height": 100
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "雪梨镇周刊",
+    "fonts": true
+  },
+  {
+    "label": "site-library",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 100,
+        "height": 100
+      }
+    ],
+    "title": "图书馆数字档案",
+    "fonts": true
+  },
+  {
+    "label": "site-hotel",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 100,
+        "height": 100
+      }
+    ],
+    "title": "酒店历史快照",
+    "fonts": true
+  },
+  {
+    "label": "site-phase",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "位体教官网",
+    "fonts": true
+  },
+  {
+    "label": "site-course",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 56,
+        "height": 56
+      },
+      {
+        "text": "需要画",
+        "width": 56,
+        "height": 56
+      },
+      {
+        "text": "需要画",
+        "width": 56,
+        "height": 56
+      }
+    ],
+    "title": "王楚人的课程页",
+    "fonts": true
+  },
+  {
+    "label": "site-shops",
+    "width": 320,
+    "scrollWidth": 320,
+    "contentWidth": 264,
+    "contentScrollWidth": 264,
+    "art": [
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      },
+      {
+        "text": "需要画",
+        "width": 64,
+        "height": 64
+      }
+    ],
+    "title": "本地商户与广告",
+    "fonts": true
+  },
+  {
+    "width": 320,
+    "navigation": "8 stages / 11 apps / 8 sites",
+    "storageUnchanged": true,
+    "pageErrors": 0,
+    "externalRequests": 0,
+    "apiRequests": 0
+  }
+]

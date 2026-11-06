@@ -1,0 +1,13 @@
+{
+  "fusion": {
+    "repo": "https://github.com/TakWolf/fusion-pixel-font",
+    "release": "2026.10.25",
+    "asset": "https://github.com/TakWolf/fusion-pixel-font/releases/download/2026.10.25/fusion-pixel-font-12px-proportional-otf.woff2-v2026.10.25.zip",
+    "file": "fusion-pixel-12px-proportional-zh_hans.otf.woff2",
+    "sha256": "b67eb7aa592622e5bc1152b800d32404bb887a1e3a2e669b0c2a873d388590d6"
+  },
+  "silkscreen": {
+    "repo": "https://github.com/google/fonts/tree/main/ofl/silkscreen",
+    "license": "SIL OFL 1.1"
+  }
+}

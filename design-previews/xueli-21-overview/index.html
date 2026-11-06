@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Stillwater 2.1 雪梨镇：八个阶段、主要程序与网站的独立像素概念样机。">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <title>雪梨镇 · 2.1 流程与画面样机</title>
+  <link rel="stylesheet" href="preview.css">
+  <link rel="preload" href="assets/fusion-pixel-12px-zh_hans.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="preview-data.js" defer></script>
+  <script src="preview.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#viewer">跳到画面</a>
+  <header class="review-header">
+    <div><p class="english">404 STUDIO / STILLWATER 2.1</p><h1>雪梨镇：旧电脑调查</h1></div>
+    <div class="review-note"><strong>概念样机，尚未接入游戏</strong><p>点章节看流程，点程序或网站看窗口。待绘素材均标“需要画”。</p></div>
+  </header>
+  <nav class="review-tabs" aria-label="预览方式">
+    <button data-mode="stages" aria-pressed="true">按章节看 · 8 幕</button>
+    <button data-mode="apps" aria-pressed="false">按程序看 · 11 个</button>
+    <button data-mode="sites" aria-pressed="false">按网站看 · 8 类</button>
+    <a href="?view=all">八幕放在一起看 ↓</a>
+    <a href="README.zh-CN.md">说明与待绘清单</a>
+  </nav>
+  <div class="review-layout">
+    <aside class="review-sidebar" aria-label="选择画面"><div id="choices"></div><div class="scope-note"><strong>这次只看样子</strong><p>不连接 AI、不发送消息、不验证答案、不读取或改写原存档。</p><p>旧电脑是 2008 年机型；资料来自不同年份。</p></div></aside>
+    <main id="viewer" tabindex="-1">
+      <div class="viewer-heading"><div><p class="english" id="view-number"></p><h2 id="view-title"></h2></div><div class="step-controls"><button data-step="-1" aria-label="上一幕">←</button><button data-step="1" aria-label="下一幕">→</button></div></div>
+      <div id="screen"></div>
+      <section class="stage-explainer" aria-label="本阶段流程" id="explanation"></section>
+    </main>
+  </div>
+  <section class="all-scenes" id="all-scenes" hidden><h2>八幕画面与大致流程</h2><p>这是同一台旧电脑逐渐被侵入的过程，不是八个互不相关的小游戏。</p><div id="scene-grid"></div><a href="index.html">返回可切换样机 ↑</a></section>
+  <footer class="review-footer">已保留微信 / AI 与 B-3 的复用方向。这张样机不包含新玩法实现，画框也不是已完成的图片。</footer>
+</body>
+</html>

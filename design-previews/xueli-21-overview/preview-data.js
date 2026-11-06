@@ -1,0 +1,36 @@
+/* Presentation data only. No case state, AI client or live story modules. */
+globalThis.XueliOverviewData = {
+  stages:[
+    {title:'旧电脑启动',app:'wechat',site:'xianxia',tone:'normal',question:'王楚人最后在查什么？',action:'GGbond 发来闲虾交易页。查看卖家、浏览器书签和旧文件夹。',next:'在调查笔记记下第一条有来源的线索，再进入资料追踪。',mood:'熟悉的朋友、普通的旧电脑。先没有恐怖效果。'},
+    {title:'资料追踪',app:'finder',site:'forum',tone:'normal',question:'这些人名和地点，为什么会在不同资料里出现？',action:'用新关键词交叉检索论坛、周刊和图书馆，点开原始来源。',next:'核实第一组人物与地点关系后，带着问题打开酒店历史快照。',mood:'像在本地网络里翻旧事，有日常内容，也有不相关的广告。'},
+    {title:'Stillwater Hotel',app:'browser',site:'hotel',tone:'normal',question:'Nora 是谁？她与酒店发生过什么？',action:'对照员工介绍、合影说明、活动页和旧留言。',next:'确认人物记录之间的矛盾，沿活动与档案来源进入位体教。',mood:'旧酒店网页依然普通，问题出在几份资料说法不同。'},
+    {title:'位体教',app:'browser',site:'phase',tone:'normal',question:'酒店、位体教与楚人的 2023 年调查有什么关系？',action:'读公开介绍、Stephen Dylan 的记录和数字遗产项目，再回看楚人的课程页。',next:'保存有年代与出处的原件后，出现第一处可确认的改写。',mood:'公开官网像科技文化组织，先让人理解它在做什么。'},
+    {title:'资料被改写',app:'photos',site:'hotel',tone:'changed',question:'哪一份是原始留存？哪一份后来被改过？',action:'并排看旧照片、周刊和网页快照；检查笔记中非本人填写的内容。',next:'保留原件，追查重建输出从哪里来；解锁声像与信号工具。',mood:'不频繁突脸。熟悉的内容开始不可信，假楚人变得主动。'},
+    {title:'信号分离',app:'b3',site:'library',tone:'deep',question:'混杂的影像和声音里，能否保住一段独立来源？',action:'查看 CCTV 与音轨，再用原有 A–F 六接头、每次 90° 的 B-3 接线结构隔离信号。',next:'原声与原始片段能回看；带着恢复的来源返回调查笔记。',mood:'机器占满屏幕，玩家要分清声音来源，而不是被随机吓。'},
+    {title:'身份对抗',app:'casebook',site:'course',tone:'deep',question:'新账号像楚人，但哪些证据真的支持它的身份？',action:'重查课程、旧聊天与来源日期；把系统补全和玩家核实的记录分开。',next:'完成关键来源复核后进入最终处理，不再寻找隐蔽的继续按钮。',mood:'假楚人的说法越来越完整，真正留下的线索却更零碎。'},
+    {title:'结局',app:'ending',site:'course',tone:'ending',question:'你保住了哪些真实痕迹？系统是否已完成替代？',action:'展示选择带来的结果：可靠线索、保留未知，或被完整故事覆盖的身份。',next:'明确显示 GAME OVER。结局文字和达成规则待主线确认后再细化。',mood:'安静、无力、细思极恐。这里不放强制大鬼脸。'},
+  ],
+  apps:[
+    {id:'wechat',name:'微信',en:'WECHAT',stage:0,note:'现有群聊、私聊与 AI 保留，只预览像素通讯器的外壳。'},
+    {id:'browser',name:'浏览器',en:'BROWSER',stage:2,note:'所有网页在同一浏览器里打开，快照年份与当前查看时间分开。'},
+    {id:'finder',name:'检索器',en:'FINDER',stage:1,note:'输入刚发现的词，得到跨网站与本地缓存的来源结果。这里不做真实搜索。'},
+    {id:'photos',name:'照片',en:'PHOTOS',stage:4,note:'查看、放大和对照原始留存；所有照片位置暂留“需要画”。'},
+    {id:'weekly',name:'周刊',en:'WEEKLY',stage:1,note:'像翻旧报纸，报道、活动、酒店宣传与普通广告一起存在。'},
+    {id:'casebook',name:'调查笔记',en:'CASEBOOK',stage:6,note:'人名、地点、时间、关系和来源分开。打开资料不等于已经核实。'},
+    {id:'files',name:'文件',en:'FILES',stage:0,note:'旧电脑的书签、缓存、课程材料和待恢复文件按目录查找。'},
+    {id:'system',name:'设置',en:'SYSTEM',stage:0,note:'声音、广告和显示设置归在这里。当前勾选仅是画面示意，不写入设置。'},
+    {id:'cctv',name:'监控',en:'CCTV',stage:5,note:'后期开放；查看机位与录像来源，避免让系统标注替玩家认人。'},
+    {id:'audio',name:'音轨',en:'AUDIO',stage:5,note:'后期开放；把混合输出分成可单独查看的原轨。样机不播放音频。'},
+    {id:'b3',name:'B-3 接线',en:'SIGNAL',stage:5,note:'保留原旋转接线核心；这次只展示位置与结构，没有另做一套接线题。'},
+  ],
+  sites:[
+    {id:'xianxia',name:'闲虾二手软件',stage:0,note:'交易页、卖家主页、物品评价和失效 listing。故事从这里开始。'},
+    {id:'forum',name:'雪梨镇论坛',stage:1,note:'日常闲聊、买卖求助、维修和地方八卦；主线只占其中一部分。'},
+    {id:'weekly',name:'雪梨镇周刊',stage:1,note:'报道与广告并列，能看出地方生活和活动的痕迹。'},
+    {id:'library',name:'图书馆数字档案',stage:1,note:'年鉴、地图、旧照片与报纸索引，提供可追溯的日期和来源。'},
+    {id:'hotel',name:'酒店历史快照',stage:2,note:'客房、婚礼活动、员工与住客留言。不是可真正预订的酒店。'},
+    {id:'phase',name:'位体教官网',stage:3,note:'正常的研究与文化组织页面；这次只示意首页，不制作七个栏目。'},
+    {id:'course',name:'王楚人的课程页',stage:3,note:'课堂项目、照片、老师反馈、同学评论与致谢，不全是谜语。'},
+    {id:'shops',name:'本地商户与广告',stage:1,note:'餐厅、维修、钓具、相机、披萨、图书馆义卖、旧灯节和轮胎店。'},
+  ],
+};

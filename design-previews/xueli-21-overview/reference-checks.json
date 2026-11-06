@@ -1,0 +1,142 @@
+{
+  "checkedAt": "2026-11-06T02:51:53.173068+00:00",
+  "scope": "公开参考页面与功能说明的快速核查，不是完整试玩或复制设计",
+  "references": [
+    {
+      "id": "desktop",
+      "url": "https://guidebookgallery.org/screenshots/win2000pro",
+      "status": 200,
+      "resolved": "https://guidebookgallery.org/screenshots/win2000pro/",
+      "title": "GUIdebook &gt; Screenshots &gt; Windows 2000 Pro"
+    },
+    {
+      "id": "controls",
+      "url": "https://jdan.github.io/98.css/",
+      "status": 200,
+      "resolved": "https://jdan.github.io/98.css/",
+      "title": "98.css - A design system for building faithful recreations of old UIs"
+    },
+    {
+      "id": "wechat",
+      "url": "https://pc.weixin.qq.com/",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "id": "font",
+      "url": "https://github.com/TakWolf/fusion-pixel-font",
+      "status": 200,
+      "resolved": "https://github.com/TakWolf/fusion-pixel-font",
+      "title": "GitHub - TakWolf/fusion-pixel-font: 开源的泛拉丁与泛中日韩像素字体，黑体风格 · GitHub"
+    },
+    {
+      "id": "hypnospace",
+      "url": "https://store.steampowered.com/app/844590/Hypnospace_Outlaw/",
+      "status": 200,
+      "resolved": "https://store.steampowered.com/app/844590/Hypnospace_Outlaw/",
+      "title": "Save 75% on Hypnospace Outlaw on Steam"
+    },
+    {
+      "id": "forum",
+      "url": "https://www.phpbb.com/demo/",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "weekly",
+      "url": "https://www.loc.gov/collections/chronicling-america/",
+      "status": 200,
+      "resolved": "https://www.loc.gov/collections/chronicling-america/",
+      "title": "Chronicling America | The Library of Congress"
+    },
+    {
+      "id": "reader",
+      "url": "https://openlibrary.org/dev/docs/bookreader",
+      "status": 200,
+      "resolved": "https://openlibrary.org/dev/docs/bookreader",
+      "title": "Internet Archive BookReader | Open Library"
+    },
+    {
+      "id": "hotel",
+      "url": "https://www.historichotels.org/us",
+      "status": 200,
+      "resolved": "https://www.historichotels.org/us",
+      "title": "Historic Hotels Of America | Official Site"
+    },
+    {
+      "id": "snapshot",
+      "url": "https://archivesupport.zendesk.com/hc/en-us/articles/360004651732-Using-The-Wayback-Machine",
+      "status": 200,
+      "resolved": "https://archivesupport.zendesk.com/hc/en-us/articles/360004651732-Using-The-Wayback-Machine",
+      "title": "Using The Wayback Machine &ndash; Internet Archive Help Center"
+    },
+    {
+      "id": "phase",
+      "url": "https://terasemmovementfoundation.com/",
+      "status": 200,
+      "resolved": "https://terasemmovementfoundation.com/",
+      "title": "Terasem Movement Foundation &#8211; Our mission is to promote the geoethical (world ethical) use of nanotechnology for human life extension. We conduc"
+    },
+    {
+      "id": "phase-about",
+      "url": "https://www.humanityplus.org/about-1",
+      "status": 200,
+      "resolved": "https://www.humanityplus.org/about-1",
+      "title": "About &mdash; Humanity+"
+    },
+    {
+      "id": "casebook",
+      "url": "https://roottrees.com/en/",
+      "status": 200,
+      "resolved": "https://roottrees.com/en/",
+      "title": "The Roottrees are Dead | Evil Trout inc."
+    },
+    {
+      "id": "idol",
+      "url": "https://store.steampowered.com/app/2716400/The_Rise_of_the_Golden_Idol/",
+      "status": 200,
+      "resolved": "https://store.steampowered.com/app/2716400/The_Rise_of_the_Golden_Idol/",
+      "title": "The Rise of the Golden Idol on Steam"
+    },
+    {
+      "id": "search",
+      "url": "https://www.herstorygame.com/about/",
+      "status": 200,
+      "resolved": "https://www.herstorygame.com/about/",
+      "title": "About &#8211; HER STORY"
+    },
+    {
+      "id": "room",
+      "url": "https://www.fireproofgames.com/games/the-room",
+      "status": 200,
+      "resolved": "https://www.fireproofgames.com/games/the-room",
+      "title": "The Room &#8226; Fireproof Studios"
+    },
+    {
+      "id": "machine",
+      "url": "https://amanita-design.net/games/machinarium.html",
+      "status": 200,
+      "resolved": "https://amanita-design.net/games/machinarium.html",
+      "title": "Machinarium &#8211; Amanita Design"
+    },
+    {
+      "id": "status",
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/status-messages",
+      "status": 200,
+      "resolved": "https://www.w3.org/WAI/WCAG21/Understanding/status-messages",
+      "title": "Understanding Success Criterion 4.1.3: Status Messages | WAI | W3C"
+    },
+    {
+      "id": "wechat-store",
+      "url": "https://apps.apple.com/us/app/wechat/id836500024?mt=12",
+      "status": 200,
+      "resolved": "https://apps.apple.com/us/app/wechat/id836500024?mt=12",
+      "bytes": 389391
+    },
+    {
+      "id": "forum-template",
+      "url": "https://raw.githubusercontent.com/phpbb/phpbb/3.3.x/phpBB/styles/prosilver/template/forumlist_body.html",
+      "status": 200,
+      "resolved": "https://raw.githubusercontent.com/phpbb/phpbb/3.3.x/phpBB/styles/prosilver/template/forumlist_body.html",
+      "bytes": 6576
+    }
+  ]
+}
