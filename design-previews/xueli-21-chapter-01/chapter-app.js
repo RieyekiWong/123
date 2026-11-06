@@ -37,7 +37,7 @@ function art(id, sizeClass = '') {
   const ready = reuseById[id];
   if (ready?.status === 'ready') return `<span class="art borrowed-art palette-${escape(ready.palette)} ${sizeClass}" data-asset="${escape(id)}" role="img" aria-label="${escape(local(ASSETS[id]))}"><img src="reuse/${escape(ready.file)}" width="48" height="48" alt=""></span>`;
   const [cols, rows] = ASSETS[id]?.tiles || [1, 1];
-  return `<span class="art art-${cols}x${rows} ${sizeClass}" data-asset="${escape(id)}" role="img" aria-label="${escape(t('需要画：', 'To draw: ') + local(ASSETS[id]))}"><strong>${t('需要画', 'To draw')}</strong><small>${64 * cols} × ${64 * rows}</small></span>`;
+  return `<span class="art art-${cols}x${rows} ${sizeClass}" data-asset="${escape(id)}" role="img" aria-label="${escape(t('需要画：', 'To draw: ') + local(ASSETS[id]))}" aria-description="${escape(local(UI_COPY.pendingArt))}"><strong>${t('需要画', 'To draw')}</strong><small>${64 * cols} × ${64 * rows}</small></span>`;
 }
 const APP_NAMES = { chat: ['微信', 'WeChat'], files: ['文件', 'Files'], browser: ['浏览器', 'Browser'], casebook: ['调查笔记', 'Casebook'] };
 const appName = app => APP_NAMES[app]?.[state.lang === 'en' ? 1 : 0] ?? '';

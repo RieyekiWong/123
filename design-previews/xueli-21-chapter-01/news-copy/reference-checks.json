@@ -1,0 +1,100 @@
+{
+  "checkedAt": "2026-11-06T13:24:38.933880+00:00",
+  "scope": "Public writing/UX references only; not fictional story evidence or a claim of complete commercial-game playthroughs.",
+  "sources": [
+    {
+      "url": "https://www.ap.org/about/news-values-and-principles/telling-the-story/",
+      "status": 200,
+      "resolved": "https://www.ap.org/about/news-values-and-principles/telling-the-story/",
+      "title": "Telling the Story | The Associated Press"
+    },
+    {
+      "url": "https://ucm.calpoly.edu/guidelines-newswriting",
+      "status": 200,
+      "resolved": "https://ucm.calpoly.edu/guidelines-newswriting",
+      "title": "Guidelines for Newswriting | University Communications and Marketing"
+    },
+    {
+      "url": "https://ask.ifas.ufl.edu/publication/WC191",
+      "status": "unavailable",
+      "error": "HTTP Error 307: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nTemporary Redirect"
+    },
+    {
+      "url": "https://writingcenter.gmu.edu/writing-resources/different-genres/news-writing-fundamentals",
+      "status": 200,
+      "resolved": "https://writingcenter.gmu.edu/writing-resources/different-genres/news-writing-fundamentals",
+      "title": "The Writing Center | News Writing Fundamentals | Writing..."
+    },
+    {
+      "url": "https://pressbooks.cuny.edu/journalismworkbook/chapter/chapter-8-leads/",
+      "status": 200,
+      "resolved": "https://pressbooks.cuny.edu/journalismworkbook/chapter/chapter-8-leads/",
+      "title": "Chapter 8: Leads – News Writing Workbook for Beginners"
+    },
+    {
+      "url": "https://www.loc.gov/preservation/care/photo.html",
+      "status": 200,
+      "resolved": "https://www.loc.gov/preservation/care/photo.html",
+      "title": "Care, Handling and Storage of Photographs - Collections Care (Preservation, Library of Congress)"
+    },
+    {
+      "url": "https://www.loc.gov/preservation/resources/rfs/stillimg.html",
+      "status": 200,
+      "resolved": "https://www.loc.gov/preservation/resources/rfs/stillimg.html",
+      "title": "Recommended Formats Statement – Still Image Works | Resources (Preservation, Library of Congress)"
+    },
+    {
+      "url": "https://guides.loc.gov/chronicling-america/about-the-collection",
+      "status": 200,
+      "resolved": "https://guides.loc.gov/chronicling-america/about-the-collection",
+      "title": "About the Collection - Chronicling America: A Guide for Researchers - Research Guides at Library of Congress"
+    },
+    {
+      "url": "https://guides.loc.gov/chronicling-america",
+      "status": 200,
+      "resolved": "https://guides.loc.gov/chronicling-america",
+      "title": "Introduction - Chronicling America: A Guide for Researchers - Research Guides at Library of Congress"
+    },
+    {
+      "url": "https://roottrees.com/en/",
+      "status": 200,
+      "resolved": "https://roottrees.com/en/",
+      "title": "The Roottrees are Dead | Evil Trout inc."
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification",
+      "status": 200,
+      "resolved": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification",
+      "title": "Understanding Success Criterion 3.3.1: Error Identification | WAI | W3C"
+    },
+    {
+      "url": "https://www.w3.org/WAI/tutorials/forms/notifications/",
+      "status": 200,
+      "resolved": "https://www.w3.org/WAI/tutorials/forms/notifications/",
+      "title": "User Notification | Web Accessibility Initiative (WAI) | W3C"
+    },
+    {
+      "url": "https://www.w3.org/WAI/tutorials/forms/",
+      "status": 200,
+      "resolved": "https://www.w3.org/WAI/tutorials/forms/",
+      "title": "Forms Tutorial | Web Accessibility Initiative (WAI) | W3C"
+    },
+    {
+      "url": "https://www.w3.org/WAI/tutorials/forms/validation/",
+      "status": 200,
+      "resolved": "https://www.w3.org/WAI/tutorials/forms/validation/",
+      "title": "Validating Input | Web Accessibility Initiative (WAI) | W3C"
+    },
+    {
+      "url": "https://store.steampowered.com/app/844590/Hypnospace_Outlaw/",
+      "status": 200,
+      "resolved": "https://store.steampowered.com/app/844590/Hypnospace_Outlaw/",
+      "title": "Save 75% on Hypnospace Outlaw on Steam"
+    }
+  ],
+  "publisherAlternate": {
+    "url": "https://edis.ifas.ufl.edu/publication/WC191",
+    "status": "unavailable",
+    "error": "HTTP Error 307: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nTemporary Redirect"
+  }
+}

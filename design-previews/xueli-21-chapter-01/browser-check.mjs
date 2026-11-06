@@ -39,7 +39,7 @@ async function run(lang, width, height, alternate = false) {
   await checkLayout('opening');
   await expect(page.locator('.desktop-icon')).toHaveCount(2);
   await expect(page.locator('.chat-bubble')).toHaveCount(OPENING.length);
-  await expect(page.locator('.chat-main')).toContainText(en ? 'a copy of everything I could read' : '留了份副本');
+  await expect(page.locator('.chat-main')).toContainText(OPENING[4][lang]);
   await expect(page.locator('.desk-sub')).toContainText(UI_COPY.shared[lang]);
   if (width === 1440 && !en) await saveShot(page, '01-desktop-opening');
   await page.locator('.attachment[data-open="note"]').click();
@@ -47,7 +47,7 @@ async function run(lang, width, height, alternate = false) {
   await expect(page.locator('.desktop-icon')).toHaveCount(3);
   await page.locator('[data-open="weekly"]').click();
   await expect(page.locator('[data-document="weekly"]')).toBeVisible();
-  await expect(page.locator('.article-body p')).toHaveCount(7);
+  await expect(page.locator('.article-body p')).toHaveCount(BY_ID.weekly.paragraphs[lang].length);
   await expect(page.locator('.article-body')).toContainText(en ? 'Bluebird Photo' : '青鸟照相馆');
   await expect(page.locator('.article-caption')).toContainText('J.W.');
   await checkLayout('weekly');
@@ -93,6 +93,7 @@ async function run(lang, width, height, alternate = false) {
   await page.reload();
   await expect(page.locator('#query')).toHaveValue(en ? 'June Ward' : '朱恩沃德');
   await query(en ? 'j. ward' : '朱恩沃德');
+  if (en) await expect(page.locator('.search-result [data-open="diary"]')).toHaveCount(0);
   await page.locator('.search-result [data-open="reply"]').click();
   await expect(page.locator('.mail-headers')).toContainText('2023-10-15 17:26');
   await expect(page.locator('.mail-status')).toContainText(en ? 'no October 16 check-in' : '没有 10 月 16 日的到访确认');

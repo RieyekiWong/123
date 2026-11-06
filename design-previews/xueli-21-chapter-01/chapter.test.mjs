@@ -140,9 +140,9 @@ test('main articles are full original bilingual texts, not short clue cards', ()
 
 test('denials and uncertainty cannot pass just because an alias is present', () => {
   const denied = {
-    person: ['不是朱恩', '我没见过朱恩', '并非 June Ward', 'not June', 'not June Ward', "I don't know June", '不是朱恩而是Nora', 'Ward', 'Junebug', 'Stephen Dylan'],
-    place: ['不是青鸟', '不在青鸟照相馆', '没找到 Bluebird', 'not Bluebird Photo', 'Bluebird is not the place', '桦树街6号', 'Stillwater Hotel'],
-    purpose: ['不是员工合照', '我想看一张照片但不是酒店员工合照', "not the hotel staff photo", "I don't want the original photo", 'some other photo instead of the hotel group picture', '普通旧照片', '咖啡']
+    person: ['不是朱恩', '我没见过朱恩', '并非 June Ward', 'not June', 'not June Ward', "I don't know June", '不是朱恩而是Nora', 'June? no, somebody else', '不能确认是朱恩', '未必是朱恩', 'June cannot be the person', "It won't be June", 'notJuneWard', 'someone except June', 'JuneWardrobe', 'myjwardname', '王楚人', 'Ward', 'Junebug', 'Stephen Dylan'],
+    place: ['不是青鸟', '不在青鸟照相馆', '没找到 Bluebird', 'not Bluebird Photo', 'Bluebird is not the place', '青鸟以外的地方', 'BluebirdPhotobomb', 'Birch Street', '桦树街6号', 'Stillwater Hotel'],
+    purpose: ['不是员工合照', '我想看一张照片但不是酒店员工合照', '不是合影，是一张普通自拍', "not the hotel staff photo", "I don't want the original photo", 'some other photo instead of the hotel group picture', '普通旧照片', 'a picture', '一个文件', '咖啡']
   };
   for (const [field, inputs] of Object.entries(denied)) for (const input of inputs) {
     const state = { ...ready(), draft: { ...ready().draft, [field]: input } };
@@ -151,6 +151,92 @@ test('denials and uncertainty cannot pass just because an alias is present', () 
     assert.ok(result.errors.some(error => error.field === field));
     assert.deepEqual(result.state, state);
   }
+});
+
+test('the short photo-credit initials require their visible mapping, not an extra citation control', () => {
+  const draft = { ...ready().draft, person: 'J.W.' };
+  for (const read of [[], ['note'], ['note', 'weekly'], ['note', 'weekly', 'directory']]) {
+    assert.equal(validate({ ...fresh(), read, draft }).ok, false);
+  }
+  for (const read of [['note', 'profile'], ['note', 'reply']]) {
+    for (const person of ['J.W.', 'j w', 'Ｊ．Ｗ．']) {
+      assert.equal(validate({ ...fresh(), read, draft: { ...draft, person } }).ok, true);
+    }
+  }
+  for (const person of ['沃德女士', 'Ms Ward', 'Ｍｓ． Ｗａｒｄ']) {
+    assert.equal(validate({ ...ready(), draft: { ...draft, person } }).ok, true);
+  }
+});
+
+test('explicit corrections validate the final choice and retain the whole draft', () => {
+  const correct = {
+    person: ['不是 Nora，而是朱恩', 'not Nora, but June Ward'],
+    place: ['不是酒店，是青鸟照相馆', 'not the hotel, but Bluebird Photo'],
+    purpose: ['不是普通照片，而是酒店员工合影', 'not a selfie, but the original staff photograph']
+  };
+  for (const [field, phrases] of Object.entries(correct)) for (const phrase of phrases) {
+    const state = { ...ready(), draft: { ...ready().draft, [field]: phrase } };
+    const result = submit(state);
+    assert.equal(result.ok, true, phrase);
+    assert.equal(result.state.draft[field], phrase);
+  }
+  for (const [field, phrase] of [['person', 'not June, but Nora'], ['place', '不是青鸟，而是酒店'], ['purpose', 'not the hotel photo, but a selfie']]) {
+    assert.equal(validate({ ...ready(), draft: { ...ready().draft, [field]: phrase } }).ok, false, phrase);
+  }
+});
+
+test('new bilingual search terms return the same relevant sources in either interface language', () => {
+  const state = openDocument(fresh(), 'note');
+  for (const [zh, en, expected] of [
+    ['青鸟照相馆', 'Bluebird Photo', ['weekly', 'profile', 'directory']],
+    ['朱恩', 'June Ward', ['profile', 'directory', 'reply']],
+    ['朱恩沃德', 'June Ward', ['profile', 'directory', 'reply']]
+  ]) {
+    for (const lang of ['zh', 'en']) {
+      const found = query => search({ ...state, lang }, query).map(doc => doc.id).sort();
+      for (const query of [zh, en]) for (const id of expected) assert.ok(found(query).includes(id), `${lang}: ${query} -> ${id}`);
+      assert.deepEqual(found(zh), found(en));
+    }
+  }
+  for (const lang of ['zh', 'en']) for (const query of ['J. Ward', 'j ward', 'Ｊ． Ｗａｒｄ']) {
+    assert.deepEqual(search({ ...state, lang }, query).map(doc => doc.id), ['reply']);
+  }
+  for (const lang of ['zh', 'en']) for (const query of ['原底片也还在', 'three in the afternoon', '歪', 'collection order']) {
+    assert.ok(!search({ ...state, lang }, query).some(doc => doc.id === 'reply'));
+  }
+});
+
+test('calendar dates, shop details and the limited scan provenance survive the prose replacement', () => {
+  for (const [date, weekday] of [['2006-09-23',6],['2006-09-24',0],['2019-04-13',6],['2023-10-03',2],['2023-10-15',0],['2023-10-16',1]]) {
+    assert.equal(new Date(date + 'T12:00:00Z').getUTCDay(), weekday, date);
+  }
+  const doc = id => DOCUMENTS.find(item => item.id === id);
+  for (const lang of ['zh', 'en']) {
+    assert.match(doc('directory').paragraphs[lang].join(' '), /June Ward/);
+    assert.match(doc('directory').paragraphs[lang].join(' '), /6 Birch Street/);
+    assert.match(doc('directory').paragraphs[lang].join(' '), /13:00–18:00|1:00–6:00 p\.m\./);
+    assert.match(doc('back').caption[lang], /扫描时间不详|scan date unknown/);
+    assert.doesNotMatch(doc('profile').caption[lang], /照片待画|portrait is pending/);
+  }
+  assert.equal(doc('weekly').date, '2006-09-24');
+  assert.equal(doc('profile').date, '2019-04-13');
+  assert.match(doc('weekly').paragraphs.en.join(' '), /Robert Walsh/);
+  assert.ok(!ANSWER_ALIASES.person.some(value => /Robert|罗伯特/.test(value)));
+});
+
+test('previous chapter revision keeps its completed and partial saves without new schema fields', () => {
+  const partial = { ...ready(), contentRevision: 'directors-cut-p0-20261106', app: 'casebook', hint: 2, scroll: { weekly: 486 } };
+  assert.deepEqual(hydrate(partial).draft, partial.draft);
+  assert.deepEqual(hydrate(partial).scroll, partial.scroll);
+  assert.equal(hydrate(partial).completed, false);
+  const completed = { ...partial, completed: true, storyDelivered: true, app: 'browser', doc: 'back', read: [...partial.read, 'back'], draft: { person: '未必是朱恩', place: '青鸟', purpose: '合影' } };
+  const restored = hydrate(completed);
+  assert.equal(restored.completed, true);
+  assert.equal(restored.legacyCompletion, true);
+  assert.equal(restored.doc, 'back');
+  assert.equal(hydrate(restored).completed, true);
+  assert.equal(hydrate(restored).schema, 1);
+  assert.deepEqual(Object.keys(fresh()).sort(), Object.keys(hydrate(restored)).sort());
 });
 
 test('empty answers receive the authored empty-field feedback', () => {

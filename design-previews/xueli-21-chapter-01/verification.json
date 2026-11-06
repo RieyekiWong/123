@@ -1,34 +1,34 @@
 {
-  "baselineCommit": "a52d845c82698a6902b2b14cb26944f4a91550a4",
-  "separateBranch": "preview/xueli-21-directors-cut-p0",
-  "productionMain": "83d3a72fdb133f805914f1c96464d671b268fab1",
+  "revision": "local-publications-p0-20261106",
+  "baselineCommit": "2bf043cf39796f8938796774a82700bc3b3ed055",
+  "previousPublishedCommit": "2bf043cf39796f8938796774a82700bc3b3ed055",
+  "separateBranch": "preview/xueli-21-news-copy-p0",
+  "publishedBranch": "preview/xueli-21-news-copy-p0",
   "unchangedFilesOutsideSample": 1216,
   "modifiedFilesOutsideSample": [],
+  "pixelCSSUnchanged": true,
+  "existingLicensedMediaUnchanged": true,
   "sampleExcludedFromProductionBuild": true,
-  "userNoteUnchanged": true,
-  "sources": {
+  "saveKey": "stillwater-xueli-sample:v1",
+  "saveSchema": 1,
+  "saveFieldsUnchanged": true,
+  "sourceScope": {
+    "combinedReadAndMatched": true,
     "runtimeDocuments": 8,
-    "publicationScope": "Player-visible chapter copy only; complete author manuscripts and world/developer handoff remain local."
+    "bilingualDocumentCopies": 16,
+    "openingMessagesPerLanguage": 5,
+    "endingMessagesPerLanguage": 3,
+    "optionalPagesNotImplemented": [
+      "market",
+      "umbrella"
+    ],
+    "privateAuthorMaterialNotForPublication": true
   },
-  "changes": [
-    "Director’s Cut bilingual P0 prose and scripted messages",
-    "Read-only copy context, W.C. uncertainty, appointment versus attendance, unknown scan history",
-    "Negation-aware local answers and old completion compatibility",
-    "Same isolated sample save; no AI or production imports",
-    "Art brief corrected; no images generated"
-  ],
   "checks": {
     "chapterModel": {
-      "passed": 25,
+      "passed": 30,
       "failed": 0,
-      "localAuthorManuscriptAudit": {
-        "additionalPassed": 2,
-        "manuscriptsNotPublished": true
-      }
-    },
-    "licensedAssetIntegrity": {
-      "passed": 5,
-      "failed": 0
+      "additionalLocalManuscriptAudits": 2
     },
     "chapterBrowsers": {
       "passed": 8,
@@ -42,14 +42,7 @@
         390,
         320
       ],
-      "report": "browser-checks.json",
-      "additional": [
-        "corrupt save retention",
-        "storage denied",
-        "HTML text escaped",
-        "old blocked draft",
-        "old completed compatibility"
-      ]
+      "report": "browser-checks.json"
     },
     "productionBuild": "passed",
     "productionUnitTests": {
@@ -59,31 +52,25 @@
     "productionV2Browsers": {
       "passed": 2,
       "failed": 0,
-      "upstream": "mocked; no paid API calls"
+      "upstream": "mocked"
     },
-    "publicPreview": {
-      "passed": true,
-      "testedCommit": "10c18803dcf88fe2c954ad7e06bd165fdac735f2",
-      "url": "https://raw.githack.com/RieyekiWong/123/10c18803dcf88fe2c954ad7e06bd165fdac735f2/design-previews/xueli-21-chapter-01/index.html",
-      "languages": [
-        "zh",
-        "en"
-      ],
-      "report": "public-preview-checks.json"
+    "licensedAssetIntegrity": {
+      "passed": 5,
+      "failed": 0
     },
-    "paidAPIRequests": 0
+    "paidAPIRequests": 0,
+    "publicPreview": "pending actual deployment check"
   },
-  "privateMaterialExcluded": [
-    "directors-cut/source/",
-    "directors-cut/source-manifest.json",
-    "DIRECTORS-CUT-REVIEW.zh-CN.md"
+  "comparison": "COPY-CHANGELOG.zh-CN.md",
+  "writingReferences": "news-copy/REFERENCES.zh-CN.md",
+  "limitations": [
+    "Chapter two not implemented",
+    "Two optional pages deferred",
+    "UF writing reference and alternate loop on redirects; recorded honestly"
   ],
-  "publishedBranch": "preview/xueli-21-directors-cut-p0",
-  "publishedRuntimeHashes": {
-    "index.html": "6e68c5efb5b2676011060c54c6c1e8cd8984ba3fc6f5ae1f4145b6cbf2db9028",
-    "chapter-app.js": "97bc793cf26e996817e6e8668228e480182f647cbb47160b66c45fbbef752daa",
-    "chapter-data.js": "3019e59bd6313efda6452feb64f589baf749c322e6acb0b093c8d21f13ad9d6b",
-    "chapter-model.js": "514eebb06adb86442b059d3b8497e8f080264baa59d42b5ee399624033c11022",
-    "chapter.css": "19af98c43bb1fceb71944a5e1344dcd47e38f08d0903306d83ccac32066ba039"
-  }
+  "privateFilesExcluded": [
+    "news-copy/source/",
+    "news-copy/source-manifest.json",
+    "news-copy/CONTENT-REVIEW.zh-CN.md"
+  ]
 }

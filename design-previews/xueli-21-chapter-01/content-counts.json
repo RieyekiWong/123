@@ -1,41 +1,41 @@
 {
-  "revision": "directors-cut-p0",
+  "revision": "local-publications-p0-20261106",
   "units": {
     "zh": "Han characters in body",
     "en": "Whitespace-separated words in body"
   },
   "documents": {
     "note": {
-      "zh": 278,
-      "en": 187
+      "zh": 252,
+      "en": 181
     },
     "weekly": {
-      "zh": 621,
-      "en": 415
+      "zh": 661,
+      "en": 450
     },
     "profile": {
-      "zh": 756,
-      "en": 494
+      "zh": 792,
+      "en": 509
     },
     "directory": {
-      "zh": 396,
-      "en": 267
+      "zh": 268,
+      "en": 188
     },
     "reply": {
-      "zh": 220,
-      "en": 150
+      "zh": 186,
+      "en": 148
     },
     "letter": {
-      "zh": 507,
-      "en": 385
+      "zh": 376,
+      "en": 278
     },
     "diary": {
-      "zh": 551,
-      "en": 461
+      "zh": 439,
+      "en": 320
     },
     "back": {
       "zh": 89,
-      "en": 73
+      "en": 72
     }
   }
 }

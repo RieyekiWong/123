@@ -36,7 +36,7 @@ export function openDocument(state, id) {
 export function search(state, rawQuery) {
   const query = normalize(limited(rawQuery, 120));
   if (!query || !unlockedApps(state).includes('browser')) return [];
-  const terms = String(rawQuery).trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const terms = String(rawQuery).trim().toLowerCase().split(/\s+/).map(normalize).filter(Boolean);
   return DOCUMENTS.filter(doc => doc.id !== 'back').map(doc => {
     const title = normalize(`${doc.title.zh} ${doc.title.en} ${doc.file}`);
     const meta = normalize(doc.keywords.join(' '));
@@ -44,16 +44,19 @@ export function search(state, rawQuery) {
     // sender/filename index: it is not a magically public, searchable inbox.
     const content = doc.kind === 'mail' ? '' : normalize(`${doc.paragraphs.zh.join(' ')} ${doc.paragraphs.en.join(' ')} ${doc.caption?.zh || ''} ${doc.caption?.en || ''}`);
     const haystack = `${title}${meta}${content}`;
-    const matches = haystack.includes(query) || (terms.length > 1 && terms.every(term => haystack.includes(normalize(term))));
+    // An initial is part of the name, not a one-letter full-text keyword.
+    // Otherwise "J. Ward" also matches the j and "afterwards" in a diary.
+    const separateWords = terms.length > 1 && terms.every(term => term.length > 1 && haystack.includes(term));
+    const matches = haystack.includes(query) || separateWords;
     const score = matches ? (title.includes(query) ? 5 : meta.includes(query) ? 4 : 1) : 0;
     return { doc, score };
   }).filter(item => item.score).sort((a, b) => b.score - a.score || a.doc.date.localeCompare(b.doc.date)).map(item => item.doc);
 }
 
 export const FEEDBACK = {
-  person: ['这个名字对不上。照片的署名和小店专访里有提示。', "That name doesn't fit yet. Compare the photo credit and shop interview."],
-  place: ['要写具体哪家店，镇名或街名还不够。', 'Name the shop, not just the street or town.'],
-  purpose: ['还差一点。他找的不是一般照片，是哪一张？', 'Which old photograph did he want to see?'],
+  person: [UI_COPY.personError.zh, UI_COPY.personError.en],
+  place: [UI_COPY.placeError.zh, UI_COPY.placeError.en],
+  purpose: [UI_COPY.purposeError.zh, UI_COPY.purposeError.en],
   empty: [UI_COPY.empty.zh, UI_COPY.empty.en],
   success: [UI_COPY.success.zh, UI_COPY.success.en]
 };
@@ -61,22 +64,34 @@ export const FEEDBACK = {
 // Check the statement before looking for an alias. A name inside a denial is
 // not an answer. This deliberately remains a small, deterministic local rule,
 // not a claim to understand arbitrary natural-language arguments.
+function answerPart(raw) {
+  const text = String(raw ?? '').normalize('NFKC').trim();
+  // Simple explicit corrections are useful answers too: "not X, but Y".
+  // Validate only Y, never the rejected name before it. Keep the full draft.
+  const correction = text.match(/(?:不是|并非)[\s\S]*?(?:而是|[，,;；]\s*(?:是|要找的是|想看的是))\s*(.+)$/u)
+    || text.match(/\bnot\b[\s\S]*?\bbut\s+(.+)$/iu);
+  return correction ? correction[1] : text;
+}
 function isAffirmative(raw) {
   const text = String(raw ?? '').normalize('NFKC').toLowerCase().replace(/[’‘]/g, "'");
-  return !/(?:不是|并非|并不是|不在|不去|不想|不看|不认识|没(?:有)?(?:见|去|看|找)|不知道|不清楚|不确定|其他照片|别的照片|无关照片|\b(?:not|never|no|neither|unknown|unrelated|instead of)\b|\b(?:isn|wasn|aren|weren|don|doesn|didn|can|couldn|wouldn|shouldn)'?t\b)/iu.test(text);
+  return !/(?:不是|并非|并不是|不在|不去|不想|不看|不认识|没(?:有)?(?:见|去|看|找)|不知道|不清楚|不确定|未必|不能|不会|无法|没法|没有证据|以外|之外|其他照片|别的照片|无关照片|\b(?:not|never|no|neither|unknown|unrelated|cannot|instead of|other than|except)\b|\b(?:isn|wasn|aren|weren|don|doesn|didn|can|couldn|wouldn|shouldn|won|shan|ain|mustn)'?t\b)/iu.test(text);
 }
 
 export function validate(state, draft = state.draft) {
-  const person = normalize(draft.person);
-  const place = normalize(draft.place);
-  const purpose = normalize(draft.purpose);
+  const personText = answerPart(draft.person), placeText = answerPart(draft.place), purposeText = answerPart(draft.purpose);
+  const person = normalize(personText);
+  const place = normalize(placeText);
+  const purpose = normalize(purposeText);
   const exactAlias = (field, value) => ANSWER_ALIASES[field].some(alias => normalize(alias) === value);
-  const fullPerson = ['朱恩沃德', 'juneward', 'jward'].some(name => person.includes(name));
-  const isPerson = isAffirmative(draft.person) && (fullPerson || exactAlias('person', person) || person.includes('朱恩') || /(?:^|[^a-z])june(?:$|[^a-z])/i.test(String(draft.person).normalize('NFKC')));
-  const isPlace = isAffirmative(draft.place) && (/青鸟/.test(place) || /\bbluebird(?:\b|photo)/i.test(String(draft.place).normalize('NFKC')) || exactAlias('place', place));
+  const initialsMapped = state.read?.some(id => ['profile', 'reply'].includes(id));
+  const isInitials = person === 'jw';
+  const personAlias = exactAlias('person', person) && (!isInitials || initialsMapped);
+  const fullPerson = /朱恩|沃德女士/u.test(person) || /\b(?:june(?:[\s\p{P}]*ward)?|j[\s\p{P}]*ward|ms[\s\p{P}]*ward)\b/iu.test(personText);
+  const isPerson = isAffirmative(personText) && (fullPerson || personAlias);
+  const isPlace = isAffirmative(placeText) && (/青鸟/.test(place) || /\bbluebird(?:[\s\p{P}]*photo(?:[\s\p{P}]*studio)?)?\b/iu.test(placeText) || exactAlias('place', place));
   const isPhoto = /合影|合照|照片|相片|团体照|集体照|photo|picture|portrait|print|negative/.test(purpose);
   const isSpecific = /合影|合照|团体照|集体照|员工|职工|周年|十九|19|旅馆|酒店|底片|原件|原片|原版|原始|背面|staff|employee|anniversary|hotel|original|negative|group/.test(purpose);
-  const isPurpose = isAffirmative(draft.purpose) && (exactAlias('purpose', purpose) || (isPhoto && isSpecific));
+  const isPurpose = isAffirmative(purposeText) && (exactAlias('purpose', purpose) || (isPhoto && isSpecific));
   const errors = [];
   if (!isPerson) errors.push({ field: 'person', code: person ? 'person' : 'empty' });
   if (!isPlace) errors.push({ field: 'place', code: place ? 'place' : 'empty' });
@@ -114,7 +129,7 @@ export function hydrate(value) {
   // Old citation arrays are intentionally ignored. Drafts and completed answers survive.
   const currentValid = validate(state).ok;
   const priorCompletion = value.completed === true &&
-    (!value.contentRevision || value.legacyCompletion === true) && legacyValid(state.draft);
+    (!value.contentRevision || value.contentRevision === 'directors-cut-p0-20261106' || value.legacyCompletion === true) && legacyValid(state.draft);
   state.completed = value.completed === true && (currentValid || priorCompletion);
   state.legacyCompletion = state.completed && !currentValid && priorCompletion;
   state.storyDelivered = state.completed;
