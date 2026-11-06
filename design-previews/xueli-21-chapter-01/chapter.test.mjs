@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ANSWER_ALIASES, ASSETS, DOCUMENTS } from './chapter-data.js';
-import { fresh, hydrate, search, validate, submit, openDocument, unlockedApps, canRead } from './chapter-model.js';
+import { ANSWER_ALIASES, ASSETS, DOCUMENTS, OPENING, ENDING, UI_COPY, CONTENT_REVISION } from './chapter-data.js';
+import { fresh, hydrate, search, validate, submit, openDocument, unlockedApps, canRead, objective, FEEDBACK } from './chapter-model.js';
 
 const ready = () => ({ ...fresh(), read: ['note', 'weekly', 'profile', 'directory', 'reply', 'diary', 'letter'],
   draft: { person: '朱恩·沃德', place: '青鸟照相馆，桦树街 6 号', purpose: '查看旅馆十九周年员工合影的原底片' } });
@@ -33,7 +33,7 @@ test('Chinese and English queries follow the source chain', () => {
 });
 test('local mail body cannot be searched as if it were a public web article', () => {
   const state = openDocument(fresh(), 'note');
-  for (const query of ['OPEN 牌子', 'October 16', 'letterbox', '合影', '周一见']) assert.ok(!search(state, query).some(doc => doc.id === 'reply'));
+  for (const query of ['OPEN 牌子', 'October 16', 'collection envelope', '周一见', 'whole coursework folder']) assert.ok(!search(state, query).some(doc => doc.id === 'reply'), query);
 });
 test('opening sources never grants a correct deduction', () => {
   const state = { ...ready(), draft: fresh().draft };
@@ -75,10 +75,10 @@ test('missing punctuation, mixed case and full-width letters are equivalent', ()
   }
 });
 test('short natural descriptions do not require the exact original sentence', () => {
-  for (const purpose of ['员工合照', '酒店合影', '合照原件', '旧合照', '原底片', 'staff pictures', 'the original photo', 'hotel group photograph', '想看那张合影', '那张老照片', 'an old photo']) {
+  for (const purpose of ['员工合照', '酒店合影', '合照原件', '旧合照', '原底片', 'staff pictures', 'the original photo', 'hotel group photograph', '想看那张合影', '底片', 'old hotel staff photo']) {
     assert.equal(validate({ ...ready(), draft: { ...ready().draft, purpose } }).ok, true, purpose);
   }
-  for (const purpose of ['', '东西', '照片', '入住记录', 'work schedule']) {
+  for (const purpose of ['', '东西', '照片', '入住记录', 'work schedule', '一张普通照片', 'an old photo', '旧照片']) {
     assert.equal(validate({ ...ready(), draft: { ...ready().draft, purpose } }).ok, false, purpose);
   }
 });
@@ -136,4 +136,87 @@ test('main articles are full original bilingual texts, not short clue cards', ()
     assert.ok(en >= 200, `${id}: ${en} English words`);
     assert.equal(doc.paragraphs.zh.length, doc.paragraphs.en.length);
   }
+});
+
+test('denials and uncertainty cannot pass just because an alias is present', () => {
+  const denied = {
+    person: ['不是朱恩', '我没见过朱恩', '并非 June Ward', 'not June', 'not June Ward', "I don't know June", '不是朱恩而是Nora', 'Ward', 'Junebug', 'Stephen Dylan'],
+    place: ['不是青鸟', '不在青鸟照相馆', '没找到 Bluebird', 'not Bluebird Photo', 'Bluebird is not the place', '桦树街6号', 'Stillwater Hotel'],
+    purpose: ['不是员工合照', '我想看一张照片但不是酒店员工合照', "not the hotel staff photo", "I don't want the original photo", 'some other photo instead of the hotel group picture', '普通旧照片', '咖啡']
+  };
+  for (const [field, inputs] of Object.entries(denied)) for (const input of inputs) {
+    const state = { ...ready(), draft: { ...ready().draft, [field]: input } };
+    const result = submit(state);
+    assert.equal(result.ok, false, `${field}: ${input}`);
+    assert.ok(result.errors.some(error => error.field === field));
+    assert.deepEqual(result.state, state);
+  }
+});
+
+test('empty answers receive the authored empty-field feedback', () => {
+  const result = validate(fresh());
+  assert.equal(result.errors.length, 3);
+  assert.ok(result.errors.every(error => error.code === 'empty'));
+  assert.equal(FEEDBACK.empty[0], UI_COPY.empty.zh);
+});
+
+test('old completed samples survive stricter validation without certifying their wording', () => {
+  const old = { ...ready(), completed: true, storyDelivered: true, draft: { person: 'June', place: 'Bluebird', purpose: 'an old photo' }, read: ['note', 'profile', 'back'] };
+  delete old.contentRevision;
+  const state = hydrate(old);
+  assert.equal(validate(state).ok, false);
+  assert.equal(state.completed, true);
+  assert.equal(state.legacyCompletion, true);
+  assert.equal(state.contentRevision, CONTENT_REVISION);
+  assert.equal(canRead(state, 'back'), true);
+  assert.equal(hydrate(JSON.parse(JSON.stringify(state))).completed, true);
+  assert.equal(hydrate({ ...old, contentRevision: CONTENT_REVISION }).completed, false);
+  assert.equal(hydrate({ ...fresh(), completed: true, legacyCompletion: true }).completed, false);
+});
+
+test('different reading orders and optional life documents do not become completion gates', () => {
+  for (const order of [['note', 'weekly', 'directory', 'reply'], ['note', 'diary', 'weekly', 'profile', 'letter', 'reply']]) {
+    let state = fresh();
+    for (const id of order) state = openDocument(state, id);
+    assert.equal(state.completed, false);
+    assert.equal(submit({ ...state, draft: ready().draft }).ok, true);
+  }
+});
+
+test('visible documents provide all search steps, without exposing future material', () => {
+  const doc = id => DOCUMENTS.find(item => item.id === id);
+  for (const lang of ['zh', 'en']) {
+    const weekly = `${doc('weekly').paragraphs[lang].join(' ')} ${doc('weekly').caption[lang]}`;
+    assert.match(weekly, /Bluebird/);
+    assert.match(weekly, /J\.W\./);
+    assert.match(doc('profile').paragraphs[lang].join(' '), /June Ward|朱恩/);
+    assert.equal(doc('diary').author[lang], 'W.C.');
+    assert.match(doc('reply').paragraphs[lang].join(' '), /下午三点|three in the afternoon/);
+    assert.doesNotMatch(doc('reply').paragraphs[lang].join(' '), /没有 10 月 16 日的到访确认|no October 16 check-in/);
+    assert.match(doc('reply').status[lang], /没有|no October 16/);
+    assert.match(doc('back').paragraphs[lang].join(' '), /Nora Bell — night shift/);
+  }
+  assert.deepEqual(doc('reply').mail, { from: 'J. Ward', to: 'W. Churen', sent: '2023-10-15 17:26' });
+  const state = openDocument(fresh(), 'note');
+  for (const query of ['J.W.', 'j w', '青鸟', 'BLUEBIRD']) assert.ok(search(state, query).some(item => item.id === 'profile'));
+  for (const query of ['June', 'June Ward', 'Ｊ． Ｗａｒｄ', '朱恩']) assert.ok(search(state, query).some(item => item.id === 'reply'));
+  for (const query of ['Nora Bell', 'NULL', '位体教']) assert.equal(search(state, query).length, 0);
+  assert.ok(!doc('note').keywords.includes('王楚人'));
+});
+
+test('objectives follow the authored question without answering it for the player', () => {
+  assert.deepEqual(objective(fresh()), [UI_COPY.start.zh, UI_COPY.start.en]);
+  const note = openDocument(fresh(), 'note');
+  assert.deepEqual(objective(note), [UI_COPY.afterNote.zh, UI_COPY.afterNote.en]);
+  const profile = openDocument(note, 'profile');
+  assert.deepEqual(objective(profile), [UI_COPY.afterProfile.zh, UI_COPY.afterProfile.en]);
+  const reply = openDocument(profile, 'reply');
+  assert.deepEqual(objective(reply), [UI_COPY.afterEmail.zh, UI_COPY.afterEmail.en]);
+});
+
+test('developer directions and unapproved optional pages are absent from runtime copy', () => {
+  const runtime = JSON.stringify([DOCUMENTS, OPENING, ENDING]);
+  assert.doesNotMatch(runtime, /开发备注|导演备注|配图由用户绘制|artis[t’']|Developer note|Production note|Director's note|Image to be drawn/);
+  assert.equal(DOCUMENTS.length, 8);
+  assert.ok(!DOCUMENTS.some(doc => ['market', 'umbrella'].includes(doc.id)));
 });

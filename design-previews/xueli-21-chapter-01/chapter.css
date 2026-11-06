@@ -93,6 +93,30 @@ p {
 svg,img {
   max-width:100%;
 }
+.mail-headers {
+  margin:0 0 24px;
+  padding:16px 0;
+  border-block:1px dashed var(--teal);
+}
+.mail-headers div {
+  display:grid;
+  grid-template-columns:5em minmax(0,1fr);
+  gap:12px;
+  margin-bottom:8px;
+}
+.mail-headers dd {
+  margin:0;
+  overflow-wrap:anywhere;
+}
+.mail-status {
+  border-left:4px solid var(--teal);
+  background:#edf3df;
+  padding:12px 16px;
+  margin:24px 0;
+}
+.mail-status p {
+  margin:8px 0 0;
+}
 .sr-only {
   position:absolute;
   width:1px;

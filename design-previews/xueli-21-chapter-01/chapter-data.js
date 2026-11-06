@@ -1,191 +1,638 @@
-// Original fictional writing for the isolated chapter sample. No production imports.
-const both = (zh, en) => ({ zh, en });
+// Director’s Cut P0 player copy, imported from the author’s bilingual revision.
+// Development notes and unresolved world rules are not runtime content.
+export const CONTENT_REVISION = "directors-cut-p0-20261106";
+
 export const ASSETS = {
-  'app-chat': both('微信', 'WeChat'), 'app-files': both('文件夹', 'Files'),
-  'app-browser': both('浏览器', 'Browser'), 'app-casebook': both('调查笔记', 'Casebook'),
-  'avatar-gg': both('GGbond 头像', 'GGbond avatar'), 'prop-pc': { ...both('2008 年旧电脑', '2008 computer'), tiles: [2, 1] },
-  'photo-anniversary': { ...both('旅馆周年合影', 'Anniversary photo'), tiles: [2, 1] },
-  'portrait-june': { ...both('朱恩的工作照', 'June at work'), tiles: [1, 2] },
-  'prop-camera-bag': { ...both('楚人的相机包', 'Churen’s camera bag'), tiles: [1, 2] },
-  'photo-back': { ...both('合影的背面', 'Back of the print'), tiles: [2, 1] }
+  "app-chat": {
+    "zh": "微信",
+    "en": "WeChat"
+  },
+  "app-files": {
+    "zh": "文件夹",
+    "en": "Files"
+  },
+  "app-browser": {
+    "zh": "浏览器",
+    "en": "Browser"
+  },
+  "app-casebook": {
+    "zh": "调查笔记",
+    "en": "Casebook"
+  },
+  "avatar-gg": {
+    "zh": "GGbond 头像",
+    "en": "GGbond avatar"
+  },
+  "prop-pc": {
+    "zh": "2008 年旧电脑",
+    "en": "2008 computer",
+    "tiles": [
+      2,
+      1
+    ]
+  },
+  "photo-anniversary": {
+    "zh": "旅馆周年合影",
+    "en": "Anniversary photo",
+    "tiles": [
+      2,
+      1
+    ]
+  },
+  "portrait-june": {
+    "zh": "朱恩的工作照",
+    "en": "June at work",
+    "tiles": [
+      1,
+      2
+    ]
+  },
+  "prop-camera-bag": {
+    "zh": "日记里的相机包",
+    "en": "The camera bag in the diary",
+    "tiles": [
+      1,
+      2
+    ]
+  },
+  "photo-back": {
+    "zh": "合影背面的扫描",
+    "en": "Scan of the back of the print",
+    "tiles": [
+      2,
+      1
+    ]
+  }
 };
-// Accepted wording belongs to the case facts, never to an online AI judge.
+
 export const ANSWER_ALIASES = {
-  person: ['朱恩·沃德', '朱恩沃德', '朱恩', 'June Ward', 'J. Ward', 'June'],
-  place: ['青鸟照相馆', '青鸟摄影店', '青鸟', 'Bluebird Photo', 'Bluebird Photo Studio', 'Bluebird'],
-  purpose: ['员工合影', '旅馆合照', '周年合影', '合影底片', '照片原件', '原底片', '合影', '合照', '底片', '旧照片', 'staff photo', 'hotel group photograph', 'anniversary picture', 'original group photo', 'photo negative']
+  "person": [
+    "朱恩·沃德",
+    "朱恩沃德",
+    "朱恩",
+    "June Ward",
+    "J. Ward",
+    "June"
+  ],
+  "place": [
+    "青鸟照相馆",
+    "青鸟摄影店",
+    "青鸟",
+    "Bluebird Photo",
+    "Bluebird Photo Studio",
+    "Bluebird"
+  ],
+  "purpose": [
+    "员工合影",
+    "员工合照",
+    "旅馆合照",
+    "旅馆合影",
+    "周年合影",
+    "合影底片",
+    "照片原件",
+    "原底片",
+    "合影",
+    "合照",
+    "底片",
+    "staff photo",
+    "hotel group photograph",
+    "anniversary picture",
+    "original group photo",
+    "old hotel staff photo",
+    "original group picture",
+    "photo negative"
+  ]
 };
+
+export const UI_COPY = {
+  "chapter": {
+    "zh": "还没有寄出的照片",
+    "en": "The Names on the Back"
+  },
+  "shared": {
+    "zh": "GG 分享的旧盘副本 / 只读",
+    "en": "GG's old-drive copy / Read-only"
+  },
+  "start": {
+    "zh": "GG 发了个文件，先看看。",
+    "en": "GG sent a file. Maybe start there."
+  },
+  "afterNote": {
+    "zh": "那张合影是谁拍的？",
+    "en": "Who took that photograph?"
+  },
+  "afterProfile": {
+    "zh": "楚人后来联系了谁？",
+    "en": "Who did Churen contact?"
+  },
+  "afterEmail": {
+    "zh": "写下他原本的计划。",
+    "en": "Write down what he planned to do."
+  },
+  "prompt": {
+    "zh": "那天下午，他打算……",
+    "en": "That afternoon, he was planning to..."
+  },
+  "person": {
+    "zh": "约见谁？",
+    "en": "Meet whom?"
+  },
+  "place": {
+    "zh": "在哪里见？",
+    "en": "Where?"
+  },
+  "purpose": {
+    "zh": "想看什么？",
+    "en": "See what?"
+  },
+  "submit": {
+    "zh": "记下来",
+    "en": "Write it down"
+  },
+  "empty": {
+    "zh": "先把你找到的写进去，短一点也没关系。",
+    "en": "Write what you think. A short answer is fine."
+  },
+  "noResults": {
+    "zh": "没搜到。换个词，或者试试英文？",
+    "en": "Nothing there. Try another word, or the other language?"
+  },
+  "success": {
+    "zh": "记下来了：这只是约见计划，还不知道他有没有去。",
+    "en": "Saved as a planned meeting. We still don't know if he went."
+  },
+  "newMessage": {
+    "zh": "GGbond 又发来东西了。",
+    "en": "GGbond sent something else."
+  },
+  "optional": {
+    "zh": "雪梨镇的其他事情",
+    "en": "Other things happening in Xueli Town"
+  },
+  "pendingArt": {
+    "zh": "图片还在准备中，说明文字可以先看。",
+    "en": "Illustration pending. The text is still available."
+  }
+};
+
 export const OPENING = [
-  both('我在闲虾买的那台老电脑到了。雪梨镇寄来的，卖家连昵称都注销了。', 'That old PC from Xianxia arrived. Shipped from Xueli Town. The seller’s account is gone now.'),
-  both('2008 年的机器，开机够我泡完一碗面。不过硬盘后来换过，里面还有 2023 年的文件。', 'It’s a 2008 machine. Boots about as fast as instant noodles. Someone replaced the drive later, though. There are files from 2023.'),
-  both('翻到这个拍照备忘，末尾写着 W.C.。那句欠咖啡有点像楚人。找他三年了，我怕自己看什么都觉得像。你帮我看看。', 'Found this photo note, signed W.C. The coffee bit sounds like Churen. Three years looking for him, though. I might just be seeing what I want to see. Can you check?')
+  {
+    "zh": "我买的那台破电脑到了。",
+    "en": "That ancient PC finally turned up."
+  },
+  {
+    "zh": "闲虾上看到的，雪梨镇寄出来。卖家连头像都没有，我当时想这人要么不想卖东西，要么是真的懒。",
+    "en": "Found it on Xianxia. Shipped from Xueli Town. Seller didn't even have a profile picture. Either they didn't want to sell it or they couldn't be bothered."
+  },
+  {
+    "zh": "08 年的机子，开机声音像拖拉机。不过硬盘后来被人换过，里面有 2023 年的文件。这个年份就有点怪了。",
+    "en": "It's from 2008 and starts up sounding like a tractor. Someone replaced the drive later, though. There are files dated 2023. That's the weird part."
+  },
+  {
+    "zh": "我把能读出来的文件留了份副本给你看，原盘先不动。里面有个拍照备忘，落款写 W.C.，还欠我一杯咖啡。",
+    "en": "I made you a copy of everything I could read. Leaving the original drive alone for now. Found a photography note signed W.C. And a bit about owing me a coffee."
+  },
+  {
+    "zh": "我不敢说就是楚人。找了三年，有时候看见一个字母都觉得像他。你先看，别急着高兴。",
+    "en": "I'm not saying it's Churen. We've been looking for three years. Sometimes I see a couple of initials and want them to mean something. Just take a look first, okay?"
+  }
 ];
+
 export const ENDING = [
-  both('那先记成他打算去找她，别当成已经去过。我们还差到店之后的消息。', 'Let’s keep it as a plan to meet her. We still don’t know if he got there.'),
-  both('我刚把卖家一起寄来的外接盘接上了。还有一张照片背面的扫描，发你。', 'Just plugged in the external drive the seller packed with it. There’s a scan of the back of a photo. Sending it over.'),
-  both('上面这个 Nora Bell，是谁啊？', 'Who’s this Nora Bell on the back?')
+  {
+    "zh": "所以楚人约了十六号三点去青鸟看合影。约了，不等于真去了……至少我们知道那天下午他打算干嘛。",
+    "en": "So he planned to see June at Bluebird at three on the sixteenth. Planned, not definitely went. Still, at least we know what he meant to do that afternoon."
+  },
+  {
+    "zh": "你在翻文章的时候，我把那台机器带来的小外接盘也接上了。刚才一直显示有问题，换了接口才读出来一部分。",
+    "en": "While you were reading I plugged in that little external drive from the same box. It was acting up for a while, but I can read some of it now."
+  },
+  {
+    "zh": "上面有张照片背面的扫描。你先别猜，我把能看到的都发你。",
+    "en": "There's a scan of the back of a photograph. Don't try to guess it yet. Sending you everything I can make out."
+  }
 ];
 
 export const DOCUMENTS = [
   {
-    id: 'note', kind: 'file', date: '2023-10-15', author: both('W.C.', 'W.C.'),
-    title: both('拍照备忘.txt', 'photo-notes.txt'), origin: both('本机文件 / 待整理', 'Local files / To sort'),
-    file: 'photo-notes.txt', keywords: ['拍照', '备忘', 'W.C.', 'photo notes', '王楚人', 'Wang Churen'],
-    paragraphs: both([
-      '作业那组照片还缺一张旧合影。不是再拍一张，要找原来的那张。课上讲“照片怎么替一个地方留下记忆”，我答得太大，老师让我先把一个人的名字认对。行吧，很合理。',
-      '雪梨镇周刊那篇旅馆周年新闻有图，网页压得太糊，放大了像在看外卖袋。背面据说写了名字。先查照片是谁拍的，别对着一排脸瞎猜。书签存好了。',
-      '周一如果顺利，回芝加哥前给 GG 带咖啡。上次把他的喝了半杯还嘴硬说拿错，欠着。相机电池充上，别再带一块空的出门。',
-      'W.C. / 10 月 15 日'
-    ], [
-      'Still missing an old group photo for the assignment. Not a new picture of the same place: the actual old print. I got carried away talking about how photographs remember a town. The tutor said I could start by getting one person’s name right. Fair enough.',
-      'The hotel anniversary story in the Xueli Weekly has a picture, but the web copy is compressed to bits. Apparently there are names on the back. Find out who took it before guessing at the faces. Saved the bookmark.',
-      'If Monday works out, get GG a coffee before heading back to Chicago. Still owe him for drinking half of his and claiming I picked up the wrong cup. Charge the camera battery. An empty spare is not a spare.',
-      'W.C. / October 15'
-    ]),
-    link: 'weekly', linkLabel: both('书签：旅馆十九周年', 'Bookmark: the hotel’s nineteenth anniversary')
+    "id": "note",
+    "contentId": "P0-FILE-01",
+    "kind": "file",
+    "date": "2023-10-15",
+    "title": {
+      "zh": "拍照备忘.txt",
+      "en": "photo-notes.txt"
+    },
+    "author": {
+      "zh": "W.C.",
+      "en": "W.C."
+    },
+    "origin": {
+      "zh": "GG 分享的旧盘副本 / 摄影课程文件夹",
+      "en": "GG’s shared drive copy / Photography coursework"
+    },
+    "file": "photo-notes.txt",
+    "keywords": [
+      "拍照",
+      "备忘",
+      "W.C.",
+      "photo notes"
+    ],
+    "paragraphs": {
+      "zh": [
+        "十月十五日，周日。",
+        "老师让我别把作业做成“旧建筑百科全书”，先找一张照片，搞清楚照片上到底站着哪些人。道理我懂，但你让我在一张只有巴掌大的网页图里认人，也太为难我的眼睛了。",
+        "静水旅馆那张十九周年合影一直找不到清晰版。放大后每个人都像面包店橱窗里的小饼干。我想找的是当年的纸质照片，最好能看到背面的名字，还有拍照时留下的底片。不是把图片扔给软件，让它替我猜出十张脸。",
+        "雪梨镇周刊那篇报道我先存书签了。明天记得查摄影署名，再打听照片原件在谁手里。课程讲“记忆和图像”，我倒觉得先把照片的出处找对，比写一整页漂亮话管用。",
+        "相机电池要充。读卡器别忘。别在车上睡过站。",
+        "还有，回芝加哥给 GG 买杯咖啡。上次误喝他半杯，他说得跟我偷了祖传茶壶似的。",
+        "W.C."
+      ],
+      "en": [
+        "October 15. Sunday.",
+        "My tutor told me to stop turning the assignment into an encyclopedia of old buildings. Find one photograph, work out who is actually in it. I get the point, but asking me to identify people from a web thumbnail the size of my palm is a little unfair.",
+        "I still can't find a decent copy of that nineteenth-anniversary group photo from Stillwater Hotel. Zoom in and everyone turns into a biscuit in a bakery window. I want the old paper print if it still exists, especially the names on the back. And the original negative, ideally. Not some software guessing ten faces for me.",
+        "Saved the Xueli Weekly article. Tomorrow: check the photo credit and find out who might have kept the original. The course is about 'memory and images', but getting the source right feels more useful than writing another page of elegant nonsense.",
+        "Charge camera. Pack card reader. Do not fall asleep on the bus.",
+        "Also buy GG a coffee when I'm back in Chicago. I drank half of his by mistake and he acts like I stole an heirloom teapot.",
+        "W.C."
+      ]
+    },
+    "link": "weekly",
+    "linkLabel": {
+      "zh": "雪梨镇周刊 / 静水旅馆十九周年",
+      "en": "Xueli Weekly / Stillwater Hotel nineteenth anniversary"
+    }
   },
   {
-    id: 'weekly', kind: 'weekly', date: '2006-09-24', author: both('艾达·里德', 'Ada Reed'),
-    title: both('旅馆十九周年：蛋糕先吃，合影稍后', 'Nineteen years at the hotel: cake first, photograph later'),
-    origin: both('雪梨镇周刊 / 镇上这周', 'Xueli Weekly / Around town'), file: 'weekly-2006-09-24.html',
-    keywords: ['Stillwater', '静水', '酒店', '旅馆', '十九周年', 'anniversary', 'hotel', '青鸟', 'Bluebird', '合影'],
-    deck: both('一场差点被雨挪进餐厅的周年聚会，和一张迟到了二十分钟的照片。', 'Rain nearly moved the party into the dining room. The cake was on time; the photograph was not.'),
-    figure: 'photo-anniversary', caption: both('Stillwater Hotel 十九周年员工合影，2006 年 9 月。摄影：青鸟照相馆，署名 J.W.。网页刊用缩印件；原底片由照相馆留存，纸质照片背面有在场者的手写姓名。', 'Stillwater Hotel staff, nineteenth anniversary, September 2006. Photograph: Bluebird Photo, signed J.W. This web reproduction is reduced from the print. The shop retains the negative; those present wrote their names on the back of the paper copy.'),
-    paragraphs: both([
-      '星期六下午四点，静水旅馆的十九周年聚会已经吃掉了半个奶油蛋糕，合影却还没拍成。先是有人去找少了一只的耳环，接着厨房又端出一盘热司康，原本站好的队伍立刻散了。餐厅领班露丝拿着茶巾站在台阶上说：“我们平时收拾早餐都没这么难。”说完自己也拿了一块。',
-      '旅馆从 1987 年开门，门厅那张靠湖的长沙发换过三次布，登记台上凹了一角的铜铃倒一直没换。老住客科林先生说，他第一次带女儿来时，她还够不到铃；现在女儿正带着自己的孩子，在院子里追一只不肯入镜的狗。',
-      '青鸟照相馆的摄影师把三排椅子往左挪了一点，避开晾着的桌布。有人提议让铜铃也进照片，她说铃不会长高，明年再拍也行，今天先照顾站在后排的人。她的相机带上系着一小段黄色绳子，每次弯腰摆椅子，都有人怕她把相机撞在扶手上。',
-      '等云散开，大家终于站定。最前排有人忍着笑，因为厨房的面粉还留在同事袖口上。快门响过，后排一个人问能不能再拍一张，理由是“刚才可能正在想晚饭”。摄影师答应了，不过要求这次不要人人都替别人整理头发。',
-      '旅馆说会把纸质照片放在餐厅，背面请大家自己写名字，免得几年后只记得“总把钥匙放冰箱的那位”。摄影师也留了一份原底片。镇上的照片就是这样，正面看谁来了，背面才知道他们怎么称呼彼此。',
-      '聚会结束时还剩两个装蛋糕的纸盒，露丝把它们分别塞给了要回家接孩子的人。周日晚餐照常供应，菜单上没有周年特餐，只有厨师临时多烤的一盘苹果。等下次你去吃早餐，若看到有人盯着墙上的合影发笑，不妨问问：那天到底是谁把司康先吃完了。'
-    ], [
-      'By four on Saturday, half the cream cake was gone and Stillwater Hotel’s nineteenth-anniversary photograph still hadn’t happened. First someone went looking for an earring. Then a tray of warm scones arrived and the carefully arranged group dissolved. Ruth, the dining-room supervisor, stood on the steps holding a tea towel. “Breakfast service is easier than this,” she said, before taking a scone herself.',
-      'The hotel opened in 1987. The lakeside sofa has been re-covered three times, but the dented brass bell on reception is the same one. Colin, a regular visitor, remembered when his daughter couldn’t reach it. This weekend she was outside with a child of her own, chasing a dog that refused to be photographed.',
-      'The photographer from Bluebird Photo shifted three rows of chairs to hide a washing line. Someone suggested including the brass bell. She said the bell wouldn’t get any taller before next year; the people at the back needed her attention first. A piece of yellow cord hung from her camera strap. Every time she bent to move a chair, someone worried the camera would hit an armrest.',
-      'The clouds cleared and everyone finally stayed put. A woman in the front row was trying not to laugh at the flour on her colleague’s sleeve. After the shutter clicked, someone at the back requested another shot because he might have been thinking about dinner. The photographer agreed, provided everyone stopped fixing everyone else’s hair.',
-      'The hotel plans to hang a paper print in the dining room, with the staff writing their own names on the back. Otherwise, in a few years, somebody is bound to become “the one who kept putting the keys in the fridge.” The photographer kept the original negative, too. A town photograph tells you who turned up; the back tells you what they called each other.',
-      'At the end, Ruth handed the two remaining cake boxes to people leaving to collect their children. Sunday dinner will go ahead as usual. There is no special anniversary menu, just an extra tray of baked apples. If you catch someone laughing at the picture over breakfast, ask them who finished the scones.'
-    ])
+    "id": "weekly",
+    "contentId": "P0-WEEK-01",
+    "kind": "weekly",
+    "date": "2006-09-24",
+    "title": {
+      "zh": "十九年了，前台的钟还是慢五分钟",
+      "en": "Nineteen Years On, the Lobby Clock Is Still Five Minutes Slow"
+    },
+    "author": {
+      "zh": "艾达·里德（Ada Reed）",
+      "en": "Ada Reed"
+    },
+    "origin": {
+      "zh": "雪梨镇周刊 / 社区生活",
+      "en": "Xueli Weekly / Community"
+    },
+    "file": "weekly-2006-09-24.html",
+    "keywords": [
+      "Stillwater",
+      "静水",
+      "旅馆",
+      "十九周年",
+      "anniversary",
+      "hotel",
+      "青鸟",
+      "Bluebird",
+      "J.W."
+    ],
+    "deck": {
+      "zh": "静水旅馆周六举行周年聚会，员工合影险些被一盘司康耽误",
+      "en": "Stillwater Hotel’s anniversary gathering nearly lost its staff photograph to a tray of scones."
+    },
+    "figure": "photo-anniversary",
+    "paragraphs": {
+      "zh": [
+        "静水旅馆昨天过十九岁生日。下午的聚会原定三点半开始，前台墙上的钟却仍然慢五分钟。经理说这次总算该修了。来参加聚会的老顾客罗伯特先生不同意：“这钟我认识十几年了，要是突然准了，我反而不习惯。”",
+        "那天先下了一阵雨。工作人员把准备放在院子里的椅子搬回门廊，刚摆整齐，餐厅又端出一盘热司康。几个已经站好位置的人闻到味道，决定先吃再拍。摄影师只能看着三排椅子重新空下来。",
+        "负责餐厅的露丝一边拿茶巾擦手，一边数人头。“平时最难的是让大家按时下班，今天是让大家按时站着。”她说。站在她身边的年轻服务生表示自己不是故意跑开的，只是有人告诉他厨房缺人。那个人其实在找自己的耳环。",
+        "旅馆 1987 年开业，靠湖的休息室和前台铜铃在本地宣传册里出现过许多次。罗伯特太太说，她丈夫每年都要来看一眼老自动售货机：“不是为了买东西，是想知道它今年有没有修好。”机器旁边那张“暂时停用”的纸条已经贴了很久。",
+        "这次合影请来了青鸟照相馆（Bluebird Photo）。摄影师的相机带上系着一截黄色绳子，来得比约定时间还早，却一直等到四点多才按下快门。有人提议把旅馆的老狗也抱进照片，摄影师问谁保证它不会乱跑。现场无人应答，狗最后在画面外面继续找吃的。",
+        "照片完成后，报社收到的是缩小过的版本，摄影署名只有两个字母：J.W.。旅馆准备印一张挂到餐厅，让当天在场的员工在照片背面写上自己的姓名，以免多年以后只能用“老在前台丢钥匙的那位”来叫人。原底片由青鸟照相馆保留，需要重印时可以再联系他们。",
+        "聚会一直拖到日落前。厨房留下两盒苹果蛋糕给晚班，前台的钟没人来得及修。对镇上一家开了十九年的旅馆来说，这不算大新闻。但大家至少留下了一张照片，等明年再聚时，可以看看谁又换了发型。"
+      ],
+      "en": [
+        "Stillwater Hotel turned nineteen yesterday. The gathering was supposed to begin at half past three, although the clock above reception was still five minutes slow. The manager declared that someone ought to fix it this year. Robert, a regular guest, disagreed. 'I've known that clock for fifteen years. If it suddenly kept the right time, I'd think something was wrong.'",
+        "A shower passed over in the afternoon. Staff carried the chairs from the lawn onto the veranda, lined them up neatly, then promptly abandoned them when the dining room brought out a tray of hot scones. The photographer watched three careful rows turn into an empty arrangement of furniture.",
+        "Ruth, who runs the dining room, counted heads while drying her hands on a tea towel. 'Usually the hard part is getting everyone to leave work on time. Today it's getting them to stand still.' A young waiter insisted he had only gone inside because somebody said the kitchen needed help. The somebody in question had actually been looking for a missing earring.",
+        "The hotel opened in 1987. Its lakeside lounge and brass reception bell have appeared in more local brochures than anyone could count. Robert’s wife says her husband still checks the old vending machine on every visit. 'Not to buy anything. Just to see if it's finally working.' Its OUT OF ORDER notice has been there rather a long time.",
+        "Bluebird Photo was hired to take the staff portrait. The photographer arrived early with a little length of yellow cord tied to her camera strap, but it was after four before she could press the shutter. Someone suggested including the old hotel dog. She asked who would promise it stayed put. Nobody volunteered. The dog kept looking for food just outside the frame.",
+        "The photograph that reached the Weekly is a reduced copy, signed simply J.W. The hotel plans to hang a paper print in the dining room and have staff write their names on the back. Years from now, the people in it ought to be remembered as more than 'the one who always lost the reception keys'. Bluebird Photo kept the original negative, so reprints should remain possible.",
+        "The party ran almost until sunset. Two boxes of apple cake were put aside for the evening shift and nobody had time to fix the lobby clock. That isn't much of a headline for a nineteen-year-old hotel, but at least they have a picture. Next year they can compare who has changed their hair."
+      ]
+    },
+    "caption": {
+      "zh": "静水旅馆十九周年员工合影，拍摄于 2006 年 9 月 23 日。摄影：青鸟照相馆（Bluebird Photo），署名 J.W.。这是网页缩印件；原底片由摄影师保存。餐厅展示的纸质照片背面有员工留下的姓名。",
+      "en": "Stillwater Hotel staff on September 23, 2006, for the nineteenth-anniversary gathering. Photograph by Bluebird Photo, signed J.W. This is a reduced web copy. The photographer kept the negative; staff wrote their names on the back of the paper print displayed in the dining room."
+    }
   },
   {
-    id: 'profile', kind: 'weekly', date: '2019-04-13', author: both('艾达·里德', 'Ada Reed'),
-    title: both('给照片背面写名字的人', 'The names on the back'), origin: both('雪梨镇周刊 / 一间小店', 'Xueli Weekly / One small shop'),
-    file: 'june-ward-bluebird.html', keywords: ['青鸟', '照相馆', '朱恩', '沃德', 'June Ward', 'Bluebird', 'J.W.'],
-    deck: both('青鸟照相馆没有换招牌。朱恩说，新招牌的钱够她修两次暖气。', 'Bluebird Photo still has its old sign. June says a new one would cost two boiler repairs.'),
-    figure: 'portrait-june', caption: both('朱恩·沃德在柜台后整理客人的取件袋。她在老照片上惯用 J.W. 署名。照片待绘，姓名与署名关系见正文。', 'June Ward sorting collection envelopes. She signs her older prints J.W. The illustration is pending; the name and signature are documented in the article.'),
-    paragraphs: both([
-      '青鸟照相馆最忙的地方不是柜台，而是门口那块只能放两把伞的地毯。采访那天下雨，第三位客人只好把伞插进空花瓶里。店主朱恩·沃德看了一眼，说那原本就不是她买来插花的，大家尽管用。',
-      '朱恩在桦树街冲洗照片已经三十多年。她不太喜欢人家叫她“保存小镇记忆的人”。“我先得保证别把三岁生日和退休聚餐装进同一个袋子。”她说。柜台后排着装底片的旧饼干盒，每只盒子都有年份，里面没有饼干。她承认这让第一次来帮忙的外甥很失望。',
-      '以前给报社交照片，她通常只签 J.W.。有读者以为那是一家图片社，她懒得解释，直到有次一封感谢信写着“致 J.W. 全体员工”。她回了信，告诉对方全体员工当时只有她和一台经常卡纸的打印机。',
-      '镇上不少婚礼、校队和旅馆的旧合影，都有一份底片留在这里。翻到静水旅馆十九周年那一袋时，她还记得那天的司康。“你问我用了哪卷胶片，我得查。问谁先去吃东西，我倒记得。”照片背面的姓名是人们自己写的，她坚持不照后来的网页替换掉原来的字。有人搬走，有人改姓，旧照片不必跟着改。',
-      '她用一个缺了口的黄杯装铅笔，杯把却还完好。“坏的位置刚好，所以还能用。”换成数码相机以后，她也没把旧放大机卖掉。有时学生拿着糊掉的网页图片来问原件，她让他们先坐下，把电脑亮度调低一点，再说清楚想看哪一张。',
-      '下个月，朱恩会在图书馆教一次简单的家庭照片整理。不需要会摄影，带一张愿意给别人看的照片就行。她说最好顺便问问家里长辈，背面那个字究竟是人名，还是当年叫外卖时随手记的地址。'
-    ], [
-      'The busiest part of Bluebird Photo is the doormat, which has room for exactly two wet umbrellas. On the rainy morning of our visit, a third customer put hers in an empty vase. June Ward, the owner, said she had never intended to put flowers in it anyway.',
-      'June has developed photographs on Birch Street for over thirty years. She is wary of being called the keeper of the town’s memories. “First I have to avoid putting a third birthday in the retirement-party envelope.” Behind her counter, old biscuit tins hold negatives, each labelled by year. There are no biscuits. Her nephew found this deeply disappointing on his first day helping out.',
-      'She used to sign pictures for the paper with J.W. One reader thought it was a picture agency. June let that pass until a thank-you letter arrived addressed to the entire staff of J.W. She wrote back explaining that the staff consisted of herself and a printer that frequently jammed.',
-      'There are negatives here from weddings, school teams and hotel parties. She still remembers the scones at Stillwater’s nineteenth anniversary. “Ask what film I used and I’ll have to look it up. Ask who went for the food first, I remember.” People wrote their own names on the backs of the prints. She won’t replace those names to match a later web page. People move away and change their names; the old photograph can stay as it was.',
-      'A chipped yellow mug holds her pencils. The handle is fine. “Broken in the right place. Still useful.” Going digital didn’t persuade her to sell the old enlarger. When students arrive with blurry web pictures, she asks them to sit down, turn their laptop brightness down a little, and tell her which original they want to see.',
-      'Next month June will run a family-photo sorting session at the library. No photography experience required; bring a picture you’re happy to share. If possible, ask an older relative whether the writing on the back is someone’s name or an address scribbled down while ordering dinner.'
-    ])
+    "id": "profile",
+    "contentId": "P0-WEEK-02",
+    "kind": "weekly",
+    "date": "2019-04-13",
+    "title": {
+      "zh": "旧照片不需要每年换一遍名字",
+      "en": "Old Photographs Don't Need New Names Every Year"
+    },
+    "author": {
+      "zh": "艾达·里德（Ada Reed）",
+      "en": "Ada Reed"
+    },
+    "origin": {
+      "zh": "雪梨镇周刊 / 一间小店",
+      "en": "Xueli Weekly / One Small Shop"
+    },
+    "file": "june-ward-bluebird.html",
+    "keywords": [
+      "青鸟",
+      "朱恩",
+      "沃德",
+      "June Ward",
+      "Bluebird",
+      "J.W."
+    ],
+    "deck": {
+      "zh": "桦树街的蓝门还在，青鸟照相馆也还在",
+      "en": "The blue door on Birch Street is still there. So is Bluebird Photo."
+    },
+    "figure": "portrait-june",
+    "paragraphs": {
+      "zh": [
+        "采访那天，青鸟照相馆门口有三把湿伞，地毯却只能容得下两把。第三位客人把伞插进空花瓶里，店主朱恩·沃德（June Ward）抬头看了看，说：“挺好的，那个花瓶反正从来没插过花。”",
+        "店在桦树街开了三十多年。门被刷成蓝色，窗上贴着的营业时间改过许多回，偏偏一块写着 OPEN 的牌子总是有点歪。朱恩说不是她没试着扶正，只是碰一下它又歪回来。来得多的客人已经习惯了。",
+        "现在拿着底片来冲洗的人不多了，拿着旧纸盒来问“这是什么时候拍的”的人却不少。朱恩把店里留下的底片按年份放进旧饼干盒，盒盖上一律贴纸条。她说没有比饼干盒更好用的东西，但以前有个帮忙的学生揭开盖子，发现里面真没有饼干，失望得不肯说话。",
+        "早些年，她给报纸寄照片时常常只写 J.W.。有位读者把这当成一家图片社，专门寄来感谢信，开头写“致 J.W. 全体员工”。朱恩回信告诉对方，全体员工就她一个人，另外还有一台隔三差五卡纸的打印机。",
+        "谈到以前拍过的照片，朱恩想起学校运动会、婚礼，还有静水旅馆的周年聚会。2006 年那次，她先想起的是大家排好了队又跑去吃点心。旅馆在 2007 年停业后，一位前员工把当年挂在餐厅的纸质员工合照送回了店里，请她先替大家收着。朱恩把它和她保存的原底片放在不同的套袋中，免得有人拿错。纸背上是员工当年自己写的字。",
+        "“你看，这个字现在可能已经不是那个人用的名字了。”她把照片翻过来，指给记者看一行发淡的铅笔字。“人会改姓，会搬家，也会忘掉以前别人怎么叫自己。我不替他们重写。要改说明可以另贴一张纸，原来的就让它留着。”",
+        "柜台后面还有一只缺口的黄色杯子，专门放铅笔。朱恩说她不扔杯子，是因为坏的位置刚好不影响用。最近也有学生来找旧照片：带来的通常是一张糊得看不清人的网页截图。她会让人先坐下来，把时间和照片来源讲清楚。“千万别上来就问，阿姨，你认不认得这一排人？这镇子不小呢。”",
+        "五月份她要去图书馆教大家整理家庭相册。报名者可以带一张愿意分享的旧照片，也可以什么都不带，先来学怎么分清原件、复印件和后来重新打印的照片。她说最重要的不是买多少种昂贵的盒子，而是至少让后来的孩子知道，这个名字是谁写的。"
+      ],
+      "en": [
+        "Three wet umbrellas stood by the door of Bluebird Photo when I arrived. The mat had room for two. The third customer had put hers in an empty vase. The owner, June Ward, looked up and said, 'Good idea. I never put flowers in that thing anyway.'",
+        "The shop has been on Birch Street for more than thirty years. Its door is blue, the opening hours have been revised plenty of times, and the little OPEN sign never seems to hang straight. June says she's tried fixing it. Apparently the sign has other plans. Regular customers now use the tilt to recognise the place.",
+        "Not many people bring film in for processing these days. Plenty bring old cardboard boxes and ask, 'Any idea when these were taken?' June keeps her negatives in biscuit tins labelled by year. She maintains nothing works better. A student helping in the shop once lifted the lid of one and was so disappointed by the absence of biscuits that he refused to speak for a minute.",
+        "When she used to send photographs to the newspaper, June often signed them J.W. One reader thought the initials belonged to a picture agency and addressed a thank-you letter to 'the entire staff of J.W.' June wrote back to explain that the entire staff consisted of one woman and a printer that jammed every other week.",
+        "Her archive includes school sports days, weddings and parties at Stillwater Hotel. What she remembers first about the hotel's 2006 anniversary is the way everyone lined up for the picture then disappeared for snacks. After the hotel closed in 2007, a former employee brought the paper photograph from the dining room back to her shop, asking her to keep it safe. June stored it apart from the original negative so neither would be mistaken for the other. The names on the back were written by the staff themselves.",
+        "'And that might not even be the name this person uses now,' she says, pointing to a faded pencil line. 'People marry, move away, forget what their old colleagues used to call them. I'm not rewriting it for them. You want to update a caption, attach another piece of paper. Leave the original alone.'",
+        "A chipped yellow mug behind the counter holds her pencils. June keeps it because the chip is nowhere near the handle. These days students sometimes visit with low-resolution screenshots of old photographs. She makes them sit down and explain the date and source first. 'Don't just march in and ask if I know everyone in a row. It's a town, not my family album.'",
+        "In May she will run a workshop at the library on sorting family photographs. You can bring an old picture or simply come to learn how to tell an original print from a copy made later. June says the important thing isn't the price of the storage box. It's making sure someone, someday, knows who wrote the name on the back."
+      ]
+    },
+    "caption": {
+      "zh": "朱恩·沃德在店里整理取件袋。老照片上 J.W. 的署名出自她本人。",
+      "en": "June Ward sorting customers' collection envelopes at Bluebird Photo. The J.W. signature on older photographs belongs to her."
+    }
   },
   {
-    id: 'directory', kind: 'directory', date: '2023-10-01', author: both('商户自行核对', 'Checked by the businesses'),
-    title: both('桦树街小店电话簿 · 秋季', 'Birch Street shop directory · Autumn'),
-    origin: both('雪梨镇商户通讯 / 公开留存页', 'Xueli Traders / Public archive'), file: 'birch-street-autumn-2023.html',
-    keywords: ['青鸟', '朱恩', '沃德', 'Bluebird', 'June Ward', '桦树街', 'Birch', 'Maggie', '餐馆'],
-    paragraphs: both([
-      '青鸟照相馆 / Bluebird Photo｜朱恩·沃德（June Ward）｜桦树街 6 号。周一至周六 13:00–18:00。冲印、旧照片翻拍、相机电池。找老底片请先联系店主；不要把整本家庭相册塞进门上的信箱。',
-      'Maggie’s Diner｜桦树街 2 号。早餐从 7:00 开始，周三休息。南瓜派只是秋季供应，问为什么夏天没有，Maggie 还是会告诉你南瓜没上班。',
-      '阿尔的自行车修理｜桦树街 11 号后院。补胎请从侧门进。院里的白猫叫扳手，但真的扳手在工具架上。不要拿零食换修车，店主说这条主要写给邻居家的小孩。',
-      '营业时间由各店在 9 月底确认。临时休息通常会贴在门上；本通讯不是预约凭证。'
-    ], [
-      'Bluebird Photo | June Ward | 6 Birch Street. Monday–Saturday, 1–6 p.m. Film processing, copying old photographs and camera batteries. Contact June before coming to look for old negatives. Please do not push an entire family album through the letterbox.',
-      'Maggie’s Diner | 2 Birch Street. Breakfast from 7 a.m.; closed Wednesdays. Pumpkin pie is an autumn item. Ask why there isn’t any in summer and Maggie will tell you the pumpkins are off work.',
-      'Al’s Bicycle Repairs | Yard behind 11 Birch Street. Use the side gate for puncture repairs. The white cat is named Spanner. Actual spanners are on the rack. Snacks are not accepted as payment; Al says that rule is mainly for the children next door.',
-      'Opening times were checked with the businesses in late September. Temporary closures are normally posted on the door. This directory is not a booking confirmation.'
-    ])
+    "id": "directory",
+    "contentId": "P0-SHOP-01",
+    "kind": "directory",
+    "date": "2023-10-01",
+    "title": {
+      "zh": "桦树街商户小册：2023 年秋季版",
+      "en": "Birch Street Directory — Autumn 2023"
+    },
+    "author": {
+      "zh": "雪梨镇商户通讯编辑组，各商户校订",
+      "en": "Xueli Traders Bulletin, checked with listed businesses"
+    },
+    "origin": {
+      "zh": "雪梨镇商户通讯 / 公开商户目录",
+      "en": "Xueli Traders / Public directory archive"
+    },
+    "file": "birch-street-autumn-2023.html",
+    "keywords": [
+      "青鸟",
+      "朱恩",
+      "沃德",
+      "Bluebird",
+      "June Ward",
+      "桦树街",
+      "Birch",
+      "Maggie",
+      "餐馆"
+    ],
+    "paragraphs": {
+      "zh": [
+        "秋天的营业时间又到了重新核对的时候。去年有人照着三年前的旧目录去买面包，结果那家店早已改成修鞋铺。编辑组今年在九月底逐家核对过一轮；临时休假和突然卖光的馅饼，仍然请看店门口的手写牌子。",
+        "青鸟照相馆 / Bluebird Photo  \n经营者：朱恩·沃德（June Ward）  \n地址：桦树街 6 号 / 6 Birch Street  \n时间：周一至周六 13:00—18:00，周日休息。旧底片翻拍、照片冲印、相机电池及小型相框。查看十多年前的底片请先与朱恩商量，她得去后面的储物间找。",
+        "Maggie’s Diner  \n地址：桦树街 2 号。每天早晨七点开始供应早餐，星期三休息。蓝莓煎饼和热咖啡照旧；秋季南瓜派数量有限。Maggie 不接受提前一天预订一片派，她说那样不如来店里碰运气。",
+        "阿尔自行车修理 / Al’s Bike Repair  \n地址：桦树街 11 号后院，沿蓝色围栏走进侧门。修补轮胎、调刹车、给旧车换链条。午饭时间可能听见收音机，但找不到店主，因为他通常坐在后面吃三明治。",
+        "Second Turn Books  \n地址：桦树街 14 号。二手书、旧地图和已经不太流行的旅行指南。周六下午可以把书拿来交换；请先把夹在书里的购物小票和照片取走，去年有人把祖母的生日卡一起送来了。",
+        "本目录仅供查询，不能当作预约或价格保证。商户如需修改资料，可联系本通讯编辑组。"
+      ],
+      "en": [
+        "It's that time of year again: we have checked the shops' opening hours. Last autumn, somebody followed a three-year-old listing to buy bread and discovered that the bakery had turned into a shoe-repair shop. We checked with every business in late September this time. Unexpected days off, and pies selling out before lunch, will still be announced by the shops themselves.",
+        "Bluebird Photo  \nOwner: June Ward  \nAddress: 6 Birch Street  \nHours: Monday–Saturday, 1:00–6:00 p.m. Closed Sundays. Film processing, reproductions of older photographs, camera batteries and small frames. Ask June before coming to look for negatives from years ago: she may need to search the storage room.",
+        "Maggie's Diner  \nAddress: 2 Birch Street. Breakfast from seven every morning except Wednesday. Blueberry pancakes and hot coffee are still on the menu; pumpkin pie is seasonal. Maggie does not reserve individual slices a day in advance. She says that takes the fun out of stopping by.",
+        "Al's Bike Repair  \nAddress: Rear yard, 11 Birch Street. Follow the blue fence to the side entrance. Tire patches, brakes and chains for older bicycles. You may hear a radio around lunchtime without seeing Al: he's usually at the back eating a sandwich.",
+        "Second Turn Books  \nAddress: 14 Birch Street. Used books, old maps and travel guides nobody seems to publish anymore. Bring books to swap on Saturday afternoons. Please check for receipts, photographs and cards tucked between the pages. Last year someone accidentally donated a birthday card from their grandmother.",
+        "This directory is for general information, not a reservation or price guarantee. Shops wishing to update an entry should contact the bulletin editors."
+      ]
+    }
   },
   {
-    id: 'reply', kind: 'mail', date: '2023-10-15', author: both('J. Ward → W. Churen', 'J. Ward → W. Churen'),
-    title: both('Re: 关于那张旧照片', 'Re: the old photograph'), origin: both('本机留存邮件 / 收件副本', 'Local mail archive / Received copy'),
-    file: 'June_Ward_reply_2023-10-15.eml',
-    // Private mail is found by its filename/sender index, never by an invented public search result.
-    keywords: ['June Ward', 'J Ward', '朱恩沃德', '朱恩·沃德', '朱恩', '沃德'],
-    paragraphs: both([
-      '发件人：J. Ward\n收件人：W. Churen\n时间：2023 年 10 月 15 日，星期日，17:26\n主题：Re: 关于那张旧照片',
-      '楚人，你好：',
-      '你说的那张我找到了，背面写着名字的纸质照片和原底片都还在。带着网页上的缩图来就好，不用打印，省点墨。',
-      '我们约明天，也就是 10 月 16 日，下午三点，在青鸟照相馆见。地址是桦树街 6 号，蓝门旁边有一个总也转不正的 OPEN 牌子。店里没什么地方放大包，你把相机带上就够了。',
-      '我可以让你看原件，也可以谈谈那天拍照的事。不过先别按网页的颜色猜位置。扫描和重印会变色，这和照片里的人站在哪里不是一回事。',
-      '周一见。\nJune',
-      '留存说明：这是一封约见邮件。本文件夹没有到店签收、后续回信或当天下午的照片。'
-    ], [
-      'From: J. Ward\nTo: W. Churen\nSent: Sunday, October 15, 2023, 17:26\nSubject: Re: the old photograph',
-      'Hi Churen,',
-      'Found the one you mean. I still have the paper print with the names on the back, and the original negative. Bring the thumbnail on your screen. No need to print it and waste the ink.',
-      'Let’s meet tomorrow, Monday October 16, at three, at Bluebird Photo, 6 Birch Street. Look for the blue door and the OPEN sign that never hangs straight. There isn’t much space for a big bag, so just bring your camera.',
-      'You can look at the original and I can tell you a bit about taking it. Don’t try to place people using the colours on the website, though. Scanning and reprinting can change those. They don’t tell you where anyone was standing.',
-      'See you Monday.\nJune',
-      'Archive note: this email arranges a meeting. The folder contains no visit receipt, later reply or photographs from that afternoon.'
-    ])
+    "id": "reply",
+    "contentId": "P0-MAIL-01",
+    "kind": "mail",
+    "date": "2023-10-15",
+    "title": {
+      "zh": "Re: 关于那张旧合影",
+      "en": "Re: the old group photograph"
+    },
+    "author": {
+      "zh": "J. Ward → W. Churen",
+      "en": "J. Ward → W. Churen"
+    },
+    "origin": {
+      "zh": "本机留存邮件 / 收件副本，非公开网页",
+      "en": "Local saved mail copy / Not a public website"
+    },
+    "file": "June_Ward_reply_2023-10-15.eml",
+    "keywords": [
+      "June Ward",
+      "J Ward",
+      "朱恩沃德",
+      "朱恩·沃德",
+      "朱恩",
+      "June"
+    ],
+    "paragraphs": {
+      "zh": [
+        "楚人，你好：",
+        "收到你发来的缩图了，是那张没错。纸质照片和底片我都找到了，纸背的字还在，就是有几处写得挺挤，得凑近慢慢看。我不会猜看不清的名字，这个先说好。",
+        "按我们邮件里约的，明天，10 月 16 日星期一，下午三点来就行。青鸟照相馆，桦树街 6 号。蓝色店门，旁边有块挂得不太正的 OPEN 牌子。你要是先看见牌子歪了，说明没走错。",
+        "带着网页那张图就行，不用为了几行字把整本作业打印出来。来了我们先看原件，再看看你要拍的建筑照片能不能和以前的角度对上。店里周一下午一般不算太忙，不过要是有人来取照，我可能得先帮他找一会儿袋子。",
+        "周一见。",
+        "June"
+      ],
+      "en": [
+        "Hi Churen,",
+        "Got the thumbnail you sent. Yes, that's the picture. I found the print and the negative, and the writing on the back is still there. Some of it is pretty cramped, so we'll have to take a close look. I won't guess at the bits I can't read, just so we're clear.",
+        "As arranged, tomorrow, Monday October 16, at three in the afternoon is fine. Bluebird Photo, 6 Birch Street. Blue door, slightly crooked OPEN sign beside it. If you see the crooked sign, you've come to the right place.",
+        "Bring the thumbnail on your screen. No need to print your entire coursework folder for a few names. We can look at the original first, then compare your building photographs with the old angles if you like. Monday afternoons are usually quiet, though I may have to find somebody's collection envelope in the back.",
+        "See you Monday,",
+        "June"
+      ]
+    },
+    "mail": {
+      "from": "J. Ward",
+      "to": "W. Churen",
+      "sent": "2023-10-15 17:26"
+    },
+    "status": {
+      "zh": "这是一封已留存的约见邮件；副本中没有 10 月 16 日的到访确认、后来回信或现场照片。",
+      "en": "This is a saved appointment email. This local copy includes no October 16 check-in, subsequent reply or photograph documenting an actual visit."
+    }
   },
   {
-    id: 'letter', kind: 'weekly', date: '2023-09-08', author: both('安妮·贝克，河湾路居民', 'Annie Baker, Riverbend Road'),
-    title: both('来信：请把河边那张长椅留在原处', 'Letter: leave the riverside bench where it is'), origin: both('雪梨镇周刊 / 镇民来信', 'Xueli Weekly / Letters'),
-    file: 'letters-riverside-bench.html', keywords: ['河边', '长椅', '来信', 'bench', 'river', 'letter', 'Annie', '安妮'],
-    paragraphs: both([
-      '编辑您好，看到镇议会想把河边长椅挪到停车场旁，我想替每天坐在上面等一会儿的人说几句。那张椅子看着普通，右边第二块木板还会夹外套，可它的位置并不是随便放的。',
-      '早上七点半，太阳刚好从柳树间照过来。送完孩子上校车的家长在这里喝掉半杯咖啡，钓鱼的人在这里换湿袜子。周四，邮递员会坐下把鞋带重新系紧。他不知道我家窗户能看见，每次都把邮袋放在同一边。',
-      '有人说停车场那里走路方便。没错，可坐在停车场旁边，唯一能看的东西就是大家倒车。我的丈夫倒车已经够难看了，我不想散步还看别人的。况且原来这边可以看到河对岸的狗，一到下午，它就试着把水里的树枝全捞回来。',
-      '如果椅子需要修，我愿意和邻居一起刷漆。请别用那种亮得像新垃圾桶的绿色。原来的棕色就很好，坐上去裤子脏了也看不出。还有，那块夹外套的木板确实该换。我已经把这句又写了一遍，免得你们只记得我在反对搬椅子。'
-    ], [
-      'Dear editor, I read that the council wants to move the riverside bench beside the car park. May I speak for those of us who sit there for a few minutes each day? It is an ordinary bench. The second board on the right catches your coat. But its position isn’t an accident.',
-      'At half past seven the sun comes through the willows. Parents finish half a coffee after the school bus leaves. Anglers change wet socks. On Thursdays the postman stops to retie his shoes. He doesn’t know I can see him from my window. The bag always goes on the same side.',
-      'I’m told the car park would be more convenient. Certainly, but the only view would be people reversing. My husband is bad enough at that; I don’t need to watch strangers on my walk. From the current bench you can watch the dog across the river attempting to retrieve every stick in the water.',
-      'If it needs repairing, my neighbours and I will help paint it. Please avoid that green that looks like a new rubbish bin. The old brown is fine and doesn’t show the mud on your trousers. Do replace the board that catches coats. I’ve said that twice so it won’t get lost among my objections to moving it.'
-    ])
+    "id": "letter",
+    "contentId": "P0-LIFE-01",
+    "kind": "weekly",
+    "date": "2023-09-08",
+    "title": {
+      "zh": "给镇议会的一封信：拜托别把河边长椅搬走",
+      "en": "Letter to the Council: Please Leave the Riverside Bench Where It Is"
+    },
+    "author": {
+      "zh": "安妮·贝克（Annie Baker），河湾路居民",
+      "en": "Annie Baker, Riverbend Road"
+    },
+    "origin": {
+      "zh": "雪梨镇周刊 / 读者来信",
+      "en": "Xueli Weekly / Letters to the Editor"
+    },
+    "file": "riverbench-letter-2023-09-08.html",
+    "keywords": [
+      "长椅",
+      "河边",
+      "河湾",
+      "Annie Baker",
+      "bench",
+      "riverbend"
+    ],
+    "paragraphs": {
+      "zh": [
+        "编辑您好：",
+        "我昨天看见公告，说河边步道要重新整理，那张靠柳树的长椅可能会被挪到停车场旁边。我不知道这个决定是谁想出来的，但我猜那个人多半没在下午四点去那里坐过。",
+        "那张椅子当然不算漂亮。左边的油漆已经掉了，木板上还有一道很像闪电的裂纹。坐上去也不能太靠右，因为右边第二块木板会勾住外套。我知道这些毛病，既然你们打算修步道，当然可以把它们修好。可这不等于非得把整张椅子搬走。",
+        "学校放学以后，有两个孩子常常坐在那里等接他们的车。河湾路的老怀特先生会带报纸过来，看到熟人就把报纸折起来，先讲一遍今天的天气有多不讲道理。我和邻居从超市回来，偶尔也会在那里歇脚。我们未必认识彼此的名字，但会说一句“今天风真大”，或者“你也买不到那种面包了吗”。",
+        "停车场旁边不是不能坐。问题是那里下午太阳直接照在脸上，还挨着垃圾桶。河边那张椅子的位置刚好有树荫，往前一点能看见水，往后一步就有步道。它被人用得多，不是因为大家懒得走远，而是因为那个地方就是适合坐一会儿。",
+        "有人说，长椅太旧了，留着不体面。我觉得不体面的只是那颗一直没人拧紧的螺丝。要是真的有预算，请先把松动的地方修好，再把靠背刷一遍漆。镇上不缺需要重新摆放的东西，但至少这张椅子已经摆对位置了。",
+        "如果可以，我愿意在周六帮忙清掉旁边的落叶。我不负责搬椅子，我的腰可没年轻到那个地步。",
+        "安妮·贝克  \n河湾路"
+      ],
+      "en": [
+        "Dear Editor,",
+        "I saw yesterday's notice about improvements to the riverside path. Apparently the bench under the willow tree may be moved beside the parking lot. I have no idea who suggested this, but I suspect they have never sat on it at four in the afternoon.",
+        "I'm not claiming it's a beautiful bench. The paint has worn away on one side and there's a crack in the wood shaped rather like a bolt of lightning. You can't sit too far right, either, or the second board catches your coat. I know all of that. If the council is fixing the path, it can certainly repair the bench too. That doesn't mean the whole thing needs moving.",
+        "After school, two children often wait there for their ride home. Old Mr. White from Riverbend Road brings his newspaper, though he usually folds it up as soon as somebody he knows comes past and starts explaining why the weather is behaving so badly. My neighbor and I occasionally stop there on our way back from the grocery store. We don't always know the names of the people sitting nearby. We still talk about the wind, or how the shop has run out of that particular bread again.",
+        "I don't object to seating near a parking lot. I object to that particular parking lot. The afternoon sun is straight in your eyes, and the proposed position is next to the garbage bins. The existing bench gets shade from the tree. It faces the river, and the path is right behind it. People use it because it's a good place to sit for five minutes, not because they're too lazy to walk any farther.",
+        "I've heard somebody say an old bench doesn't make the town look very respectable. As far as I'm concerned, the only truly embarrassing thing about it is the loose screw that nobody has tightened. If there's money to spend, fix that, repair the boards and paint the backrest. There are plenty of things in Xueli that could do with moving around, but this one is already in the right place.",
+        "I'm happy to help clear the leaves around it on Saturday. I will not be volunteering to carry the bench. My back is not what it was twenty years ago.",
+        "Yours,  \nAnnie Baker  \nRiverbend Road"
+      ]
+    }
   },
   {
-    id: 'diary', kind: 'file', date: '2023-10-03', author: both('王楚人', 'Wang Churen'),
-    title: both('周二，相机包又淋湿了', 'Tuesday. Wet camera bag, again.'), origin: both('本机文件 / 随手记', 'Local files / Notes'),
-    file: '2023-10-03-tuesday.txt', keywords: ['王楚人', 'Wang Churen', '日记', '相机', 'camera', 'diary', '作业', 'course'],
-    figure: 'prop-camera-bag', caption: both('相机包拉链上挂着一只纸板小狗，角被雨泡软了。', 'A cardboard dog on the camera-bag zip. Rain has softened one corner.'),
-    paragraphs: both([
-      '早课差点迟到。出门前还检查了相机电池，就是没看天气。到教室时包里面没事，外面湿得像从湖里捞出来的。老师以为我特意来演示防水面料，我说这部分属于反面教材。',
-      '今天讲旧照片的说明文字。同一张图，写“毕业聚会”和写“最后一次见面”，大家看的地方真的会不一样。作业是选一个地方做小型影像档案。别做成大展览，先把人、照片和说明对上。这个要求听着简单，整理起来能把下午整个吃掉。',
-      'GG 问我周末能不能吃火锅。我说可以，但不接受他那种把所有丸子同时倒下去的做法。他回了一张锅里什么都看不清的照片，说这叫有包容性。看完更饿了。',
-      '妹妹寄来的纸板小狗还挂在包上。她说画的是我，不是狗，我已经假装没看见这句。雨把一只耳朵泡软了，晚上拿书压一下。给家里回了电话，妈正在剥橘子，我听她讲了十分钟哪家摊位今年比较甜。',
-      '晚饭在冰箱里找到半盒炒饭，热完才想起是我自己昨天留的。挺好，至少昨天的我还记得今天的我会懒。明天去打印店，今晚不修图了。'
-    ], [
-      'Nearly late for the early class. Checked the camera battery before leaving, forgot to check the weather. Everything inside the bag was dry. The outside looked as if I’d fished it out of the lake. The tutor thought I was demonstrating waterproof fabric. I said it was a cautionary example.',
-      'We talked about captions today. Put “graduation party” under a picture, then “the last time we met,” and everyone looks at different things. The assignment is a small photographic archive of one place. Not a grand exhibition. Match the people, photographs and captions first. Sounds simple. Eats an entire afternoon.',
-      'GG asked about hotpot at the weekend. I said yes, provided he didn’t dump every fish ball in at once. He sent a picture of a pot in which you couldn’t identify a single ingredient. Called it inclusive cooking. Now I’m hungry.',
-      'The cardboard dog my sister made is still on the bag. She says it’s a portrait of me, not a dog. Ignoring that part. One ear got soggy; I’ll press it in a book tonight. Called home. Mum was peeling an orange and spent ten minutes telling me which stall had the sweeter ones this year.',
-      'Found half a box of fried rice in the fridge. Only remembered after heating it that I’d left it there yesterday. Good to know yesterday’s me accounted for today’s laziness. Print shop tomorrow. No editing tonight.'
-    ])
+    "id": "diary",
+    "contentId": "P0-LIFE-02",
+    "kind": "file",
+    "date": "2023-10-03",
+    "title": {
+      "zh": "10 月 3 日，星期二。相机包还没干",
+      "en": "Tuesday, October 3. My Camera Bag Still Isn't Dry"
+    },
+    "author": {
+      "zh": "W.C.",
+      "en": "W.C."
+    },
+    "origin": {
+      "zh": "旧盘副本 / 个人日记，课程资料文件夹",
+      "en": "Drive copy / Personal diary, coursework folder"
+    },
+    "file": "wcr-diary-2023-10-03.txt",
+    "keywords": [
+      "日记",
+      "相机包",
+      "camera",
+      "diary",
+      "W.C.",
+      "芝加哥",
+      "Chicago"
+    ],
+    "paragraphs": {
+      "zh": [
+        "今天一整天都在下雨，准确地说，是我每次出门的时候都在下。早上从公寓出来还觉得没多大，结果走到教室的时候，相机包已经湿得像刚洗过。我把包放在暖气旁边晾，同学问我是不是打算给相机做桑拿。",
+        "下午课上又改了题目。我原本想拍几个老建筑的招牌，后来越找资料越觉得，招牌背后的故事可能比招牌本身有意思。老师说我这个想法不是不行，但是别什么都想做。我嘴上答应，回去还是开了十几个网页。现在桌面上乱到我已经分不清哪个文件叫 final，哪个叫 final-final。",
+        "中午跟 GG 聊天。他发来一张吃饭的照片，说自己终于发现学校旁边有一家不会把炸鸡炸成石头的店。我回他“重大科研突破”，他立刻问我是不是又没吃午饭。后来我们约好周末有空吃点正常的。我说请他喝咖啡，他给我回了一个非常不信任的表情。",
+        "晚上我妈打了电话，说天气变冷记得穿外套。我说芝加哥的风只要刮起来，外套穿几件都像没穿。她问我最近忙不忙，我说忙，但是还没忙到吃不上饭。妹妹在旁边一直想抢手机，最后终于把她做的一只纸板小狗举到镜头前。小狗一只耳朵特别长，腿还粘反了。她很认真地问我能不能把它挂在相机包上。我说可以，等回去再拿。",
+        "刚挂电话，她又发来一张照片，给纸板小狗补画了两只眼睛，一只大一只小。我把那张图存下来了。最近总想着找能拍的东西，反而觉得这种随手拍的照片看起来最舒服。",
+        "明天先把相机包晒干，别再拿吹风机对着它吹。上次拉链被我吹得太热，差点打不开。还有，要把课程文件夹重新整理一下。十几个“最终版”真的不能再这样放着了。"
+      ],
+      "en": [
+        "It rained all day. Well, more accurately, it rained every time I went outside. When I left the apartment this morning, I thought it was barely anything. By the time I got to class my camera bag looked as if I'd put it through a wash. I left it near the heater, and somebody asked whether I was trying to give my camera a sauna.",
+        "We changed our project ideas again in the afternoon. At first I wanted to photograph signs on older buildings. But after looking at a few places online, I started thinking the stories behind the signs might be more interesting than the signs themselves. My instructor said the idea was fine as long as I didn't try to do everything at once. I agreed out loud and went home to open another ten browser tabs. I now have so many versions of my files called final and final-final that I can't tell which one actually is.",
+        "Talked to GG at lunch. He sent a photograph of his meal, claiming he'd finally found somewhere near school that doesn't fry chicken until it turns into a rock. I called it a major scientific breakthrough. He immediately asked whether I'd skipped lunch again. We said we'd get something decent to eat at the weekend if we're both free. I offered to buy him coffee and got a sticker in reply that looked deeply suspicious.",
+        "Mom called in the evening. She said it was getting colder and I should wear a coat. I told her Chicago wind goes straight through any coat, no matter how many layers you put on. She asked if I was busy, and I said yes, but not too busy to eat. My little sister was trying to grab the phone in the background. When she finally got her turn, she held up a cardboard dog she'd made. One ear was much longer than the other, and the legs were glued on the wrong way around. She asked very seriously if I could hang it from my camera bag. I said of course, when I got home to pick it up.",
+        "Right after the call, she sent a second picture. She had drawn eyes on the dog, one huge and one tiny. I saved the photograph. I've been thinking so much about what would make a good photo lately that I forgot how nice it is when somebody just takes one because they feel like it.",
+        "Tomorrow: dry the camera bag properly. Don't attack it with a hair dryer again. Last time I got the zipper so hot it nearly wouldn't move. Also sort out the coursework folder. There cannot be seventeen documents with final in the filename. I refuse to live like this for another week."
+      ]
+    },
+    "figure": "prop-camera-bag"
   },
   {
-    id: 'back', kind: 'attachment', date: '2026-11-06', author: both('GGbond 发来的扫描件', 'Scan sent by GGbond'),
-    title: both('合影背面 · 局部扫描', 'Back of the group photo · detail'), origin: both('外接盘 / GGbond 新发来的附件', 'External drive / New attachment from GGbond'), file: 'photo-back-detail.png', keywords: [],
-    figure: 'photo-back', caption: both('待绘：旧相纸背面，几个人用不同的笔写下名字。能读清的一行：Nora Bell。此处同时保留文字转录，解谜不依赖尚未绘制的图片。', 'To draw: the back of an old print, names in several different hands. One legible line reads Nora Bell. A text transcript remains available; the pending artwork is not required to solve the chapter.'),
-    paragraphs: both([
-      '纸张右下角有一条折痕，几行字被裁掉了。留下的名字中，有一个可以辨认：Nora Bell。',
-      '这只是照片上的姓名。她的工作、她与楚人的关系，以及楚人有没有见到原件，目前都还不知道。'
-    ], [
-      'A crease crosses the lower-right corner. Several lines are cut off. One name is legible: Nora Bell.',
-      'For now it is just a name on a photograph. Her job, her connection to Churen, and whether he ever saw the original are still unknown.'
-    ])
+    "id": "back",
+    "contentId": "P0-SCAN-01",
+    "kind": "scan",
+    "date": "",
+    "title": {
+      "zh": "2006 年周年合影的背面扫描",
+      "en": "Scan of the Back of the 2006 Anniversary Photograph"
+    },
+    "author": {
+      "zh": "文件转录",
+      "en": "File transcription"
+    },
+    "origin": {
+      "zh": "GG 从外接盘读取的文件 / 扫描副本",
+      "en": "GG’s external-drive file / Digital scan"
+    },
+    "file": "stillwater_anniversary_back_scan.png",
+    "keywords": [],
+    "paragraphs": {
+      "zh": [
+        "图片左上角有一段浅浅的折痕，纸背写着几行名字。有些笔画被旧胶带遮住，部分字已经褪色。能读出来的两行是：",
+        "Ruth — dining room  \nNora Bell — night shift",
+        "旁边似乎还有两个人名，但已经看不全。右下角有一行小字：",
+        "第二张给厨房。别把两张弄混了。",
+        "可读转录结束。"
+      ],
+      "en": [
+        "A shallow crease crosses the upper left corner. There are several handwritten names on the reverse of the print, with a little tape covering parts of the writing. Two lines remain readable:",
+        "Ruth — dining room  \nNora Bell — night shift",
+        "Two other names are too damaged to read with confidence. A note in the lower right corner says:",
+        "Second copy for the kitchen. Don't mix up the backs.",
+        "End of accessible transcription."
+      ]
+    },
+    "dateLabel": {
+      "zh": "原始照片：2006 年 · 扫描日期与流转经过：未知",
+      "en": "Original photograph: 2006 · Scan date and subsequent history: unknown"
+    },
+    "figure": "photo-back"
   }
 ];
+
+export const HINTS = {
+  "zh": [
+    "周年报道的照片下面有摄影署名。",
+    "把照相馆的名字拿去搜，看看是谁经营。",
+    "再用那个人的姓名搜本机邮件，约见内容写在里面。"
+  ],
+  "en": [
+    "The anniversary photo has a credit underneath.",
+    "Search the photo shop. Someone ran it.",
+    "Search that person's name in the local mail index. The appointment is in the reply."
+  ]
+};
+
 export const BY_ID = Object.fromEntries(DOCUMENTS.map(doc => [doc.id, doc]));
-export const SOURCE_ORDER = ['weekly', 'profile', 'directory', 'reply', 'note', 'diary', 'letter'];
-export const HINTS = both([
-  '网页上的小图不一定保留全部信息。先看看照片说明里有没有提到来源。',
-  '店名和人名可能在不同文章里出现。把照片来源拿去检索，再核对店主的全名。',
-  '检索器也收录了本机邮件的发件人和文件名。用查到的人名再搜一次；照片的具体内容仍要回到最早那篇报道核对。'
-], [
-  'A small web image may leave things out. Check whether its caption identifies a source.',
-  'A shop name and a person’s name may appear in different articles. Search the photo credit and check who runs the shop.',
-  'The index includes local mail senders and filenames. Search the name you found, then return to the original article to identify the photograph.'
-]);

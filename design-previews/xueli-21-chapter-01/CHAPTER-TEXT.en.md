@@ -1,161 +1,214 @@
-# The back of a photograph: chapter text
+# Stillwater 2.1 — The Names on the Back
 
-The same original chapter-data.js supplies the playable sample and this reading copy. New people and businesses are fictional sample proposals, not changes to production canon. All artwork is pending.
+Director’s Cut P0. This reading copy uses exactly the text served in the playable chapter.
 
-## The first lead from GGbond
+## GGbond
 
-That old PC from Xianxia arrived. Shipped from Xueli Town. The seller’s account is gone now.
+That ancient PC finally turned up.
 
-It’s a 2008 machine. Boots about as fast as instant noodles. Someone replaced the drive later, though. There are files from 2023.
+Found it on Xianxia. Shipped from Xueli Town. Seller didn't even have a profile picture. Either they didn't want to sell it or they couldn't be bothered.
 
-Found this photo note, signed W.C. The coffee bit sounds like Churen. Three years looking for him, though. I might just be seeing what I want to see. Can you check?
+It's from 2008 and starts up sounding like a tractor. Someone replaced the drive later, though. There are files dated 2023. That's the weird part.
+
+I made you a copy of everything I could read. Leaving the original drive alone for now. Found a photography note signed W.C. And a bit about owing me a coffee.
+
+I'm not saying it's Churen. We've been looking for three years. Sometimes I see a couple of initials and want them to mean something. Just take a look first, okay?
 
 ## photo-notes.txt
 
-W.C. · 2023-10-15 · Local files / To sort
+GG’s shared drive copy / Photography coursework · W.C. · 2023-10-15
 
-Still missing an old group photo for the assignment. Not a new picture of the same place: the actual old print. I got carried away talking about how photographs remember a town. The tutor said I could start by getting one person’s name right. Fair enough.
+October 15. Sunday.
 
-The hotel anniversary story in the Xueli Weekly has a picture, but the web copy is compressed to bits. Apparently there are names on the back. Find out who took it before guessing at the faces. Saved the bookmark.
+My tutor told me to stop turning the assignment into an encyclopedia of old buildings. Find one photograph, work out who is actually in it. I get the point, but asking me to identify people from a web thumbnail the size of my palm is a little unfair.
 
-If Monday works out, get GG a coffee before heading back to Chicago. Still owe him for drinking half of his and claiming I picked up the wrong cup. Charge the camera battery. An empty spare is not a spare.
+I still can't find a decent copy of that nineteenth-anniversary group photo from Stillwater Hotel. Zoom in and everyone turns into a biscuit in a bakery window. I want the old paper print if it still exists, especially the names on the back. And the original negative, ideally. Not some software guessing ten faces for me.
 
-W.C. / October 15
+Saved the Xueli Weekly article. Tomorrow: check the photo credit and find out who might have kept the original. The course is about 'memory and images', but getting the source right feels more useful than writing another page of elegant nonsense.
 
-*Bookmark: the hotel’s nineteenth anniversary*
+Charge camera. Pack card reader. Do not fall asleep on the bus.
 
-*photo-notes.txt*
+Also buy GG a coffee when I'm back in Chicago. I drank half of his by mistake and he acts like I stole an heirloom teapot.
 
-## Nineteen years at the hotel: cake first, photograph later
+W.C.
 
-Ada Reed · 2006-09-24 · Xueli Weekly / Around town
+photo-notes.txt
 
-> Rain nearly moved the party into the dining room. The cake was on time; the photograph was not.
+---
 
-> Stillwater Hotel staff, nineteenth anniversary, September 2006. Photograph: Bluebird Photo, signed J.W. This web reproduction is reduced from the print. The shop retains the negative; those present wrote their names on the back of the paper copy.
+## Nineteen Years On, the Lobby Clock Is Still Five Minutes Slow
 
-By four on Saturday, half the cream cake was gone and Stillwater Hotel’s nineteenth-anniversary photograph still hadn’t happened. First someone went looking for an earring. Then a tray of warm scones arrived and the carefully arranged group dissolved. Ruth, the dining-room supervisor, stood on the steps holding a tea towel. “Breakfast service is easier than this,” she said, before taking a scone herself.
+Xueli Weekly / Community · Ada Reed · 2006-09-24
 
-The hotel opened in 1987. The lakeside sofa has been re-covered three times, but the dented brass bell on reception is the same one. Colin, a regular visitor, remembered when his daughter couldn’t reach it. This weekend she was outside with a child of her own, chasing a dog that refused to be photographed.
+Stillwater Hotel’s anniversary gathering nearly lost its staff photograph to a tray of scones.
 
-The photographer from Bluebird Photo shifted three rows of chairs to hide a washing line. Someone suggested including the brass bell. She said the bell wouldn’t get any taller before next year; the people at the back needed her attention first. A piece of yellow cord hung from her camera strap. Every time she bent to move a chair, someone worried the camera would hit an armrest.
+Caption: Stillwater Hotel staff on September 23, 2006, for the nineteenth-anniversary gathering. Photograph by Bluebird Photo, signed J.W. This is a reduced web copy. The photographer kept the negative; staff wrote their names on the back of the paper print displayed in the dining room.
 
-The clouds cleared and everyone finally stayed put. A woman in the front row was trying not to laugh at the flour on her colleague’s sleeve. After the shutter clicked, someone at the back requested another shot because he might have been thinking about dinner. The photographer agreed, provided everyone stopped fixing everyone else’s hair.
+Stillwater Hotel turned nineteen yesterday. The gathering was supposed to begin at half past three, although the clock above reception was still five minutes slow. The manager declared that someone ought to fix it this year. Robert, a regular guest, disagreed. 'I've known that clock for fifteen years. If it suddenly kept the right time, I'd think something was wrong.'
 
-The hotel plans to hang a paper print in the dining room, with the staff writing their own names on the back. Otherwise, in a few years, somebody is bound to become “the one who kept putting the keys in the fridge.” The photographer kept the original negative, too. A town photograph tells you who turned up; the back tells you what they called each other.
+A shower passed over in the afternoon. Staff carried the chairs from the lawn onto the veranda, lined them up neatly, then promptly abandoned them when the dining room brought out a tray of hot scones. The photographer watched three careful rows turn into an empty arrangement of furniture.
 
-At the end, Ruth handed the two remaining cake boxes to people leaving to collect their children. Sunday dinner will go ahead as usual. There is no special anniversary menu, just an extra tray of baked apples. If you catch someone laughing at the picture over breakfast, ask them who finished the scones.
+Ruth, who runs the dining room, counted heads while drying her hands on a tea towel. 'Usually the hard part is getting everyone to leave work on time. Today it's getting them to stand still.' A young waiter insisted he had only gone inside because somebody said the kitchen needed help. The somebody in question had actually been looking for a missing earring.
 
-*weekly-2006-09-24.html*
+The hotel opened in 1987. Its lakeside lounge and brass reception bell have appeared in more local brochures than anyone could count. Robert’s wife says her husband still checks the old vending machine on every visit. 'Not to buy anything. Just to see if it's finally working.' Its OUT OF ORDER notice has been there rather a long time.
 
-## The names on the back
+Bluebird Photo was hired to take the staff portrait. The photographer arrived early with a little length of yellow cord tied to her camera strap, but it was after four before she could press the shutter. Someone suggested including the old hotel dog. She asked who would promise it stayed put. Nobody volunteered. The dog kept looking for food just outside the frame.
 
-Ada Reed · 2019-04-13 · Xueli Weekly / One small shop
+The photograph that reached the Weekly is a reduced copy, signed simply J.W. The hotel plans to hang a paper print in the dining room and have staff write their names on the back. Years from now, the people in it ought to be remembered as more than 'the one who always lost the reception keys'. Bluebird Photo kept the original negative, so reprints should remain possible.
 
-> Bluebird Photo still has its old sign. June says a new one would cost two boiler repairs.
+The party ran almost until sunset. Two boxes of apple cake were put aside for the evening shift and nobody had time to fix the lobby clock. That isn't much of a headline for a nineteen-year-old hotel, but at least they have a picture. Next year they can compare who has changed their hair.
 
-> June Ward sorting collection envelopes. She signs her older prints J.W. The illustration is pending; the name and signature are documented in the article.
+weekly-2006-09-24.html
 
-The busiest part of Bluebird Photo is the doormat, which has room for exactly two wet umbrellas. On the rainy morning of our visit, a third customer put hers in an empty vase. June Ward, the owner, said she had never intended to put flowers in it anyway.
+---
 
-June has developed photographs on Birch Street for over thirty years. She is wary of being called the keeper of the town’s memories. “First I have to avoid putting a third birthday in the retirement-party envelope.” Behind her counter, old biscuit tins hold negatives, each labelled by year. There are no biscuits. Her nephew found this deeply disappointing on his first day helping out.
+## Old Photographs Don't Need New Names Every Year
 
-She used to sign pictures for the paper with J.W. One reader thought it was a picture agency. June let that pass until a thank-you letter arrived addressed to the entire staff of J.W. She wrote back explaining that the staff consisted of herself and a printer that frequently jammed.
+Xueli Weekly / One Small Shop · Ada Reed · 2019-04-13
 
-There are negatives here from weddings, school teams and hotel parties. She still remembers the scones at Stillwater’s nineteenth anniversary. “Ask what film I used and I’ll have to look it up. Ask who went for the food first, I remember.” People wrote their own names on the backs of the prints. She won’t replace those names to match a later web page. People move away and change their names; the old photograph can stay as it was.
+The blue door on Birch Street is still there. So is Bluebird Photo.
 
-A chipped yellow mug holds her pencils. The handle is fine. “Broken in the right place. Still useful.” Going digital didn’t persuade her to sell the old enlarger. When students arrive with blurry web pictures, she asks them to sit down, turn their laptop brightness down a little, and tell her which original they want to see.
+Caption: June Ward sorting customers' collection envelopes at Bluebird Photo. The J.W. signature on older photographs belongs to her.
 
-Next month June will run a family-photo sorting session at the library. No photography experience required; bring a picture you’re happy to share. If possible, ask an older relative whether the writing on the back is someone’s name or an address scribbled down while ordering dinner.
+Three wet umbrellas stood by the door of Bluebird Photo when I arrived. The mat had room for two. The third customer had put hers in an empty vase. The owner, June Ward, looked up and said, 'Good idea. I never put flowers in that thing anyway.'
 
-*june-ward-bluebird.html*
+The shop has been on Birch Street for more than thirty years. Its door is blue, the opening hours have been revised plenty of times, and the little OPEN sign never seems to hang straight. June says she's tried fixing it. Apparently the sign has other plans. Regular customers now use the tilt to recognise the place.
 
-## Birch Street shop directory · Autumn
+Not many people bring film in for processing these days. Plenty bring old cardboard boxes and ask, 'Any idea when these were taken?' June keeps her negatives in biscuit tins labelled by year. She maintains nothing works better. A student helping in the shop once lifted the lid of one and was so disappointed by the absence of biscuits that he refused to speak for a minute.
 
-Checked by the businesses · 2023-10-01 · Xueli Traders / Public archive
+When she used to send photographs to the newspaper, June often signed them J.W. One reader thought the initials belonged to a picture agency and addressed a thank-you letter to 'the entire staff of J.W.' June wrote back to explain that the entire staff consisted of one woman and a printer that jammed every other week.
 
-Bluebird Photo | June Ward | 6 Birch Street. Monday–Saturday, 1–6 p.m. Film processing, copying old photographs and camera batteries. Contact June before coming to look for old negatives. Please do not push an entire family album through the letterbox.
+Her archive includes school sports days, weddings and parties at Stillwater Hotel. What she remembers first about the hotel's 2006 anniversary is the way everyone lined up for the picture then disappeared for snacks. After the hotel closed in 2007, a former employee brought the paper photograph from the dining room back to her shop, asking her to keep it safe. June stored it apart from the original negative so neither would be mistaken for the other. The names on the back were written by the staff themselves.
 
-Maggie’s Diner | 2 Birch Street. Breakfast from 7 a.m.; closed Wednesdays. Pumpkin pie is an autumn item. Ask why there isn’t any in summer and Maggie will tell you the pumpkins are off work.
+'And that might not even be the name this person uses now,' she says, pointing to a faded pencil line. 'People marry, move away, forget what their old colleagues used to call them. I'm not rewriting it for them. You want to update a caption, attach another piece of paper. Leave the original alone.'
 
-Al’s Bicycle Repairs | Yard behind 11 Birch Street. Use the side gate for puncture repairs. The white cat is named Spanner. Actual spanners are on the rack. Snacks are not accepted as payment; Al says that rule is mainly for the children next door.
+A chipped yellow mug behind the counter holds her pencils. June keeps it because the chip is nowhere near the handle. These days students sometimes visit with low-resolution screenshots of old photographs. She makes them sit down and explain the date and source first. 'Don't just march in and ask if I know everyone in a row. It's a town, not my family album.'
 
-Opening times were checked with the businesses in late September. Temporary closures are normally posted on the door. This directory is not a booking confirmation.
+In May she will run a workshop at the library on sorting family photographs. You can bring an old picture or simply come to learn how to tell an original print from a copy made later. June says the important thing isn't the price of the storage box. It's making sure someone, someday, knows who wrote the name on the back.
 
-*birch-street-autumn-2023.html*
+june-ward-bluebird.html
 
-## Re: the old photograph
+---
 
-J. Ward → W. Churen · 2023-10-15 · Local mail archive / Received copy
+## Birch Street Directory — Autumn 2023
 
-From: J. Ward
-To: W. Churen
-Sent: Sunday, October 15, 2023, 17:26
-Subject: Re: the old photograph
+Xueli Traders / Public directory archive · Xueli Traders Bulletin, checked with listed businesses · 2023-10-01
+
+It's that time of year again: we have checked the shops' opening hours. Last autumn, somebody followed a three-year-old listing to buy bread and discovered that the bakery had turned into a shoe-repair shop. We checked with every business in late September this time. Unexpected days off, and pies selling out before lunch, will still be announced by the shops themselves.
+
+Bluebird Photo\
+Owner: June Ward\
+Address: 6 Birch Street\
+Hours: Monday–Saturday, 1:00–6:00 p.m. Closed Sundays. Film processing, reproductions of older photographs, camera batteries and small frames. Ask June before coming to look for negatives from years ago: she may need to search the storage room.
+
+Maggie's Diner\
+Address: 2 Birch Street. Breakfast from seven every morning except Wednesday. Blueberry pancakes and hot coffee are still on the menu; pumpkin pie is seasonal. Maggie does not reserve individual slices a day in advance. She says that takes the fun out of stopping by.
+
+Al's Bike Repair\
+Address: Rear yard, 11 Birch Street. Follow the blue fence to the side entrance. Tire patches, brakes and chains for older bicycles. You may hear a radio around lunchtime without seeing Al: he's usually at the back eating a sandwich.
+
+Second Turn Books\
+Address: 14 Birch Street. Used books, old maps and travel guides nobody seems to publish anymore. Bring books to swap on Saturday afternoons. Please check for receipts, photographs and cards tucked between the pages. Last year someone accidentally donated a birthday card from their grandmother.
+
+This directory is for general information, not a reservation or price guarantee. Shops wishing to update an entry should contact the bulletin editors.
+
+birch-street-autumn-2023.html
+
+---
+
+## Re: the old group photograph
+
+Local saved mail copy / Not a public website · J. Ward → W. Churen · 2023-10-15
+
+Mail headers: J. Ward → W. Churen · 2023-10-15 17:26
 
 Hi Churen,
 
-Found the one you mean. I still have the paper print with the names on the back, and the original negative. Bring the thumbnail on your screen. No need to print it and waste the ink.
+Got the thumbnail you sent. Yes, that's the picture. I found the print and the negative, and the writing on the back is still there. Some of it is pretty cramped, so we'll have to take a close look. I won't guess at the bits I can't read, just so we're clear.
 
-Let’s meet tomorrow, Monday October 16, at three, at Bluebird Photo, 6 Birch Street. Look for the blue door and the OPEN sign that never hangs straight. There isn’t much space for a big bag, so just bring your camera.
+As arranged, tomorrow, Monday October 16, at three in the afternoon is fine. Bluebird Photo, 6 Birch Street. Blue door, slightly crooked OPEN sign beside it. If you see the crooked sign, you've come to the right place.
 
-You can look at the original and I can tell you a bit about taking it. Don’t try to place people using the colours on the website, though. Scanning and reprinting can change those. They don’t tell you where anyone was standing.
+Bring the thumbnail on your screen. No need to print your entire coursework folder for a few names. We can look at the original first, then compare your building photographs with the old angles if you like. Monday afternoons are usually quiet, though I may have to find somebody's collection envelope in the back.
 
-See you Monday.
+See you Monday,
+
 June
 
-Archive note: this email arranges a meeting. The folder contains no visit receipt, later reply or photographs from that afternoon.
+Mail viewer status (outside the message): This is a saved appointment email. This local copy includes no October 16 check-in, subsequent reply or photograph documenting an actual visit.
 
-*June_Ward_reply_2023-10-15.eml*
+June_Ward_reply_2023-10-15.eml
 
-## Letter: leave the riverside bench where it is
+---
 
-Annie Baker, Riverbend Road · 2023-09-08 · Xueli Weekly / Letters
+## Letter to the Council: Please Leave the Riverside Bench Where It Is
 
-Dear editor, I read that the council wants to move the riverside bench beside the car park. May I speak for those of us who sit there for a few minutes each day? It is an ordinary bench. The second board on the right catches your coat. But its position isn’t an accident.
+Xueli Weekly / Letters to the Editor · Annie Baker, Riverbend Road · 2023-09-08
 
-At half past seven the sun comes through the willows. Parents finish half a coffee after the school bus leaves. Anglers change wet socks. On Thursdays the postman stops to retie his shoes. He doesn’t know I can see him from my window. The bag always goes on the same side.
+Dear Editor,
 
-I’m told the car park would be more convenient. Certainly, but the only view would be people reversing. My husband is bad enough at that; I don’t need to watch strangers on my walk. From the current bench you can watch the dog across the river attempting to retrieve every stick in the water.
+I saw yesterday's notice about improvements to the riverside path. Apparently the bench under the willow tree may be moved beside the parking lot. I have no idea who suggested this, but I suspect they have never sat on it at four in the afternoon.
 
-If it needs repairing, my neighbours and I will help paint it. Please avoid that green that looks like a new rubbish bin. The old brown is fine and doesn’t show the mud on your trousers. Do replace the board that catches coats. I’ve said that twice so it won’t get lost among my objections to moving it.
+I'm not claiming it's a beautiful bench. The paint has worn away on one side and there's a crack in the wood shaped rather like a bolt of lightning. You can't sit too far right, either, or the second board catches your coat. I know all of that. If the council is fixing the path, it can certainly repair the bench too. That doesn't mean the whole thing needs moving.
 
-*letters-riverside-bench.html*
+After school, two children often wait there for their ride home. Old Mr. White from Riverbend Road brings his newspaper, though he usually folds it up as soon as somebody he knows comes past and starts explaining why the weather is behaving so badly. My neighbor and I occasionally stop there on our way back from the grocery store. We don't always know the names of the people sitting nearby. We still talk about the wind, or how the shop has run out of that particular bread again.
 
-## Tuesday. Wet camera bag, again.
+I don't object to seating near a parking lot. I object to that particular parking lot. The afternoon sun is straight in your eyes, and the proposed position is next to the garbage bins. The existing bench gets shade from the tree. It faces the river, and the path is right behind it. People use it because it's a good place to sit for five minutes, not because they're too lazy to walk any farther.
 
-Wang Churen · 2023-10-03 · Local files / Notes
+I've heard somebody say an old bench doesn't make the town look very respectable. As far as I'm concerned, the only truly embarrassing thing about it is the loose screw that nobody has tightened. If there's money to spend, fix that, repair the boards and paint the backrest. There are plenty of things in Xueli that could do with moving around, but this one is already in the right place.
 
-> A cardboard dog on the camera-bag zip. Rain has softened one corner.
+I'm happy to help clear the leaves around it on Saturday. I will not be volunteering to carry the bench. My back is not what it was twenty years ago.
 
-Nearly late for the early class. Checked the camera battery before leaving, forgot to check the weather. Everything inside the bag was dry. The outside looked as if I’d fished it out of the lake. The tutor thought I was demonstrating waterproof fabric. I said it was a cautionary example.
+Yours,\
+Annie Baker\
+Riverbend Road
 
-We talked about captions today. Put “graduation party” under a picture, then “the last time we met,” and everyone looks at different things. The assignment is a small photographic archive of one place. Not a grand exhibition. Match the people, photographs and captions first. Sounds simple. Eats an entire afternoon.
+riverbench-letter-2023-09-08.html
 
-GG asked about hotpot at the weekend. I said yes, provided he didn’t dump every fish ball in at once. He sent a picture of a pot in which you couldn’t identify a single ingredient. Called it inclusive cooking. Now I’m hungry.
+---
 
-The cardboard dog my sister made is still on the bag. She says it’s a portrait of me, not a dog. Ignoring that part. One ear got soggy; I’ll press it in a book tonight. Called home. Mum was peeling an orange and spent ten minutes telling me which stall had the sweeter ones this year.
+## Tuesday, October 3. My Camera Bag Still Isn't Dry
 
-Found half a box of fried rice in the fridge. Only remembered after heating it that I’d left it there yesterday. Good to know yesterday’s me accounted for today’s laziness. Print shop tomorrow. No editing tonight.
+Drive copy / Personal diary, coursework folder · W.C. · 2023-10-03
 
-*2023-10-03-tuesday.txt*
+It rained all day. Well, more accurately, it rained every time I went outside. When I left the apartment this morning, I thought it was barely anything. By the time I got to class my camera bag looked as if I'd put it through a wash. I left it near the heater, and somebody asked whether I was trying to give my camera a sauna.
 
-## Back of the group photo · detail
+We changed our project ideas again in the afternoon. At first I wanted to photograph signs on older buildings. But after looking at a few places online, I started thinking the stories behind the signs might be more interesting than the signs themselves. My instructor said the idea was fine as long as I didn't try to do everything at once. I agreed out loud and went home to open another ten browser tabs. I now have so many versions of my files called final and final-final that I can't tell which one actually is.
 
-Scan sent by GGbond · 2026-11-06 · External drive / New attachment from GGbond
+Talked to GG at lunch. He sent a photograph of his meal, claiming he'd finally found somewhere near school that doesn't fry chicken until it turns into a rock. I called it a major scientific breakthrough. He immediately asked whether I'd skipped lunch again. We said we'd get something decent to eat at the weekend if we're both free. I offered to buy him coffee and got a sticker in reply that looked deeply suspicious.
 
-> To draw: the back of an old print, names in several different hands. One legible line reads Nora Bell. A text transcript remains available; the pending artwork is not required to solve the chapter.
+Mom called in the evening. She said it was getting colder and I should wear a coat. I told her Chicago wind goes straight through any coat, no matter how many layers you put on. She asked if I was busy, and I said yes, but not too busy to eat. My little sister was trying to grab the phone in the background. When she finally got her turn, she held up a cardboard dog she'd made. One ear was much longer than the other, and the legs were glued on the wrong way around. She asked very seriously if I could hang it from my camera bag. I said of course, when I got home to pick it up.
 
-A crease crosses the lower-right corner. Several lines are cut off. One name is legible: Nora Bell.
+Right after the call, she sent a second picture. She had drawn eyes on the dog, one huge and one tiny. I saved the photograph. I've been thinking so much about what would make a good photo lately that I forgot how nice it is when somebody just takes one because they feel like it.
 
-For now it is just a name on a photograph. Her job, her connection to Churen, and whether he ever saw the original are still unknown.
+Tomorrow: dry the camera bag properly. Don't attack it with a hair dryer again. Last time I got the zipper so hot it nearly wouldn't move. Also sort out the coursework folder. There cannot be seventeen documents with final in the filename. I refuse to live like this for another week.
 
-*photo-back-detail.png*
+wcr-diary-2023-10-03.txt
 
-## Scripted messages after the deduction
+---
 
-Let’s keep it as a plan to meet her. We still don’t know if he got there.
+## GGbond
 
-Just plugged in the external drive the seller packed with it. There’s a scan of the back of a photo. Sending it over.
+So he planned to see June at Bluebird at three on the sixteenth. Planned, not definitely went. Still, at least we know what he meant to do that afternoon.
 
-Who’s this Nora Bell on the back?
+While you were reading I plugged in that little external drive from the same box. It was acting up for a while, but I can read some of it now.
+
+There's a scan of the back of a photograph. Don't try to guess it yet. Sending you everything I can make out.
+
+## Scan of the Back of the 2006 Anniversary Photograph
+
+GG’s external-drive file / Digital scan · File transcription · Original photograph: 2006 · Scan date and subsequent history: unknown
+
+A shallow crease crosses the upper left corner. There are several handwritten names on the reverse of the print, with a little tape covering parts of the writing. Two lines remain readable:
+
+Ruth — dining room\
+Nora Bell — night shift
+
+Two other names are too damaged to read with confidence. A note in the lower right corner says:
+
+Second copy for the kitchen. Don't mix up the backs.
+
+End of accessible transcription.
+
+stillwater_anniversary_back_scan.png
+
+---

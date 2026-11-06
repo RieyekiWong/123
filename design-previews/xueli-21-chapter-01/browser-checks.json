@@ -1,7 +1,143 @@
 {
-  "testedAt": "2026-11-06T05:13:05.472Z",
+  "testedAt": "2026-11-06T06:05:08.948Z",
   "base": "http://127.0.0.1:3135/xueli-21-chapter-01/",
   "runs": [
+    {
+      "lang": "zh",
+      "width": 1920,
+      "height": 1080,
+      "shopInfoViaDirectory": false,
+      "completed": true,
+      "readingPositionRestored": true,
+      "draftRestored": true,
+      "unfinishedQueryRestored": true,
+      "mailStatusSeparateFromAuthor": true,
+      "scanHasUnknownProvenance": true,
+      "originalRevisitedAfterCompletion": true,
+      "noCitationControls": true,
+      "shortAliasesAccepted": true,
+      "denialsRejected": true,
+      "wrongAnswersRejected": true,
+      "storyOnceAfterRefresh": true,
+      "fonts": {
+        "fusion": true,
+        "silkscreen": true
+      },
+      "overflow": false,
+      "layouts": [
+        {
+          "stage": "opening",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "note",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "weekly",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "profile",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "mail",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "notebook",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "new-story",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "scan",
+          "pageOverflow": false,
+          "readerOverflow": false
+        }
+      ],
+      "taskbarDoesNotCoverFooter": true,
+      "productionSavesPreserved": true,
+      "reducedMotion": true
+    },
+    {
+      "lang": "en",
+      "width": 1920,
+      "height": 1080,
+      "shopInfoViaDirectory": true,
+      "completed": true,
+      "readingPositionRestored": true,
+      "draftRestored": true,
+      "unfinishedQueryRestored": true,
+      "mailStatusSeparateFromAuthor": true,
+      "scanHasUnknownProvenance": true,
+      "originalRevisitedAfterCompletion": true,
+      "noCitationControls": true,
+      "shortAliasesAccepted": true,
+      "denialsRejected": true,
+      "wrongAnswersRejected": true,
+      "storyOnceAfterRefresh": true,
+      "fonts": {
+        "fusion": true,
+        "silkscreen": true
+      },
+      "overflow": false,
+      "layouts": [
+        {
+          "stage": "opening",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "note",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "weekly",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "directory",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "mail",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "notebook",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "new-story",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "scan",
+          "pageOverflow": false,
+          "readerOverflow": false
+        }
+      ],
+      "taskbarDoesNotCoverFooter": true,
+      "productionSavesPreserved": true,
+      "reducedMotion": true
+    },
     {
       "lang": "zh",
       "width": 1440,
@@ -10,8 +146,13 @@
       "completed": true,
       "readingPositionRestored": true,
       "draftRestored": true,
+      "unfinishedQueryRestored": true,
+      "mailStatusSeparateFromAuthor": true,
+      "scanHasUnknownProvenance": true,
+      "originalRevisitedAfterCompletion": true,
       "noCitationControls": true,
       "shortAliasesAccepted": true,
+      "denialsRejected": true,
       "wrongAnswersRejected": true,
       "storyOnceAfterRefresh": true,
       "fonts": {
@@ -19,6 +160,48 @@
         "silkscreen": true
       },
       "overflow": false,
+      "layouts": [
+        {
+          "stage": "opening",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "note",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "weekly",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "profile",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "mail",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "notebook",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "new-story",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "scan",
+          "pageOverflow": false,
+          "readerOverflow": false
+        }
+      ],
       "taskbarDoesNotCoverFooter": true,
       "productionSavesPreserved": true,
       "reducedMotion": true
@@ -31,8 +214,13 @@
       "completed": true,
       "readingPositionRestored": true,
       "draftRestored": true,
+      "unfinishedQueryRestored": true,
+      "mailStatusSeparateFromAuthor": true,
+      "scanHasUnknownProvenance": true,
+      "originalRevisitedAfterCompletion": true,
       "noCitationControls": true,
       "shortAliasesAccepted": true,
+      "denialsRejected": true,
       "wrongAnswersRejected": true,
       "storyOnceAfterRefresh": true,
       "fonts": {
@@ -40,6 +228,48 @@
         "silkscreen": true
       },
       "overflow": false,
+      "layouts": [
+        {
+          "stage": "opening",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "note",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "weekly",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "directory",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "mail",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "notebook",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "new-story",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "scan",
+          "pageOverflow": false,
+          "readerOverflow": false
+        }
+      ],
       "taskbarDoesNotCoverFooter": true,
       "productionSavesPreserved": true,
       "reducedMotion": true
@@ -52,8 +282,13 @@
       "completed": true,
       "readingPositionRestored": true,
       "draftRestored": true,
+      "unfinishedQueryRestored": true,
+      "mailStatusSeparateFromAuthor": true,
+      "scanHasUnknownProvenance": true,
+      "originalRevisitedAfterCompletion": true,
       "noCitationControls": true,
       "shortAliasesAccepted": true,
+      "denialsRejected": true,
       "wrongAnswersRejected": true,
       "storyOnceAfterRefresh": true,
       "fonts": {
@@ -61,6 +296,184 @@
         "silkscreen": true
       },
       "overflow": false,
+      "layouts": [
+        {
+          "stage": "opening",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "note",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "weekly",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "profile",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "mail",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "notebook",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "new-story",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "scan",
+          "pageOverflow": false,
+          "readerOverflow": false
+        }
+      ],
+      "taskbarDoesNotCoverFooter": true,
+      "productionSavesPreserved": true,
+      "reducedMotion": true
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "height": 1000,
+      "shopInfoViaDirectory": true,
+      "completed": true,
+      "readingPositionRestored": true,
+      "draftRestored": true,
+      "unfinishedQueryRestored": true,
+      "mailStatusSeparateFromAuthor": true,
+      "scanHasUnknownProvenance": true,
+      "originalRevisitedAfterCompletion": true,
+      "noCitationControls": true,
+      "shortAliasesAccepted": true,
+      "denialsRejected": true,
+      "wrongAnswersRejected": true,
+      "storyOnceAfterRefresh": true,
+      "fonts": {
+        "fusion": true,
+        "silkscreen": true
+      },
+      "overflow": false,
+      "layouts": [
+        {
+          "stage": "opening",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "note",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "weekly",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "directory",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "mail",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "notebook",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "new-story",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "scan",
+          "pageOverflow": false,
+          "readerOverflow": false
+        }
+      ],
+      "taskbarDoesNotCoverFooter": true,
+      "productionSavesPreserved": true,
+      "reducedMotion": true
+    },
+    {
+      "lang": "zh",
+      "width": 320,
+      "height": 900,
+      "shopInfoViaDirectory": true,
+      "completed": true,
+      "readingPositionRestored": true,
+      "draftRestored": true,
+      "unfinishedQueryRestored": true,
+      "mailStatusSeparateFromAuthor": true,
+      "scanHasUnknownProvenance": true,
+      "originalRevisitedAfterCompletion": true,
+      "noCitationControls": true,
+      "shortAliasesAccepted": true,
+      "denialsRejected": true,
+      "wrongAnswersRejected": true,
+      "storyOnceAfterRefresh": true,
+      "fonts": {
+        "fusion": true,
+        "silkscreen": true
+      },
+      "overflow": false,
+      "layouts": [
+        {
+          "stage": "opening",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "note",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "weekly",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "directory",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "mail",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "notebook",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "new-story",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "scan",
+          "pageOverflow": false,
+          "readerOverflow": false
+        }
+      ],
       "taskbarDoesNotCoverFooter": true,
       "productionSavesPreserved": true,
       "reducedMotion": true
@@ -73,8 +486,13 @@
       "completed": true,
       "readingPositionRestored": true,
       "draftRestored": true,
+      "unfinishedQueryRestored": true,
+      "mailStatusSeparateFromAuthor": true,
+      "scanHasUnknownProvenance": true,
+      "originalRevisitedAfterCompletion": true,
       "noCitationControls": true,
       "shortAliasesAccepted": true,
+      "denialsRejected": true,
       "wrongAnswersRejected": true,
       "storyOnceAfterRefresh": true,
       "fonts": {
@@ -82,6 +500,48 @@
         "silkscreen": true
       },
       "overflow": false,
+      "layouts": [
+        {
+          "stage": "opening",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "note",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "weekly",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "directory",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "mail",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "notebook",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "new-story",
+          "pageOverflow": false,
+          "readerOverflow": false
+        },
+        {
+          "stage": "scan",
+          "pageOverflow": false,
+          "readerOverflow": false
+        }
+      ],
       "taskbarDoesNotCoverFooter": true,
       "productionSavesPreserved": true,
       "reducedMotion": true
@@ -90,17 +550,20 @@
   "errors": [],
   "serviceRequests": [],
   "screenshots": [
+    "screens/05-mobile-weekly.png",
     "screens/01-desktop-opening.png",
     "screens/02-desktop-weekly.png",
     "screens/03-desktop-search.png",
     "screens/04-desktop-notebook.png",
     "screens/05-mobile-weekly.png",
-    "screens/06-mobile-reading.png"
+    "screens/06-mobile-reading.png",
+    "screens/05-mobile-weekly.png"
   ],
   "scope": "Isolated chapter sample, not a production-game playthrough",
   "corruptSavePreservedUntilConfirmedReset": true,
   "blockedStorageAllowsTemporaryReading": true,
   "searchTextSafelyRendered": true,
   "legacyBlockedDraftResumedWithoutCitations": true,
+  "legacyCompletedSamplePreservedWithCompatibilityMarker": true,
   "passed": true
 }

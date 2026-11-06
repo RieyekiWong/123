@@ -2,6 +2,7 @@
 import { chromium, expect } from '../../node_modules/@playwright/test/index.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { BY_ID, UI_COPY, OPENING, ENDING } from './chapter-data.js';
 const folder = fileURLToPath(new URL('.', import.meta.url));
 const base = process.env.CHAPTER_BASE_URL || 'http://127.0.0.1:3135/xueli-21-chapter-01/';
 const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', headless: true, args: ['--no-sandbox'] });
@@ -24,14 +25,32 @@ async function run(lang, width, height, alternate = false) {
   await page.evaluate(({ chatKey, caseKey }) => { localStorage.setItem(chatKey, 'preserve-chat-fixture'); localStorage.setItem(caseKey, 'preserve-case-fixture'); }, { chatKey, caseKey });
   if (lang === 'en') await page.locator('[data-action="language"]').click();
   const en = lang === 'en';
+  const layouts = [];
+  async function checkLayout(stage) {
+    const layout = await page.evaluate(() => {
+      const pane = document.querySelector('.window-content');
+      return { pageOverflow: document.documentElement.scrollWidth > innerWidth + 1,
+        readerOverflow: pane.scrollWidth > pane.clientWidth + 1 };
+    });
+    expect(layout.pageOverflow, `${stage}: page width`).toBe(false);
+    expect(layout.readerOverflow, `${stage}: content width`).toBe(false);
+    layouts.push({ stage, ...layout });
+  }
+  await checkLayout('opening');
   await expect(page.locator('.desktop-icon')).toHaveCount(2);
-  await expect(page.locator('.chat-bubble')).toHaveCount(3);
+  await expect(page.locator('.chat-bubble')).toHaveCount(OPENING.length);
+  await expect(page.locator('.chat-main')).toContainText(en ? 'a copy of everything I could read' : '留了份副本');
+  await expect(page.locator('.desk-sub')).toContainText(UI_COPY.shared[lang]);
   if (width === 1440 && !en) await saveShot(page, '01-desktop-opening');
   await page.locator('.attachment[data-open="note"]').click();
+  await checkLayout('note');
   await expect(page.locator('.desktop-icon')).toHaveCount(3);
   await page.locator('[data-open="weekly"]').click();
   await expect(page.locator('[data-document="weekly"]')).toBeVisible();
-  await expect(page.locator('.article-body p')).toHaveCount(6);
+  await expect(page.locator('.article-body p')).toHaveCount(7);
+  await expect(page.locator('.article-body')).toContainText(en ? 'Bluebird Photo' : '青鸟照相馆');
+  await expect(page.locator('.article-caption')).toContainText('J.W.');
+  await checkLayout('weekly');
   const wideRatio = await page.locator('[data-asset="photo-anniversary"]').evaluate(el => { const rect = el.getBoundingClientRect(); return rect.width / rect.height; });
   expect(wideRatio).toBeCloseTo(2, 1);
   await page.locator('[data-size="2"]').click();
@@ -51,6 +70,7 @@ async function run(lang, width, height, alternate = false) {
   // Optional reading is accessible but grants no deduction progress.
   await page.locator('[data-open="letter"]').click();
   await expect(page.locator('[data-document="letter"]')).toBeVisible();
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('stillwater-xueli-sample:v1')).completed)).toBe(false);
   async function query(value) {
     await page.locator('#query').fill(value);
     if (en) await page.locator('#query').press('Enter');
@@ -58,8 +78,9 @@ async function run(lang, width, height, alternate = false) {
   }
   await query(en ? 'an unknown made-up query' : '根本不存在的资料');
   await expect(page.locator('.empty-result')).toBeVisible();
-  await query(en ? 'Bluebird Photo' : '青鸟照相馆');
-  await expect(page.locator('.search-result [data-open="reply"]')).toHaveCount(0);
+  await expect(page.locator('.empty-result')).toContainText(UI_COPY.noResults[lang]);
+  await query(alternate ? en ? 'Bluebird Photo' : '青鸟照相馆' : 'J.W.');
+  if (alternate) await expect(page.locator('.search-result [data-open="reply"]')).toHaveCount(0);
   if (!en && width === 1440) await saveShot(page, '03-desktop-search');
   await page.locator(`.search-result [data-open="${alternate ? 'directory' : 'profile'}"]`).click();
   if (!alternate) {
@@ -67,9 +88,19 @@ async function run(lang, width, height, alternate = false) {
     expect(tallRatio).toBeCloseTo(2, 1);
   }
   await expect(page.locator('.desktop-icon')).toHaveCount(4);
+  await checkLayout(alternate ? 'directory' : 'profile');
+  await page.locator('#query').fill(en ? 'June Ward' : '朱恩沃德');
+  await page.reload();
+  await expect(page.locator('#query')).toHaveValue(en ? 'June Ward' : '朱恩沃德');
   await query(en ? 'j. ward' : '朱恩沃德');
   await page.locator('.search-result [data-open="reply"]').click();
+  await expect(page.locator('.mail-headers')).toContainText('2023-10-15 17:26');
+  await expect(page.locator('.mail-status')).toContainText(en ? 'no October 16 check-in' : '没有 10 月 16 日的到访确认');
+  await expect(page.locator('.article-body')).not.toContainText(en ? 'no October 16 check-in' : '没有 10 月 16 日的到访确认');
+  await expect(page.locator('.article-body')).toContainText(en ? 'three in the afternoon' : '下午三点');
+  await checkLayout('mail');
   await page.locator('.taskbar [data-app="casebook"]').click();
+  await checkLayout('notebook');
   await page.locator('#person').fill(en ? 'GGbond' : 'GGbond');
   await page.locator('#place').fill(en ? 'Xueli Town' : '雪梨镇');
   await page.locator('#purpose').fill(en ? 'A booking record' : '入住记录');
@@ -77,6 +108,17 @@ async function run(lang, width, height, alternate = false) {
   await expect(page.locator('#feedback')).toBeVisible();
   await expect(page.locator('#person')).toHaveValue('GGbond');
   await expect(page.locator('.chat-main')).toHaveCount(0);
+  // The same positive aliases inside a denial must not trigger the story.
+  const correct = { person: en ? 'June' : '朱恩', place: en ? 'Bluebird' : '青鸟', purpose: en ? 'staff photo' : '员工合照' };
+  const denied = { person: en ? 'not June Ward' : '不是朱恩', place: en ? 'not Bluebird Photo' : '不是青鸟', purpose: en ? 'not the hotel staff photo' : '我想看一张照片但不是酒店员工合照' };
+  for (const field of ['person', 'place', 'purpose']) {
+    for (const [name, value] of Object.entries(correct)) await page.locator(`#${name}`).fill(name === field ? denied[field] : value);
+    await page.locator('#case-form button[type="submit"]').click();
+    await expect(page.locator(`#${field}`)).toHaveAttribute('aria-invalid', 'true');
+    await expect(page.locator('#feedback')).toBeVisible();
+    await expect(page.locator(`#${field}`)).toHaveValue(denied[field]);
+    await expect(page.locator('.attachment[data-open="back"]')).toHaveCount(0);
+  }
   await page.locator('[data-action="hint"]').click();
   await page.locator('[data-action="hint"]').click();
   await page.locator('[data-action="hint"]').click();
@@ -93,12 +135,23 @@ async function run(lang, width, height, alternate = false) {
   await page.locator('[data-action="language"]').click();
   if (!en && width === 1440) { await page.locator('.window-content').evaluate(el => { el.scrollTop = 0; }); await saveShot(page, '04-desktop-notebook'); }
   await page.locator('#case-form button[type="submit"]').click();
-  await expect(page.locator('.chat-bubble')).toHaveCount(6);
+  await expect(page.locator('.chat-bubble')).toHaveCount(OPENING.length + ENDING.length);
+  await expect(page.locator('.complete-note')).toContainText(UI_COPY.success[lang]);
   await expect(page.locator('.attachment[data-open="back"]')).toBeVisible();
+  await checkLayout('new-story');
   await page.reload();
-  await expect(page.locator('.chat-bubble')).toHaveCount(6);
+  await expect(page.locator('.chat-bubble')).toHaveCount(OPENING.length + ENDING.length);
+  await expect(page.locator('.attachment[data-open="back"]')).toHaveCount(1);
   await page.locator('.attachment[data-open="back"]').click();
-  await expect(page.locator('.article-body')).toContainText('Nora Bell');
+  await expect(page.locator('.article-body')).toContainText('Nora Bell — night shift');
+  await expect(page.locator('.byline')).toContainText(en ? 'Scan date and subsequent history: unknown' : '扫描日期与流转经过：未知');
+  await expect(page.locator('.article-end')).toContainText(en ? 'Who is she?' : '她是谁？');
+  await checkLayout('scan');
+  // Returning to a source after completion never replaces it with a new version.
+  await page.locator('.saved-readings summary').click();
+  await page.locator('.saved-readings [data-open="weekly"]').click();
+  await expect(page.locator('.article-body')).toContainText(BY_ID.weekly.paragraphs[lang][0]);
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('stillwater-xueli-sample:v1')).completed)).toBe(true);
   const runtimeReadKeys = await page.evaluate(() => window.sampleStorageReads);
   expect(runtimeReadKeys.every(key => key === 'stillwater-xueli-sample:v1')).toBe(true);
   const productionSaves = await page.evaluate(({ chatKey, caseKey }) => [localStorage.getItem(chatKey), localStorage.getItem(caseKey)], { chatKey, caseKey });
@@ -114,13 +167,17 @@ async function run(lang, width, height, alternate = false) {
   await expect(page.locator('dialog')).not.toBeVisible();
   const fonts = await page.evaluate(() => ({ fusion: document.fonts.check('20px Fusion'), silkscreen: document.fonts.check('20px Silkscreen') }));
   expect(fonts.fusion && fonts.silkscreen).toBe(true);
-  report.runs.push({ lang, width, height, shopInfoViaDirectory: alternate, completed: true, readingPositionRestored: true, draftRestored: true, noCitationControls: true, shortAliasesAccepted: true, wrongAnswersRejected: true, storyOnceAfterRefresh: true, fonts, overflow, taskbarDoesNotCoverFooter: footerClear, productionSavesPreserved: true, reducedMotion: true });
+  report.runs.push({ lang, width, height, shopInfoViaDirectory: alternate, completed: true, readingPositionRestored: true, draftRestored: true, unfinishedQueryRestored: true, mailStatusSeparateFromAuthor: true, scanHasUnknownProvenance: true, originalRevisitedAfterCompletion: true, noCitationControls: true, shortAliasesAccepted: true, denialsRejected: true, wrongAnswersRejected: true, storyOnceAfterRefresh: true, fonts, overflow, layouts, taskbarDoesNotCoverFooter: footerClear, productionSavesPreserved: true, reducedMotion: true });
   await context.close();
 }
 try {
+  await run('zh', 1920, 1080);
+  await run('en', 1920, 1080, true);
   await run('zh', 1440, 1050);
   await run('en', 1440, 1050, true);
   await run('zh', 390, 1000);
+  await run('en', 390, 1000, true);
+  await run('zh', 320, 900, true);
   await run('en', 320, 900, true);
   // A corrupt sample record is retained; no production key is cleared.
   const corruptContext = await browser.newContext({ storageState: { cookies: [], origins: [{ origin: new URL(base).origin, localStorage: [
@@ -163,6 +220,22 @@ try {
   await resumedPage.locator('#case-form button[type="submit"]').click();
   await expect(resumedPage.locator('.attachment[data-open="back"]')).toBeVisible();
   report.legacyBlockedDraftResumedWithoutCitations = true;
+  const oldCompleted = { ...legacyDraft, completed: true, storyDelivered: true, app: 'browser', doc: 'back',
+    read: ['note', 'profile', 'back'], draft: { person: 'June', place: 'Bluebird', purpose: 'an old photo' } };
+  // Seed before page load: modifying storage in a live page and then reloading
+  // would let that page's legitimate pagehide handler overwrite the fixture.
+  const completedContext = await browser.newContext({ storageState: { cookies: [], origins: [{ origin: new URL(base).origin, localStorage: [
+    { name: 'stillwater-xueli-sample:v1', value: JSON.stringify(oldCompleted) }
+  ] }] } });
+  const completedPage = await completedContext.newPage();
+  await completedPage.goto(base);
+  await expect(completedPage.locator('[data-document="back"]')).toBeVisible();
+  await completedPage.locator('.taskbar [data-app="chat"]').click();
+  await expect(completedPage.locator('.attachment[data-open="back"]')).toHaveCount(1);
+  await completedPage.reload();
+  await expect(completedPage.locator('.attachment[data-open="back"]')).toHaveCount(1);
+  expect(await completedPage.evaluate(() => JSON.parse(localStorage.getItem('stillwater-xueli-sample:v1')).legacyCompletion)).toBe(true);
+  report.legacyCompletedSamplePreservedWithCompatibilityMarker = true;
   expect(report.errors).toEqual([]); expect(report.serviceRequests).toEqual([]);
   report.passed = true;
 } catch (error) { report.passed = false; report.failure = String(error.stack || error); throw error; }

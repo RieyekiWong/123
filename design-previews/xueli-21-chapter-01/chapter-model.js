@@ -1,4 +1,4 @@
-import { ANSWER_ALIASES, BY_ID, DOCUMENTS } from './chapter-data.js';
+import { ANSWER_ALIASES, BY_ID, DOCUMENTS, UI_COPY, CONTENT_REVISION } from './chapter-data.js';
 
 export const SAVE_KEY = 'stillwater-xueli-sample:v1';
 export const APPS = ['chat', 'files', 'browser', 'casebook'];
@@ -6,7 +6,8 @@ export const normalize = value => String(value ?? '').normalize('NFKC').toLowerC
 const limited = (value, size = 500) => typeof value === 'string' ? value.slice(0, size) : '';
 const ids = value => Array.isArray(value) ? [...new Set(value.filter(id => typeof id === 'string' && BY_ID[id]))] : [];
 export function fresh() {
-  return { schema: 1, lang: 'zh', app: 'chat', read: [], doc: null, previousDoc: null,
+  return { schema: 1, contentRevision: CONTENT_REVISION, legacyCompletion: false,
+    lang: 'zh', app: 'chat', read: [], doc: null, previousDoc: null,
     query: '', searches: [], searchShown: false, draft: { person: '', place: '', purpose: '' },
     hint: 0, completed: false, storyDelivered: false, scroll: {}, trail: [], readerSize: 20 };
 }
@@ -50,11 +51,20 @@ export function search(state, rawQuery) {
 }
 
 export const FEEDBACK = {
-  person: ['姓名还没对上。照片的摄影署名可以和店主介绍互相核对。', 'The name does not match the sources yet. Compare the photo credit with the shopkeeper’s introduction.'],
-  place: ['请写约见的地点。镇名或街名还不足以区分具体是哪家店。', 'Name the meeting place. A town or street alone does not identify the shop.'],
-  purpose: ['再具体一点，写出他想找哪种照片或资料就行，不用照抄原句。', 'Be a little more specific about the photograph or material. You do not need the exact wording.'],
-  success: ['已保存：这是一次约见计划，尚不能确认楚人实际到店。', 'Saved as a planned meeting. This does not confirm that Churen arrived.']
+  person: ['这个名字对不上。照片的署名和小店专访里有提示。', "That name doesn't fit yet. Compare the photo credit and shop interview."],
+  place: ['要写具体哪家店，镇名或街名还不够。', 'Name the shop, not just the street or town.'],
+  purpose: ['还差一点。他找的不是一般照片，是哪一张？', 'Which old photograph did he want to see?'],
+  empty: [UI_COPY.empty.zh, UI_COPY.empty.en],
+  success: [UI_COPY.success.zh, UI_COPY.success.en]
 };
+
+// Check the statement before looking for an alias. A name inside a denial is
+// not an answer. This deliberately remains a small, deterministic local rule,
+// not a claim to understand arbitrary natural-language arguments.
+function isAffirmative(raw) {
+  const text = String(raw ?? '').normalize('NFKC').toLowerCase().replace(/[’‘]/g, "'");
+  return !/(?:不是|并非|并不是|不在|不去|不想|不看|不认识|没(?:有)?(?:见|去|看|找)|不知道|不清楚|不确定|其他照片|别的照片|无关照片|\b(?:not|never|no|neither|unknown|unrelated|instead of)\b|\b(?:isn|wasn|aren|weren|don|doesn|didn|can|couldn|wouldn|shouldn)'?t\b)/iu.test(text);
+}
 
 export function validate(state, draft = state.draft) {
   const person = normalize(draft.person);
@@ -62,22 +72,35 @@ export function validate(state, draft = state.draft) {
   const purpose = normalize(draft.purpose);
   const exactAlias = (field, value) => ANSWER_ALIASES[field].some(alias => normalize(alias) === value);
   const fullPerson = ['朱恩沃德', 'juneward', 'jward'].some(name => person.includes(name));
-  const isPerson = fullPerson || exactAlias('person', person) || person.includes('朱恩') || /(?:^|[^a-z])june(?:$|[^a-z])/i.test(String(draft.person).normalize('NFKC'));
-  const isPlace = /青鸟|bluebird/.test(place) || exactAlias('place', place);
+  const isPerson = isAffirmative(draft.person) && (fullPerson || exactAlias('person', person) || person.includes('朱恩') || /(?:^|[^a-z])june(?:$|[^a-z])/i.test(String(draft.person).normalize('NFKC')));
+  const isPlace = isAffirmative(draft.place) && (/青鸟/.test(place) || /\bbluebird(?:\b|photo)/i.test(String(draft.place).normalize('NFKC')) || exactAlias('place', place));
   const isPhoto = /合影|合照|照片|相片|团体照|集体照|photo|picture|portrait|print|negative/.test(purpose);
-  const isSpecific = /合影|合照|团体照|集体照|员工|职工|周年|十九|19|旅馆|酒店|旧|老|底片|原件|原片|原版|原始|背面|名字|staff|employee|anniversary|hotel|original|negative|old|groupphoto|grouppicture/.test(purpose);
-  const isPurpose = exactAlias('purpose', purpose) || (isPhoto && isSpecific);
+  const isSpecific = /合影|合照|团体照|集体照|员工|职工|周年|十九|19|旅馆|酒店|底片|原件|原片|原版|原始|背面|staff|employee|anniversary|hotel|original|negative|group/.test(purpose);
+  const isPurpose = isAffirmative(draft.purpose) && (exactAlias('purpose', purpose) || (isPhoto && isSpecific));
   const errors = [];
-  if (!isPerson) errors.push({ field: 'person', code: 'person' });
-  if (!isPlace) errors.push({ field: 'place', code: 'place' });
-  if (!isPurpose) errors.push({ field: 'purpose', code: 'purpose' });
+  if (!isPerson) errors.push({ field: 'person', code: person ? 'person' : 'empty' });
+  if (!isPlace) errors.push({ field: 'place', code: place ? 'place' : 'empty' });
+  if (!isPurpose) errors.push({ field: 'purpose', code: purpose ? 'purpose' : 'empty' });
   return { ok: errors.length === 0, errors };
 }
 
 export function submit(state) {
   const result = validate(state);
   if (!result.ok) return { state, ...result };
-  return { state: { ...state, completed: true, storyDelivered: true, app: 'chat', doc: null }, ...result };
+  return { state: { ...state, contentRevision: CONTENT_REVISION, legacyCompletion: false,
+    completed: true, storyDelivered: true, app: 'chat', doc: null }, ...result };
+}
+
+// Migration only: v1 once accepted generic "old photo" and even denials that
+// happened to contain a name. Keep a genuinely completed old sample accessible,
+// with an explicit compatibility marker, without re-certifying those answers.
+function legacyValid(draft) {
+  const person = normalize(draft.person), place = normalize(draft.place), purpose = normalize(draft.purpose);
+  const p = /朱恩|juneward|jward/.test(person) || /(?:^|[^a-z])june(?:$|[^a-z])/i.test(draft.person);
+  const l = /青鸟|bluebird/.test(place);
+  const photo = /合影|合照|照片|相片|团体照|集体照|photo|picture|portrait|print|negative/.test(purpose);
+  const specific = /合影|合照|团体照|集体照|员工|职工|周年|十九|19|旅馆|酒店|旧|老|底片|原件|原片|原版|原始|背面|名字|staff|employee|anniversary|hotel|original|negative|old|group/.test(purpose);
+  return p && l && (purpose === '底片' || photo && specific);
 }
 
 export function hydrate(value) {
@@ -89,7 +112,11 @@ export function hydrate(value) {
     hint: Math.min(3, Math.max(0, Math.trunc(Number(value.hint) || 0))),
     readerSize: [18, 20, 22, 24].includes(value.readerSize) ? value.readerSize : 20, searchShown: value.searchShown === true };
   // Old citation arrays are intentionally ignored. Drafts and completed answers survive.
-  state.completed = value.completed === true && validate(state).ok;
+  const currentValid = validate(state).ok;
+  const priorCompletion = value.completed === true &&
+    (!value.contentRevision || value.legacyCompletion === true) && legacyValid(state.draft);
+  state.completed = value.completed === true && (currentValid || priorCompletion);
+  state.legacyCompletion = state.completed && !currentValid && priorCompletion;
   state.storyDelivered = state.completed;
   state.read = state.read.filter(id => id !== 'back' || state.completed);
   state.app = value.app === 'desktop' || unlockedApps(state).includes(value.app) ? value.app : 'chat';
@@ -106,10 +133,7 @@ export function hydrate(value) {
 }
 
 export function objective(state) {
-  if (state.completed) return ['GGbond 又发来了一张照片。', 'GGbond has sent another photograph.'];
-  if (!state.read.includes('note')) return ['看看 GGbond 发来的备忘。', 'Read the note GGbond found.'];
-  if (!state.read.includes('weekly')) return ['看看楚人存下来的那篇报道。', 'Read the article Churen bookmarked.'];
-  if (!unlockedApps(state).includes('casebook')) return ['照片是谁拍的？原件还在哪里？', 'Who took the photograph? Where is the original?'];
-  if (!state.read.includes('reply')) return ['查清楚人和照片保管者有没有联系。', 'Find out whether Churen contacted the person who kept the photograph.'];
-  return ['楚人原本打算去找谁、看什么？', 'Who did Churen plan to meet, and what did he want to see?'];
+  const key = state.completed ? 'newMessage' : !state.read.includes('note') ? 'start' :
+    state.read.includes('reply') ? 'afterEmail' : unlockedApps(state).includes('casebook') ? 'afterProfile' : 'afterNote';
+  return [UI_COPY[key].zh, UI_COPY[key].en];
 }

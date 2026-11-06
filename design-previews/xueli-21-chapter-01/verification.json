@@ -1,34 +1,72 @@
 {
-  "baselineCommit": "ed9a343e5a043110fc23644b191eda78173d06d3",
+  "baselineCommit": "a52d845c82698a6902b2b14cb26944f4a91550a4",
+  "separateBranch": "preview/xueli-21-directors-cut-p0",
   "productionMain": "83d3a72fdb133f805914f1c96464d671b268fab1",
-  "unchangedProductionAndPriorOverviewFiles": 1216,
+  "unchangedFilesOutsideSample": 1216,
   "modifiedFilesOutsideSample": [],
-  "separateBranch": "design/xueli-21-chapter-01",
   "sampleExcludedFromProductionBuild": true,
   "userNoteUnchanged": true,
+  "sources": {
+    "runtimeDocuments": 8,
+    "publicationScope": "Player-visible chapter copy only; complete author manuscripts and world/developer handoff remain local."
+  },
   "changes": [
-    "Audited all 69 art jobs: 28 ready, 19 components, 1 existing, 21 original/pending",
-    "Only four current app icons and GGbond avatar integrated; story photographs remain placeholders",
-    "Vendor original SVG/PNG retained with MIT/CC0 sources, license files and hashes",
-    "Existing NULL unchanged; no new generated art",
-    "Writing and gameplay rules unchanged; final prose still awaits user"
+    "Director’s Cut bilingual P0 prose and scripted messages",
+    "Read-only copy context, W.C. uncertainty, appointment versus attendance, unknown scan history",
+    "Negation-aware local answers and old completion compatibility",
+    "Same isolated sample save; no AI or production imports",
+    "Art brief corrected; no images generated"
   ],
   "checks": {
-    "reuseSourceTests": {
+    "chapterModel": {
+      "passed": 25,
+      "failed": 0,
+      "localAuthorManuscriptAudit": {
+        "additionalPassed": 2,
+        "manuscriptsNotPublished": true
+      }
+    },
+    "licensedAssetIntegrity": {
       "passed": 5,
       "failed": 0
     },
-    "chapterModel": {
-      "passed": 18,
-      "failed": 0
+    "chapterBrowsers": {
+      "passed": 8,
+      "languages": [
+        "zh",
+        "en"
+      ],
+      "widths": [
+        1920,
+        1440,
+        390,
+        320
+      ],
+      "report": "browser-checks.json",
+      "additional": [
+        "corrupt save retention",
+        "storage denied",
+        "HTML text escaped",
+        "old blocked draft",
+        "old completed compatibility"
+      ]
     },
-    "reuseBrowsers": "reuse/browser-checks.json: 1440,390,320 widths; 69 status rows; all icons loaded; no storage writes",
-    "chapterBrowsers": "browser-checks.json: four complete bilingual routes plus legacy blocked drafts",
     "productionBuild": "passed",
     "productionUnitTests": {
       "passed": 156,
       "failed": 0
     },
+    "productionV2Browsers": {
+      "passed": 2,
+      "failed": 0,
+      "upstream": "mocked; no paid API calls"
+    },
+    "publicPreview": "pending publication test",
     "paidAPIRequests": 0
-  }
+  },
+  "privateMaterialExcluded": [
+    "directors-cut/source/",
+    "directors-cut/source-manifest.json",
+    "DIRECTORS-CUT-REVIEW.zh-CN.md"
+  ]
 }
