@@ -62,10 +62,10 @@ export function validate(state, draft = state.draft) {
   const purpose = normalize(draft.purpose);
   const exactAlias = (field, value) => ANSWER_ALIASES[field].some(alias => normalize(alias) === value);
   const fullPerson = ['朱恩沃德', 'juneward', 'jward'].some(name => person.includes(name));
-  const isPerson = fullPerson || exactAlias('person', person);
+  const isPerson = fullPerson || exactAlias('person', person) || person.includes('朱恩') || /(?:^|[^a-z])june(?:$|[^a-z])/i.test(String(draft.person).normalize('NFKC'));
   const isPlace = /青鸟|bluebird/.test(place) || exactAlias('place', place);
   const isPhoto = /合影|合照|照片|相片|团体照|集体照|photo|picture|portrait|print|negative/.test(purpose);
-  const isSpecific = /员工|职工|周年|十九|19|旅馆|酒店|旧合|底片|原件|原片|原版|原始|背面|名字|staff|employee|anniversary|hotel|original|negative|groupphoto|grouppicture/.test(purpose);
+  const isSpecific = /合影|合照|团体照|集体照|员工|职工|周年|十九|19|旅馆|酒店|旧|老|底片|原件|原片|原版|原始|背面|名字|staff|employee|anniversary|hotel|original|negative|old|groupphoto|grouppicture/.test(purpose);
   const isPurpose = exactAlias('purpose', purpose) || (isPhoto && isSpecific);
   const errors = [];
   if (!isPerson) errors.push({ field: 'person', code: 'person' });

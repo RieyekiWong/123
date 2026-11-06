@@ -70,12 +70,12 @@ test('every documented answer alias passes without punctuation-sensitive matchin
   }
 });
 test('missing punctuation, mixed case and full-width letters are equivalent', () => {
-  for (const person of ['朱恩沃德', '朱恩．沃德', '  June  Ward ', 'Ｊｕｎｅ　Ｗａｒｄ', 'J.Ward', 'j ward']) {
+  for (const person of ['朱恩沃德', '朱恩．沃德', '  June  Ward ', 'Ｊｕｎｅ　Ｗａｒｄ', 'J.Ward', 'j ward', '那个叫朱恩的摄影师', 'I think it was June']) {
     assert.equal(validate({ ...ready(), draft: { person, place: 'BLUEBIRD PHOTO!', purpose: '员工合影' } }).ok, true, person);
   }
 });
 test('short natural descriptions do not require the exact original sentence', () => {
-  for (const purpose of ['员工合照', '酒店合影', '合照原件', '旧合照', '原底片', 'staff pictures', 'the original photo', 'hotel group photograph']) {
+  for (const purpose of ['员工合照', '酒店合影', '合照原件', '旧合照', '原底片', 'staff pictures', 'the original photo', 'hotel group photograph', '想看那张合影', '那张老照片', 'an old photo']) {
     assert.equal(validate({ ...ready(), draft: { ...ready().draft, purpose } }).ok, true, purpose);
   }
   for (const purpose of ['', '东西', '照片', '入住记录', 'work schedule']) {
