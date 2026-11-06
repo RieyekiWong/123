@@ -1,0 +1,8 @@
+Interior Mini-Tileset, "Sitting Inside Being Scared of People"
+Author: Julie Damsgaard / Spring Spring / Spring Enterprises
+https://spring-enterprises.neocities.org
+Source: https://opengameart.org/content/interior-mini-tilesetsitting-inside-being-scared-of-people
+Original file: https://opengameart.org/sites/default/files/minitileset_0.png
+License on the author's submission: CC0 1.0
+https://creativecommons.org/publicdomain/zero/1.0/
+Original file retained without pixel edits. Individual objects are displayed via CSS sprite positions. Character sprites are not used as story characters.

@@ -1,0 +1,45 @@
+{
+  "testedAt": "2026-11-06T05:14:05.574Z",
+  "base": "http://127.0.0.1:3135/xueli-21-chapter-01/reuse/",
+  "errors": [],
+  "apiRequests": [],
+  "runs": [
+    {
+      "width": 1440,
+      "ready": 28,
+      "components": 19,
+      "original": 21,
+      "existing": 1,
+      "all": 69,
+      "iconImagesLoaded": true,
+      "keyboardFilter": true,
+      "storageUntouched": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "ready": 28,
+      "components": 19,
+      "original": 21,
+      "existing": 1,
+      "all": 69,
+      "iconImagesLoaded": true,
+      "keyboardFilter": true,
+      "storageUntouched": true,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "ready": 28,
+      "components": 19,
+      "original": 21,
+      "existing": 1,
+      "all": 69,
+      "iconImagesLoaded": true,
+      "keyboardFilter": true,
+      "storageUntouched": true,
+      "overflow": false
+    }
+  ],
+  "passed": true
+}

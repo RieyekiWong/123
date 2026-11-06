@@ -1,0 +1,219 @@
+{
+  "author": "Gerrit Halfmann",
+  "project": "Pixelarticons free set",
+  "source": "https://github.com/halfmage/pixelarticons",
+  "commit": "c9ecc2da61afde85dbe539025e3d931c6152ad75",
+  "license": "MIT",
+  "files": [
+    {
+      "file": "pixelarticons/message.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/message.svg",
+      "sha256": "e6bccfcc5d1f12b7ed3ecc77ba0432c2b35b59daafa4f0cd41cd05de901d510d",
+      "bytes": 190
+    },
+    {
+      "file": "pixelarticons/folder.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/folder.svg",
+      "sha256": "c35b6e0092c10a38c8f4b29d25a97d6e3615d71a2c7738663870ae9819e44aee",
+      "bytes": 189
+    },
+    {
+      "file": "pixelarticons/globe.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/globe.svg",
+      "sha256": "1b0f2e56f4e7f105119fa2eb077427fa9c8334f3f51fc39fee3cd078c6809499",
+      "bytes": 326
+    },
+    {
+      "file": "pixelarticons/notebook.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/notebook.svg",
+      "sha256": "ff6cfedad9914c8127b8336ca8f9fd7764404cfc7e5cc774b8fee61d42139ab1",
+      "bytes": 239
+    },
+    {
+      "file": "pixelarticons/robot-face-happy.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/robot-face-happy.svg",
+      "sha256": "eb446cb293707b9207342d8b32f46214f286582bf4c4a5bbc56ec91ccb17d98d",
+      "bytes": 291
+    },
+    {
+      "file": "pixelarticons/search.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/search.svg",
+      "sha256": "ed931ec3576a46cc2f10d53b4643a4f19f5e4cec8e7ae943c4f6db81d384b5e5",
+      "bytes": 291
+    },
+    {
+      "file": "pixelarticons/images.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/images.svg",
+      "sha256": "b875d96229f1d907831f548d18370e86bb6c93446b1f48b164e1c6c6eaedfd91",
+      "bytes": 326
+    },
+    {
+      "file": "pixelarticons/article.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/article.svg",
+      "sha256": "cf8d871dbef4aa8463ff25c0e830001ea639af2c6bd624949350ea178f1da898",
+      "bytes": 273
+    },
+    {
+      "file": "pixelarticons/sliders.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/sliders.svg",
+      "sha256": "d730a6247d143c5bead1924780d44578b82d2d0c6d0bda32af072f197d9b698b",
+      "bytes": 215
+    },
+    {
+      "file": "pixelarticons/video.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/video.svg",
+      "sha256": "2978f8a086d068053cbb593a19b9120eb6714b3c18283c733f4833a255cde5a4",
+      "bytes": 203
+    },
+    {
+      "file": "pixelarticons/audio-waveform.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/audio-waveform.svg",
+      "sha256": "0305c9edec99f7a7d621e9ebeaf80a76cd524dab700de0c6880cb3089b1835d6",
+      "bytes": 260
+    },
+    {
+      "file": "pixelarticons/circuit-board.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/circuit-board.svg",
+      "sha256": "c7d9e361f01585a56346027baf13ebf9a19c5639ab2f0d311ee064c73f79396d",
+      "bytes": 303
+    },
+    {
+      "file": "pixelarticons/box.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/box.svg",
+      "sha256": "bf7e43f06d3e4f38d7dabe8c45cde9fec23107781d5d98a2ea190f6dbcca561a",
+      "bytes": 340
+    },
+    {
+      "file": "pixelarticons/moon.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/moon.svg",
+      "sha256": "93b21e16334e65b49bf7c7061dc1f23168e47343a3fbc90ecd9cc75fd089e108",
+      "bytes": 313
+    },
+    {
+      "file": "pixelarticons/book-open.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/book-open.svg",
+      "sha256": "a36417e30abc82e93e37ffa844c791fece78c99e445a7710bf63d37df7199859",
+      "bytes": 254
+    },
+    {
+      "file": "pixelarticons/home.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/home.svg",
+      "sha256": "da320202d53ae29fbdf803838b64e7980f946a1c3622c7b7b76c6a215a1ea7c3",
+      "bytes": 284
+    },
+    {
+      "file": "pixelarticons/link.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/link.svg",
+      "sha256": "50602cffe209b6b2b7a6fcc591a540683f3379eb2a14a84d776bfd4aaf188a73",
+      "bytes": 211
+    },
+    {
+      "file": "pixelarticons/camera.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/camera.svg",
+      "sha256": "747648d50af5f90da884be9cd3336074c79090cdc910f45c2a9e9ec6f233de09",
+      "bytes": 248
+    },
+    {
+      "file": "pixelarticons/store.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/store.svg",
+      "sha256": "0a0986dc54a048076956bed4f1af2ebfd6401679fcd2815a11b322c07065c10f",
+      "bytes": 319
+    },
+    {
+      "file": "pixelarticons/heart.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/heart.svg",
+      "sha256": "6a927c32de0e8277a7cb6172d535f3028834b9b2dea2709ca08413909dee2c02",
+      "bytes": 391
+    },
+    {
+      "file": "pixelarticons/sunglasses.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/sunglasses.svg",
+      "sha256": "be3132cc11f74b204801f7b2bf6285aaa1e81690400d3665d94d5095ae213cfc",
+      "bytes": 386
+    },
+    {
+      "file": "pixelarticons/cloud.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/cloud.svg",
+      "sha256": "eb9fa16499d2ad29176f5629eb80143957bb5cd8b187b668c457a955d1d84916",
+      "bytes": 318
+    },
+    {
+      "file": "pixelarticons/leaf.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/leaf.svg",
+      "sha256": "26faefc5e5dd2bb522b23c98424a81caf2864f58d2359d53f6484e46e2aabe18",
+      "bytes": 303
+    },
+    {
+      "file": "pixelarticons/car.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/car.svg",
+      "sha256": "6f7b35fb3559d5c96c23f01e02eba9051cdf1507b58fc170c62f9c9c3f82e958",
+      "bytes": 298
+    },
+    {
+      "file": "pixelarticons/coffee.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/coffee.svg",
+      "sha256": "4dd625ca2add00d7862aedca3528f1b59ac051c34b0398bd4f8ecf54d0e8f46d",
+      "bytes": 213
+    },
+    {
+      "file": "pixelarticons/gamepad.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/gamepad.svg",
+      "sha256": "4b385667f20e542c2a89762ff331b40e3e29eb988de273f138b791f3cdea2f0d",
+      "bytes": 239
+    },
+    {
+      "file": "pixelarticons/monitor.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/monitor.svg",
+      "sha256": "ed46eb0e5496ca68fb1ca2aa73e48879feaa44cb2800730a1fe439f2080baff4",
+      "bytes": 203
+    },
+    {
+      "file": "pixelarticons/keyboard.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/keyboard.svg",
+      "sha256": "c02d5aef1434008875d1c78e3813607761ab9797df4323baae8feb20b02a5340",
+      "bytes": 275
+    },
+    {
+      "file": "pixelarticons/backpack.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/backpack.svg",
+      "sha256": "85ea28f7f52da7b2dc5de07f69a778afffc2849dba613e55c33b02eff069482e",
+      "bytes": 277
+    },
+    {
+      "file": "pixelarticons/tools.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/tools.svg",
+      "sha256": "2d8f03b0861a4127e31bcd9906a3746598711b8c9b32910edf1ca3780fbb15c0",
+      "bytes": 315
+    },
+    {
+      "file": "pixelarticons/fish.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/fish.svg",
+      "sha256": "2be18f65014adf58939a3b486b49c1811ad92f1a0d7113b290a570e7810b9c06",
+      "bytes": 293
+    },
+    {
+      "file": "pixelarticons/lightbulb.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/lightbulb.svg",
+      "sha256": "51cfe6b209e5ac1bc9f78b2d63ee789a69cd61903a549d3c48536acad6eee2c7",
+      "bytes": 338
+    },
+    {
+      "file": "pixelarticons/map.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/map.svg",
+      "sha256": "22144d2ef2ff3dbaa341069cf9940237dae6921642d70a7c418cbe27fe39b7e4",
+      "bytes": 266
+    },
+    {
+      "file": "pixelarticons/plug.svg",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/svg/plug.svg",
+      "sha256": "c04ab8a3b111af458defe8bfa22d11622f968812d439f6bfb99a52f1044d0052",
+      "bytes": 204
+    },
+    {
+      "file": "pixelarticons/LICENSE",
+      "url": "https://raw.githubusercontent.com/halfmage/pixelarticons/c9ecc2da61afde85dbe539025e3d931c6152ad75/LICENSE",
+      "sha256": "eb113ac5006542496193a0641f8e90dcaf392e5025540ba45c2ee042af3ae51d",
+      "bytes": 1072
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-11-06T05:07:51.601Z",
+  "files": [
+    {
+      "file": "kenney-city/tilemap_packed.png",
+      "sha256": "e8b653bd3f32a537a2634eaa55d6abb97f20e09fd974bc1278a2ea55c1cda59f",
+      "bytes": 23387
+    },
+    {
+      "file": "kenney-city/License.txt",
+      "sha256": "24f97fdb24cfedfd8a4bf5645f5056312f3bc9cb4df91c3eff584073caecb9fb",
+      "bytes": 580
+    },
+    {
+      "file": "kenney-food/tilemap_packed.png",
+      "sha256": "500aaa52117baa146d32456b0f6cee14176f0b09d2fd31c9d9e682459e05ac86",
+      "bytes": 4645
+    },
+    {
+      "file": "kenney-food/License.txt",
+      "sha256": "cff360ee00ede1b2953fc0591c64141c755353be093fbf06eb971d51168ac1f1",
+      "bytes": 590
+    },
+    {
+      "file": "spring-interior/minitileset.png",
+      "sha256": "c54f485d739516d8ca89bde4da743e8ef6f45a844d2b64a69f4217fbbfacb0f9",
+      "bytes": 5046
+    },
+    {
+      "file": "spring-interior/CREDITS.txt",
+      "sha256": "840f40e79b7e3935bb56b3c08d35bfb61a1cde851817f1e8546aa340797d2095",
+      "bytes": 591
+    }
+  ]
+}

@@ -1348,3 +1348,14 @@ svg,img {
     transition:none!important;
   }
 }
+.art.borrowed-art { border:2px solid var(--ink); background:#f4d49d; }
+.art.borrowed-art img { width:48px; height:48px; max-width:none; image-rendering:pixelated; }
+.art.palette-green { background:#b0cd92; }
+.art.palette-violet { background:#c7b1df; }
+.art.palette-teal { background:#9dcfc7; }
+.art.palette-gold { background:#f3d27b; }
+.art.palette-coral { background:#eda493; }
+.contact .borrowed-art img,.chat-line .borrowed-art img { width:24px; height:24px; }
+@media(max-width:700px) {
+  .desktop-icon .borrowed-art img { width:24px; height:24px; }
+}
