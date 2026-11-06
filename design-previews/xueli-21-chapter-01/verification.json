@@ -61,12 +61,29 @@
       "failed": 0,
       "upstream": "mocked; no paid API calls"
     },
-    "publicPreview": "pending publication test",
+    "publicPreview": {
+      "passed": true,
+      "testedCommit": "10c18803dcf88fe2c954ad7e06bd165fdac735f2",
+      "url": "https://raw.githack.com/RieyekiWong/123/10c18803dcf88fe2c954ad7e06bd165fdac735f2/design-previews/xueli-21-chapter-01/index.html",
+      "languages": [
+        "zh",
+        "en"
+      ],
+      "report": "public-preview-checks.json"
+    },
     "paidAPIRequests": 0
   },
   "privateMaterialExcluded": [
     "directors-cut/source/",
     "directors-cut/source-manifest.json",
     "DIRECTORS-CUT-REVIEW.zh-CN.md"
-  ]
+  ],
+  "publishedBranch": "preview/xueli-21-directors-cut-p0",
+  "publishedRuntimeHashes": {
+    "index.html": "6e68c5efb5b2676011060c54c6c1e8cd8984ba3fc6f5ae1f4145b6cbf2db9028",
+    "chapter-app.js": "97bc793cf26e996817e6e8668228e480182f647cbb47160b66c45fbbef752daa",
+    "chapter-data.js": "3019e59bd6313efda6452feb64f589baf749c322e6acb0b093c8d21f13ad9d6b",
+    "chapter-model.js": "514eebb06adb86442b059d3b8497e8f080264baa59d42b5ee399624033c11022",
+    "chapter.css": "19af98c43bb1fceb71944a5e1344dcd47e38f08d0903306d83ccac32066ba039"
+  }
 }

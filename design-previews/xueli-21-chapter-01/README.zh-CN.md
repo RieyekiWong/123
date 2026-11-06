@@ -2,7 +2,7 @@
 
 本章已换上作者提供的 **Director’s Cut P0 完整中英文正文**。这是一段可以实际完成的独立调查，不是正式游戏的更新。
 
-[打开第一章试玩](https://raw.githack.com/RieyekiWong/123/preview/xueli-21-directors-cut-p0/design-previews/xueli-21-chapter-01/index.html)。托管站第一次可能显示 External Content Notice，点击 **Open the page** 进入。
+[打开第一章试玩](https://raw.githack.com/RieyekiWong/123/10c18803dcf88fe2c954ad7e06bd165fdac735f2/design-previews/xueli-21-chapter-01/index.html)。托管站第一次可能显示 External Content Notice，点击 **Open the page** 进入。
 
 [开发报告与答案](DESIGN.zh-CN.md) · [中文完整阅读稿](CHAPTER-TEXT.zh-CN.md) · [English reading copy](CHAPTER-TEXT.en.md) · [当前待绘清单](handoff/REMAINING-ART.zh-CN.md)
 
@@ -30,7 +30,7 @@ GGbond 收到了一台 2008 年的旧电脑。他把读出的文件留了份副�
 
 ## 实测
 
-25 项可公开复跑的规则测试通过；另两项与作者原稿的核对已在本地完成，完整稿件不公开。中英文各在 1920、1440、390、320 宽度实际走完，共八次完整流程，另检查旧存档、损坏存档和禁用存储。包括否定句拦截、短别名、可选提示、刷新与语言切换、无图转录、自动新消息只出现一份。详见 [浏览器结果](browser-checks.json) 和 [验证记录](verification.json)。
+25 项可公开复跑的规则测试通过；另两项与作者原稿的核对已在本地完成，完整稿件不公开。中英文各在 1920、1440、390、320 宽度实际走完，共八次完整流程，另检查旧存档、损坏存档和禁用存储。包括否定句拦截、短别名、可选提示、刷新与语言切换、无图转录、自动新消息只出现一份。详见 [浏览器结果](browser-checks.json) 和 [验证记录](verification.json)。[公开地址的中英文完整实测](public-preview-checks.json)也已通过。
 
 本地运行：
 
