@@ -32,6 +32,8 @@ async function run(lang, width, height, alternate = false) {
   await page.locator('[data-open="weekly"]').click();
   await expect(page.locator('[data-document="weekly"]')).toBeVisible();
   await expect(page.locator('.article-body p')).toHaveCount(6);
+  const wideRatio = await page.locator('[data-asset="photo-anniversary"]').evaluate(el => { const rect = el.getBoundingClientRect(); return rect.width / rect.height; });
+  expect(wideRatio).toBeCloseTo(2, 1);
   await page.locator('[data-size="2"]').click();
   await expect(page.locator('.article-body')).toHaveCSS('font-size', '22px');
   await page.locator('[data-size="-2"]').click();
@@ -60,8 +62,12 @@ async function run(lang, width, height, alternate = false) {
   await expect(page.locator('.search-result [data-open="reply"]')).toHaveCount(0);
   if (!en && width === 1440) await saveShot(page, '03-desktop-search');
   await page.locator(`.search-result [data-open="${alternate ? 'directory' : 'profile'}"]`).click();
+  if (!alternate) {
+    const tallRatio = await page.locator('[data-asset="portrait-june"]').evaluate(el => { const rect = el.getBoundingClientRect(); return rect.height / rect.width; });
+    expect(tallRatio).toBeCloseTo(2, 1);
+  }
   await expect(page.locator('.desktop-icon')).toHaveCount(4);
-  await query(en ? 'June Ward' : '朱恩·沃德');
+  await query(en ? 'j. ward' : '朱恩沃德');
   await page.locator('.search-result [data-open="reply"]').click();
   await page.locator('.taskbar [data-app="casebook"]').click();
   await page.locator('#person').fill(en ? 'GGbond' : 'GGbond');
@@ -75,26 +81,15 @@ async function run(lang, width, height, alternate = false) {
   await page.locator('[data-action="hint"]').click();
   await page.locator('[data-action="hint"]').click();
   await expect(page.locator('.help-area p')).toHaveCount(3);
-  await page.locator('#person').fill(en ? 'June Ward' : '朱恩·沃德');
+  await page.locator('#person').fill(en ? 'j. ward' : '朱恩沃德');
   await page.locator('#place').fill(en ? 'Bluebird Photo, 6 Birch Street' : '青鸟照相馆，桦树街 6 号');
-  await page.locator('#purpose').fill(en ? 'The original staff photograph from the hotel anniversary' : '查看酒店十九周年员工合影的原底片');
-  await page.locator('input[value="weekly"]').check();
-  await page.locator(`input[value="${alternate ? 'directory' : 'profile'}"]`).check();
-  // Correct text, but missing mail, must stay in the notebook.
-  await page.locator('#case-form button[type="submit"]').click();
-  await expect(page.locator('#feedback')).toContainText(en ? 'meeting email' : '约见邮件');
-  await page.locator('input[value="reply"]').check();
-  // A non-evidence article is not a substitute for a source.
-  await page.locator('input[value="letter"]').check();
-  await page.locator('#case-form button[type="submit"]').click();
-  await expect(page.locator('#feedback')).toContainText(en ? 'does not support' : '不能支持');
-  await page.locator('input[value="letter"]').uncheck();
+  await page.locator('#purpose').fill(en ? 'staff photo' : '员工合影');
+  await expect(page.locator('input[type="checkbox"]')).toHaveCount(0);
   await page.reload(); await page.evaluate(() => document.fonts.ready);
-  await expect(page.locator('#person')).toHaveValue(en ? 'June Ward' : '朱恩·沃德');
-  await expect(page.locator('input[value="reply"]')).toBeChecked();
+  await expect(page.locator('#person')).toHaveValue(en ? 'j. ward' : '朱恩沃德');
   await expect(page.locator('.help-area p')).toHaveCount(3);
   await page.locator('[data-action="language"]').click();
-  await expect(page.locator('#person')).toHaveValue(en ? 'June Ward' : '朱恩·沃德');
+  await expect(page.locator('#person')).toHaveValue(en ? 'j. ward' : '朱恩沃德');
   await page.locator('[data-action="language"]').click();
   if (!en && width === 1440) { await page.locator('.window-content').evaluate(el => { el.scrollTop = 0; }); await saveShot(page, '04-desktop-notebook'); }
   await page.locator('#case-form button[type="submit"]').click();
@@ -119,7 +114,7 @@ async function run(lang, width, height, alternate = false) {
   await expect(page.locator('dialog')).not.toBeVisible();
   const fonts = await page.evaluate(() => ({ fusion: document.fonts.check('20px Fusion'), silkscreen: document.fonts.check('20px Silkscreen') }));
   expect(fonts.fusion && fonts.silkscreen).toBe(true);
-  report.runs.push({ lang, width, height, alternativeDirectoryEvidence: alternate, completed: true, readingPositionRestored: true, draftAndCitationsRestored: true, wrongAnswersRejected: true, storyOnceAfterRefresh: true, fonts, overflow, taskbarDoesNotCoverFooter: footerClear, productionSavesPreserved: true, reducedMotion: true });
+  report.runs.push({ lang, width, height, shopInfoViaDirectory: alternate, completed: true, readingPositionRestored: true, draftRestored: true, noCitationControls: true, shortAliasesAccepted: true, wrongAnswersRejected: true, storyOnceAfterRefresh: true, fonts, overflow, taskbarDoesNotCoverFooter: footerClear, productionSavesPreserved: true, reducedMotion: true });
   await context.close();
 }
 try {
@@ -155,6 +150,19 @@ try {
   expect(await temporaryPage.evaluate(() => window.sampleInjected)).toBeUndefined();
   report.blockedStorageAllowsTemporaryReading = true;
   report.searchTextSafelyRendered = true;
+  const legacyDraft = { schema: 1, lang: 'zh', app: 'casebook', read: ['note', 'weekly', 'profile'],
+    draft: { person: '朱恩沃德', place: '青鸟', purpose: '合影' }, citations: ['weekly', 'profile'],
+    completed: false, hint: 1, scroll: { weekly: 260 } };
+  const resumed = await browser.newContext({ storageState: { cookies: [], origins: [{ origin: new URL(base).origin, localStorage: [
+    { name: 'stillwater-xueli-sample:v1', value: JSON.stringify(legacyDraft) }
+  ] }] } });
+  const resumedPage = await resumed.newPage();
+  await resumedPage.goto(base);
+  await expect(resumedPage.locator('#person')).toHaveValue('朱恩沃德');
+  await expect(resumedPage.locator('input[type="checkbox"]')).toHaveCount(0);
+  await resumedPage.locator('#case-form button[type="submit"]').click();
+  await expect(resumedPage.locator('.attachment[data-open="back"]')).toBeVisible();
+  report.legacyBlockedDraftResumedWithoutCitations = true;
   expect(report.errors).toEqual([]); expect(report.serviceRequests).toEqual([]);
   report.passed = true;
 } catch (error) { report.passed = false; report.failure = String(error.stack || error); throw error; }

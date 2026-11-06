@@ -1,18 +1,24 @@
 {
-  "baselineCommit": "ce0219d4af890dadea9825ac032d6f239d204a5f",
+  "baselineCommit": "f6d67ac85d71034edad2d024701bbaf75b23a201",
   "productionMain": "83d3a72fdb133f805914f1c96464d671b268fab1",
-  "unchangedTrackedFiles": 1216,
-  "modifiedBaselineFiles": [],
+  "unchangedProductionAndPriorOverviewFiles": 1216,
+  "modifiedFilesOutsideSample": [],
   "separateBranch": "design/xueli-21-chapter-01",
-  "productionEntryAndManifestUnchanged": true,
   "sampleExcludedFromProductionBuild": true,
   "userNoteUnchanged": true,
+  "changes": [
+    "Removed source citation controls and submission gates",
+    "Per-field bilingual aliases and punctuation normalization",
+    "Legacy blocked drafts and completions preserved",
+    "Horizontal and vertical tile frames",
+    "69-item art brief and per-page writing handoff; prose remains provisional"
+  ],
   "checks": {
     "chapterModel": {
-      "passed": 14,
+      "passed": 18,
       "failed": 0
     },
-    "chapterBrowsers": "See browser-checks.json for actual four complete routes and edge cases",
+    "chapterBrowsers": "See browser-checks.json: four complete routes plus legacy blocked draft, corruption and blocked storage",
     "productionBuild": "passed",
     "productionUnitTests": {
       "passed": 156,

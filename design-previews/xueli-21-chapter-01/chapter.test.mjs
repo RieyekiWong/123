@@ -1,10 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { DOCUMENTS } from './chapter-data.js';
+import { ANSWER_ALIASES, ASSETS, DOCUMENTS } from './chapter-data.js';
 import { fresh, hydrate, search, validate, submit, openDocument, unlockedApps, canRead } from './chapter-model.js';
 
 const ready = () => ({ ...fresh(), read: ['note', 'weekly', 'profile', 'directory', 'reply', 'diary', 'letter'],
-  draft: { person: '朱恩·沃德', place: '青鸟照相馆，桦树街 6 号', purpose: '查看旅馆十九周年员工合影的原底片' }, citations: ['weekly', 'profile', 'reply'] });
+  draft: { person: '朱恩·沃德', place: '青鸟照相馆，桦树街 6 号', purpose: '查看旅馆十九周年员工合影的原底片' } });
 
 test('the opening has only two apps and cannot open the next chapter', () => {
   const state = fresh();
@@ -40,7 +40,7 @@ test('opening sources never grants a correct deduction', () => {
   assert.equal(validate(state).ok, false);
   assert.equal(submit(state).state.completed, false);
 });
-test('correct Chinese free text and three supporting sources pass', () => {
+test('correct Chinese free text passes without source citations', () => {
   assert.equal(validate(ready()).ok, true);
   const result = submit(ready());
   assert.equal(result.state.app, 'chat');
@@ -57,14 +57,34 @@ test('English prose, aliases and mixed language are accepted', () => {
   ];
   for (const draft of answers) assert.equal(validate({ ...ready(), draft }).ok, true, JSON.stringify(draft));
 });
-test('the traders directory is a legitimate alternative source', () => {
-  assert.equal(validate({ ...ready(), citations: ['weekly', 'directory', 'reply'] }).ok, true);
+test('missing or obsolete citations never block correct fields', () => {
+  for (const citations of [undefined, [], ['weekly'], ['letter'], 'malformed old metadata']) {
+    assert.equal(validate({ ...ready(), read: [], citations }).ok, true);
+  }
 });
-test('right text with missing, unread or unrelated evidence does not pass', () => {
-  const state = ready();
-  assert.ok(validate({ ...state, citations: ['profile', 'reply'] }).errors.some(e => e.code === 'sources'));
-  assert.ok(validate({ ...state, read: ['note', 'weekly', 'profile'] }).errors.some(e => e.code === 'unread'));
-  assert.ok(validate({ ...state, citations: [...state.citations, 'letter'] }).errors.some(e => e.code === 'unrelated'));
+test('every documented answer alias passes without punctuation-sensitive matching', () => {
+  for (const field of ['person', 'place', 'purpose']) {
+    for (const answer of ANSWER_ALIASES[field]) {
+      assert.equal(validate({ ...ready(), draft: { ...ready().draft, [field]: answer } }).ok, true, `${field}: ${answer}`);
+    }
+  }
+});
+test('missing punctuation, mixed case and full-width letters are equivalent', () => {
+  for (const person of ['朱恩沃德', '朱恩．沃德', '  June  Ward ', 'Ｊｕｎｅ　Ｗａｒｄ', 'J.Ward', 'j ward']) {
+    assert.equal(validate({ ...ready(), draft: { person, place: 'BLUEBIRD PHOTO!', purpose: '员工合影' } }).ok, true, person);
+  }
+});
+test('short natural descriptions do not require the exact original sentence', () => {
+  for (const purpose of ['员工合照', '酒店合影', '合照原件', '旧合照', '原底片', 'staff pictures', 'the original photo', 'hotel group photograph']) {
+    assert.equal(validate({ ...ready(), draft: { ...ready().draft, purpose } }).ok, true, purpose);
+  }
+  for (const purpose of ['', '东西', '照片', '入住记录', 'work schedule']) {
+    assert.equal(validate({ ...ready(), draft: { ...ready().draft, purpose } }).ok, false, purpose);
+  }
+});
+test('artwork supports horizontal and vertical 64px tile groups', () => {
+  assert.deepEqual(ASSETS['photo-anniversary'].tiles, [2, 1]);
+  assert.deepEqual(ASSETS['portrait-june'].tiles, [1, 2]);
 });
 test('wrong answers have meaningful field errors and retain every input', () => {
   const state = { ...ready(), draft: { person: 'GGbond', place: '雪梨镇', purpose: '查看入住记录' } };
@@ -73,20 +93,30 @@ test('wrong answers have meaningful field errors and retain every input', () => 
   assert.deepEqual(result.errors.map(e => e.field), ['person', 'place', 'purpose']);
   assert.deepEqual(result.state, before);
 });
-test('refresh preserves drafts, citations, reading positions and hints', () => {
+test('refresh preserves drafts, reading positions and hints', () => {
   const state = { ...ready(), app: 'casebook', doc: 'profile', scroll: { profile: 443 }, hint: 2, query: '朱恩' };
   const restored = hydrate(JSON.parse(JSON.stringify(state)));
   assert.deepEqual(restored.draft, state.draft);
-  assert.deepEqual(restored.citations, state.citations);
+  assert.equal('citations' in restored, false);
   assert.equal(restored.scroll.profile, 443);
   assert.equal(restored.hint, 2);
   assert.equal(restored.query, '朱恩');
 });
-test('completion survives refresh with proof but cannot be a saved category click', () => {
+test('completion survives refresh with correct fields but not an empty completed flag', () => {
   const finished = submit(ready()).state;
   assert.equal(hydrate(finished).completed, true);
   assert.equal(hydrate({ ...fresh(), completed: true, read: ['back'] }).completed, false);
   assert.ok(!hydrate({ ...fresh(), completed: true, read: ['back'] }).read.includes('back'));
+});
+test('old blocked and completed saves keep their text and reading history', () => {
+  const legacy = { ...ready(), app: 'casebook', citations: ['weekly'], scroll: { reply: 231 } };
+  const restored = hydrate(legacy);
+  assert.deepEqual(restored.draft, legacy.draft);
+  assert.deepEqual(restored.read, legacy.read);
+  assert.equal(restored.scroll.reply, 231);
+  assert.equal(restored.completed, false);
+  assert.equal(submit(restored).ok, true);
+  assert.equal(hydrate({ ...legacy, completed: true }).completed, true);
 });
 test('defensive hydration does not crash on malformed fields', () => {
   const state = hydrate({ schema: 1, read: ['missing', null, 'note'], draft: { person: {} }, scroll: { note: -3 }, hint: Infinity, citations: ['missing'], trail: [null, 'reply'] });

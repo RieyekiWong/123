@@ -1,4 +1,4 @@
-import { BY_ID, DOCUMENTS } from './chapter-data.js';
+import { ANSWER_ALIASES, BY_ID, DOCUMENTS } from './chapter-data.js';
 
 export const SAVE_KEY = 'stillwater-xueli-sample:v1';
 export const APPS = ['chat', 'files', 'browser', 'casebook'];
@@ -8,7 +8,7 @@ const ids = value => Array.isArray(value) ? [...new Set(value.filter(id => typeo
 export function fresh() {
   return { schema: 1, lang: 'zh', app: 'chat', read: [], doc: null, previousDoc: null,
     query: '', searches: [], searchShown: false, draft: { person: '', place: '', purpose: '' },
-    citations: [], hint: 0, completed: false, storyDelivered: false, scroll: {}, trail: [], readerSize: 20 };
+    hint: 0, completed: false, storyDelivered: false, scroll: {}, trail: [], readerSize: 20 };
 }
 
 export function unlockedApps(state) {
@@ -52,32 +52,25 @@ export function search(state, rawQuery) {
 export const FEEDBACK = {
   person: ['姓名还没对上。照片的摄影署名可以和店主介绍互相核对。', 'The name does not match the sources yet. Compare the photo credit with the shopkeeper’s introduction.'],
   place: ['请写约见的地点。镇名或街名还不足以区分具体是哪家店。', 'Name the meeting place. A town or street alone does not identify the shop.'],
-  purpose: ['还不清楚他想看哪种资料。请区分网页缩图、普通照片和他要找的原件。', 'Which material did he want to see? Distinguish the web thumbnail, an unspecified picture and the original he was looking for.'],
-  sources: ['还缺少原始出处：需要能认出照片的报道、能确认店主的资料，以及那封约见邮件。', 'The sources are incomplete: include the article identifying the photograph, a source identifying the shopkeeper, and the meeting email.'],
-  unrelated: ['附上的资料里有一份不能支持这项判断。日常日记或镇民来信不能代替摄影来源与约见记录。', 'One of the attached sources does not support this conclusion. Everyday notes or a reader’s letter cannot replace the photo source and meeting record.'],
-  unread: ['有一份引用资料还没有打开。先读原文，再把它作为依据。', 'One cited source has not been opened. Read it before using it as evidence.'],
+  purpose: ['再具体一点，写出他想找哪种照片或资料就行，不用照抄原句。', 'Be a little more specific about the photograph or material. You do not need the exact wording.'],
   success: ['已保存：这是一次约见计划，尚不能确认楚人实际到店。', 'Saved as a planned meeting. This does not confirm that Churen arrived.']
 };
 
-export function validate(state, draft = state.draft, citations = state.citations) {
+export function validate(state, draft = state.draft) {
   const person = normalize(draft.person);
   const place = normalize(draft.place);
   const purpose = normalize(draft.purpose);
-  const fullPerson = ['朱恩沃德', 'juneward'].some(name => person.includes(name));
-  // Short names are accepted when the cited original identifies the same person.
-  const shortPerson = ['朱恩', 'june', 'jward'].includes(person);
-  const isPlace = /青鸟|bluebird/.test(place);
-  const isGroupPhoto = /合影|合照|团体照|集体照|groupphoto|grouppicture|staffphoto|staffpicture|staffportrait|employeephoto|employeephotograph/.test(purpose) || (/员工|职工/.test(purpose) && /照|相片/.test(purpose)) || (/staff|employee/.test(purpose) && /photo|picture|portrait|print/.test(purpose));
-  const isOriginal = /原件|原片|底片|底版|原版|原始|原照|纸质|原图|original|negative|paperprint/.test(purpose);
-  const isRelevant = /员工|职工|周年|十九|19|staff|employee|anniversary|旅馆|酒店|hotel/.test(purpose);
+  const exactAlias = (field, value) => ANSWER_ALIASES[field].some(alias => normalize(alias) === value);
+  const fullPerson = ['朱恩沃德', 'juneward', 'jward'].some(name => person.includes(name));
+  const isPerson = fullPerson || exactAlias('person', person);
+  const isPlace = /青鸟|bluebird/.test(place) || exactAlias('place', place);
+  const isPhoto = /合影|合照|照片|相片|团体照|集体照|photo|picture|portrait|print|negative/.test(purpose);
+  const isSpecific = /员工|职工|周年|十九|19|旅馆|酒店|旧合|底片|原件|原片|原版|原始|背面|名字|staff|employee|anniversary|hotel|original|negative|groupphoto|grouppicture/.test(purpose);
+  const isPurpose = exactAlias('purpose', purpose) || (isPhoto && isSpecific);
   const errors = [];
-  if (!fullPerson && !shortPerson) errors.push({ field: 'person', code: 'person' });
+  if (!isPerson) errors.push({ field: 'person', code: 'person' });
   if (!isPlace) errors.push({ field: 'place', code: 'place' });
-  if (!(isGroupPhoto && isOriginal && isRelevant)) errors.push({ field: 'purpose', code: 'purpose' });
-  if (citations.some(id => !state.read.includes(id))) errors.push({ field: 'citations', code: 'unread' });
-  const support = new Set(citations);
-  if (!(support.has('weekly') && support.has('reply') && (support.has('profile') || support.has('directory')))) errors.push({ field: 'citations', code: 'sources' });
-  if (citations.some(id => !['weekly', 'reply', 'profile', 'directory', 'note'].includes(id))) errors.push({ field: 'citations', code: 'unrelated' });
+  if (!isPurpose) errors.push({ field: 'purpose', code: 'purpose' });
   return { ok: errors.length === 0, errors };
 }
 
@@ -93,9 +86,9 @@ export function hydrate(value) {
   const state = { ...base, lang: value.lang === 'en' ? 'en' : 'zh', read: ids(value.read),
     query: limited(value.query, 120), searches: Array.isArray(value.searches) ? value.searches.filter(s => typeof s === 'string').slice(-20).map(s => s.slice(0, 120)) : [],
     draft: Object.fromEntries(['person', 'place', 'purpose'].map(key => [key, limited(value.draft?.[key], key === 'purpose' ? 500 : 160)])),
-    citations: ids(value.citations).filter(id => id !== 'back'), hint: Math.min(3, Math.max(0, Math.trunc(Number(value.hint) || 0))),
+    hint: Math.min(3, Math.max(0, Math.trunc(Number(value.hint) || 0))),
     readerSize: [18, 20, 22, 24].includes(value.readerSize) ? value.readerSize : 20, searchShown: value.searchShown === true };
-  // A saved click on a category cannot stand in for the evidence rule.
+  // Old citation arrays are intentionally ignored. Drafts and completed answers survive.
   state.completed = value.completed === true && validate(state).ok;
   state.storyDelivered = state.completed;
   state.read = state.read.filter(id => id !== 'back' || state.completed);

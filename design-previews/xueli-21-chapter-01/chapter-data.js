@@ -3,11 +3,17 @@ const both = (zh, en) => ({ zh, en });
 export const ASSETS = {
   'app-chat': both('微信', 'WeChat'), 'app-files': both('文件夹', 'Files'),
   'app-browser': both('浏览器', 'Browser'), 'app-casebook': both('调查笔记', 'Casebook'),
-  'avatar-gg': both('GGbond 头像', 'GGbond avatar'), 'prop-pc': both('2008 年旧电脑', '2008 computer'),
-  'photo-anniversary': both('旅馆周年合影', 'Anniversary photo'),
-  'portrait-june': both('朱恩的工作照', 'June at work'),
-  'prop-camera-bag': both('楚人的相机包', 'Churen’s camera bag'),
-  'photo-back': both('合影的背面', 'Back of the print')
+  'avatar-gg': both('GGbond 头像', 'GGbond avatar'), 'prop-pc': { ...both('2008 年旧电脑', '2008 computer'), tiles: [2, 1] },
+  'photo-anniversary': { ...both('旅馆周年合影', 'Anniversary photo'), tiles: [2, 1] },
+  'portrait-june': { ...both('朱恩的工作照', 'June at work'), tiles: [1, 2] },
+  'prop-camera-bag': { ...both('楚人的相机包', 'Churen’s camera bag'), tiles: [1, 2] },
+  'photo-back': { ...both('合影的背面', 'Back of the print'), tiles: [2, 1] }
+};
+// Accepted wording belongs to the case facts, never to an online AI judge.
+export const ANSWER_ALIASES = {
+  person: ['朱恩·沃德', '朱恩沃德', '朱恩', 'June Ward', 'J. Ward', 'June'],
+  place: ['青鸟照相馆', '青鸟摄影店', '青鸟', 'Bluebird Photo', 'Bluebird Photo Studio', 'Bluebird'],
+  purpose: ['员工合影', '旅馆合照', '周年合影', '合影底片', '照片原件', '原底片', '合影', '合照', '底片', '旧照片', 'staff photo', 'hotel group photograph', 'anniversary picture', 'original group photo', 'photo negative']
 };
 export const OPENING = [
   both('我在闲虾买的那台老电脑到了。雪梨镇寄来的，卖家连昵称都注销了。', 'That old PC from Xianxia arrived. Shipped from Xueli Town. The seller’s account is gone now.'),

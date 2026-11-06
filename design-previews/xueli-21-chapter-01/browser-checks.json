@@ -1,15 +1,17 @@
 {
-  "testedAt": "2026-11-06T04:07:00.337Z",
+  "testedAt": "2026-11-06T04:37:47.627Z",
   "base": "http://127.0.0.1:3135/xueli-21-chapter-01/",
   "runs": [
     {
       "lang": "zh",
       "width": 1440,
       "height": 1050,
-      "alternativeDirectoryEvidence": false,
+      "shopInfoViaDirectory": false,
       "completed": true,
       "readingPositionRestored": true,
-      "draftAndCitationsRestored": true,
+      "draftRestored": true,
+      "noCitationControls": true,
+      "shortAliasesAccepted": true,
       "wrongAnswersRejected": true,
       "storyOnceAfterRefresh": true,
       "fonts": {
@@ -25,10 +27,12 @@
       "lang": "en",
       "width": 1440,
       "height": 1050,
-      "alternativeDirectoryEvidence": true,
+      "shopInfoViaDirectory": true,
       "completed": true,
       "readingPositionRestored": true,
-      "draftAndCitationsRestored": true,
+      "draftRestored": true,
+      "noCitationControls": true,
+      "shortAliasesAccepted": true,
       "wrongAnswersRejected": true,
       "storyOnceAfterRefresh": true,
       "fonts": {
@@ -44,10 +48,12 @@
       "lang": "zh",
       "width": 390,
       "height": 1000,
-      "alternativeDirectoryEvidence": false,
+      "shopInfoViaDirectory": false,
       "completed": true,
       "readingPositionRestored": true,
-      "draftAndCitationsRestored": true,
+      "draftRestored": true,
+      "noCitationControls": true,
+      "shortAliasesAccepted": true,
       "wrongAnswersRejected": true,
       "storyOnceAfterRefresh": true,
       "fonts": {
@@ -63,10 +69,12 @@
       "lang": "en",
       "width": 320,
       "height": 900,
-      "alternativeDirectoryEvidence": true,
+      "shopInfoViaDirectory": true,
       "completed": true,
       "readingPositionRestored": true,
-      "draftAndCitationsRestored": true,
+      "draftRestored": true,
+      "noCitationControls": true,
+      "shortAliasesAccepted": true,
       "wrongAnswersRejected": true,
       "storyOnceAfterRefresh": true,
       "fonts": {
@@ -93,5 +101,6 @@
   "corruptSavePreservedUntilConfirmedReset": true,
   "blockedStorageAllowsTemporaryReading": true,
   "searchTextSafelyRendered": true,
+  "legacyBlockedDraftResumedWithoutCitations": true,
   "passed": true
 }
