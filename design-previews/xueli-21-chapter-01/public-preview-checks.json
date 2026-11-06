@@ -1,5 +1,42 @@
 {
-  "revision": "local-publications-p0-20261106",
-  "status": "pending actual public playthrough",
-  "passed": null
+  "url": "https://raw.githack.com/RieyekiWong/123/308e641a866ae17c5bf549b3637eda72c6a26b8e/design-previews/xueli-21-chapter-01/index.html",
+  "testedAt": "2026-11-06T13:33:52.580Z",
+  "runs": [
+    {
+      "lang": "zh",
+      "width": 1440,
+      "hostingNotice": true,
+      "completed": true,
+      "denialRejected": true,
+      "explicitCorrectionOrHonorificAccepted": true,
+      "initialSearchHasNoDiaryNoise": true,
+      "draftRestored": true,
+      "completedRestored": true,
+      "fonts": {
+        "fusion": true,
+        "silkscreen": true,
+        "overflow": false
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "hostingNotice": true,
+      "completed": true,
+      "denialRejected": true,
+      "explicitCorrectionOrHonorificAccepted": true,
+      "initialSearchHasNoDiaryNoise": true,
+      "draftRestored": true,
+      "completedRestored": true,
+      "fonts": {
+        "fusion": true,
+        "silkscreen": true,
+        "overflow": false
+      }
+    }
+  ],
+  "errors": [],
+  "apiRequests": [],
+  "failedAssets": [],
+  "passed": true
 }

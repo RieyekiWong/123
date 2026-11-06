@@ -120,3 +120,11 @@
 ## 验证记录
 
 实际结果见 [verification.json](verification.json) 和 [browser-checks.json](browser-checks.json)。公开版本的作者对照测试不携带完整交接稿；原稿和详细审阅只保留本地。
+
+## 实际试玩与截图
+
+[新稿试玩](https://raw.githack.com/RieyekiWong/123/308e641a866ae17c5bf549b3637eda72c6a26b8e/design-previews/xueli-21-chapter-01/index.html) · [修改前试玩](https://raw.githack.com/RieyekiWong/123/10c18803dcf88fe2c954ad7e06bd165fdac735f2/design-previews/xueli-21-chapter-01/index.html)
+
+[桌面实际页面](screens/02-desktop-weekly.png) · [手机实际阅读](screens/06-mobile-reading.png) · [公开地址实测](public-preview-checks.json)
+
+若浏览器已有试玩记录，可以从底部选择“重开样本”重新体验；不会自动清空原进度，也不会清除正式微信或主线存档。
