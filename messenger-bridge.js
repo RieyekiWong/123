@@ -11,9 +11,13 @@ globalThis.StillwaterMessengerBridge = {
     audio,
     reduced,
     blocked = () => false,
+    storageNamespace = '',
+    parseHash = null,
+    formatHash = route => '#'+route,
+    scenePolicy = null,
   }) {
-    const SNAP = "stillwater-browser:v1",
-      META = "stillwater-messenger:v1";
+    const SNAP = storageNamespace ? `stillwater-browser:${storageNamespace}:v1` : "stillwater-browser:v1",
+      META = storageNamespace ? `stillwater-messenger:${storageNamespace}:v1` : "stillwater-messenger:v1";
     const contacts = ["mom", "gg", "milk", "lin", "zhang", "dad", "zhe"];
     const firstDelay = () => 30000 + Math.random() * 10000;
     const nextDelay = () => 60000 + Math.random() * 60000;
@@ -28,6 +32,7 @@ globalThis.StillwaterMessengerBridge = {
         !value.startsWith("#")
       )
         return "";
+      if(parseHash){const parsed=parseHash(value);return parsed&&parsed.route!=='chat'&&canOpen(parsed.route)?value:'';}
       const route = value.slice(1).split("?")[0];
       return /^[a-z][a-z-]*$/.test(route) &&
         route !== "chat" &&
@@ -92,7 +97,7 @@ globalThis.StillwaterMessengerBridge = {
         focus: old.focus || null,
       };
     const raw = read(META),
-      past = getState().evidence.includes("C9") || getState().night.started;
+      past = scenePolicy ? false : getState().evidence.includes("C9") || getState().night.started;
     let meta = {
       schema: 1,
       cadence: 2,
@@ -115,7 +120,7 @@ globalThis.StillwaterMessengerBridge = {
           ? raw.nextContact % contacts.length
           : 0;
       meta.intrusionSeen =
-        raw.intrusionSeen === true || getState().night.started;
+        raw.intrusionSeen === true || (!scenePolicy&&getState().night.started);
     }
     const intrusion = globalThis.StillwaterMessengerIntrusion.create({
       chat,
@@ -129,6 +134,7 @@ globalThis.StillwaterMessengerBridge = {
         (el) => !["password", "file", "hidden"].includes(el.type),
       );
     const identify = (el, index) => ({
+      fieldId: el.dataset.fieldId || '',
       id: el.id.slice(0, 100),
       name: el.name?.slice(0, 100) || "",
       type: el.type,
@@ -172,12 +178,13 @@ globalThis.StillwaterMessengerBridge = {
               start: document.activeElement.selectionStart,
               end: document.activeElement.selectionEnd,
             }
-          : null,
+          : saved?.hash===lastHash ? saved.focus : null,
       };
       write(SNAP, saved);
     }
     function fieldFor(item, list) {
       if (!item || typeof item !== "object") return null;
+      if(item.fieldId)return list.find(el=>el.dataset.fieldId===item.fieldId&&el.type===item.type)||null;
       if (typeof item.id === "string" && item.id)
         return (
           list.find((el) => el.id === item.id && el.type === item.type) || null
@@ -238,22 +245,23 @@ globalThis.StillwaterMessengerBridge = {
     }
     function beforeRender() {
       const next = location.hash;
+      const wasChat = parseHash ? parseHash(lastHash)?.route==='chat' : lastHash.startsWith('#chat');
       if (
         isChat() &&
         lastHash &&
-        !lastHash.startsWith("#chat") &&
+        !wasChat &&
         host()?.childNodes.length
       ) {
         capture();
         const fragment = document.createDocumentFragment();
         while (host().firstChild) fragment.append(host().firstChild);
         cache = { hash: saved?.hash, fragment };
-      } else if (!isChat() && lastHash.startsWith("#chat"))
+      } else if (!isChat() && wasChat)
         restorePending = true;
       if (
         !isChat() &&
         lastHash &&
-        !lastHash.startsWith("#chat") &&
+        !wasChat &&
         next !== lastHash
       ) {
         cache = null;
@@ -288,7 +296,7 @@ globalThis.StillwaterMessengerBridge = {
     }
     const eligible = () =>
       !isChat() &&
-      !getState().night.started &&
+      (scenePolicy ? scenePolicy().notices : !getState().night.started) &&
       !["void", "ending"].includes(getRoute()) &&
       !blocked() &&
       !document.hidden &&
@@ -337,6 +345,7 @@ globalThis.StillwaterMessengerBridge = {
     }
     function sync() {
       if (!eligible()) dismiss();
+      if(scenePolicy)return;
       const currentStory = globalThis.StillwaterStoryV13?.active(getState());
       const warningReview = currentStory
         ? getState().story.tab === "cause" && ["rewrite-review", "source-review"].includes(getRoute())
@@ -393,7 +402,7 @@ globalThis.StillwaterMessengerBridge = {
       dismiss();
       if (el.dataset.messengerAction === "open") chat.openRoom(el.dataset.room);
       const room = el.dataset.room;
-      location.hash = room ? "chat?room=" + encodeURIComponent(room) : "chat";
+      location.hash = formatHash(room ? "chat?room=" + encodeURIComponent(room) : "chat");
     });
     const deferCapture = () => {
       if (!isChat()) {

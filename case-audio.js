@@ -1,6 +1,6 @@
 /* Gesture-unlocked local music and original SFX, on separate buses. */
 globalThis.StillwaterCaseAudio = {
-  create({getState,getRoute,canOpen=()=>true,getPresentation=()=>({})}) {
+  create({getState,getRoute,canOpen=()=>true,getPresentation=()=>({}),getScene=null,isDeep=null}) {
     const policy=globalThis.StillwaterAudioPolicy,tracks=new Map(globalThis.StillwaterAudioTracks.map(t=>[t.id,t]));
     let mix={schema:1,music:.65,effects:.6};
     try {const raw=JSON.parse(localStorage.getItem('stillwater-audio:v1'));if(raw?.schema===1)for(const k of ['music','effects'])if(Number.isFinite(raw[k]))mix[k]=Math.max(0,Math.min(1,raw[k]));}catch {}
@@ -42,7 +42,7 @@ globalThis.StillwaterCaseAudio = {
       breathTimer=setTimeout(breath,(duration+2+random()*4)*1000);
     }
     function syncBreathing() {
-      const active=policy.deep(getRoute(),getState())&&(getState().lastEnding!=='released'||getRoute()==='void');
+      const active=(isDeep?isDeep():policy.deep(getRoute(),getState()))&&(getState().lastEnding!=='released'||getRoute()==='void');
       if(active===breathActive)return;clearTimeout(breathTimer);breathActive=active;
       if(active)breathTimer=setTimeout(breath,1800);else for(const n of [...breaths]){try{n.stop?.();n.disconnect();}catch{}effects.delete(n);breaths.delete(n);}
     }
@@ -78,7 +78,7 @@ globalThis.StillwaterCaseAudio = {
       if(getPresentation().blocked){pause();return;}
       if(!context||context.state!=='running')return;
       const route=getRoute(),allowed=canOpen(route),presentation=getPresentation();if(allowed&&policy.investigate.has(route))engaged=true;
-      const next=policy.scene({route,state:getState(),engaged,allowed,...presentation});applyMix();
+      const next=getScene?getScene({route,state:getState(),engaged,allowed,...presentation}):policy.scene({route,state:getState(),engaged,allowed,...presentation});applyMix();
       if(next!==scene){scene=next;quietUntil=0;clearTimeout(restoreTimer);applyMix();generation++;loading?.controller.abort();loading=null;retire(policy.silent.has(route));desired=next;}
       if(!allowed){stopEffects();return;}syncMonitor();syncBreathing();
       if(!next||loading?.id===next||[...voices].some(v=>v.id===next&&!v.retiring)||(failed.get(next)||0)>Date.now())return;

@@ -1,9 +1,10 @@
 /* Desktop messenger: fixed story + opt-in Worker AI + offline fallback. */
 globalThis.StillwaterChat = {
-  create({t,esc,getRoute,audio,onIncoming=()=>{}}) {
+  create({t,esc,getRoute,audio,onIncoming=()=>{},storageKey,initialState,canPersist=()=>true,formatRoute=route=>'#'+route,renderShareCard}) {
     const D=globalThis.StillwaterChatData,M=globalThis.StillwaterChatModel;
+    const key=storageKey||M.KEY;
     let state=M.fresh(),root=null,lastTick=Date.now(),lastInput=0,lastFlush=0,saveTimer=null,aiNotice='',connectGeneration=0;
-    try {state=M.hydrate(JSON.parse(localStorage.getItem(M.KEY)));} catch {}
+    try {const raw=localStorage.getItem(key);state=M.hydrate(raw?JSON.parse(raw):initialState);} catch {}
     const localized=value=>Array.isArray(value)?t(...value):value;
     const personName=id=>localized((D.people||D.members)[id]?.name||id);
     const transport=globalThis.StillwaterChatTransport.create({onStatus:code=>{aiNotice=code;renderStatus();}});
@@ -28,7 +29,8 @@ globalThis.StillwaterChat = {
     function persist() {
       clearTimeout(saveTimer);
       try {
-        localStorage.setItem(M.KEY,JSON.stringify(state));
+        if(!canPersist())throw new Error('storage-preserved');
+        localStorage.setItem(key,JSON.stringify(state));
         const status=root?.querySelector('[data-chat-storage]');
         if(status)status.textContent=transport.eligible()?t('在线 AI 已启用 · 记录保存在本机','Online AI enabled · History saved here'):t('本地聊天 · 记录保存在本机','Local chat · History saved here');
       } catch {
@@ -108,6 +110,7 @@ globalThis.StillwaterChat = {
       return message.kind==='script'?D.script.find(m=>m.id===message.key):D.bank[message.key];
     }
     function shareCard() {
+      if(renderShareCard)return renderShareCard();
       const post=globalThis.StillwaterForumData.find(p=>p.id==='job');
       return `<a class="chat-share-card" data-chat-forum href="#forum?topic=job"><strong>${esc(localized(post.title))}</strong><span class="chat-share-summary">${esc(localized(post.paragraphs[0]))}</span><span class="chat-share-meta">${esc(localized(post.user))} · ${esc(post.at)}</span><span class="chat-share-source"><span aria-hidden="true">BBS</span>${t('夜猫论坛 / NIGHT OWL BBS','Night Owl BBS')}</span></a>`;
     }
@@ -140,7 +143,7 @@ globalThis.StillwaterChat = {
       list.innerHTML=globalThis.StillwaterChatPeople.order.filter(id=>id!=='wcr_new'||state.story.request==='accepted').filter(id=>globalThis.StillwaterChatOpeningView?.visible(state,id)!==false).filter(id=>conversationName(id).toLowerCase().includes(query)).map(id=>{
         const last=messagesFor(id).at(-1),entry=last?.entry||(last&&resolved(last));
         const preview=entry?.kind==='card'?t('[链接] 夜猫论坛','[Link] Night Owl BBS'):entry?localized(entry.text):'';
-        const time=last?new Date(last.at).toISOString().slice(11,16):'';
+        const time=last?.displayTime?last.displayTime.slice(-5):last?new Date(last.at).toISOString().slice(11,16):'';
         return `<button class="chat-contact ${state.ui.conversation===id?'is-current':''}" data-chat-room="${id}" aria-pressed="${state.ui.conversation===id}">${id==='group'?`<span class="chat-group-avatar" aria-hidden="true">${avatar('gg')}${avatar('zhang')}${avatar('lin')}${avatar('me')}</span>`:id==='notes'?`<span class="chat-file-avatar">${icon('folder')}</span>`:avatar(D.sideChats[id].avatar)}<span class="chat-contact-copy"><span class="chat-contact-heading"><strong>${esc(conversationName(id))}${state.ui.unread[id]?`<span class="chat-unread" aria-label="${t('新消息','Unread')}">${state.ui.unread[id]}</span>`:''}</strong><time>${time}</time></span><small>${esc(preview)}</small></span></button>`;
       }).join('')||`<p class="chat-search-empty">${t('没有找到会话','No conversations found')}</p>`;
       globalThis.StillwaterChatOpeningView?.invitation(root,state,{t,esc});
@@ -226,7 +229,7 @@ globalThis.StillwaterChat = {
       if(!M.validRoom(room)||(room==='wcr_new'&&state.story.request!=='accepted'))return false;
       rememberScroll();state.ui.conversation=room;state.ui.list=false;
       const parameters=new URLSearchParams(location.hash.split('?')[1]||'');
-      if(getRoute()==='chat'&&parameters.has('room')){parameters.set('room',room);history.replaceState(null,'',location.pathname+location.search+'#chat?'+parameters.toString());}
+      if(getRoute()==='chat'&&parameters.has('room')){parameters.set('room',room);history.replaceState(null,'',location.pathname+location.search+formatRoute('chat?'+parameters.toString()));}
       if(root)renderConversation();persist();return true;
     }
     function notification(message) {
@@ -240,7 +243,7 @@ globalThis.StillwaterChat = {
       root.innerHTML=`<div class="chat-app" data-chat-list="${state.ui.list}">
         <nav class="chat-rail" aria-label="${t('聊天工具','Chat tools')}"><div class="chat-window-lights" aria-hidden="true"><i></i><i></i><i></i></div><span class="chat-own-avatar" title="Rieyeki">${avatar('me')}</span><button class="chat-rail-current" data-chat-action="list" aria-label="${t('会话列表','Conversations')}" title="${t('会话列表','Conversations')}">${icon('chat')}</button><button data-chat-action="people" aria-label="${t('查看群成员','View group members')}" title="${t('查看群成员','View group members')}">${icon('people')}</button><button data-chat-action="notes" aria-label="${t('已存消息','Saved messages')}" title="${t('已存消息','Saved messages')}">${icon('folder')}</button><button data-case-action="instructions" aria-label="${t('游玩说明','How to play')}" title="${t('游玩说明','How to play')}">${icon('info')}</button><button class="chat-rail-settings" data-case-action="save-settings" aria-label="${t('存档与重置','Saves & reset')}" title="${t('存档与重置','Saves & reset')}">${icon('settings')}</button></nav>
         <aside class="chat-contact-pane" aria-label="${t('会话列表','Conversations')}"><div class="chat-search"><label class="chat-sr-only" for="chat-search">${t('搜索会话','Search conversations')}</label><input id="chat-search" type="search" placeholder="${t('搜索','Search')}" autocomplete="off"><span aria-hidden="true">${icon('search')}</span></div><div class="chat-contact-list"></div><p class="chat-local-label">${t('聊天记录','Chats')}</p></aside>
-        <main class="chat-conversation" id="content" tabindex="-1"><header class="chat-heading"><button class="chat-mobile-back" data-chat-action="list" aria-label="${t('返回会话列表','Back to conversations')}">‹</button><h1 id="chat-title">${esc(groupName())}</h1><a data-case-language href="${english?'index-zh.html':'index.html'}${esc(location.search)}#chat">${t('English','简体中文')}</a><button class="chat-ai-open" data-chat-action="ai">${t('AI 聊天','AI chat')}</button><button data-chat-action="members" aria-label="${t('群聊信息','Group information')}">···</button></header>
+        <main class="chat-conversation" id="content" tabindex="-1"><header class="chat-heading"><button class="chat-mobile-back" data-chat-action="list" aria-label="${t('返回会话列表','Back to conversations')}">‹</button><h1 id="chat-title">${esc(groupName())}</h1><a data-case-language href="${english?'index-zh.html':'index.html'}${esc(location.search+formatRoute('chat'))}">${t('English','简体中文')}</a><button class="chat-ai-open" data-chat-action="ai">${t('AI 聊天','AI chat')}</button><button data-chat-action="members" aria-label="${t('群聊信息','Group information')}">···</button></header>
         <aside class="chat-members" hidden><div class="chat-member-list"><h2>${t('群成员','Group members')}（4）</h2>${Object.entries(D.members).map(([id,member])=>`<div>${avatar(id)}<span>${esc(member.name)}</span></div>`).join('')}</div><div class="chat-menu-actions"><button data-chat-action="instructions">${t('游玩说明','How to play')}</button><button data-case-action="settings">${t('声音与设置','Sound & settings')}</button><button data-chat-action="settings">${t('存档与重置','Saves & reset')}</button><button data-ad-action="folder">${t('我的广告夹','My ad folder')}</button></div><details class="chat-avatar-credits"><summary>${t('头像来源','Avatar credits')}</summary>${globalThis.StillwaterChatPhotos.map(photo=>`<p>${esc(personName(photo.id))} · <a href="${esc(photo.source)}" target="_blank" rel="noopener noreferrer">${esc(photo.author)}</a> · <a href="${esc(photo.license_url)}" target="_blank" rel="noopener noreferrer">${esc(photo.license)}</a></p>`).join('')}</details><p>${t('虚构聊天，不连接微信账号。在线 AI 需要另行启用。','Fictional chat, with no messaging account connected. Online AI is optional.')}</p></aside>
         <p class="chat-ai-status" data-chat-ai-status role="status"></p><div class="chat-messages" role="log" aria-label="${t('聊天记录','Chat history')}" aria-live="off" tabindex="0"></div><button class="chat-new-messages" data-chat-action="latest" hidden></button><p class="chat-typing" role="status" aria-live="polite"></p>
         <form class="chat-composer"><div class="chat-compose-tools"><button type="button" data-chat-action="emoji" aria-label="${t('表情','Emoji')}">${icon('smile')}</button><button type="button" data-chat-action="notes" aria-label="${t('已存消息','Saved messages')}" title="${t('已存消息','Saved messages')}">${icon('folder')}</button><button type="button" data-chat-action="history" aria-label="${t('查看较早消息','Earlier messages')}" title="${t('查看较早消息','Earlier messages')}">${icon('history')}</button><span data-chat-storage>${t('消息仅保存在本机','Messages stay on this device')}</span></div><div class="chat-emoji-panel" hidden>${['🙂','😂','👍','🙃','🍜','☕','👀','晚点看'].map(emoji=>`<button type="button" data-chat-emoji="${emoji==='晚点看'?t('晚点看','Will look later'):emoji}">${emoji==='晚点看'?t('晚点看','Later'):emoji}</button>`).join('')}</div><label class="chat-sr-only" for="chat-input">${t('发送消息','Message')}</label><textarea id="chat-input" maxlength="${D.maxText}" rows="2" spellcheck="false" aria-describedby="chat-send-help"></textarea><div class="chat-send-row"><span id="chat-send-help">${t('Enter 发送，Shift + Enter 换行','Enter to send · Shift + Enter for a new line')}</span><button type="submit">${t('发送','Send')}</button></div></form></main></div>`;
@@ -285,6 +288,6 @@ globalThis.StillwaterChat = {
     window.addEventListener('pagehide',()=>{if(root){rememberScroll();persist();}});
     window.addEventListener('resize',fitViewport);
     window.visualViewport?.addEventListener('resize',fitViewport);
-    return {mount,leave,openRoom,storyState:()=>({shared:state.shared,request:state.story.request,oldVisited:state.ui.visited.wcr_old===true,openingEdition:state.story.opening?.edition||'legacy'}),setStoryRequest(value){if(state.story.request!==value){state.story.request=value;persist();if(root)renderConversation();}},deliverStory(id){const incoming=M.deliver(state,id);const saved=persist();if(incoming.length){if(root){rememberScroll();renderMessages(true);renderContacts();audio.effect('chat-receive');}onIncoming(incoming.slice(-1).map(notification).filter(Boolean));}return saved;},contact:room=>({name:personName(room),avatar:avatar(room)}),unread:()=>Object.values(state.ui.unread).reduce((a,b)=>a+b,0),checkIn(room,options){const message=M.checkIn(state,room,document.documentElement.lang==='zh-CN'?'zh':'en',options);if(!message)return null;persist();return notification(message);},reset(){leave();transport.reset();state=M.fresh();try {localStorage.removeItem(M.KEY);}catch {}},hasVisitedForum:()=>state.openedForum};
+    return {mount,leave,openRoom,storyState:()=>({shared:state.shared,request:state.story.request,oldVisited:state.ui.visited.wcr_old===true,openingEdition:state.story.opening?.edition||'legacy'}),setStoryRequest(value){if(state.story.request!==value){state.story.request=value;persist();if(root)renderConversation();}},deliverStory(id){const incoming=M.deliver(state,id);const saved=persist();if(incoming.length){if(root){rememberScroll();renderMessages(true);renderContacts();audio.effect('chat-receive');}onIncoming(incoming.slice(-1).map(notification).filter(Boolean));}return saved;},contact:room=>({name:personName(room),avatar:avatar(room)}),unread:()=>Object.values(state.ui.unread).reduce((a,b)=>a+b,0),checkIn(room,options){const message=M.checkIn(state,room,document.documentElement.lang==='zh-CN'?'zh':'en',options);if(!message)return null;persist();return notification(message);},reset({keepAI=false,initialState:next}={}){leave();transport.cancelAll();if(!keepAI)transport.reset();state=next?M.hydrate(next):M.fresh();try {if(next)persist();else localStorage.removeItem(key);}catch {}},hasVisitedForum:()=>state.openedForum};
   },
 };
