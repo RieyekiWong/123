@@ -1,0 +1,53 @@
+/* PC workspace: original messenger on one tab, existing pixel desktop on the other. */
+body { min-width:1100px; }
+[hidden] { display:none !important; }
+#workspace-tabs { height:56px; display:flex; align-items:center; gap:12px; padding:8px 24px; background:#292c30; color:#fff; font:15px "Microsoft YaHei",sans-serif; }
+#workspace-tabs button { min-width:130px; padding:8px 20px; border:1px solid #5e6469; background:#3e4449; color:#fff; border-radius:3px; box-shadow:none; }
+#workspace-tabs button[aria-pressed=true] { background:#f4f4ef; color:#222; }
+#workspace-tabs>span { margin-left:auto; color:#c8cbd0; }
+[data-wechat-unread]:not(:empty), .friend-dot { display:inline-block; min-width:20px; padding:1px 5px; border-radius:10px; background:#c83c38; color:white; font:12px/18px sans-serif; text-align:center; }
+body[data-site=chat] #wechat-host { font:15px "Microsoft YaHei",Arial,sans-serif; }
+body[data-site=chat] #wechat-host .chat-app { height:calc(100dvh - 56px); min-height:650px; position:relative; }
+body[data-site=chat] .chat-app button { box-shadow:none; transform:none; border-radius:3px; }
+body[data-site=chat] .chat-app input,body[data-site=chat] .chat-app textarea { box-shadow:none; }
+body[data-site=chat] .chat-story-profile { display:none; }
+body[data-site=chat] [data-open-old-pc] { font-size:15px; letter-spacing:0; background:#e2eee3; padding:8px 16px; color:#22633e; }
+body[data-site=chat] .sample-files-link { text-align:left; padding:8px 30px; background:#ecf0e9; color:#326b42; flex:none; }
+body[data-site=chat] .chat-rail [data-chat-action=people] { position:relative; }
+.has-request::after { content:'1'; position:absolute; right:0; top:0; font:11px/18px sans-serif; background:#c83c38; border-radius:50%; color:white; width:18px; height:18px; }
+.friends-directory { position:absolute; z-index:5; top:0; bottom:0; left:clamp(60px,4.8vw,84px); right:0; display:grid; grid-template-columns:clamp(260px,22vw,420px) 1fr; background:#f5f5f5; }
+.friends-directory aside { background:#eae9e9; border-right:1px solid #ddd; padding:24px 16px; }
+.friends-directory main { padding:30px 48px; }
+.friends-directory h1,.friends-directory h2 { font-family:inherit; font-size:20px; font-weight:400; }
+body[data-site=chat] .friends-directory aside button { display:block; width:100%; text-align:left; padding:18px 12px; background:#dedede; margin:8px 0; font-size:16px; }
+.friend-request { display:flex; gap:20px; align-items:center; border-block:1px solid #ddd; padding:24px 0; }
+.unknown-avatar { display:grid; place-items:center; width:64px; height:64px; background:#d9ddda; font-size:32px; color:#777; }
+body[data-site=chat] .friend-request button { margin-left:auto; background:#07a54e; color:white; padding:8px 28px; }
+#root .desktop { padding-top:20px; }
+#root .desktop-layout { position:relative; }
+#root .desktop-icons { width:110px; }
+#root .desktop-icon { min-height:102px; width:110px; }
+#root .desktop-icon[data-app=browser],#root .desktop-icon[data-app=casebook] { background:#fff0bc; border:2px solid var(--ink); box-shadow:4px 4px 0 #ab795e; margin-bottom:12px; }
+#root .desktop-layout { grid-template-columns:110px minmax(0,1fr); }
+#root .search-form { display:flex; gap:12px; }
+#root .search-form input { font-size:20px; min-height:56px; flex:1; }
+#root .search-form button { min-width:110px; background:var(--teal); color:#fff9e9; font-size:20px; }
+#root .notebook-shortcut { float:right; margin:0 0 12px 16px; background:#f6d577; }
+#root .notebook-panel { position:absolute; z-index:4; right:16px; top:16px; width:420px; max-height:calc(100dvh - 240px); overflow:auto; background:var(--paper); border:var(--edge); box-shadow:6px 6px 0 #3e304c66; }
+#root:has(.notebook-panel) .window-content { padding-right:470px; }
+#root .notebook-panel>header { position:sticky; top:0; display:flex; justify-content:space-between; align-items:center; background:var(--teal); color:var(--paper); padding:8px 16px; z-index:1; }
+#root .notebook-panel .casebook { padding:20px; }
+#root .notebook-panel .answer-fields { display:block; }
+#root .notebook-panel .answer-fields>div { margin-bottom:14px; }
+#root .notebook-panel .submit-row { display:block; }
+#root .notebook-panel h1 { font-size:24px; }
+#root .window-content { height:calc(100dvh - 310px); min-height:430px; }
+#root .sample-strip { padding-block:8px; }
+.workspace-help { max-width:600px; padding:32px; }
+/* Keep the PC layout even in a narrower browser window; no phone navigation. */
+body[data-site=chat] #wechat-host .chat-app { display:grid; grid-template-columns:clamp(60px,4.8vw,84px) clamp(260px,22vw,420px) minmax(0,1fr); }
+body[data-site=chat] #wechat-host .chat-rail { display:flex; }
+body[data-site=chat] #wechat-host .chat-contact-pane { display:flex; }
+body[data-site=chat] #wechat-host .chat-conversation { display:flex; }
+body[data-site=chat] #wechat-host .chat-mobile-back { display:none; }
+#root .notebook-panel>header button { color:var(--ink); }

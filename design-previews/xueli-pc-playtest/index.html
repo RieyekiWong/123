@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-VDB043P5/765SQuHPDH1BEzc216rHsr5SQGcbGM4Izs='; style-src 'sha256-gG3an7FJQiYLZI7ah1OevIoCq028BMOTfQPaQLJOjtQ=' 'unsafe-hashes'; font-src data:; img-src data:; connect-src https://damp-rain-a5a6.ywang254.workers.dev; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-hQ6YTi8so/nq19GQnM7y5uLm8H/WTiyAHfu8SEgA1zM='; style-src 'sha256-gG3an7FJQiYLZI7ah1OevIoCq028BMOTfQPaQLJOjtQ=' 'unsafe-hashes'; font-src data:; img-src data:; connect-src https://damp-rain-a5a6.ywang254.workers.dev; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="description" content="Stillwater Hotel 2.1 独立调查章节样本。所有故事人物均为虚构，插图等待作者绘制。">
   <title>照片背面 / Stillwater 2.1</title>
 <link rel="icon" href="data:,">
@@ -2098,7 +2098,7 @@ globalThis.StillwaterChatModel = (() => {
   }
   function validStoryRoom(message){const e=globalThis.StillwaterChatStory?.entry(message.key);return !!e&&(e.room?e.room===message.conversation:e.person===message.conversation);}
   function sideMessages(s,room){return globalThis.StillwaterChatOpening?.sideMessages(s,room)||D.sideChats[room]?.messages||[];}
-  function deliver(s,id){if(globalThis.StillwaterChatOpening)id=globalThis.StillwaterChatOpening.batchId(s,id);const batch=id&&globalThis.StillwaterStoryData?.batches[id];if(!batch||s.story.delivered.includes(id))return [];s.story.delivered.push(id);return batch.keys.map(key=>append(s,{kind:'story',key,conversation:batch.room}));}
+  function deliver(s,id){if(globalThis.StillwaterChatOpening)id=globalThis.StillwaterChatOpening.batchId(s,id);const batch=id&&globalThis.StillwaterStoryData?.batches[id];if(!batch||s.story.delivered.includes(id))return [];if(globalThis.StillwaterChatOpening?.queueBatch?.(s,id,batch))return [];s.story.delivered.push(id);return batch.keys.map(key=>append(s,{kind:'story',key,conversation:batch.room}));}
   return {deliver,KEY,base,fresh,hydrate,phase,topic,send,advance,roomOf,resolved,history,sideMessages,request,accept,fallback,markRead,checkIn,validRoom};
 })();
 
@@ -2290,17 +2290,50 @@ for (const [id,person] of Object.entries(globalThis.StillwaterChatPeople.contact
     initialize(s) {
       s.messages = [{ id: 'm1', kind: 'story', key: opening[0], conversation: 'gg', at: s.messages[0].at }];
       s.ui.conversation = 'gg';
-      s.story.opening = { edition: 'xueli-pc', elapsed: 0 };
+      s.story.opening = { edition: 'xueli-pc', elapsed: 0, queue: [], remaining: 650 };
       return s;
     },
     hydrate(s, raw) {
       const elapsed = raw.story?.opening?.elapsed;
-      s.story.opening = { edition: 'xueli-pc', elapsed: Number.isFinite(elapsed) ? Math.max(0, Math.min(elapsed, 86400000)) : 0 };
+      const rawQueue = raw.story?.opening?.queue;
+      const queue = [...new Set((Array.isArray(rawQueue) ? rawQueue : []).filter(id => batches[id]?.room === 'wcr_new' && !s.story.delivered.includes(id)))];
+      if (s.story.request === 'accepted' && !s.story.delivered.includes('xueli.accepted') && !queue.includes('xueli.accepted')) queue.unshift('xueli.accepted');
+      const remaining = raw.story?.opening?.remaining;
+      s.story.opening = { edition: 'xueli-pc', elapsed: Number.isFinite(elapsed) ? Math.max(0, Math.min(elapsed, 86400000)) : 0,
+        queue, remaining: Number.isFinite(remaining) ? Math.max(0, Math.min(remaining, 3500)) : 650 };
+    },
+    queueBatch(s, id, batch) {
+      if (batch.room !== 'wcr_new') return false;
+      const o = s.story.opening;
+      if (s.story.request === 'accepted' && !o.queue.includes(id)) {
+        if (!o.queue.length) o.remaining = 650;
+        o.queue.push(id);
+      }
+      return true;
     },
     advance(s, dt, { chatActive }, append) {
-      if (!chatActive) return false;
-      s.story.opening.elapsed += dt;
+      const o = s.story.opening;
       let changed = false;
+      // Deliver at most one line per tick, including while the old computer is
+      // visible. Progress comes from retained message keys, never wall-clock
+      // catch-up, so refreshing cannot replay a line or flood the conversation.
+      if (s.story.request === 'accepted' && o.queue.length) {
+        const id = o.queue[0], batch = batches[id];
+        const key = batch.keys.find(key => !s.messages.some(m => m.key === key));
+        o.remaining = Math.max(0, o.remaining - dt);
+        if (!key) {
+          if (!s.story.delivered.includes(id)) s.story.delivered.push(id);
+          o.queue.shift(); o.remaining = 1800; changed = true;
+        } else if (o.remaining === 0) {
+          append(s, { kind: 'story', key, conversation: batch.room }); changed = true;
+          o.remaining = Math.min(3500, 1400 + messages[key].text[0].length * 40);
+          if (key === batch.keys.at(-1)) {
+            s.story.delivered.push(id); o.queue.shift();
+          }
+        }
+      }
+      if (!chatActive) return changed;
+      o.elapsed += dt;
       opening.forEach((key, i) => {
         if (s.story.opening.elapsed >= i * 1500 && !s.messages.some(m => m.key === key)) {
           append(s, { kind: 'story', key, conversation: 'gg' }); changed = true;
@@ -2612,7 +2645,7 @@ globalThis.StillwaterChat = {
 const xueliModule1=(()=>{
 // Player-facing P0 copy: 2026-11-06 local-publication realism revision.
 // Full author/editor handoff remains local and is never imported here.
-const CONTENT_REVISION = "local-publications-p0-20261106";
+const CONTENT_REVISION = "user-copy-pc-20261117";
 
 const ASSETS = {
   "app-chat": {
@@ -2876,11 +2909,9 @@ const DOCUMENTS = [
     "paragraphs": {
       "zh": [
         "10/15 周日",
-        "课上老师说我的选题又太大了。上周还说只拍旧招牌，今天 PPT 里已经有地图、酒店和三十年前的旅游广告。她让我先挑一张照片，至少把照片是谁拍的弄明白，再讲什么“地方记忆”。",
-        "我想找静水旅馆十九周年那张员工合影。网上能看到的图太小，字也糊。要是能找到纸质照片就好了，背面据说有人写了名字。底片有没有留着也得问问，不然我没法在作业里交代图片出处。",
-        "雪梨镇周刊的那篇先放书签。明天先查图注的摄影署名，再看有没有办法联系到照相馆。不要一大早又打开十几个网页，最后忘了自己要搜什么。",
-        "相机电池充电。读卡器在小包外层。车票截图存手机里。",
-        "回芝加哥记得给 GG 买咖啡，上回喝错他的还一直没赔。",
+        "上节课时老师说我的选题又太大太杂了。批评我上周还说只拍旧招牌，今天 PPT 里突然冒出一大堆东西，地图、酒店和三十年前的旅游广告啥都有。所以下课后她让我先从中选择一张照片，起码把照片是谁拍的搞清楚，再讲什么“地方记忆”。",
+        "所以我选择了这张静水旅馆十九周年那张员工合影。网上能看到的图太小，字也糊。要是能到那边找到纸质照片就好了，背面据说有人写了合影里的人的名字。",
+        "明天一定一定一定要记得给相机电池充电。还有别忘了带读卡器。回芝加哥后记得给 bond哥 买咖啡，请他吃个饭。",
         "W.C."
       ],
       "en": [
@@ -2909,7 +2940,7 @@ const DOCUMENTS = [
       "en": "Stillwater Hotel marks nineteen years in business"
     },
     "author": {
-      "zh": "艾达·里德（Ada Reed）",
+      "zh": "艾达·里德",
       "en": "Ada Reed"
     },
     "origin": {
@@ -2935,13 +2966,12 @@ const DOCUMENTS = [
     "figure": "photo-anniversary",
     "paragraphs": {
       "zh": [
-        "静水旅馆星期六下午举行了开业十九周年的聚会。酒店邀请了在岗员工、几位曾在这里工作的人，以及一些经常来度假的老顾客。因为下午下过雨，原本安排在院子里的茶点移到了门廊，合影也比计划晚了半个多小时。",
-        "旅馆于 1987 年开业，位于雪梨镇旧湖区西侧。这里没有大型会议中心，来住的多是周末游客、来湖边钓鱼的家庭，也有每年固定回来住上几天的客人。酒店方面说，这次周年活动主要是让员工和老朋友碰个面，没有另外安排公开售票的节目。",
-        "餐厅从中午就开始准备食物。领班露丝说，周末本来也是忙的时候，所以厨房照常供应晚餐，只是下午多烤了一些司康和苹果蛋糕。几名轮班的工作人员要等交接后才能过来，负责拍照的人因此在台阶边等了很久。",
-        "“本来约好三点半，结果人一直没到齐。”露丝说，“有的人还在忙，有的人去换衣服，等大家站好了，刚好又把点心端出来了。”",
-        "常来度假的住客罗伯特·沃尔什（Robert Walsh）和妻子也参加了聚会。两人说，九十年代初第一次来时，旅馆附近还没有现在这么多通往湖边的指示牌。后来孩子长大了，他们来的次数少了，但每年夏天仍会尽量安排一趟。沃尔什提到，前台墙上的钟一直慢了几分钟。“今天还没修。我一进来就看了一眼。”",
-        "下午四点过后，天气放晴，员工和来宾分批站在门前的台阶上拍照。负责这次合影的是桦树街的青鸟照相馆（Bluebird Photo）。摄影师先拍了全体合影，又给几名没赶上第一张的员工补拍。酒店说，等照片印好后会在一楼餐厅放一张，方便当时不在班上的同事查看。",
-        "工作人员打算让入镜的人在纸质照片背面写下姓名和岗位，以免以后整理员工相册时认错人。照相馆会保留底片供日后重印。旅馆另向周刊提供了一张缩小的照片，用于本期报道。",
+        "静水旅馆星期六下午举行了开业十九周年的聚会。酒店不仅邀请了在岗员工，还邀请了几位曾在这里工作的老员工，以及一些经常来度假的老顾客。因为下午下过雨，原本安排在院子里的茶点移到了门廊，合影也比计划晚了半个多小时。",
+        "旅馆于 1987 年开业，位于雪梨镇旧湖区西侧。这里没有大型会议中心，来住的多是周末游客和喜欢来湖边钓鱼的人。",
+        "酒店餐厅从中午就开始准备食物。领班露丝表示，周末一直都是很忙的时候，因此几名轮班的工作人员要等大概忙完后才能过来，因此拍照的事情推迟了很久。",
+        "“本来约好三点半拍照，结果人一直没到齐。不过也是没办法的事情，这么重要的事情肯定要等人到齐了好。”露丝说。",
+        "常来度假的住客罗伯特·沃尔什和妻子也参加了聚会。两人说，九十年代初第一次来时，旅馆附近还没有现在这么多通往湖边的指示牌呢。后来孩子长大了，他们来的次数虽然比以前少了，但每年夏天仍会尽量安排来一趟。",
+        "下午四点过后，天气放晴，员工和来宾分批站在门前的台阶上拍照。负责这次合影的是桦树街的青鸟照相馆（Bluebird Photo）。摄影师先拍了全体合影，又给几名没赶上第一张的员工补拍。",
         "聚会结束后，餐厅照常接待晚餐客人。酒店说，周年合影预计下周送到，届时也会给已经离职、当天回来看望同事的几个人寄去复印件。"
       ],
       "en": [
@@ -2970,7 +3000,7 @@ const DOCUMENTS = [
       "en": "Bluebird Photo still has a place for old pictures"
     },
     "author": {
-      "zh": "艾达·里德（Ada Reed）",
+      "zh": "艾达·里德",
       "en": "Ada Reed"
     },
     "origin": {
@@ -2993,13 +3023,11 @@ const DOCUMENTS = [
     "figure": "portrait-june",
     "paragraphs": {
       "zh": [
-        "桦树街的青鸟照相馆还在营业。店里原来靠冲洗胶卷和拍证件照过日子，如今来问旧照片的人多了：有的带着整盒底片，有的只拿着一张手机拍下的翻印件，想知道家里还有没有另一份。",
-        "店主朱恩·沃德（June Ward）从八十年代末就在这里工作。她说，现在买胶卷的人远不如以前多，倒是常有人把东西送来整理。前几年一位住在外州的顾客寄来一箱旧相册，希望她挑出某次家庭聚会的照片，寄来的纸箱里却连年份都没写。“最后还是得给他打电话，问到底要找谁。”",
-        "店里没有专门的档案室。照相纸、相框和取件袋放在前面，旧底片则按年份装进后屋的盒子。有些盒子是从家里带来的饼干铁盒，外面贴着手写标签。朱恩把它们拿出来给记者看时，提醒不要光凭盒盖判断里面是什么；那只印着圣诞饼干图案的，装的是学校运动会的底片。",
-        "朱恩早年常给周刊供照片，照片下面的署名一般只写 J.W.。记者问她为什么没有写全名，她说当时照片下方留的位置不大，而且镇上报社知道怎么联系她。现在网上转存了不少旧照片，署名缩写有时反倒让人不知道该向谁询问。",
-        "她保存的相册里有婚礼、校队和商店开张时的合影，也有静水旅馆在 2006 年举办十九周年聚会时拍的那张员工照。旅馆 2007 年停业后，一位曾在餐厅工作的员工把原来挂在餐厅的纸质合影送到店里，请她暂时代为保管。朱恩自己留下的底片和这张有手写姓名的纸质照片分开放着，准备有人来问时再找出来。",
-        "“上面写的都是他们当时自己用的名字。”朱恩说。有的人后来搬走了，有的人结婚后改了姓，还有几个名字她本人也看不清。她不准备凭记忆把纸背上的字补齐；有人能提供更准确的说明，可以另附一张纸。她认为弄清楚照片拍摄的年份，比先给每张陌生的脸写上姓名更重要。",
-        "最近来店里找老照片的还有学生。朱恩说，她愿意让人查看店里还保存着的资料，但希望对方提前说明要找哪一年的哪张照片，以免花一个下午翻错盒子。下个月她将在图书馆参加一场家庭相册整理活动，介绍照片的简单分类和保存方法。",
+        "桦树街的青鸟照相馆还在营业。这也是如今镇上唯一的一家冲洗胶卷和拍证件照的店。所以来问旧照片的人变得越来越多了。",
+        "店主朱恩·沃德（June Ward）从八十年代末就在这里工作。她说，虽然现在买胶卷的人远不如以前多，但是常有人过来让我们还原照片。",
+        "朱恩早年常给周刊供照片，照片下面的署名一般只写 J.W.。记者问她为什么没有写全名，她说当时照片下方留的位置不大，而且镇子不大，所以镇上报社知道怎么联系她。",
+        "她保存的相册里有婚礼、校队和商店开张时的合影，也有静水旅馆在 2006 年举办十九周年聚会时拍的那张员工照。旅馆 2007 年停业后，一位曾在餐厅工作的员工把原来挂在餐厅的纸质合影送到店里，请她暂时代为保管，但到目前都还没来取。",
+        "最近来店里找老照片的还有学生。朱恩说，她十分愿意也乐意让人查看店里还保存着的老照片，但希望对方提前说明要找哪一年的哪张照片，以免花一个下午翻错盒子。下个月她将在图书馆参加一场活动，向大家介绍这些老照片是如何诞生的。",
         "青鸟照相馆的营业时间没有因为这次采访而改变。记者离开时，柜台上仍堆着几只待领取的纸袋；有位顾客打电话来，问照片能不能下周再拿。朱恩在登记本上记下姓名，让对方有空再来。"
       ],
       "en": [
@@ -3095,11 +3123,11 @@ const DOCUMENTS = [
     "paragraphs": {
       "zh": [
         "楚人，你好，",
-        "照片找到了，就是你发过来那张缩图对应的员工合影。纸质照片背后有当时写的名字，原底片也还在。有几个字颜色比较浅，你过来可以自己看看。",
-        "明天（周一）下午三点来吧。我在青鸟照相馆，桦树街 6 号。门是蓝色的，门上的 OPEN 牌子有一点歪，不难认。你带着网页上的图片就行，不用特地打印。",
-        "我下午还要替一位客人取照片，可能得让你稍等几分钟。要用相机拍原件的话，我们到时候再商量；先看清楚你到底需要哪张。",
-        "如果临时改了时间，回这封邮件就好。",
-        "祝好，  \nJune"
+        "你想要的照片我已经找到了，就是你发过来那张缩图对应的员工合影。纸质照片背后有当时写的名字。但遗憾的是这个照片如果寄出的话很容易就损坏了，所以你最好过来亲自看看。",
+        "明天（周一）下午三点来吧。我在青鸟照相馆，桦树街 6 号。我的店门是天蓝色的，不难认。",
+        "我下午还要替一位客人取照片，可能得让你稍等几分钟。",
+        "如果临时改了时间或者有什么要求，回复这封邮件就好。",
+        "祝好，\nJune"
       ],
       "en": [
         "Hello Churen,",
@@ -3196,12 +3224,12 @@ const DOCUMENTS = [
     ],
     "paragraphs": {
       "zh": [
-        "今天相机包还是湿的。昨天回家忘了把它打开晾，今天早上摸到里面那层布还有点凉。我把电池和卡先拿出来了，别的暂时没动。",
-        "课上又讲了一遍项目范围。老师说我选的旧招牌挺好，但别每找到一张旧照片就想再加一个主题。我现在已经从招牌查到旅游宣传册，又查到几个倒闭的旅馆，确实有点收不住。下周先拿三张照片给她看，不要拿十页网页截图去糊弄。",
-        "中午 GG 发来他吃的午饭，说这家炸鸡终于不是干的。我正在电脑房改图，没有出去，后来买了个三明治，难吃，但至少不用排队。GG 问我还欠他几杯咖啡，我说这笔账已经超出我的数学能力。他发了三个问号过来。",
-        "晚上我妈打电话，问我那件厚外套还在不在。我说在，她说那就穿，不要每次都等到感冒才想起来。妹妹抢过手机给我看她今天做的纸板小狗，腿粘得不太直。我说挺好，她嫌我回答得太快，又把小狗举到镜头前让我仔细看。",
-        "后来她发了照片过来。小狗一只耳朵折了一下，我截了张图存在电脑上，想着以后给相机包做个小挂件。她要是知道我真的挂上，估计能高兴一整天。",
-        "明天先把作业的图片按日期重命名。现在文件夹里有 final2、final-new 和 final-new-really，我自己都不知道差在哪。还有不要再把相机包放到厨房椅子上晾，早上差点把它当书包背走。"
+        "今天相机包还是湿的。昨天回家忘了把它打开晾，臭死了。",
+        "课上又讲了一遍项目范围。老师说我选的旧招牌挺好，但别每找到一张旧照片就想再加一个主题。",
+        "中午 GG 发来他吃的午饭，说这家炸鸡终于不是半生的了。Bond哥问我还欠他几杯咖啡，我说这笔账已经超出我的数学能力。",
+        "晚上我妈打电话，问我天气冷不冷呀，那件厚外套还在不在，记得多穿点。我妹妹抢过手机给我看她今天做的纸板小狗。我说其实蛮可爱的，但她嫌我回答得太快，又把小狗举到镜头前让我仔细瞧一瞧。",
+        "后来她发了照片过来。小狗一只耳朵折了一下，这更可爱了，所以我截了张图存在电脑上，想着以后给相机包做个小挂件。她要是知道我真的挂上，估计能高兴一整天。",
+        "明天先把作业的图片按日期重命名。现在文件夹里有 final2、final-new 和 final-new-really，我自己都不知道真正的final在哪。还有不要再把相机包放到厨房椅子上晾，都晾不干。"
       ],
       "en": [
         "Camera bag is still wet. Forgot to open it up when I got home yesterday. The lining was cold this morning. Took the battery and card out and left everything else alone for now.",
@@ -3284,7 +3312,7 @@ const limited = (value, size = 500) => typeof value === 'string' ? value.slice(0
 const ids = value => Array.isArray(value) ? [...new Set(value.filter(id => typeof id === 'string' && BY_ID[id]))] : [];
 function fresh() {
   return { schema: 1, contentRevision: CONTENT_REVISION, legacyCompletion: false,
-    lang: 'zh', workspace: 'chat', directory: false, chatSearch: '', notebookOpen: false, notebookScroll: 0, app: 'chat', read: [], doc: null, previousDoc: null,
+    lang: 'zh', clickSound: true, workspace: 'chat', directory: false, chatSearch: '', notebookOpen: false, notebookScroll: 0, app: 'chat', read: [], doc: null, previousDoc: null,
     query: '', searches: [], searchShown: false, draft: { person: '', place: '', purpose: '' },
     hint: 0, completed: false, storyDelivered: false, scroll: {}, trail: [], readerSize: 20 };
 }
@@ -3399,7 +3427,7 @@ function hydrate(value) {
   const base = fresh();
   if (!value || typeof value !== 'object' || value.schema !== 1) return base;
   const state = { ...base, lang: value.lang === 'en' ? 'en' : 'zh', read: ids(value.read),
-    workspace: value.workspace === 'computer' ? 'computer' : 'chat', directory: value.directory === true, chatSearch: limited(value.chatSearch, 120), notebookOpen: value.notebookOpen === true, notebookScroll: Number.isFinite(value.notebookScroll) ? Math.max(0, Math.min(100000, value.notebookScroll)) : 0,
+    clickSound: value.clickSound !== false, workspace: value.workspace === 'computer' ? 'computer' : 'chat', directory: value.directory === true, chatSearch: limited(value.chatSearch, 120), notebookOpen: value.notebookOpen === true, notebookScroll: Number.isFinite(value.notebookScroll) ? Math.max(0, Math.min(100000, value.notebookScroll)) : 0,
     query: limited(value.query, 120), searches: Array.isArray(value.searches) ? value.searches.filter(s => typeof s === 'string').slice(-20).map(s => s.slice(0, 120)) : [],
     draft: Object.fromEntries(['person', 'place', 'purpose'].map(key => [key, limited(value.draft?.[key], key === 'purpose' ? 500 : 160)])),
     hint: Math.min(3, Math.max(0, Math.trunc(Number(value.hint) || 0))),
@@ -3434,6 +3462,34 @@ function objective(state) {
 return {SAVE_KEY,APPS,normalize,fresh,unlockedApps,canRead,openDocument,search,FEEDBACK,validate,submit,hydrate,objective};
 })();
 const xueliModule3=(()=>{
+/* A quiet mechanical click, synthesized only after a real interaction. */
+function createDesktopClick({ enabled }) {
+  let context;
+  function play() {
+    if (!enabled() || document.hidden) return;
+    const Audio = globalThis.AudioContext || globalThis.webkitAudioContext;
+    if (!Audio) return;
+    try {
+      context ||= new Audio();
+      if (context.state === 'suspended') void context.resume().catch(() => {});
+      const length = Math.round(context.sampleRate * .024);
+      const buffer = context.createBuffer(1, length, context.sampleRate);
+      const samples = buffer.getChannelData(0);
+      for (let i = 0; i < length; i++) samples[i] = (Math.random() * 2 - 1) * Math.exp(-i / (length * .13));
+      const source = context.createBufferSource(), gain = context.createGain(), filter = context.createBiquadFilter();
+      source.buffer = buffer; filter.type = 'highpass'; filter.frequency.value = 1300;
+      gain.gain.setValueAtTime(.055, context.currentTime);
+      source.connect(filter); filter.connect(gain); gain.connect(context.destination);
+      source.onended = () => { source.disconnect(); filter.disconnect(); gain.disconnect(); };
+      source.start();
+    } catch { /* Audio support must never block an investigation action. */ }
+  }
+  return { play };
+}
+
+return {createDesktopClick};
+})();
+const xueliModule4=(()=>{
 const {ENDING}=xueliModule1;
 const CHAT_KEY = 'stillwater-xueli-chat:v1';
 
@@ -3567,7 +3623,7 @@ function createWorkspace({ getState, persist, render, rememberScroll, openSource
 
 return {CHAT_KEY,createWorkspace};
 })();
-const xueliModule4=(()=>{
+const xueliModule5=(()=>{
 // Only generic icons are loaded by the chapter. No future story-art inventory.
 const reuseById = {
   "app-chat": {
@@ -3717,8 +3773,9 @@ return {reuseById};
 const xueliModule0=(()=>{
 const {ASSETS,OPENING,ENDING,BY_ID,HINTS,UI_COPY}=xueliModule1;
 const {SAVE_KEY,fresh,hydrate,unlockedApps,openDocument,search,submit,objective,FEEDBACK}=xueliModule2;
-const {createWorkspace}=xueliModule3;
-const {reuseById}=xueliModule4;
+const {createDesktopClick}=xueliModule3;
+const {createWorkspace}=xueliModule4;
+const {reuseById}=xueliModule5;
 
 const root = document.querySelector('#root');
 const announcement = document.querySelector('#announcement');
@@ -3742,6 +3799,7 @@ try {
 }
 
 let workspace;
+const desktopClick = createDesktopClick({ enabled: () => state.workspace === 'computer' && state.clickSound });
 function persist() {
   if (saveBlocked) return;
   try { localStorage.setItem(SAVE_KEY, JSON.stringify(state)); }
@@ -3805,7 +3863,7 @@ function render({ focus = false, restore = true } = {}) {
   document.documentElement.lang = state.lang === 'en' ? 'en' : 'zh-CN';
   document.body.className = state.lang === 'en' ? 'en' : '';
   document.title = local(UI_COPY.chapter) + ' · Stillwater 2.1';
-  root.innerHTML = `<header class="sample-strip"><p>${t('STILLWATER 2.1 · 独立章节样本', 'STILLWATER 2.1 · CHAPTER SAMPLE')}<span class="sample-detail"> · DIRECTOR’S CUT</span></p><div><button data-action="language">${t('English', '中文')}</button></div></header>${storageWarning ? `<div class="storage-warning" role="status">${storageWarning === 'restore' ? t('样本存档暂时无法读取，原始内容已保留。现在可以临时试玩；如需重新保存，请用底部的“重开样本”确认。正式游戏存档未动。', 'The sample save could not be read and has been kept intact. You can play without saving, or confirm “Restart sample” to start a new sample save. Production saves are untouched.') : t('浏览器未能保存这个样本。可以继续试玩，但刷新后可能回到之前的进度。', 'The browser could not save this sample. You can continue, but a refresh may return to earlier progress.')}</div>` : ''}<div class="desktop"><header class="desk-header"><div><p class="desk-brand pixel">XUELI / FILE COPY</p><p class="desk-sub">${local(UI_COPY.shared)}</p></div><p class="objective"><small>${t('正在想的事', 'THE QUESTION')}</small>${escape(objective(state)[state.lang === 'en' ? 1 : 0])}</p></header><div class="desktop-layout"><nav class="desktop-icons" aria-label="${t('已发现的程序', 'Available apps')}">${unlocked.map(app => `<button class="desktop-icon" data-app="${app}" aria-label="${escape(t('打开', 'Open ') + appName(app))}">${art(`app-${app}`)}<span class="icon-label">${escape(appName(app))}</span></button>`).join('')}</nav>${state.app === 'desktop' ? `<main class="desktop-rest">${art('prop-pc')}<h1>${t('机器很旧，里面的日子倒不只一年。', 'An old machine, with more than one year inside it.')}</h1><p>${t('打开左边的程序。刚才读到哪里、写了什么，都还在。', 'Open an app on the left. Your reading position and writing are still there.')}</p></main>` : `<main class="window"><header class="window-title" data-app="${state.app}"><p>${appName(state.app)} / ${state.app === 'chat' ? 'GGbond' : state.app === 'browser' ? 'LOCAL INDEX' : state.app === 'files' ? 'W.C. / NOTES' : 'WANG CHUREN'}</p><div class="title-controls"><button data-action="minimize" aria-label="${t('最小化窗口', 'Minimize window')}">—</button></div></header><div class="window-content" tabindex="-1">${names[state.app]?.() || chatView()}</div><footer class="window-status"><span>${t('只保存到本机 · 无在线请求', 'Saved on this device · No online requests')}</span><span class="secondary-status">${t('每份原文都可以回看', 'All sources can be revisited')}</span></footer></main>`}</div></div><nav class="taskbar" aria-label="${t('程序切换', 'Switch apps')}"><span class="task-label pixel">X /</span>${unlocked.map(app => `<button data-app="${app}" aria-pressed="${state.app === app}">${escape(appName(app))}</button>`).join('')}<span class="clock">${'2026 / 11'}</span><button class="text-button" data-action="reset">${t('重开样本', 'Restart sample')}</button></nav><dialog class="reset-dialog"><h2>${t('从这段调查的开头重来？', 'Restart this sample?')}</h2><p>${t('只重开本试玩的调查与聊天，不会清除正式游戏或原版微信记录。', 'This restarts this sample investigation and chat. Production game and messenger records are retained.')}</p><button data-action="cancel-reset">${t('继续当前调查', 'Keep investigating')}</button><button class="primary" data-action="confirm-reset">${t('重开这个样本', 'Restart this sample')}</button></dialog>`;
+  root.innerHTML = `<header class="sample-strip"><p>${t('STILLWATER 2.1 · 独立章节样本', 'STILLWATER 2.1 · CHAPTER SAMPLE')}<span class="sample-detail"> · DIRECTOR’S CUT</span></p><div><button data-action="language">${t('English', '中文')}</button></div></header>${storageWarning ? `<div class="storage-warning" role="status">${storageWarning === 'restore' ? t('样本存档暂时无法读取，原始内容已保留。现在可以临时试玩；如需重新保存，请用底部的“重开样本”确认。正式游戏存档未动。', 'The sample save could not be read and has been kept intact. You can play without saving, or confirm “Restart sample” to start a new sample save. Production saves are untouched.') : t('浏览器未能保存这个样本。可以继续试玩，但刷新后可能回到之前的进度。', 'The browser could not save this sample. You can continue, but a refresh may return to earlier progress.')}</div>` : ''}<div class="desktop"><header class="desk-header"><div><p class="desk-brand pixel">XUELI / FILE COPY</p><p class="desk-sub">${local(UI_COPY.shared)}</p></div><p class="objective"><small>${t('正在想的事', 'THE QUESTION')}</small>${escape(objective(state)[state.lang === 'en' ? 1 : 0])}</p></header><div class="desktop-layout"><nav class="desktop-icons" aria-label="${t('已发现的程序', 'Available apps')}">${unlocked.map(app => `<button class="desktop-icon" data-app="${app}" aria-label="${escape(t('打开', 'Open ') + appName(app))}">${art(`app-${app}`)}<span class="icon-label">${escape(appName(app))}</span></button>`).join('')}</nav>${state.app === 'desktop' ? `<main class="desktop-rest">${art('prop-pc')}<h1>${t('机器很旧，里面的日子倒不只一年。', 'An old machine, with more than one year inside it.')}</h1><p>${t('打开左边的程序。刚才读到哪里、写了什么，都还在。', 'Open an app on the left. Your reading position and writing are still there.')}</p></main>` : `<main class="window"><header class="window-title" data-app="${state.app}"><p>${appName(state.app)} / ${state.app === 'chat' ? 'GGbond' : state.app === 'browser' ? 'LOCAL INDEX' : state.app === 'files' ? 'W.C. / NOTES' : 'WANG CHUREN'}</p><div class="title-controls"><button data-action="minimize" aria-label="${t('最小化窗口', 'Minimize window')}">—</button></div></header><div class="window-content" tabindex="-1">${names[state.app]?.() || chatView()}</div><footer class="window-status"><span>${t('只保存到本机 · 无在线请求', 'Saved on this device · No online requests')}</span><span class="secondary-status">${t('每份原文都可以回看', 'All sources can be revisited')}</span></footer></main>`}</div></div><nav class="taskbar" aria-label="${t('程序切换', 'Switch apps')}"><span class="task-label pixel">X /</span>${unlocked.map(app => `<button data-app="${app}" aria-pressed="${state.app === app}">${escape(appName(app))}</button>`).join('')}<span class="clock">${'2026 / 11'}</span><button class="text-button" data-action="click-sound" aria-pressed="${state.clickSound}">${state.clickSound ? t('点击音效：开', 'Click sound: on') : t('点击音效：关', 'Click sound: off')}</button><button class="text-button" data-action="reset">${t('重开样本', 'Restart sample')}</button></nav><dialog class="reset-dialog"><h2>${t('从这段调查的开头重来？', 'Restart this sample?')}</h2><p>${t('只重开本试玩的调查与聊天，不会清除正式游戏或原版微信记录。', 'This restarts this sample investigation and chat. Production game and messenger records are retained.')}</p><button data-action="cancel-reset">${t('继续当前调查', 'Keep investigating')}</button><button class="primary" data-action="confirm-reset">${t('重开这个样本', 'Restart this sample')}</button></dialog>`;
   const reader = root.querySelector('.reader');
   if (reader) reader.style.setProperty('--reading-size', `${state.readerSize}px`);
   const pane = root.querySelector('.window-content');
@@ -3844,6 +3902,10 @@ function doSearch(query) {
 }
 
 root.addEventListener('click', event => {
+  const control = event.target.closest('button, a, summary, select, input[type=checkbox], input[type=radio]');
+  if (event.isTrusted && control && !control.disabled && control.getAttribute('aria-disabled') !== 'true') desktopClick.play();
+}, true);
+root.addEventListener('click', event => {
   const button = event.target.closest('button');
   if (!button || button.disabled) return;
   if (button.dataset.app) return switchApp(button.dataset.app);
@@ -3854,6 +3916,7 @@ root.addEventListener('click', event => {
     persist(); render(); root.querySelector(`[data-size="${button.dataset.size}"]`)?.focus({ preventScroll: true }); return;
   }
   const action = button.dataset.action;
+  if (action === 'click-sound') { rememberScroll(); state.clickSound = !state.clickSound; persist(); render(); return; }
   if (action === 'toggle-notebook') { rememberScroll(); state.notebookOpen = !state.notebookOpen; persist(); render(); return; }
   if (action === 'language') { rememberScroll(); state.lang = state.lang === 'zh' ? 'en' : 'zh'; persist(); render(); }
   if (action === 'minimize') { rememberScroll(); state.app = 'desktop'; persist(); render(); }

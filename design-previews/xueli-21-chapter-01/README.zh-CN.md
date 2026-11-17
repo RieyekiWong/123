@@ -1,5 +1,7 @@
 # Stillwater 2.1 第一章《照片背面》
 
+当前草稿已接入 PC 微信、逐条消息、好友申请、旧电脑工作区与点击音效；五篇中文正文已按用户新稿替换。[本轮修改、检查方式与安妮机制缺口](WORKSPACE-UPDATE.zh-CN.md)。以下公开链接和旧测试记录对应之前发布的样本，本轮未发布。
+
 已接入 2026-11-06 的中文、英文新稿，按地方新闻、专访、商户目录、来信、日记与私人邮件各自的写作场景替换。仅更新独立第一章，未开发第二章。
 
 [打开新试玩](https://raw.githack.com/RieyekiWong/123/308e641a866ae17c5bf549b3637eda72c6a26b8e/design-previews/xueli-21-chapter-01/index.html) · [修改前后对照](COPY-CHANGELOG.zh-CN.md) · [中文全文](CHAPTER-TEXT.zh-CN.md) · [English copy](CHAPTER-TEXT.en.md)

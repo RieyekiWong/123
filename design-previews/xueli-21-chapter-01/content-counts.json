@@ -1,20 +1,20 @@
 {
-  "revision": "local-publications-p0-20261106",
+  "revision": "user-copy-pc-20261117",
   "units": {
     "zh": "Han characters in body",
     "en": "Whitespace-separated words in body"
   },
   "documents": {
     "note": {
-      "zh": 252,
+      "zh": 206,
       "en": 181
     },
     "weekly": {
-      "zh": 661,
+      "zh": 466,
       "en": 450
     },
     "profile": {
-      "zh": 792,
+      "zh": 439,
       "en": 509
     },
     "directory": {
@@ -22,7 +22,7 @@
       "en": 188
     },
     "reply": {
-      "zh": 186,
+      "zh": 160,
       "en": 148
     },
     "letter": {
@@ -30,7 +30,7 @@
       "en": 278
     },
     "diary": {
-      "zh": 439,
+      "zh": 314,
       "en": 320
     },
     "back": {

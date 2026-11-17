@@ -7,7 +7,7 @@ const limited = (value, size = 500) => typeof value === 'string' ? value.slice(0
 const ids = value => Array.isArray(value) ? [...new Set(value.filter(id => typeof id === 'string' && BY_ID[id]))] : [];
 export function fresh() {
   return { schema: 1, contentRevision: CONTENT_REVISION, legacyCompletion: false,
-    lang: 'zh', app: 'chat', read: [], doc: null, previousDoc: null,
+    lang: 'zh', clickSound: true, workspace: 'chat', directory: false, chatSearch: '', notebookOpen: false, notebookScroll: 0, app: 'chat', read: [], doc: null, previousDoc: null,
     query: '', searches: [], searchShown: false, draft: { person: '', place: '', purpose: '' },
     hint: 0, completed: false, storyDelivered: false, scroll: {}, trail: [], readerSize: 20 };
 }
@@ -37,9 +37,9 @@ export function search(state, rawQuery) {
   const query = normalize(limited(rawQuery, 120));
   if (!query || !unlockedApps(state).includes('browser')) return [];
   const terms = String(rawQuery).trim().toLowerCase().split(/\s+/).map(normalize).filter(Boolean);
-  return DOCUMENTS.filter(doc => doc.id !== 'back').map(doc => {
+  return DOCUMENTS.filter(doc => doc.id !== 'back' && canRead(state, doc.id)).map(doc => {
     const title = normalize(`${doc.title.zh} ${doc.title.en} ${doc.file}`);
-    const meta = normalize(doc.keywords.join(' '));
+    const meta = normalize(`${doc.keywords.join(' ')} ${doc.date} ${doc.origin.zh} ${doc.origin.en} ${doc.author.zh} ${doc.author.en}`);
     // Public pages have full-text indexing. Local mail deliberately has only a
     // sender/filename index: it is not a magically public, searchable inbox.
     const content = doc.kind === 'mail' ? '' : normalize(`${doc.paragraphs.zh.join(' ')} ${doc.paragraphs.en.join(' ')} ${doc.caption?.zh || ''} ${doc.caption?.en || ''}`);
@@ -103,7 +103,7 @@ export function submit(state) {
   const result = validate(state);
   if (!result.ok) return { state, ...result };
   return { state: { ...state, contentRevision: CONTENT_REVISION, legacyCompletion: false,
-    completed: true, storyDelivered: true, app: 'chat', doc: null }, ...result };
+    completed: true, storyDelivered: true }, ...result };
 }
 
 // Migration only: v1 once accepted generic "old photo" and even denials that
@@ -122,6 +122,7 @@ export function hydrate(value) {
   const base = fresh();
   if (!value || typeof value !== 'object' || value.schema !== 1) return base;
   const state = { ...base, lang: value.lang === 'en' ? 'en' : 'zh', read: ids(value.read),
+    clickSound: value.clickSound !== false, workspace: value.workspace === 'computer' ? 'computer' : 'chat', directory: value.directory === true, chatSearch: limited(value.chatSearch, 120), notebookOpen: value.notebookOpen === true, notebookScroll: Number.isFinite(value.notebookScroll) ? Math.max(0, Math.min(100000, value.notebookScroll)) : 0,
     query: limited(value.query, 120), searches: Array.isArray(value.searches) ? value.searches.filter(s => typeof s === 'string').slice(-20).map(s => s.slice(0, 120)) : [],
     draft: Object.fromEntries(['person', 'place', 'purpose'].map(key => [key, limited(value.draft?.[key], key === 'purpose' ? 500 : 160)])),
     hint: Math.min(3, Math.max(0, Math.trunc(Number(value.hint) || 0))),
@@ -134,7 +135,7 @@ export function hydrate(value) {
   state.legacyCompletion = state.completed && !currentValid && priorCompletion;
   state.storyDelivered = state.completed;
   state.read = state.read.filter(id => id !== 'back' || state.completed);
-  state.app = value.app === 'desktop' || unlockedApps(state).includes(value.app) ? value.app : 'chat';
+  state.app = value.app === 'desktop' || APPS.includes(value.app) ? value.app : 'chat';
   state.doc = canRead(state, value.doc) ? value.doc : null;
   state.previousDoc = canRead(state, value.previousDoc) ? value.previousDoc : null;
   state.trail = ids(value.trail).filter(id => canRead(state, id)).slice(-20);

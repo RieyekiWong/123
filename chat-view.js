@@ -1,6 +1,6 @@
 /* Desktop messenger: fixed story + opt-in Worker AI + offline fallback. */
 globalThis.StillwaterChat = {
-  create({t,esc,getRoute,audio,onIncoming=()=>{},storageKey,initialState,canPersist=()=>true,formatRoute=route=>'#'+route,renderShareCard}) {
+  create({t,esc,getRoute,audio,onIncoming=()=>{},storageKey,initialState,canPersist=()=>true,formatRoute=route=>'#'+route,renderShareCard,assetBase='',isConversationVisible=()=>true}) {
     const D=globalThis.StillwaterChatData,M=globalThis.StillwaterChatModel;
     const key=storageKey||M.KEY;
     let state=M.fresh(),root=null,lastTick=Date.now(),lastInput=0,lastFlush=0,saveTimer=null,aiNotice='',connectGeneration=0;
@@ -23,7 +23,7 @@ globalThis.StillwaterChat = {
       search:'<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/>',
     };
     const icon=id=>`<svg class="chat-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${icons[id]||icons.chat}</svg>`;
-    const avatar=person=>{const photo=globalThis.StillwaterChatPhotos.find(p=>p.id===person);return `<img class="chat-avatar" src="${esc(photo.file)}" width="44" height="44" alt="" aria-hidden="true" decoding="async">`;};
+    const avatar=person=>{const photo=globalThis.StillwaterChatPhotos.find(p=>p.id===person);return `<img class="chat-avatar" src="${esc(assetBase+photo.file)}" width="44" height="44" alt="" aria-hidden="true" decoding="async">`;};
     const groupName=()=>localized(D.group)+'（4）';
     const conversationName=id=>id==='group'?groupName():localized(D.sideChats[id].name);
     function persist() {
@@ -118,7 +118,7 @@ globalThis.StillwaterChat = {
       const entry=message.entry||resolved(message);
       if(!entry)return '';
       const self=entry.person==='me';
-      return `<div class="chat-message ${self?'chat-message-self':''}" data-chat-message="${esc(message.id)}">${avatar(entry.person)}<div class="chat-message-content">${self?'':`<span class="chat-speaker">${esc(personName(entry.person))}</span>`}${entry.kind==='card'?shareCard():`<div class="chat-bubble">${entry.forwarded?`<span class="chat-forwarded-label">${t('转发自旧群聊','Forwarded from the older group chat')}</span>`:''}${esc(localized(entry.text))}${entry.photo?globalThis.StillwaterChatOpeningView?.photo(entry.photo,{t,esc})||'':''}${entry.contact==='wcr_old'?`<button class="chat-old-conversation-link" type="button" data-chat-room="wcr_old">${t('查看楚人的旧聊天','Open Churen’s older chat')}</button>`:''}${entry.storyImage?`<span class="chat-story-photo"><img src="${esc(entry.storyImage)}" alt="${t('旧湖区照片，2023 年留存','Old Lake photograph retained in 2023')}"><i aria-hidden="true"></i></span>`:''}${entry.image&&globalThis.StillwaterMedia.find(entry.image)?`<img class="chat-shared-photo" src="assets/${esc(globalThis.StillwaterMedia.find(entry.image).file)}" alt="${esc(localized(globalThis.StillwaterMedia.find(entry.image).alt))}" loading="lazy">`:''}</div>`}</div></div>`;
+      return `<div class="chat-message ${self?'chat-message-self':''}" data-chat-message="${esc(message.id)}">${avatar(entry.person)}<div class="chat-message-content">${self?'':`<span class="chat-speaker">${esc(personName(entry.person))}</span>`}${entry.kind==='card'?shareCard():`<div class="chat-bubble">${entry.forwarded?`<span class="chat-forwarded-label">${t('转发自旧群聊','Forwarded from the older group chat')}</span>`:''}${esc(localized(entry.text))}${entry.photo?globalThis.StillwaterChatOpeningView?.photo(entry.photo,{t,esc})||'':''}${entry.contact==='wcr_old'?`<button class="chat-old-conversation-link" type="button" data-chat-room="wcr_old">${t('查看楚人的旧聊天','Open Churen’s older chat')}</button>`:''}${entry.storyImage?`<span class="chat-story-photo"><img src="${esc(entry.storyImage)}" alt="${t('旧湖区照片，2023 年留存','Old Lake photograph retained in 2023')}"><i aria-hidden="true"></i></span>`:''}${entry.image&&globalThis.StillwaterMedia.find(entry.image)?`<img class="chat-shared-photo" width="${globalThis.StillwaterMedia.find(entry.image).width}" height="${globalThis.StillwaterMedia.find(entry.image).height}" src="${esc(assetBase)}assets/${esc(globalThis.StillwaterMedia.find(entry.image).file)}" alt="${esc(localized(globalThis.StillwaterMedia.find(entry.image).alt))}" loading="lazy">`:''}</div>`}</div></div>`;
     }
     function renderMessages(newMessages=false) {
       const area=root?.querySelector('.chat-messages');
@@ -134,7 +134,7 @@ globalThis.StillwaterChat = {
       const jump=root.querySelector('[data-chat-action=latest]');
       jump.hidden=!unread||scroll.bottom;
       jump.textContent=t('有新消息 · 回到底部','New messages · Jump to latest');
-      if(scroll.bottom&&!(state.ui.list&&matchMedia('(max-width:720px)').matches))M.markRead(state,id);
+      if(isConversationVisible()&&scroll.bottom&&!(state.ui.list&&matchMedia('(max-width:720px)').matches))M.markRead(state,id);
     }
     function renderContacts() {
       const list=root?.querySelector('.chat-contact-list');
@@ -214,7 +214,7 @@ globalThis.StillwaterChat = {
     function keydown(event) {
       if(event.target.id==='chat-input'&&event.key==='Enter'&&!event.shiftKey&&!event.isComposing&&event.keyCode!==229) {event.preventDefault();send();}
     }
-    function scroll() {rememberScroll();if(state.ui.scroll[state.ui.conversation]?.bottom){M.markRead(state,state.ui.conversation);const jump=root?.querySelector('[data-chat-action=latest]');if(jump)jump.hidden=true;renderContacts();}deferSave();}
+    function scroll() {rememberScroll();if(isConversationVisible()&&state.ui.scroll[state.ui.conversation]?.bottom){M.markRead(state,state.ui.conversation);const jump=root?.querySelector('[data-chat-action=latest]');if(jump)jump.hidden=true;renderContacts();}deferSave();}
     function submit(event) {if(event.target.matches('.chat-composer')) {event.preventDefault();send();}}
     function leave() {
       if(!root)return;

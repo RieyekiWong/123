@@ -186,6 +186,6 @@ globalThis.StillwaterChatModel = (() => {
   }
   function validStoryRoom(message){const e=globalThis.StillwaterChatStory?.entry(message.key);return !!e&&(e.room?e.room===message.conversation:e.person===message.conversation);}
   function sideMessages(s,room){return globalThis.StillwaterChatOpening?.sideMessages(s,room)||D.sideChats[room]?.messages||[];}
-  function deliver(s,id){if(globalThis.StillwaterChatOpening)id=globalThis.StillwaterChatOpening.batchId(s,id);const batch=id&&globalThis.StillwaterStoryData?.batches[id];if(!batch||s.story.delivered.includes(id))return [];s.story.delivered.push(id);return batch.keys.map(key=>append(s,{kind:'story',key,conversation:batch.room}));}
+  function deliver(s,id){if(globalThis.StillwaterChatOpening)id=globalThis.StillwaterChatOpening.batchId(s,id);const batch=id&&globalThis.StillwaterStoryData?.batches[id];if(!batch||s.story.delivered.includes(id))return [];if(globalThis.StillwaterChatOpening?.queueBatch?.(s,id,batch))return [];s.story.delivered.push(id);return batch.keys.map(key=>append(s,{kind:'story',key,conversation:batch.room}));}
   return {deliver,KEY,base,fresh,hydrate,phase,topic,send,advance,roomOf,resolved,history,sideMessages,request,accept,fallback,markRead,checkIn,validRoom};
 })();
