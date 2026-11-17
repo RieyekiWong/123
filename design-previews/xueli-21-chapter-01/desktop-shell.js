@@ -116,6 +116,8 @@ export function createWorkspace({ getState, persist, render, rememberScroll, ope
     tabs.querySelectorAll('[data-workspace]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.workspace === state.workspace)));
     tabs.querySelector('[data-workspace="chat"]').firstChild.textContent = t('微信 ', 'WeChat ');
     tabs.querySelector('[data-workspace="computer"]').textContent = t('旧电脑', 'Old computer');
+    tabs.setAttribute('aria-label', t('工作区', 'Workspace'));
+    tabs.querySelector(':scope > span').textContent = t('雪梨镇 · 本机调查', 'Snowley · Local investigation');
     if (!active && mounted) { rememberChat(); chat.leave(); mounted = false; }
     if (active && (!mounted || lastLang !== state.lang)) {
       if (mounted) { rememberChat(); chat.leave(); }
@@ -179,7 +181,7 @@ export function createWorkspace({ getState, persist, render, rememberScroll, ope
     if (target.hasAttribute('data-case-action') || ['instructions', 'settings'].includes(action) || target.hasAttribute('data-ad-action')) {
       event.preventDefault(); event.stopImmediatePropagation();
       const dialog = document.createElement('dialog'); dialog.className = 'workspace-help';
-      dialog.innerHTML = `<h2>${t('雪梨镇 · 本机记录', 'Xueli · Local record')}</h2><p>${t('通过顶部按钮切换微信与旧电脑。调查笔记在填写时自动保存，提交时才核对。聊天与调查分别保存在当前浏览器；本试玩不清除正式游戏记录。', 'Switch with the tabs above. Notes save while typing and are checked only on submission. Chat and investigation records are stored separately in this browser. Production saves are retained.')}</p><button>${t('关闭', 'Close')}</button>`;
+      dialog.innerHTML = `<h2>${t('雪梨镇 · 本机记录', 'Snowley · Local record')}</h2><p>${t('通过顶部按钮切换微信与旧电脑。调查笔记在填写时自动保存，提交时才核对。聊天与调查分别保存在当前浏览器；本试玩不清除正式游戏记录。', 'Switch with the tabs above. Notes save while typing and are checked only on submission. Chat and investigation records are stored separately in this browser. Production saves are retained.')}</p><button>${t('关闭', 'Close')}</button>`;
       dialog.querySelector('button').onclick = () => dialog.close(); dialog.onclose = () => dialog.remove(); document.body.append(dialog); dialog.showModal();
     }
   }, true);

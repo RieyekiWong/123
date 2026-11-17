@@ -134,8 +134,8 @@ test('main articles are full original bilingual texts, not short clue cards', ()
     const en = doc.paragraphs.en.join(' ').split(/\s+/).length;
     assert.ok(zh >= 300, `${id}: ${zh} Chinese characters`);
     assert.ok(en >= 200, `${id}: ${en} English words`);
-    // Chinese copy may be revised independently; both editions still need full texts.
     assert.ok(doc.paragraphs.zh.length >= 5 && doc.paragraphs.en.length >= 5);
+    assert.equal(doc.paragraphs.en.length, doc.paragraphs.zh.length, `${id}: English paragraphs must track the Chinese source`);
   }
 });
 
@@ -306,4 +306,23 @@ test('developer directions and unapproved optional pages are absent from runtime
   assert.doesNotMatch(runtime, /开发备注|导演备注|配图由用户绘制|artis[t’']|Developer note|Production note|Director's note|Image to be drawn/);
   assert.equal(DOCUMENTS.length, 8);
   assert.ok(!DOCUMENTS.some(doc => ['market', 'umbrella'].includes(doc.id)));
+});
+
+test('Snowley naming and the five English articles track the revised Chinese rather than the superseded draft', () => {
+  const doc = id => DOCUMENTS.find(d => d.id === id);
+  for (const id of ['weekly', 'profile', 'note', 'reply', 'diary']) assert.equal(doc(id).paragraphs.en.length, doc(id).paragraphs.zh.length, id);
+  const publicEnglish = DOCUMENTS.map(d => [d.title.en, d.origin.en, d.deck?.en, d.caption?.en, ...d.paragraphs.en].filter(Boolean).join(' ')).join(' ');
+  assert.doesNotMatch(publicEnglish, /Xueli|Sydney/);
+  assert.match(doc('weekly').origin.en, /Snowley Weekly/);
+  assert.match(doc('weekly').paragraphs.en.join(' '), /Snowley/);
+  assert.doesNotMatch(doc('weekly').paragraphs.en.join(' '), /scones|apple cake|reception|publicly ticketed|names and jobs/);
+  assert.doesNotMatch(doc('profile').paragraphs.en.join(' '), /biscuit|sports day|picture agency|changed their surnames/);
+  const email = doc('reply').paragraphs.en.join(' ');
+  assert.match(email, /damaged in the post/);
+  assert.match(email, /sky-blue door/);
+  assert.doesNotMatch(email, /OPEN sign|original negative|no need to print|photograph the original/);
+  assert.doesNotMatch(doc('note').paragraphs.en.join(' '), /train ticket|Bookmarked|drinking his by mistake/);
+  assert.doesNotMatch(doc('diary').paragraphs.en.join(' '), /sandwich|computer lab|three question marks|cold this morning|school bag/);
+  assert.match(doc('diary').paragraphs.en.join(' '), /half raw/);
+  assert.match(doc('note').paragraphs.en.join(' '), /buy Bond a coffee and take him out for a meal/);
 });

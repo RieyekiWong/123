@@ -1,5 +1,5 @@
 {
-  "revision": "user-copy-pc-20261117",
+  "revision": "snowley-translation-20261117",
   "units": {
     "zh": "Han characters in body",
     "en": "Whitespace-separated words in body"
@@ -7,15 +7,15 @@
   "documents": {
     "note": {
       "zh": 206,
-      "en": 181
+      "en": 160
     },
     "weekly": {
       "zh": 466,
-      "en": 450
+      "en": 340
     },
     "profile": {
       "zh": 439,
-      "en": 509
+      "en": 323
     },
     "directory": {
       "zh": 268,
@@ -23,7 +23,7 @@
     },
     "reply": {
       "zh": 160,
-      "en": 148
+      "en": 128
     },
     "letter": {
       "zh": 376,
@@ -31,7 +31,7 @@
     },
     "diary": {
       "zh": 314,
-      "en": 320
+      "en": 279
     },
     "back": {
       "zh": 89,

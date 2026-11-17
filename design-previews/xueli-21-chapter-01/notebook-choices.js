@@ -5,7 +5,7 @@ const option = (id, zh, en, aliases = []) => ({ id, label: { zh, en }, aliases: 
 export const CHOICE_OPTIONS = {
   surname: [option('baker', '贝克', 'Baker'), option('reed', '里德', 'Reed'), option('walsh', '沃尔什', 'Walsh'), option('ward', '沃德', 'Ward'), option('wang', '王', 'Wang')],
   given: [option('ada', '艾达', 'Ada'), option('annie', '安妮', 'Annie'), option('churen', '楚人', 'Churen'), option('june', '朱恩', 'June'), option('robert', '罗伯特', 'Robert')],
-  place: [option('hotel', '静水旅馆', 'Stillwater Hotel'), option('bluebird', '青鸟照相馆', 'Bluebird Photo', ANSWER_ALIASES.place), option('library', '雪梨镇图书馆', 'Xueli Town Library'), option('diner', 'Maggie’s Diner', "Maggie's Diner")],
+  place: [option('hotel', '静水旅馆', 'Stillwater Hotel'), option('bluebird', '青鸟照相馆', 'Bluebird Photo', ANSWER_ALIASES.place), option('library', '雪梨镇图书馆', 'Snowley Town Library', ['Xueli Town Library']), option('diner', 'Maggie’s Diner', "Maggie's Diner")],
   purpose: [option('course', '旧招牌课程文件', 'Shop-sign coursework'), option('group-photo', '员工合影原件或底片', 'Original staff photograph or negative', [...ANSWER_ALIASES.purpose, '员工合影原件']), option('report', '周刊报道', 'Weekly report'), option('map', '旧湖区地图', 'Old lake-district map'), option('hours', '商户营业时间', 'Business opening hours')],
 };
 const fields = Object.keys(CHOICE_OPTIONS);

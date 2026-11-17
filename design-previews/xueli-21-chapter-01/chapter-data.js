@@ -1,6 +1,6 @@
 // Player-facing P0 copy: 2026-11-06 local-publication realism revision.
 // Full author/editor handoff remains local and is never imported here.
-export const CONTENT_REVISION = "user-copy-pc-20261117";
+export const CONTENT_REVISION = "snowley-translation-20261117";
 
 export const ASSETS = {
   "app-chat": {
@@ -205,7 +205,7 @@ export const OPENING = [
   },
   {
     "zh": "雪梨镇寄来的。卖家已经销号了，连个“收到没”都没法问。机箱比照片里还大，放桌上像多了台微波炉。",
-    "en": "Shipped from Xueli Town. Seller deleted their account, so I can't even ask if it got here in one piece. The tower is enormous. Looks like I've put a microwave next to my monitor."
+    "en": "Shipped from Snowley. Seller deleted their account, so I can't even ask if it got here in one piece. The tower is enormous. Looks like I've put a microwave next to my monitor."
   },
   {
     "zh": "说是 08 年的机器，硬盘倒是后来换过。里面有些 2023 年的东西，我没敢乱删。",
@@ -271,18 +271,16 @@ export const DOCUMENTS = [
       ],
       "en": [
         "10/15, Sunday",
-        "Tutor says my project is getting too big again. Last week it was just old shop signs. Now my slides have a map, a hotel and travel ads from thirty years ago. She told me to pick one photograph and establish who actually took it before I start talking about “the memory of a place.”",
-        "I still want the staff picture from Stillwater Hotel's nineteenth anniversary. The version online is tiny, and the writing's unreadable. Supposedly the names were written on the back of the paper print. Would be good to see that. Might as well ask if the negative still exists; otherwise I can't properly credit the image in the assignment.",
-        "Bookmarked the Xueli Weekly article. Tomorrow: check the photo credit and see if the photographer's shop is still around. Do not open fifteen other tabs first and forget what I was looking for.",
-        "Charge camera battery. Card reader in outer pocket. Save train ticket screenshot to phone.",
-        "Get GG a coffee when I'm back in Chicago. Still haven't paid him back for drinking his by mistake.",
+        "Last class, the tutor said my topic was getting too broad and unfocused again. She criticised me for saying just last week that I would only photograph old shop signs, when today's PowerPoint suddenly included all sorts of things—maps, hotels and tourist ads from thirty years ago. After class, she told me to choose one photograph first and at least find out who took it before talking about “local memory.”",
+        "So I chose the staff group photograph from Stillwater Hotel's nineteenth anniversary. The version online is too small and the writing is blurry. It would be good if I could find a paper copy there. Apparently someone wrote the names of the people in the photograph on the back.",
+        "Tomorrow I absolutely, absolutely, absolutely have to remember to charge the camera battery. And don't forget the card reader. When I get back to Chicago, remember to buy Bond a coffee and take him out for a meal.",
         "W.C."
       ]
     },
     "link": "weekly",
     "linkLabel": {
       "zh": "雪梨镇周刊｜静水旅馆十九周年",
-      "en": "Xueli Weekly | Stillwater Hotel's nineteenth anniversary"
+      "en": "Snowley Weekly | Stillwater Hotel's nineteenth anniversary"
     }
   },
   {
@@ -292,7 +290,7 @@ export const DOCUMENTS = [
     "date": "2006-09-24",
     "title": {
       "zh": "静水旅馆举办十九周年聚会",
-      "en": "Stillwater Hotel marks nineteen years in business"
+      "en": "Stillwater Hotel holds its nineteenth-anniversary gathering"
     },
     "author": {
       "zh": "艾达·里德",
@@ -300,7 +298,7 @@ export const DOCUMENTS = [
     },
     "origin": {
       "zh": "雪梨镇周刊 / 镇上这周",
-      "en": "Xueli Weekly / Around Town"
+      "en": "Snowley Weekly / This Week in Town"
     },
     "file": "weekly-2006-09-24.html",
     "keywords": [
@@ -316,7 +314,7 @@ export const DOCUMENTS = [
     ],
     "deck": {
       "zh": "部分员工与老顾客周六在旅馆合影，照片将留作纪念",
-      "en": "Staff and returning guests gathered on Saturday for an anniversary photograph."
+      "en": "Some staff members and regular guests posed for a group photograph at the hotel on Saturday, to be kept as a memento."
     },
     "figure": "photo-anniversary",
     "paragraphs": {
@@ -330,19 +328,18 @@ export const DOCUMENTS = [
         "聚会结束后，餐厅照常接待晚餐客人。酒店说，周年合影预计下周送到，届时也会给已经离职、当天回来看望同事的几个人寄去复印件。"
       ],
       "en": [
-        "Stillwater Hotel held a gathering on Saturday afternoon to mark nineteen years in business. Current and former staff were invited, along with several guests who have returned to the hotel over the years. A shower pushed refreshments from the garden onto the porch, and the group photograph took place more than half an hour later than planned.",
-        "The hotel opened in 1987 on the western side of Xueli Town's old lake district. It has no large conference facilities. Many visitors are weekend travellers or families coming to the lake, and some return for the same few days each summer. According to hotel management, this year's anniversary was intended as a reunion for staff and familiar guests rather than an event open to the general public.",
-        "The kitchen began preparing food at lunchtime. Ruth, who supervises the dining room, said Saturday was already a busy day and evening meals would be served as usual. The kitchen made extra scones and apple cake for the afternoon gathering. Some staff were on shift and could not join the others until their replacements arrived, leaving the photographer waiting by the front steps.",
-        "“We'd said half past three, but we couldn't get everybody there at once,” Ruth said. “Some people were working, some were changing clothes. Then the food came out just when we finally got them lined up.”",
-        "Long-time guests Robert Walsh and his wife also attended. They first stayed in the early 1990s, when, they said, there were fewer signs showing visitors how to reach the lakeshore. Their children are grown now and the family visits less often, but they still try to return each summer. Walsh noticed that the clock behind reception was still running a few minutes slow. “I checked when we came in. They haven't fixed it yet.”",
-        "The weather cleared after four and the staff and guests assembled on the steps for photographs. Bluebird Photo, the shop on Birch Street, took the pictures. The photographer made one group portrait and then took smaller photographs of staff members who had missed the first one. Hotel management expects a print to be displayed in the ground-floor dining room, where colleagues working different shifts will be able to see it.",
-        "Staff have been asked to write their names and jobs on the back of the paper print, to make it easier to identify the people in future albums. The photography shop will keep the negative for reprints. The hotel also supplied the Weekly with a reduced-size version for this issue.",
-        "Dinner service went ahead as usual after the gathering. The anniversary print should arrive next week, and the hotel plans to send copies to several former employees who returned for the afternoon."
+        "Stillwater Hotel held a gathering on Saturday afternoon to celebrate its nineteenth anniversary. The hotel invited not only current employees, but also several former employees and some regular holiday guests. It had rained that afternoon, so the refreshments originally planned for the courtyard were moved to the porch, and the group photograph was taken more than half an hour later than planned.",
+        "The hotel opened in 1987 and is on the western side of Snowley's old lake district. There is no large conference centre here; most guests are weekend visitors or people who like to fish by the lake.",
+        "The hotel restaurant began preparing food at noon. Ruth, the supervisor, said weekends were always busy, so several staff members working shifts could only join the gathering once they had more or less finished their work. This delayed the photographs for a long time.",
+        "“We'd arranged to take the photograph at half past three, but we couldn't get everyone together. Still, there was nothing we could do. For something this important, of course it's better to wait until everyone is here,” Ruth said.",
+        "Regular guest Robert Walsh and his wife also attended. They said there had not been nearly as many signs pointing to the lake near the hotel when they first visited in the early 1990s. Although they visited less often after their children grew up, they still tried to arrange a visit every summer.",
+        "After four o'clock that afternoon, the weather cleared, and staff and guests stood in groups on the steps in front of the hotel to have their photographs taken. Bluebird Photo on Birch Street was responsible for the group photograph. The photographer first took a picture of everyone together, then took additional photographs of a few staff members who had missed the first one.",
+        "After the gathering, the restaurant served dinner guests as usual. The hotel said the anniversary photograph was expected to arrive the following week, and copies would also be mailed to several former employees who had returned that day to see their colleagues."
       ]
     },
     "caption": {
       "zh": "静水旅馆员工与部分来宾在 9 月 23 日周年聚会中合影。摄影：J.W. / 青鸟照相馆（Bluebird Photo）。本页为缩印件，照片将在旅馆餐厅展示，底片由照相馆保留。",
-      "en": "Stillwater Hotel staff and guests at the September 23 anniversary gathering. Photograph by J.W. / Bluebird Photo. This is a reduced-size reproduction; a print will be displayed at the hotel and the negative is held by the photography shop."
+      "en": "Stillwater Hotel staff and some guests pose at the anniversary gathering on September 23. Photograph: J.W. / Bluebird Photo. This page shows a reduced-size reproduction. The photograph will be displayed in the hotel restaurant, and the negative will be kept by the photography shop."
     }
   },
   {
@@ -352,7 +349,7 @@ export const DOCUMENTS = [
     "date": "2019-04-13",
     "title": {
       "zh": "青鸟照相馆还在替镇上的人洗旧照片",
-      "en": "Bluebird Photo still has a place for old pictures"
+      "en": "Bluebird Photo still prints old photographs for local residents"
     },
     "author": {
       "zh": "艾达·里德",
@@ -360,7 +357,7 @@ export const DOCUMENTS = [
     },
     "origin": {
       "zh": "雪梨镇周刊 / 人物与商店",
-      "en": "Xueli Weekly / People & Shops"
+      "en": "Snowley Weekly / People & Shops"
     },
     "file": "june-ward-bluebird.html",
     "keywords": [
@@ -373,7 +370,7 @@ export const DOCUMENTS = [
     ],
     "deck": {
       "zh": "朱恩·沃德经营桦树街小店三十多年，越来越多的客人带着旧相册上门",
-      "en": "June Ward has run her Birch Street shop for more than thirty years. These days, many customers arrive with family albums instead of rolls of film."
+      "en": "June Ward has run the small shop on Birch Street for more than thirty years, and more and more customers are bringing in old albums."
     },
     "figure": "portrait-june",
     "paragraphs": {
@@ -386,19 +383,17 @@ export const DOCUMENTS = [
         "青鸟照相馆的营业时间没有因为这次采访而改变。记者离开时，柜台上仍堆着几只待领取的纸袋；有位顾客打电话来，问照片能不能下周再拿。朱恩在登记本上记下姓名，让对方有空再来。"
       ],
       "en": [
-        "Bluebird Photo is still open on Birch Street. The shop used to rely on developing film and taking passport photographs. These days it sees more people who want help with old pictures. Some bring boxes of negatives. Others arrive with nothing but a phone photograph of a print and ask whether another copy might still exist.",
-        "Owner June Ward has worked here since the late 1980s. She says film customers are much fewer than they once were, but there is still plenty to sort through. A few years ago, someone living out of state sent her a box of family albums and asked for photographs of a particular gathering. None of the albums had dates on them. “I ended up ringing him and asking who he was actually looking for,” she said.",
-        "There is no separate archive room. Paper, frames and collection envelopes are stored at the front, with old negatives kept in labelled boxes in the back. Some are biscuit tins brought from home. June showed the Weekly a few, warning that the labels mattered more than the lids. A tin decorated with Christmas biscuits, for example, holds photographs from a school sports day.",
-        "June used to supply photographs to the Weekly. The credit beneath them often read simply J.W. The paper knew where to reach her, she said, and there wasn't much room under the pictures. Now that old issues are copied onto the web, readers sometimes mistake those initials for the name of a picture agency or have no idea who owns the original.",
-        "The shop has negatives from weddings, school teams and local openings, including the staff photograph taken at Stillwater Hotel's nineteenth-anniversary gathering in 2006. After the hotel closed in 2007, a former dining-room employee brought back the paper print that had hung in the hotel and asked June to keep it for the time being. June has stored it separately from her original negative. The names written on the back remain in place.",
-        "“Those are the names they used at the time,” June said. Some people have moved, some have changed their surnames, and there are a few entries even she cannot read. She would rather attach a new note than guess at handwriting on the print. Knowing when a photograph was taken matters more, in her view, than making every unidentified face fit a name.",
-        "Students also come to Bluebird asking about old photographs. June is happy to show them what she still has, but asks people to tell her which year and which picture they want before she spends an afternoon looking in the wrong box. Next month, she will take part in a family-album workshop at the public library, covering simple ways to sort and store prints.",
-        "The shop's opening hours have not changed for the occasion. When the Weekly left, a row of uncollected envelopes still sat on the counter. A customer rang to ask whether it was all right to collect pictures next week instead. June wrote down the name and told them to come when they could."
+        "Bluebird Photo on Birch Street is still open. It is now the only shop in town that develops film and takes ID photographs, so more and more people are coming in to ask about old photographs.",
+        "The owner, June Ward, has worked here since the late 1980s. She said that although far fewer people buy film now than before, customers often come in to have photographs restored.",
+        "June used to supply photographs to the Weekly, usually credited simply as J.W. When asked why she did not use her full name, she said there had not been much space under the photographs, and the town was small, so the newspaper knew how to contact her.",
+        "Her albums include group photographs from weddings, school teams and shop openings, as well as the staff photograph taken at Stillwater Hotel's nineteenth-anniversary gathering in 2006. After the hotel closed in 2007, a former restaurant employee brought the paper group photograph that had hung in the restaurant to the shop and asked her to look after it for a while. They still have not come back to collect it.",
+        "Students have also been coming to the shop recently to look for old photographs. June said she was very willing and happy to let people look through the old photographs still kept in the shop, but hoped they would say in advance which year and which photograph they wanted, so no one spent an afternoon searching the wrong box. Next month she will take part in an event at the library to explain how these old photographs were made.",
+        "The shop's opening hours have not changed because of the interview. When the reporter left, several paper bags were still waiting to be collected on the counter. A customer called to ask whether they could pick up their photographs the following week instead. June wrote down the customer's name in her register and told them to come when they had time."
       ]
     },
     "caption": {
       "zh": "朱恩·沃德在青鸟照相馆整理取件袋。她为早期报刊照片使用过 J.W. 的署名。",
-      "en": "June Ward organising collection envelopes at Bluebird Photo. Her early newspaper photographs were frequently credited J.W."
+      "en": "June Ward sorts collection envelopes at Bluebird Photo. She used the credit J.W. on her early newspaper photographs."
     }
   },
   {
@@ -412,11 +407,11 @@ export const DOCUMENTS = [
     },
     "author": {
       "zh": "雪梨镇商户通讯编辑组",
-      "en": "Xueli Town Traders' Bulletin"
+      "en": "Snowley Traders' Bulletin editorial team"
     },
     "origin": {
       "zh": "雪梨镇商户通讯 / 公开商户目录",
-      "en": "Xueli Traders / Public directory archive"
+      "en": "Snowley Traders' Bulletin / Public business directory"
     },
     "file": "birch-street-autumn-2023.html",
     "keywords": [
@@ -485,12 +480,12 @@ export const DOCUMENTS = [
         "祝好，\nJune"
       ],
       "en": [
-        "Hello Churen,",
-        "I've found it. It's the staff photograph in the thumbnail you sent. I still have the paper print, with the names written on the back, and the original negative. Some of the writing is fairly faint, but you can have a look for yourself.",
-        "Come by tomorrow, Monday, at three in the afternoon. I'm at Bluebird Photo, 6 Birch Street. The door is blue and the OPEN sign hangs a bit crooked. You should be able to spot it. Just bring the picture on your screen; there's no need to print it out.",
-        "I also have a collection order to sort out that afternoon, so I might keep you waiting a few minutes. If you want to photograph the original, we can discuss that when you're here. Let's make sure it's the right print first.",
-        "If your plans change, just reply to this email.",
-        "Best,  \nJune"
+        "Hi Churen,",
+        "I've found the photograph you wanted. It's the staff group photograph that matches the thumbnail you sent me. The names written at the time are on the back of the paper print. Unfortunately, the photograph could easily be damaged in the post, so it would be best if you came to see it in person.",
+        "Come at three in the afternoon tomorrow (Monday). I'll be at Bluebird Photo, 6 Birch Street. My shop has a sky-blue door, so it shouldn't be hard to find.",
+        "I also have to collect some photographs for a customer that afternoon, so I may have to keep you waiting a few minutes.",
+        "If the time changes, or if you have any particular requests, just reply to this email.",
+        "Best wishes,\nJune"
       ]
     },
     "mail": {
@@ -518,7 +513,7 @@ export const DOCUMENTS = [
     },
     "origin": {
       "zh": "雪梨镇周刊 / 读者来信",
-      "en": "Xueli Weekly / Letters to the Editor"
+      "en": "Snowley Weekly / Letters to the Editor"
     },
     "file": "riverbench-letter-2023-09-08.html",
     "keywords": [
@@ -587,12 +582,12 @@ export const DOCUMENTS = [
         "明天先把作业的图片按日期重命名。现在文件夹里有 final2、final-new 和 final-new-really，我自己都不知道真正的final在哪。还有不要再把相机包放到厨房椅子上晾，都晾不干。"
       ],
       "en": [
-        "Camera bag is still wet. Forgot to open it up when I got home yesterday. The lining was cold this morning. Took the battery and card out and left everything else alone for now.",
-        "Talked about the project scope in class again. Tutor says my old shop-sign idea is fine, but I can't add a new subject every time I find another old photograph. I've gone from signs to travel brochures to hotels that closed years ago, so she does have a point. I'll bring her three photographs next week, not ten pages of screenshots.",
-        "GG sent a picture of his lunch. Says he's found a place that doesn't turn fried chicken into cardboard. I was in the computer lab editing pictures, so I got a sandwich later. Not good, but at least there was no queue. He asked how many coffees I owe him now. I told him the maths had got beyond me. He sent back three question marks.",
-        "Mum called tonight and asked whether I still have my heavy coat. I said yes. She said to wear it instead of waiting until I'm ill. My sister grabbed the phone to show me a cardboard dog she'd made. The legs weren't quite straight. I said it looked great and she told me I'd answered too quickly. She held it up again so I could look properly.",
-        "She sent me a picture afterwards. One of the dog's ears was folded over. I saved it to my computer and thought maybe I could make a little tag for the camera bag. She'll be delighted if I actually attach it.",
-        "Tomorrow I need to rename the assignment files by date. I've got final2, final-new and final-new-really in the same folder and I no longer remember which is which. Also stop leaving the camera bag to dry on the kitchen chair. Nearly picked it up instead of my school bag this morning."
+        "The camera bag is still wet today. I forgot to open it up to dry when I got home yesterday. It stinks.",
+        "We went over the scope of the project again in class. The tutor said my idea of photographing old shop signs was good, but I shouldn't try to add another topic every time I found an old photograph.",
+        "GG sent me a picture of his lunch at noon and said the fried chicken from this place finally wasn't half raw. Bond asked how many coffees I still owed him. I told him that was beyond my maths skills.",
+        "Mum called in the evening, asking whether it was cold, whether I still had my thick coat, and reminding me to put on more layers. My younger sister grabbed the phone to show me the cardboard dog she had made that day. I said it was actually really cute, but she thought I'd answered too quickly and held the dog up to the camera again so I could take a proper look.",
+        "She sent me a photograph of it afterwards. One of the dog's ears was folded over, which made it even cuter, so I took a screenshot and saved it on my computer, thinking I could make a little charm for my camera bag later. She'd probably be happy all day if I actually hung it on there and she found out.",
+        "Tomorrow I'll start by renaming the assignment images by date. Right now the folder has final2, final-new and final-new-really, and I don't even know where the real final version is. Also, stop leaving the camera bag on the kitchen chair to dry. It never dries there."
       ]
     },
     "figure": "prop-camera-bag"
