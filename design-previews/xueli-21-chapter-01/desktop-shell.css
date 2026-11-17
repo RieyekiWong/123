@@ -51,3 +51,9 @@ body[data-site=chat] #wechat-host .chat-contact-pane { display:flex; }
 body[data-site=chat] #wechat-host .chat-conversation { display:flex; }
 body[data-site=chat] #wechat-host .chat-mobile-back { display:none; }
 #root .notebook-panel>header button { color:var(--ink); }
+
+#root .choice-name { border:var(--edge); padding:14px; margin:0; min-width:0; }
+#root .choice-name legend { padding:0 6px; }
+#root .name-choice-fields { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+#root .answer-fields select { display:block; width:100%; min-width:0; min-height:48px; padding:8px; border:var(--edge); border-radius:0; background:var(--paper); }
+#root .legacy-draft { margin-block:16px; overflow-wrap:anywhere; }

@@ -1,5 +1,6 @@
+import { CHOICE_OPTIONS, unmappedDraft } from './notebook-choices.js';
 import { ASSETS, OPENING, ENDING, BY_ID, HINTS, UI_COPY } from './chapter-data.js';
-import { SAVE_KEY, fresh, hydrate, unlockedApps, openDocument, search, submit, objective, FEEDBACK } from './chapter-model.js';
+import { SAVE_KEY, fresh, hydrate, unlockedApps, openDocument, search, submitChoices, objective, FEEDBACK } from './chapter-model.js';
 import { createDesktopClick } from './desktop-audio.js';
 import { createWorkspace } from './desktop-shell.js';
 import { reuseById } from './reuse/ready-icons.js';
@@ -82,7 +83,9 @@ function browserView() {
 }
 function casebookView() {
   const fieldError = field => errors.some(error => error.field === field);
-  return `<section class="casebook"><p class="chapter-no pixel">NOTE 01 / A PHOTOGRAPH</p><h1 tabindex="-1">${t('调查笔记 01 · 照片背面', 'Investigation notes 01 · A photograph')}</h1><h2>${local(UI_COPY.prompt)}</h2><p class="tutorial">${t('把查到的信息写下来就好。简称、英文和不带标点的写法都可以。', 'Write what you found. Short names, English and different punctuation are fine.')}</p><span class="plan-tag">${t('这页只核对计划，不代表人已经到场。', 'This page checks a plan, not proof of arrival.')}</span><form id="case-form" novalidate><div class="answer-fields"><div><label for="person">${local(UI_COPY.person)}</label><input id="person" name="person" value="${escape(state.draft.person)}" maxlength="160" aria-invalid="${fieldError('person')}" ${fieldError('person') ? 'aria-describedby="feedback"' : ''} autocomplete="off"></div><div><label for="place">${local(UI_COPY.place)}</label><input id="place" name="place" value="${escape(state.draft.place)}" maxlength="160" aria-invalid="${fieldError('place')}" ${fieldError('place') ? 'aria-describedby="feedback"' : ''} autocomplete="off"></div><div class="wide"><label for="purpose">${local(UI_COPY.purpose)}</label><textarea id="purpose" name="purpose" maxlength="500" aria-invalid="${fieldError('purpose')}" ${fieldError('purpose') ? 'aria-describedby="feedback"' : ''}>${escape(state.draft.purpose)}</textarea></div></div><div class="submit-row"><button class="primary" type="submit">${local(UI_COPY.submit)}</button><p>${t('核对后会把这条计划告诉 GGbond。没对上的地方可以接着查，不会清空输入。', 'Once checked, this plan is shared with GGbond. A mismatch keeps your writing so you can investigate further.')}</p></div>${errors.length ? `<div id="feedback" class="feedback" role="alert"><ul>${[...new Set(errors.map(e => e.code))].map(code => `<li>${escape(FEEDBACK[code][state.lang === 'en' ? 1 : 0])}</li>`).join('')}</ul></div>` : ''}</form>${state.completed ? `<div class="complete-note">${local(UI_COPY.success)} <button class="text-button" data-app="chat">${t('查看消息', 'Read messages')}</button></div>` : ''}<div class="help-area"><button class="text-button" data-action="hint">${state.hint ? state.hint < 3 ? t('再给一点提示', 'Another hint') : t('已展开全部提示', 'All hints shown') : t('卡住了？查看提示', 'Stuck? Show a hint')}${state.hint ? ` · ${state.hint}/3` : ''}</button>${local(HINTS).slice(0, state.hint).map((hint, i) => `<p>${i + 1}. ${escape(hint)}</p>`).join('')}</div><div class="bottom-links"><button class="text-button" data-app="browser">${t('← 回资料里继续看', '← Back to the sources')}</button><span>${t('本页自动保存', 'This page saves automatically')}</span></div></section>`;
+  const select = (field, label, errorField = field) => `<div><label for="${field}">${label}</label><select id="${field}" name="${field}" aria-invalid="${fieldError(errorField)}" ${fieldError(errorField) ? 'aria-describedby="feedback"' : ''}><option value="">${t('请选择', 'Choose…')}</option>${CHOICE_OPTIONS[field].map(o => `<option value="${o.id}" ${state.choices[field] === o.id ? 'selected' : ''}>${escape(local(o.label))}</option>`).join('')}</select></div>`;
+  const retained = unmappedDraft(state.draft);
+  return `<section class="casebook"><p class="chapter-no pixel">NOTE 01 / A PHOTOGRAPH</p><h1 tabindex="-1">${t('调查笔记 01 · 照片背面', 'Investigation notes 01 · A photograph')}</h1><h2>${local(UI_COPY.prompt)}</h2><p class="tutorial">${t('根据报道与邮件，分别选择姓氏、名字、地点和所找资料。选择会自动保存，点击提交后才核对。', 'Use the reports and email to choose the surname, given name, place and source. Selections save automatically; only Submit checks them.')}</p><span class="plan-tag">${t('这页只核对计划，不代表人已经到场。', 'This page checks a plan, not proof of arrival.')}</span>${retained.length ? `<details class="legacy-draft"><summary>${t('此前填写的文字（已保留）', 'Earlier writing (retained)')}</summary>${retained.map(([field, value]) => `<p><strong>${local(UI_COPY[field])}</strong> ${escape(value)}</p>`).join('')}</details>` : ''}<form id="case-form" novalidate><div class="answer-fields"><fieldset class="choice-name wide"><legend>${local(UI_COPY.person)}</legend><div class="name-choice-fields">${select('surname', t('姓氏', 'Surname'), 'person')}${select('given', t('名字', 'Given name'), 'person')}</div></fieldset><div class="wide">${select('place', local(UI_COPY.place))}</div><div class="wide">${select('purpose', local(UI_COPY.purpose))}</div></div><div class="submit-row"><button class="primary" type="submit">${t('提交核对', 'Submit for review')}</button><p>${t('四项需要一起核对。未通过时保留当前选择，可以继续检索再提交。', 'All four fields are reviewed together. A mismatch keeps your selections so you can investigate and submit again.')}</p></div>${errors.length ? `<div id="feedback" class="feedback" role="alert"><ul>${[...new Set(errors.map(e => e.code))].map(code => `<li>${escape(FEEDBACK[code][state.lang === 'en' ? 1 : 0])}</li>`).join('')}</ul></div>` : ''}</form>${state.completed ? `<div class="complete-note">${local(UI_COPY.success)} <button class="text-button" data-app="chat">${t('查看消息', 'Read messages')}</button></div>` : ''}<div class="help-area"><button class="text-button" data-action="hint">${state.hint ? state.hint < 3 ? t('再给一点提示', 'Another hint') : t('已展开全部提示', 'All hints shown') : t('卡住了？查看提示', 'Stuck? Show a hint')}${state.hint ? ` · ${state.hint}/3` : ''}</button>${local(HINTS).slice(0, state.hint).map((hint, i) => `<p>${i + 1}. ${escape(hint)}</p>`).join('')}</div><div class="bottom-links"><button class="text-button" data-app="browser">${t('← 回资料里继续看', '← Back to the sources')}</button><span>${t('选择自动保存', 'Selections save automatically')}</span></div></section>`;
 }
 function render({ focus = false, restore = true } = {}) {
   const unlocked = ['files', 'browser', 'casebook'];
@@ -167,17 +170,21 @@ root.addEventListener('click', event => {
 root.addEventListener('keydown', desktopClick.keydown);
 root.addEventListener('input', event => {
   const input = event.target;
-  if (input.form?.id === 'case-form' && ['person', 'place', 'purpose'].includes(input.name)) {
-    state.draft[input.name] = input.value.slice(0, input.maxLength);
-    persist();
-  }
   if (input.name === 'query') { state.query = input.value.slice(0, 120); persist(); }
+});
+root.addEventListener('change', event => {
+  const field = event.target;
+  if (field.form?.id !== 'case-form' || !Object.hasOwn(CHOICE_OPTIONS, field.name)) return;
+  state.choices[field.name] = field.value;
+  persist();
+  // Remove the previous submission's verdict without judging the new choice.
+  if (errors.length) { rememberScroll(); errors = []; render(); root.querySelector('#' + field.id)?.focus({preventScroll:true}); }
 });
 root.addEventListener('submit', event => {
   event.preventDefault();
   if (event.target.id === 'search-form') return doSearch(new FormData(event.target).get('query'));
   if (event.target.id !== 'case-form') return;
-  const result = submit(state);
+  const result = submitChoices(state);
   errors = result.errors;
   if (result.ok) {
     state = result.state; workspace.completeSample(); persist(); render({ focus: true, restore: false });

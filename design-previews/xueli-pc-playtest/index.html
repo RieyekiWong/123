@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-9nrBrDr6/I9NETQhx+/5FAaW6hPld9ik4USkIiZoQjs='; style-src 'sha256-gG3an7FJQiYLZI7ah1OevIoCq028BMOTfQPaQLJOjtQ=' 'unsafe-hashes'; font-src data:; img-src data:; connect-src https://damp-rain-a5a6.ywang254.workers.dev; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-KzCeug5aiigDsOkBV07wsU1TOD1WN23ndoXAHdNm/yM='; style-src 'sha256-QttAFTYsvNQ6XQAqmbVozX7y9wsRX7+IpiJVv/HHbMI=' 'unsafe-hashes'; font-src data:; img-src data:; connect-src https://damp-rain-a5a6.ywang254.workers.dev; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="description" content="Stillwater Hotel 2.1 独立调查章节样本。所有故事人物均为虚构，插图等待作者绘制。">
   <title>照片背面 / Stillwater 2.1</title>
 <link rel="icon" href="data:,">
@@ -1220,6 +1220,12 @@ body[data-site=chat] #wechat-host .chat-contact-pane { display:flex; }
 body[data-site=chat] #wechat-host .chat-conversation { display:flex; }
 body[data-site=chat] #wechat-host .chat-mobile-back { display:none; }
 #root .notebook-panel>header button { color:var(--ink); }
+
+#root .choice-name { border:var(--edge); padding:14px; margin:0; min-width:0; }
+#root .choice-name legend { padding:0 6px; }
+#root .name-choice-fields { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+#root .answer-fields select { display:block; width:100%; min-width:0; min-height:48px; padding:8px; border:var(--edge); border-radius:0; background:var(--paper); }
+#root .legacy-draft { margin-block:16px; overflow-wrap:anywhere; }
 </style>
 </head>
 <body>
@@ -2642,7 +2648,7 @@ globalThis.StillwaterChat = {
 };
 
 (()=>{
-const xueliModule1=(()=>{
+const xueliModule2=(()=>{
 // Player-facing P0 copy: 2026-11-06 local-publication realism revision.
 // Full author/editor handoff remains local and is never imported here.
 const CONTENT_REVISION = "user-copy-pc-20261117";
@@ -3302,8 +3308,65 @@ const BY_ID = Object.fromEntries(DOCUMENTS.map(doc => [doc.id, doc]));
 
 return {CONTENT_REVISION,ASSETS,ANSWER_ALIASES,UI_COPY,OPENING,ENDING,DOCUMENTS,HINTS,BY_ID};
 })();
-const xueliModule2=(()=>{
-const {ANSWER_ALIASES,BY_ID,DOCUMENTS,UI_COPY,CONTENT_REVISION}=xueliModule1;
+const xueliModule1=(()=>{
+/* First-chapter options drawn from the existing public cast, places and files.
+   Do not include the names first disclosed by the locked photograph scan. */
+const {ANSWER_ALIASES}=xueliModule2;
+const option = (id, zh, en, aliases = []) => ({ id, label: { zh, en }, aliases: [zh, en, ...aliases] });
+const CHOICE_OPTIONS = {
+  surname: [option('baker', '贝克', 'Baker'), option('reed', '里德', 'Reed'), option('walsh', '沃尔什', 'Walsh'), option('ward', '沃德', 'Ward'), option('wang', '王', 'Wang')],
+  given: [option('ada', '艾达', 'Ada'), option('annie', '安妮', 'Annie'), option('churen', '楚人', 'Churen'), option('june', '朱恩', 'June'), option('robert', '罗伯特', 'Robert')],
+  place: [option('hotel', '静水旅馆', 'Stillwater Hotel'), option('bluebird', '青鸟照相馆', 'Bluebird Photo', ANSWER_ALIASES.place), option('library', '雪梨镇图书馆', 'Xueli Town Library'), option('diner', 'Maggie’s Diner', "Maggie's Diner")],
+  purpose: [option('course', '旧招牌课程文件', 'Shop-sign coursework'), option('group-photo', '员工合影原件或底片', 'Original staff photograph or negative', [...ANSWER_ALIASES.purpose, '员工合影原件']), option('report', '周刊报道', 'Weekly report'), option('map', '旧湖区地图', 'Old lake-district map'), option('hours', '商户营业时间', 'Business opening hours')],
+};
+const fields = Object.keys(CHOICE_OPTIONS);
+const normalize = value => String(value ?? '').normalize('NFKC').toLowerCase().replace(/[\s\p{P}\p{S}]+/gu, '');
+const freshChoices = () => Object.fromEntries(fields.map(field => [field, '']));
+function sanitizeChoices(raw) {
+  return Object.fromEntries(fields.map(field => [field, CHOICE_OPTIONS[field].some(o => o.id === raw?.[field]) ? raw[field] : '']));
+}
+const find = (field, id) => CHOICE_OPTIONS[field].find(o => o.id === id);
+const match = (field, text) => CHOICE_OPTIONS[field].find(o => o.aliases.some(alias => normalize(alias) === normalize(text)))?.id || '';
+function choicesFromDraft(draft = {}) {
+  const choices = freshChoices();
+  const names = [
+    ['ward', 'june', ANSWER_ALIASES.person],
+    ['reed', 'ada', ['艾达·里德', 'Ada Reed']],
+    ['walsh', 'robert', ['罗伯特·沃尔什', 'Robert Walsh']],
+    ['baker', 'annie', ['安妮·贝克', 'Annie Baker']],
+    ['wang', 'churen', ['王楚人', 'Wang Churen']],
+  ];
+  const person = names.find(([, , aliases]) => aliases.some(alias => normalize(alias) === normalize(draft.person)));
+  if (person) [choices.surname, choices.given] = person;
+  choices.place = match('place', draft.place);
+  choices.purpose = match('purpose', draft.purpose);
+  return choices;
+}
+function draftFromChoices(raw) {
+  const choices = sanitizeChoices(raw);
+  const surname = find('surname', choices.surname), given = find('given', choices.given);
+  return {
+    person: surname && given ? `${given.label.en} ${surname.label.en}` : '',
+    place: find('place', choices.place)?.label.en || '',
+    purpose: find('purpose', choices.purpose)?.label.en || '',
+  };
+}
+function unmappedDraft(draft) {
+  const migrated = choicesFromDraft(draft);
+  return Object.entries(draft).filter(([key, value]) => value &&
+    (key === 'person' ? !migrated.surname || !migrated.given : !migrated[key]));
+}
+function isSelectedName(draft) {
+  // The old free-text validator accepts a given-name alias. A selection must
+  // additionally match the complete pair so June + Reed cannot pass as June.
+  return ANSWER_ALIASES.person.some(alias => normalize(alias) === normalize(draft.person));
+}
+
+return {CHOICE_OPTIONS,freshChoices,sanitizeChoices,choicesFromDraft,draftFromChoices,unmappedDraft,isSelectedName};
+})();
+const xueliModule3=(()=>{
+const {freshChoices,sanitizeChoices,choicesFromDraft,draftFromChoices,isSelectedName}=xueliModule1;
+const {ANSWER_ALIASES,BY_ID,DOCUMENTS,UI_COPY,CONTENT_REVISION}=xueliModule2;
 
 const SAVE_KEY = 'stillwater-xueli-sample:v1';
 const APPS = ['chat', 'files', 'browser', 'casebook'];
@@ -3313,7 +3376,7 @@ const ids = value => Array.isArray(value) ? [...new Set(value.filter(id => typeo
 function fresh() {
   return { schema: 1, contentRevision: CONTENT_REVISION, legacyCompletion: false,
     lang: 'zh', clickSound: true, workspace: 'chat', directory: false, chatSearch: '', notebookOpen: false, notebookScroll: 0, app: 'chat', read: [], doc: null, previousDoc: null,
-    query: '', searches: [], searchShown: false, draft: { person: '', place: '', purpose: '' },
+    query: '', searches: [], searchShown: false, draft: { person: '', place: '', purpose: '' }, choices: freshChoices(),
     hint: 0, completed: false, storyDelivered: false, scroll: {}, trail: [], readerSize: 20 };
 }
 
@@ -3411,6 +3474,17 @@ function submit(state) {
     completed: true, storyDelivered: true }, ...result };
 }
 
+// Selection edits save drafts only. This is the sole choice-review entry point.
+function submitChoices(state) {
+  const draft = draftFromChoices(state.choices);
+  const result = validate(state, draft);
+  if (draft.person && !isSelectedName(draft) && !result.errors.some(e => e.field === 'person')) {
+    result.errors.push({ field: 'person', code: 'person' }); result.ok = false;
+  }
+  if (!result.ok) return { state, ok: false, errors: result.errors };
+  return submit({ ...state, choices: sanitizeChoices(state.choices), draft });
+}
+
 // Migration only: v1 once accepted generic "old photo" and even denials that
 // happened to contain a name. Keep a genuinely completed old sample accessible,
 // with an explicit compatibility marker, without re-certifying those answers.
@@ -3432,6 +3506,7 @@ function hydrate(value) {
     draft: Object.fromEntries(['person', 'place', 'purpose'].map(key => [key, limited(value.draft?.[key], key === 'purpose' ? 500 : 160)])),
     hint: Math.min(3, Math.max(0, Math.trunc(Number(value.hint) || 0))),
     readerSize: [18, 20, 22, 24].includes(value.readerSize) ? value.readerSize : 20, searchShown: value.searchShown === true };
+  state.choices = value.choices && typeof value.choices === 'object' && !Array.isArray(value.choices) ? sanitizeChoices(value.choices) : choicesFromDraft(state.draft);
   // Old citation arrays are intentionally ignored. Drafts and completed answers survive.
   const currentValid = validate(state).ok;
   const priorCompletion = value.completed === true &&
@@ -3459,9 +3534,9 @@ function objective(state) {
   return [UI_COPY[key].zh, UI_COPY[key].en];
 }
 
-return {SAVE_KEY,APPS,normalize,fresh,unlockedApps,canRead,openDocument,search,FEEDBACK,validate,submit,hydrate,objective};
+return {SAVE_KEY,APPS,normalize,fresh,unlockedApps,canRead,openDocument,search,FEEDBACK,validate,submit,submitChoices,hydrate,objective};
 })();
-const xueliModule3=(()=>{
+const xueliModule4=(()=>{
 /* Stable old-computer sounds. Keep the original click; typing has a softer,
    lower keycap sound. Both are created only during real user interactions. */
 function createDesktopClick({ enabled }) {
@@ -3524,8 +3599,8 @@ function createDesktopClick({ enabled }) {
 
 return {createDesktopClick};
 })();
-const xueliModule4=(()=>{
-const {ENDING}=xueliModule1;
+const xueliModule5=(()=>{
+const {ENDING}=xueliModule2;
 const CHAT_KEY = 'stillwater-xueli-chat:v1';
 
 function createWorkspace({ getState, persist, render, rememberScroll, openSource }) {
@@ -3658,7 +3733,7 @@ function createWorkspace({ getState, persist, render, rememberScroll, openSource
 
 return {CHAT_KEY,createWorkspace};
 })();
-const xueliModule5=(()=>{
+const xueliModule6=(()=>{
 // Only generic icons are loaded by the chapter. No future story-art inventory.
 const reuseById = {
   "app-chat": {
@@ -3806,11 +3881,12 @@ const reuseById = {
 return {reuseById};
 })();
 const xueliModule0=(()=>{
-const {ASSETS,OPENING,ENDING,BY_ID,HINTS,UI_COPY}=xueliModule1;
-const {SAVE_KEY,fresh,hydrate,unlockedApps,openDocument,search,submit,objective,FEEDBACK}=xueliModule2;
-const {createDesktopClick}=xueliModule3;
-const {createWorkspace}=xueliModule4;
-const {reuseById}=xueliModule5;
+const {CHOICE_OPTIONS,unmappedDraft}=xueliModule1;
+const {ASSETS,OPENING,ENDING,BY_ID,HINTS,UI_COPY}=xueliModule2;
+const {SAVE_KEY,fresh,hydrate,unlockedApps,openDocument,search,submitChoices,objective,FEEDBACK}=xueliModule3;
+const {createDesktopClick}=xueliModule4;
+const {createWorkspace}=xueliModule5;
+const {reuseById}=xueliModule6;
 
 const root = document.querySelector('#root');
 const announcement = document.querySelector('#announcement');
@@ -3890,7 +3966,9 @@ function browserView() {
 }
 function casebookView() {
   const fieldError = field => errors.some(error => error.field === field);
-  return `<section class="casebook"><p class="chapter-no pixel">NOTE 01 / A PHOTOGRAPH</p><h1 tabindex="-1">${t('调查笔记 01 · 照片背面', 'Investigation notes 01 · A photograph')}</h1><h2>${local(UI_COPY.prompt)}</h2><p class="tutorial">${t('把查到的信息写下来就好。简称、英文和不带标点的写法都可以。', 'Write what you found. Short names, English and different punctuation are fine.')}</p><span class="plan-tag">${t('这页只核对计划，不代表人已经到场。', 'This page checks a plan, not proof of arrival.')}</span><form id="case-form" novalidate><div class="answer-fields"><div><label for="person">${local(UI_COPY.person)}</label><input id="person" name="person" value="${escape(state.draft.person)}" maxlength="160" aria-invalid="${fieldError('person')}" ${fieldError('person') ? 'aria-describedby="feedback"' : ''} autocomplete="off"></div><div><label for="place">${local(UI_COPY.place)}</label><input id="place" name="place" value="${escape(state.draft.place)}" maxlength="160" aria-invalid="${fieldError('place')}" ${fieldError('place') ? 'aria-describedby="feedback"' : ''} autocomplete="off"></div><div class="wide"><label for="purpose">${local(UI_COPY.purpose)}</label><textarea id="purpose" name="purpose" maxlength="500" aria-invalid="${fieldError('purpose')}" ${fieldError('purpose') ? 'aria-describedby="feedback"' : ''}>${escape(state.draft.purpose)}</textarea></div></div><div class="submit-row"><button class="primary" type="submit">${local(UI_COPY.submit)}</button><p>${t('核对后会把这条计划告诉 GGbond。没对上的地方可以接着查，不会清空输入。', 'Once checked, this plan is shared with GGbond. A mismatch keeps your writing so you can investigate further.')}</p></div>${errors.length ? `<div id="feedback" class="feedback" role="alert"><ul>${[...new Set(errors.map(e => e.code))].map(code => `<li>${escape(FEEDBACK[code][state.lang === 'en' ? 1 : 0])}</li>`).join('')}</ul></div>` : ''}</form>${state.completed ? `<div class="complete-note">${local(UI_COPY.success)} <button class="text-button" data-app="chat">${t('查看消息', 'Read messages')}</button></div>` : ''}<div class="help-area"><button class="text-button" data-action="hint">${state.hint ? state.hint < 3 ? t('再给一点提示', 'Another hint') : t('已展开全部提示', 'All hints shown') : t('卡住了？查看提示', 'Stuck? Show a hint')}${state.hint ? ` · ${state.hint}/3` : ''}</button>${local(HINTS).slice(0, state.hint).map((hint, i) => `<p>${i + 1}. ${escape(hint)}</p>`).join('')}</div><div class="bottom-links"><button class="text-button" data-app="browser">${t('← 回资料里继续看', '← Back to the sources')}</button><span>${t('本页自动保存', 'This page saves automatically')}</span></div></section>`;
+  const select = (field, label, errorField = field) => `<div><label for="${field}">${label}</label><select id="${field}" name="${field}" aria-invalid="${fieldError(errorField)}" ${fieldError(errorField) ? 'aria-describedby="feedback"' : ''}><option value="">${t('请选择', 'Choose…')}</option>${CHOICE_OPTIONS[field].map(o => `<option value="${o.id}" ${state.choices[field] === o.id ? 'selected' : ''}>${escape(local(o.label))}</option>`).join('')}</select></div>`;
+  const retained = unmappedDraft(state.draft);
+  return `<section class="casebook"><p class="chapter-no pixel">NOTE 01 / A PHOTOGRAPH</p><h1 tabindex="-1">${t('调查笔记 01 · 照片背面', 'Investigation notes 01 · A photograph')}</h1><h2>${local(UI_COPY.prompt)}</h2><p class="tutorial">${t('根据报道与邮件，分别选择姓氏、名字、地点和所找资料。选择会自动保存，点击提交后才核对。', 'Use the reports and email to choose the surname, given name, place and source. Selections save automatically; only Submit checks them.')}</p><span class="plan-tag">${t('这页只核对计划，不代表人已经到场。', 'This page checks a plan, not proof of arrival.')}</span>${retained.length ? `<details class="legacy-draft"><summary>${t('此前填写的文字（已保留）', 'Earlier writing (retained)')}</summary>${retained.map(([field, value]) => `<p><strong>${local(UI_COPY[field])}</strong> ${escape(value)}</p>`).join('')}</details>` : ''}<form id="case-form" novalidate><div class="answer-fields"><fieldset class="choice-name wide"><legend>${local(UI_COPY.person)}</legend><div class="name-choice-fields">${select('surname', t('姓氏', 'Surname'), 'person')}${select('given', t('名字', 'Given name'), 'person')}</div></fieldset><div class="wide">${select('place', local(UI_COPY.place))}</div><div class="wide">${select('purpose', local(UI_COPY.purpose))}</div></div><div class="submit-row"><button class="primary" type="submit">${t('提交核对', 'Submit for review')}</button><p>${t('四项需要一起核对。未通过时保留当前选择，可以继续检索再提交。', 'All four fields are reviewed together. A mismatch keeps your selections so you can investigate and submit again.')}</p></div>${errors.length ? `<div id="feedback" class="feedback" role="alert"><ul>${[...new Set(errors.map(e => e.code))].map(code => `<li>${escape(FEEDBACK[code][state.lang === 'en' ? 1 : 0])}</li>`).join('')}</ul></div>` : ''}</form>${state.completed ? `<div class="complete-note">${local(UI_COPY.success)} <button class="text-button" data-app="chat">${t('查看消息', 'Read messages')}</button></div>` : ''}<div class="help-area"><button class="text-button" data-action="hint">${state.hint ? state.hint < 3 ? t('再给一点提示', 'Another hint') : t('已展开全部提示', 'All hints shown') : t('卡住了？查看提示', 'Stuck? Show a hint')}${state.hint ? ` · ${state.hint}/3` : ''}</button>${local(HINTS).slice(0, state.hint).map((hint, i) => `<p>${i + 1}. ${escape(hint)}</p>`).join('')}</div><div class="bottom-links"><button class="text-button" data-app="browser">${t('← 回资料里继续看', '← Back to the sources')}</button><span>${t('选择自动保存', 'Selections save automatically')}</span></div></section>`;
 }
 function render({ focus = false, restore = true } = {}) {
   const unlocked = ['files', 'browser', 'casebook'];
@@ -3975,17 +4053,21 @@ root.addEventListener('click', event => {
 root.addEventListener('keydown', desktopClick.keydown);
 root.addEventListener('input', event => {
   const input = event.target;
-  if (input.form?.id === 'case-form' && ['person', 'place', 'purpose'].includes(input.name)) {
-    state.draft[input.name] = input.value.slice(0, input.maxLength);
-    persist();
-  }
   if (input.name === 'query') { state.query = input.value.slice(0, 120); persist(); }
+});
+root.addEventListener('change', event => {
+  const field = event.target;
+  if (field.form?.id !== 'case-form' || !Object.hasOwn(CHOICE_OPTIONS, field.name)) return;
+  state.choices[field.name] = field.value;
+  persist();
+  // Remove the previous submission's verdict without judging the new choice.
+  if (errors.length) { rememberScroll(); errors = []; render(); root.querySelector('#' + field.id)?.focus({preventScroll:true}); }
 });
 root.addEventListener('submit', event => {
   event.preventDefault();
   if (event.target.id === 'search-form') return doSearch(new FormData(event.target).get('query'));
   if (event.target.id !== 'case-form') return;
-  const result = submit(state);
+  const result = submitChoices(state);
   errors = result.errors;
   if (result.ok) {
     state = result.state; workspace.completeSample(); persist(); render({ focus: true, restore: false });

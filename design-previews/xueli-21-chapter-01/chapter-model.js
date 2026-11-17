@@ -1,3 +1,4 @@
+import { freshChoices, sanitizeChoices, choicesFromDraft, draftFromChoices, isSelectedName } from './notebook-choices.js';
 import { ANSWER_ALIASES, BY_ID, DOCUMENTS, UI_COPY, CONTENT_REVISION } from './chapter-data.js';
 
 export const SAVE_KEY = 'stillwater-xueli-sample:v1';
@@ -8,7 +9,7 @@ const ids = value => Array.isArray(value) ? [...new Set(value.filter(id => typeo
 export function fresh() {
   return { schema: 1, contentRevision: CONTENT_REVISION, legacyCompletion: false,
     lang: 'zh', clickSound: true, workspace: 'chat', directory: false, chatSearch: '', notebookOpen: false, notebookScroll: 0, app: 'chat', read: [], doc: null, previousDoc: null,
-    query: '', searches: [], searchShown: false, draft: { person: '', place: '', purpose: '' },
+    query: '', searches: [], searchShown: false, draft: { person: '', place: '', purpose: '' }, choices: freshChoices(),
     hint: 0, completed: false, storyDelivered: false, scroll: {}, trail: [], readerSize: 20 };
 }
 
@@ -106,6 +107,17 @@ export function submit(state) {
     completed: true, storyDelivered: true }, ...result };
 }
 
+// Selection edits save drafts only. This is the sole choice-review entry point.
+export function submitChoices(state) {
+  const draft = draftFromChoices(state.choices);
+  const result = validate(state, draft);
+  if (draft.person && !isSelectedName(draft) && !result.errors.some(e => e.field === 'person')) {
+    result.errors.push({ field: 'person', code: 'person' }); result.ok = false;
+  }
+  if (!result.ok) return { state, ok: false, errors: result.errors };
+  return submit({ ...state, choices: sanitizeChoices(state.choices), draft });
+}
+
 // Migration only: v1 once accepted generic "old photo" and even denials that
 // happened to contain a name. Keep a genuinely completed old sample accessible,
 // with an explicit compatibility marker, without re-certifying those answers.
@@ -127,6 +139,7 @@ export function hydrate(value) {
     draft: Object.fromEntries(['person', 'place', 'purpose'].map(key => [key, limited(value.draft?.[key], key === 'purpose' ? 500 : 160)])),
     hint: Math.min(3, Math.max(0, Math.trunc(Number(value.hint) || 0))),
     readerSize: [18, 20, 22, 24].includes(value.readerSize) ? value.readerSize : 20, searchShown: value.searchShown === true };
+  state.choices = value.choices && typeof value.choices === 'object' && !Array.isArray(value.choices) ? sanitizeChoices(value.choices) : choicesFromDraft(state.draft);
   // Old citation arrays are intentionally ignored. Drafts and completed answers survive.
   const currentValid = validate(state).ok;
   const priorCompletion = value.completed === true &&
