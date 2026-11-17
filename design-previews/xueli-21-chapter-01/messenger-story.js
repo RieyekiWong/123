@@ -34,6 +34,12 @@
     ['尤其不要让别人知道我的存在。', 'Especially do not let anyone know I exist.'],
     ['去吧。我会知道你什么时候完成的。', 'Go. I will know when you finish.'],
   ]);
+  lines('xueli.chapter-01', 'wcr_new', [
+    ['看来你确实找到了一点东西。', 'You did find something after all.'],
+    ['楚人约好了去青鸟照相馆看那张员工合影。但这还不能证明他真的去过。', 'Churen arranged to see the staff photograph at Bluebird Photo. That does not prove he actually went.'],
+    ['电脑里还留着一份合影背面的扫描。', 'There is also a saved scan of the back of that photograph on the computer.'],
+    ['看一下这份留存的扫描。留意背面的字。', 'Look at the saved scan. Pay attention to the writing on the back.'],
+  ]);
   // Registered for the real Annie review event only. The photograph task is
   // deliberately not treated as Annie question 01.
   lines('xueli.annie-01', 'wcr_new', [
@@ -46,7 +52,7 @@
   ]);
   D.people.wcr_new = { name: ['？？？', '？？？'] };
   D.sideChats.wcr_new = { name: ['？？？', '？？？'], avatar: 'wcr_new', messages: [], kind: 'scripted' };
-  globalThis.StillwaterChatPeople.order.push('wcr_new');
+  globalThis.StillwaterChatPeople.order.unshift('wcr_new');
   globalThis.StillwaterChatPhotos.push({ id: 'wcr_new', file: 'assets/emblem.svg', source: 'assets/emblem.svg', author: '404 Studio', license: 'Existing project artwork', license_url: 'assets/emblem.svg' });
   globalThis.StillwaterStoryData = { messages, batches };
   globalThis.StillwaterChatStory = { entry: key => messages[key] || null, reply: () => null };

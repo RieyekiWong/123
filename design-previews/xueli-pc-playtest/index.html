@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-KzCeug5aiigDsOkBV07wsU1TOD1WN23ndoXAHdNm/yM='; style-src 'sha256-QttAFTYsvNQ6XQAqmbVozX7y9wsRX7+IpiJVv/HHbMI=' 'unsafe-hashes'; font-src data:; img-src data:; connect-src https://damp-rain-a5a6.ywang254.workers.dev; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-OiQT5qUcF8H40ZPpc/OAaWXU8WqfI8ryD9zhOE59KYE='; style-src 'sha256-SvJqAco5s01hnYlxcija8mVkdriYwGaTcsRz5Rq24TI=' 'unsafe-hashes'; font-src data:; img-src data:; connect-src https://damp-rain-a5a6.ywang254.workers.dev; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="description" content="Stillwater Hotel 2.1 独立调查章节样本。所有故事人物均为虚构，插图等待作者绘制。">
   <title>照片背面 / Stillwater 2.1</title>
 <link rel="icon" href="data:,">
@@ -1226,6 +1226,15 @@ body[data-site=chat] #wechat-host .chat-mobile-back { display:none; }
 #root .name-choice-fields { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 #root .answer-fields select { display:block; width:100%; min-width:0; min-height:48px; padding:8px; border:var(--edge); border-radius:0; background:var(--paper); }
 #root .legacy-draft { margin-block:16px; overflow-wrap:anywhere; }
+#workspace-tabs button.has-chapter-mail { outline:2px solid #f6d577; outline-offset:2px; }
+#chapter-mail-notice { position:fixed; top:70px; right:24px; z-index:30; width:340px; padding:16px 20px; border:2px solid #3e304c; background:#fff4cf; color:#3e304c; box-shadow:5px 5px 0 #292c3050; font:15px/1.5 "Microsoft YaHei",sans-serif; }
+#chapter-mail-notice strong { font-size:18px; }
+#chapter-mail-notice p { margin:8px 0 12px; }
+#chapter-mail-notice button { background:#2b7778; color:#fff9e9; padding:8px 14px; font-size:15px; }
+
+#workspace-tabs { position:sticky; top:0; z-index:12; }
+#chapter-mail-notice { top:auto; bottom:78px; right:auto; left:24px; }
+#chapter-mail-notice [data-dismiss-chapter-mail] { background:#fff9e9; color:#3e304c; }
 </style>
 </head>
 <body>
@@ -2274,6 +2283,12 @@ for (const [id,person] of Object.entries(globalThis.StillwaterChatPeople.contact
     ['尤其不要让别人知道我的存在。', 'Especially do not let anyone know I exist.'],
     ['去吧。我会知道你什么时候完成的。', 'Go. I will know when you finish.'],
   ]);
+  lines('xueli.chapter-01', 'wcr_new', [
+    ['看来你确实找到了一点东西。', 'You did find something after all.'],
+    ['楚人约好了去青鸟照相馆看那张员工合影。但这还不能证明他真的去过。', 'Churen arranged to see the staff photograph at Bluebird Photo. That does not prove he actually went.'],
+    ['电脑里还留着一份合影背面的扫描。', 'There is also a saved scan of the back of that photograph on the computer.'],
+    ['看一下这份留存的扫描。留意背面的字。', 'Look at the saved scan. Pay attention to the writing on the back.'],
+  ]);
   // Registered for the real Annie review event only. The photograph task is
   // deliberately not treated as Annie question 01.
   lines('xueli.annie-01', 'wcr_new', [
@@ -2286,7 +2301,7 @@ for (const [id,person] of Object.entries(globalThis.StillwaterChatPeople.contact
   ]);
   D.people.wcr_new = { name: ['？？？', '？？？'] };
   D.sideChats.wcr_new = { name: ['？？？', '？？？'], avatar: 'wcr_new', messages: [], kind: 'scripted' };
-  globalThis.StillwaterChatPeople.order.push('wcr_new');
+  globalThis.StillwaterChatPeople.order.unshift('wcr_new');
   globalThis.StillwaterChatPhotos.push({ id: 'wcr_new', file: 'assets/emblem.svg', source: 'assets/emblem.svg', author: '404 Studio', license: 'Existing project artwork', license_url: 'assets/emblem.svg' });
   globalThis.StillwaterStoryData = { messages, batches };
   globalThis.StillwaterChatStory = { entry: key => messages[key] || null, reply: () => null };
@@ -2643,7 +2658,7 @@ globalThis.StillwaterChat = {
     window.addEventListener('pagehide',()=>{if(root){rememberScroll();persist();}});
     window.addEventListener('resize',fitViewport);
     window.visualViewport?.addEventListener('resize',fitViewport);
-    return {mount,leave,openRoom,storyState:()=>({shared:state.shared,request:state.story.request,oldVisited:state.ui.visited.wcr_old===true,openingEdition:state.story.opening?.edition||'legacy'}),setStoryRequest(value){if(state.story.request!==value){state.story.request=value;persist();if(root)renderConversation();}},deliverStory(id){const incoming=M.deliver(state,id);const saved=persist();if(incoming.length){if(root){rememberScroll();renderMessages(true);renderContacts();audio.effect('chat-receive');}onIncoming(incoming.slice(-1).map(notification).filter(Boolean));}return saved;},contact:room=>({name:personName(room),avatar:avatar(room)}),unread:()=>Object.values(state.ui.unread).reduce((a,b)=>a+b,0),checkIn(room,options){const message=M.checkIn(state,room,document.documentElement.lang==='zh-CN'?'zh':'en',options);if(!message)return null;persist();return notification(message);},reset({keepAI=false,initialState:next}={}){leave();transport.cancelAll();if(!keepAI)transport.reset();state=next?M.hydrate(next):M.fresh();try {if(next)persist();else localStorage.removeItem(key);}catch {}},hasVisitedForum:()=>state.openedForum};
+    return {mount,leave,openRoom,storyState:()=>({shared:state.shared,request:state.story.request,oldVisited:state.ui.visited.wcr_old===true,conversation:state.ui.conversation,delivered:[...state.story.delivered],openingEdition:state.story.opening?.edition||'legacy'}),setStoryRequest(value){if(state.story.request!==value){state.story.request=value;persist();if(root)renderConversation();}},deliverStory(id){const incoming=M.deliver(state,id);const saved=persist();if(incoming.length){if(root){rememberScroll();renderMessages(true);renderContacts();audio.effect('chat-receive');}onIncoming(incoming.slice(-1).map(notification).filter(Boolean));}return saved;},contact:room=>({name:personName(room),avatar:avatar(room)}),unread:room=>room?state.ui.unread[room]||0:Object.values(state.ui.unread).reduce((a,b)=>a+b,0),checkIn(room,options){const message=M.checkIn(state,room,document.documentElement.lang==='zh-CN'?'zh':'en',options);if(!message)return null;persist();return notification(message);},reset({keepAI=false,initialState:next}={}){leave();transport.cancelAll();if(!keepAI)transport.reset();state=next?M.hydrate(next):M.fresh();try {if(next)persist();else localStorage.removeItem(key);}catch {}},hasVisitedForum:()=>state.openedForum};
   },
 };
 
@@ -2824,8 +2839,8 @@ const UI_COPY = {
     "en": "Saved as a meeting plan. We still don't know whether he went."
   },
   "newMessage": {
-    "zh": "GGbond 有新消息。",
-    "en": "New message from GGbond."
+    "zh": "？？？有新留言。回微信查看。",
+    "en": "？？？ has a new message. Check WeChat."
   },
   "optional": {
     "zh": "镇上其他消息",
@@ -3364,7 +3379,33 @@ function isSelectedName(draft) {
 
 return {CHOICE_OPTIONS,freshChoices,sanitizeChoices,choicesFromDraft,draftFromChoices,unmappedDraft,isSelectedName};
 })();
+const xueliModule4=(()=>{
+/* Register actual completed chapters here; never infer progress from a message. */
+const CHAPTER_MAIL = {
+  'chapter-01': { batch: 'xueli.chapter-01', title: { zh: '第一章调查已完成', en: 'Chapter one reviewed' } },
+};
+function chapterVerified(state, id) {
+  return id === 'chapter-01' && state.completed === true;
+}
+function announceChapter(state, id) {
+  if (!CHAPTER_MAIL[id] || !chapterVerified(state, id)) return false;
+  state.chapterMail ||= {};
+  if (state.chapterMail[id]?.announced) return false;
+  state.chapterMail[id] = { announced: true, read: false };
+  return true;
+}
+function restoreChapterMail(raw, state) {
+  const mail = {};
+  for (const id of Object.keys(CHAPTER_MAIL)) {
+    if (chapterVerified(state, id) && raw?.[id]?.announced === true) mail[id] = { announced: true, read: raw[id].read === true };
+  }
+  return mail;
+}
+
+return {CHAPTER_MAIL,chapterVerified,announceChapter,restoreChapterMail};
+})();
 const xueliModule3=(()=>{
+const {restoreChapterMail}=xueliModule4;
 const {freshChoices,sanitizeChoices,choicesFromDraft,draftFromChoices,isSelectedName}=xueliModule1;
 const {ANSWER_ALIASES,BY_ID,DOCUMENTS,UI_COPY,CONTENT_REVISION}=xueliModule2;
 
@@ -3375,8 +3416,8 @@ const limited = (value, size = 500) => typeof value === 'string' ? value.slice(0
 const ids = value => Array.isArray(value) ? [...new Set(value.filter(id => typeof id === 'string' && BY_ID[id]))] : [];
 function fresh() {
   return { schema: 1, contentRevision: CONTENT_REVISION, legacyCompletion: false,
-    lang: 'zh', clickSound: true, workspace: 'chat', directory: false, chatSearch: '', notebookOpen: false, notebookScroll: 0, app: 'chat', read: [], doc: null, previousDoc: null,
-    query: '', searches: [], searchShown: false, draft: { person: '', place: '', purpose: '' }, choices: freshChoices(),
+    lang: 'zh', chatLayout: 1, clickSound: true, workspace: 'chat', directory: false, chatSearch: '', notebookOpen: false, notebookScroll: 0, app: 'chat', read: [], doc: null, previousDoc: null,
+    query: '', searches: [], searchShown: false, draft: { person: '', place: '', purpose: '' }, choices: freshChoices(), chapterMail: {},
     hint: 0, completed: false, storyDelivered: false, scroll: {}, trail: [], readerSize: 20 };
 }
 
@@ -3501,7 +3542,7 @@ function hydrate(value) {
   const base = fresh();
   if (!value || typeof value !== 'object' || value.schema !== 1) return base;
   const state = { ...base, lang: value.lang === 'en' ? 'en' : 'zh', read: ids(value.read),
-    clickSound: value.clickSound !== false, workspace: value.workspace === 'computer' ? 'computer' : 'chat', directory: value.directory === true, chatSearch: limited(value.chatSearch, 120), notebookOpen: value.notebookOpen === true, notebookScroll: Number.isFinite(value.notebookScroll) ? Math.max(0, Math.min(100000, value.notebookScroll)) : 0,
+    chatLayout: value.chatLayout === 1 ? 1 : 0, clickSound: value.clickSound !== false, workspace: value.workspace === 'computer' ? 'computer' : 'chat', directory: value.directory === true, chatSearch: limited(value.chatSearch, 120), notebookOpen: value.notebookOpen === true, notebookScroll: Number.isFinite(value.notebookScroll) ? Math.max(0, Math.min(100000, value.notebookScroll)) : 0,
     query: limited(value.query, 120), searches: Array.isArray(value.searches) ? value.searches.filter(s => typeof s === 'string').slice(-20).map(s => s.slice(0, 120)) : [],
     draft: Object.fromEntries(['person', 'place', 'purpose'].map(key => [key, limited(value.draft?.[key], key === 'purpose' ? 500 : 160)])),
     hint: Math.min(3, Math.max(0, Math.trunc(Number(value.hint) || 0))),
@@ -3514,8 +3555,10 @@ function hydrate(value) {
   state.completed = value.completed === true && (currentValid || priorCompletion);
   state.legacyCompletion = state.completed && !currentValid && priorCompletion;
   state.storyDelivered = state.completed;
+  state.chapterMail = restoreChapterMail(value.chapterMail, state);
   state.read = state.read.filter(id => id !== 'back' || state.completed);
   state.app = value.app === 'desktop' || APPS.includes(value.app) ? value.app : 'chat';
+  if (state.workspace === 'computer' && state.app === 'chat') state.app = 'desktop';
   state.doc = canRead(state, value.doc) ? value.doc : null;
   state.previousDoc = canRead(state, value.previousDoc) ? value.previousDoc : null;
   state.trail = ids(value.trail).filter(id => canRead(state, id)).slice(-20);
@@ -3536,13 +3579,13 @@ function objective(state) {
 
 return {SAVE_KEY,APPS,normalize,fresh,unlockedApps,canRead,openDocument,search,FEEDBACK,validate,submit,submitChoices,hydrate,objective};
 })();
-const xueliModule4=(()=>{
+const xueliModule5=(()=>{
 /* Stable old-computer sounds. Keep the original click; typing has a softer,
    lower keycap sound. Both are created only during real user interactions. */
-function createDesktopClick({ enabled }) {
+function createDesktopClick({ enabled, notificationsEnabled = enabled }) {
   let context;
-  function audioContext() {
-    if (!enabled() || document.hidden) return null;
+  function audioContext(check = enabled) {
+    if (!check() || document.hidden) return null;
     const Audio = globalThis.AudioContext || globalThis.webkitAudioContext;
     if (!Audio) return null;
     context ||= new Audio();
@@ -3585,6 +3628,24 @@ function createDesktopClick({ enabled }) {
       source.start();
     } catch { /* A missing or blocked audio device never interrupts typing. */ }
   }
+  function notify() {
+    try {
+      const context = audioContext(notificationsEnabled);
+      if (!context) return;
+      // A clear two-note messenger chime, distinct from the existing UI clicks.
+      for (const [frequency, delay] of [[880, 0], [1174, .17]]) {
+        const oscillator = context.createOscillator(), gain = context.createGain();
+        const at = context.currentTime + delay;
+        oscillator.type = 'sine'; oscillator.frequency.value = frequency;
+        gain.gain.setValueAtTime(.0001, at);
+        gain.gain.linearRampToValueAtTime(.11, at + .015);
+        gain.gain.exponentialRampToValueAtTime(.0001, at + .20);
+        oscillator.connect(gain); gain.connect(context.destination);
+        oscillator.onended = () => { oscillator.disconnect(); gain.disconnect(); };
+        oscillator.start(at); oscillator.stop(at + .21);
+      }
+    } catch { /* The visible chapter reminder remains usable without audio. */ }
+  }
   function keydown(event) {
     if (!event.isTrusted || event.ctrlKey || event.metaKey || event.altKey) return;
     const field = event.target.closest?.('textarea, input:not([type]), input[type=text], input[type=search]');
@@ -3594,25 +3655,30 @@ function createDesktopClick({ enabled }) {
       /^(Key[A-Z]|Digit[0-9]|Numpad[0-9]|Space|Minus|Equal|BracketLeft|BracketRight|Backslash|Semicolon|Quote|Backquote|Comma|Period|Slash)$/.test(event.code);
     if (character || composingKey || event.key === 'Enter' && field.tagName === 'TEXTAREA' && !event.isComposing) type();
   }
-  return { play, type, keydown };
+  return { play, type, keydown, notify };
 }
 
 return {createDesktopClick};
 })();
-const xueliModule5=(()=>{
+const xueliModule6=(()=>{
+const {CHAPTER_MAIL,announceChapter,chapterVerified}=xueliModule4;
 const {ENDING}=xueliModule2;
 const CHAT_KEY = 'stillwater-xueli-chat:v1';
 
-function createWorkspace({ getState, persist, render, rememberScroll, openSource }) {
+function createWorkspace({ getState, persist, render, rememberScroll, openSource, notify = () => {} }) {
   const host = document.querySelector('#wechat-host');
   const root = document.querySelector('#root');
   const tabs = document.querySelector('#workspace-tabs');
   const t = (zh, en) => getState().lang === 'en' ? en : zh;
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const notice = document.createElement('aside'); notice.id = 'chapter-mail-notice'; notice.hidden = true; notice.setAttribute('role', 'status'); notice.setAttribute('aria-live', 'polite'); tabs.after(notice);
+  const dismissed = new Set();
   let mounted = false, badge = '', lastLang = '', lastDirectory = null;
   let chatWritable = true;
   try { const raw = localStorage.getItem(CHAT_KEY); if (raw && JSON.parse(raw)?.schema !== 1) chatWritable = false; } catch { chatWritable = false; }
   const story = globalThis.StillwaterStoryData;
+  // Read-only compatibility for messages received in older saves. New chapters
+  // never call this GG batch again.
   story.batches['xueli.photo-complete'] = { room: 'gg', keys: ENDING.map((line, i) => {
     const key = `xueli.photo-complete.${i}`;
     story.messages[key] = { person: 'gg', room: 'gg', text: [line.zh, line.en] };
@@ -3623,11 +3689,51 @@ function createWorkspace({ getState, persist, render, rememberScroll, openSource
     getRoute: () => mounted ? 'chat' : 'computer', isConversationVisible: () => !getState().directory,
     audio: { effect() {} }, onIncoming: () => updateBadge(),
   });
+  function completeChapter(id, audible = true) {
+    const spec = CHAPTER_MAIL[id], state = getState();
+    if (!spec || !chapterVerified(state, id)) return false;
+    const first = announceChapter(state, id);
+    // A player may solve the sample before accepting the request. Keep the
+    // notice, then enqueue the guide's report only after explicit acceptance.
+    if (chat.storyState().request === 'accepted') chat.deliverStory(spec.batch);
+    if (first) { persist(); if (audible) notify(); }
+    updateBadge();
+    return first;
+  }
+  function guideFiles() {
+    if (!mounted) return;
+    const snapshot = chat.storyState();
+    const show = getState().completed && snapshot.conversation === 'wcr_new' && snapshot.delivered.includes(CHAPTER_MAIL['chapter-01'].batch);
+    let scan = host.querySelector('[data-sample-file=back]');
+    if (!show) { scan?.remove(); return; }
+    if (!scan) {
+      scan = document.createElement('button'); scan.dataset.sampleFile = 'back'; scan.className = 'sample-files-link';
+      host.querySelector('[data-sample-file=note]')?.after(scan);
+    }
+    scan.textContent = t('？？？的线索 · 合影背面扫描', '？？？’s lead · Photograph back scan');
+  }
   function updateBadge() {
-    const pending = chat.storyState().request === 'pending';
+    const state = getState(), snapshot = chat.storyState();
+    const pending = snapshot.request === 'pending';
+    const guideVisible = mounted && state.workspace === 'chat' && !state.directory && snapshot.conversation === 'wcr_new';
+    for (const [id, mail] of Object.entries(state.chapterMail || {})) {
+      if (!mail.read && guideVisible && chat.unread('wcr_new') === 0 && snapshot.delivered.includes(CHAPTER_MAIL[id]?.batch)) {
+        mail.read = true; persist();
+      }
+    }
+    const unreadChapters = Object.entries(state.chapterMail || {}).filter(([, mail]) => !mail.read);
     const count = chat.unread() + (pending ? 1 : 0);
-    const value = count ? String(count) : '';
+    const value = count ? String(count) : unreadChapters.length ? t('新', 'NEW') : '';
     if (value !== badge) { tabs.querySelector('[data-wechat-unread]').textContent = value; badge = value; }
+    tabs.querySelector('[data-workspace=chat]').classList.toggle('has-chapter-mail', unreadChapters.length > 0);
+    const reminder = unreadChapters.find(([id]) => !dismissed.has(id));
+    notice.hidden = !reminder || state.workspace === 'chat';
+    const noticeKey = `${state.lang}:${reminder?.[0]}:${snapshot.request}`;
+    if (!notice.hidden && notice.dataset.key !== noticeKey) {
+      notice.dataset.key = noticeKey;
+      const title = CHAPTER_MAIL[reminder[0]].title[state.lang];
+      notice.innerHTML = `<strong>${esc(title)}</strong><p>${snapshot.request === 'accepted' ? t('？？？发来了新的留言。回微信看看。', '？？？ has a new message. Check WeChat.') : t('微信有新的动态。回去查看。', 'There is something new in WeChat.')}</p><button data-open-chapter-mail>${t('查看微信留言 →', 'Read WeChat messages →')}</button> <button data-dismiss-chapter-mail>${t('稍后', 'Later')}</button>`;
+    }
     const people = host.querySelector('[data-chat-action="people"]');
     if (people) {
       people.setAttribute('aria-label', t('通讯录', 'Contacts') + (pending ? t(' · 新的朋友 1', ' · 1 new friend') : ''));
@@ -3635,7 +3741,8 @@ function createWorkspace({ getState, persist, render, rememberScroll, openSource
       people.classList.toggle('has-request', pending);
     }
     const panel = host.querySelector('.friends-directory');
-    if (panel && panel.dataset.request !== chat.storyState().request) directory();
+    if (panel && panel.dataset.request !== snapshot.request) directory();
+    guideFiles();
   }
   function directory() {
     host.querySelector('.friends-directory')?.remove();
@@ -3661,6 +3768,12 @@ function createWorkspace({ getState, persist, render, rememberScroll, openSource
   }
   function sync() {
     const state = getState(), active = state.workspace === 'chat';
+    if (state.chatLayout !== 1) {
+      const saved = chat.storyState();
+      if (saved.request === 'accepted' && saved.conversation === 'wcr_new' && !'？？？'.includes(state.chatSearch.trim().toLowerCase())) state.chatSearch = '';
+      state.chatLayout = 1; persist();
+    }
+    for (const id of Object.keys(CHAPTER_MAIL)) if (chapterVerified(state, id)) completeChapter(id, false);
     root.hidden = active; host.hidden = !active;
     document.body.dataset.site = active ? 'chat' : 'xueli';
     tabs.querySelectorAll('[data-workspace]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.workspace === state.workspace)));
@@ -3678,15 +3791,32 @@ function createWorkspace({ getState, persist, render, rememberScroll, openSource
       const files = document.createElement('button'); files.dataset.sampleFile = 'note'; files.className = 'sample-files-link';
       files.textContent = t('王楚人的文件 · 拍照备忘', 'Churen’s files · Photo notes');
       host.querySelector('.chat-heading').after(files);
-      if (state.completed) {
-        const scan = document.createElement('button'); scan.dataset.sampleFile = 'back'; scan.className = 'sample-files-link';
-        scan.textContent = t('GGbond 的附件 · 合影背面扫描', 'GGbond’s attachment · Photograph back');
-        files.after(scan);
-      }
       directory(); lastDirectory = state.directory;
     } else if (active && lastDirectory !== state.directory) { directory(); lastDirectory = state.directory; }
     lastLang = state.lang; updateBadge();
   }
+  function openMystery(latest = false) {
+    const state = getState();
+    state.directory = false; state.chatSearch = '';
+    const search = host.querySelector('#chat-search');
+    if (search) { search.value = ''; search.dispatchEvent(new Event('input', {bubbles:true})); }
+    chat.openRoom('wcr_new'); persist(); sync();
+    host.querySelector('.chat-contact-list')?.scrollTo({top:0});
+    if (latest) host.querySelector('[data-chat-action=latest]')?.click();
+    updateBadge();
+  }
+  function openMessages() {
+    switchTo('chat');
+    if (chat.storyState().request === 'accepted') openMystery(true);
+    else if (chat.storyState().request === 'pending') { getState().directory = true; persist(); sync(); }
+  }
+  notice.addEventListener('click', event => {
+    if (event.target.closest('[data-dismiss-chapter-mail]')) {
+      const id = Object.entries(getState().chapterMail || {}).find(([id, mail]) => !mail.read && !dismissed.has(id))?.[0];
+      if (id) dismissed.add(id); updateBadge(); return;
+    }
+    if (event.target.closest('[data-open-chapter-mail]')) openMessages();
+  });
   tabs.addEventListener('click', event => { const value = event.target.closest('[data-workspace]')?.dataset.workspace; if (value) switchTo(value); });
   host.addEventListener('input', event => { if (event.target.id === 'chat-search') { rememberChat(); persist(); } });
   host.addEventListener('click', event => {
@@ -3701,9 +3831,9 @@ function createWorkspace({ getState, persist, render, rememberScroll, openSource
       event.preventDefault();
       if (chat.storyState().request !== 'pending') return;
       chat.setStoryRequest('accepted'); chat.deliverStory('xueli.accepted');
-      getState().directory = false; chat.openRoom('wcr_new'); persist(); sync(); return;
+      openMystery(); return;
     }
-    if (target.hasAttribute('data-mystery-chat')) { getState().directory = false; chat.openRoom('wcr_new'); persist(); sync(); return; }
+    if (target.hasAttribute('data-mystery-chat')) { openMystery(); return; }
     if (target.hasAttribute('data-open-old-pc')) { switchTo('computer'); return; }
     if (target.dataset.sampleFile) { switchTo('computer'); openSource(target.dataset.sampleFile); return; }
     if (target.hasAttribute('data-case-language')) {
@@ -3720,20 +3850,21 @@ function createWorkspace({ getState, persist, render, rememberScroll, openSource
   window.addEventListener('pagehide', () => { rememberChat(); persist(); clearInterval(timer); });
   return {
     sync,
-    completeSample() { chat.deliverStory('xueli.photo-complete'); },
+    completeSample() { return completeChapter('chapter-01'); },
+    completeChapter, openMessages,
     // Integration point: only the missing Annie validator may emit this event.
     // No photograph result, draft change, or arbitrary chapter change calls it.
     verifiedMilestone(result) {
       if (result?.id !== 'annie-01' || result?.verified !== true || result?.source !== 'NEWS-018' || chat.storyState().request !== 'accepted') return false;
       chat.deliverStory('xueli.annie-01'); updateBadge(); return true;
     },
-    reset() { chatWritable = true; chat.reset(); mounted = false; lastDirectory = null; },
+    reset() { dismissed.clear(); chatWritable = true; chat.reset(); mounted = false; lastDirectory = null; },
   };
 }
 
 return {CHAT_KEY,createWorkspace};
 })();
-const xueliModule6=(()=>{
+const xueliModule7=(()=>{
 // Only generic icons are loaded by the chapter. No future story-art inventory.
 const reuseById = {
   "app-chat": {
@@ -3884,9 +4015,9 @@ const xueliModule0=(()=>{
 const {CHOICE_OPTIONS,unmappedDraft}=xueliModule1;
 const {ASSETS,OPENING,ENDING,BY_ID,HINTS,UI_COPY}=xueliModule2;
 const {SAVE_KEY,fresh,hydrate,unlockedApps,openDocument,search,submitChoices,objective,FEEDBACK}=xueliModule3;
-const {createDesktopClick}=xueliModule4;
-const {createWorkspace}=xueliModule5;
-const {reuseById}=xueliModule6;
+const {createDesktopClick}=xueliModule5;
+const {createWorkspace}=xueliModule6;
+const {reuseById}=xueliModule7;
 
 const root = document.querySelector('#root');
 const announcement = document.querySelector('#announcement');
@@ -3910,7 +4041,7 @@ try {
 }
 
 let workspace;
-const desktopClick = createDesktopClick({ enabled: () => state.workspace === 'computer' && state.clickSound });
+const desktopClick = createDesktopClick({ enabled: () => state.workspace === 'computer' && state.clickSound, notificationsEnabled: () => state.clickSound });
 function persist() {
   if (saveBlocked) return;
   try { localStorage.setItem(SAVE_KEY, JSON.stringify(state)); }
@@ -3976,7 +4107,7 @@ function render({ focus = false, restore = true } = {}) {
   document.documentElement.lang = state.lang === 'en' ? 'en' : 'zh-CN';
   document.body.className = state.lang === 'en' ? 'en' : '';
   document.title = local(UI_COPY.chapter) + ' · Stillwater 2.1';
-  root.innerHTML = `<header class="sample-strip"><p>${t('STILLWATER 2.1 · 独立章节样本', 'STILLWATER 2.1 · CHAPTER SAMPLE')}<span class="sample-detail"> · DIRECTOR’S CUT</span></p><div><button data-action="language">${t('English', '中文')}</button></div></header>${storageWarning ? `<div class="storage-warning" role="status">${storageWarning === 'restore' ? t('样本存档暂时无法读取，原始内容已保留。现在可以临时试玩；如需重新保存，请用底部的“重开样本”确认。正式游戏存档未动。', 'The sample save could not be read and has been kept intact. You can play without saving, or confirm “Restart sample” to start a new sample save. Production saves are untouched.') : t('浏览器未能保存这个样本。可以继续试玩，但刷新后可能回到之前的进度。', 'The browser could not save this sample. You can continue, but a refresh may return to earlier progress.')}</div>` : ''}<div class="desktop"><header class="desk-header"><div><p class="desk-brand pixel">XUELI / FILE COPY</p><p class="desk-sub">${local(UI_COPY.shared)}</p></div><p class="objective"><small>${t('正在想的事', 'THE QUESTION')}</small>${escape(objective(state)[state.lang === 'en' ? 1 : 0])}</p></header><div class="desktop-layout"><nav class="desktop-icons" aria-label="${t('已发现的程序', 'Available apps')}">${unlocked.map(app => `<button class="desktop-icon" data-app="${app}" aria-label="${escape(t('打开', 'Open ') + appName(app))}">${art(`app-${app}`)}<span class="icon-label">${escape(appName(app))}</span></button>`).join('')}</nav>${state.app === 'desktop' ? `<main class="desktop-rest">${art('prop-pc')}<h1>${t('机器很旧，里面的日子倒不只一年。', 'An old machine, with more than one year inside it.')}</h1><p>${t('打开左边的程序。刚才读到哪里、写了什么，都还在。', 'Open an app on the left. Your reading position and writing are still there.')}</p></main>` : `<main class="window"><header class="window-title" data-app="${state.app}"><p>${appName(state.app)} / ${state.app === 'chat' ? 'GGbond' : state.app === 'browser' ? 'LOCAL INDEX' : state.app === 'files' ? 'W.C. / NOTES' : 'WANG CHUREN'}</p><div class="title-controls"><button data-action="minimize" aria-label="${t('最小化窗口', 'Minimize window')}">—</button></div></header><div class="window-content" tabindex="-1">${names[state.app]?.() || chatView()}</div><footer class="window-status"><span>${t('只保存到本机 · 无在线请求', 'Saved on this device · No online requests')}</span><span class="secondary-status">${t('每份原文都可以回看', 'All sources can be revisited')}</span></footer></main>`}</div></div><nav class="taskbar" aria-label="${t('程序切换', 'Switch apps')}"><span class="task-label pixel">X /</span>${unlocked.map(app => `<button data-app="${app}" aria-pressed="${state.app === app}">${escape(appName(app))}</button>`).join('')}<span class="clock">${'2026 / 11'}</span><button class="text-button" data-action="click-sound" aria-pressed="${state.clickSound}">${state.clickSound ? t('交互音效：开', 'Interaction sounds: on') : t('交互音效：关', 'Interaction sounds: off')}</button><button class="text-button" data-action="reset">${t('重开样本', 'Restart sample')}</button></nav><dialog class="reset-dialog"><h2>${t('从这段调查的开头重来？', 'Restart this sample?')}</h2><p>${t('只重开本试玩的调查与聊天，不会清除正式游戏或原版微信记录。', 'This restarts this sample investigation and chat. Production game and messenger records are retained.')}</p><button data-action="cancel-reset">${t('继续当前调查', 'Keep investigating')}</button><button class="primary" data-action="confirm-reset">${t('重开这个样本', 'Restart this sample')}</button></dialog>`;
+  root.innerHTML = `<header class="sample-strip"><p>${t('STILLWATER 2.1 · 独立章节样本', 'STILLWATER 2.1 · CHAPTER SAMPLE')}<span class="sample-detail"> · DIRECTOR’S CUT</span></p><div><button data-action="language">${t('English', '中文')}</button></div></header>${storageWarning ? `<div class="storage-warning" role="status">${storageWarning === 'restore' ? t('样本存档暂时无法读取，原始内容已保留。现在可以临时试玩；如需重新保存，请用底部的“重开样本”确认。正式游戏存档未动。', 'The sample save could not be read and has been kept intact. You can play without saving, or confirm “Restart sample” to start a new sample save. Production saves are untouched.') : t('浏览器未能保存这个样本。可以继续试玩，但刷新后可能回到之前的进度。', 'The browser could not save this sample. You can continue, but a refresh may return to earlier progress.')}</div>` : ''}<div class="desktop"><header class="desk-header"><div><p class="desk-brand pixel">XUELI / FILE COPY</p><p class="desk-sub">${local(UI_COPY.shared)}</p></div><p class="objective"><small>${t('正在想的事', 'THE QUESTION')}</small>${escape(objective(state)[state.lang === 'en' ? 1 : 0])}</p></header><div class="desktop-layout"><nav class="desktop-icons" aria-label="${t('已发现的程序', 'Available apps')}">${unlocked.map(app => `<button class="desktop-icon" data-app="${app}" aria-label="${escape(t('打开', 'Open ') + appName(app))}">${art(`app-${app}`)}<span class="icon-label">${escape(appName(app))}</span></button>`).join('')}</nav>${state.app === 'desktop' ? `<main class="desktop-rest">${art('prop-pc')}<h1>${t('机器很旧，里面的日子倒不只一年。', 'An old machine, with more than one year inside it.')}</h1><p>${t('打开左边的程序。刚才读到哪里、写了什么，都还在。', 'Open an app on the left. Your reading position and writing are still there.')}</p></main>` : `<main class="window"><header class="window-title" data-app="${state.app}"><p>${appName(state.app)} / ${state.app === 'chat' ? 'GGbond' : state.app === 'browser' ? 'LOCAL INDEX' : state.app === 'files' ? 'W.C. / NOTES' : 'WANG CHUREN'}</p><div class="title-controls"><button data-action="minimize" aria-label="${t('最小化窗口', 'Minimize window')}">—</button></div></header><div class="window-content" tabindex="-1">${names[state.app]?.() || chatView()}</div><footer class="window-status"><span>${t('只保存到本机 · 无在线请求', 'Saved on this device · No online requests')}</span><span class="secondary-status">${t('每份原文都可以回看', 'All sources can be revisited')}</span></footer></main>`}</div></div><nav class="taskbar" aria-label="${t('程序切换', 'Switch apps')}"><span class="task-label pixel">X /</span>${unlocked.map(app => `<button data-app="${app}" aria-pressed="${state.app === app}">${escape(appName(app))}</button>`).join('')}<span class="clock">${'2026 / 11'}</span><button class="text-button" title="${t('点击、打字与消息提示音', 'Click, typing and message sounds')}" data-action="click-sound" aria-pressed="${state.clickSound}">${state.clickSound ? t('交互音效：开', 'Interaction sounds: on') : t('交互音效：关', 'Interaction sounds: off')}</button><button class="text-button" data-action="reset">${t('重开样本', 'Restart sample')}</button></nav><dialog class="reset-dialog"><h2>${t('从这段调查的开头重来？', 'Restart this sample?')}</h2><p>${t('只重开本试玩的调查与聊天，不会清除正式游戏或原版微信记录。', 'This restarts this sample investigation and chat. Production game and messenger records are retained.')}</p><button data-action="cancel-reset">${t('继续当前调查', 'Keep investigating')}</button><button class="primary" data-action="confirm-reset">${t('重开这个样本', 'Restart this sample')}</button></dialog>`;
   const reader = root.querySelector('.reader');
   if (reader) reader.style.setProperty('--reading-size', `${state.readerSize}px`);
   const pane = root.querySelector('.window-content');
@@ -3993,6 +4124,7 @@ function render({ focus = false, restore = true } = {}) {
   }
 }
 function switchApp(app) {
+  if (app === 'chat') { workspace.openMessages(); return; }
   if (app === 'casebook' && ['browser', 'files'].includes(state.app)) { state.notebookOpen = !state.notebookOpen; persist(); render(); return; }
   if (!['chat', 'files', 'browser', 'casebook'].includes(app)) return;
   rememberScroll();
@@ -4086,7 +4218,7 @@ root.addEventListener('scroll', event => {
   if (event.target.matches('.notebook-panel')) { state.notebookScroll = event.target.scrollTop; persist(); }
 }, true);
 window.addEventListener('pagehide', () => { rememberScroll(); persist(); });
-workspace = createWorkspace({ getState: () => state, persist, render, rememberScroll, openSource: goDocument });
+workspace = createWorkspace({ getState: () => state, persist, render, rememberScroll, openSource: goDocument, notify: desktopClick.notify });
 render();
 
 return {};

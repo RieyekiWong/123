@@ -1,3 +1,4 @@
+import { restoreChapterMail } from './chapter-mail.js';
 import { freshChoices, sanitizeChoices, choicesFromDraft, draftFromChoices, isSelectedName } from './notebook-choices.js';
 import { ANSWER_ALIASES, BY_ID, DOCUMENTS, UI_COPY, CONTENT_REVISION } from './chapter-data.js';
 
@@ -8,8 +9,8 @@ const limited = (value, size = 500) => typeof value === 'string' ? value.slice(0
 const ids = value => Array.isArray(value) ? [...new Set(value.filter(id => typeof id === 'string' && BY_ID[id]))] : [];
 export function fresh() {
   return { schema: 1, contentRevision: CONTENT_REVISION, legacyCompletion: false,
-    lang: 'zh', clickSound: true, workspace: 'chat', directory: false, chatSearch: '', notebookOpen: false, notebookScroll: 0, app: 'chat', read: [], doc: null, previousDoc: null,
-    query: '', searches: [], searchShown: false, draft: { person: '', place: '', purpose: '' }, choices: freshChoices(),
+    lang: 'zh', chatLayout: 1, clickSound: true, workspace: 'chat', directory: false, chatSearch: '', notebookOpen: false, notebookScroll: 0, app: 'chat', read: [], doc: null, previousDoc: null,
+    query: '', searches: [], searchShown: false, draft: { person: '', place: '', purpose: '' }, choices: freshChoices(), chapterMail: {},
     hint: 0, completed: false, storyDelivered: false, scroll: {}, trail: [], readerSize: 20 };
 }
 
@@ -134,7 +135,7 @@ export function hydrate(value) {
   const base = fresh();
   if (!value || typeof value !== 'object' || value.schema !== 1) return base;
   const state = { ...base, lang: value.lang === 'en' ? 'en' : 'zh', read: ids(value.read),
-    clickSound: value.clickSound !== false, workspace: value.workspace === 'computer' ? 'computer' : 'chat', directory: value.directory === true, chatSearch: limited(value.chatSearch, 120), notebookOpen: value.notebookOpen === true, notebookScroll: Number.isFinite(value.notebookScroll) ? Math.max(0, Math.min(100000, value.notebookScroll)) : 0,
+    chatLayout: value.chatLayout === 1 ? 1 : 0, clickSound: value.clickSound !== false, workspace: value.workspace === 'computer' ? 'computer' : 'chat', directory: value.directory === true, chatSearch: limited(value.chatSearch, 120), notebookOpen: value.notebookOpen === true, notebookScroll: Number.isFinite(value.notebookScroll) ? Math.max(0, Math.min(100000, value.notebookScroll)) : 0,
     query: limited(value.query, 120), searches: Array.isArray(value.searches) ? value.searches.filter(s => typeof s === 'string').slice(-20).map(s => s.slice(0, 120)) : [],
     draft: Object.fromEntries(['person', 'place', 'purpose'].map(key => [key, limited(value.draft?.[key], key === 'purpose' ? 500 : 160)])),
     hint: Math.min(3, Math.max(0, Math.trunc(Number(value.hint) || 0))),
@@ -147,8 +148,10 @@ export function hydrate(value) {
   state.completed = value.completed === true && (currentValid || priorCompletion);
   state.legacyCompletion = state.completed && !currentValid && priorCompletion;
   state.storyDelivered = state.completed;
+  state.chapterMail = restoreChapterMail(value.chapterMail, state);
   state.read = state.read.filter(id => id !== 'back' || state.completed);
   state.app = value.app === 'desktop' || APPS.includes(value.app) ? value.app : 'chat';
+  if (state.workspace === 'computer' && state.app === 'chat') state.app = 'desktop';
   state.doc = canRead(state, value.doc) ? value.doc : null;
   state.previousDoc = canRead(state, value.previousDoc) ? value.previousDoc : null;
   state.trail = ids(value.trail).filter(id => canRead(state, id)).slice(-20);

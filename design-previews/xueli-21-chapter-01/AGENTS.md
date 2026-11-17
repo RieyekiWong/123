@@ -3,3 +3,9 @@
 - Keep the existing mouse-click sound in `desktop-audio.js` as the standard for future old-computer controls. Do not replace its timbre unless the user asks.
 - Typing uses the separate keycap sound, only in editable old-computer text fields. Avoid extra sounds on IME commits, navigation keys, shortcuts and programmatic input.
 - Reuse the existing interaction-sound switch and persisted `clickSound` preference. Preserve prior mute settings and the investigation/chat saves.
+
+# Chapter messages
+
+- Post-chapter guidance comes from ？？？. Keep GGbond's existing opening and already-received historical messages; do not send new chapter reports from GGbond.
+- Route notebook message links to the real desktop messenger, never to the old simplified GG template. New accepted contacts must be visible in the conversation list.
+- Register real chapter completions in `chapter-mail.js`; notify once per verified chapter with a persistent unread reminder and the message chime. Repeated submissions, individual lines and refreshes must not replay the chime. Preserve mute settings.

@@ -173,8 +173,8 @@ export const UI_COPY = {
     "en": "Saved as a meeting plan. We still don't know whether he went."
   },
   "newMessage": {
-    "zh": "GGbond 有新消息。",
-    "en": "New message from GGbond."
+    "zh": "？？？有新留言。回微信查看。",
+    "en": "？？？ has a new message. Check WeChat."
   },
   "optional": {
     "zh": "镇上其他消息",

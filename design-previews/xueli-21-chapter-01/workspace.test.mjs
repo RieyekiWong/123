@@ -73,3 +73,13 @@ test('formal submission leaves the computer open and does not turn the photo ded
   assert.equal(result.state.chapter, undefined);
   assert.equal(s.completed, false);
 });
+test('chapter reports use the guide and keep paced delivery off the computer page', () => {
+  const c = messenger(), M = c.StillwaterChatModel, s = M.fresh();
+  s.story.request = 'accepted'; M.deliver(s, 'xueli.chapter-01');
+  for (let i = 0; i < 15; i++) M.advance(s, 2000, { chatActive:false });
+  const report = s.messages.filter(m => m.key?.startsWith('xueli.chapter-01.'));
+  assert.equal(report.length, 4);
+  assert.ok(report.every(m => m.conversation === 'wcr_new'));
+  assert.ok(report.every(m => c.StillwaterChatStory.entry(m.key).person === 'wcr_new'));
+  assert.equal(M.deliver(s, 'xueli.chapter-01').length, 0);
+});

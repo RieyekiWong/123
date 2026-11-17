@@ -57,3 +57,12 @@ body[data-site=chat] #wechat-host .chat-mobile-back { display:none; }
 #root .name-choice-fields { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 #root .answer-fields select { display:block; width:100%; min-width:0; min-height:48px; padding:8px; border:var(--edge); border-radius:0; background:var(--paper); }
 #root .legacy-draft { margin-block:16px; overflow-wrap:anywhere; }
+#workspace-tabs button.has-chapter-mail { outline:2px solid #f6d577; outline-offset:2px; }
+#chapter-mail-notice { position:fixed; top:70px; right:24px; z-index:30; width:340px; padding:16px 20px; border:2px solid #3e304c; background:#fff4cf; color:#3e304c; box-shadow:5px 5px 0 #292c3050; font:15px/1.5 "Microsoft YaHei",sans-serif; }
+#chapter-mail-notice strong { font-size:18px; }
+#chapter-mail-notice p { margin:8px 0 12px; }
+#chapter-mail-notice button { background:#2b7778; color:#fff9e9; padding:8px 14px; font-size:15px; }
+
+#workspace-tabs { position:sticky; top:0; z-index:12; }
+#chapter-mail-notice { top:auto; bottom:78px; right:auto; left:24px; }
+#chapter-mail-notice [data-dismiss-chapter-mail] { background:#fff9e9; color:#3e304c; }

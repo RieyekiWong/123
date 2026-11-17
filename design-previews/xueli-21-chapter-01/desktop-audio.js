@@ -1,9 +1,9 @@
 /* Stable old-computer sounds. Keep the original click; typing has a softer,
    lower keycap sound. Both are created only during real user interactions. */
-export function createDesktopClick({ enabled }) {
+export function createDesktopClick({ enabled, notificationsEnabled = enabled }) {
   let context;
-  function audioContext() {
-    if (!enabled() || document.hidden) return null;
+  function audioContext(check = enabled) {
+    if (!check() || document.hidden) return null;
     const Audio = globalThis.AudioContext || globalThis.webkitAudioContext;
     if (!Audio) return null;
     context ||= new Audio();
@@ -46,6 +46,24 @@ export function createDesktopClick({ enabled }) {
       source.start();
     } catch { /* A missing or blocked audio device never interrupts typing. */ }
   }
+  function notify() {
+    try {
+      const context = audioContext(notificationsEnabled);
+      if (!context) return;
+      // A clear two-note messenger chime, distinct from the existing UI clicks.
+      for (const [frequency, delay] of [[880, 0], [1174, .17]]) {
+        const oscillator = context.createOscillator(), gain = context.createGain();
+        const at = context.currentTime + delay;
+        oscillator.type = 'sine'; oscillator.frequency.value = frequency;
+        gain.gain.setValueAtTime(.0001, at);
+        gain.gain.linearRampToValueAtTime(.11, at + .015);
+        gain.gain.exponentialRampToValueAtTime(.0001, at + .20);
+        oscillator.connect(gain); gain.connect(context.destination);
+        oscillator.onended = () => { oscillator.disconnect(); gain.disconnect(); };
+        oscillator.start(at); oscillator.stop(at + .21);
+      }
+    } catch { /* The visible chapter reminder remains usable without audio. */ }
+  }
   function keydown(event) {
     if (!event.isTrusted || event.ctrlKey || event.metaKey || event.altKey) return;
     const field = event.target.closest?.('textarea, input:not([type]), input[type=text], input[type=search]');
@@ -55,5 +73,5 @@ export function createDesktopClick({ enabled }) {
       /^(Key[A-Z]|Digit[0-9]|Numpad[0-9]|Space|Minus|Equal|BracketLeft|BracketRight|Backslash|Semicolon|Quote|Backquote|Comma|Period|Slash)$/.test(event.code);
     if (character || composingKey || event.key === 'Enter' && field.tagName === 'TEXTAREA' && !event.isComposing) type();
   }
-  return { play, type, keydown };
+  return { play, type, keydown, notify };
 }
